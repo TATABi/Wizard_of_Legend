@@ -85,6 +85,7 @@ IDB_HELP                BITMAP                  "..\\res\\help.bmp"
 IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 Character_Stand_01      BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\character.bmp"
 START_BACKGROUND        BITMAP                  "..\\res\\bitmap3.bmp"
+IDB_Map                 BITMAP                  "C:\\Users\\lab1421\\Documents\\Wizard_of_Legend\\game4.10\\RES\\Map.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

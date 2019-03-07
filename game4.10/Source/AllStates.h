@@ -9,7 +9,7 @@ namespace game_framework {
 		int NowState();
 	private:
 		int _level;
-		std::vector<CGameStateRun> _states;
+		std::vector<CGameStateRun *> _states;
 	};
 
 }
