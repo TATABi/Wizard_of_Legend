@@ -203,5 +203,11 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\..\..\Desktop\game4.10\RES\Start_Ani\start_temp.png" />
+    <Image Include="res\bmp00001.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\吳彥陞\Desktop\foo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

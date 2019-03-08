@@ -63,29 +63,53 @@ END
 //
 
 IDB_BALL                BITMAP                  "..\\res\\ball.bmp"
+
 IDB_ERASER1             BITMAP                  "..\\res\\eraser1.bmp"
+
 IDB_BACKGROUND          BITMAP                  "..\\res\\ntutcsie.bmp"
+
 IDB_CORNER              BITMAP                  "..\\res\\corner.bmp"
+
 IDB_0                   BITMAP                  "..\\res\\bmp0.bmp"
+
 IDB_1                   BITMAP                  "..\\res\\bmp1.bmp"
+
 IDB_2                   BITMAP                  "..\\res\\bmp2.bmp"
+
 IDB_3                   BITMAP                  "..\\res\\bmp3.bmp"
+
 IDB_4                   BITMAP                  "..\\res\\bmp4.bmp"
+
 IDB_5                   BITMAP                  "..\\res\\bmp5.bmp"
+
 IDB_6                   BITMAP                  "..\\res\\bmp6.bmp"
+
 IDB_7                   BITMAP                  "..\\res\\bmp7.bmp"
+
 IDB_8                   BITMAP                  "..\\res\\bmp8.bmp"
+
 IDB_9                   BITMAP                  "..\\res\\bmp9.bmp"
+
 IDB_MINUS               BITMAP                  "..\\res\\bmp10.bmp"
+
 IDB_CENTER              BITMAP                  "..\\res\\center.bmp"
+
 IDB_ERASER2             BITMAP                  "..\\res\\eraser2.bmp"
+
 IDB_ERASER3             BITMAP                  "..\\res\\eraser3.bmp"
+
 IDB_CONTINUE            BITMAP                  "..\\res\\continue.bmp"
+
 IDB_HELP                BITMAP                  "..\\res\\help.bmp"
+
 IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
-Character_Stand_01      BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\character.bmp"
+
+Character_Stand_01      BITMAP                  "..\\RES\\character.bmp"
+
 START_BACKGROUND        BITMAP                  "..\\res\\bitmap3.bmp"
-IDB_Map                 BITMAP                  "C:\\Users\\lab1421\\Documents\\Wizard_of_Legend\\game4.10\\RES\\Map.bmp"
+
+IDB_Map                 BITMAP                  "..\\RES\\Map.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -94,12 +118,14 @@ IDB_Map                 BITMAP                  "C:\\Users\\lab1421\\Documents\\
 
 IDC_GAMECURSOR          CURSOR                  "..\\res\\gamecurs.cur"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // PNG
 //
 
-IDB_PNG1                PNG                     "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\Start_Ani\\start_temp.png"
+IDB_PNG1                PNG                     "..\\RES\\Start_Ani\\start_temp.png"
+
 #endif    // 中文 (繁體，台灣) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -118,6 +144,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Icon
@@ -126,7 +153,9 @@ IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "..\\res\\game.ico"
+
 IDR_GAMETYPE            ICON                    "..\\res\\gameDoc.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
