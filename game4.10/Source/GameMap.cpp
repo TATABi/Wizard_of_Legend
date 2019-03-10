@@ -6,40 +6,45 @@
 #include "gamelib.h"
 #include "GameMap.h"
 
-namespace game_framework
-{
-	GameMap::GameMap()
-	{
-		Initialize();
-	}
-	void GameMap::Initialize()
-	{
-		const int X_POS = 0;
-		const int Y_POS = 0;
-		_x = X_POS;
-		_y = Y_POS;
-	}
-	int GameMap::GetX1()
-	{
-		return _x;
-	}
-	int GameMap::GetY1()
-	{
-		return _y;
-	}
-	void GameMap::SetXY(int x, int y)
-	{
-		_x = x;
-		_y = y;
-	}
-	void GameMap::OnShow()
-	{
-		_pic.SetTopLeft(_x, _y);
-		_pic.ShowBitmap();
+namespace game_framework {
+	
+	GameMap::GameMap(int x, int y) {
+		Initialize(x, y);
 	}
 	
-	void GameMap::RandomMap()
+	GameMap::~GameMap() {
+	
+	}
+
+	void GameMap::Initialize(int x, int y) 
 	{
-		_pic.LoadBitmap(IDB_Map);
+		_cx = x;
+		_cy = y;
+	}
+
+	void GameMap::LoadBitmap()
+	{
+		_background.LoadBitmap(INGAME_MAP_HOME);
+			//_wall.LoadBitmap();
+			//_terrain.LoadBitmap();
+	}
+
+	void GameMap::OnMove()
+	{
+		
+		_background.SetTopLeft(295-_cx, 215-_cy);
+
+	}
+
+	void GameMap::OnShow()
+	{
+		_background.ShowBitmap();
+	}
+
+	void GameMap::SetCharacterXY(int cx, int cy) 
+	{	
+		_cx += cx;
+		_cy += cy;
+		
 	}
 }

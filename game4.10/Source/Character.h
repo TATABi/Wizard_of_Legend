@@ -1,21 +1,38 @@
+#include "GameMap.h"
 namespace game_framework {
+
 	class Character {
 	public:
 		Character();
-		void Initialize();
-		void OnMove();					// 移動擦子
-		void OnShow();					// 將擦子圖形貼到畫面
-		void SetMovingDown(bool flag);	// 設定是否正在往下移動
-		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
-		void SetMovingRight(bool flag); // 設定是否正在往右移動
-		void SetMovingUp(bool flag);	// 設定是否正在往上移動
-		void SetXY(int x, int y);		// 設定擦子左上角座標
+		void Initialize();				
+		void LoadBitmap();			
+		void OnMove(GameMap *);				
+		void OnShow();				
+		void SetMovingDown(bool flag);
+		void SetMovingLeft(bool flag);	
+		void SetMovingRight(bool flag); 
+		void SetMovingUp(bool flag);	
+	
+
+	protected:
+		CAnimation ani_up;		
+		CAnimation ani_down;
+		CAnimation ani_left;
+		CAnimation ani_right;
+		CMovingBitmap bm_stand_up;
+		CMovingBitmap bm_stand_down;
+		CMovingBitmap bm_stand_left;
+		CMovingBitmap bm_stand_right;
+
 		
-	private:
+		int _horizontal, _vertical;	//上下左右判定  (-1,0,1)	
+		int _flag; // 紀錄角色面向哪面 (右,左,下,上) = (0, 1, 2, 3);
 		int _x, _y;
-		CMovingBitmap _pic;
-		int _hp;
-		int _mp;
-		
+		int xy[2];
+		bool isMovingDown;			
+		bool isMovingLeft;			
+		bool isMovingRight;			
+		bool isMovingUp;	
+		const int MOVING_PIXEL = 10;	//移動速度
 	};
 }

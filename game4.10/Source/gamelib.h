@@ -82,7 +82,21 @@
 
 enum GAME_STATES {
 	GAME_STATE_INIT,
-	GAME_STATE_RUN,
+	GAME_STATE_RUN_HOME,
+	GAME_STATE_RUN_OPTIONS,
+	/*
+	GAME_STATE_RUN_TOWN,
+	GAME_STATE_RUN_LOADING,
+	GAME_STATE_RUN_LEVEL_1,
+	GAME_STATE_RUN_LEVEL_2,
+	GAME_STATE_RUN_LEVEL_3,
+	GAME_STATE_RUN_LEVEL_4,
+	GAME_STATE_RUN_LEVEL_5,
+	GAME_STATE_RUN_LEVEL_6,
+	GAME_STATE_RUN_LEVEL_7,
+	GAME_STATE_RUN_LEVEL_8,
+	GAME_STATE_RUN_LEVEL_9,
+	*/
 	GAME_STATE_OVER
 };
 
@@ -271,7 +285,21 @@ private:
 
 class CGame;
 class CGameStateInit;
-class CGameStateRun;
+class CGameStateRun_Home;
+class CGameStateRun_Options;
+/*
+class CGameStateRun_Town;
+class CGameStateRun_Loading;
+class CGameStateRun_Level_1;
+class CGameStateRun_Level_2;
+class CGameStateRun_Level_3;
+class CGameStateRun_Level_4;
+class CGameStateRun_Level_5;
+class CGameStateRun_Level_6;
+class CGameStateRun_Level_7;
+class CGameStateRun_Level_8;
+class CGameStateRun_Level_9;
+*/
 class CGameStateOver;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -341,7 +369,7 @@ private:
 	bool            suspended;			// 遊戲是否被suspended
 	const int		NUM_GAME_STATES;	// 遊戲的狀態數(3個狀態)
 	CGameState		*gameState;			// pointer指向目前的遊戲狀態
-	CGameState		*gameStateTable[3];	// 遊戲狀態物件的pointer
+	CGameState		*gameStateTable[4];	// 遊戲狀態物件的pointer
 	static CGame	instance;			// 遊戲唯一的instance
 };
 

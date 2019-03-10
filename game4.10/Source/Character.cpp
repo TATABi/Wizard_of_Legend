@@ -7,25 +7,228 @@
 #include "Character.h"
 
 namespace game_framework {
-	
-	Character::Character() {
+	/////////////////////////////////////////////////////////////////////////////
+	// CEraser: Eraser class
+	/////////////////////////////////////////////////////////////////////////////
+
+	Character::Character()
+	{
 		Initialize();
 	}
 
-	void Character::Initialize() {
-		const int X_POS = 280;
-		const int Y_POS = 400;
-		_x = X_POS;
-		_y = Y_POS;	
+	void Character::Initialize()
+	{
+		ani_down.SetDelayCount(2);
+		ani_up.SetDelayCount(2);
+		ani_left.SetDelayCount(2);
+		ani_right.SetDelayCount(2);
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;	
+		_horizontal = 0;
+		_vertical = 0;
+		_flag = 2; //面向下
+		xy[0] = 0;
+		xy[1] = 0;
 	}
-	void Character::OnMove() {
 
+	void Character::LoadBitmap()
+	{
+		ani_down.AddBitmap(CHARACTER_DOWN_01, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_02, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_03, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_04, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_05, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_06, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_07, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_08, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_09, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_10, RGB(50, 255, 0));
+
+		ani_up.AddBitmap(CHARACTER_UP_01, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_02, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_03, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_04, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_05, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_06, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_07, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_08, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_09, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_10, RGB(50, 255, 0));
+
+		ani_left.AddBitmap(CHARACTER_LEFT_01, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_02, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_03, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_04, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_05, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_06, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_07, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_08, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_09, RGB(50, 255, 0));
+
+		ani_right.AddBitmap(CHARACTER_RIGHT_01, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_02, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_03, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_04, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_05, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_06, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_07, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_08, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_09, RGB(50, 255, 0));
+
+		bm_stand_down.LoadBitmap(CHARACTER_STAND_DOWN, RGB(50, 255, 0));
+		bm_stand_up.LoadBitmap(CHARACTER_STAND_UP, RGB(50, 255, 0));
+		bm_stand_left.LoadBitmap(CHARACTER_STAND_LEFT, RGB(50, 255, 0));
+		bm_stand_right.LoadBitmap(CHARACTER_STAND_RIGHT, RGB(50, 255, 0));
+
+		ani_down.SetTopLeft(295, 215);
+		ani_up.SetTopLeft(295, 215);
+		ani_left.SetTopLeft(295, 215);
+		ani_right.SetTopLeft(295, 215);
+		bm_stand_down.SetTopLeft(295, 215);
+		bm_stand_up.SetTopLeft(295, 215);
+		bm_stand_left.SetTopLeft(295, 215);
+		bm_stand_right.SetTopLeft(295, 215);
+
+	}
+
+	void Character::OnMove(GameMap *map)
+	{
+		/*
+		ani_down.SetTopLeft(295, 215);
+		ani_up.SetTopLeft(295, 215);
+		ani_left.SetTopLeft(295, 215);
+		ani_right.SetTopLeft(295, 215);
+		bm_stand_down.SetTopLeft(295, 215);
+		bm_stand_up.SetTopLeft(295, 215);
+		bm_stand_left.SetTopLeft(295, 215);
+		bm_stand_right.SetTopLeft(295, 215);
+		*/
+
+
+		//整理玩家按的按鍵, 算出水平,垂直移動距離
+		if (isMovingDown) 
+		{
+			if(_vertical < MOVING_PIXEL)
+				_vertical += MOVING_PIXEL;
+		}
+		if (isMovingUp)
+		{	
+			if(_vertical > -MOVING_PIXEL)
+				_vertical -= MOVING_PIXEL;
+		}
+		if (isMovingRight) 
+		{
+			if (_horizontal < MOVING_PIXEL)
+				_horizontal += MOVING_PIXEL;
+		}
+		if (isMovingLeft)
+		{
+			if (_horizontal > -MOVING_PIXEL)
+				_horizontal -= MOVING_PIXEL;
+		}
+
+		xy[0] = _horizontal;		//應移動距離
+		xy[1] = _vertical;		
+
+		map->SetCharacterXY(_horizontal, _vertical);
 		
-	}					// 移動擦子
-	void OnShow();					// 將擦子圖形貼到畫面
-	void SetMovingDown(bool flag);	// 設定是否正在往下移動
-	void SetMovingLeft(bool flag);	// 設定是否正在往左移動
-	void SetMovingRight(bool flag); // 設定是否正在往右移動
-	void SetMovingUp(bool flag);	// 設定是否正在往上移動
-	void SetXY(int nx, int ny);
+		//面相方向
+		if (_horizontal != 0)
+		{
+			if (_horizontal < 0)
+			{
+				_flag = 1;	//左
+				ani_left.OnMove();
+			}
+			else
+			{
+				_flag = 0;	//右
+				ani_right.OnMove();
+			}
+		}
+		else
+		{
+			if (_vertical < 0)
+			{
+				_flag = 3;	//上
+				ani_up.OnMove();
+			}
+			else if (_vertical > 0)
+			{
+				_flag = 2;	//下
+				ani_down.OnMove();
+			}
+		}
+
+		//都不符合，維持前一個狀態的方向
+
+	}
+
+	void Character::OnShow() 
+	{
+		if (_horizontal != 0 || _vertical != 0) {
+			switch (_flag)
+			{
+			case 0:
+				ani_right.OnShow();
+				break;
+			case 1:
+				ani_left.OnShow();
+				break;
+			case 2:
+				ani_down.OnShow();
+				break;
+			case 3:
+				ani_up.OnShow();
+				break;
+			default:
+				break;
+			}
+		}
+		else
+		{
+			switch (_flag)
+			{
+			case 0:
+				bm_stand_right.ShowBitmap();
+				break;
+			case 1:
+				bm_stand_left.ShowBitmap();
+				break;
+			case 2:
+				bm_stand_down.ShowBitmap();
+				break;
+			case 3:
+				bm_stand_up.ShowBitmap();
+				break;
+			default:
+				break;
+
+			}
+		}
+
+		_horizontal = 0;
+		_vertical = 0;
+
+	}
+
+	void Character::SetMovingDown(bool flag)
+	{
+		isMovingDown = flag;
+	}
+
+	void Character::SetMovingLeft(bool flag)
+	{
+		isMovingLeft = flag;
+	}
+
+	void Character::SetMovingRight(bool flag)
+	{
+		isMovingRight = flag;
+	}
+
+	void Character::SetMovingUp(bool flag)
+	{
+		isMovingUp = flag;
+	}
+
 }

@@ -62,70 +62,113 @@ END
 // Bitmap
 //
 
-IDB_BALL                BITMAP                  "..\\res\\ball.bmp"
-
-IDB_ERASER1             BITMAP                  "..\\res\\eraser1.bmp"
-
-IDB_BACKGROUND          BITMAP                  "..\\res\\ntutcsie.bmp"
-
-IDB_CORNER              BITMAP                  "..\\res\\corner.bmp"
-
-IDB_0                   BITMAP                  "..\\res\\bmp0.bmp"
-
-IDB_1                   BITMAP                  "..\\res\\bmp1.bmp"
-
-IDB_2                   BITMAP                  "..\\res\\bmp2.bmp"
-
-IDB_3                   BITMAP                  "..\\res\\bmp3.bmp"
-
-IDB_4                   BITMAP                  "..\\res\\bmp4.bmp"
-
-IDB_5                   BITMAP                  "..\\res\\bmp5.bmp"
-
-IDB_6                   BITMAP                  "..\\res\\bmp6.bmp"
-
-IDB_7                   BITMAP                  "..\\res\\bmp7.bmp"
-
-IDB_8                   BITMAP                  "..\\res\\bmp8.bmp"
-
-IDB_9                   BITMAP                  "..\\res\\bmp9.bmp"
-
-IDB_MINUS               BITMAP                  "..\\res\\bmp10.bmp"
-
-IDB_CENTER              BITMAP                  "..\\res\\center.bmp"
-
-IDB_ERASER2             BITMAP                  "..\\res\\eraser2.bmp"
-
-IDB_ERASER3             BITMAP                  "..\\res\\eraser3.bmp"
-
-IDB_CONTINUE            BITMAP                  "..\\res\\continue.bmp"
-
-IDB_HELP                BITMAP                  "..\\res\\help.bmp"
-
-IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
-
-Character_Stand_01      BITMAP                  "..\\RES\\character.bmp"
-
-START_BACKGROUND        BITMAP                  "..\\res\\bitmap3.bmp"
-
-IDB_Map                 BITMAP                  "..\\RES\\Map.bmp"
-
+IDB_0                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp0.bmp"
+IDB_1                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp1.bmp"
+IDB_2                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp2.bmp"
+IDB_3                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp3.bmp"
+IDB_4                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp4.bmp"
+IDB_5                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp5.bmp"
+IDB_6                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp6.bmp"
+IDB_7                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp7.bmp"
+IDB_8                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp8.bmp"
+IDB_9                   BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp9.bmp"
+IDB_MINUS               BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\bmp10.bmp"
+IDB_LOADING             BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\loading.bmp"
+IDB_TOOLBAR             BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\Toolbar.bmp"
+IDB_CONTINUE            BITMAP                  "C:\\Users\\lab1421\\Desktop\\game4.10\\RES\\continue.bmp"
+MENU_INIT_02            BITMAP                  "..\\RES\\Menu\\Init\\Init (2).bmp"
+MENU_INIT_04            BITMAP                  "..\\RES\\Menu\\Init\\Init (4).bmp"
+MENU_INIT_06            BITMAP                  "..\\RES\\Menu\\Init\\Init (6).bmp"
+MENU_INIT_08            BITMAP                  "..\\RES\\Menu\\Init\\Init (8).bmp"
+MENU_INIT_10            BITMAP                  "..\\RES\\Menu\\Init\\Init (10).bmp"
+MENU_INIT_12            BITMAP                  "..\\RES\\Menu\\Init\\Init (12).bmp"
+MENU_INIT_14            BITMAP                  "..\\RES\\Menu\\Init\\Init (14).bmp"
+MENU_INIT_16            BITMAP                  "..\\RES\\Menu\\Init\\Init (16).bmp"
+MENU_INIT_18            BITMAP                  "..\\RES\\Menu\\Init\\Init (18).bmp"
+MENU_INIT_20            BITMAP                  "..\\RES\\Menu\\Init\\Init (20).bmp"
+MENU_INIT_22            BITMAP                  "..\\RES\\Menu\\Init\\Init (22).bmp"
+MENU_INIT_24            BITMAP                  "..\\RES\\Menu\\Init\\Init (24).bmp"
+MENU_INIT_26            BITMAP                  "..\\RES\\Menu\\Init\\Init (26).bmp"
+MENU_INIT_28            BITMAP                  "..\\RES\\Menu\\Init\\Init (28).bmp"
+MENU_INIT_30            BITMAP                  "..\\RES\\Menu\\Init\\Init (30).bmp"
+MENU_INIT_32            BITMAP                  "..\\RES\\Menu\\Init\\Init (32).bmp"
+MENU_INIT_34            BITMAP                  "..\\RES\\Menu\\Init\\Init (34).bmp"
+MENU_INIT_36            BITMAP                  "..\\RES\\Menu\\Init\\Init (36).bmp"
+MENU_INIT_38            BITMAP                  "..\\RES\\Menu\\Init\\Init (38).bmp"
+MENU_INIT_40            BITMAP                  "..\\RES\\Menu\\Init\\Init (40).bmp"
+MENU_INIT_42            BITMAP                  "..\\RES\\Menu\\Init\\Init (42).bmp"
+MENU_INIT_44            BITMAP                  "..\\RES\\Menu\\Init\\Init (44).bmp"
+MENU_INIT_46            BITMAP                  "..\\RES\\Menu\\Init\\Init (46).bmp"
+MENU_INIT_48            BITMAP                  "..\\RES\\Menu\\Init\\Init (48).bmp"
+MENU_ENTERMENU_01       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (1).bmp"
+MENU_ENTERMENU_02       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (2).bmp"
+MENU_ENTERMENU_03       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (3).bmp"
+MENU_ENTERMENU_04       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (4).bmp"
+MENU_ENTERMENU_05       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (5).bmp"
+MENU_ENTERMENU_06       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (6).bmp"
+MENU_ENTERMENU_07       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (7).bmp"
+MENU_ENTERMENU_08       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (8).bmp"
+MENU_ENTERMENU_09       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (9).bmp"
+MENU_ENTERMENU_10       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (10).bmp"
+MENU_ENTERMENU_11       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (11).bmp"
+MENU_ENTERMENU_12       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu(12).bmp"
+MENU_ENTERMENU_OPTIONS  BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_OPTIONS.bmp"
+MENU_ENTERMENU_QUIT     BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_QUIT.bmp"
+MENU_ENTERMENU_SINGLE_PLAYER BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_SINGLE_PLAYER.bmp"
+LOADING                 BITMAP                  "..\\RES\\InGame\\Loading\\Loading.bmp"
+LOADING_LEVEL           BITMAP                  "..\\RES\\InGame\\Loading\\LoadingLevel.bmp"
+INGAME_JOIN             BITMAP                  "..\\RES\\InGame\\Join\\Join.bmp"
+MENU_OPTIONS            BITMAP                  "..\\RES\\Menu\\Options\\Options.bmp"
+INGAME_MAP_HOME         BITMAP                  "..\\RES\\InGame\\Home\\Home.bmp"
+CHARACTER_DOWN_01       BITMAP                  "..\\RES\\Character\\Down\\Character_down_01.bmp"
+CHARACTER_DOWN_02       BITMAP                  "..\\RES\\Character\\Down\\Character_down_02.bmp"
+CHARACTER_DOWN_03       BITMAP                  "..\\RES\\Character\\Down\\Character_down_03.bmp"
+CHARACTER_DOWN_04       BITMAP                  "..\\RES\\Character\\Down\\Character_down_04.bmp"
+CHARACTER_DOWN_05       BITMAP                  "..\\RES\\Character\\Down\\Character_down_05.bmp"
+CHARACTER_DOWN_06       BITMAP                  "..\\RES\\Character\\Down\\Character_down_06.bmp"
+CHARACTER_DOWN_07       BITMAP                  "..\\RES\\Character\\Down\\Character_down_07.bmp"
+CHARACTER_DOWN_08       BITMAP                  "..\\RES\\Character\\Down\\Character_down_08.bmp"
+CHARACTER_DOWN_09       BITMAP                  "..\\RES\\Character\\Down\\Character_down_09.bmp"
+CHARACTER_DOWN_10       BITMAP                  "..\\RES\\Character\\Down\\Character_down_10.bmp"
+CHARACTER_UP_01         BITMAP                  "..\\RES\\Character\\Up\\up (1).bmp"
+CHARACTER_UP_02         BITMAP                  "..\\RES\\Character\\Up\\up (2).bmp"
+CHARACTER_UP_03         BITMAP                  "..\\RES\\Character\\Up\\up (3).bmp"
+CHARACTER_UP_04         BITMAP                  "..\\RES\\Character\\Up\\up (4).bmp"
+CHARACTER_UP_05         BITMAP                  "..\\RES\\Character\\Up\\up (5).bmp"
+CHARACTER_UP_06         BITMAP                  "..\\RES\\Character\\Up\\up (6).bmp"
+CHARACTER_UP_07         BITMAP                  "..\\RES\\Character\\Up\\up (7).bmp"
+CHARACTER_UP_08         BITMAP                  "..\\RES\\Character\\Up\\up (8).bmp"
+CHARACTER_UP_09         BITMAP                  "..\\RES\\Character\\Up\\up (9).bmp"
+CHARACTER_UP_10         BITMAP                  "..\\RES\\Character\\Up\\up (10).bmp"
+CHARACTER_STAND_DOWN    BITMAP                  "..\\RES\\Character\\Stand\\down.bmp"
+CHARACTER_STAND_LEFT    BITMAP                  "..\\RES\\Character\\Stand\\left.bmp"
+CHARACTER_STAND_RIGHT   BITMAP                  "..\\RES\\Character\\Stand\\right.bmp"
+CHARACTER_STAND_UP      BITMAP                  "..\\RES\\Character\\Stand\\up.bmp"
+CHARACTER_LEFT_01       BITMAP                  "..\\RES\\Character\\Left\\left (1).bmp"
+CHARACTER_LEFT_02       BITMAP                  "..\\RES\\Character\\Left\\left (2).bmp"
+CHARACTER_LEFT_03       BITMAP                  "..\\RES\\Character\\Left\\left (3).bmp"
+CHARACTER_LEFT_04       BITMAP                  "..\\RES\\Character\\Left\\left (4).bmp"
+CHARACTER_LEFT_05       BITMAP                  "..\\RES\\Character\\Left\\left (5).bmp"
+CHARACTER_LEFT_06       BITMAP                  "..\\RES\\Character\\Left\\left (6).bmp"
+CHARACTER_LEFT_07       BITMAP                  "..\\RES\\Character\\Left\\left (7).bmp"
+CHARACTER_LEFT_08       BITMAP                  "..\\RES\\Character\\Left\\left (8).bmp"
+CHARACTER_LEFT_09       BITMAP                  "..\\RES\\Character\\Left\\left (9).bmp"
+CHARACTER_RIGHT_01      BITMAP                  "..\\RES\\Character\\Right\\right (1).bmp"
+CHARACTER_RIGHT_02      BITMAP                  "..\\RES\\Character\\Right\\right (2).bmp"
+CHARACTER_RIGHT_03      BITMAP                  "..\\RES\\Character\\Right\\right (3).bmp"
+CHARACTER_RIGHT_04      BITMAP                  "..\\RES\\Character\\Right\\right (4).bmp"
+CHARACTER_RIGHT_05      BITMAP                  "..\\RES\\Character\\Right\\right (5).bmp"
+CHARACTER_RIGHT_06      BITMAP                  "..\\RES\\Character\\Right\\right (6).bmp"
+CHARACTER_RIGHT_07      BITMAP                  "..\\RES\\Character\\Right\\right (7).bmp"
+CHARACTER_RIGHT_08      BITMAP                  "..\\RES\\Character\\Right\\right (8).bmp"
+CHARACTER_RIGHT_09      BITMAP                  "..\\RES\\Character\\Right\\right (9).bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Cursor
 //
 
-IDC_GAMECURSOR          CURSOR                  "..\\res\\gamecurs.cur"
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// PNG
-//
-
-IDB_PNG1                PNG                     "..\\RES\\Start_Ani\\start_temp.png"
-
+IDC_CURSOR              CURSOR                  "..\\res\\cursor1.cur"
 #endif    // 中文 (繁體，台灣) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -144,7 +187,6 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // Icon
@@ -153,9 +195,7 @@ IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "..\\res\\game.ico"
-
 IDR_GAMETYPE            ICON                    "..\\res\\gameDoc.ico"
-
 
 /////////////////////////////////////////////////////////////////////////////
 //

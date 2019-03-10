@@ -1,17 +1,21 @@
 namespace game_framework {
 
-	class GameMap
-	{
+	class GameMap {
 	public:
-		GameMap();
-		int  GetX1();					// 擦子左上角 x 座標
-		int  GetY1();					// 擦子左上角 y 座標
-		void Initialize();				// 設定擦子為初始值
-		void OnShow();					// 將擦子圖形貼到畫面
-		void SetXY(int x, int y);		// 設定擦子左上角座標
-		void RandomMap();
+		GameMap(int, int);  // 設定初始中心點
+		~GameMap();
+		void Initialize(int, int);
+		void LoadBitmap();
+		void OnMove();
+		void OnShow();
+		void SetCharacterXY(int, int);
+		
 	private:
-		int _x, _y;					// 擦子左上角座標
-		CMovingBitmap _pic;
+		int _map[1600][1600];
+		int _cx, _cy;  //角色所在座標
+		CMovingBitmap _background; //背景圖
+		CMovingBitmap _wall;	//用來模擬3D畫面
+		CMovingBitmap _terrain; //地形簡圖
 	};
+
 }

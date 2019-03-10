@@ -5,8 +5,6 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
-#include "AllStates.h"
-
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -20,24 +18,63 @@ CGameStateInit::CGameStateInit(CGame *g)
 
 void CGameStateInit::OnInit()
 {
-	//
-	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-	//
+
 	ShowInitProgress(0);	// 一開始的loading進度為0%
-	//
-	// 開始載入資料
-	//
-	//logo.LoadBitmap(IDB_BACKGROUND);
-	logo.LoadBitmap(START_BACKGROUND);
-	Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-	//
-	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
-	//
+
+	if (CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav"))
+		CAudio::Instance()->Play(AUDIO_TITLE, true);
+
+	ani_menu_1.SetDelayCount(2);
+	ani_menu_1.AddBitmap(MENU_INIT_02);
+	ani_menu_1.AddBitmap(MENU_INIT_04);
+	ani_menu_1.AddBitmap(MENU_INIT_06);
+	ani_menu_1.AddBitmap(MENU_INIT_08);
+	ani_menu_1.AddBitmap(MENU_INIT_10);
+	ani_menu_1.AddBitmap(MENU_INIT_12);
+	ani_menu_1.AddBitmap(MENU_INIT_14);
+	ani_menu_1.AddBitmap(MENU_INIT_16);
+	ani_menu_1.AddBitmap(MENU_INIT_18);
+	ani_menu_1.AddBitmap(MENU_INIT_20);
+	ani_menu_1.AddBitmap(MENU_INIT_22);
+	ani_menu_1.AddBitmap(MENU_INIT_24);
+	ani_menu_1.AddBitmap(MENU_INIT_26);
+	ani_menu_1.AddBitmap(MENU_INIT_28);
+	ani_menu_1.AddBitmap(MENU_INIT_30);
+	ani_menu_1.AddBitmap(MENU_INIT_32);
+	ani_menu_1.AddBitmap(MENU_INIT_34);
+	ani_menu_1.AddBitmap(MENU_INIT_36);
+	ani_menu_1.AddBitmap(MENU_INIT_38);
+	ani_menu_1.AddBitmap(MENU_INIT_40);
+	ani_menu_1.AddBitmap(MENU_INIT_42);
+	ani_menu_1.AddBitmap(MENU_INIT_44);
+	ani_menu_1.AddBitmap(MENU_INIT_46);
+	ani_menu_1.AddBitmap(MENU_INIT_48);
+
+	ani_menu_2.SetDelayCount(1);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_01);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_02);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_03);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_04);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_05);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_06);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_07);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_08);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_09);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_10);
+	ani_menu_2.AddBitmap(MENU_ENTERMENU_11);
+
+	bm_option.LoadBitmap(MENU_ENTERMENU_OPTIONS);
+	bm_quit.LoadBitmap(MENU_ENTERMENU_QUIT);
+	bm_single_player.LoadBitmap(MENU_ENTERMENU_SINGLE_PLAYER);
+
+	Sleep(1400);
+	ShowInitProgress(65);
 }
 
 void CGameStateInit::OnBeginState()
 {
+
+	
 }
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -46,27 +83,92 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	if (nChar == KEY_ESC)								
 		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
-	else
-		GotoGameState(GAME_STATE_RUN);
+	else{
+		if (flags == 0)
+			flags = 1;
+	}
+}
+
+void CGameStateInit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+
+	const char KEY_UP    = 0x26; // keyboard上箭頭
+	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_RIGHT = 0x27; // keyboard右箭頭
+	const char KEY_W = 0x57;
+	const char KEY_S = 0x53;
+	const char KEY_A = 0x41;
+	const char KEY_D = 0x44;
+	const char KEY_SPACE = 0x20;
+	const char KEY_ENTER = 0xD;
+
+	if (nChar == KEY_UP || nChar == KEY_W)
+		flags--;
+	if (nChar == KEY_DOWN || nChar == KEY_S)
+		flags++;
+	if (nChar == KEY_SPACE || nChar == KEY_ENTER) {
+		switch (flags) {
+		case 1:
+			GotoGameState(GAME_STATE_RUN_HOME);
+			break;
+		case 2:
+			GotoGameState(GAME_STATE_RUN_OPTIONS);
+			break;
+		case 3:
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
+			break;
+		default:
+			break;
+		}	
+	}
+
+	if (flags > 3)
+		flags = 3;
+	if (flags < 1)
+		flags = 1;
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	if (flags == 0)
+		flags = 1;
 }
 
 void CGameStateInit::OnRButtonDown(UINT nFlags, CPoint point)
-{
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+{	
+	if(flags == 0)
+		flags = 1;
 }
 
 void CGameStateInit::OnShow()
 {
-	//
-	// 貼上logo
-	//
-    logo.SetTopLeft(0,0);
-	logo.ShowBitmap();
+	switch (flags) {
+	case 0:
+		ani_menu_1.OnMove();
+		ani_menu_1.SetTopLeft(0, 0);
+		ani_menu_1.OnShow();
+		break;
+	case 1:
+		if (!ani_menu_2.IsFinalBitmap()) {
+			ani_menu_2.OnMove();
+			ani_menu_2.SetTopLeft(0, 0);
+			ani_menu_2.OnShow();
+		}
+		bm_single_player.SetTopLeft(0, 0);
+		bm_single_player.ShowBitmap();
+		break;
+	case 2:
+		bm_option.SetTopLeft(0, 0);
+		bm_option.ShowBitmap();
+		break;
+	case 3:
+		bm_quit.SetTopLeft(0, 0);
+		bm_quit.ShowBitmap();
+		break;
+	default:
+		break;
+	}
 
 }								
 
@@ -93,19 +195,7 @@ void CGameStateOver::OnBeginState()
 
 void CGameStateOver::OnInit()
 {
-	//
-	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-	//
-	ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
-	//
-	// 開始載入資料
-	//
-	Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-	//
-	// 最終進度為100%
-	//
-	ShowInitProgress(100);
+
 }
 
 void CGameStateOver::OnShow()
@@ -127,221 +217,207 @@ void CGameStateOver::OnShow()
 // 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateRun::CGameStateRun(CGame *g)
-: CGameState(g), NUMBALLS(28)
+CGameStateRun_Home::CGameStateRun_Home(CGame *g)
+: CGameState(g), Map_Home(755,928)		//角色在地圖上的位置			///初始化地圖座標
 {
-	ball = new CBall [NUMBALLS];
-}
-
-CGameStateRun::~CGameStateRun()
-{
-	delete [] ball;
-}
-
-void CGameStateRun::OnBeginState()
-{
-	/*
-	const int BALL_GAP = 90;
-	const int BALL_XY_OFFSET = 45;
-	const int BALL_PER_ROW = 7;
-	const int HITS_LEFT = 10;
-	const int HITS_LEFT_X = 590;
-	const int HITS_LEFT_Y = 0;
-	const int BACKGROUND_X = 60;
-	const int ANIMATION_SPEED = 15;
-	for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
-		int x_pos = i % BALL_PER_ROW;
-		int y_pos = i / BALL_PER_ROW;
-		ball[i].SetXY(x_pos * BALL_GAP + BALL_XY_OFFSET, y_pos * BALL_GAP + BALL_XY_OFFSET);
-		ball[i].SetDelay(x_pos);
-		ball[i].SetIsAlive(true);
-	}
-	eraser.Initialize();
-	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
-	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-	hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-	hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-	CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
-	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
-	CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
-	*/
 
 }
 
-void CGameStateRun::OnMove()							// 移動遊戲元素
+CGameStateRun_Home::~CGameStateRun_Home()
+{
+
+}
+
+void CGameStateRun_Home::OnBeginState()
+{
+	counter = 30 * 1; // 5 seconds
+	character.Initialize();
+
+	CAudio::Instance()->Stop(AUDIO_TITLE);
+	CAudio::Instance()->Play(AUDIO_HOME, true);
+}
+
+void CGameStateRun_Home::OnMove()					
 {
 	//
 	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 	//
-	// SetCursor(AfxGetApp()->LoadCursor(IDC_GAMECURSOR));
-	//
-	// 移動背景圖的座標
-	//
-	/*
-	if (background.Top() > SIZE_Y)
-		background.SetTopLeft(60 ,-background.Height());
-	background.SetTopLeft(background.Left(),background.Top()+1);
-	*/
-	//
-	// 移動球
-	//
-	/*
-	int i;
-	for (i=0; i < NUMBALLS; i++)
-		ball[i].OnMove();
-	*/
-	//
-	// 移動擦子
-	//
+	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
-	//eraser.OnMove();
-	//
-	// 判斷擦子是否碰到球
-	//
-	/*
-	for (i=0; i < NUMBALLS; i++)
-		if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
-			ball[i].SetIsAlive(false);
-			CAudio::Instance()->Play(AUDIO_DING);
-			hits_left.Add(-1);
-			//
-			// 若剩餘碰撞次數為0，則跳到Game Over狀態
-			//
-			if (hits_left.GetInteger() <= 0) {
-				CAudio::Instance()->Stop(AUDIO_LAKE);	// 停止 WAVE
-				CAudio::Instance()->Stop(AUDIO_NTUT);	// 停止 MIDI
-				GotoGameState(GAME_STATE_OVER);
-			}
-		}
-	*/
-	//
-	// 移動彈跳的球
-	//
+	if(counter > -1)
+		counter--;
 
-	//bball.OnMove();
+	bm_join.SetTopLeft(100, 100);
+	bm_loading.SetTopLeft(0, 0);
+
+	character.OnMove(&Map_Home);
+	
+	Map_Home.OnMove();
+	
 }
 
-void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
+void CGameStateRun_Home::OnInit()  
 {
-	map.RandomMap();
-	//
-	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-	//
-	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
-	//
-	// 開始載入資料
-	//
-	//int i;
-	//for (i = 0; i < NUMBALLS; i++)	
-		//ball[i].LoadBitmap();								// 載入第i個球的圖形
-	//eraser.LoadBitmap();
-	//background.LoadBitmap(IDB_Map);					// 載入背景的圖形
-	//
-	// 完成部分Loading動作，提高進度
-	//
-	ShowInitProgress(50);
-	Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-	//
-	// 繼續載入其他資料
-	//
-	help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
-	//corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
-	//corner.ShowBitmap(background);							// 將corner貼到background
-	//bball.LoadBitmap();										// 載入圖形
-	//hits_left.LoadBitmap();									
-	CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
-	CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
-	CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
-	//
-	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
-	//
+
+	bm_join.LoadBitmap(INGAME_JOIN);
+	bm_loading.LoadBitmap(LOADING);
+	character.LoadBitmap();
+	Map_Home.LoadBitmap();
+	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
+	
+
 }
 
-void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	const char KEY_ESC = 27;
+	const char KEY_SPACE = 0x20;
 	const char KEY_LEFT  = 0x25; // keyboard左箭頭
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	if (nChar == KEY_LEFT)
-		eraser.SetMovingLeft(true);
-	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(true);
-	if (nChar == KEY_UP)
-		eraser.SetMovingUp(true);
-	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(true);
+	const char KEY_W = 0x57;
+	const char KEY_S = 0x53;
+	const char KEY_A = 0x41;
+	const char KEY_D = 0x44;
+	
+
+	if (flags == 0) {
+		if (nChar == KEY_SPACE)
+			flags = 1;
+	}
+	else {
+		
+		if (nChar == KEY_DOWN || nChar == KEY_S)
+			character.SetMovingDown(true);
+		if (nChar == KEY_UP || nChar == KEY_W)
+			character.SetMovingUp(true);
+		if (nChar == KEY_LEFT || nChar == KEY_A)
+			character.SetMovingLeft(true);
+		if (nChar == KEY_RIGHT || nChar == KEY_D)
+			character.SetMovingRight(true);
+		
+	}
+		
+
 }
 
-void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	const char KEY_LEFT  = 0x25; // keyboard左箭頭
-	const char KEY_UP    = 0x26; // keyboard上箭頭
+	const char KEY_ESC = 27;
+	const char KEY_SPACE = 0x20;
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_UP = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
-	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	if (nChar == KEY_LEFT)
-		eraser.SetMovingLeft(false);
-	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(false);
-	if (nChar == KEY_UP)
-		eraser.SetMovingUp(false);
-	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(false);
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	const char KEY_W = 0x57;
+	const char KEY_S = 0x53;
+	const char KEY_A = 0x41;
+	const char KEY_D = 0x44;
+	
+	if (nChar == KEY_DOWN || nChar == KEY_S)
+		character.SetMovingDown(false);
+	if (nChar == KEY_UP || nChar == KEY_W)
+		character.SetMovingUp(false);
+	if (nChar == KEY_LEFT || nChar == KEY_A)
+		character.SetMovingLeft(false);
+	if (nChar == KEY_RIGHT || nChar == KEY_D)
+		character.SetMovingRight(false);
+
 }
 
-void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	eraser.SetMovingLeft(true);
+
 }
 
-void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+void CGameStateRun_Home::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	eraser.SetMovingLeft(false);
+
 }
 
-void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+void CGameStateRun_Home::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
 	// 沒事。如果需要處理滑鼠移動的話，寫code在這裡
 }
 
-void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+void CGameStateRun_Home::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	eraser.SetMovingRight(true);
+
 }
 
-void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	eraser.SetMovingRight(false);
+
 }
 
-void CGameStateRun::OnShow()
+void CGameStateRun_Home::OnShow()
 {
-	map.OnShow();
-	//
-	//  注意：Show裡面千萬不要移動任何物件的座標，移動座標的工作應由Move做才對，
-	//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
-	//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
-	//
-	//
-	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
-	//
-	//background.ShowBitmap();			// 貼上背景圖
-	//help.ShowBitmap();					// 貼上說明圖
-	//hits_left.ShowBitmap();
-	//for (int i=0; i < NUMBALLS; i++)
-	//	ball[i].OnShow();				// 貼上第i號球
-	//bball.OnShow();						// 貼上彈跳的球
-	//eraser.OnShow();					// 貼上擦子
-	//
-	//  貼上左上及右下角落的圖
-	//
-	/*
-	corner.SetTopLeft(0,0);
-	corner.ShowBitmap();
-	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
-	corner.ShowBitmap();
-	*/
+	if (counter < 0) {
+		Map_Home.OnShow();
+		character.OnShow();
+		if (flags == 0)
+			bm_join.ShowBitmap();
+
+	}
+	else
+		bm_loading.ShowBitmap();
+	
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+CGameStateRun_Options::CGameStateRun_Options(CGame *g)
+	: CGameState(g)
+{
+
+}
+
+CGameStateRun_Options::~CGameStateRun_Options()
+{
+
+}
+
+void CGameStateRun_Options::OnBeginState()
+{
+
+}
+
+void CGameStateRun_Options::OnMove()							
+{
+	bm_option.SetTopLeft(0, 0);
+	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
+
+}
+
+void CGameStateRun_Options::OnInit()  								
+{
+	bm_option.LoadBitmap(MENU_OPTIONS);
+}
+
+void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_RIGHT = 0x27; // keyboard右箭頭
+	const char KEY_W = 0x57;
+	const char KEY_S = 0x53;
+	const char KEY_A = 0x41;
+	const char KEY_D = 0x44;
+	const char KEY_ENTER = 0xD;
+	const char KEY_SPACE = 0x20;
+	const char KEY_BACKSPACE = 0X08;
+
+	if (nChar == KEY_SPACE || nChar == KEY_BACKSPACE)
+			GotoGameState(GAME_STATE_INIT);
+
+}
+
+void CGameStateRun_Options::OnShow()
+{
+	bm_option.ShowBitmap();
 
 }
 }
