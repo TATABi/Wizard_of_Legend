@@ -22,9 +22,19 @@ namespace game_framework {
 		_cy = y;
 
 		//設定地圖碰撞邊界
-		for (int i = 40; i < 60; i++) {
+		for (int i = 0; i < 17; i++)
+		{
 			for (int j = 0; j < 160; j++)
+			{
 				_map[i][j] = -1;
+			}
+		}
+		for (int i = 17; i < 20; i++)
+		{
+			for (int j = 0; j < 84; j++)
+			{
+				_map[i][j] = -1;
+			}
 		}
 
 		cm[0] = 1;
@@ -62,6 +72,6 @@ namespace game_framework {
 				_cx += dx;
 				_cy += dy;
 		}
-
 	}
+	
 }
