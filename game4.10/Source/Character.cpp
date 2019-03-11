@@ -27,6 +27,9 @@ namespace game_framework {
 		_vertical = 0;
 		_flag = 2; //­±¦V¤U
 
+
+
+
 	}
 
 	void Character::LoadBitmap()
@@ -148,6 +151,11 @@ namespace game_framework {
 
 	}
 
+	void Character::Dash() 
+	{
+		
+	}
+
 	void Character::OnShow() 
 	{
 		if (_horizontal != 0 || _vertical != 0) {
@@ -214,11 +222,6 @@ namespace game_framework {
 	void Character::SetMovingUp(bool flag)
 	{
 		isMovingUp = flag;
-	}
-
-	void Character::IntoGame()
-	{
-		
 	}
 
 }

@@ -12,7 +12,7 @@ namespace game_framework {
 		void SetMovingLeft(bool flag);	
 		void SetMovingRight(bool flag); 
 		void SetMovingUp(bool flag);	
-		void IntoGame();
+		void Dash();
 
 	protected:
 		CAnimation ani_up;		
@@ -30,6 +30,7 @@ namespace game_framework {
 		bool isMovingLeft;			
 		bool isMovingRight;			
 		bool isMovingUp;	
-		const int MOVING_PIXEL = 10;	//移動速度
+		const int MOVING_PIXEL = 1;	//移動速度
+
 	};
 }

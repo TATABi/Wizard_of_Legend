@@ -225,7 +225,7 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun_Home::CGameStateRun_Home(CGame *g)
-: CGameState(g), Map_Home(755,928)		//角色在地圖上的位置			///初始化地圖座標
+: CGameState(g), Map_Home(76, 93)		//角色在地圖上的位置			///初始化地圖座標 Map_Home(755,928)	
 {
 
 }
@@ -237,7 +237,7 @@ CGameStateRun_Home::~CGameStateRun_Home()
 
 void CGameStateRun_Home::OnBeginState()
 {
-	counter = 30 * 1; // 5 seconds
+	counter = 30 * 1; // 1 seconds
 	character.Initialize();
 
 	CAudio::Instance()->Stop(AUDIO_TITLE);
@@ -288,9 +288,9 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_D = 0x44;
 	
 
-	if (flags == 0) {
+	if (flags == 0) {		//按space 加入選單
 		if (nChar == KEY_SPACE)
-			flags = 1;
+			flags = 1;		//角色進入遊戲
 	}
 	else {
 		
@@ -302,6 +302,8 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			character.SetMovingLeft(true);
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
 			character.SetMovingRight(true);
+		if (nChar == KEY_SPACE)
+			character.Dash();
 		
 	}
 		
