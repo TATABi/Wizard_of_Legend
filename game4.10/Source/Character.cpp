@@ -26,8 +26,7 @@ namespace game_framework {
 		_horizontal = 0;
 		_vertical = 0;
 		_flag = 2; //面向下
-		xy[0] = 0;
-		xy[1] = 0;
+
 	}
 
 	void Character::LoadBitmap()
@@ -92,18 +91,6 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{
-		/*
-		ani_down.SetTopLeft(295, 215);
-		ani_up.SetTopLeft(295, 215);
-		ani_left.SetTopLeft(295, 215);
-		ani_right.SetTopLeft(295, 215);
-		bm_stand_down.SetTopLeft(295, 215);
-		bm_stand_up.SetTopLeft(295, 215);
-		bm_stand_left.SetTopLeft(295, 215);
-		bm_stand_right.SetTopLeft(295, 215);
-		*/
-
-
 		//整理玩家按的按鍵, 算出水平,垂直移動距離
 		if (isMovingDown) 
 		{
@@ -126,9 +113,7 @@ namespace game_framework {
 				_horizontal -= MOVING_PIXEL;
 		}
 
-		xy[0] = _horizontal;		//應移動距離
-		xy[1] = _vertical;		
-
+	
 		map->SetCharacterXY(_horizontal, _vertical);
 		
 		//面相方向
@@ -229,6 +214,11 @@ namespace game_framework {
 	void Character::SetMovingUp(bool flag)
 	{
 		isMovingUp = flag;
+	}
+
+	void Character::IntoGame()
+	{
+		
 	}
 
 }

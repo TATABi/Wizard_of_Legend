@@ -24,6 +24,8 @@ void CGameStateInit::OnInit()
 	if (CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav"))
 		CAudio::Instance()->Play(AUDIO_TITLE, true);
 
+	
+
 	ani_menu_1.SetDelayCount(2);
 	ani_menu_1.AddBitmap(MENU_INIT_02);
 	ani_menu_1.AddBitmap(MENU_INIT_04);
@@ -108,19 +110,22 @@ void CGameStateInit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_DOWN || nChar == KEY_S)
 		flags++;
 	if (nChar == KEY_SPACE || nChar == KEY_ENTER) {
-		switch (flags) {
-		case 1:
-			GotoGameState(GAME_STATE_RUN_HOME);
-			break;
-		case 2:
-			GotoGameState(GAME_STATE_RUN_OPTIONS);
-			break;
-		case 3:
-			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
-			break;
-		default:
-			break;
-		}	
+		if (ani_menu_2.IsFinalBitmap()) {
+
+			switch (flags) {
+			case 1:
+				GotoGameState(GAME_STATE_RUN_HOME);
+				break;
+			case 2:
+				GotoGameState(GAME_STATE_RUN_OPTIONS);
+				break;
+			case 3:
+				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 	if (flags > 3)
@@ -155,8 +160,10 @@ void CGameStateInit::OnShow()
 			ani_menu_2.SetTopLeft(0, 0);
 			ani_menu_2.OnShow();
 		}
-		bm_single_player.SetTopLeft(0, 0);
-		bm_single_player.ShowBitmap();
+		else {
+			bm_single_player.SetTopLeft(0, 0);
+			bm_single_player.ShowBitmap();
+		}
 		break;
 	case 2:
 		bm_option.SetTopLeft(0, 0);
@@ -253,6 +260,7 @@ void CGameStateRun_Home::OnMove()
 	character.OnMove(&Map_Home);
 	
 	Map_Home.OnMove();
+
 	
 }
 
@@ -264,8 +272,6 @@ void CGameStateRun_Home::OnInit()
 	character.LoadBitmap();
 	Map_Home.LoadBitmap();
 	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
-	
-
 }
 
 void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -355,10 +361,11 @@ void CGameStateRun_Home::OnShow()
 {
 	if (counter < 0) {
 		Map_Home.OnShow();
-		character.OnShow();
+		
 		if (flags == 0)
 			bm_join.ShowBitmap();
-
+		else
+			character.OnShow();
 	}
 	else
 		bm_loading.ShowBitmap();

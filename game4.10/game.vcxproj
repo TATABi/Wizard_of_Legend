@@ -376,6 +376,15 @@
     <Image Include="RES\InGame\Home\Home.bmp" />
     <Image Include="RES\InGame\InGame_01.bmp" />
     <Image Include="RES\InGame\Join\Join.bmp" />
+    <Image Include="RES\InGame\LightBeam\00.bmp" />
+    <Image Include="RES\InGame\LightBeam\01.bmp" />
+    <Image Include="RES\InGame\LightBeam\02.bmp" />
+    <Image Include="RES\InGame\LightBeam\03.bmp" />
+    <Image Include="RES\InGame\LightBeam\04.bmp" />
+    <Image Include="RES\InGame\LightBeam\05.bmp" />
+    <Image Include="RES\InGame\LightBeam\06.bmp" />
+    <Image Include="RES\InGame\LightBeam\07.bmp" />
+    <Image Include="RES\InGame\LightBeam\08.bmp" />
     <Image Include="RES\InGame\Loading\Loading.bmp" />
     <Image Include="RES\InGame\Loading\LoadingLevel.bmp" />
     <Image Include="RES\LoadingBG.bmp" />
