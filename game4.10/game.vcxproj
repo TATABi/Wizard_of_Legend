@@ -311,6 +311,7 @@
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\GameMap.h" />
     <ClInclude Include="Source\gameView.h" />
+    <ClInclude Include="Source\Map_Home_Logic.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\StdAfx.h" />

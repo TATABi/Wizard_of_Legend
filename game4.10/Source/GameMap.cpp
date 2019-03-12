@@ -19,28 +19,12 @@ namespace game_framework {
 	void GameMap::Initialize(int x, int y) 
 	{
 		_cx = x;
-		_cy = y;
-
-		//設定地圖碰撞邊界
-		for (int i = 0; i < 17; i++)
-		{
-			for (int j = 0; j < 160; j++)
-			{
-				_map[i][j] = -1;
-			}
-		}
-		for (int i = 17; i < 20; i++)
-		{
-			for (int j = 0; j < 84; j++)
-			{
-				_map[i][j] = -1;
-			}
-		}
-
-		cm[0] = 1;
-		cm[1] = 3;
-		cm[2] = 2;
-		cm[3] = 1;
+		_cy = y;		
+		
+		collision_move[0] = 1;
+		collision_move[1] = 3;
+		collision_move[2] = 2;
+		collision_move[3] = 1;
 
 	}
 
@@ -64,14 +48,15 @@ namespace game_framework {
 
 	void GameMap::SetCharacterXY(int dx, int dy) 
 	{	
-		if (_map[_cx + cm[0] + dx][_cy + cm[1] + dy] != -1							//左上
-			&& _map[_cx + cm[0] + cm[2] + dx][_cy + cm[1] + dy] != -1				//右上
-			&& _map[_cx + cm[0] + dx][_cy + cm[1] + cm[3] + dy] != -1				//左下
-			&& _map[_cx + cm[0] + cm[2] + dx][_cy + cm[1] + cm[3] + dy] != -1)		//右下
+		
+		if (_map.map[_cx + collision_move[0] + dx][_cy + collision_move[1] + dy] != -1							//左上
+			&& _map.map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + dy] != -1				//右上
+			&& _map.map[_cx + collision_move[0] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1				//左下
+			&& _map.map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1)		//右下
 		{
 				_cx += dx;
 				_cy += dy;
 		}
+		
 	}
-	
 }

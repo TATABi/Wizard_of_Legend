@@ -1,3 +1,4 @@
+#include "Map_Home_Logic.h"
 namespace game_framework {
 
 	class GameMap {
@@ -11,12 +12,11 @@ namespace game_framework {
 		void SetCharacterXY(int, int);
 
 	private:
-		int _map[160][160] = { 0 };
-		int _cx, _cy;  //角色所在Map的座標
+		Map_Home_Logic _map;	//邏輯圖層
 		CMovingBitmap _background; //背景圖
-		CMovingBitmap _wall;	//用來模擬3D畫面
-		int cm[4];   //(x,y,l,w) collision_move
-		int collision_damage[4];
+		int _cx, _cy;  //角色所在Map的座標
+		int collision_move[4];   //(x,y,l,w) collision_move	碰撞判定範圍
+		int collision_damage[4];	//受到傷害判定範圍
 	};
 
 }

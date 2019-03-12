@@ -153,7 +153,19 @@ namespace game_framework {
 
 	void Character::Dash() 
 	{
-		
+		switch (_flag)
+		{
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		default:
+			break;
+		}
 	}
 
 	void Character::OnShow() 

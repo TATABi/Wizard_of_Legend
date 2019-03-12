@@ -164,6 +164,9 @@
     <ClInclude Include="Source\GameMap.h">
       <Filter>MyGame</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Map_Home_Logic.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">
