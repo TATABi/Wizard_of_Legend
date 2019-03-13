@@ -1,4 +1,4 @@
-#*How to start?*
+#How to start?
 
   ##First, install glib
 
