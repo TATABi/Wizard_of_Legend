@@ -375,13 +375,13 @@ void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§
 void CGameStateRun_Home::OnShow()
 {
 	if (counter < 0) {
-		Map_Home.OnShow();
+		Map_Home.OnShowBackground();
 		
 		if (flags == 0)
 			bm_join.ShowBitmap();
 		else
 		{
-			
+
 			if (!ani_light_beam.IsFinalBitmap())
 			{
 				ani_light_beam.OnMove();
@@ -389,9 +389,11 @@ void CGameStateRun_Home::OnShow()
 
 			}
 			else
+			{
 				character.OnShow();
+				Map_Home.OnShowWall();
+			}
 		}
-
 	}
 	else
 		bm_loading.ShowBitmap();

@@ -389,6 +389,7 @@
     <Image Include="RES\Character\Up\up (9).bmp" />
     <Image Include="RES\Corsor.bmp" />
     <Image Include="RES\InGame\Home\Home.bmp" />
+    <Image Include="RES\InGame\Home\wall.bmp" />
     <Image Include="RES\InGame\InGame_01.bmp" />
     <Image Include="RES\InGame\Join\Join.bmp" />
     <Image Include="RES\InGame\LightBeam\00.bmp" />

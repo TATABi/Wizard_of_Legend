@@ -167,6 +167,7 @@ LIGHT_BEAM02            BITMAP                  "..\\RES\\InGame\\LightBeam\\02.
 LIGHT_BEAM03            BITMAP                  "..\\RES\\InGame\\LightBeam\\03.bmp"
 LIGHT_BEAM04            BITMAP                  "..\\RES\\InGame\\LightBeam\\04.bmp"
 LIGHT_BEAM05            BITMAP                  "..\\RES\\InGame\\LightBeam\\05.bmp"
+INGAME_MAP_HOME_WALL    BITMAP                  "..\\RES\\InGame\\Home\\wall.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

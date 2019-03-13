@@ -29,19 +29,24 @@ namespace game_framework {
 	void GameMap::LoadBitmap()
 	{
 		_background.LoadBitmap(INGAME_MAP_HOME);
-
+		_wall.LoadBitmap(INGAME_MAP_HOME_WALL, RGB(50, 255, 0));
 	}
 
 	void GameMap::OnMove()
 	{
 
 		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx*10, CHARACTER_SCREEN_Y - _cy*10);
-
+		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx * 10, CHARACTER_SCREEN_Y - _cy * 10);
 	}
 
-	void GameMap::OnShow()
+	void GameMap::OnShowBackground()
 	{
 		_background.ShowBitmap();
+	}
+
+	void GameMap::OnShowWall()
+	{
+		_wall.ShowBitmap();
 	}
 
 	void GameMap::SetCharacterXY(int dx, int dy) 
