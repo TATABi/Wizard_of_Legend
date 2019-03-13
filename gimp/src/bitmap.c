@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <glib.h>
 #include <fstream>
-#include "Home.c"
+#include "map.c"
 
 using namespace std;
 
@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]) {
   {
       if(!initial)
         ofs << ", ";
-        
+
       initial = false;
 
 
