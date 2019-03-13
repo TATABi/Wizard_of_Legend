@@ -122,6 +122,12 @@
 #define CHARACTER_RIGHT_07              362
 #define CHARACTER_RIGHT_08              363
 #define CHARACTER_RIGHT_09              364
+#define LIGHT_BEAM01                    374
+#define LIGHT_BEAM02                    375
+#define LIGHT_BEAM03                    379
+#define LIGHT_BEAM04                    380
+#define IDB_BITMAP5                     381
+#define LIGHT_BEAM05                    381
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -134,7 +140,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        374
+#define _APS_NEXT_RESOURCE_VALUE        382
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

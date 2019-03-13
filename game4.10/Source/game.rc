@@ -162,6 +162,11 @@ CHARACTER_RIGHT_06      BITMAP                  "..\\RES\\Character\\Right\\righ
 CHARACTER_RIGHT_07      BITMAP                  "..\\RES\\Character\\Right\\right (7).bmp"
 CHARACTER_RIGHT_08      BITMAP                  "..\\RES\\Character\\Right\\right (8).bmp"
 CHARACTER_RIGHT_09      BITMAP                  "..\\RES\\Character\\Right\\right (9).bmp"
+LIGHT_BEAM01            BITMAP                  "..\\RES\\InGame\\LightBeam\\01.bmp"
+LIGHT_BEAM02            BITMAP                  "..\\RES\\InGame\\LightBeam\\02.bmp"
+LIGHT_BEAM03            BITMAP                  "..\\RES\\InGame\\LightBeam\\03.bmp"
+LIGHT_BEAM04            BITMAP                  "..\\RES\\InGame\\LightBeam\\04.bmp"
+LIGHT_BEAM05            BITMAP                  "..\\RES\\InGame\\LightBeam\\05.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

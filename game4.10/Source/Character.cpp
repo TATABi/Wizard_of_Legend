@@ -6,7 +6,10 @@
 #include "gamelib.h"
 #include "Character.h"
 
+
 namespace game_framework {
+
+
 	/////////////////////////////////////////////////////////////////////////////
 	// CEraser: Eraser class
 	/////////////////////////////////////////////////////////////////////////////
@@ -81,19 +84,23 @@ namespace game_framework {
 		bm_stand_left.LoadBitmap(CHARACTER_STAND_LEFT, RGB(50, 255, 0));
 		bm_stand_right.LoadBitmap(CHARACTER_STAND_RIGHT, RGB(50, 255, 0));
 
-		ani_down.SetTopLeft(295, 215);
-		ani_up.SetTopLeft(295, 215);
-		ani_left.SetTopLeft(295, 215);
-		ani_right.SetTopLeft(295, 215);
-		bm_stand_down.SetTopLeft(295, 215);
-		bm_stand_up.SetTopLeft(295, 215);
-		bm_stand_left.SetTopLeft(295, 215);
-		bm_stand_right.SetTopLeft(295, 215);
+		ani_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		ani_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		ani_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		ani_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		bm_stand_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		bm_stand_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		bm_stand_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		bm_stand_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 
 	}
 
 	void Character::OnMove(GameMap *map)
 	{
+
+		_horizontal = 0;
+		_vertical = 0;	//重製每次移動
+
 		//整理玩家按的按鍵, 算出水平,垂直移動距離
 		if (isMovingDown) 
 		{
@@ -117,7 +124,7 @@ namespace game_framework {
 		}
 
 	
-		map->SetCharacterXY(_horizontal, _vertical);
+		map->SetCharacterXY(_horizontal, _vertical);	//更新角色在map的位置
 		
 		//面相方向
 		if (_horizontal != 0)
@@ -211,9 +218,6 @@ namespace game_framework {
 			}
 		}
 
-		_horizontal = 0;
-		_vertical = 0;
-
 	}
 
 	void Character::SetMovingDown(bool flag)
@@ -234,6 +238,18 @@ namespace game_framework {
 	void Character::SetMovingUp(bool flag)
 	{
 		isMovingUp = flag;
+	}
+
+	bool Character::isSlash()
+	{
+		if (isMovingRight != isMovingLeft)
+		{
+			if (isMovingUp != isMovingDown)
+				return true;
+		}
+
+
+		return false;
 	}
 
 }

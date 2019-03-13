@@ -62,8 +62,10 @@ namespace game_framework {
 		CMovingBitmap bm_join;
 		CMovingBitmap bm_loading;
 		Character character;
+		CAnimation ani_light_beam;
 		int flags = 0;
 		int counter;
+		//int slowCounter; // 延緩更新率 ，解決斜走時過快
 		GameMap Map_Home;
 	};
 

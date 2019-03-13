@@ -24,7 +24,7 @@ void CGameStateInit::OnInit()
 	if (CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav"))
 		CAudio::Instance()->Play(AUDIO_TITLE, true);
 
-	
+	CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
 
 	ani_menu_1.SetDelayCount(2);
 	ani_menu_1.AddBitmap(MENU_INIT_02);
@@ -104,6 +104,8 @@ void CGameStateInit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_D = 0x44;
 	const char KEY_SPACE = 0x20;
 	const char KEY_ENTER = 0xD;
+	CAudio::Instance()->Stop(AUDIO_BE);
+	CAudio::Instance()->Play(AUDIO_BE, false);
 
 	if (nChar == KEY_UP || nChar == KEY_W)
 		flags--;
@@ -225,7 +227,7 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun_Home::CGameStateRun_Home(CGame *g)
-: CGameState(g), Map_Home(76, 93)		//角色在地圖上的位置			///初始化地圖座標 Map_Home(755,928)	
+: CGameState(g), Map_Home(74, 91)		//角色在地圖上的位置			///初始化地圖座標 Map_Home(755,928)	
 {
 
 }
@@ -258,7 +260,7 @@ void CGameStateRun_Home::OnMove()
 	bm_loading.SetTopLeft(0, 0);
 
 	character.OnMove(&Map_Home);
-	
+
 	Map_Home.OnMove();
 
 	
@@ -272,6 +274,16 @@ void CGameStateRun_Home::OnInit()
 	character.LoadBitmap();
 	Map_Home.LoadBitmap();
 	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
+
+	ani_light_beam.SetDelayCount(1);
+	ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255,0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM02, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM03, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM04, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
+
+	ani_light_beam.SetTopLeft(0, 0);
 }
 
 void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -302,9 +314,10 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			character.SetMovingLeft(true);
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
 			character.SetMovingRight(true);
+		/*
 		if (nChar == KEY_SPACE)
 			character.Dash();
-		
+		*/
 	}
 		
 
@@ -367,7 +380,18 @@ void CGameStateRun_Home::OnShow()
 		if (flags == 0)
 			bm_join.ShowBitmap();
 		else
-			character.OnShow();
+		{
+			
+			if (!ani_light_beam.IsFinalBitmap())
+			{
+				ani_light_beam.OnMove();
+				ani_light_beam.OnShow();
+
+			}
+			else
+				character.OnShow();
+		}
+
 	}
 	else
 		bm_loading.ShowBitmap();
@@ -418,6 +442,8 @@ void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_ENTER = 0xD;
 	const char KEY_SPACE = 0x20;
 	const char KEY_BACKSPACE = 0X08;
+
+	CAudio::Instance()->Play(AUDIO_BE);
 
 	if (nChar == KEY_SPACE || nChar == KEY_BACKSPACE)
 			GotoGameState(GAME_STATE_INIT);

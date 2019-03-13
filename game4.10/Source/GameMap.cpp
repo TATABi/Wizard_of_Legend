@@ -8,7 +8,8 @@
 #include <iostream>
 namespace game_framework {
 	
-	GameMap::GameMap(int x, int y) {
+	GameMap::GameMap(int x, int y)
+	{
 		Initialize(x, y);
 	}
 	
@@ -21,10 +22,7 @@ namespace game_framework {
 		_cx = x;
 		_cy = y;		
 		
-		collision_move[0] = 1;
-		collision_move[1] = 3;
-		collision_move[2] = 2;
-		collision_move[3] = 1;
+
 
 	}
 
@@ -37,7 +35,7 @@ namespace game_framework {
 	void GameMap::OnMove()
 	{
 
-		_background.SetTopLeft(295 - _cx*10, 215 - _cy*10);
+		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx*10, CHARACTER_SCREEN_Y - _cy*10);
 
 	}
 

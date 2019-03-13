@@ -15,8 +15,10 @@ namespace game_framework {
 		Map_Home_Logic _map;	//邏輯圖層
 		CMovingBitmap _background; //背景圖
 		int _cx, _cy;  //角色所在Map的座標
-		int collision_move[4];   //(x,y,l,w) collision_move	碰撞判定範圍
-		int collision_damage[4];	//受到傷害判定範圍
+		const int collision_move[4] = {3,4,0,1};   //(x,y,l,w) collision_move	碰撞判定範圍
+		const int collision_damage[4] = {0};	//受到傷害判定範圍
+		const int CHARACTER_SCREEN_X = 285;
+		const int CHARACTER_SCREEN_Y = 205;
 	};
 
 }
