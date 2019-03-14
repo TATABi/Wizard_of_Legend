@@ -262,17 +262,12 @@ void CGameStateRun_Home::OnMove()
 	bm_loading.SetTopLeft(0, 0);
 	character.OnMove(&Map_Home);
 	Map_Home.OnMove();
-<<<<<<< HEAD
+
 	
 	//角色移動1.5秒之後能夠加速
-	if (character.isMoving())
-	{
-		//計時器
-=======
-
 	if (character.isMoving())	//角色有移動
 	{
->>>>>>> e095ebb0b427137b62376dc2501fc6598c995450
+
 		run_counter--;
 		if (run_counter == 0)
 		{
@@ -344,10 +339,6 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		{
 			character.SetMovingRight(true);
 		}
-<<<<<<< HEAD
-=======
-
->>>>>>> e095ebb0b427137b62376dc2501fc6598c995450
 		/*
 		if (nChar == KEY_SPACE)
 			character.Dash();
