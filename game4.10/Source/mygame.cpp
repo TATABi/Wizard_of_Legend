@@ -265,9 +265,15 @@ void CGameStateRun_Home::OnMove()
 
 	
 	//角色移動1.5秒之後能夠加速
+<<<<<<< HEAD
 	if (character.isMoving())
 	{
 		//計時器
+=======
+	if (character.isMoving())	//角色有移動
+	{
+
+>>>>>>> e94dd32f9fe218f3bb6a8bdaff9828decf0133e8
 		run_counter--;
 		if (run_counter == 0)
 		{
