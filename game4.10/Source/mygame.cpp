@@ -227,7 +227,7 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun_Home::CGameStateRun_Home(CGame *g)
-: CGameState(g), Map_Home(74, 91)		//角色在地圖上的位置			///初始化地圖座標 Map_Home(755,928)	
+: CGameState(g), Map_Home(371, 459)		//角色在地圖上的位置			///初始化地圖座標 Map_Home(755,928)	
 {
 
 }
@@ -260,6 +260,22 @@ void CGameStateRun_Home::OnMove()
 	bm_loading.SetTopLeft(0, 0);
 	character.OnMove(&Map_Home);
 	Map_Home.OnMove();
+	
+	//角色移動1.5秒之後能夠加速
+	if (character.isMoving())
+	{
+		//計時器
+		run_counter--;
+		if (run_counter == 0)
+		{
+			character.SetRunning(true);
+		}
+	}
+	else
+	{
+		run_counter = 45;
+		character.SetRunning(false);
+	}
 }
 
 void CGameStateRun_Home::OnInit()  
@@ -320,20 +336,6 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
 		{
 			character.SetMovingRight(true);
-		}
-			
-		if (character.isMoving())
-		{
-			run_counter--;
-			if (run_counter == 0)
-			{
-				character.SetRunning(true);
-			}
-		}
-		else
-		{
-			run_counter = 2 * 30;
-			character.SetRunning(false);
 		}
 		/*
 		if (nChar == KEY_SPACE)

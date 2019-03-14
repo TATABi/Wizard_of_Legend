@@ -28,7 +28,7 @@ namespace game_framework {
 		_horizontal = 0;
 		_vertical = 0;
 		_directionFlag = 2; //­±¦V¤U
-			}
+	}
 
 	void Character::LoadBitmap()
 	{

@@ -65,7 +65,7 @@ namespace game_framework {
 		CAnimation ani_light_beam;
 		int flags = 0;
 		int counter;
-		int run_counter = 2*30 ;
+		int run_counter = 45 ;
 		//int slowCounter; // 延緩更新率 ，解決斜走時過快
 		GameMap Map_Home;
 	};
