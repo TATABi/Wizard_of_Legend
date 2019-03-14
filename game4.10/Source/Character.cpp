@@ -9,9 +9,8 @@
 
 namespace game_framework {
 
-
 	/////////////////////////////////////////////////////////////////////////////
-	// CEraser: Eraser class
+	// Character: Character class
 	/////////////////////////////////////////////////////////////////////////////
 
 	Character::Character()
@@ -29,11 +28,7 @@ namespace game_framework {
 		_horizontal = 0;
 		_vertical = 0;
 		_flag = 2; //面向下
-
-
-
-
-	}
+			}
 
 	void Character::LoadBitmap()
 	{
@@ -123,7 +118,6 @@ namespace game_framework {
 				_horizontal -= MOVING_PIXEL;
 		}
 
-	
 		map->SetCharacterXY(_horizontal, _vertical);	//更新角色在map的位置
 		
 		//面相方向
@@ -153,14 +147,12 @@ namespace game_framework {
 				ani_down.OnMove();
 			}
 		}
-
 		//都不符合，維持前一個狀態的方向
-
 	}
 
 	void Character::Dash() 
 	{
-		switch (_flag)
+		switch (_directionFlag)
 		{
 		case 0:
 			break;
@@ -178,7 +170,7 @@ namespace game_framework {
 	void Character::OnShow() 
 	{
 		if (_horizontal != 0 || _vertical != 0) {
-			switch (_flag)
+			switch (_directionFlag)
 			{
 			case 0:
 				ani_right.OnShow();
@@ -198,7 +190,7 @@ namespace game_framework {
 		}
 		else
 		{
-			switch (_flag)
+			switch (_directionFlag)
 			{
 			case 0:
 				bm_stand_right.ShowBitmap();
@@ -214,10 +206,8 @@ namespace game_framework {
 				break;
 			default:
 				break;
-
 			}
 		}
-
 	}
 
 	void Character::SetMovingDown(bool flag)
@@ -247,8 +237,6 @@ namespace game_framework {
 			if (isMovingUp != isMovingDown)
 				return true;
 		}
-
-
 		return false;
 	}
 

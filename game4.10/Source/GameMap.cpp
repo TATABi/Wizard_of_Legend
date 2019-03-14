@@ -21,9 +21,6 @@ namespace game_framework {
 	{
 		_cx = x;
 		_cy = y;		
-		
-
-
 	}
 
 	void GameMap::LoadBitmap()
@@ -34,7 +31,6 @@ namespace game_framework {
 
 	void GameMap::OnMove()
 	{
-
 		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx*10, CHARACTER_SCREEN_Y - _cy*10);
 		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx * 10, CHARACTER_SCREEN_Y - _cy * 10);
 	}

@@ -258,17 +258,12 @@ void CGameStateRun_Home::OnMove()
 
 	bm_join.SetTopLeft(100, 100);
 	bm_loading.SetTopLeft(0, 0);
-
 	character.OnMove(&Map_Home);
-
 	Map_Home.OnMove();
-
-	
 }
 
 void CGameStateRun_Home::OnInit()  
 {
-
 	bm_join.LoadBitmap(INGAME_JOIN);
 	bm_loading.LoadBitmap(LOADING);
 	character.LoadBitmap();
@@ -305,7 +300,6 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			flags = 1;		//角色進入遊戲
 	}
 	else {
-		
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 			character.SetMovingDown(true);
 		if (nChar == KEY_UP || nChar == KEY_W)
@@ -319,8 +313,6 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			character.Dash();
 		*/
 	}
-		
-
 }
 
 void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -344,7 +336,6 @@ void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		character.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT || nChar == KEY_D)
 		character.SetMovingRight(false);
-
 }
 
 void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -386,7 +377,6 @@ void CGameStateRun_Home::OnShow()
 			{
 				ani_light_beam.OnMove();
 				ani_light_beam.OnShow();
-
 			}
 			else
 			{
@@ -397,7 +387,6 @@ void CGameStateRun_Home::OnShow()
 	}
 	else
 		bm_loading.ShowBitmap();
-	
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -449,7 +438,6 @@ void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	if (nChar == KEY_SPACE || nChar == KEY_BACKSPACE)
 			GotoGameState(GAME_STATE_INIT);
-
 }
 
 void CGameStateRun_Options::OnShow()
