@@ -229,7 +229,7 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun_Home::CGameStateRun_Home(CGame *g)
-: CGameState(g), Map_Home(755, 928)	//Map_Home(372, 464)		//角色在地圖上的位置			///初始化地圖座標 Map_Home(755,928)	
+: CGameState(g), Map_Home(740, 918)	//Map_Home(372, 464)		//角色在地圖上的位置			
 {
 
 }
@@ -265,15 +265,11 @@ void CGameStateRun_Home::OnMove()
 
 	
 	//角色移動1.5秒之後能夠加速
-<<<<<<< HEAD
+
 	if (character.isMoving())
 	{
 		//計時器
-=======
-	if (character.isMoving())	//角色有移動
-	{
 
->>>>>>> e94dd32f9fe218f3bb6a8bdaff9828decf0133e8
 		run_counter--;
 		if (run_counter == 0)
 		{

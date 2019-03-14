@@ -129,6 +129,22 @@
 #define LIGHT_BEAM05                    381
 #define IDB_BITMAP3                     382
 #define INGAME_MAP_HOME_WALL            382
+#define CHARACTER_RUN_LEFT_01           383
+#define CHARACTER_RUN_LEFT_02           384
+#define CHARACTER_RUN_LEFT_03           385
+#define CHARACTER_RUN_DOWN_02           388
+#define CHARACTER_RUN_DOWN_03           389
+#define CHARACTER_RUN_DOWN_04           390
+#define CHARACTER_RUN_RIGHT_01          394
+#define CHARACTER_RUN_RIGHT_02          395
+#define CHARACTER_RUN_RIGHT_03          396
+#define CHARACTER_RUN_UP_01             397
+#define CHARACTER_RUN_UP_02             398
+#define CHARACTER_RUN_UP_03             399
+#define CHARACTER_RUN_UP_04             400
+#define CHARACTER_RUN_UP_05             401
+#define IDB_BITMAP4                     402
+#define CHARACTER_RUN_DOWN_01           402
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -141,7 +157,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        383
+#define _APS_NEXT_RESOURCE_VALUE        403
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

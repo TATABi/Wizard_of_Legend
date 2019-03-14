@@ -24,6 +24,10 @@ namespace game_framework {
 		ani_up.SetDelayCount(2);
 		ani_left.SetDelayCount(2);
 		ani_right.SetDelayCount(2);
+		ani_run_down.SetDelayCount(2);
+		ani_run_up.SetDelayCount(2);
+		ani_run_right.SetDelayCount(2);
+		ani_run_left.SetDelayCount(2);
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;	
 		_horizontal = 0;
 		_vertical = 0;
@@ -79,10 +83,35 @@ namespace game_framework {
 		bm_stand_left.LoadBitmap(CHARACTER_STAND_LEFT, RGB(50, 255, 0));
 		bm_stand_right.LoadBitmap(CHARACTER_STAND_RIGHT, RGB(50, 255, 0));
 
+		ani_run_down.AddBitmap(CHARACTER_RUN_DOWN_01, RGB(50, 255, 0));
+		ani_run_down.AddBitmap(CHARACTER_RUN_DOWN_02, RGB(50, 255, 0));
+		ani_run_down.AddBitmap(CHARACTER_RUN_DOWN_03, RGB(50, 255, 0));
+		ani_run_down.AddBitmap(CHARACTER_RUN_DOWN_04, RGB(50, 255, 0));
+
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_01, RGB(50, 255, 0));
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_02, RGB(50, 255, 0));
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_03, RGB(50, 255, 0));
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_04, RGB(50, 255, 0));
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_05, RGB(50, 255, 0));
+
+		ani_run_left.AddBitmap(CHARACTER_RUN_LEFT_01, RGB(50, 255, 0));
+		ani_run_left.AddBitmap(CHARACTER_RUN_LEFT_02, RGB(50, 255, 0));
+		ani_run_left.AddBitmap(CHARACTER_RUN_LEFT_03, RGB(50, 255, 0));
+		ani_run_left.AddBitmap(CHARACTER_RUN_LEFT_03, RGB(50, 255, 0));
+
+		ani_run_right.AddBitmap(CHARACTER_RUN_RIGHT_01, RGB(50, 255, 0));
+		ani_run_right.AddBitmap(CHARACTER_RUN_RIGHT_02, RGB(50, 255, 0));
+		ani_run_right.AddBitmap(CHARACTER_RUN_RIGHT_03, RGB(50, 255, 0));
+		ani_run_right.AddBitmap(CHARACTER_RUN_RIGHT_03, RGB(50, 255, 0));
+
 		ani_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		ani_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		ani_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		ani_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		ani_run_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		ani_run_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		ani_run_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		ani_run_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		bm_stand_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		bm_stand_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		bm_stand_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
@@ -102,7 +131,7 @@ namespace game_framework {
 		}
 		else
 		{
-			SLASH_PIXEL =4;
+			SLASH_PIXEL =5;
 			STR_PIXEL = 6;
 		}
 		if (isSlash()) //如果斜走則移動水平&垂直2單位,跑步4單位
@@ -182,7 +211,40 @@ namespace game_framework {
 				ani_down.OnMove();
 			}
 		}
+
+		if (isRunning)
+		{
+			switch (_directionFlag) 
+			{
+			case 0:
+				if (!ani_run_right.IsFinalBitmap())
+					ani_run_right.OnMove();
+				break;
+			case 1:
+				if(!ani_run_left.IsFinalBitmap())
+					ani_run_left.OnMove();
+				break;
+			case 2:
+				if (!ani_run_down.IsFinalBitmap())
+					ani_run_down.OnMove();
+				break;
+			case 3:
+				if (!ani_run_up.IsFinalBitmap())
+					ani_run_up.OnMove();
+				break;
+			}
+		}
+		else
+		{
+			ani_run_right.Reset();
+			ani_run_left.Reset();
+			ani_run_down.Reset();
+			ani_run_up.Reset();
+		}
+			
+
 		//都不符合，維持前一個狀態的方向
+
 	}
 
 	void Character::Dash() 
@@ -204,6 +266,26 @@ namespace game_framework {
 
 	void Character::OnShow() 
 	{
+		if (isRunning && !ani_run_right.IsFinalBitmap() && !ani_run_left.IsFinalBitmap() 
+			&& !ani_run_down.IsFinalBitmap() && !ani_run_up.IsFinalBitmap())
+		{
+			switch (_directionFlag)
+			{
+			case 0:
+					ani_run_right.OnShow();
+				break;
+			case 1:
+					ani_run_left.OnShow();
+				break;
+			case 2:
+					ani_run_down.OnShow();
+				break;
+			case 3:
+					ani_run_up.OnShow();
+				break;
+			}
+		}
+
 		if (_horizontal != 0 || _vertical != 0) {
 			switch (_directionFlag)
 			{
@@ -243,6 +325,7 @@ namespace game_framework {
 				break;
 			}
 		}
+
 	}
 
 	void Character::SetMovingDown(bool flag)

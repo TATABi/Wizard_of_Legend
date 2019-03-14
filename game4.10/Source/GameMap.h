@@ -13,7 +13,6 @@ namespace game_framework {
 		void OnShowWall();
 		void SetCharacterXY(int, int);
 	private:
-		//Map_Home_Logic _map;	//邏輯圖層
 		CMovingBitmap _background; //背景圖
 		CMovingBitmap _wall; //牆
 		int _cx, _cy;  //角色所在Map的座標
