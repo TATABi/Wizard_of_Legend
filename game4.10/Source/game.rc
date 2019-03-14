@@ -174,7 +174,7 @@ INGAME_MAP_HOME_WALL    BITMAP                  "..\\RES\\InGame\\Home\\wall.bmp
 // Cursor
 //
 
-IDC_CURSOR              CURSOR                  "..\\res\\cursor1.cur"
+IDC_CURSOR              CURSOR                  "..\\RES\\cursor1.cur"
 #endif    // 中文 (繁體，台灣) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -191,7 +191,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Bitmap
 //
 
-IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
+IDR_MAINFRAME           BITMAP                  "..\\RES\\Toolbar.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -200,8 +200,8 @@ IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "..\\res\\game.ico"
-IDR_GAMETYPE            ICON                    "..\\res\\gameDoc.ico"
+IDR_MAINFRAME           ICON                    "..\\RES\\GAME.ico"
+IDR_GAMETYPE            ICON                    "..\\RES\\gameDoc.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
