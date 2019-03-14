@@ -1,4 +1,5 @@
 #include "Map_Home_Logic.h"
+
 namespace game_framework {
 
 	class GameMap {
@@ -12,14 +13,14 @@ namespace game_framework {
 		void OnShowWall();
 		void SetCharacterXY(int, int);
 	private:
-		Map_Home_Logic _map;	//ÅÞ¿è¹Ï¼h
+		//Map_Home_Logic _map;	//ÅÞ¿è¹Ï¼h
 		CMovingBitmap _background; //­I´º¹Ï
 		CMovingBitmap _wall; //Àð
 		int _cx, _cy;  //¨¤¦â©Ò¦bMapªº®y¼Ð
-		const int collision_move[4] = {3,4,0,1};   //(x,y,l,w) collision_move	¸I¼²§P©w½d³ò
+		const int collision_move[4] = { 24, 53, 20 , 7};   //(x,y,l,w) collision_move	¸I¼²§P©w½d³ò
 		const int collision_damage[4] = {0};	//¨ü¨ì¶Ë®`§P©w½d³ò
-		const int CHARACTER_SCREEN_X = 0;
-		const int CHARACTER_SCREEN_Y = 0;
+		const int CHARACTER_SCREEN_X = 285;
+		const int CHARACTER_SCREEN_Y = 205;
 	};
 
 }

@@ -5,7 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "GameMap.h"
-#include <iostream>
+
 namespace game_framework {
 	
 	GameMap::GameMap(int x, int y)
@@ -31,8 +31,8 @@ namespace game_framework {
 
 	void GameMap::OnMove()
 	{
-		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx * 2, CHARACTER_SCREEN_Y - _cy * 2);
-		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx * 2, CHARACTER_SCREEN_Y - _cy * 2);
+		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx  , CHARACTER_SCREEN_Y - _cy);
+		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx	, CHARACTER_SCREEN_Y - _cy );
 	}
 
 	void GameMap::OnShowBackground()
@@ -47,7 +47,7 @@ namespace game_framework {
 
 	void GameMap::SetCharacterXY(int dx, int dy) 
 	{	
-		
+		/*
 		if (_map.map[_cx + collision_move[0] + dx][_cy + collision_move[1] + dy] != -1							//左上
 			&& _map.map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + dy] != -1				//右上
 			&& _map.map[_cx + collision_move[0] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1				//左下
@@ -56,6 +56,17 @@ namespace game_framework {
 				_cx += dx;
 				_cy += dy;
 		}
+		*/
+
+		if (global_map[_cx + collision_move[0] + dx][_cy + collision_move[1] + dy] != -1							//左上
+			&& global_map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + dy] != -1				//右上
+			&& global_map[_cx + collision_move[0] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1				//左下
+			&& global_map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1)		//右下
+		{
+			_cx += dx;
+			_cy += dy;
+		}
 		
 	}
 }
+

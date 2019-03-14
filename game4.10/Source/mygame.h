@@ -1,5 +1,6 @@
 #include "Character.h"
-//#include "GameMap.h"
+//#include "GameMap.h" new
+
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -65,7 +66,7 @@ namespace game_framework {
 		CAnimation ani_light_beam;						// 角色在家中現身的動畫
 		int flags;										// 現在畫面的狀態
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
-		int run_counter = 45;								// 計算角色是否要奔跑
+		int run_counter;								// 計算角色是否要奔跑
 		GameMap Map_Home;								// 地圖
 	};
 

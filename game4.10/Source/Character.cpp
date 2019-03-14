@@ -94,15 +94,16 @@ namespace game_framework {
 	{
 		_horizontal = 0;
 		_vertical = 0;	//重製每次移動
+
 		if (isRunning)
 		{
-			SLASH_PIXEL = 4;
-			STR_PIXEL = 4;
+			SLASH_PIXEL = 7;
+			STR_PIXEL = 10;
 		}
 		else
 		{
-			SLASH_PIXEL = 2;
-			STR_PIXEL = 3;
+			SLASH_PIXEL =4;
+			STR_PIXEL = 6;
 		}
 		if (isSlash()) //如果斜走則移動水平&垂直2單位,跑步4單位
 		{
@@ -151,6 +152,7 @@ namespace game_framework {
 					_horizontal -= STR_PIXEL;
 			}
 		}
+
 		map->SetCharacterXY(_horizontal, _vertical);	//更新角色在map的位置
 		
 		//面相方向

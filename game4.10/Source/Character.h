@@ -33,8 +33,8 @@ namespace game_framework {
 		bool isMovingRight;			//向右
 		bool isMovingUp;			//向上
 		bool isRunning = false;		//跑步
-		int SLASH_PIXEL = 3;	//斜線移動速度
-		int STR_PIXEL = 2;	//直線移動速度
+		int SLASH_PIXEL = 1;	//斜線移動速度
+		int STR_PIXEL = 1;	//直線移動速度
 		const int CHARACTER_SCREEN_X = 285; //螢幕中心X座標
 		const int CHARACTER_SCREEN_Y = 205;	//螢幕中心Y座標
 	};
