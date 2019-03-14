@@ -589,7 +589,7 @@ bool CGame::OnIdle()  // 修改功能不要修改OnIdle()，而應修改OnMove()及OnShow()
 	//
 	CDDraw::BltBackColor(DEFAULT_BG_COLOR);	// 將 Back Plain 塗上預設的顏色
 	gameState->OnCycle();
-	CDDraw::BltBackToPrimary();				// 將 Back Plain 貼到螢幕
+ 	CDDraw::BltBackToPrimary();				// 將 Back Plain 貼到螢幕
 	//
 	// 以下的程式控制遊戲進行的速度，注意事項：
 	// 1. 用Debug mode可以檢視每一次迴圈花掉的時間，令此時間為t。

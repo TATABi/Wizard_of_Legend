@@ -295,19 +295,46 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_D = 0x44;
 	
 
-	if (flags == 0) {		//按space 加入選單
+	if (flags == 0)
+	{	//按space 加入選單
 		if (nChar == KEY_SPACE)
 			flags = 1;		//角色進入遊戲
 	}
-	else {
+	else 
+	{
 		if (nChar == KEY_DOWN || nChar == KEY_S)
-			character.SetMovingDown(true);
+		{
+			character.SetMovingDown(true);	
+		}
+			
 		if (nChar == KEY_UP || nChar == KEY_W)
+		{
 			character.SetMovingUp(true);
+		}
+		
 		if (nChar == KEY_LEFT || nChar == KEY_A)
+		{
 			character.SetMovingLeft(true);
+		}
+			
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
+		{
 			character.SetMovingRight(true);
+		}
+			
+		if (character.isMoving())
+		{
+			run_counter--;
+			if (run_counter == 0)
+			{
+				character.SetRunning(true);
+			}
+		}
+		else
+		{
+			run_counter = 2 * 30;
+			character.SetRunning(false);
+		}
 		/*
 		if (nChar == KEY_SPACE)
 			character.Dash();

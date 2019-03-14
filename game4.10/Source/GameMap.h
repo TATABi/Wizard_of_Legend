@@ -11,7 +11,6 @@ namespace game_framework {
 		void OnShowBackground();
 		void OnShowWall();
 		void SetCharacterXY(int, int);
-
 	private:
 		Map_Home_Logic _map;	//ÅÞ¿è¹Ï¼h
 		CMovingBitmap _background; //­I´º¹Ï

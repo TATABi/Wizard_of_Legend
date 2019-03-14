@@ -92,32 +92,65 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{
-
 		_horizontal = 0;
 		_vertical = 0;	//重製每次移動
-
-		//整理玩家按的按鍵, 算出水平,垂直移動距離
-		if (isMovingDown) 
+		if (isRunning)
 		{
-			if(_vertical < MOVING_PIXEL)
-				_vertical += MOVING_PIXEL;
+			SLASH_PIXEL = 4;
+			STR_PIXEL = 4;
 		}
-		if (isMovingUp)
-		{	
-			if(_vertical > -MOVING_PIXEL)
-				_vertical -= MOVING_PIXEL;
-		}
-		if (isMovingRight) 
+		else
 		{
-			if (_horizontal < MOVING_PIXEL)
-				_horizontal += MOVING_PIXEL;
+			SLASH_PIXEL = 2;
+			STR_PIXEL = 3;
 		}
-		if (isMovingLeft)
+		if (isSlash()) //如果斜走則移動水平&垂直2單位,跑步4單位
 		{
-			if (_horizontal > -MOVING_PIXEL)
-				_horizontal -= MOVING_PIXEL;
+			if (isMovingDown)
+			{
+				if (_vertical < SLASH_PIXEL)
+					_vertical += SLASH_PIXEL;
+			}
+			if (isMovingUp)
+			{
+				if (_vertical > -SLASH_PIXEL)
+					_vertical -= SLASH_PIXEL ;
+			}
+			if (isMovingRight)
+			{
+				if (_horizontal < SLASH_PIXEL)
+					_horizontal += SLASH_PIXEL;
+			}
+			if (isMovingLeft)
+			{
+				if (_horizontal > -SLASH_PIXEL)
+					_horizontal -= SLASH_PIXEL;
+			}
 		}
-
+		else
+		{
+			//整理玩家按的按鍵, 算出水平,垂直移動距離
+			if (isMovingDown)
+			{
+				if (_vertical < STR_PIXEL)
+					_vertical += STR_PIXEL;
+			}
+			if (isMovingUp)
+			{
+				if (_vertical > -STR_PIXEL)
+					_vertical -= STR_PIXEL;
+			}
+			if (isMovingRight)
+			{
+				if (_horizontal < STR_PIXEL)
+					_horizontal += STR_PIXEL;
+			}
+			if (isMovingLeft)
+			{
+				if (_horizontal > -STR_PIXEL)
+					_horizontal -= STR_PIXEL;
+			}
+		}
 		map->SetCharacterXY(_horizontal, _vertical);	//更新角色在map的位置
 		
 		//面相方向
@@ -240,4 +273,18 @@ namespace game_framework {
 		return false;
 	}
 
+	bool Character::isMoving()
+	{
+		if (isMovingDown || isMovingLeft || isMovingRight || isMovingUp)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	void Character::SetRunning(bool runningFlag)
+	{
+
+		isRunning = runningFlag;
+	}
 }

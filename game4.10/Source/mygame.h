@@ -65,6 +65,7 @@ namespace game_framework {
 		CAnimation ani_light_beam;
 		int flags = 0;
 		int counter;
+		int run_counter = 2*30 ;
 		//int slowCounter; // 延緩更新率 ，解決斜走時過快
 		GameMap Map_Home;
 	};
@@ -103,6 +104,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		int counter;	// 倒數之計數器
+
 	};
 
 }

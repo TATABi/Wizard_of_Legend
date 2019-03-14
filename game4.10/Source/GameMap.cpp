@@ -31,8 +31,8 @@ namespace game_framework {
 
 	void GameMap::OnMove()
 	{
-		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx*10, CHARACTER_SCREEN_Y - _cy*10);
-		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx * 10, CHARACTER_SCREEN_Y - _cy * 10);
+		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx * 3, CHARACTER_SCREEN_Y - _cy * 3);
+		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx * 3, CHARACTER_SCREEN_Y - _cy * 3);
 	}
 
 	void GameMap::OnShowBackground()
