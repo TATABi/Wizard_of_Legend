@@ -59,15 +59,14 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		CMovingBitmap bm_join;
-		CMovingBitmap bm_loading;
-		Character character;
-		CAnimation ani_light_beam;
-		int flags = 0;
-		int counter;
-		int run_counter = 45 ;
-		//int slowCounter; // 延緩更新率 ，解決斜走時過快
-		GameMap Map_Home;
+		CMovingBitmap bm_join;							// join遊戲的提示選單
+		CMovingBitmap bm_loading;						// loading字樣的圖片
+		Character character;							// 角色
+		CAnimation ani_light_beam;						// 角色在家中現身的動畫
+		int flags;										// 現在畫面的狀態
+		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
+		int run_counter = 45;								// 計算角色是否要奔跑
+		GameMap Map_Home;								// 地圖
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
