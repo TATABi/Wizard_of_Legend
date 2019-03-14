@@ -7,20 +7,12 @@
 #include "GameMap.h"
 #include <iostream>
 namespace game_framework {
-	
-	GameMap::GameMap(int x, int y)
+	GameMap::GameMap()
 	{
-		Initialize(x, y);
-	}
-	
-	GameMap::~GameMap() {
-	
 	}
 
-	void GameMap::Initialize(int x, int y) 
-	{
-		_cx = x;
-		_cy = y;		
+	GameMap::~GameMap() {
+
 	}
 
 	void GameMap::LoadBitmap()
@@ -29,10 +21,19 @@ namespace game_framework {
 		_wall.LoadBitmap(INGAME_MAP_HOME_WALL, RGB(50, 255, 0));
 	}
 
-	void GameMap::OnMove()
+	bool GameMap::IsEmpty(int x, int y)
 	{
-		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx * 2, CHARACTER_SCREEN_Y - _cy * 2);
-		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx * 2, CHARACTER_SCREEN_Y - _cy * 2);
+		int gx = x / 10;
+		int gy = y / 10;
+		return _map.map[gx][gy] == 0;
+	}
+
+	void GameMap::SetScreenPosition(int x, int y)
+	{
+		_sx = x;
+		_sy = y;
+		_background.SetTopLeft(-_sx, -_sy);
+		_wall.SetTopLeft(-_sx, -_sy);
 	}
 
 	void GameMap::OnShowBackground()
@@ -45,17 +46,13 @@ namespace game_framework {
 		_wall.ShowBitmap();
 	}
 
-	void GameMap::SetCharacterXY(int dx, int dy) 
-	{	
-		
-		if (_map.map[_cx + collision_move[0] + dx][_cy + collision_move[1] + dy] != -1							//左上
-			&& _map.map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + dy] != -1				//右上
-			&& _map.map[_cx + collision_move[0] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1				//左下
-			&& _map.map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1)		//右下
-		{
-				_cx += dx;
-				_cy += dy;
-		}
-		
+	int GameMap::GetScreenX() 
+	{
+		return _sx;
+	}
+
+	int GameMap::GetScreenY()
+	{
+		return _sy;
 	}
 }

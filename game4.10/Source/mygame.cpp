@@ -229,7 +229,7 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun_Home::CGameStateRun_Home(CGame *g)
-: CGameState(g), Map_Home(371, 459)		//角色在地圖上的位置			///初始化地圖座標 Map_Home(755,928)	
+: CGameState(g), Map_Home()	
 {
 
 }
@@ -245,14 +245,12 @@ void CGameStateRun_Home::OnBeginState()
 	run_counter = 45; // 1.5 seconds
 	flags = 0;
 	character.Initialize();
-
 	CAudio::Instance()->Stop(AUDIO_TITLE);
 	CAudio::Instance()->Play(AUDIO_HOME, true);
 }
 
 void CGameStateRun_Home::OnMove()					
 {
-
 	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
 	if(delay_counter > -1)
@@ -261,9 +259,7 @@ void CGameStateRun_Home::OnMove()
 	bm_join.SetTopLeft(100, 100);
 	bm_loading.SetTopLeft(0, 0);
 	character.OnMove(&Map_Home);
-	Map_Home.OnMove();
 
-	
 	//角色移動1.5秒之後能夠加速
 	if (character.isMoving())	//角色有移動
 	{
@@ -285,8 +281,10 @@ void CGameStateRun_Home::OnInit()
 {
 	bm_join.LoadBitmap(INGAME_JOIN);
 	bm_loading.LoadBitmap(LOADING);
-	character.LoadBitmap();
 	Map_Home.LoadBitmap();
+	character.LoadBitmap();
+	Map_Home.SetScreenPosition(460,700);	//(460, 700)螢幕左上角位置
+	character.SetCharacterXY(780, 970);		//設定角色在地圖的位置
 	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
 
 	ani_light_beam.SetDelayCount(1);
@@ -405,7 +403,6 @@ void CGameStateRun_Home::OnShow()
 			bm_join.ShowBitmap();
 		else
 		{
-
 			if (!ani_light_beam.IsFinalBitmap())
 			{
 				ani_light_beam.OnMove();

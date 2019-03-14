@@ -92,99 +92,127 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{
+		int sx = map->GetScreenX();
+		int sy = map->GetScreenY();
 		_horizontal = 0;
-		_vertical = 0;	//重製每次移動
-		if (isRunning)
+		_vertical = 0;
+		if (isRunning)	//是否為跑步
 		{
-			SLASH_PIXEL = 4;
-			STR_PIXEL = 4;
+			STR_PIXEL = 7;
+			SLASH_PIXEL = 5;
 		}
 		else
 		{
-			SLASH_PIXEL = 2;
 			STR_PIXEL = 3;
+			SLASH_PIXEL = 2;
 		}
-		if (isSlash()) //如果斜走則移動水平&垂直2單位,跑步4單位
+
+		if (isSlash())	//是否為斜走
 		{
-			if (isMovingDown)
+			if (isMovingUp)		//向上
 			{
-				if (_vertical < SLASH_PIXEL)
-					_vertical += SLASH_PIXEL;
+				if (map->IsEmpty(_cx, _cy - SLASH_PIXEL))			//前進方向沒有障礙
+				{
+					_cy -= SLASH_PIXEL;
+					_vertical = -SLASH_PIXEL;
+				}
 			}
-			if (isMovingUp)
+
+			if (isMovingDown)	//向下
 			{
-				if (_vertical > -SLASH_PIXEL)
-					_vertical -= SLASH_PIXEL ;
+				if (map->IsEmpty(_cx, _cy + SLASH_PIXEL))			//前進方向沒有障礙
+				{
+					_cy += SLASH_PIXEL;
+					_vertical = SLASH_PIXEL;
+				}
 			}
-			if (isMovingRight)
+			if (isMovingLeft)	//向左
 			{
-				if (_horizontal < SLASH_PIXEL)
-					_horizontal += SLASH_PIXEL;
+				if (map->IsEmpty(_cx - SLASH_PIXEL, _cy))			//前進方向沒有障礙
+				{
+					_cx -= SLASH_PIXEL;
+					_horizontal = -SLASH_PIXEL;
+				}
 			}
-			if (isMovingLeft)
+			if (isMovingRight)	//向右
 			{
-				if (_horizontal > -SLASH_PIXEL)
-					_horizontal -= SLASH_PIXEL;
+				if (map->IsEmpty(_cx + SLASH_PIXEL, _cy))			//前進方向沒有障礙
+				{
+					_cx += SLASH_PIXEL;
+					_horizontal = SLASH_PIXEL;
+				}
 			}
 		}
 		else
 		{
-			//整理玩家按的按鍵, 算出水平,垂直移動距離
-			if (isMovingDown)
+			if (isMovingUp)		//向上
 			{
-				if (_vertical < STR_PIXEL)
-					_vertical += STR_PIXEL;
+				if (map->IsEmpty(_cx, _cy - STR_PIXEL))			//前進方向沒有障礙
+				{
+					_cy -= STR_PIXEL;
+					_vertical = -STR_PIXEL;
+				}
 			}
-			if (isMovingUp)
+
+			if (isMovingDown)	//向下
 			{
-				if (_vertical > -STR_PIXEL)
-					_vertical -= STR_PIXEL;
+				if (map->IsEmpty(_cx, _cy + STR_PIXEL))			//前進方向沒有障礙
+				{
+					_cy += STR_PIXEL;
+					_vertical = +STR_PIXEL;
+				}
 			}
-			if (isMovingRight)
+			if (isMovingLeft)	//向左
 			{
-				if (_horizontal < STR_PIXEL)
-					_horizontal += STR_PIXEL;
+				{
+					_cx -= STR_PIXEL;
+					_horizontal = -STR_PIXEL;
+				}
 			}
-			if (isMovingLeft)
+			if (isMovingRight)	//向右
 			{
-				if (_horizontal > -STR_PIXEL)
-					_horizontal -= STR_PIXEL;
-			}
-		}
-		map->SetCharacterXY(_horizontal, _vertical);	//更新角色在map的位置
-		
-		//面相方向
-		if (_horizontal != 0)
-		{
-			if (_horizontal < 0)
-			{
-				_directionFlag = 1;	//左
-				ani_left.OnMove();
-			}
-			else
-			{
-				_directionFlag = 0;	//右
-				ani_right.OnMove();
+				if (map->IsEmpty(_cx + STR_PIXEL, _cy))			//前進方向沒有障礙
+				{
+					_cx += STR_PIXEL;
+					_horizontal = STR_PIXEL;
+				}
 			}
 		}
-		else
-		{
-			if (_vertical < 0)
-			{
-				_directionFlag = 3;	//上
-				ani_up.OnMove();
-			}
-			else if (_vertical > 0)
-			{
-				_directionFlag = 2;	//下
-				ani_down.OnMove();
-			}
-		}
-		//都不符合，維持前一個狀態的方向
+		map->SetScreenPosition(sx + _horizontal, sy + _vertical);		//調整畫面
 	}
+		/*
+	//面相方向
+	if (_horizontal != 0)
+	{
+		if (_horizontal < 0)
+		{
+			_directionFlag = 1;	//左
+			ani_left.OnMove();
+		}
+		else
+		{
+			_directionFlag = 0;	//右
+			ani_right.OnMove();
+		}
+	}
+	else
+	{
+		if (_vertical < 0)
+		{
+			_directionFlag = 3;	//上
+			ani_up.OnMove();
+		}
+		else if (_vertical > 0)
+		{
+			_directionFlag = 2;	//下
+			ani_down.OnMove();
+		}
+	}*/
+	//都不符合，維持前一個狀態的方向
 
 	void Character::Dash() 
 	{
+		/*
 		switch (_directionFlag)
 		{
 		case 0:
@@ -198,6 +226,7 @@ namespace game_framework {
 		default:
 			break;
 		}
+		*/
 	}
 
 	void Character::OnShow() 
@@ -286,5 +315,11 @@ namespace game_framework {
 	{
 
 		isRunning = runningFlag;
+	}
+
+	void Character::SetCharacterXY(int x, int y)
+	{
+		_cx = x;
+		_cy = y;
 	}
 }
