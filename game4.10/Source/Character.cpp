@@ -27,7 +27,7 @@ namespace game_framework {
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;	
 		_horizontal = 0;
 		_vertical = 0;
-		_flag = 2; //面向下
+		_directionFlag = 2; //面向下
 			}
 
 	void Character::LoadBitmap()
@@ -125,12 +125,12 @@ namespace game_framework {
 		{
 			if (_horizontal < 0)
 			{
-				_flag = 1;	//左
+				_directionFlag = 1;	//左
 				ani_left.OnMove();
 			}
 			else
 			{
-				_flag = 0;	//右
+				_directionFlag = 0;	//右
 				ani_right.OnMove();
 			}
 		}
@@ -138,12 +138,12 @@ namespace game_framework {
 		{
 			if (_vertical < 0)
 			{
-				_flag = 3;	//上
+				_directionFlag = 3;	//上
 				ani_up.OnMove();
 			}
 			else if (_vertical > 0)
 			{
-				_flag = 2;	//下
+				_directionFlag = 2;	//下
 				ani_down.OnMove();
 			}
 		}
