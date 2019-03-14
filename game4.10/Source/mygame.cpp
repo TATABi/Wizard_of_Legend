@@ -222,6 +222,8 @@ void CGameStateOver::OnShow()
 	CDDraw::ReleaseBackCDC();					// ©ñ±¼ Back Plain ªº CDC
 }
 
+
+
 /////////////////////////////////////////////////////////////////////////////
 // ³o­Óclass¬°¹CÀ¸ªº¹CÀ¸°õ¦æª«¥ó¡A¥D­nªº¹CÀ¸µ{¦¡³£¦b³o¸Ì
 /////////////////////////////////////////////////////////////////////////////
@@ -239,7 +241,9 @@ CGameStateRun_Home::~CGameStateRun_Home()
 
 void CGameStateRun_Home::OnBeginState()
 {
-	counter = 30 * 1; // 1 seconds
+	delay_counter = 30 * 1; // 1 seconds
+	run_counter = 45; // 1.5 seconds
+	flags = 0;
 	character.Initialize();
 
 	CAudio::Instance()->Stop(AUDIO_TITLE);
@@ -248,18 +252,30 @@ void CGameStateRun_Home::OnBeginState()
 
 void CGameStateRun_Home::OnMove()					
 {
-	//
-	// ¦pªG§Æ±æ­×§ïcursorªº¼Ë¦¡¡A«h±N¤U­±µ{¦¡ªºcommment¨ú®ø§Y¥i
-	//
+
 	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
-	if(counter > -1)
-		counter--;
+	if(delay_counter > -1)
+		delay_counter--;
 
 	bm_join.SetTopLeft(100, 100);
 	bm_loading.SetTopLeft(0, 0);
 	character.OnMove(&Map_Home);
 	Map_Home.OnMove();
+
+	if (character.isMoving())	//¨¤¦â¦³²¾°Ê
+	{
+		run_counter--;
+		if (run_counter == 0)
+		{
+			character.SetRunning(true);
+		}
+	}
+	else
+	{
+		run_counter = 45;
+		character.SetRunning(false);
+	}
 }
 
 void CGameStateRun_Home::OnInit()  
@@ -271,13 +287,12 @@ void CGameStateRun_Home::OnInit()
 	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
 
 	ani_light_beam.SetDelayCount(1);
-	ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255,0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255, 0));
 	ani_light_beam.AddBitmap(LIGHT_BEAM02, RGB(50, 255, 0));
 	ani_light_beam.AddBitmap(LIGHT_BEAM03, RGB(50, 255, 0));
 	ani_light_beam.AddBitmap(LIGHT_BEAM04, RGB(50, 255, 0));
 	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
 	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
-
 	ani_light_beam.SetTopLeft(0, 0);
 }
 
@@ -296,11 +311,11 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	
 
 	if (flags == 0)
-	{	//«öspace ¥[¤J¿ï³æ
-		if (nChar == KEY_SPACE)
-			flags = 1;		//¨¤¦â¶i¤J¹CÀ¸
+	{	
+		if (nChar == KEY_SPACE)		// ¥[¤J¹CÀ¸´£¥Ü¿ï³æ
+			flags = 1;				// ¨¤¦â¶i¤J¹CÀ¸
 	}
-	else 
+	else if(flags = 1)				//¶i¤J¹CÀ¸¡A¨S¦³¶}±Ò¥ô¦ó¿ï³æ
 	{
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 		{
@@ -321,25 +336,13 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		{
 			character.SetMovingRight(true);
 		}
-			
-		if (character.isMoving())
-		{
-			run_counter--;
-			if (run_counter == 0)
-			{
-				character.SetRunning(true);
-			}
-		}
-		else
-		{
-			run_counter = 2 * 30;
-			character.SetRunning(false);
-		}
+
 		/*
 		if (nChar == KEY_SPACE)
 			character.Dash();
 		*/
 	}
+
 }
 
 void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -392,9 +395,10 @@ void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§
 
 void CGameStateRun_Home::OnShow()
 {
-	if (counter < 0) {
+	if (delay_counter < 0)
+	{
 		Map_Home.OnShowBackground();
-		
+	
 		if (flags == 0)
 			bm_join.ShowBitmap();
 		else
@@ -464,7 +468,7 @@ void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CAudio::Instance()->Play(AUDIO_BE);
 
 	if (nChar == KEY_SPACE || nChar == KEY_BACKSPACE)
-			GotoGameState(GAME_STATE_INIT);
+		GotoGameState(GAME_STATE_INIT);
 }
 
 void CGameStateRun_Options::OnShow()
