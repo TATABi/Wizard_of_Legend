@@ -670,5 +670,17 @@
     <Image Include="RES\Character\Run\Run_up (5).bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Character\Dash\Down\DashDown01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Dash\Down\DashDown02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Dash\Down\DashDown03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Dash\Down\DashDown04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -341,10 +341,11 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		{
 			character.SetMovingRight(true);
 		}
-		/*
+		
 		if (nChar == KEY_SPACE)
+		{
 			character.Dash();
-		*/
+		}
 	}
 
 }

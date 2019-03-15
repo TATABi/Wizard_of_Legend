@@ -183,6 +183,10 @@ CHARACTER_RUN_UP_03     BITMAP                  "..\\RES\\Character\\Run\\Run_up
 CHARACTER_RUN_UP_04     BITMAP                  "..\\RES\\Character\\Run\\Run_up (4).bmp"
 CHARACTER_RUN_UP_05     BITMAP                  "..\\RES\\Character\\Run\\Run_up (5).bmp"
 CHARACTER_RUN_DOWN_01   BITMAP                  "..\\RES\\Character\\Run\\Run_down (1).bmp"
+CHARACTER_DASH_DOWN_01  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown01.bmp"
+CHARACTER_DASH_DOWN_02  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown02.bmp"
+CHARACTER_DASH_DOWN_03  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown03.bmp"
+IDB_BITMAP7             BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown04.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

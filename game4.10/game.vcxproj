@@ -342,6 +342,10 @@
     <Image Include="..\..\..\Desktop\game4.10\RES\Toolbar.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bmp00001.bmp" />
+    <Image Include="RES\Character\Dash\Down\DashDown01.bmp" />
+    <Image Include="RES\Character\Dash\Down\DashDown02.bmp" />
+    <Image Include="RES\Character\Dash\Down\DashDown03.bmp" />
+    <Image Include="RES\Character\Dash\Down\DashDown04.bmp" />
     <Image Include="RES\Character\Down\Character_down_01.bmp" />
     <Image Include="RES\Character\Down\Character_down_02.bmp" />
     <Image Include="RES\Character\Down\Character_down_03.bmp" />
