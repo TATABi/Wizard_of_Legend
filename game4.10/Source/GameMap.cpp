@@ -9,6 +9,7 @@
 namespace game_framework {
 	GameMap::GameMap()
 	{
+	
 	}
 
 	GameMap::~GameMap() {

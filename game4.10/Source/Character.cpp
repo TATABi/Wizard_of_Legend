@@ -114,7 +114,7 @@ namespace game_framework {
 				if (map->IsEmpty(_cx, _cy - SLASH_PIXEL))			//前進方向沒有障礙
 				{
 					_cy -= SLASH_PIXEL;
-					_vertical = -SLASH_PIXEL;
+					_vertical -= SLASH_PIXEL;
 				}
 			}
 
@@ -123,7 +123,7 @@ namespace game_framework {
 				if (map->IsEmpty(_cx, _cy + SLASH_PIXEL))			//前進方向沒有障礙
 				{
 					_cy += SLASH_PIXEL;
-					_vertical = SLASH_PIXEL;
+					_vertical += SLASH_PIXEL;
 				}
 			}
 			if (isMovingLeft)	//向左
@@ -131,7 +131,7 @@ namespace game_framework {
 				if (map->IsEmpty(_cx - SLASH_PIXEL, _cy))			//前進方向沒有障礙
 				{
 					_cx -= SLASH_PIXEL;
-					_horizontal = -SLASH_PIXEL;
+					_horizontal -= SLASH_PIXEL;
 				}
 			}
 			if (isMovingRight)	//向右
@@ -139,7 +139,7 @@ namespace game_framework {
 				if (map->IsEmpty(_cx + SLASH_PIXEL, _cy))			//前進方向沒有障礙
 				{
 					_cx += SLASH_PIXEL;
-					_horizontal = SLASH_PIXEL;
+					_horizontal += SLASH_PIXEL;
 				}
 			}
 		}
@@ -150,7 +150,7 @@ namespace game_framework {
 				if (map->IsEmpty(_cx, _cy - STR_PIXEL))			//前進方向沒有障礙
 				{
 					_cy -= STR_PIXEL;
-					_vertical = -STR_PIXEL;
+					_vertical -= STR_PIXEL;
 				}
 			}
 
@@ -159,14 +159,14 @@ namespace game_framework {
 				if (map->IsEmpty(_cx, _cy + STR_PIXEL))			//前進方向沒有障礙
 				{
 					_cy += STR_PIXEL;
-					_vertical = +STR_PIXEL;
+					_vertical += STR_PIXEL;
 				}
 			}
 			if (isMovingLeft)	//向左
 			{
 				{
 					_cx -= STR_PIXEL;
-					_horizontal = -STR_PIXEL;
+					_horizontal -= STR_PIXEL;
 				}
 			}
 			if (isMovingRight)	//向右
@@ -174,45 +174,46 @@ namespace game_framework {
 				if (map->IsEmpty(_cx + STR_PIXEL, _cy))			//前進方向沒有障礙
 				{
 					_cx += STR_PIXEL;
-					_horizontal = STR_PIXEL;
+					_horizontal += STR_PIXEL;
 				}
 			}
 		}
 		map->SetScreenPosition(sx + _horizontal, sy + _vertical);		//調整畫面
-	}
-		/*
-	//面相方向
-	if (_horizontal != 0)
-	{
-		if (_horizontal < 0)
+
+																		//面相方向
+		if (_horizontal != 0)
 		{
-			_directionFlag = 1;	//左
-			ani_left.OnMove();
+			if (_horizontal < 0)
+			{
+				_directionFlag = 1;	//左
+				ani_left.OnMove();
+			}
+			else
+			{
+				_directionFlag = 0;	//右
+				ani_right.OnMove();
+			}
 		}
 		else
 		{
-			_directionFlag = 0;	//右
-			ani_right.OnMove();
+			if (_vertical < 0)
+			{
+				_directionFlag = 3;	//上
+				ani_up.OnMove();
+			}
+			else if (_vertical > 0)
+			{
+				_directionFlag = 2;	//下
+				ani_down.OnMove();
+			}
 		}
 	}
-	else
-	{
-		if (_vertical < 0)
-		{
-			_directionFlag = 3;	//上
-			ani_up.OnMove();
-		}
-		else if (_vertical > 0)
-		{
-			_directionFlag = 2;	//下
-			ani_down.OnMove();
-		}
-	}*/
+
+	
 	//都不符合，維持前一個狀態的方向
 
 	void Character::Dash() 
 	{
-		/*
 		switch (_directionFlag)
 		{
 		case 0:
@@ -226,7 +227,6 @@ namespace game_framework {
 		default:
 			break;
 		}
-		*/
 	}
 
 	void Character::OnShow() 
