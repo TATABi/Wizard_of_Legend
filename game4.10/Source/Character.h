@@ -22,6 +22,10 @@ namespace game_framework {
 		CAnimation ani_down;	//向下動畫
 		CAnimation ani_left;	//向左動畫
 		CAnimation ani_right;	//向右動畫
+		CAnimation ani_run_up;	//跑步時的氣流
+		CAnimation ani_run_down;
+		CAnimation ani_run_left;
+		CAnimation ani_run_right;
 		CMovingBitmap bm_stand_up;		//向上靜止
 		CMovingBitmap bm_stand_down;	//向下靜止
 		CMovingBitmap bm_stand_left;	//向左靜止

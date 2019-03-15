@@ -175,16 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="RES\Start_Ani\start_temp.png" />
-    <Image Include="RES\character.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\bitmap3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Character\character.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\RES\Character\character.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\bmp00001.bmp">
@@ -632,6 +623,63 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\InGame\Home\wall.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_down (1).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_down (2).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_down (3).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_down (4).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_left (1).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_left (2).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_left (3).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_right (1).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_right (2).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_right (3).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_up (1).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_up (2).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_up (3).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_up (4).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Run\Run_up (5).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Dash\Down\DashDown01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Dash\Down\DashDown02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Dash\Down\DashDown03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Character\Dash\Down\DashDown04.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

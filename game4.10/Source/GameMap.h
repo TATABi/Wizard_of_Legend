@@ -1,4 +1,5 @@
 #include "Map_Home_Logic.h"
+
 namespace game_framework {
 
 	class GameMap {

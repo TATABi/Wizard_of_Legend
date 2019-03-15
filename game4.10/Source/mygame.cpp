@@ -188,6 +188,7 @@ namespace game_framework {
 	CGameStateOver::CGameStateOver(CGame *g)
 		: CGameState(g)
 	{
+
 	}
 
 	void CGameStateOver::OnMove()
@@ -337,6 +338,89 @@ namespace game_framework {
 			{
 				character.SetMovingRight(true);
 			}
+	
+			if (nChar == KEY_SPACE)
+				character.Dash();
+		}
+	}
+
+void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	const char KEY_ESC = 27;
+	const char KEY_SPACE = 0x20;
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_RIGHT = 0x27; // keyboard右箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	const char KEY_W = 0x57;
+	const char KEY_S = 0x53;
+	const char KEY_A = 0x41;
+	const char KEY_D = 0x44;
+	
+	if (nChar == KEY_DOWN || nChar == KEY_S)
+		character.SetMovingDown(false);
+	if (nChar == KEY_UP || nChar == KEY_W)
+		character.SetMovingUp(false);
+	if (nChar == KEY_LEFT || nChar == KEY_A)
+		character.SetMovingLeft(false);
+	if (nChar == KEY_RIGHT || nChar == KEY_D)
+		character.SetMovingRight(false);
+}
+
+void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+{
+
+}
+
+void CGameStateRun_Home::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+{
+
+}
+
+void CGameStateRun_Home::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+{
+	// 沒事。如果需要處理滑鼠移動的話，寫code在這裡
+}
+
+void CGameStateRun_Home::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+{
+
+}
+
+void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+{
+
+}
+
+void CGameStateRun_Home::OnShow()
+{
+	if (delay_counter < 0)
+	{
+		Map_Home.OnShowBackground();
+	
+		if (flags == 0)
+			bm_join.ShowBitmap();
+		else
+		{
+			if (nChar == KEY_DOWN || nChar == KEY_S)
+			{
+				character.SetMovingDown(true);
+			}
+
+			if (nChar == KEY_UP || nChar == KEY_W)
+			{
+				character.SetMovingUp(true);
+			}
+
+			if (nChar == KEY_LEFT || nChar == KEY_A)
+			{
+				character.SetMovingLeft(true);
+			}
+
+			if (nChar == KEY_RIGHT || nChar == KEY_D)
+			{
+				character.SetMovingRight(true);
+			}
 			/*
 			if (nChar == KEY_SPACE)
 				character.Dash();
@@ -418,8 +502,6 @@ namespace game_framework {
 		else
 			bm_loading.ShowBitmap();
 	}
-
-	////////////////////////////////////////////////////////////////////////////////////
 
 
 	CGameStateRun_Options::CGameStateRun_Options(CGame *g)
