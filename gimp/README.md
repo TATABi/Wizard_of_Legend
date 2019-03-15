@@ -25,7 +25,7 @@
 
   ##  Final, input the command
 
-    bin/output $(Map X length) $(Map Y length)
+    bin/generate $(Map X length) $(Map Y length)
 
 
   > the output-- *map_code* would be found in the gimp folder...
