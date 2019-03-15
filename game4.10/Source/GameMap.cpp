@@ -24,7 +24,6 @@ namespace game_framework {
 
 	bool GameMap::IsEmpty(int x, int y)
 	{
-<<<<<<< HEAD
 		int gx = x / 10;
 		int gy = y / 10;
 		return _map.map[gx][gy] == 0;
