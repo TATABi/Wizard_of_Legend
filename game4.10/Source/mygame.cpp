@@ -284,7 +284,7 @@ namespace game_framework {
 		Map_Home.LoadBitmap();
 		character.LoadBitmap();
 		Map_Home.SetScreenPosition(460, 700);	//(460, 700)螢幕左上角位置
-		character.SetCharacterXY(780, 970);		//設定角色在地圖的位置
+		character.SetCharacterXY(780, 970);		//設定角色在地圖的位置(780,970)
 		CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");
 
 		ani_light_beam.SetDelayCount(1);

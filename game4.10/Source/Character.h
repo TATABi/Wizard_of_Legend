@@ -37,6 +37,6 @@ namespace game_framework {
 		int STR_PIXEL = 2;			//直線移動速度
 		const int CHARACTER_SCREEN_X = 285; //螢幕中心X座標
 		const int CHARACTER_SCREEN_Y = 205;	//螢幕中心Y座標
-		int _cx, _cy;							//角色在地圖的點座標
+		int _cx, _cy;						//角色在地圖的點座標
 	};
 }
