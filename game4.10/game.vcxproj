@@ -261,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
+    <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -306,6 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
@@ -340,6 +342,7 @@
     <Image Include="..\..\..\Desktop\game4.10\RES\continue.bmp" />
     <Image Include="..\..\..\Desktop\game4.10\RES\loading.bmp" />
     <Image Include="..\..\..\Desktop\game4.10\RES\Toolbar.bmp" />
+    <Image Include="..\..\..\Downloads\Home.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bmp00001.bmp" />
     <Image Include="RES\Character\Dash\Down\DashDown01.bmp" />
@@ -418,6 +421,22 @@
     <Image Include="RES\Character\Up\up (8).bmp" />
     <Image Include="RES\Character\Up\up (9).bmp" />
     <Image Include="RES\Corsor.bmp" />
+    <Image Include="RES\InGame\Box\board.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\00.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\01.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\02.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\03.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\04.bmp" />
+    <Image Include="RES\InGame\Box\MISC\00.bmp" />
+    <Image Include="RES\InGame\Box\MISC\01.bmp" />
+    <Image Include="RES\InGame\Box\MISC\02.bmp" />
+    <Image Include="RES\InGame\Box\MISC\03.bmp" />
+    <Image Include="RES\InGame\Box\MISC\04.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\00.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\01.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\02.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\03.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\04.bmp" />
     <Image Include="RES\InGame\Home\Home.bmp" />
     <Image Include="RES\InGame\Home\wall.bmp" />
     <Image Include="RES\InGame\InGame_01.bmp" />
@@ -433,6 +452,12 @@
     <Image Include="RES\InGame\LightBeam\08.bmp" />
     <Image Include="RES\InGame\Loading\Loading.bmp" />
     <Image Include="RES\InGame\Loading\LoadingLevel.bmp" />
+    <Image Include="RES\InGame\Press_F\01.bmp" />
+    <Image Include="RES\InGame\Press_F\02.bmp" />
+    <Image Include="RES\InGame\Press_F\03.bmp" />
+    <Image Include="RES\InGame\Press_F\04.bmp" />
+    <Image Include="RES\InGame\Press_F\05.bmp" />
+    <Image Include="RES\InGame\Press_F\06.bmp" />
     <Image Include="RES\LoadingBG.bmp" />
     <Image Include="RES\Menu\EnterMenu\EnterMenu (1).bmp" />
     <Image Include="RES\Menu\EnterMenu\EnterMenu (10).bmp" />

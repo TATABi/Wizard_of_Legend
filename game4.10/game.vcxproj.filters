@@ -129,6 +129,9 @@
     <ClCompile Include="Source\GameMap.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Box.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -165,6 +168,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Map_Home_Logic.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Box.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -722,6 +728,75 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Character\Dash\Right\DashRight (5).bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Press_F\01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Press_F\02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Press_F\03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Press_F\04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Press_F\05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Press_F\06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Downloads\Home.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\board.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\OFFENSE\00.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\OFFENSE\01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\OFFENSE\02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\OFFENSE\03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\OFFENSE\04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\DEFENSE\00.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\DEFENSE\01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\DEFENSE\02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\DEFENSE\03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\DEFENSE\04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\MISC\00.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\MISC\01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\MISC\02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\MISC\03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Box\MISC\04.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

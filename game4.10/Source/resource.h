@@ -165,6 +165,29 @@
 #define CHARACTER_DASH_RIGHT_04         419
 #define IDB_BITMAP10                    420
 #define CHARACTER_DASH_RIGHT_05         420
+#define PRESS_F_01                      421
+#define PRESS_F_02                      422
+#define PRESS_F_03                      423
+#define PRESS_F_04                      424
+#define PRESS_F_05                      425
+#define PRESS_F_06                      426
+#define BOX_BOARD                       428
+#define BOX_OFFENSE_01                  429
+#define BOX_OFFENSE_02                  430
+#define BOX_OFFENSE_03                  431
+#define BOX_OFFENSE_04                  432
+#define BOX_OFFENSE_05                  433
+#define BOX_DEFENSE_01                  434
+#define BOX_DEFENSE_02                  435
+#define BOX_DEFENSE_03                  436
+#define BOX_DEFENSE_04                  437
+#define BOX_DEFENSE_05                  438
+#define BOX_MISC_01                     439
+#define BOX_MISC_02                     440
+#define BOX_MISC_03                     441
+#define BOX_MISC_04                     442
+#define IDB_BITMAP12                    443
+#define BOX_MISC_05                     443
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -177,7 +200,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        421
+#define _APS_NEXT_RESOURCE_VALUE        444
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Box.h"
 //#include "GameMap.h" new
 
 
@@ -67,6 +68,8 @@ namespace game_framework {
 		int flags;										// 現在畫面的狀態
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 		GameMap Map_Home;								// 地圖
+		Box box;
+		bool canPressF;									//可以按F
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

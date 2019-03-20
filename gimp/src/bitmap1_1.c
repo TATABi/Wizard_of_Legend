@@ -40,10 +40,12 @@ int main(int argc, char const *argv[]) {
 
     if(gimp_image.pixel_data[i] == 255) //白色
       ofs << "0";
-    else if (gimp_image.pixel_data[i] == 150)//淺藍色
-      ofs << "1";
-    else if (gimp_image.pixel_data[i] == 30)//深藍色
+    else if (gimp_image.pixel_data[i] == 100)//箱子
       ofs << "2";
+    else if (gimp_image.pixel_data[i] == 200)//書
+      ofs << "3";
+    else if (gimp_image.pixel_data[i] == 150)//傳送門
+      ofs << "1";
     else          //黑色
       ofs << "-1";
     flag++;

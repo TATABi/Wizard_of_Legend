@@ -261,26 +261,8 @@ void CGameStateRun_Home::OnMove()
 	bm_loading.SetTopLeft(0, 0);
 	character.OnMove(&Map_Home);
 	Map_Home.OnMove();
+	box.OnMove();
 
-	/*
-	//角色移動1.5秒之後能夠加速
-
-	if (character.isMoving())
-	{
-		//計時器
-
-		run_counter--;
-		if (run_counter == 0)
-		{
-			character.SetRunning(true);
-		}
-	}
-	else
-	{
-		run_counter = 45;
-		character.SetRunning(false);
-	}
-	*/
 }
 
 void CGameStateRun_Home::OnInit()  
@@ -289,6 +271,8 @@ void CGameStateRun_Home::OnInit()
 	bm_loading.LoadBitmap(LOADING);
 	character.LoadBitmap();
 	Map_Home.LoadBitmap();
+	box.LoadBitmap();
+
 	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
 
 	ani_light_beam.SetDelayCount(1);
@@ -313,6 +297,7 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_S = 0x53;
 	const char KEY_A = 0x41;
 	const char KEY_D = 0x44;
+	const char KEY_F = 0x46;
 	
 
 	if (flags == 0)
@@ -320,7 +305,7 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		if (nChar == KEY_SPACE)		// 加入遊戲提示選單
 			flags = 1;				// 角色進入遊戲
 	}
-	else if(flags = 1)				//進入遊戲，沒有開啟任何選單
+	else if(flags == 1)				//進入遊戲，沒有開啟任何選單
 	{
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 		{
@@ -345,6 +330,30 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		if (nChar == KEY_SPACE)
 		{
 			character.Dash();
+		}
+
+		if (nChar == KEY_F && canPressF)
+		{
+			box.Open(true);
+			flags = 2;		//開啟道具箱
+		}
+	}
+	else if (flags == 2)
+	{
+		if (nChar == KEY_ESC)
+		{
+			box.Open(false);
+			flags = 1;
+		}
+
+		if (nChar == KEY_DOWN || nChar == KEY_S)
+		{
+			box.Next();
+		}
+
+		if (nChar == KEY_UP || nChar == KEY_W)
+		{
+			box.Previous();
 		}
 	}
 
@@ -418,6 +427,8 @@ void CGameStateRun_Home::OnShow()
 			{
 				character.OnShow();
 				Map_Home.OnShowWall();
+				canPressF = Map_Home.OnShowPressF();
+				box.OnShow();
 			}
 		}
 	}
