@@ -15,6 +15,7 @@ namespace game_framework {
 		bool isSlash();  	
 		void Dash();
 		bool isMoving();
+		bool CanDash();
 	protected:
 		CAnimation ani_up;		//向上動畫
 		CAnimation ani_down;	//向下動畫
@@ -44,8 +45,9 @@ namespace game_framework {
 		int STR_PIXEL;		//直線移動速度
 		const int CHARACTER_SCREEN_X = 285; //螢幕中心X座標
 		const int CHARACTER_SCREEN_Y = 205;	//螢幕中心Y座標
+		const int DASH_DELAY = 15;
 		int run_counter;	// 計算角色是否要奔跑
 		bool dash_lock;
-		int status;
+		int dash_delay_counter;
 	};
 }

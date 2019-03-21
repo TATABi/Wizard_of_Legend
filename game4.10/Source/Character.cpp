@@ -38,7 +38,7 @@ namespace game_framework {
 		_directionFlag = 2; //面向下
 		run_counter = 45;
 		dash_lock = false;
-		status = 0;
+		dash_delay_counter = DASH_DELAY;
 	}
 
 	void Character::LoadBitmap()
@@ -184,7 +184,7 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{	
-		status = map->CharacterStatus();
+		map->GetCharacterStatus();
 
 		if (!dash_lock)
 		{
@@ -275,12 +275,16 @@ namespace game_framework {
 		}
 		//維持上一格狀態的方向
 
+		if (dash_delay_counter < DASH_DELAY && dash_delay_counter > 0)
+			dash_delay_counter--;
+		else
+			dash_delay_counter = DASH_DELAY;
+
 		//動畫
 		if (isDash)
 		{
 			dash_lock = true;
 			run_counter = 45;
-
 			if (isMoving() && isSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
 			{
 				if (isMovingDown)
@@ -361,6 +365,7 @@ namespace game_framework {
 			ani_run_up.Reset();
 		}
 
+
 		if (isRunning)			//跑步氣流動畫
 		{
 			switch (_directionFlag)
@@ -398,6 +403,7 @@ namespace game_framework {
 	{
 		isDash = true;
 		isRunning = false;
+		dash_delay_counter--;
 	}
 
 	void Character::OnShow() 
@@ -519,6 +525,14 @@ namespace game_framework {
 	bool Character::isMoving()
 	{
 		if (isMovingDown || isMovingLeft || isMovingRight || isMovingUp)
+			return true;
+
+		return false;
+	}
+
+	bool Character::CanDash()
+	{
+		if (dash_delay_counter == DASH_DELAY)
 			return true;
 
 		return false;

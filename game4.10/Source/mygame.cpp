@@ -277,7 +277,8 @@ void CGameStateRun_Home::OnInit()
 	testInt.SetInteger(100);
 
 	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
-
+	CAudio::Instance()->Load(AUDIO_DASH, "sounds\\dash.mp3");
+	
 	ani_light_beam.SetDelayCount(1);
 	ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255, 0));
 	ani_light_beam.AddBitmap(LIGHT_BEAM02, RGB(50, 255, 0));
@@ -319,20 +320,26 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
 			character.SetMovingRight(true);
 		if (nChar == KEY_SPACE)
-			character.Dash();
-		if (nChar == KEY_F && Map_Home.CharacterStatus() == 1)
+		{
+			if (character.CanDash())
+			{
+				character.Dash();
+				CAudio::Instance()->Play(AUDIO_DASH, false);
+			}
+		}
+		if (nChar == KEY_F && Map_Home.GetCharacterStatus() == 1)
 		{
 			flags = 4;
 			//切換場景到Town	flags = 4;
 		}
 
-		if (nChar == KEY_F && Map_Home.CharacterStatus() == 2)
+		if (nChar == KEY_F && Map_Home.GetCharacterStatus() == 2)
 		{
 			box.Open(true);
 			flags = 2;		//開啟道具箱
 		}
 
-		if (nChar == KEY_F && Map_Home.CharacterStatus() == 3)
+		if (nChar == KEY_F && Map_Home.GetCharacterStatus() == 3)
 		{
 			//開啟書		flags = 3;
 		}
@@ -355,7 +362,7 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	case 4 :
 		if (nChar == KEY_DOWN || nChar == KEY_S)
-			testInt.Add(-1);
+			testInt.SetInteger(CharacterData::money);
 		if (nChar == KEY_UP || nChar == KEY_W)
 			testInt.Add(1);
 		break;

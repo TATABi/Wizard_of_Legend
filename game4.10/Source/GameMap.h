@@ -12,7 +12,7 @@ namespace game_framework {
 		void OnShowBackground();
 		void OnShowWall();
 		void OnShowPressF();
-		int CharacterStatus();
+		int GetCharacterStatus();
 		void SetCharacterXY(int, int);
 	private:
 		CMovingBitmap _background; //­I´º¹Ï

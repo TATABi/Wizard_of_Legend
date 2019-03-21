@@ -109,7 +109,7 @@ namespace game_framework {
 		
 	}
 
-	int GameMap::CharacterStatus() 
+	int GameMap::GetCharacterStatus() 
 	{
 		return character_status;
 	}

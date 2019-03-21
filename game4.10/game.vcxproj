@@ -263,6 +263,7 @@
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
+    <ClCompile Include="Source\CharacterData.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -310,6 +311,7 @@
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\game.h" />
+    <ClInclude Include="Source\CharacterData.h" />
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\GameMap.h" />
     <ClInclude Include="Source\gameView.h" />
@@ -319,6 +321,7 @@
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
+    <ClInclude Include="Source\UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">
