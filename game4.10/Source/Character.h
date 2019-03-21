@@ -46,5 +46,6 @@ namespace game_framework {
 		const int CHARACTER_SCREEN_Y = 205;	//螢幕中心Y座標
 		int run_counter;	// 計算角色是否要奔跑
 		bool dash_lock;
+		int status;
 	};
 }

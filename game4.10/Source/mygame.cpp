@@ -262,6 +262,7 @@ void CGameStateRun_Home::OnMove()
 	character.OnMove(&Map_Home);
 	Map_Home.OnMove();
 	box.OnMove();
+	testInt.SetTopLeft(320, 450);
 
 }
 
@@ -272,6 +273,8 @@ void CGameStateRun_Home::OnInit()
 	character.LoadBitmap();
 	Map_Home.LoadBitmap();
 	box.LoadBitmap();
+	testInt.LoadBitmap();
+	testInt.SetInteger(100);
 
 	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
 
@@ -299,62 +302,63 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_D = 0x44;
 	const char KEY_F = 0x46;
 	
-
-	if (flags == 0)
-	{	
+	switch (flags) 
+	{
+	case 0:
 		if (nChar == KEY_SPACE)		// 加入遊戲提示選單
 			flags = 1;				// 角色進入遊戲
-	}
-	else if(flags == 1)				//進入遊戲，沒有開啟任何選單
-	{
+		break;
+	
+	case 1:							//進入遊戲，沒有開啟任何選單
 		if (nChar == KEY_DOWN || nChar == KEY_S)
-		{
-			character.SetMovingDown(true);	
-		}
-			
+			character.SetMovingDown(true);
 		if (nChar == KEY_UP || nChar == KEY_W)
-		{
 			character.SetMovingUp(true);
-		}
-		
 		if (nChar == KEY_LEFT || nChar == KEY_A)
-		{
 			character.SetMovingLeft(true);
-		}
-			
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
-		{
 			character.SetMovingRight(true);
-		}
-		
 		if (nChar == KEY_SPACE)
-		{
 			character.Dash();
+		if (nChar == KEY_F && Map_Home.CharacterStatus() == 1)
+		{
+			flags = 4;
+			//切換場景到Town	flags = 4;
 		}
 
-		if (nChar == KEY_F && canPressF)
+		if (nChar == KEY_F && Map_Home.CharacterStatus() == 2)
 		{
 			box.Open(true);
 			flags = 2;		//開啟道具箱
 		}
-	}
-	else if (flags == 2)
-	{
+
+		if (nChar == KEY_F && Map_Home.CharacterStatus() == 3)
+		{
+			//開啟書		flags = 3;
+		}
+		break;
+
+	case 2:							//道具箱選單
 		if (nChar == KEY_ESC)
 		{
 			box.Open(false);
 			flags = 1;
 		}
-
 		if (nChar == KEY_DOWN || nChar == KEY_S)
-		{
 			box.Next();
-		}
-
 		if (nChar == KEY_UP || nChar == KEY_W)
-		{
 			box.Previous();
-		}
+		break;
+
+	case 3:
+		break;
+
+	case 4 :
+		if (nChar == KEY_DOWN || nChar == KEY_S)
+			testInt.Add(-1);
+		if (nChar == KEY_UP || nChar == KEY_W)
+			testInt.Add(1);
+		break;
 	}
 
 }
@@ -427,8 +431,9 @@ void CGameStateRun_Home::OnShow()
 			{
 				character.OnShow();
 				Map_Home.OnShowWall();
-				canPressF = Map_Home.OnShowPressF();
+				Map_Home.OnShowPressF();
 				box.OnShow();
+				testInt.ShowBitmap();
 			}
 		}
 	}

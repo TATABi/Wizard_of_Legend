@@ -24,6 +24,7 @@ namespace game_framework {
 		_cy = y;	
 		ani_press_f.SetDelayCount(2);
 		can_press_f = false;
+		character_status = 0;
 	}
 
 	void GameMap::LoadBitmap()
@@ -45,22 +46,23 @@ namespace game_framework {
 		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx	, CHARACTER_SCREEN_Y - _cy );
 
 		// press f
-		int temp = home_map[_cx + collision_move[0] + 10][_cy + collision_move[1] + 3], temp_x=0, temp_y=0;
-		if (temp == 1 || temp == 2 || temp == 3)
+		character_status = home_map[_cx + collision_move[0] + 10][_cy + collision_move[1] + 3];
+		int temp_x=0, temp_y=0;
+		if (character_status == 1 || character_status == 2 || character_status == 3)
 		{
-			switch (temp)
+			switch (character_status)
 			{
-			case 1:
+			case 1:						//傳送門
 				temp_x = 770;
 				temp_y = 380;
 				ani_press_f.OnMove();
 				break;
-			case 2:
+			case 2:						//道具箱
 				temp_x = 865;
 				temp_y = 1147;
 				ani_press_f.OnMove();
 				break;
-			case 3:
+			case 3:						// 書
 				temp_x = 1235;
 				temp_y = 860;
 				ani_press_f.OnMove();
@@ -86,17 +88,13 @@ namespace game_framework {
 		_wall.ShowBitmap();
 	}
 
-	bool GameMap::OnShowPressF()
+	void GameMap::OnShowPressF()
 	{
 		if (can_press_f)
-		{
 			ani_press_f.OnShow();
-			return true;
-		}
-		return false;
 	}
 
-	int GameMap::SetCharacterXY(int dx, int dy) 
+	void GameMap::SetCharacterXY(int dx, int dy) 
 	{	
 
 
@@ -109,7 +107,11 @@ namespace game_framework {
 			_cy += dy;
 		}
 		
-		return home_map[_cx + collision_move[0] + 10][_cy + collision_move[1] + 3];
+	}
+
+	int GameMap::CharacterStatus() 
+	{
+		return character_status;
 	}
 }
 

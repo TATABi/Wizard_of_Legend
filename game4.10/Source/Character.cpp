@@ -38,6 +38,7 @@ namespace game_framework {
 		_directionFlag = 2; //­±¦V¤U
 		run_counter = 45;
 		dash_lock = false;
+		status = 0;
 	}
 
 	void Character::LoadBitmap()
@@ -183,6 +184,8 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{	
+		status = map->CharacterStatus();
+
 		if (!dash_lock)
 		{
 			_horizontal = 0;
@@ -507,19 +510,17 @@ namespace game_framework {
 	bool Character::isSlash()
 	{
 		if (isMovingRight != isMovingLeft)
-		{
 			if (isMovingUp != isMovingDown)
 				return true;
-		}
+
 		return false;
 	}
 
 	bool Character::isMoving()
 	{
 		if (isMovingDown || isMovingLeft || isMovingRight || isMovingUp)
-		{
 			return true;
-		}
+
 		return false;
 	}
 

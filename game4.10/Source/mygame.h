@@ -65,11 +65,11 @@ namespace game_framework {
 		CMovingBitmap bm_loading;						// loading字樣的圖片
 		Character character;							// 角色
 		CAnimation ani_light_beam;						// 角色在家中現身的動畫
-		int flags;										// 現在畫面的狀態
+		int flags;										// 現在畫面的狀態 0:顯示加入遊戲的選項 1:進入遊戲(沒開任何選單) 2:開啟道具箱 3:開啟書 4:傳送至Town
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 		GameMap Map_Home;								// 地圖
 		Box box;
-		bool canPressF;									//可以按F
+		CInteger testInt;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
