@@ -510,6 +510,7 @@ CGame::CGame()
 	gameStateTable[GAME_STATE_INIT] = new CGameStateInit(this);
 	gameStateTable[GAME_STATE_RUN_HOME]  = new CGameStateRun_Home(this);
 	gameStateTable[GAME_STATE_RUN_OPTIONS] = new CGameStateRun_Options(this);
+	//gameStateTable[GAME_STATE_RUN_TOWN] = new CGameStateRun_Town(this);
 	/*
 	gameStateTable[GAME_STATE_RUN_TOWN] = new CGameStateRun_Town(this);
 	gameStateTable[GAME_STATE_RUN_LOADING] = new CGameStateRun_Loading(this);

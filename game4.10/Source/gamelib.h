@@ -84,8 +84,8 @@ enum GAME_STATES {
 	GAME_STATE_INIT,
 	GAME_STATE_RUN_HOME,
 	GAME_STATE_RUN_OPTIONS,
+	//GAME_STATE_RUN_TOWN,
 	/*
-	GAME_STATE_RUN_TOWN,
 	GAME_STATE_RUN_LOADING,
 	GAME_STATE_RUN_LEVEL_1,
 	GAME_STATE_RUN_LEVEL_2,
@@ -287,8 +287,8 @@ class CGame;
 class CGameStateInit;
 class CGameStateRun_Home;
 class CGameStateRun_Options;
+//class CGameStateRun_Town;
 /*
-class CGameStateRun_Town;
 class CGameStateRun_Loading;
 class CGameStateRun_Level_1;
 class CGameStateRun_Level_2;

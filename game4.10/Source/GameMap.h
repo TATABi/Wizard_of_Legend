@@ -1,5 +1,3 @@
-#include "Map_Home_Logic.h"
-
 namespace game_framework {
 
 	class GameMap {
@@ -7,14 +5,17 @@ namespace game_framework {
 		GameMap(int, int);  // 設定初始中心點
 		~GameMap();
 		void Initialize(int, int);
-		void LoadBitmap();
-		void OnMove();
+		void ParentLoadBitmap();
+		void ParentOnMove();
 		void OnShowBackground();
 		void OnShowWall();
 		void OnShowPressF();
 		int GetCharacterStatus();
-		void SetCharacterXY(int, int);
-	private:
+		virtual void LoadBitmap()=0;
+		virtual void OnMove()=0;
+		virtual void OnShow()=0;
+		virtual void SetCharacterXY(int,int)=0;
+	protected:
 		CMovingBitmap _background; //背景圖
 		CMovingBitmap _wall; //牆
 		CAnimation ani_press_f;  //press f 動畫

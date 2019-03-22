@@ -78,8 +78,10 @@
 #define LOADING                         315
 #define LOADING_LEVEL                   316
 #define INGAME_JOIN                     318
+#define JOIN                            318
 #define MENU_OPTIONS                    320
 #define INGAME_MAP_HOME                 322
+#define MAP_HOME                        322
 #define CHARACTER_DOWN_01               323
 #define CHARACTER_DOWN_02               324
 #define CHARACTER_DOWN_03               325
@@ -129,6 +131,7 @@
 #define LIGHT_BEAM05                    381
 #define IDB_BITMAP3                     382
 #define INGAME_MAP_HOME_WALL            382
+#define MAP_HOME_WALL                   382
 #define CHARACTER_RUN_LEFT_01           383
 #define CHARACTER_RUN_LEFT_02           384
 #define CHARACTER_RUN_LEFT_03           385
@@ -186,8 +189,9 @@
 #define BOX_MISC_02                     440
 #define BOX_MISC_03                     441
 #define BOX_MISC_04                     442
-#define IDB_BITMAP12                    443
 #define BOX_MISC_05                     443
+#define IDB_BITMAP4                     444
+#define MAP_TOWN                        444
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -200,7 +204,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        444
+#define _APS_NEXT_RESOURCE_VALUE        445
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

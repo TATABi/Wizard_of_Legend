@@ -135,6 +135,9 @@
     <ClCompile Include="Source\CharacterData.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Map_Home.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -180,6 +183,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\UI.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map_Home.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -806,6 +812,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\InGame\Box\MISC\04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\Town\Town.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

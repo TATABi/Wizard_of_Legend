@@ -117,9 +117,9 @@ MENU_ENTERMENU_QUIT     BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTER
 MENU_ENTERMENU_SINGLE_PLAYER BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_SINGLE_PLAYER.bmp"
 LOADING                 BITMAP                  "..\\RES\\InGame\\Loading\\Loading.bmp"
 LOADING_LEVEL           BITMAP                  "..\\RES\\InGame\\Loading\\LoadingLevel.bmp"
-INGAME_JOIN             BITMAP                  "..\\RES\\InGame\\Join\\Join.bmp"
+JOIN                    BITMAP                  "..\\RES\\InGame\\Join\\Join.bmp"
 MENU_OPTIONS            BITMAP                  "..\\RES\\Menu\\Options\\Options.bmp"
-INGAME_MAP_HOME         BITMAP                  "..\\RES\\InGame\\Home\\Home.bmp"
+MAP_HOME                BITMAP                  "..\\RES\\InGame\\Home\\Home.bmp"
 CHARACTER_DOWN_01       BITMAP                  "..\\RES\\Character\\Down\\Character_down_01.bmp"
 CHARACTER_DOWN_02       BITMAP                  "..\\RES\\Character\\Down\\Character_down_02.bmp"
 CHARACTER_DOWN_03       BITMAP                  "..\\RES\\Character\\Down\\Character_down_03.bmp"
@@ -167,7 +167,7 @@ LIGHT_BEAM02            BITMAP                  "..\\RES\\InGame\\LightBeam\\02.
 LIGHT_BEAM03            BITMAP                  "..\\RES\\InGame\\LightBeam\\03.bmp"
 LIGHT_BEAM04            BITMAP                  "..\\RES\\InGame\\LightBeam\\04.bmp"
 LIGHT_BEAM05            BITMAP                  "..\\RES\\InGame\\LightBeam\\05.bmp"
-INGAME_MAP_HOME_WALL    BITMAP                  "..\\RES\\InGame\\Home\\wall.bmp"
+MAP_HOME_WALL           BITMAP                  "..\\RES\\InGame\\Home\\wall.bmp"
 CHARACTER_RUN_DOWN_02   BITMAP                  "..\\RES\\Character\\Run\\Run_down (2).bmp"
 CHARACTER_RUN_DOWN_03   BITMAP                  "..\\RES\\Character\\Run\\Run_down (3).bmp"
 CHARACTER_RUN_DOWN_04   BITMAP                  "..\\RES\\Character\\Run\\Run_down (4).bmp"
@@ -223,6 +223,7 @@ BOX_MISC_02             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\01.
 BOX_MISC_03             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\02.bmp"
 BOX_MISC_04             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\03.bmp"
 BOX_MISC_05             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\04.bmp"
+MAP_TOWN                BITMAP                  "..\\RES\\InGame\\Town\\Town.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

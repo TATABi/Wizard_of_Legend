@@ -285,6 +285,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="Source\Map_Home.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -315,6 +316,7 @@
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\GameMap.h" />
     <ClInclude Include="Source\gameView.h" />
+    <ClInclude Include="Source\Map_Home.h" />
     <ClInclude Include="Source\Map_Home_Logic.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Resource.h" />
@@ -461,6 +463,7 @@
     <Image Include="RES\InGame\Press_F\04.bmp" />
     <Image Include="RES\InGame\Press_F\05.bmp" />
     <Image Include="RES\InGame\Press_F\06.bmp" />
+    <Image Include="RES\InGame\Town\Town.bmp" />
     <Image Include="RES\LoadingBG.bmp" />
     <Image Include="RES\Menu\EnterMenu\EnterMenu (1).bmp" />
     <Image Include="RES\Menu\EnterMenu\EnterMenu (10).bmp" />
