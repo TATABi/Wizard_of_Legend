@@ -318,6 +318,7 @@
     <ClInclude Include="Source\Map_Home_Logic.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Resource.h" />
+    <ClInclude Include="Source\Skill.h" />
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
