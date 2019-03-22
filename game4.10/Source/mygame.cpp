@@ -224,11 +224,11 @@ void CGameStateOver::OnShow()
 
 
 /////////////////////////////////////////////////////////////////////////////
-// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
+// Home
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun_Home::CGameStateRun_Home(CGame *g)
-: CGameState(g), Map_Home(740, 918)	//Map_Home(372, 464)		//角色在地圖上的位置			
+: CGameState(g), map_home(740, 918)			//角色在地圖上的位置			
 {
 	
 }
@@ -258,8 +258,8 @@ void CGameStateRun_Home::OnMove()
 
 	bm_join.SetTopLeft(100, 100);
 	bm_loading.SetTopLeft(0, 0);
-	character.OnMove(&Map_Home);
-	Map_Home.OnMove();
+	character.OnMove(&map_home);
+	map_home.OnMove();
 	box.OnMove();
 	testInt.SetTopLeft(320, 450);
 	myUI.OnMove();
@@ -267,10 +267,10 @@ void CGameStateRun_Home::OnMove()
 
 void CGameStateRun_Home::OnInit()  
 {
-	bm_join.LoadBitmap(INGAME_JOIN);
+	bm_join.LoadBitmap(JOIN);
 	bm_loading.LoadBitmap(LOADING);
 	character.LoadBitmap();
-	Map_Home.LoadBitmap();
+	map_home.LoadBitmap();
 	box.LoadBitmap();
 	testInt.LoadBitmap();
 	testInt.SetInteger(100);
@@ -327,19 +327,19 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				CAudio::Instance()->Play(AUDIO_DASH, false);
 			}
 		}
-		if (nChar == KEY_F && Map_Home.GetCharacterStatus() == 1)
+		if (nChar == KEY_F && map_home.GetCharacterStatus() == 1)
 		{
 			flags = 4;
 			//切換場景到Town	flags = 4;
 		}
 
-		if (nChar == KEY_F && Map_Home.GetCharacterStatus() == 2)
+		if (nChar == KEY_F && map_home.GetCharacterStatus() == 2)
 		{
 			box.Open(true);
 			flags = 2;		//開啟道具箱
 		}
 
-		if (nChar == KEY_F && Map_Home.GetCharacterStatus() == 3)
+		if (nChar == KEY_F && map_home.GetCharacterStatus() == 3)
 		{
 			//開啟書		flags = 3;
 		}
@@ -422,7 +422,7 @@ void CGameStateRun_Home::OnShow()
 {
 	if (delay_counter < 0)
 	{
-		Map_Home.OnShowBackground();
+		map_home.OnShowBackground();
 	
 		if (flags == 0)
 			bm_join.ShowBitmap();
@@ -437,8 +437,8 @@ void CGameStateRun_Home::OnShow()
 			else
 			{
 				character.OnShow();
-				Map_Home.OnShowWall();
-				Map_Home.OnShowPressF();
+				map_home.OnShowWall();
+				map_home.OnShowPressF();
 				box.OnShow();
 				testInt.ShowBitmap();
 				myUI.OnShow();
@@ -507,4 +507,10 @@ void CGameStateRun_Options::OnShow()
 	bm_option.ShowBitmap();
 
 }
+
+
+/////////////////////////////////////////////////////////////////////////////
+////Town
+/////////////////////////////////////////////////////////////////////////////
+
 }
