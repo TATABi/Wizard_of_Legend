@@ -305,6 +305,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="Source\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -462,6 +463,7 @@
     <Image Include="RES\InGame\Press_F\04.bmp" />
     <Image Include="RES\InGame\Press_F\05.bmp" />
     <Image Include="RES\InGame\Press_F\06.bmp" />
+    <Image Include="RES\InGame\UI\Status.bmp" />
     <Image Include="RES\LoadingBG.bmp" />
     <Image Include="RES\Menu\EnterMenu\EnterMenu (1).bmp" />
     <Image Include="RES\Menu\EnterMenu\EnterMenu (10).bmp" />

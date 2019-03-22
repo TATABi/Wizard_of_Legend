@@ -135,6 +135,9 @@
     <ClCompile Include="Source\CharacterData.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UI.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -809,6 +812,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\InGame\Box\MISC\04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\InGame\UI\Status.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

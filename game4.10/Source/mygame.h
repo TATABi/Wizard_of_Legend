@@ -74,6 +74,7 @@ namespace game_framework {
 		GameMap Map_Home;								// ¦a¹Ï
 		Box box;
 		CInteger testInt;
+		UI myUI;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
