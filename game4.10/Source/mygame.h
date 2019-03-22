@@ -2,6 +2,7 @@
 #include "Box.h"
 #include "UI.h"
 #include "CharacterData.h"
+#include "Skill.h"
 
 namespace game_framework {
 	

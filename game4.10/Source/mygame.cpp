@@ -76,7 +76,6 @@ void CGameStateInit::OnInit()
 void CGameStateInit::OnBeginState()
 {
 
-	
 }
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -231,7 +230,7 @@ void CGameStateOver::OnShow()
 CGameStateRun_Home::CGameStateRun_Home(CGame *g)
 : CGameState(g), map_home(740, 918)			//角色在地圖上的位置			
 {
-
+	
 }
 
 CGameStateRun_Home::~CGameStateRun_Home()
@@ -287,6 +286,7 @@ void CGameStateRun_Home::OnInit()
 	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
 	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
 	ani_light_beam.SetTopLeft(0, 0);
+
 }
 
 void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)

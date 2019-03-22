@@ -185,7 +185,11 @@
     <ClInclude Include="Source\UI.h">
       <Filter>MyGame</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Source\Map_Home.h">
+=======
+    <ClInclude Include="Source\Skill.h">
+>>>>>>> c96dc919e266d7b78d424edd3fcede41052158d3
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
