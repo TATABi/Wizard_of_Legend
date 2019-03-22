@@ -10,7 +10,11 @@ namespace game_framework {
 		void OnShow();
 		void StatusOnShow();
 	private:
-		int UI_status_x, UI_status_y, UI_hp_x, UI_hp_y, hp= 500;
+		const int statusX = 30;
+		const int statusY = 20;
+		int hp_array[4] = {26, 8, 109, 19};		//和status相對位置(左上x,左上y,右下x,右下y)
+		int maxHp, currentHp;
+		int change;
 		CMovingBitmap bm_status;
 		CMovingBitmap bm_money;
 		CMovingBitmap bm_diamond;
@@ -21,7 +25,7 @@ namespace game_framework {
 		CMovingBitmap bm_left_button;
 		CMovingBitmap bm_hp_bar;
 		CDC *pDC;
-		CBrush brush_hp_1, brush_hp_2, brush_hp_3, pOldBrush;
-		long RGB_hp_1, RGB_hp_2, RGB_hp_3;			//血條顏色依序由內到外
+		CBrush brush_hp, pOldBrush;		//brush
+		long RGB_hp;					//血條顏色
 	};
 }
