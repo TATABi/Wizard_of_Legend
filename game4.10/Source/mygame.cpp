@@ -243,7 +243,7 @@ void CGameStateRun_Home::OnBeginState()
 	delay_counter = 30 * 1; // 1 seconds
 	flags = 0;
 	character.Initialize();
-
+	myUI.Initialize();
 	CAudio::Instance()->Stop(AUDIO_TITLE);
 	CAudio::Instance()->Play(AUDIO_HOME, true);
 }
@@ -262,7 +262,7 @@ void CGameStateRun_Home::OnMove()
 	map_home.OnMove();
 	box.OnMove();
 	testInt.SetTopLeft(320, 450);
-
+	myUI.OnMove();
 }
 
 void CGameStateRun_Home::OnInit()  
@@ -274,7 +274,7 @@ void CGameStateRun_Home::OnInit()
 	box.LoadBitmap();
 	testInt.LoadBitmap();
 	testInt.SetInteger(100);
-
+	myUI.LoadBitmap();
 	CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");	
 	CAudio::Instance()->Load(AUDIO_DASH, "sounds\\dash.mp3");
 	
@@ -442,12 +442,15 @@ void CGameStateRun_Home::OnShow()
 				map_home.OnShowPressF();
 				box.OnShow();
 				testInt.ShowBitmap();
+				myUI.OnShow();
 			}
 		}
 	}
 	else
 		bm_loading.ShowBitmap();
 }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 
