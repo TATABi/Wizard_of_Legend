@@ -224,6 +224,7 @@ BOX_MISC_03             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\02.
 BOX_MISC_04             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\03.bmp"
 BOX_MISC_05             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\04.bmp"
 MAP_TOWN                BITMAP                  "..\\RES\\InGame\\Town\\Town.bmp"
+MAP_TOWN_WALL           BITMAP                  "..\\RES\\InGame\\Town\\Town_Wall.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

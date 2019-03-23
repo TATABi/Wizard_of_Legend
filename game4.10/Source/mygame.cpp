@@ -329,8 +329,7 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 		if (nChar == KEY_F && map_home.GetCharacterStatus() == 1)
 		{
-			flags = 4;
-			//切換場景到Town	flags = 4;
+			GotoGameState(GAME_STATE_RUN_TOWN);
 		}
 
 		if (nChar == KEY_F && map_home.GetCharacterStatus() == 2)
@@ -361,10 +360,12 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		break;
 
 	case 4 :
+		/*
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 			testInt.SetInteger(CharacterData::money);
 		if (nChar == KEY_UP || nChar == KEY_W)
 			testInt.Add(1);
+			*/
 		break;
 	}
 
@@ -509,5 +510,192 @@ void CGameStateRun_Options::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 ////Town
 /////////////////////////////////////////////////////////////////////////////
+CGameStateRun_Town::CGameStateRun_Town(CGame *g)
+	: CGameState(g), map_town(794, 1094)			//角色在地圖上的位置			
+{
+
+}
+
+CGameStateRun_Town::~CGameStateRun_Town()
+{
+
+}
+
+void CGameStateRun_Town::OnBeginState()
+{
+	delay_counter = 30 * 1; // 1 seconds
+	flags = 0;
+	character.Initialize();
+
+	//CAudio::Instance()->Stop(AUDIO_TITLE);
+	//CAudio::Instance()->Play(AUDIO_HOME, true);
+}
+
+void CGameStateRun_Town::OnMove()
+{
+
+	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
+
+	if (delay_counter > -1)
+		delay_counter--;
+
+	bm_loading.SetTopLeft(0, 0);
+	character.OnMove(&map_town);
+	map_town.OnMove();
+
+}
+
+void CGameStateRun_Town::OnInit()
+{
+	bm_loading.LoadBitmap(LOADING);
+	character.LoadBitmap();
+	map_town.LoadBitmap();
+	
+	//CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");
+	//CAudio::Instance()->Load(AUDIO_DASH, "sounds\\dash.mp3");
+
+	ani_light_beam.SetDelayCount(1);
+	ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM02, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM03, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM04, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
+	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
+	ani_light_beam.SetTopLeft(0, 0);
+
+}
+
+void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	const char KEY_ESC = 27;
+	const char KEY_SPACE = 0x20;
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_RIGHT = 0x27; // keyboard右箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	const char KEY_W = 0x57;
+	const char KEY_S = 0x53;
+	const char KEY_A = 0x41;
+	const char KEY_D = 0x44;
+	const char KEY_F = 0x46;
+
+	switch (flags)
+	{
+	case 0:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
+		if (nChar == KEY_DOWN || nChar == KEY_S)
+			character.SetMovingDown(true);
+		if (nChar == KEY_UP || nChar == KEY_W)
+			character.SetMovingUp(true);
+		if (nChar == KEY_LEFT || nChar == KEY_A)
+			character.SetMovingLeft(true);
+		if (nChar == KEY_RIGHT || nChar == KEY_D)
+			character.SetMovingRight(true);
+		if (nChar == KEY_SPACE)
+		{
+			if (character.CanDash())
+			{
+				character.Dash();
+				CAudio::Instance()->Play(AUDIO_DASH, false);
+			}
+		}
+		if (nChar == KEY_F && map_town.GetCharacterStatus() == 1)
+		{
+			GotoGameState(GAME_STATE_RUN_HOME);		//切換場景到Home
+		}
+
+		if (nChar == KEY_F && map_town.GetCharacterStatus() == 2)
+		{
+			//進關卡
+		}
+
+		if (nChar == KEY_F && map_town.GetCharacterStatus() == 3)
+		{
+			//購買道具1
+		}
+
+		if (nChar == KEY_F && map_town.GetCharacterStatus() == 4)
+		{
+			//購買道具2
+		}
+
+		if (nChar == KEY_F && map_town.GetCharacterStatus() == 5)
+		{
+			//購買道具3
+		}
+		break;
+	}
+
+}
+
+void CGameStateRun_Town::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	const char KEY_ESC = 27;
+	const char KEY_SPACE = 0x20;
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_RIGHT = 0x27; // keyboard右箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	const char KEY_W = 0x57;
+	const char KEY_S = 0x53;
+	const char KEY_A = 0x41;
+	const char KEY_D = 0x44;
+
+	if (nChar == KEY_DOWN || nChar == KEY_S)
+		character.SetMovingDown(false);
+	if (nChar == KEY_UP || nChar == KEY_W)
+		character.SetMovingUp(false);
+	if (nChar == KEY_LEFT || nChar == KEY_A)
+		character.SetMovingLeft(false);
+	if (nChar == KEY_RIGHT || nChar == KEY_D)
+		character.SetMovingRight(false);
+}
+
+void CGameStateRun_Town::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+{
+
+}
+
+void CGameStateRun_Town::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+{
+
+}
+
+void CGameStateRun_Town::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+{
+	// 沒事。如果需要處理滑鼠移動的話，寫code在這裡
+}
+
+void CGameStateRun_Town::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+{
+
+}
+
+void CGameStateRun_Town::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+{
+
+}
+
+void CGameStateRun_Town::OnShow()
+{
+	if (delay_counter < 0)
+	{
+		map_town.OnShowBackground();
+
+		if (!ani_light_beam.IsFinalBitmap())		//進場動畫
+		{
+			ani_light_beam.OnMove();
+			ani_light_beam.OnShow();
+		}
+		else
+		{
+			character.OnShow();
+			map_town.OnShowWall();
+			map_town.OnShowPressF();
+		}
+
+	}
+	else
+		bm_loading.ShowBitmap();
+}
 
 }

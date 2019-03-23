@@ -1,3 +1,5 @@
+#ifndef GAMEMAP_H
+#define GAMEMAP_H
 namespace game_framework {
 
 	class GameMap {
@@ -29,3 +31,4 @@ namespace game_framework {
 	};
 
 }
+#endif

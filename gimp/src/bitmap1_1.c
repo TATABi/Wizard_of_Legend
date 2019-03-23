@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <glib.h>
 #include <fstream>
-#include "Home.c"
+#include "Town.c"
 
 using namespace std;
 
@@ -40,11 +40,15 @@ int main(int argc, char const *argv[]) {
 
     if(gimp_image.pixel_data[i] == 255) //白色
       ofs << "0";
-    else if (gimp_image.pixel_data[i] == 100)//箱子
+    else if (gimp_image.pixel_data[i] == 200)//傳送門(關卡)
       ofs << "2";
-    else if (gimp_image.pixel_data[i] == 200)//書
+    else if (gimp_image.pixel_data[i] == 100)// 道具1
       ofs << "3";
-    else if (gimp_image.pixel_data[i] == 150)//傳送門
+    else if (gimp_image.pixel_data[i] == 70)// 道具2
+      ofs << "4";
+    else if (gimp_image.pixel_data[i] == 30)// 道具3
+      ofs << "5";
+    else if (gimp_image.pixel_data[i] == 150)//傳送門(家)
       ofs << "1";
     else          //黑色
       ofs << "-1";

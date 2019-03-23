@@ -273,6 +273,7 @@ namespace game_framework {
 			else if (_vertical > 0)
 				_directionFlag = 2;	//下
 		}
+
 		//維持上一格狀態的方向
 
 		if (dash_delay_counter < DASH_DELAY && dash_delay_counter > 0)
@@ -283,19 +284,18 @@ namespace game_framework {
 		//動畫
 		if (isDash)
 		{
-			dash_lock = true;
 			run_counter = 45;
 			if (isMoving() && isSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
 			{
 				if (isMovingDown)
 				{
 					ani_dash_down.OnMove();
-					_directionFlag = 2;
+					dash_lock ? NULL : _directionFlag = 2;		//Dash中不能改方向
 				}
 				else
 				{
 					ani_dash_up.OnMove();
-					_directionFlag = 3;
+					dash_lock ? NULL : _directionFlag = 3;
 				}
 			}
 			else		//停止移動時按空白鍵，朝面相方向滑動(沒有斜向)；或是非斜向移動時		
@@ -321,6 +321,8 @@ namespace game_framework {
 				}
 			}
 
+			dash_lock = true;
+
 			if ((ani_dash_right.IsFinalBitmap() || ani_dash_left.IsFinalBitmap()
 				|| ani_dash_down.IsFinalBitmap() || ani_dash_up.IsFinalBitmap()))
 			{
@@ -331,6 +333,7 @@ namespace game_framework {
 				ani_dash_down.Reset();
 				ani_dash_up.Reset();
 			}
+		
 		}
 		else if (isMoving())   //走動
 		{
