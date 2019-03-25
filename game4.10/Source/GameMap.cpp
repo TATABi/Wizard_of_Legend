@@ -23,7 +23,7 @@ namespace game_framework {
 		_cx = x;
 		_cy = y;	
 		ani_press_f.SetDelayCount(2);
-		can_press_f = false;
+		isPressF = false;
 		character_status = 0;
 	}
 
@@ -56,7 +56,7 @@ namespace game_framework {
 
 	void GameMap::OnShowPressF()
 	{
-		if (can_press_f)
+		if (isPressF)
 			ani_press_f.OnShow();
 	}
 	/*

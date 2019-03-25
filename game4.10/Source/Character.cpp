@@ -37,7 +37,7 @@ namespace game_framework {
 		_vertical = 0;
 		_directionFlag = 2; //面向下
 		run_counter = 45;
-		dash_lock = false;
+		isDashLock = false;
 		dash_delay_counter = DASH_DELAY;
 	}
 
@@ -186,7 +186,7 @@ namespace game_framework {
 	{	
 		map->GetCharacterStatus();
 
-		if (!dash_lock)
+		if (!isDashLock)
 		{
 			_horizontal = 0;
 			_vertical = 0;
@@ -210,7 +210,7 @@ namespace game_framework {
 		}
 
 		//計算移動距離
-		if (isSlash() && !dash_lock) //如果斜走
+		if (isSlash() && !isDashLock) //如果斜走
 		{
 			if (isMovingDown)
 			{
@@ -233,7 +233,7 @@ namespace game_framework {
 					_horizontal -= SLASH_PIXEL;
 			}
 		}
-		else if(!dash_lock)
+		else if(!isDashLock)
 		{
 			if (isMovingDown)
 			{
@@ -259,14 +259,14 @@ namespace game_framework {
 
 		
 		//判斷方向
-		if (_horizontal != 0 && !dash_lock)
+		if (_horizontal != 0 && !isDashLock)
 		{
 			if (_horizontal < 0)
 				_directionFlag = 1;	//左
 			else
 				_directionFlag = 0;	//右
 		}
-		else if (!dash_lock)
+		else if (!isDashLock)
 		{
 			if (_vertical < 0)
 				_directionFlag = 3;	//上
@@ -290,12 +290,12 @@ namespace game_framework {
 				if (isMovingDown)
 				{
 					ani_dash_down.OnMove();
-					dash_lock ? NULL : _directionFlag = 2;		//Dash中不能改方向
+					isDashLock ? NULL : _directionFlag = 2;		//Dash中不能改方向
 				}
 				else
 				{
 					ani_dash_up.OnMove();
-					dash_lock ? NULL : _directionFlag = 3;
+					isDashLock ? NULL : _directionFlag = 3;
 				}
 			}
 			else		//停止移動時按空白鍵，朝面相方向滑動(沒有斜向)；或是非斜向移動時		
@@ -321,12 +321,12 @@ namespace game_framework {
 				}
 			}
 
-			dash_lock = true;
+			isDashLock = true;
 
 			if ((ani_dash_right.IsFinalBitmap() || ani_dash_left.IsFinalBitmap()
 				|| ani_dash_down.IsFinalBitmap() || ani_dash_up.IsFinalBitmap()))
 			{
-				dash_lock = false;
+				isDashLock = false;
 				isDash = false;
 				ani_dash_right.Reset();
 				ani_dash_left.Reset();

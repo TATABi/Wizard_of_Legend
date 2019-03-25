@@ -47,13 +47,13 @@ namespace game_framework {
 				ani_press_f.OnMove();
 				break;
 			}
-			can_press_f = true;
+			isPressF = true;
 			ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - _cx, CHARACTER_SCREEN_Y + temp_y - _cy);
 		}
 		else
 		{
 			ani_press_f.Reset();
-			can_press_f = false;
+			isPressF = false;
 		}
 	}
 
