@@ -16,10 +16,10 @@ namespace game_framework {
 		bool BuyItem();
 	private:
 		CMovingBitmap bm_item;
-		bool isequiped;			//是否裝備
-		bool meet_condition;	//滿足發動條件
-		bool have_luanched;		//發動
-		bool have_it;			//擁有該裝備
+		bool isEquiped;			//是否裝備
+		bool isReady;	//滿足發動條件
+		bool isLuanched;		//發動
+		bool isOwned;			//擁有該裝備
 		int money;
 	};
 

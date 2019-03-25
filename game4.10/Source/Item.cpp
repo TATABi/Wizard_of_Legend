@@ -18,9 +18,9 @@ namespace game_framework {
 	void Item::Initialize()
 	{
 
-		isequiped = false;
-		meet_condition = false;
-		have_luanched = false;
+		isEquiped = false;
+		isReady = false;
+		isLuanched = false;
 	}
 
 	void Item::OnMove() 
@@ -35,44 +35,44 @@ namespace game_framework {
 
 	void Item::Equip(bool equip) 
 	{
-		isequiped = equip;
+		isEquiped = equip;
 	}
 
 	void Item::MeetCondition()
 	{
-		if (isequiped)
+		if (isEquiped)
 		{
 			// do something
-			meet_condition = true;
+			isReady = true;
 		}
 
 	}
 
 	bool Item:: IsEquiped()
 	{
-		return isequiped;
+		return isEquiped;
 	}
 
 	void Item::Effect()
 	{
-		if (isequiped && meet_condition && !have_luanched)	//裝備 &達成條件 &還未發動
+		if (isEquiped && isReady && !isLuanched)	//裝備 &達成條件 &還未發動
 		{
 			// do something
-			have_luanched = true;
+			isLuanched = true;
 		}
 
 	}
 
 	bool Item::HaveItem() 
 	{
-		return have_it;
+		return isOwned;
 	}
 
 	bool Item::BuyItem()
 	{
 		if (CharacterData::Money >= money)
 		{
-			have_it = true;
+			isOwned = true;
 			CharacterData::Money -= money;
 			return true;
 		}
