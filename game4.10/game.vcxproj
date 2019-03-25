@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="UnitTest|Win32">
+      <Configuration>UnitTest</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DDD280D7-4B85-4B03-BBC4-C46CA9BECCCB}</ProjectGuid>
+    <RootNamespace>game</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">.\UnitTest\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">.\UnitTest\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">true</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'" />
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\Microsoft DirectX SDK %28February 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/game.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug/game.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0404</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>ddraw.lib;dxguid.lib;winmm.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Debug/game.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/game.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/game.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/game.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release/game.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0404</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;ddraw.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release/game.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>.\Release/game.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/game.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\UnitTest/game.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_UNITTEST;_CRT_SECURE_NO_DEPRECATE;WINVER=0x400;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\UnitTest/game.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\UnitTest/</AssemblerListingLocation>
+      <ObjectFileName>.\UnitTest/</ObjectFileName>
+      <ProgramDataBaseFileName>.\UnitTest/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0404</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>ddraw.lib;dxguid.lib;winmm.lib;dsound.lib;cppunitd.lib;testrunnerd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\UnitTest/game.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\UnitTest/game.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\UnitTest/game.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="Res\ball.bmp" />
+    <None Include="RES\bmp0.bmp" />
+    <None Include="RES\bmp1.bmp" />
+    <None Include="RES\bmp10.bmp" />
+    <None Include="RES\bmp2.bmp" />
+    <None Include="RES\bmp3.bmp" />
+    <None Include="RES\bmp4.bmp" />
+    <None Include="RES\bmp5.bmp" />
+    <None Include="RES\bmp6.bmp" />
+    <None Include="RES\bmp7.bmp" />
+    <None Include="RES\bmp8.bmp" />
+    <None Include="RES\bmp9.bmp" />
+    <None Include="RES\center.bmp" />
+    <None Include="RES\continue.bmp" />
+    <None Include="Res\corner.bmp" />
+    <None Include="res\cursor1.cur" />
+    <None Include="RES\eraser1.bmp" />
+    <None Include="RES\eraser2.bmp" />
+    <None Include="RES\eraser3.bmp" />
+    <None Include="res\game.ico" />
+    <None Include="res\game.rc2" />
+    <None Include="RES\gamecurs.cur" />
+    <None Include="res\gameDoc.ico" />
+    <None Include="RES\help.bmp" />
+    <None Include="RES\loading.bmp" />
+    <None Include="RES\ntutcsie.bmp" />
+    <None Include="res\Toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\audio.cpp" />
+    <ClCompile Include="Source\Box.cpp" />
+    <ClCompile Include="Source\Character.cpp" />
+    <ClCompile Include="Source\CharacterData.cpp" />
+    <ClCompile Include="Source\game.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="Source\gameDoc.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="Source\GameMap.cpp" />
+    <ClCompile Include="Source\gameView.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="Source\Item.cpp" />
+    <ClCompile Include="Source\ItemData.cpp" />
+    <ClCompile Include="Source\Items.cpp" />
+    <ClCompile Include="Source\MainFrm.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="Source\Map_Home.cpp" />
+    <ClCompile Include="Source\Map_Town.cpp" />
+    <ClCompile Include="Source\PausedMenu.cpp" />
+    <ClCompile Include="Source\StdAfx.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Source\gamelib.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">UnitTest/</ObjectFileName>
+      <ProgramDataBaseFileName Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">UnitTest/</ProgramDataBaseFileName>
+    </ClCompile>
+    <ClCompile Include="Source\mygame.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="Source\UI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\Box.h" />
+    <ClInclude Include="Source\Character.h" />
+    <ClInclude Include="Source\game.h" />
+    <ClInclude Include="Source\CharacterData.h" />
+    <ClInclude Include="Source\gameDoc.h" />
+    <ClInclude Include="Source\GameMap.h" />
+    <ClInclude Include="Source\gameView.h" />
+    <ClInclude Include="Source\Item.h" />
+    <ClInclude Include="Source\ItemData.h" />
+    <ClInclude Include="Source\Items.h" />
+    <ClInclude Include="Source\Map_Home.h" />
+    <ClInclude Include="Source\Map_Home_Logic.h" />
+    <ClInclude Include="Source\MainFrm.h" />
+    <ClInclude Include="Source\Map_Town.h" />
+    <ClInclude Include="Source\Map_Town_Logic.h" />
+    <ClInclude Include="Source\PausedMenu.h" />
+    <ClInclude Include="Source\Resource.h" />
+    <ClInclude Include="Source\Skill.h" />
+    <ClInclude Include="Source\StdAfx.h" />
+    <ClInclude Include="Source\gamelib.h" />
+    <ClInclude Include="Source\mygame.h" />
+    <ClInclude Include="Source\UI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Source\game.rc">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp0.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp1.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp10.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp2.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp3.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp4.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp5.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp6.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp7.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp8.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\bmp9.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\continue.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\loading.bmp" />
+    <Image Include="..\..\..\Desktop\game4.10\RES\Toolbar.bmp" />
+    <Image Include="..\..\..\Downloads\Home.bmp" />
+    <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\bmp00001.bmp" />
+    <Image Include="RES\bmp_slash.bmp" />
+    <Image Include="RES\Character\Arrival\01.bmp" />
+    <Image Include="RES\Character\Arrival\02.bmp" />
+    <Image Include="RES\Character\Arrival\03.bmp" />
+    <Image Include="RES\Character\Arrival\04.bmp" />
+    <Image Include="RES\Character\Arrival\05.bmp" />
+    <Image Include="RES\Character\Arrival\06.bmp" />
+    <Image Include="RES\Character\Arrival\07.bmp" />
+    <Image Include="RES\Character\Arrival\08.bmp" />
+    <Image Include="RES\Character\Arrival\09.bmp" />
+    <Image Include="RES\Character\Dash\Down\DashDown01.bmp" />
+    <Image Include="RES\Character\Dash\Down\DashDown02.bmp" />
+    <Image Include="RES\Character\Dash\Down\DashDown03.bmp" />
+    <Image Include="RES\Character\Dash\Down\DashDown04.bmp" />
+    <Image Include="RES\Character\Dash\Left\DashLeft01.bmp" />
+    <Image Include="RES\Character\Dash\Left\DashLeft02.bmp" />
+    <Image Include="RES\Character\Dash\Left\DashLeft03.bmp" />
+    <Image Include="RES\Character\Dash\Left\DashLeft04.bmp" />
+    <Image Include="RES\Character\Dash\Left\DashLeft05.bmp" />
+    <Image Include="RES\Character\Dash\Right\DashRight (1).bmp" />
+    <Image Include="RES\Character\Dash\Right\DashRight (2).bmp" />
+    <Image Include="RES\Character\Dash\Right\DashRight (3).bmp" />
+    <Image Include="RES\Character\Dash\Right\DashRight (4).bmp" />
+    <Image Include="RES\Character\Dash\Right\DashRight (5).bmp" />
+    <Image Include="RES\Character\Dash\Up\DashUp01.bmp" />
+    <Image Include="RES\Character\Dash\Up\DashUp02.bmp" />
+    <Image Include="RES\Character\Dash\Up\DashUp03.bmp" />
+    <Image Include="RES\Character\Dash\Up\DashUp04.bmp" />
+    <Image Include="RES\Character\Down\Character_down_01.bmp" />
+    <Image Include="RES\Character\Down\Character_down_02.bmp" />
+    <Image Include="RES\Character\Down\Character_down_03.bmp" />
+    <Image Include="RES\Character\Down\Character_down_04.bmp" />
+    <Image Include="RES\Character\Down\Character_down_05.bmp" />
+    <Image Include="RES\Character\Down\Character_down_06.bmp" />
+    <Image Include="RES\Character\Down\Character_down_07.bmp" />
+    <Image Include="RES\Character\Down\Character_down_08.bmp" />
+    <Image Include="RES\Character\Down\Character_down_09.bmp" />
+    <Image Include="RES\Character\Down\Character_down_10.bmp" />
+    <Image Include="RES\Character\Left\left (1).bmp" />
+    <Image Include="RES\Character\Left\left (2).bmp" />
+    <Image Include="RES\Character\Left\left (3).bmp" />
+    <Image Include="RES\Character\Left\left (4).bmp" />
+    <Image Include="RES\Character\Left\left (5).bmp" />
+    <Image Include="RES\Character\Left\left (6).bmp" />
+    <Image Include="RES\Character\Left\left (7).bmp" />
+    <Image Include="RES\Character\Left\left (8).bmp" />
+    <Image Include="RES\Character\Left\left (9).bmp" />
+    <Image Include="RES\Character\Right\right (1).bmp" />
+    <Image Include="RES\Character\Right\right (2).bmp" />
+    <Image Include="RES\Character\Right\right (3).bmp" />
+    <Image Include="RES\Character\Right\right (4).bmp" />
+    <Image Include="RES\Character\Right\right (5).bmp" />
+    <Image Include="RES\Character\Right\right (6).bmp" />
+    <Image Include="RES\Character\Right\right (7).bmp" />
+    <Image Include="RES\Character\Right\right (8).bmp" />
+    <Image Include="RES\Character\Right\right (9).bmp" />
+    <Image Include="RES\Character\Run\Run_down (1).bmp" />
+    <Image Include="RES\Character\Run\Run_down (2).bmp" />
+    <Image Include="RES\Character\Run\Run_down (3).bmp" />
+    <Image Include="RES\Character\Run\Run_down (4).bmp" />
+    <Image Include="RES\Character\Run\Run_left (1).bmp" />
+    <Image Include="RES\Character\Run\Run_left (2).bmp" />
+    <Image Include="RES\Character\Run\Run_left (3).bmp" />
+    <Image Include="RES\Character\Run\Run_right (1).bmp" />
+    <Image Include="RES\Character\Run\Run_right (2).bmp" />
+    <Image Include="RES\Character\Run\Run_right (3).bmp" />
+    <Image Include="RES\Character\Run\Run_up (1).bmp" />
+    <Image Include="RES\Character\Run\Run_up (2).bmp" />
+    <Image Include="RES\Character\Run\Run_up (3).bmp" />
+    <Image Include="RES\Character\Run\Run_up (4).bmp" />
+    <Image Include="RES\Character\Run\Run_up (5).bmp" />
+    <Image Include="RES\Character\Stand\down.bmp" />
+    <Image Include="RES\Character\Stand\left.bmp" />
+    <Image Include="RES\Character\Stand\right.bmp" />
+    <Image Include="RES\Character\Stand\up.bmp" />
+    <Image Include="RES\Character\Up\up (1).bmp" />
+    <Image Include="RES\Character\Up\up (10).bmp" />
+    <Image Include="RES\Character\Up\up (2).bmp" />
+    <Image Include="RES\Character\Up\up (3).bmp" />
+    <Image Include="RES\Character\Up\up (4).bmp" />
+    <Image Include="RES\Character\Up\up (5).bmp" />
+    <Image Include="RES\Character\Up\up (6).bmp" />
+    <Image Include="RES\Character\Up\up (7).bmp" />
+    <Image Include="RES\Character\Up\up (8).bmp" />
+    <Image Include="RES\Character\Up\up (9).bmp" />
+    <Image Include="RES\Corsor.bmp" />
+    <Image Include="RES\InGame\Box\board.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\00.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\01.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\02.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\03.bmp" />
+    <Image Include="RES\InGame\Box\DEFENSE\04.bmp" />
+    <Image Include="RES\InGame\Box\item_board.bmp" />
+    <Image Include="RES\InGame\Box\item_cousor.bmp" />
+    <Image Include="RES\InGame\Box\item_cursor.bmp" />
+    <Image Include="RES\InGame\Box\MISC\00.bmp" />
+    <Image Include="RES\InGame\Box\MISC\01.bmp" />
+    <Image Include="RES\InGame\Box\MISC\02.bmp" />
+    <Image Include="RES\InGame\Box\MISC\03.bmp" />
+    <Image Include="RES\InGame\Box\MISC\04.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\00.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\01.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\02.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\03.bmp" />
+    <Image Include="RES\InGame\Box\OFFENSE\04.bmp" />
+    <Image Include="RES\InGame\Box\TEXT_Defense.bmp" />
+    <Image Include="RES\InGame\Box\TEXT_Misc.bmp" />
+    <Image Include="RES\InGame\Box\TEXT_Offense.bmp" />
+    <Image Include="RES\InGame\Box\unknown_item.bmp" />
+    <Image Include="RES\InGame\Home\Home.bmp" />
+    <Image Include="RES\InGame\Home\wall.bmp" />
+    <Image Include="RES\InGame\InGame_01.bmp" />
+    <Image Include="RES\InGame\Join\Join.bmp" />
+    <Image Include="RES\InGame\LightBeam\00.bmp" />
+    <Image Include="RES\InGame\LightBeam\01.bmp" />
+    <Image Include="RES\InGame\LightBeam\02.bmp" />
+    <Image Include="RES\InGame\LightBeam\03.bmp" />
+    <Image Include="RES\InGame\LightBeam\04.bmp" />
+    <Image Include="RES\InGame\LightBeam\05.bmp" />
+    <Image Include="RES\InGame\LightBeam\06.bmp" />
+    <Image Include="RES\InGame\LightBeam\07.bmp" />
+    <Image Include="RES\InGame\LightBeam\08.bmp" />
+    <Image Include="RES\InGame\Loading\Loading.bmp" />
+    <Image Include="RES\InGame\Loading\LoadingLevel.bmp" />
+    <Image Include="RES\InGame\PAUSED\01.bmp" />
+    <Image Include="RES\InGame\PAUSED\02.bmp" />
+    <Image Include="RES\InGame\PAUSED\03.bmp" />
+    <Image Include="RES\InGame\PAUSED\04.bmp" />
+    <Image Include="RES\InGame\Press_F\01.bmp" />
+    <Image Include="RES\InGame\Press_F\02.bmp" />
+    <Image Include="RES\InGame\Press_F\03.bmp" />
+    <Image Include="RES\InGame\Press_F\04.bmp" />
+    <Image Include="RES\InGame\Press_F\05.bmp" />
+    <Image Include="RES\InGame\Press_F\06.bmp" />
+    <Image Include="RES\InGame\Town\Town.bmp" />
+    <Image Include="RES\InGame\Town\Town_Wall.bmp" />
+    <Image Include="RES\InGame\UI\Diamond.bmp" />
+    <Image Include="RES\InGame\UI\HP_Bar.bmp" />
+    <Image Include="RES\InGame\UI\Key_Q.bmp" />
+    <Image Include="RES\InGame\UI\Key_Space.bmp" />
+    <Image Include="RES\InGame\UI\Left_Click.bmp" />
+    <Image Include="RES\InGame\UI\Money.bmp" />
+    <Image Include="RES\InGame\UI\Right_Click.bmp" />
+    <Image Include="RES\InGame\UI\Skill_background.bmp" />
+    <Image Include="RES\InGame\UI\Status.bmp" />
+    <Image Include="RES\InGame\UI\Status_hp.bmp" />
+    <Image Include="RES\LoadingBG.bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (1).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (10).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (11).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (2).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (3).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (4).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (5).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (6).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (7).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (8).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu (9).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu(0).bmp" />
+    <Image Include="RES\Menu\EnterMenu\EnterMenu(12).bmp" />
+    <Image Include="RES\Menu\EnterMenu\ENTERMENU_OPTIONS.bmp" />
+    <Image Include="RES\Menu\EnterMenu\ENTERMENU_QUIT.bmp" />
+    <Image Include="RES\Menu\EnterMenu\ENTERMENU_SINGLE_PLAYER.bmp" />
+    <Image Include="RES\Menu\EnterMenu\Options.bmp" />
+    <Image Include="RES\Menu\EnterMenu\Quit.bmp" />
+    <Image Include="RES\Menu\EnterMenu\Single_Player.bmp" />
+    <Image Include="res\menu\init\bitmap3.bmp" />
+    <Image Include="RES\Menu\Init\Init (1).bmp" />
+    <Image Include="RES\Menu\Init\Init (10).bmp" />
+    <Image Include="RES\Menu\Init\Init (11).bmp" />
+    <Image Include="RES\Menu\Init\Init (12).bmp" />
+    <Image Include="RES\Menu\Init\Init (13).bmp" />
+    <Image Include="RES\Menu\Init\Init (14).bmp" />
+    <Image Include="RES\Menu\Init\Init (15).bmp" />
+    <Image Include="RES\Menu\Init\Init (16).bmp" />
+    <Image Include="RES\Menu\Init\Init (17).bmp" />
+    <Image Include="RES\Menu\Init\Init (18).bmp" />
+    <Image Include="RES\Menu\Init\Init (19).bmp" />
+    <Image Include="RES\Menu\Init\Init (2).bmp" />
+    <Image Include="RES\Menu\Init\Init (20).bmp" />
+    <Image Include="RES\Menu\Init\Init (21).bmp" />
+    <Image Include="RES\Menu\Init\Init (22).bmp" />
+    <Image Include="RES\Menu\Init\Init (23).bmp" />
+    <Image Include="RES\Menu\Init\Init (24).bmp" />
+    <Image Include="RES\Menu\Init\Init (25).bmp" />
+    <Image Include="RES\Menu\Init\Init (26).bmp" />
+    <Image Include="RES\Menu\Init\Init (27).bmp" />
+    <Image Include="RES\Menu\Init\Init (28).bmp" />
+    <Image Include="RES\Menu\Init\Init (29).bmp" />
+    <Image Include="RES\Menu\Init\Init (3).bmp" />
+    <Image Include="RES\Menu\Init\Init (30).bmp" />
+    <Image Include="RES\Menu\Init\Init (31).bmp" />
+    <Image Include="RES\Menu\Init\Init (32).bmp" />
+    <Image Include="RES\Menu\Init\Init (33).bmp" />
+    <Image Include="RES\Menu\Init\Init (34).bmp" />
+    <Image Include="RES\Menu\Init\Init (35).bmp" />
+    <Image Include="RES\Menu\Init\Init (36).bmp" />
+    <Image Include="RES\Menu\Init\Init (37).bmp" />
+    <Image Include="RES\Menu\Init\Init (38).bmp" />
+    <Image Include="RES\Menu\Init\Init (39).bmp" />
+    <Image Include="RES\Menu\Init\Init (4).bmp" />
+    <Image Include="RES\Menu\Init\Init (40).bmp" />
+    <Image Include="RES\Menu\Init\Init (41).bmp" />
+    <Image Include="RES\Menu\Init\Init (42).bmp" />
+    <Image Include="RES\Menu\Init\Init (43).bmp" />
+    <Image Include="RES\Menu\Init\Init (44).bmp" />
+    <Image Include="RES\Menu\Init\Init (45).bmp" />
+    <Image Include="RES\Menu\Init\Init (46).bmp" />
+    <Image Include="RES\Menu\Init\Init (47).bmp" />
+    <Image Include="RES\Menu\Init\Init (48).bmp" />
+    <Image Include="RES\Menu\Init\Init (5).bmp" />
+    <Image Include="RES\Menu\Init\Init (6).bmp" />
+    <Image Include="RES\Menu\Init\Init (7).bmp" />
+    <Image Include="RES\Menu\Init\Init (8).bmp" />
+    <Image Include="RES\Menu\Init\Init (9).bmp" />
+    <Image Include="RES\Menu\Menu_01.bmp" />
+    <Image Include="RES\Menu\Menu_02.bmp" />
+    <Image Include="RES\Menu\Options\Options.bmp" />
+    <Image Include="RES\Menu\Options\Optionss.bmp" />
+    <Image Include="res\Menu_02.bmp" />
+    <Image Include="RES\ShootCut\InGame\InGame_01.bmp" />
+    <Image Include="RES\ShootCut\Menu\Menu_01.bmp" />
+    <Image Include="RES\ShootCut\Menu\Menu_02.bmp" />
+    <Image Include="RES\Start_Ani\start_temp.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Source\game.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
