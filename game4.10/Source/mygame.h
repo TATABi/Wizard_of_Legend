@@ -96,7 +96,7 @@ namespace game_framework {
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 		Map_Home map;								// 地圖
 		Box box;
-		UI *ui;
+		UI ui;
 		PausedMenu pauseMenu;
 	};
 
@@ -146,7 +146,7 @@ namespace game_framework {
 		int flags;										// 
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 		Map_Town map;								// 地圖
-		UI *ui;
+		UI ui;
 		PausedMenu pauseMenu;
 	};
 	

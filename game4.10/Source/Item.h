@@ -1,12 +1,13 @@
 #ifndef ITEM_H
 #define ITEM_H
-
+#include "CharacterData.h"
+/*
 namespace game_framework {
 	class Item {
 	public:
-		Item(int);
+		Item(int, int, void * ());		//圖片, 錢, 效果
 		void Initialize();
-		void OnMove();
+		//void OnMove();
 		void OnShow();
 		void Equip(bool);	// 穿/脫 裝備
 		void MeetCondition();	//滿足發動能力條件
@@ -15,6 +16,7 @@ namespace game_framework {
 		bool HaveItem();
 		bool BuyItem();
 	private:
+		//void(*fptr) ();
 		CMovingBitmap bm_item;
 		bool isEquiped;			//是否裝備
 		bool isReady;	//滿足發動條件
@@ -25,5 +27,5 @@ namespace game_framework {
 
 }
 
-
+*/
 #endif

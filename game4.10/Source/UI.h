@@ -5,12 +5,14 @@ namespace game_framework {
 	class UI {
 	public:
 		UI();
+		~UI();
 		void Initialize();
 		void LoadBitmap();
 		void OnMove();
 		void OnShow();
 		void CalculateHP();	//≠p∫‚HP
 		void CalculateMP(); //≠p∫‚MP
+
 	private:
 		CMovingBitmap bm_status;
 		CMovingBitmap bm_money;

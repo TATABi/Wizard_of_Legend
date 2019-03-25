@@ -12,7 +12,12 @@ namespace game_framework {
 	{
 		Initialize();
 	}
-	
+
+	UI::~UI()
+	{
+		
+	}
+
 	void UI::Initialize()
 	{
 		

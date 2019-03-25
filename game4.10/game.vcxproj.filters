@@ -18,7 +18,6 @@
     <ClCompile Include="Source\UI.cpp" />
     <ClCompile Include="Source\PausedMenu.cpp" />
     <ClCompile Include="Source\Item.cpp" />
-    <ClCompile Include="Source\ItemData.cpp" />
     <ClCompile Include="Source\Items.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,7 +42,6 @@
     <ClInclude Include="Source\Map_Town_Logic.h" />
     <ClInclude Include="Source\PausedMenu.h" />
     <ClInclude Include="Source\Item.h" />
-    <ClInclude Include="Source\ItemData.h" />
     <ClInclude Include="Source\Items.h" />
   </ItemGroup>
   <ItemGroup>

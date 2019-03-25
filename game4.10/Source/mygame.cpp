@@ -211,13 +211,11 @@ CGameStateRun_Home::CGameStateRun_Home(CGame *g)
 
 CGameStateRun_Home::~CGameStateRun_Home()
 {
-	delete ui;
 }
 
 void CGameStateRun_Home::OnBeginState()
 {
-	ui = new UI();
-	ui->LoadBitmap();
+	ui.LoadBitmap();
 	delay_counter = 30 * 1; // 1 seconds
 	map.Initialize(740, 918);
 	character.Initialize();
@@ -249,7 +247,7 @@ void CGameStateRun_Home::OnMove()
 	character.OnMove(&map);
 	map.OnMove();
 	box.OnMove();
-	ui->OnMove();
+	ui.OnMove();
 
 }
 
@@ -319,7 +317,6 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 			if (nChar == KEY_F && map.GetCharacterStatus() == 1)
 			{
-				//delete ui;
 				GotoGameState(GAME_STATE_RUN_TOWN);			//¤Á´«¨ìtown
 			}
 
@@ -524,7 +521,7 @@ void CGameStateRun_Home::OnShow()
 				map.OnShowWall();
 				map.OnShowPressF();
 				box.OnShow();
-				ui->OnShow();
+				ui.OnShow();
 				pauseMenu.OnShow();
 			}
 			
@@ -603,13 +600,12 @@ CGameStateRun_Town::CGameStateRun_Town(CGame *g)
 
 CGameStateRun_Town::~CGameStateRun_Town()
 {
-	//delete ui;
+
 }
 
 void CGameStateRun_Town::OnBeginState()
 {
-	ui = new UI();
-	ui->LoadBitmap();
+	ui.LoadBitmap();
 	delay_counter = 30 * 1; // 1 seconds
 	flags = 0;
 	character.Initialize();
@@ -629,7 +625,7 @@ void CGameStateRun_Town::OnMove()
 	bm_loading.SetTopLeft(0, 0);
 	character.OnMove(&map);
 	map.OnMove();
-	ui->OnMove();
+	ui.OnMove();
 
 }
 
@@ -680,7 +676,6 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 			if (nChar == KEY_F && map.GetCharacterStatus() == 1)
 			{
-				//delete ui;
 				GotoGameState(GAME_STATE_RUN_HOME);		//¤Á´«³õ´º¨ìHome
 			}
 
@@ -817,7 +812,7 @@ void CGameStateRun_Town::OnShow()
 		character.OnShow();
 		map.OnShowWall();
 		map.OnShowPressF();
-		ui->OnShow();
+		ui.OnShow();
 		pauseMenu.OnShow();
 	}
 	else

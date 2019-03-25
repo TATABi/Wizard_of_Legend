@@ -16,6 +16,7 @@ namespace game_framework {
 	int CharacterData::Max_MP = 100;
 	double CharacterData::Attack_Coefficient = 1;
 	double CharacterData::Defense_Coefficient = 1;
+	
 	//bool CharacterData::Equip_Item[10] = { 0,0,0,0,0,0,0,0,0,0 };
 	//bool CharacterData::Have_Item[10] = { 0,0,0,0,0,0,0,0,0,0 };
 
