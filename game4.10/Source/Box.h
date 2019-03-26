@@ -1,5 +1,6 @@
 #ifndef BOX_H
 #define BOX_H
+#include "Item.h"
 namespace game_framework {
 	class Box {
 	public:
@@ -7,7 +8,7 @@ namespace game_framework {
 		void Initialize();
 		void LoadBitmap();
 		void OnMove();
-		void OnShow();
+		void OnShow(vector<Item*>);
 		void Down();
 		void Up();
 		void Left();
@@ -21,6 +22,7 @@ namespace game_framework {
 		CMovingBitmap bm_offense_text;
 		CMovingBitmap bm_defense_text;
 		CMovingBitmap bm_misc_text;
+		CMovingBitmap bm_unknown_item;
 		CAnimation ani_offense;
 		CAnimation ani_defense;
 		CAnimation ani_misc;

@@ -4,6 +4,7 @@
 #include "PausedMenu.h"
 #include "CharacterData.h"
 #include "Skill.h"
+#include "Items.h"
 
 namespace game_framework {
 	
@@ -11,6 +12,10 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
+	static Items g_items;
+	static UI g_ui;
+	static Character g_character;
+	static PausedMenu g_pauseMenu;
 
 	enum AUDIO_ID {				// 定義各種音效的編號
 		AUDIO_BE,		
@@ -90,14 +95,11 @@ namespace game_framework {
 	private:
 		CMovingBitmap bm_join;							// join遊戲的提示選單
 		CMovingBitmap bm_loading;						// loading字樣的圖片
-		Character character;							// 角色
 		CAnimation ani_light_beam;						// 角色在家中現身的動畫
 		HOME_FLAG flags;										// 現在畫面的狀態 0:顯示加入遊戲的選項 1:進入遊戲(沒開任何選單) 2:開啟道具箱 3:開啟書 4:傳送至Town
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 		Map_Home map;								// 地圖
 		Box box;
-		UI ui;
-		PausedMenu pauseMenu;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -142,12 +144,10 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap bm_loading;						// loading字樣的圖片
-		Character character;							// 角色
 		int flags;										// 
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 		Map_Town map;								// 地圖
-		UI ui;
-		PausedMenu pauseMenu;
+
 	};
 	
 	/////////////////////////////////////////////////////////////////////////////

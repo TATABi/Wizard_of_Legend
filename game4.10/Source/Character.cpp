@@ -195,18 +195,18 @@ namespace game_framework {
 		//初始移動系數
 		if (isDash)
 		{
-			SLASH_PIXEL = 14;
-			STR_PIXEL = 20;
+			SLASH_PIXEL = (int)(DASH_SLASH_PIXEL * CharacterData::Move_Coefficient);
+			STR_PIXEL = (int)(DASH_STR_PIXEL * CharacterData::Move_Coefficient);
 		}
 		else if (isRunning)
 		{
-			SLASH_PIXEL = 7;
-			STR_PIXEL = 10;
+			SLASH_PIXEL = (int)(RUN_SLASH_PIXEL * CharacterData::Move_Coefficient);
+			STR_PIXEL = (int)(RUN_STR_PIXEL * CharacterData::Move_Coefficient);
 		}
 		else
 		{
-			SLASH_PIXEL = 5;
-			STR_PIXEL = 6;
+			SLASH_PIXEL = (int)(NORMAL_SLASH_PIXEL * CharacterData::Move_Coefficient);
+			STR_PIXEL = (int)(NORMAL_STR_PIXEL * CharacterData::Move_Coefficient);
 		}
 
 		//計算移動距離

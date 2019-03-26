@@ -1,31 +1,33 @@
 #ifndef ITEM_H
 #define ITEM_H
 #include "CharacterData.h"
-/*
+
 namespace game_framework {
 	class Item {
 	public:
-		Item(int, int, void * ());		//圖片, 錢, 效果
+		Item(int, string, int, bool (*) ());		//圖片, 錢, 效果
 		void Initialize();
-		//void OnMove();
+		void LoadBitmap();
+		void SetXY(int, int);
 		void OnShow();
 		void Equip(bool);	// 穿/脫 裝備
-		void MeetCondition();	//滿足發動能力條件
 		bool IsEquiped();	// 是否裝備
 		void Effect();		// 啟動能力
 		bool HaveItem();
 		bool BuyItem();
+		string GetType();
 	private:
-		//void(*fptr) ();
+		bool (*Launched)();		//檢查是否滿足發動條件，滿足就發動，回傳true；不滿足不做事，回傳false
 		CMovingBitmap bm_item;
 		bool isEquiped;			//是否裝備
-		bool isReady;	//滿足發動條件
 		bool isLuanched;		//發動
 		bool isOwned;			//擁有該裝備
 		int money;
+		int bm_number;			//暫存圖片編號，等LoadBitmap時再匯入圖片
+		string type;
 	};
 
 }
 
-*/
+
 #endif

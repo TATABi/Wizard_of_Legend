@@ -5,7 +5,6 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Box.h"
-#include "ItemData.h"
 
 namespace game_framework {
 	Box::Box() {
@@ -49,6 +48,7 @@ namespace game_framework {
 		bm_offense_text.LoadBitmap(BOX_TEXT_OFFENSE, RGB(50, 255, 0));
 		bm_defense_text.LoadBitmap(BOX_TEXT_DEFENSE, RGB(50, 255, 0));
 		bm_misc_text.LoadBitmap(BOX_TEXT_MISC, RGB(50, 255, 0));
+		bm_unknown_item.LoadBitmap(ITEM_UNKNOWN, RGB(50, 255, 0));
 
 		bm_board.SetTopLeft(50, 70);
 		bm_item_board.SetTopLeft(50, 70);
@@ -93,24 +93,96 @@ namespace game_framework {
 		}
 	}
 	
-	void Box::OnShow()
+	void Box::OnShow(vector<Item*> item)
 	{
 		if (isOpendOffense || isOpendDefense || isOpendMisc)
 		{
 			bm_item_board.ShowBitmap();
-
+			int row = 0, col = 0;
 			switch (category_flag)
 			{
+			
 			case 0:
 				bm_offense_text.ShowBitmap();
+				
+				for (int i = 0; i < item.size(); i++)
+				{
+					if (item[i]->GetType() == "OFFENSE")
+					{
+						if (row == 6) {
+							row = 0;
+							col++;
+						}
+
+						if (item[i]->HaveItem()) {
+							item[i]->SetXY(76 + 40 * row, 130 + 40 * col);
+							item[i]->OnShow();
+							row++;
+						}
+						else {
+							bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
+							bm_unknown_item.ShowBitmap();
+							row++;
+						}
+					}
+				}
+				item.clear();
 				break;
 			case 1:
 				bm_defense_text.ShowBitmap();
+
+				for (int i = 0; i < item.size(); i++)
+				{
+					if (item[i]->GetType() == "DEFENSE")
+					{
+						if (row == 6) {
+							row = 0;
+							col++;
+						}
+
+						if (item[i]->HaveItem()) {
+							item[i]->SetXY(76 + 40 * row, 130 + 40 * col);
+							item[i]->OnShow();
+							row++;
+						}
+						else {
+							bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
+							bm_unknown_item.ShowBitmap();
+							row++;
+						}
+					}
+				}
+				item.clear();
 				break;
+
 			case 2:
 				bm_misc_text.ShowBitmap();
+
+				for (int i = 0; i < item.size(); i++)
+				{
+					if (item[i]->GetType() == "OFFENSE")
+					{
+						if (row == 6) {
+							row = 0;
+							col++;
+						}
+
+						if (item[i]->HaveItem()) {
+							item[i]->SetXY(76 + 40 * row, 130 + 40 * col);
+							item[i]->OnShow();
+							row++;
+						}
+						else {
+							bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
+							bm_unknown_item.ShowBitmap();
+							row++;
+						}
+					}
+				}
+				item.clear();
 				break;
 			}
+
 			bm_cursor.ShowBitmap();
 		}
 		else if (isOpened)
