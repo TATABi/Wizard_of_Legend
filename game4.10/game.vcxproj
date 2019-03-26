@@ -290,6 +290,8 @@
     <ClCompile Include="Source\Map_Home.cpp" />
     <ClCompile Include="Source\Map_Town.cpp" />
     <ClCompile Include="Source\PausedMenu.cpp" />
+    <ClCompile Include="Source\Skill.cpp" />
+    <ClCompile Include="Source\Skill_FireBall.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -331,6 +333,7 @@
     <ClInclude Include="Source\PausedMenu.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Skill.h" />
+    <ClInclude Include="Source\Skill_FireBall.h" />
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
@@ -359,6 +362,7 @@
     <Image Include="..\..\..\Desktop\game4.10\RES\loading.bmp" />
     <Image Include="..\..\..\Desktop\game4.10\RES\Toolbar.bmp" />
     <Image Include="..\..\..\Downloads\Home.bmp" />
+    <Image Include="..\..\技能\火球.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bmp00001.bmp" />
     <Image Include="RES\bmp_slash.bmp" />
@@ -528,6 +532,7 @@
     <Image Include="RES\Menu\EnterMenu\Quit.bmp" />
     <Image Include="RES\Menu\EnterMenu\Single_Player.bmp" />
     <Image Include="res\menu\init\bitmap3.bmp" />
+    <Image Include="res\menu\init\bitmap5.bmp" />
     <Image Include="RES\Menu\Init\Init (1).bmp" />
     <Image Include="RES\Menu\Init\Init (10).bmp" />
     <Image Include="RES\Menu\Init\Init (11).bmp" />
@@ -584,6 +589,7 @@
     <Image Include="RES\ShootCut\InGame\InGame_01.bmp" />
     <Image Include="RES\ShootCut\Menu\Menu_01.bmp" />
     <Image Include="RES\ShootCut\Menu\Menu_02.bmp" />
+    <Image Include="RES\Skill\Skill_FireBall.bmp" />
     <Image Include="RES\Start_Ani\start_temp.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
