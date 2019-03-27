@@ -1,3 +1,5 @@
+#ifndef CHARACTER_H
+#define CHARACTER_H
 #include "Map_Home.h"
 #include "Map_Town.h"
 #include "CharacterData.h"
@@ -14,9 +16,9 @@ namespace game_framework {
 		void SetMovingLeft(bool flag);	
 		void SetMovingRight(bool flag); 
 		void SetMovingUp(bool flag);	
-		bool isSlash();  	
+		bool IsSlash();  	
 		void Dash();
-		bool isMoving();
+		bool IsMoving();
 		bool CanDash();
 	protected:
 		CAnimation ani_up;		//向上動畫
@@ -61,3 +63,5 @@ namespace game_framework {
 		int dash_delay_counter;
 	};
 }
+
+#endif

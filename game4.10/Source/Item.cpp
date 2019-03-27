@@ -9,13 +9,15 @@
 
 namespace game_framework {
 	
-	Item::Item(int bm, string type,int money, bool (*effect)()) 
+	Item::Item(int bm, string type, int number,int money, bool (*effect)()) 
 	{
 		Initialize();
 		bm_number = bm;
+		this->type = type;
+		this->number = number;
 		this->money = money;
 		Launched = effect;
-		this->type = type;
+		
 	}
 	
 	void Item::Initialize()

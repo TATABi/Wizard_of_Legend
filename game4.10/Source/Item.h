@@ -5,7 +5,7 @@
 namespace game_framework {
 	class Item {
 	public:
-		Item(int, string, int, bool (*) ());		//圖片, 錢, 效果
+		Item(int, string, int, int, bool (*) ());		//圖片,種類, 編號, 錢, 效果
 		void Initialize();
 		void LoadBitmap();
 		void SetXY(int, int);
@@ -19,12 +19,14 @@ namespace game_framework {
 	private:
 		bool (*Launched)();		//檢查是否滿足發動條件，滿足就發動，回傳true；不滿足不做事，回傳false
 		CMovingBitmap bm_item;
+		string type;			//item 種類
+		int number;				//item 編號
 		bool isEquiped;			//是否裝備
 		bool isLuanched;		//發動
 		bool isOwned;			//擁有該裝備
 		int money;
 		int bm_number;			//暫存圖片編號，等LoadBitmap時再匯入圖片
-		string type;
+		
 	};
 
 }

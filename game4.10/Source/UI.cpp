@@ -80,10 +80,10 @@ namespace game_framework {
 		CalculateMP();
 
 		integer.SetTopLeft(320, 453);
-		integer.SetInteger(CharacterData::Money);
+		integer.SetInteger(CharacterData::Diamond);
 		integer.ShowBitmap();
 		integer.SetTopLeft(320, 433);
-		integer.SetInteger(CharacterData::Diamond);
+		integer.SetInteger(CharacterData::Money);
 		integer.ShowBitmap();
 		integer.SetTopLeft(112, 25);
 		integer.SetInteger(CharacterData::Max_HP);

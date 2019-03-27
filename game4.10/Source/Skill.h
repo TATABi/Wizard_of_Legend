@@ -1,3 +1,6 @@
+#ifndef SKILL_H
+#define SKILL_H
+
 namespace game_framework {
 	class Skill{
 	public :
@@ -15,3 +18,5 @@ namespace game_framework {
 
 
 }
+
+#endif

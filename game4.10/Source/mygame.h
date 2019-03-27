@@ -5,6 +5,7 @@
 #include "CharacterData.h"
 #include "Skill.h"
 #include "Items.h"
+#include "Bag.h"
 
 namespace game_framework {
 	
@@ -16,6 +17,7 @@ namespace game_framework {
 	static UI g_ui;
 	static Character g_character;
 	static PausedMenu g_pauseMenu;
+	static Bag g_bag;
 
 	enum AUDIO_ID {				// 定義各種音效的編號
 		AUDIO_BE,		
@@ -35,13 +37,15 @@ namespace game_framework {
 		FLAG_BOX,
 		FLAG_BOX_ITEM,
 		FLAG_HOME_PAUSED,
-		FLAG_HOME_OPTIONS
+		FLAG_HOME_OPTIONS,
+		FLAG_HOME_BAG
 	};
 
 	enum TOWN_FLAG {
 		FLAG_TOWN_NORMAL,
 		FLAG_TOWN_PAUSED,
-		FLAG_TOWN_OPTIONS
+		FLAG_TOWN_OPTIONS,
+		FLAG_TOWN_BAG
 	};
 
 	

@@ -19,6 +19,8 @@
     <ClCompile Include="Source\PausedMenu.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Items.cpp" />
+    <ClCompile Include="Source\Bag.cpp" />
+    <ClCompile Include="Source\Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -43,6 +45,8 @@
     <ClInclude Include="Source\PausedMenu.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Items.h" />
+    <ClInclude Include="Source\Bag.h" />
+    <ClInclude Include="Source\Enemy.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
@@ -289,6 +293,15 @@
     <Image Include="RES\InGame\Box\TEXT_Offense.bmp" />
     <Image Include="RES\InGame\Box\unknown_item.bmp" />
     <Image Include="RES\InGame\Box\item_cursor.bmp" />
+    <Image Include="RES\InGame\Bag\Board.bmp" />
+    <Image Include="RES\InGame\Item\Offense\01.bmp" />
+    <Image Include="RES\InGame\Item\Offense\02.bmp" />
+    <Image Include="RES\InGame\Item\Misc\01.bmp" />
+    <Image Include="RES\InGame\Item\Misc\02.bmp" />
+    <Image Include="RES\InGame\Item\Defense\01.bmp" />
+    <Image Include="RES\InGame\Item\Defense\02.bmp" />
+    <Image Include="RES\InGame\Item\Defense\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Blockhead.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

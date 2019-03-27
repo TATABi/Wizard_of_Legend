@@ -44,11 +44,15 @@ void CGameStateInit::OnInit()
 	bm_quit.LoadBitmap(MENU_ENTERMENU_QUIT);
 	bm_single_player.LoadBitmap(MENU_ENTERMENU_SINGLE_PLAYER);
 
+	//global variable initialize...//
+
 	g_items.LoadBitmap();
 	g_pauseMenu.LoadBitmap();
 	g_character.LoadBitmap();
 	g_ui.LoadBitmap();
+	g_bag.LoadBitmap();
 
+	/////////////////////////////////
 	ShowInitProgress(65);
 
 	
@@ -132,6 +136,7 @@ void CGameStateInit::OnRButtonDown(UINT nFlags, CPoint point)
 
 void CGameStateInit::OnShow()
 {
+	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 	switch (flags) {
 	case 0:
 		ani_menu_1.OnMove();
@@ -226,6 +231,8 @@ void CGameStateRun_Home::OnBeginState()
 	map.Initialize(740, 918);
 	g_character.Initialize();
 
+	
+
 	//從其他場景回來不用再次出現加入選單
 	if (ani_light_beam.IsFinalBitmap())
 	{
@@ -242,7 +249,7 @@ void CGameStateRun_Home::OnBeginState()
 
 void CGameStateRun_Home::OnMove()					
 {
-	
+
 	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
 	if(delay_counter > -1)
@@ -252,7 +259,8 @@ void CGameStateRun_Home::OnMove()
 	bm_loading.SetTopLeft(0, 0);
 	g_character.OnMove(&map);
 	map.OnMove();
-	box.OnMove();
+	box.OnMove(g_items.GetAllItem());
+	g_bag.OnMove(g_items.GetItemInBag());
 	g_ui.OnMove();
 
 }
@@ -264,7 +272,6 @@ void CGameStateRun_Home::OnInit()
 
 	map.LoadBitmap();
 	box.LoadBitmap();
-	
 
 
 	CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
@@ -298,6 +305,7 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_A = 0x41;
 	const char KEY_D = 0x44;
 	const char KEY_F = 0x46;
+	const char KEY_TAB = 0x09;
 	
 	if (delay_counter < 0)
 	{
@@ -342,8 +350,13 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				g_pauseMenu.Paused(true);
 				flags = FLAG_HOME_PAUSED;
 			}
-			break;
 
+			if (nChar == KEY_TAB)
+			{
+				g_bag.Open(true);
+				flags = FLAG_HOME_BAG;
+			}
+			break;
 
 		case FLAG_JOIN:
 
@@ -452,6 +465,13 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				g_pauseMenu.PrePausedMenu();
 				flags = FLAG_HOME_PAUSED;
 			}
+		case FLAG_HOME_BAG:
+			if (nChar == KEY_TAB || nChar == KEY_ESC)
+			{
+				g_bag.Open(false);
+				flags = FLAG_HOME_NORMAL;
+			}
+			break;
 		}
 	}
 
@@ -510,7 +530,8 @@ void CGameStateRun_Home::OnShow()
 	if (delay_counter < 0)
 	{
 		map.OnShowBackground();
-		
+		map.OnShow();		//稻草人
+
 		if (flags == 1)
 			bm_join.ShowBitmap();
 		else
@@ -524,11 +545,16 @@ void CGameStateRun_Home::OnShow()
 			else
 			{
 				g_character.OnShow();
+				
 				map.OnShowWall();
+			
 				map.OnShowPressF();
-				box.OnShow(g_items.GetItemInBox());
+
+				box.OnShow();
 				g_ui.OnShow();
+				g_bag.OnShow();
 				g_pauseMenu.OnShow();
+
 	
 			}
 			
@@ -633,6 +659,7 @@ void CGameStateRun_Town::OnMove()
 	g_character.OnMove(&map);
 	map.OnMove();
 	g_ui.OnMove();
+	g_bag.OnMove(g_items.GetItemInBag());
 
 }
 
@@ -657,11 +684,13 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_A = 0x41;
 	const char KEY_D = 0x44;
 	const char KEY_F = 0x46;
+	const char KEY_TAB = 0x09;
+
 	if (delay_counter < 0)
 	{
 		switch (flags)
 		{
-		case 0:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
+		case FLAG_TOWN_NORMAL:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
 			
 			if (nChar == KEY_UP)
 				g_items.Effect();
@@ -712,6 +741,13 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				flags = FLAG_TOWN_PAUSED;
 			}
 
+			if (nChar == KEY_TAB)
+			{
+				g_bag.Open(true);
+				flags = FLAG_TOWN_BAG;
+			}
+			break;
+
 			break;
 
 		case FLAG_TOWN_PAUSED:									//暫停選單
@@ -756,6 +792,15 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				g_pauseMenu.PrePausedMenu();
 				flags = FLAG_TOWN_PAUSED;
 			}
+			break;
+
+		case FLAG_TOWN_BAG:
+			if (nChar == KEY_TAB || nChar == KEY_ESC)
+			{
+				g_bag.Open(false);
+				flags = FLAG_TOWN_NORMAL;
+			}
+			break;
 		
 		}
 		
@@ -820,6 +865,7 @@ void CGameStateRun_Town::OnShow()
 		map.OnShowWall();
 		map.OnShowPressF();
 		g_ui.OnShow();
+		g_bag.OnShow();
 		g_pauseMenu.OnShow();
 	}
 	else

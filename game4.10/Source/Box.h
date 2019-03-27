@@ -7,8 +7,8 @@ namespace game_framework {
 		Box();
 		void Initialize();
 		void LoadBitmap();
-		void OnMove();
-		void OnShow(vector<Item*>);
+		void OnMove(vector<Item*>);
+		void OnShow();
 		void Down();
 		void Up();
 		void Left();
@@ -35,6 +35,8 @@ namespace game_framework {
 		bool isOpendMisc;
 		const int ITEM_X = 40;
 		const int ITEM_Y = 40;
+		vector<Item*> temp_item;
+
 	};
 
 }

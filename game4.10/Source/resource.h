@@ -224,6 +224,16 @@
 #define BOX_OFFENSE_TEXT                475
 #define BOX_TEXT_OFFENSE                475
 #define ITEM_UNKNOWN                    476
+#define BAG_BOARD                       477
+#define ITEM_OFFENSE_01                 478
+#define ITEM_OFFENSE_02                 479
+#define ITEM_MISC_01                    480
+#define ITEM_MISC_02                    481
+#define ITEM_DEFENSE_01                 482
+#define ITEM_DEFENSE_02                 483
+#define ITEM_DEFENSE_03                 484
+#define IDB_BITMAP5                     486
+#define ENEMY_BLOCKHEAD                 486
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -236,7 +246,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        477
+#define _APS_NEXT_RESOURCE_VALUE        487
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

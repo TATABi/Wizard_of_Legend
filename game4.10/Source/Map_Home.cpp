@@ -9,14 +9,16 @@
 namespace game_framework {
 
 	Map_Home::Map_Home(int x, int y) : GameMap(x, y){
+		blockhead = new Enemy(650, 918);//////////////////
 	}
 
 	Map_Home::~Map_Home() {
-
+		delete blockhead;
 	}
 
 	void Map_Home::LoadBitmap()
 	{
+		blockhead->LoadBitmap();
 		ParentLoadBitmap();
 		_background.LoadBitmap(MAP_HOME);
 		_wall.LoadBitmap(MAP_HOME_WALL, RGB(50, 255, 0));
@@ -55,14 +57,15 @@ namespace game_framework {
 			ani_press_f.Reset();
 			isPressF = false;
 		}
+
+		blockhead->OnMove(_cx, _cy);///////////////////////
+
 	}
 
 	
 	void Map_Home::OnShow()
 	{
-		OnShowBackground();
-		OnShowWall();
-		OnShowPressF();
+		blockhead->OnShow();//////////////
 	}
 	
 	void Map_Home::SetCharacterXY(int dx, int dy)
