@@ -6,11 +6,11 @@ namespace game_framework {
 	class Skill {				
 	public:
 		Skill(int, int);
-		~Skill();
-		virtual void OnMove();
-		virtual void OnShow();
-		virtual void LoadBitmap();
-		virtual void Initialize();
+		~Skill() ;
+		virtual void OnMove() = 0;
+		virtual void OnShow() = 0;
+		virtual void LoadBitmap() = 0;
+		virtual void Initialize() = 0;
 	protected:
 		CMovingBitmap bm_skill;
 		int timer;									//存活時間
@@ -20,6 +20,7 @@ namespace game_framework {
 		int hitbox_X, hitbox_Y;						//hitBox中心
 		const int CHARACTER_SCREEN_X = 285;			//角色螢幕位置要不要拉去全域
 		const int CHARACTER_SCREEN_Y = 205;		
+		bool isDelete;
 	};
 }
 #endif

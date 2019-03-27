@@ -7,11 +7,10 @@ namespace game_framework {
 	{
 	public:
 		Skill_FireBall(int, int);
-		~Skill_FireBall();
-		void OnMove();
-		void OnShow();
-		void LoadBitmap();
-		void Initialize();
+		void OnMove() override;
+		void OnShow() override;
+		void LoadBitmap() override;
+		void Initialize() override;
 	};
 }
 #endif

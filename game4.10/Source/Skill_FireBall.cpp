@@ -12,10 +12,6 @@ namespace game_framework
 	{	
 		Initialize();
 	}
-	Skill_FireBall::~Skill_FireBall()
-	{
-
-	}
 
 	void Skill_FireBall::LoadBitmap()
 	{
@@ -24,12 +20,7 @@ namespace game_framework
 
 	void Skill_FireBall::OnMove()
 	{
-		bm_skill.SetTopLeft(vecX, vecY);		//計算atan取得角度，再用角度去移動
-		timer--;
-		if(timer = 0)
-		{ 
-			delete this;
-		}
+		bm_skill.SetTopLeft(vecX,vecY);		//計算atan取得角度，再用角度去移動
 	}
 
 	void Skill_FireBall::OnShow()
@@ -44,5 +35,6 @@ namespace game_framework
 		hitbox_X = 50;
 		hitbox_Y = 30; 
 		timer = 180;
+		isDelete = false;
 	}
 }

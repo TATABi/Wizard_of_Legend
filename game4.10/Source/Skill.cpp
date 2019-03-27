@@ -16,26 +16,5 @@ namespace game_framework
 	}
 	Skill::~Skill()
 	{
-		
-	}
-
-	void Skill::OnShow()
-	{
-
-	}
-
-	void Skill::LoadBitmap()
-	{
-
-	}
-
-	void Skill::OnMove()
-	{
-
-	}
-
-	void Skill::Initialize()
-	{
-
 	}
 }

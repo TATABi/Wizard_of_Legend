@@ -211,6 +211,7 @@ CGameStateRun_Home::CGameStateRun_Home(CGame *g)
 
 CGameStateRun_Home::~CGameStateRun_Home()
 {
+	//刪除skillList裡面過期的skill
 }
 
 void CGameStateRun_Home::OnBeginState()
@@ -474,8 +475,12 @@ void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
+	
+
+
 	CPoint mPoint;
 	GetCursorPos(&mPoint);
+	ScreenToClient (AfxGetMainWnd()->m_hWnd, &mPoint);
 	Skill_FireBall *newFireBall = new Skill_FireBall(mPoint.x, mPoint.y);	
 	skillList.push_back(newFireBall);
 }
@@ -530,6 +535,13 @@ void CGameStateRun_Home::OnShow()
 	}
 	else
 		bm_loading.ShowBitmap();
+
+	for each (Skill* skill in skillList)
+	{
+		skill->LoadBitmap();
+		skill->OnMove();
+		skill->OnShow();
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
