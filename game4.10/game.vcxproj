@@ -159,7 +159,7 @@
       <ObjectFileName>.\Release/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
     <ResourceCompile>
@@ -261,9 +261,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
+    <ClCompile Include="Source\Bag.cpp" />
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\CharacterData.cpp" />
+    <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -316,8 +318,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\Bag.h" />
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Character.h" />
+    <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\CharacterData.h" />
     <ClInclude Include="Source\gameDoc.h" />
@@ -362,7 +366,6 @@
     <Image Include="..\..\..\Desktop\game4.10\RES\loading.bmp" />
     <Image Include="..\..\..\Desktop\game4.10\RES\Toolbar.bmp" />
     <Image Include="..\..\..\Downloads\Home.bmp" />
-    <Image Include="..\..\技能\火球.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bmp00001.bmp" />
     <Image Include="RES\bmp_slash.bmp" />
@@ -451,6 +454,7 @@
     <Image Include="RES\Character\Up\up (8).bmp" />
     <Image Include="RES\Character\Up\up (9).bmp" />
     <Image Include="RES\Corsor.bmp" />
+    <Image Include="RES\InGame\Bag\Board.bmp" />
     <Image Include="RES\InGame\Box\board.bmp" />
     <Image Include="RES\InGame\Box\DEFENSE\00.bmp" />
     <Image Include="RES\InGame\Box\DEFENSE\01.bmp" />
@@ -474,9 +478,17 @@
     <Image Include="RES\InGame\Box\TEXT_Misc.bmp" />
     <Image Include="RES\InGame\Box\TEXT_Offense.bmp" />
     <Image Include="RES\InGame\Box\unknown_item.bmp" />
+    <Image Include="RES\InGame\Enemy\Blockhead.bmp" />
     <Image Include="RES\InGame\Home\Home.bmp" />
     <Image Include="RES\InGame\Home\wall.bmp" />
     <Image Include="RES\InGame\InGame_01.bmp" />
+    <Image Include="RES\InGame\Item\Defense\01.bmp" />
+    <Image Include="RES\InGame\Item\Defense\02.bmp" />
+    <Image Include="RES\InGame\Item\Defense\03.bmp" />
+    <Image Include="RES\InGame\Item\Misc\01.bmp" />
+    <Image Include="RES\InGame\Item\Misc\02.bmp" />
+    <Image Include="RES\InGame\Item\Offense\01.bmp" />
+    <Image Include="RES\InGame\Item\Offense\02.bmp" />
     <Image Include="RES\InGame\Join\Join.bmp" />
     <Image Include="RES\InGame\LightBeam\00.bmp" />
     <Image Include="RES\InGame\LightBeam\01.bmp" />

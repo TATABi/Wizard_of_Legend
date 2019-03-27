@@ -44,8 +44,19 @@ void CGameStateInit::OnInit()
 	bm_quit.LoadBitmap(MENU_ENTERMENU_QUIT);
 	bm_single_player.LoadBitmap(MENU_ENTERMENU_SINGLE_PLAYER);
 
-	//Sleep(200);
+	//global variable initialize...//
+
+	g_items.LoadBitmap();
+	g_pauseMenu.LoadBitmap();
+	g_character.LoadBitmap();
+	g_ui.LoadBitmap();
+	g_bag.LoadBitmap();
+
+	/////////////////////////////////
 	ShowInitProgress(65);
+
+	
+
 }
 
 void CGameStateInit::OnBeginState()
@@ -125,6 +136,7 @@ void CGameStateInit::OnRButtonDown(UINT nFlags, CPoint point)
 
 void CGameStateInit::OnShow()
 {
+	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 	switch (flags) {
 	case 0:
 		ani_menu_1.OnMove();
@@ -219,10 +231,9 @@ CGameStateRun_Home::~CGameStateRun_Home()
 
 void CGameStateRun_Home::OnBeginState()
 {
-	ui.LoadBitmap();
 	delay_counter = 30 * 1; // 1 seconds
 	map.Initialize(740, 918);
-	character.Initialize();
+	g_character.Initialize();
 	//從其他場景回來不用再次出現加入選單
 	if (ani_light_beam.IsFinalBitmap())
 	{
@@ -246,25 +257,27 @@ void CGameStateRun_Home::OnMove()
 
 	bm_join.SetTopLeft(100, 100);
 	bm_loading.SetTopLeft(0, 0);
-	character.OnMove(&map);
+	g_character.OnMove(&map);
 	map.OnMove();
-	box.OnMove();
-	ui.OnMove();
 	for each (Skill* skill in skillList)
 	{
 		skill->OnMove();
 	}
+	box.OnMove(g_items.GetAllItem());
+	g_bag.OnMove(g_items.GetItemInBag());
+	g_ui.OnMove();
+
+
 }
 
 void CGameStateRun_Home::OnInit()  
 {
 	bm_join.LoadBitmap(JOIN);
 	bm_loading.LoadBitmap(LOADING);
-	character.LoadBitmap();
+
 	map.LoadBitmap();
 	box.LoadBitmap();
-	
-	pauseMenu.LoadBitmap();
+
 
 	CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
 	CAudio::Instance()->Load(AUDIO_PUTTING, "sounds\\putting.mp3");
@@ -297,6 +310,7 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_A = 0x41;
 	const char KEY_D = 0x44;
 	const char KEY_F = 0x46;
+	const char KEY_TAB = 0x09;
 	
 	if (delay_counter < 0)
 	{
@@ -305,18 +319,18 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		case FLAG_HOME_NORMAL:
 			//進入遊戲，沒有開啟任何選單
 			if (nChar == KEY_DOWN || nChar == KEY_S)
-				character.SetMovingDown(true);
+				g_character.SetMovingDown(true);
 			if (nChar == KEY_UP || nChar == KEY_W)
-				character.SetMovingUp(true);
+				g_character.SetMovingUp(true);
 			if (nChar == KEY_LEFT || nChar == KEY_A)
-				character.SetMovingLeft(true);
+				g_character.SetMovingLeft(true);
 			if (nChar == KEY_RIGHT || nChar == KEY_D)
-				character.SetMovingRight(true);
+				g_character.SetMovingRight(true);
 			if (nChar == KEY_SPACE)
 			{
-				if (character.CanDash())
+				if (g_character.CanDash())
 				{
-					character.Dash();
+					g_character.Dash();
 					CAudio::Instance()->Play(AUDIO_DASH, false);
 				}
 			}
@@ -338,11 +352,16 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 			if (nChar == KEY_ESC)	//PAUSED選單
 			{
-				pauseMenu.Paused(true);
+				g_pauseMenu.Paused(true);
 				flags = FLAG_HOME_PAUSED;
 			}
-			break;
 
+			if (nChar == KEY_TAB)
+			{
+				g_bag.Open(true);
+				flags = FLAG_HOME_BAG;
+			}
+			break;
 
 		case FLAG_JOIN:
 
@@ -409,18 +428,18 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 		case FLAG_HOME_PAUSED:									//暫停選單
 			if (nChar == KEY_DOWN || nChar == KEY_S)
-				pauseMenu.NextPausedMenu();
+				g_pauseMenu.NextPausedMenu();
 			if (nChar == KEY_UP || nChar == KEY_W)
-				pauseMenu.PrePausedMenu();
+				g_pauseMenu.PrePausedMenu();
 			if (nChar == KEY_ESC)
 			{
 				flags = FLAG_HOME_NORMAL;
-				pauseMenu.Paused(false);
+				g_pauseMenu.Paused(false);
 			}
 			if (nChar == KEY_SPACE)
 			{
 				int temp;
-				temp = pauseMenu.EnterPauseMenu();
+				temp = g_pauseMenu.EnterPauseMenu();
 
 				switch (temp)
 				{
@@ -447,10 +466,17 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		case FLAG_HOME_OPTIONS:		//點進options
 			if (nChar == KEY_ESC || nChar == KEY_SPACE)
 			{
-				pauseMenu.PrePausedMenu();
-				pauseMenu.PrePausedMenu();
+				g_pauseMenu.PrePausedMenu();
+				g_pauseMenu.PrePausedMenu();
 				flags = FLAG_HOME_PAUSED;
 			}
+		case FLAG_HOME_BAG:
+			if (nChar == KEY_TAB || nChar == KEY_ESC)
+			{
+				g_bag.Open(false);
+				flags = FLAG_HOME_NORMAL;
+			}
+			break;
 		}
 	}
 
@@ -470,13 +496,13 @@ void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_D = 0x44;
 	
 	if (nChar == KEY_DOWN || nChar == KEY_S)
-		character.SetMovingDown(false);
+		g_character.SetMovingDown(false);
 	if (nChar == KEY_UP || nChar == KEY_W)
-		character.SetMovingUp(false);
+		g_character.SetMovingUp(false);
 	if (nChar == KEY_LEFT || nChar == KEY_A)
-		character.SetMovingLeft(false);
+		g_character.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT || nChar == KEY_D)
-		character.SetMovingRight(false);
+		g_character.SetMovingRight(false);
 }
 
 void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -513,7 +539,7 @@ void CGameStateRun_Home::OnShow()
 	if (delay_counter < 0)
 	{
 		map.OnShowBackground();
-
+		map.OnShow();		//稻草人
 		if (flags == 1)
 			bm_join.ShowBitmap();
 		else
@@ -526,12 +552,10 @@ void CGameStateRun_Home::OnShow()
 			}
 			else
 			{
-				character.OnShow();
+				g_character.OnShow();				
 				map.OnShowWall();
 				map.OnShowPressF();
 				box.OnShow();
-				ui.OnShow();
-				pauseMenu.OnShow();
 				for (iter = skillList.begin(); iter != skillList.end(); iter++)
 				{
 					if ((*iter)->GetIsDelete() == true)
@@ -549,6 +573,10 @@ void CGameStateRun_Home::OnShow()
 						break;
 					}
 				}
+			}
+				g_ui.OnShow();
+				g_bag.OnShow();
+				g_pauseMenu.OnShow();
 			}
 		}
 	}
@@ -629,10 +657,9 @@ CGameStateRun_Town::~CGameStateRun_Town()
 
 void CGameStateRun_Town::OnBeginState()
 {
-	ui.LoadBitmap();
 	delay_counter = 30 * 1; // 1 seconds
 	flags = 0;
-	character.Initialize();
+	g_character.Initialize();
 	map.Initialize(770, 1065);
 	CAudio::Instance()->Stop(AUDIO_HOME);
 	CAudio::Instance()->Play(AUDIO_TOWN, true);
@@ -647,19 +674,17 @@ void CGameStateRun_Town::OnMove()
 		delay_counter--;
 
 	bm_loading.SetTopLeft(0, 0);
-	character.OnMove(&map);
+	g_character.OnMove(&map);
 	map.OnMove();
-	ui.OnMove();
+	g_ui.OnMove();
+	g_bag.OnMove(g_items.GetItemInBag());
 
 }
 
 void CGameStateRun_Town::OnInit()
 {
 	bm_loading.LoadBitmap(LOADING);
-	character.LoadBitmap();
 	map.LoadBitmap();
-	
-	pauseMenu.LoadBitmap();
 	CAudio::Instance()->Load(AUDIO_TOWN, "sounds\\TownBGM.wav");
 
 }
@@ -677,24 +702,29 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_A = 0x41;
 	const char KEY_D = 0x44;
 	const char KEY_F = 0x46;
+	const char KEY_TAB = 0x09;
+
 	if (delay_counter < 0)
 	{
 		switch (flags)
 		{
-		case 0:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
+		case FLAG_TOWN_NORMAL:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
+			
+			if (nChar == KEY_UP)
+				g_items.Effect();
 			if (nChar == KEY_DOWN || nChar == KEY_S)
-				character.SetMovingDown(true);
+				g_character.SetMovingDown(true);
 			if (nChar == KEY_UP || nChar == KEY_W)
-				character.SetMovingUp(true);
+				g_character.SetMovingUp(true);
 			if (nChar == KEY_LEFT || nChar == KEY_A)
-				character.SetMovingLeft(true);
+				g_character.SetMovingLeft(true);
 			if (nChar == KEY_RIGHT || nChar == KEY_D)
-				character.SetMovingRight(true);
+				g_character.SetMovingRight(true);
 			if (nChar == KEY_SPACE)
 			{
-				if (character.CanDash())
+				if (g_character.CanDash())
 				{
-					character.Dash();
+					g_character.Dash();
 					CAudio::Instance()->Play(AUDIO_DASH, false);
 				}
 			}
@@ -725,26 +755,33 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 			if (nChar == KEY_ESC)	//PAUSED選單
 			{
-				pauseMenu.Paused(true);
+				g_pauseMenu.Paused(true);
 				flags = FLAG_TOWN_PAUSED;
 			}
+
+			if (nChar == KEY_TAB)
+			{
+				g_bag.Open(true);
+				flags = FLAG_TOWN_BAG;
+			}
+			break;
 
 			break;
 
 		case FLAG_TOWN_PAUSED:									//暫停選單
 			if (nChar == KEY_DOWN || nChar == KEY_S)
-				pauseMenu.NextPausedMenu();
+				g_pauseMenu.NextPausedMenu();
 			if (nChar == KEY_UP || nChar == KEY_W)
-				pauseMenu.PrePausedMenu();
+				g_pauseMenu.PrePausedMenu();
 			if (nChar == KEY_ESC)
 			{
 				flags = FLAG_TOWN_NORMAL;
-				pauseMenu.Paused(false);
+				g_pauseMenu.Paused(false);
 			}
 			if (nChar == KEY_SPACE)
 			{
 				int temp;
-				temp = pauseMenu.EnterPauseMenu();
+				temp = g_pauseMenu.EnterPauseMenu();
 
 				switch (temp)
 				{
@@ -769,10 +806,19 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		case FLAG_TOWN_OPTIONS:		//點進options
 			if (nChar == KEY_ESC || nChar == KEY_SPACE)
 			{
-				pauseMenu.PrePausedMenu();
-				pauseMenu.PrePausedMenu();
+				g_pauseMenu.PrePausedMenu();
+				g_pauseMenu.PrePausedMenu();
 				flags = FLAG_TOWN_PAUSED;
 			}
+			break;
+
+		case FLAG_TOWN_BAG:
+			if (nChar == KEY_TAB || nChar == KEY_ESC)
+			{
+				g_bag.Open(false);
+				flags = FLAG_TOWN_NORMAL;
+			}
+			break;
 		
 		}
 		
@@ -794,13 +840,13 @@ void CGameStateRun_Town::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_D = 0x44;
 
 	if (nChar == KEY_DOWN || nChar == KEY_S)
-		character.SetMovingDown(false);
+		g_character.SetMovingDown(false);
 	if (nChar == KEY_UP || nChar == KEY_W)
-		character.SetMovingUp(false);
+		g_character.SetMovingUp(false);
 	if (nChar == KEY_LEFT || nChar == KEY_A)
-		character.SetMovingLeft(false);
+		g_character.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT || nChar == KEY_D)
-		character.SetMovingRight(false);
+		g_character.SetMovingRight(false);
 }
 
 void CGameStateRun_Town::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -833,11 +879,12 @@ void CGameStateRun_Town::OnShow()
 	if (delay_counter < 0)
 	{
 		map.OnShowBackground();
-		character.OnShow();
+		g_character.OnShow();
 		map.OnShowWall();
 		map.OnShowPressF();
-		ui.OnShow();
-		pauseMenu.OnShow();
+		g_ui.OnShow();
+		g_bag.OnShow();
+		g_pauseMenu.OnShow();
 	}
 	else
 		bm_loading.ShowBitmap();
