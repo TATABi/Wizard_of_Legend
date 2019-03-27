@@ -1,12 +1,13 @@
 #ifndef BOX_H
 #define BOX_H
+#include "Item.h"
 namespace game_framework {
 	class Box {
 	public:
 		Box();
 		void Initialize();
 		void LoadBitmap();
-		void OnMove();
+		void OnMove(vector<Item*>);
 		void OnShow();
 		void Down();
 		void Up();
@@ -21,6 +22,7 @@ namespace game_framework {
 		CMovingBitmap bm_offense_text;
 		CMovingBitmap bm_defense_text;
 		CMovingBitmap bm_misc_text;
+		CMovingBitmap bm_unknown_item;
 		CAnimation ani_offense;
 		CAnimation ani_defense;
 		CAnimation ani_misc;
@@ -33,6 +35,8 @@ namespace game_framework {
 		bool isOpendMisc;
 		const int ITEM_X = 40;
 		const int ITEM_Y = 40;
+		vector<Item*> temp_item;
+
 	};
 
 }
