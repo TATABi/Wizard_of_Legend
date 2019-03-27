@@ -17,4 +17,9 @@ namespace game_framework
 	Skill::~Skill()
 	{
 	}
+
+	bool Skill::GetIsDelete()
+	{
+		return isDelete;
+	}
 }

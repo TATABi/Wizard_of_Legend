@@ -450,6 +450,8 @@ ITEM_UNKNOWN            BITMAP                  "..\\RES\\InGame\\Box\\unknown_i
 
 Skill_FireBall_Temp     BITMAP                  "..\\RES\\Skill\\Skill_FireBall.bmp"
 
+Skill_Temp              BITMAP                  "..\\RES\\Skill\\Skill_Temp.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -1,5 +1,6 @@
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
+#include "CharacterData.h"
 namespace game_framework {
 
 	class GameMap {
@@ -19,6 +20,7 @@ namespace game_framework {
 		virtual void OnMove()=0;
 		virtual void OnShow()=0;
 		virtual void SetCharacterXY(int,int)=0;
+
 	protected:
 		CMovingBitmap _background; //背景圖
 		CMovingBitmap _wall; //牆
@@ -26,7 +28,6 @@ namespace game_framework {
 		CAnimation ani_press_f;  //press f 動畫
 		//int paused_flag;
 		//bool isPaused;
-		int _cx, _cy;  //角色所在Map的座標
 		bool isPressF;
 		int character_status;
 		const int collision_move[4] = { 24, 53, 20 , 7};   //(x,y,l,w) collision_move	碰撞判定範圍

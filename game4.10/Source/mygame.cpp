@@ -211,7 +211,10 @@ CGameStateRun_Home::CGameStateRun_Home(CGame *g)
 
 CGameStateRun_Home::~CGameStateRun_Home()
 {
-	//§R°£skillList¸Ì­±¹L´Áªºskill
+	for each (Skill* skill in skillList)
+	{
+		delete skill;
+	}
 }
 
 void CGameStateRun_Home::OnBeginState()
@@ -247,7 +250,10 @@ void CGameStateRun_Home::OnMove()
 	map.OnMove();
 	box.OnMove();
 	ui.OnMove();
-
+	for each (Skill* skill in skillList)
+	{
+		skill->OnMove();
+	}
 }
 
 void CGameStateRun_Home::OnInit()  
@@ -475,13 +481,9 @@ void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // ³B²z·Æ¹«ªº°Ê§@
 {
-	
-
-
-	CPoint mPoint;
-	GetCursorPos(&mPoint);
-	ScreenToClient (AfxGetMainWnd()->m_hWnd, &mPoint);
-	Skill_FireBall *newFireBall = new Skill_FireBall(mPoint.x, mPoint.y);	
+	GetCursorPos(&point);
+	ScreenToClient (AfxGetMainWnd()->m_hWnd, &point);
+	Skill_FireBall *newFireBall = new Skill_FireBall(point.x, point.y);	
 	skillList.push_back(newFireBall);
 }
 
@@ -507,11 +509,11 @@ void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§
 
 void CGameStateRun_Home::OnShow()
 {
-	
+
 	if (delay_counter < 0)
 	{
 		map.OnShowBackground();
-		
+
 		if (flags == 1)
 			bm_join.ShowBitmap();
 		else
@@ -530,18 +532,28 @@ void CGameStateRun_Home::OnShow()
 				box.OnShow();
 				ui.OnShow();
 				pauseMenu.OnShow();
+				for (iter = skillList.begin(); iter != skillList.end(); iter++)
+				{
+					if ((*iter)->GetIsDelete() == true)
+					{
+						delete *iter;
+						iter = skillList.erase(iter);
+						
+					}
+					else
+					{
+						(*iter)->OnShow();
+					}
+					if (iter == skillList.end())
+					{
+						break;
+					}
+				}
 			}
 		}
 	}
 	else
 		bm_loading.ShowBitmap();
-
-	for each (Skill* skill in skillList)
-	{
-		skill->LoadBitmap();
-		skill->OnMove();
-		skill->OnShow();
-	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -598,7 +610,6 @@ void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CGameStateRun_Options::OnShow()
 {
 	bm_option.ShowBitmap();
-
 }
 
 

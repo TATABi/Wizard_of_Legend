@@ -100,8 +100,7 @@ namespace game_framework {
 		UI ui;
 		PausedMenu pauseMenu;
 		std::vector<Skill*> skillList;					//存放所有技能
-		int i = 0;
-		
+		vector<Skill*>::iterator iter;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

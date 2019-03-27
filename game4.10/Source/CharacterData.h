@@ -5,6 +5,8 @@ namespace game_framework {
 	class CharacterData
 	{
 	public:
+		static int characterX;
+		static int characterY;
 		static int Money;
 		static int Diamond;
 		static int HP;

@@ -295,6 +295,7 @@
     <Image Include="res\menu\init\bitmap5.bmp" />
     <Image Include="..\..\技能\火球.bmp" />
     <Image Include="RES\Skill\Skill_FireBall.bmp" />
+    <Image Include="RES\Skill\Skill_Temp.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />
