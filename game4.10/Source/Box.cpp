@@ -5,7 +5,6 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Box.h"
-#include "ItemData.h"
 
 namespace game_framework {
 	Box::Box() {

@@ -211,6 +211,10 @@ CGameStateRun_Home::CGameStateRun_Home(CGame *g)
 
 CGameStateRun_Home::~CGameStateRun_Home()
 {
+	for each (Skill* skill in skillList)
+	{
+		delete skill;
+	}
 }
 
 void CGameStateRun_Home::OnBeginState()
@@ -219,7 +223,6 @@ void CGameStateRun_Home::OnBeginState()
 	delay_counter = 30 * 1; // 1 seconds
 	map.Initialize(740, 918);
 	character.Initialize();
-
 	//±q¨ä¥L³õ´º¦^¨Ó¤£¥Î¦A¦¸¥X²{¥[¤J¿ï³æ
 	if (ani_light_beam.IsFinalBitmap())
 	{
@@ -227,7 +230,7 @@ void CGameStateRun_Home::OnBeginState()
 		flags = FLAG_HOME_NORMAL;
 	}
 	else 
-		flags = FLAG_JOIN;
+		flags = FLAG_JOIN;	
 
 	CAudio::Instance()->Stop(AUDIO_TITLE);
 	CAudio::Instance()->Play(AUDIO_HOME, true);
@@ -236,7 +239,6 @@ void CGameStateRun_Home::OnBeginState()
 
 void CGameStateRun_Home::OnMove()					
 {
-	
 	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
 	if(delay_counter > -1)
@@ -248,7 +250,10 @@ void CGameStateRun_Home::OnMove()
 	map.OnMove();
 	box.OnMove();
 	ui.OnMove();
-
+	for each (Skill* skill in skillList)
+	{
+		skill->OnMove();
+	}
 }
 
 void CGameStateRun_Home::OnInit()  
@@ -276,7 +281,7 @@ void CGameStateRun_Home::OnInit()
 	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
 	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
 	ani_light_beam.SetTopLeft(0, 0);
-
+	
 }
 
 void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -476,7 +481,10 @@ void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // ³B²z·Æ¹«ªº°Ê§@
 {
-
+	GetCursorPos(&point);
+	ScreenToClient (AfxGetMainWnd()->m_hWnd, &point);
+	Skill_FireBall *newFireBall = new Skill_FireBall(point.x, point.y);	
+	skillList.push_back(newFireBall);
 }
 
 void CGameStateRun_Home::OnLButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§@
@@ -501,10 +509,11 @@ void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§
 
 void CGameStateRun_Home::OnShow()
 {
+
 	if (delay_counter < 0)
 	{
 		map.OnShowBackground();
-		
+
 		if (flags == 1)
 			bm_join.ShowBitmap();
 		else
@@ -523,8 +532,24 @@ void CGameStateRun_Home::OnShow()
 				box.OnShow();
 				ui.OnShow();
 				pauseMenu.OnShow();
+				for (iter = skillList.begin(); iter != skillList.end(); iter++)
+				{
+					if ((*iter)->GetIsDelete() == true)
+					{
+						delete *iter;
+						iter = skillList.erase(iter);
+						
+					}
+					else
+					{
+						(*iter)->OnShow();
+					}
+					if (iter == skillList.end())
+					{
+						break;
+					}
+				}
 			}
-			
 		}
 	}
 	else
@@ -585,7 +610,6 @@ void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CGameStateRun_Options::OnShow()
 {
 	bm_option.ShowBitmap();
-
 }
 
 

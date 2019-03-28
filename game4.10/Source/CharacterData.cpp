@@ -8,6 +8,8 @@
 #include "CharacterData.h"
 
 namespace game_framework {
+	int CharacterData::characterX = 0;
+	int CharacterData::characterY = 0;
 	int CharacterData::Money = 100;
 	int CharacterData::Diamond = 0;
 	int CharacterData::HP = 300;

@@ -19,6 +19,8 @@
     <ClCompile Include="Source\PausedMenu.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Items.cpp" />
+    <ClCompile Include="Source\Skill.cpp" />
+    <ClCompile Include="Source\Skill_FireBall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -43,6 +45,7 @@
     <ClInclude Include="Source\PausedMenu.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Items.h" />
+    <ClInclude Include="Source\Skill_FireBall.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
@@ -289,6 +292,10 @@
     <Image Include="RES\InGame\Box\TEXT_Offense.bmp" />
     <Image Include="RES\InGame\Box\unknown_item.bmp" />
     <Image Include="RES\InGame\Box\item_cursor.bmp" />
+    <Image Include="res\menu\init\bitmap5.bmp" />
+    <Image Include="..\..\技能\火球.bmp" />
+    <Image Include="RES\Skill\Skill_FireBall.bmp" />
+    <Image Include="RES\Skill\Skill_Temp.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

@@ -20,8 +20,8 @@ namespace game_framework {
 
 	void GameMap::Initialize(int x, int y) 
 	{
-		_cx = x;
-		_cy = y;	
+		CharacterData::characterX = x;
+		CharacterData::characterY = y;
 		ani_press_f.SetDelayCount(2);
 		isPressF = false;
 		character_status = 0;
@@ -40,8 +40,8 @@ namespace game_framework {
 	
 	void GameMap::ParentOnMove()
 	{
-		_background.SetTopLeft(CHARACTER_SCREEN_X - _cx  , CHARACTER_SCREEN_Y - _cy);
-		_wall.SetTopLeft(CHARACTER_SCREEN_X - _cx	, CHARACTER_SCREEN_Y - _cy );
+		_background.SetTopLeft(CHARACTER_SCREEN_X - CharacterData::characterX, CHARACTER_SCREEN_Y - CharacterData::characterY);
+		_wall.SetTopLeft(CHARACTER_SCREEN_X - CharacterData::characterX, CHARACTER_SCREEN_Y - CharacterData::characterY);
 	}
 	
 	void GameMap::OnShowBackground()
@@ -93,7 +93,4 @@ namespace game_framework {
 	{
 		return character_status;
 	}
-
 }
-
-

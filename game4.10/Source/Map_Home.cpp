@@ -25,7 +25,7 @@ namespace game_framework {
 	void Map_Home::OnMove()
 	{
 		ParentOnMove();
-		character_status = home_map[_cx + collision_move[0] + 10][_cy + collision_move[1] + 3];
+		character_status = home_map[CharacterData::characterX + collision_move[0] + 10][CharacterData::characterY + collision_move[1] + 3];
 		int temp_x = 0, temp_y = 0;
 		if (character_status == 1 || character_status == 2 || character_status == 3)
 		{
@@ -48,7 +48,7 @@ namespace game_framework {
 				break;
 			}
 			isPressF = true;
-			ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - _cx, CHARACTER_SCREEN_Y + temp_y - _cy);
+			ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - CharacterData::characterX, CHARACTER_SCREEN_Y + temp_y - CharacterData::characterY);
 		}
 		else
 		{
@@ -67,17 +67,13 @@ namespace game_framework {
 	
 	void Map_Home::SetCharacterXY(int dx, int dy)
 	{
-
-
-		if (home_map[_cx + collision_move[0] + dx][_cy + collision_move[1] + dy] != -1							//左上
-			&& home_map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + dy] != -1				//右上
-			&& home_map[_cx + collision_move[0] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1				//左下
-			&& home_map[_cx + collision_move[0] + collision_move[2] + dx][_cy + collision_move[1] + collision_move[3] + dy] != -1)		//右下
+		if (home_map[CharacterData::characterX + collision_move[0] + dx][CharacterData::characterY + collision_move[1] + dy] != -1							//左上
+			&& home_map[CharacterData::characterX + collision_move[0] + collision_move[2] + dx][CharacterData::characterY + collision_move[1] + dy] != -1				//右上
+			&& home_map[CharacterData::characterX + collision_move[0] + dx][CharacterData::characterY + collision_move[1] + collision_move[3] + dy] != -1				//左下
+			&& home_map[CharacterData::characterX + collision_move[0] + collision_move[2] + dx][CharacterData::characterY + collision_move[1] + collision_move[3] + dy] != -1)		//右下
 		{
-			_cx += dx;
-			_cy += dy;
+			CharacterData::characterX += dx;
+			CharacterData::characterY += dy;
 		}
-
 	}
-
 }

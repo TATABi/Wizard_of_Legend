@@ -4,6 +4,7 @@
 #include "PausedMenu.h"
 #include "CharacterData.h"
 #include "Skill.h"
+#include "Skill_FireBall.h"
 
 namespace game_framework {
 	
@@ -92,12 +93,14 @@ namespace game_framework {
 		CMovingBitmap bm_loading;						// loading字樣的圖片
 		Character character;							// 角色
 		CAnimation ani_light_beam;						// 角色在家中現身的動畫
-		HOME_FLAG flags;										// 現在畫面的狀態 0:顯示加入遊戲的選項 1:進入遊戲(沒開任何選單) 2:開啟道具箱 3:開啟書 4:傳送至Town
+		HOME_FLAG flags;								// 現在畫面的狀態 0:顯示加入遊戲的選項 1:進入遊戲(沒開任何選單) 2:開啟道具箱 3:開啟書 4:傳送至Town
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
-		Map_Home map;								// 地圖
+		Map_Home map;									// 地圖
 		Box box;
 		UI ui;
 		PausedMenu pauseMenu;
+		std::vector<Skill*> skillList;					//存放所有技能
+		vector<Skill*>::iterator iter;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -145,7 +148,7 @@ namespace game_framework {
 		Character character;							// 角色
 		int flags;										// 
 		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
-		Map_Town map;								// 地圖
+		Map_Town map;									// 地圖
 		UI ui;
 		PausedMenu pauseMenu;
 	};
@@ -164,7 +167,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		int counter;	// 倒數之計數器
+		int counter;									// 倒數之計數器
 
 	};
 
