@@ -25,14 +25,16 @@ namespace game_framework {
 		ani_press_f.SetDelayCount(2);
 		isPressF = false;
 		character_status = 0;
-		
 	}
 
 	void GameMap::ParentLoadBitmap()
 	{
-		int m[6] = { PRESS_F_01, PRESS_F_02, PRESS_F_03 , PRESS_F_04, PRESS_F_05, PRESS_F_06 };
-		for (int i = 0; i < 6;i++)
-			ani_press_f.AddBitmap(m[i], RGB(50, 255, 0));
+		ani_press_f.AddBitmap(PRESS_F_01, RGB(50, 255, 0));
+		ani_press_f.AddBitmap(PRESS_F_02, RGB(50, 255, 0));
+		ani_press_f.AddBitmap(PRESS_F_03, RGB(50, 255, 0));
+		ani_press_f.AddBitmap(PRESS_F_04, RGB(50, 255, 0));
+		ani_press_f.AddBitmap(PRESS_F_05, RGB(50, 255, 0));
+		ani_press_f.AddBitmap(PRESS_F_06, RGB(50, 255, 0));
 
 	}
 	
@@ -57,7 +59,36 @@ namespace game_framework {
 		if (isPressF)
 			ani_press_f.OnShow();
 	}
-	
+	/*
+	void GameMap::Paused(bool paused)
+	{
+		isPaused = paused;
+		paused_flag = 0;
+	}
+
+	void GameMap::OnShowPaused()
+	{
+		if (isPaused)
+		{
+			switch (paused_flag)
+			{
+			case 0:
+				paused_resume.ShowBitmap();
+				break;
+			case 1:
+				paused_title.ShowBitmap();
+				break;
+			case 2:
+				paused_options.ShowBitmap();
+				break;
+			case 3:
+				paused_quit.ShowBitmap();
+				break;
+			}
+		}
+	}
+	*/
+
 	int GameMap::GetCharacterStatus() 
 	{
 		return character_status;

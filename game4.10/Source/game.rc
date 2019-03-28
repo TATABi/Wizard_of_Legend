@@ -447,15 +447,6 @@ BOX_TEXT_MISC           BITMAP                  "..\\RES\\InGame\\Box\\TEXT_Misc
 BOX_TEXT_OFFENSE        BITMAP                  "..\\RES\\InGame\\Box\\TEXT_Offense.bmp"
 
 ITEM_UNKNOWN            BITMAP                  "..\\RES\\InGame\\Box\\unknown_item.bmp"
-BAG_BOARD               BITMAP                  "..\\RES\\InGame\\Bag\\Board.bmp"
-ITEM_OFFENSE_01         BITMAP                  "..\\RES\\InGame\\Item\\Offense\\01.bmp"
-ITEM_OFFENSE_02         BITMAP                  "..\\RES\\InGame\\Item\\Offense\\02.bmp"
-ITEM_MISC_01            BITMAP                  "..\\RES\\InGame\\Item\\Misc\\01.bmp"
-ITEM_MISC_02            BITMAP                  "..\\RES\\InGame\\Item\\Misc\\02.bmp"
-ITEM_DEFENSE_01         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\01.bmp"
-ITEM_DEFENSE_02         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\02.bmp"
-ITEM_DEFENSE_03         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\03.bmp"
-ENEMY_BLOCKHEAD         BITMAP                  "..\\RES\\InGame\\Enemy\\Blockhead.bmp"
 
 Skill_FireBall_Temp     BITMAP                  "..\\RES\\Skill\\Skill_FireBall.bmp"
 

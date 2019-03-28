@@ -6,36 +6,28 @@
 #include "gamelib.h"
 #include "Item.h"
 
-
+/*
 namespace game_framework {
 	
-	Item::Item(int bm, string type, int number,int money, bool (*effect)()) 
+	Item::Item(int bm, int money, void *Effect()) 
 	{
 		Initialize();
-		bm_number = bm;
-		this->type = type;
-		this->number = number;
-		this->money = money;
-		Launched = effect;
-		
+		bm_item.LoadBitmap(bm, RGB(50, 255, 0));
+		(*this).money = money;
+		fptr = Effect;
 	}
-	
+
 	void Item::Initialize()
 	{
-		//isEquiped = false;
-		isEquiped = true; //test
+		isEquiped = false;
+		isReady = false;
 		isLuanched = false;
-		isOwned = true; //test
 	}
 
-	void Item::LoadBitmap()
+	
+	void Item::OnMove() 
 	{
-		bm_item.LoadBitmap(bm_number, RGB(50, 255, 0));
-	}
-
-	void Item::SetXY(int x, int y)
-	{
-		bm_item.SetTopLeft(x, y);
+		Effect();
 	}
 	
 	void Item::OnShow()
@@ -53,13 +45,35 @@ namespace game_framework {
 		return isEquiped;
 	}
 
-	void Item::Effect()			//一直做
+	void Item::MeetCondition()
 	{
-		if (isEquiped && !isLuanched)	//裝備 &還未發動效果
-			isLuanched = Launched();
+		if (isEquiped && !isLuanched)		//發動
+		{
+			// do something if
+			Effect();
+			isLuanched = true;
+		} 
+		else if(!isEquiped)
+		{
+			//do something		//解除
+		
+			isLuanched = false;
+		}
 	}
 	
-	bool Item::HaveItem()	//是否擁有Item
+	void Item::Effect()
+	{
+		
+		if (isEquiped && isReady && !isLuanched)	//裝備 &達成條件 &還未發動
+		{
+			// do something
+			isLuanched = true;
+		}
+		
+	}
+	
+
+	bool Item::HaveItem() 
 	{
 		return isOwned;
 	}
@@ -75,9 +89,5 @@ namespace game_framework {
 		else
 			return false;
 	}
-
-	string Item::GetType()
-	{	
-		return type;
-	}
 }
+*/

@@ -1,7 +1,6 @@
 #ifndef SKILL_H
 #define SKILL_H
 #include "CharacterData.h"
-
 namespace game_framework {
 	//skill template class
 	class Skill {				

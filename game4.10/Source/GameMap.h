@@ -1,7 +1,6 @@
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
 #include "CharacterData.h"
-#include "Enemy.h"
 namespace game_framework {
 
 	class GameMap {
@@ -14,6 +13,8 @@ namespace game_framework {
 		void OnShowBackground();
 		void OnShowWall();
 		void OnShowPressF();
+		//void Paused(bool);
+		//void OnShowPaused();
 		int GetCharacterStatus();
 		virtual void LoadBitmap()=0;
 		virtual void OnMove()=0;
@@ -22,18 +23,17 @@ namespace game_framework {
 
 	protected:
 		CMovingBitmap _background; //背景圖
-		CMovingBitmap _wall; //牆	
+		CMovingBitmap _wall; //牆
+		
 		CAnimation ani_press_f;  //press f 動畫
 		//int paused_flag;
 		//bool isPaused;
-		int _cx, _cy;  //角色所在Map的座標
 		bool isPressF;
 		int character_status;
 		const int collision_move[4] = { 24, 53, 20 , 7};   //(x,y,l,w) collision_move	碰撞判定範圍
 		const int collision_damage[4] = {0};	//受到傷害判定範圍
 		const int CHARACTER_SCREEN_X = 285;
 		const int CHARACTER_SCREEN_Y = 205;
-		Enemy *blockhead;///////////////////////
 	};
 
 }

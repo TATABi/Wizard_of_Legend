@@ -9,6 +9,10 @@
 
 namespace game_framework {
 
+	/////////////////////////////////////////////////////////////////////////////
+	// Character: Character class
+	/////////////////////////////////////////////////////////////////////////////
+
 	Character::Character()
 	{
 		Initialize();
@@ -39,69 +43,125 @@ namespace game_framework {
 
 	void Character::LoadBitmap()
 	{
-		int m1[10] = { CHARACTER_DOWN_01,CHARACTER_DOWN_02,CHARACTER_DOWN_03,CHARACTER_DOWN_04,CHARACTER_DOWN_05,
-					   CHARACTER_DOWN_06,CHARACTER_DOWN_07,CHARACTER_DOWN_08,CHARACTER_DOWN_09,CHARACTER_DOWN_10};
-		for (int i = 0; i < 10; i++)
-			ani_down.AddBitmap(m1[i], RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_01, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_02, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_03, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_04, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_05, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_06, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_07, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_08, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_09, RGB(50, 255, 0));
+		ani_down.AddBitmap(CHARACTER_DOWN_10, RGB(50, 255, 0));
 
-		int m2[10] = { CHARACTER_UP_01,CHARACTER_UP_02,CHARACTER_UP_03,CHARACTER_UP_04,CHARACTER_UP_05,
-			           CHARACTER_UP_06,CHARACTER_UP_07,CHARACTER_UP_08,CHARACTER_UP_09,CHARACTER_UP_10 };
-		for (int i = 0; i < 10; i++)
-			ani_up.AddBitmap(m2[i], RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_01, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_02, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_03, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_04, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_05, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_06, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_07, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_08, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_09, RGB(50, 255, 0));
+		ani_up.AddBitmap(CHARACTER_UP_10, RGB(50, 255, 0));
 
-		int m3[9] = { CHARACTER_LEFT_01,CHARACTER_LEFT_02,CHARACTER_LEFT_03,CHARACTER_LEFT_04,CHARACTER_LEFT_05,
-					  CHARACTER_LEFT_06,CHARACTER_LEFT_07,CHARACTER_LEFT_08,CHARACTER_LEFT_09 };
-		for (int i = 0; i < 9; i++)
-			ani_left.AddBitmap(m3[i], RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_01, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_02, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_03, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_04, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_05, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_06, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_07, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_08, RGB(50, 255, 0));
+		ani_left.AddBitmap(CHARACTER_LEFT_09, RGB(50, 255, 0));
 
-		int m4[9] = { CHARACTER_RIGHT_01,CHARACTER_RIGHT_02,CHARACTER_RIGHT_03,CHARACTER_RIGHT_04,CHARACTER_RIGHT_05,
-				      CHARACTER_RIGHT_06,CHARACTER_RIGHT_07,CHARACTER_RIGHT_08,CHARACTER_RIGHT_09 };
-		for (int i = 0; i < 9; i++)
-			ani_right.AddBitmap(m4[i], RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_01, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_02, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_03, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_04, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_05, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_06, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_07, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_08, RGB(50, 255, 0));
+		ani_right.AddBitmap(CHARACTER_RIGHT_09, RGB(50, 255, 0));
 
-		int m5[9] = { CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_02,
-					  CHARACTER_DASH_UP_03,CHARACTER_DASH_UP_03,CHARACTER_DASH_UP_04,CHARACTER_DASH_UP_04 };
-		for (int i = 0; i < 9; i++)
-			ani_dash_up.AddBitmap(m5[i], RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_01, RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_01, RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_01, RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_01, RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_02, RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_03, RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_03, RGB(50, 255, 0));
+		//ani_dash_up.AddBitmap(CHARACTER_DASH_UP_03, RGB(50, 255, 0));
+		//ani_dash_up.AddBitmap(CHARACTER_DASH_UP_04, RGB(50, 255, 0));
+		//ani_dash_up.AddBitmap(CHARACTER_DASH_UP_04, RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_04, RGB(50, 255, 0));
+		ani_dash_up.AddBitmap(CHARACTER_DASH_UP_04, RGB(50, 255, 0));
 
-		int m6[9] = { CHARACTER_DASH_DOWN_01,CHARACTER_DASH_DOWN_01,CHARACTER_DASH_DOWN_01,CHARACTER_DASH_DOWN_01,CHARACTER_DASH_DOWN_02,
-					  CHARACTER_DASH_DOWN_03,CHARACTER_DASH_DOWN_03,CHARACTER_DASH_DOWN_04,CHARACTER_DASH_DOWN_04 };
-		for (int i = 0; i < 9; i++)
-			ani_dash_down.AddBitmap(m6[i], RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_01, RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_01, RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_01, RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_01, RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_02, RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_03, RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_03, RGB(50, 255, 0));
+		//ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_03, RGB(50, 255, 0));
+		//ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_04, RGB(50, 255, 0));
+		//ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_04, RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_04, RGB(50, 255, 0));
+		ani_dash_down.AddBitmap(CHARACTER_DASH_DOWN_04, RGB(50, 255, 0));
 
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_01, RGB(50, 255, 0));
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_01, RGB(50, 255, 0));
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_01, RGB(50, 255, 0));
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_01, RGB(50, 255, 0));
+		//ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_02, RGB(50, 255, 0));
+		//ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_02, RGB(50, 255, 0));
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_02, RGB(50, 255, 0));
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_02, RGB(50, 255, 0));
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_03, RGB(50, 255, 0));
+		//ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_04, RGB(50, 255, 0));
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_04, RGB(50, 255, 0));
+		ani_dash_left.AddBitmap(CHARACTER_DASH_LEFT_05, RGB(50, 255, 0));
 
-		int m7[9] = { CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_02,
-					  CHARACTER_DASH_LEFT_02,CHARACTER_DASH_LEFT_03,CHARACTER_DASH_LEFT_04,CHARACTER_DASH_LEFT_05 };
-		for (int i = 0; i < 9; i++)
-			ani_dash_left.AddBitmap(m7[i], RGB(50, 255, 0));
-
-		int m8[9] = { CHARACTER_DASH_RIGHT_01,CHARACTER_DASH_RIGHT_01,CHARACTER_DASH_RIGHT_01,CHARACTER_DASH_RIGHT_01,CHARACTER_DASH_RIGHT_02,
-					  CHARACTER_DASH_RIGHT_02,CHARACTER_DASH_RIGHT_03,CHARACTER_DASH_RIGHT_04,CHARACTER_DASH_RIGHT_05 };
-		for (int i = 0; i < 9; i++)
-			ani_dash_right.AddBitmap(m8[i], RGB(50, 255, 0));
-
-		int m9[4] = { CHARACTER_RUN_DOWN_01,CHARACTER_RUN_DOWN_02,CHARACTER_RUN_DOWN_03,CHARACTER_RUN_DOWN_04 };
-		for (int i = 0; i < 4; i++)
-			ani_run_down.AddBitmap(m9[i], RGB(50, 255, 0));
-
-		int m10[5] = { CHARACTER_RUN_UP_01,CHARACTER_RUN_UP_02,CHARACTER_RUN_UP_03,CHARACTER_RUN_UP_04, CHARACTER_RUN_UP_05 };
-		for (int i = 0; i < 5; i++)
-			ani_run_up.AddBitmap(m10[i], RGB(50, 255, 0));
-
-		int m11[4] = { CHARACTER_RUN_LEFT_01,CHARACTER_RUN_LEFT_02,CHARACTER_RUN_LEFT_03,CHARACTER_RUN_LEFT_03 };
-		for (int i = 0; i < 4; i++)
-			ani_run_left.AddBitmap(m11[i], RGB(50, 255, 0));
-
-		
-		int m12[4] = { CHARACTER_RUN_RIGHT_01,CHARACTER_RUN_RIGHT_02,CHARACTER_RUN_RIGHT_03,CHARACTER_RUN_RIGHT_03 };
-		for (int i = 0; i < 4; i++)
-			ani_run_right.AddBitmap(m12[i], RGB(50, 255, 0));
-		
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_01, RGB(50, 255, 0));
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_01, RGB(50, 255, 0));
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_01, RGB(50, 255, 0));
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_01, RGB(50, 255, 0));
+		//ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_02, RGB(50, 255, 0));
+		//ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_02, RGB(50, 255, 0));
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_02, RGB(50, 255, 0));
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_02, RGB(50, 255, 0));
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_03, RGB(50, 255, 0));
+		//ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_04, RGB(50, 255, 0));
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_04, RGB(50, 255, 0));
+		ani_dash_right.AddBitmap(CHARACTER_DASH_RIGHT_05, RGB(50, 255, 0));
 
 		bm_stand_down.LoadBitmap(CHARACTER_STAND_DOWN, RGB(50, 255, 0));
 		bm_stand_up.LoadBitmap(CHARACTER_STAND_UP, RGB(50, 255, 0));
 		bm_stand_left.LoadBitmap(CHARACTER_STAND_LEFT, RGB(50, 255, 0));
 		bm_stand_right.LoadBitmap(CHARACTER_STAND_RIGHT, RGB(50, 255, 0));
+
+		ani_run_down.AddBitmap(CHARACTER_RUN_DOWN_01, RGB(50, 255, 0));
+		ani_run_down.AddBitmap(CHARACTER_RUN_DOWN_02, RGB(50, 255, 0));
+		ani_run_down.AddBitmap(CHARACTER_RUN_DOWN_03, RGB(50, 255, 0));
+		ani_run_down.AddBitmap(CHARACTER_RUN_DOWN_04, RGB(50, 255, 0));
+
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_01, RGB(50, 255, 0));
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_02, RGB(50, 255, 0));
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_03, RGB(50, 255, 0));
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_04, RGB(50, 255, 0));
+		ani_run_up.AddBitmap(CHARACTER_RUN_UP_05, RGB(50, 255, 0));
+
+		ani_run_left.AddBitmap(CHARACTER_RUN_LEFT_01, RGB(50, 255, 0));
+		ani_run_left.AddBitmap(CHARACTER_RUN_LEFT_02, RGB(50, 255, 0));
+		ani_run_left.AddBitmap(CHARACTER_RUN_LEFT_03, RGB(50, 255, 0));
+		ani_run_left.AddBitmap(CHARACTER_RUN_LEFT_03, RGB(50, 255, 0));
+
+		ani_run_right.AddBitmap(CHARACTER_RUN_RIGHT_01, RGB(50, 255, 0));
+		ani_run_right.AddBitmap(CHARACTER_RUN_RIGHT_02, RGB(50, 255, 0));
+		ani_run_right.AddBitmap(CHARACTER_RUN_RIGHT_03, RGB(50, 255, 0));
+		ani_run_right.AddBitmap(CHARACTER_RUN_RIGHT_03, RGB(50, 255, 0));
 
 		ani_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		ani_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
@@ -124,6 +184,7 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{	
+		map->GetCharacterStatus();
 
 		if (!isDashLock)
 		{
@@ -134,22 +195,22 @@ namespace game_framework {
 		//初始移動系數
 		if (isDash)
 		{
-			SLASH_PIXEL = (int)(DASH_SLASH_PIXEL * CharacterData::Move_Coefficient);
-			STR_PIXEL = (int)(DASH_STR_PIXEL * CharacterData::Move_Coefficient);
+			SLASH_PIXEL = 14;
+			STR_PIXEL = 20;
 		}
 		else if (isRunning)
 		{
-			SLASH_PIXEL = (int)(RUN_SLASH_PIXEL * CharacterData::Move_Coefficient);
-			STR_PIXEL = (int)(RUN_STR_PIXEL * CharacterData::Move_Coefficient);
+			SLASH_PIXEL = 7;
+			STR_PIXEL = 10;
 		}
 		else
 		{
-			SLASH_PIXEL = (int)(NORMAL_SLASH_PIXEL * CharacterData::Move_Coefficient);
-			STR_PIXEL = (int)(NORMAL_STR_PIXEL * CharacterData::Move_Coefficient);
+			SLASH_PIXEL = 5;
+			STR_PIXEL = 6;
 		}
 
 		//計算移動距離
-		if (IsSlash() && !isDashLock) //如果斜走
+		if (isSlash() && !isDashLock) //如果斜走
 		{
 			if (isMovingDown)
 			{
@@ -224,7 +285,7 @@ namespace game_framework {
 		if (isDash)
 		{
 			run_counter = 45;
-			if (IsMoving() && IsSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
+			if (isMoving() && isSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
 			{
 				if (isMovingDown)
 				{
@@ -274,7 +335,7 @@ namespace game_framework {
 			}
 		
 		}
-		else if (IsMoving())   //走動
+		else if (isMoving())   //走動
 		{
 			if(run_counter>=0)
 				run_counter--;		
@@ -455,7 +516,7 @@ namespace game_framework {
 		isMovingUp = flag;
 	}
 
-	bool Character::IsSlash()
+	bool Character::isSlash()
 	{
 		if (isMovingRight != isMovingLeft)
 			if (isMovingUp != isMovingDown)
@@ -464,7 +525,7 @@ namespace game_framework {
 		return false;
 	}
 
-	bool Character::IsMoving()
+	bool Character::isMoving()
 	{
 		if (isMovingDown || isMovingLeft || isMovingRight || isMovingUp)
 			return true;

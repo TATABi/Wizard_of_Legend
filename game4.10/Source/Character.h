@@ -1,8 +1,5 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
 #include "Map_Home.h"
 #include "Map_Town.h"
-#include "CharacterData.h"
 namespace game_framework {
 
 	class Character {
@@ -16,9 +13,9 @@ namespace game_framework {
 		void SetMovingLeft(bool flag);	
 		void SetMovingRight(bool flag); 
 		void SetMovingUp(bool flag);	
-		bool IsSlash();  	
+		bool isSlash();  	
 		void Dash();
-		bool IsMoving();
+		bool isMoving();
 		bool CanDash();
 	protected:
 		CAnimation ani_up;		//向上動畫
@@ -53,15 +50,7 @@ namespace game_framework {
 		const int CHARACTER_SCREEN_Y = 205;	//螢幕中心Y座標
 		const int DASH_DELAY = 15;
 		int run_counter;			// 計算角色是否要奔跑
-		const int NORMAL_SLASH_PIXEL = 5;
-		const int NORMAL_STR_PIXEL = 6;
-		const int RUN_SLASH_PIXEL = 7;
-		const int RUN_STR_PIXEL = 10;
-		const int DASH_SLASH_PIXEL = 14;
-		const int DASH_STR_PIXEL = 20;
 
 		int dash_delay_counter;
 	};
 }
-
-#endif
