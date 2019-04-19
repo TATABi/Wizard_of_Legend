@@ -1,0 +1,610 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文 (繁體，台灣) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\game.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_0                   BITMAP                  "..\\RES\\bmp0.bmp"
+IDB_1                   BITMAP                  "..\\RES\\bmp1.bmp"
+IDB_2                   BITMAP                  "..\\RES\\bmp2.bmp"
+IDB_3                   BITMAP                  "..\\RES\\bmp3.bmp"
+IDB_4                   BITMAP                  "..\\RES\\bmp4.bmp"
+IDB_5                   BITMAP                  "..\\RES\\bmp5.bmp"
+IDB_6                   BITMAP                  "..\\RES\\bmp6.bmp"
+IDB_7                   BITMAP                  "..\\RES\\bmp7.bmp"
+IDB_8                   BITMAP                  "..\\RES\\bmp8.bmp"
+IDB_9                   BITMAP                  "..\\RES\\bmp9.bmp"
+IDB_MINUS               BITMAP                  "..\\RES\\bmp10.bmp"
+IDB_LOADING             BITMAP                  "..\\RES\\loading.bmp"
+IDB_TOOLBAR             BITMAP                  "..\\RES\\Toolbar.bmp"
+IDB_CONTINUE            BITMAP                  "..\\RES\\continue.bmp"
+MENU_INIT_02            BITMAP                  "..\\RES\\Menu\\Init\\Init (2).bmp"
+MENU_INIT_04            BITMAP                  "..\\RES\\Menu\\Init\\Init (4).bmp"
+MENU_INIT_06            BITMAP                  "..\\RES\\Menu\\Init\\Init (6).bmp"
+MENU_INIT_08            BITMAP                  "..\\RES\\Menu\\Init\\Init (8).bmp"
+MENU_INIT_10            BITMAP                  "..\\RES\\Menu\\Init\\Init (10).bmp"
+MENU_INIT_12            BITMAP                  "..\\RES\\Menu\\Init\\Init (12).bmp"
+MENU_INIT_14            BITMAP                  "..\\RES\\Menu\\Init\\Init (14).bmp"
+MENU_INIT_16            BITMAP                  "..\\RES\\Menu\\Init\\Init (16).bmp"
+MENU_INIT_18            BITMAP                  "..\\RES\\Menu\\Init\\Init (18).bmp"
+MENU_INIT_20            BITMAP                  "..\\RES\\Menu\\Init\\Init (20).bmp"
+MENU_INIT_22            BITMAP                  "..\\RES\\Menu\\Init\\Init (22).bmp"
+MENU_INIT_24            BITMAP                  "..\\RES\\Menu\\Init\\Init (24).bmp"
+MENU_INIT_26            BITMAP                  "..\\RES\\Menu\\Init\\Init (26).bmp"
+MENU_INIT_28            BITMAP                  "..\\RES\\Menu\\Init\\Init (28).bmp"
+MENU_INIT_30            BITMAP                  "..\\RES\\Menu\\Init\\Init (30).bmp"
+MENU_INIT_32            BITMAP                  "..\\RES\\Menu\\Init\\Init (32).bmp"
+MENU_INIT_34            BITMAP                  "..\\RES\\Menu\\Init\\Init (34).bmp"
+MENU_INIT_36            BITMAP                  "..\\RES\\Menu\\Init\\Init (36).bmp"
+MENU_INIT_38            BITMAP                  "..\\RES\\Menu\\Init\\Init (38).bmp"
+MENU_INIT_40            BITMAP                  "..\\RES\\Menu\\Init\\Init (40).bmp"
+MENU_INIT_42            BITMAP                  "..\\RES\\Menu\\Init\\Init (42).bmp"
+MENU_INIT_44            BITMAP                  "..\\RES\\Menu\\Init\\Init (44).bmp"
+MENU_INIT_46            BITMAP                  "..\\RES\\Menu\\Init\\Init (46).bmp"
+MENU_INIT_48            BITMAP                  "..\\RES\\Menu\\Init\\Init (48).bmp"
+MENU_ENTERMENU_01       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (1).bmp"
+MENU_ENTERMENU_02       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (2).bmp"
+MENU_ENTERMENU_03       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (3).bmp"
+MENU_ENTERMENU_04       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (4).bmp"
+MENU_ENTERMENU_05       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (5).bmp"
+MENU_ENTERMENU_06       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (6).bmp"
+MENU_ENTERMENU_07       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (7).bmp"
+MENU_ENTERMENU_08       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (8).bmp"
+MENU_ENTERMENU_09       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (9).bmp"
+MENU_ENTERMENU_10       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (10).bmp"
+MENU_ENTERMENU_11       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (11).bmp"
+MENU_ENTERMENU_12       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu(12).bmp"
+MENU_ENTERMENU_OPTIONS  BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_OPTIONS.bmp"
+MENU_ENTERMENU_QUIT     BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_QUIT.bmp"
+MENU_ENTERMENU_SINGLE_PLAYER BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_SINGLE_PLAYER.bmp"
+LOADING                 BITMAP                  "..\\RES\\InGame\\Loading\\Loading.bmp"
+LOADING_LEVEL           BITMAP                  "..\\RES\\InGame\\Loading\\LoadingLevel.bmp"
+JOIN                    BITMAP                  "..\\RES\\InGame\\Join\\Join.bmp"
+MENU_OPTIONS            BITMAP                  "..\\RES\\Menu\\Options\\Options.bmp"
+MAP_HOME                BITMAP                  "..\\RES\\InGame\\Home\\Home.bmp"
+CHARACTER_DOWN_01       BITMAP                  "..\\RES\\Character\\Down\\Character_down_01.bmp"
+CHARACTER_DOWN_02       BITMAP                  "..\\RES\\Character\\Down\\Character_down_02.bmp"
+CHARACTER_DOWN_03       BITMAP                  "..\\RES\\Character\\Down\\Character_down_03.bmp"
+CHARACTER_DOWN_04       BITMAP                  "..\\RES\\Character\\Down\\Character_down_04.bmp"
+CHARACTER_DOWN_05       BITMAP                  "..\\RES\\Character\\Down\\Character_down_05.bmp"
+CHARACTER_DOWN_06       BITMAP                  "..\\RES\\Character\\Down\\Character_down_06.bmp"
+CHARACTER_DOWN_07       BITMAP                  "..\\RES\\Character\\Down\\Character_down_07.bmp"
+CHARACTER_DOWN_08       BITMAP                  "..\\RES\\Character\\Down\\Character_down_08.bmp"
+CHARACTER_DOWN_09       BITMAP                  "..\\RES\\Character\\Down\\Character_down_09.bmp"
+CHARACTER_DOWN_10       BITMAP                  "..\\RES\\Character\\Down\\Character_down_10.bmp"
+CHARACTER_UP_01         BITMAP                  "..\\RES\\Character\\Up\\up (1).bmp"
+CHARACTER_UP_02         BITMAP                  "..\\RES\\Character\\Up\\up (2).bmp"
+CHARACTER_UP_03         BITMAP                  "..\\RES\\Character\\Up\\up (3).bmp"
+CHARACTER_UP_04         BITMAP                  "..\\RES\\Character\\Up\\up (4).bmp"
+CHARACTER_UP_05         BITMAP                  "..\\RES\\Character\\Up\\up (5).bmp"
+CHARACTER_UP_06         BITMAP                  "..\\RES\\Character\\Up\\up (6).bmp"
+CHARACTER_UP_07         BITMAP                  "..\\RES\\Character\\Up\\up (7).bmp"
+CHARACTER_UP_08         BITMAP                  "..\\RES\\Character\\Up\\up (8).bmp"
+CHARACTER_UP_09         BITMAP                  "..\\RES\\Character\\Up\\up (9).bmp"
+CHARACTER_UP_10         BITMAP                  "..\\RES\\Character\\Up\\up (10).bmp"
+CHARACTER_STAND_DOWN    BITMAP                  "..\\RES\\Character\\Stand\\down.bmp"
+CHARACTER_STAND_LEFT    BITMAP                  "..\\RES\\Character\\Stand\\left.bmp"
+CHARACTER_STAND_RIGHT   BITMAP                  "..\\RES\\Character\\Stand\\right.bmp"
+CHARACTER_STAND_UP      BITMAP                  "..\\RES\\Character\\Stand\\up.bmp"
+CHARACTER_LEFT_01       BITMAP                  "..\\RES\\Character\\Left\\left (1).bmp"
+CHARACTER_LEFT_02       BITMAP                  "..\\RES\\Character\\Left\\left (2).bmp"
+CHARACTER_LEFT_03       BITMAP                  "..\\RES\\Character\\Left\\left (3).bmp"
+CHARACTER_LEFT_04       BITMAP                  "..\\RES\\Character\\Left\\left (4).bmp"
+CHARACTER_LEFT_05       BITMAP                  "..\\RES\\Character\\Left\\left (5).bmp"
+CHARACTER_LEFT_06       BITMAP                  "..\\RES\\Character\\Left\\left (6).bmp"
+CHARACTER_LEFT_07       BITMAP                  "..\\RES\\Character\\Left\\left (7).bmp"
+CHARACTER_LEFT_08       BITMAP                  "..\\RES\\Character\\Left\\left (8).bmp"
+CHARACTER_LEFT_09       BITMAP                  "..\\RES\\Character\\Left\\left (9).bmp"
+CHARACTER_RIGHT_01      BITMAP                  "..\\RES\\Character\\Right\\right (1).bmp"
+CHARACTER_RIGHT_02      BITMAP                  "..\\RES\\Character\\Right\\right (2).bmp"
+CHARACTER_RIGHT_03      BITMAP                  "..\\RES\\Character\\Right\\right (3).bmp"
+CHARACTER_RIGHT_04      BITMAP                  "..\\RES\\Character\\Right\\right (4).bmp"
+CHARACTER_RIGHT_05      BITMAP                  "..\\RES\\Character\\Right\\right (5).bmp"
+CHARACTER_RIGHT_06      BITMAP                  "..\\RES\\Character\\Right\\right (6).bmp"
+CHARACTER_RIGHT_07      BITMAP                  "..\\RES\\Character\\Right\\right (7).bmp"
+CHARACTER_RIGHT_08      BITMAP                  "..\\RES\\Character\\Right\\right (8).bmp"
+CHARACTER_RIGHT_09      BITMAP                  "..\\RES\\Character\\Right\\right (9).bmp"
+LIGHT_BEAM01            BITMAP                  "..\\RES\\InGame\\LightBeam\\01.bmp"
+LIGHT_BEAM02            BITMAP                  "..\\RES\\InGame\\LightBeam\\02.bmp"
+LIGHT_BEAM03            BITMAP                  "..\\RES\\InGame\\LightBeam\\03.bmp"
+LIGHT_BEAM04            BITMAP                  "..\\RES\\InGame\\LightBeam\\04.bmp"
+LIGHT_BEAM05            BITMAP                  "..\\RES\\InGame\\LightBeam\\05.bmp"
+MAP_HOME_WALL           BITMAP                  "..\\RES\\InGame\\Home\\wall.bmp"
+CHARACTER_RUN_DOWN_02   BITMAP                  "..\\RES\\Character\\Run\\Run_down (2).bmp"
+CHARACTER_RUN_DOWN_03   BITMAP                  "..\\RES\\Character\\Run\\Run_down (3).bmp"
+CHARACTER_RUN_DOWN_04   BITMAP                  "..\\RES\\Character\\Run\\Run_down (4).bmp"
+CHARACTER_RUN_LEFT_01   BITMAP                  "..\\RES\\Character\\Run\\Run_left (1).bmp"
+CHARACTER_RUN_LEFT_02   BITMAP                  "..\\RES\\Character\\Run\\Run_left (2).bmp"
+CHARACTER_RUN_LEFT_03   BITMAP                  "..\\RES\\Character\\Run\\Run_left (3).bmp"
+CHARACTER_RUN_RIGHT_01  BITMAP                  "..\\RES\\Character\\Run\\Run_right (1).bmp"
+CHARACTER_RUN_RIGHT_02  BITMAP                  "..\\RES\\Character\\Run\\Run_right (2).bmp"
+CHARACTER_RUN_RIGHT_03  BITMAP                  "..\\RES\\Character\\Run\\Run_right (3).bmp"
+CHARACTER_RUN_UP_01     BITMAP                  "..\\RES\\Character\\Run\\Run_up (1).bmp"
+CHARACTER_RUN_UP_02     BITMAP                  "..\\RES\\Character\\Run\\Run_up (2).bmp"
+CHARACTER_RUN_UP_03     BITMAP                  "..\\RES\\Character\\Run\\Run_up (3).bmp"
+CHARACTER_RUN_UP_04     BITMAP                  "..\\RES\\Character\\Run\\Run_up (4).bmp"
+CHARACTER_RUN_UP_05     BITMAP                  "..\\RES\\Character\\Run\\Run_up (5).bmp"
+CHARACTER_RUN_DOWN_01   BITMAP                  "..\\RES\\Character\\Run\\Run_down (1).bmp"
+CHARACTER_DASH_DOWN_01  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown01.bmp"
+CHARACTER_DASH_DOWN_02  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown02.bmp"
+CHARACTER_DASH_DOWN_03  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown03.bmp"
+CHARACTER_DASH_DOWN_04  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown04.bmp"
+CHARACTER_DASH_UP_01    BITMAP                  "..\\RES\\Character\\Dash\\Up\\DashUp01.bmp"
+CHARACTER_DASH_UP_02    BITMAP                  "..\\RES\\Character\\Dash\\Up\\DashUp02.bmp"
+CHARACTER_DASH_UP_03    BITMAP                  "..\\RES\\Character\\Dash\\Up\\DashUp03.bmp"
+CHARACTER_DASH_UP_04    BITMAP                  "..\\RES\\Character\\Dash\\Up\\DashUp04.bmp"
+CHARACTER_DASH_LEFT_01  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft01.bmp"
+CHARACTER_DASH_LEFT_02  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft02.bmp"
+CHARACTER_DASH_LEFT_03  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft03.bmp"
+CHARACTER_DASH_LEFT_04  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft04.bmp"
+CHARACTER_DASH_LEFT_05  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft05.bmp"
+CHARACTER_DASH_RIGHT_01 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (1).bmp"
+CHARACTER_DASH_RIGHT_02 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (2).bmp"
+CHARACTER_DASH_RIGHT_03 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (3).bmp"
+CHARACTER_DASH_RIGHT_04 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (4).bmp"
+CHARACTER_DASH_RIGHT_05 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (5).bmp"
+PRESS_F_01              BITMAP                  "..\\RES\\InGame\\Press_F\\01.bmp"
+PRESS_F_02              BITMAP                  "..\\RES\\InGame\\Press_F\\02.bmp"
+PRESS_F_03              BITMAP                  "..\\RES\\InGame\\Press_F\\03.bmp"
+PRESS_F_04              BITMAP                  "..\\RES\\InGame\\Press_F\\04.bmp"
+PRESS_F_05              BITMAP                  "..\\RES\\InGame\\Press_F\\05.bmp"
+PRESS_F_06              BITMAP                  "..\\RES\\InGame\\Press_F\\06.bmp"
+BOX_BOARD               BITMAP                  "..\\RES\\InGame\\Box\\board.bmp"
+BOX_OFFENSE_01          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\00.bmp"
+BOX_OFFENSE_02          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\01.bmp"
+BOX_OFFENSE_03          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\02.bmp"
+BOX_OFFENSE_04          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\03.bmp"
+BOX_OFFENSE_05          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\04.bmp"
+BOX_DEFENSE_01          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\00.bmp"
+BOX_DEFENSE_02          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\01.bmp"
+BOX_DEFENSE_03          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\02.bmp"
+BOX_DEFENSE_04          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\03.bmp"
+BOX_DEFENSE_05          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\04.bmp"
+BOX_MISC_01             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\00.bmp"
+BOX_MISC_02             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\01.bmp"
+BOX_MISC_03             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\02.bmp"
+BOX_MISC_04             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\03.bmp"
+BOX_MISC_05             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\04.bmp"
+MAP_TOWN                BITMAP                  "..\\RES\\InGame\\Town\\Town.bmp"
+MAP_TOWN_WALL           BITMAP                  "..\\RES\\InGame\\Town\\Town_Wall.bmp"
+CHARACTER_ARRIVAL_01    BITMAP                  "..\\RES\\Character\\Arrival\\01.bmp"
+CHARACTER_ARRIVAL_02    BITMAP                  "..\\RES\\Character\\Arrival\\02.bmp"
+CHARACTER_ARRIVAL_03    BITMAP                  "..\\RES\\Character\\Arrival\\03.bmp"
+CHARACTER_ARRIVAL_04    BITMAP                  "..\\RES\\Character\\Arrival\\04.bmp"
+CHARACTER_ARRIVAL_05    BITMAP                  "..\\RES\\Character\\Arrival\\05.bmp"
+CHARACTER_ARRIVAL_06    BITMAP                  "..\\RES\\Character\\Arrival\\06.bmp"
+CHARACTER_ARRIVAL_07    BITMAP                  "..\\RES\\Character\\Arrival\\07.bmp"
+CHARACTER_ARRIVAL_08    BITMAP                  "..\\RES\\Character\\Arrival\\08.bmp"
+CHARACTER_ARRIVAL_09    BITMAP                  "..\\RES\\Character\\Arrival\\09.bmp"
+PAUSED_01               BITMAP                  "..\\RES\\InGame\\PAUSED\\01.bmp"
+PAUSED_02               BITMAP                  "..\\RES\\InGame\\PAUSED\\02.bmp"
+PAUSED_03               BITMAP                  "..\\RES\\InGame\\PAUSED\\03.bmp"
+PAUSED_04               BITMAP                  "..\\RES\\InGame\\PAUSED\\04.bmp"
+MENU_OPTIONSS           BITMAP                  "..\\RES\\Menu\\Options\\Optionss.bmp"
+UI_DIAMOND              BITMAP                  "..\\RES\\InGame\\UI\\Diamond.bmp"
+UI_HP_BAR               BITMAP                  "..\\RES\\InGame\\UI\\HP_Bar.bmp"
+UI_KEY_Q                BITMAP                  "..\\RES\\InGame\\UI\\Key_Q.bmp"
+UI_KEY_SPACE            BITMAP                  "..\\RES\\InGame\\UI\\Key_Space.bmp"
+UI_KEY_LEFT             BITMAP                  "..\\RES\\InGame\\UI\\Left_Click.bmp"
+UI_MONEY                BITMAP                  "..\\RES\\InGame\\UI\\Money.bmp"
+UI_KEY_RIGHT            BITMAP                  "..\\RES\\InGame\\UI\\Right_Click.bmp"
+UI_SKILL_BACKGROUND     BITMAP                  "..\\RES\\InGame\\UI\\Skill_background.bmp"
+UI_STATUS               BITMAP                  "..\\RES\\InGame\\UI\\Status.bmp"
+IDB_SLASH               BITMAP                  "..\\RES\\bmp_slash.bmp"
+BOX_ITEM_BOARD          BITMAP                  "..\\RES\\InGame\\Box\\item_board.bmp"
+BOX_CURSOR              BITMAP                  "..\\RES\\InGame\\Box\\item_cursor.bmp"
+BOX_TEXT_DEFENSE        BITMAP                  "..\\RES\\InGame\\Box\\TEXT_Defense.bmp"
+BOX_TEXT_MISC           BITMAP                  "..\\RES\\InGame\\Box\\TEXT_Misc.bmp"
+BOX_TEXT_OFFENSE        BITMAP                  "..\\RES\\InGame\\Box\\TEXT_Offense.bmp"
+ITEM_UNKNOWN            BITMAP                  "..\\RES\\InGame\\Box\\unknown_item.bmp"
+BAG_BOARD               BITMAP                  "..\\RES\\InGame\\Bag\\Board.bmp"
+ITEM_OFFENSE_01         BITMAP                  "..\\RES\\InGame\\Item\\Offense\\01.bmp"
+ITEM_OFFENSE_02         BITMAP                  "..\\RES\\InGame\\Item\\Offense\\02.bmp"
+ITEM_MISC_01            BITMAP                  "..\\RES\\InGame\\Item\\Misc\\01.bmp"
+ITEM_MISC_02            BITMAP                  "..\\RES\\InGame\\Item\\Misc\\02.bmp"
+ITEM_DEFENSE_01         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\01.bmp"
+ITEM_DEFENSE_02         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\02.bmp"
+ITEM_DEFENSE_03         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\03.bmp"
+ENEMY_BLOCKHEAD         BITMAP                  "..\\RES\\InGame\\Enemy\\Blockhead.bmp"
+BOOK_BOARD              BITMAP                  "..\\RES\\InGame\\Book\\Book_board.bmp"
+BOOK_CURSOR             BITMAP                  "..\\RES\\InGame\\Book\\cursor.bmp"
+SKILL_ICON_DASH_WIND    BITMAP                  "..\\RES\\InGame\\Skill\\Icon\\windDash.bmp"
+ITEM_SOLD_OUT           BITMAP                  "..\\RES\\InGame\\Town\\sold_out.bmp"
+BOX_EQUIP_BOARD         BITMAP                  "..\\RES\\InGame\\Box\\Equip_board.bmp"
+SKILL_REBOUNDING_ICICLES_01 BITMAP                  "..\\RES\\InGame\\Skill\\Rebounding_Icicles\\1.bmp"
+SKILL_REBOUNDING_ICICLES_02 BITMAP                  "..\\RES\\InGame\\Skill\\Rebounding_Icicles\\2.bmp"
+SKILL_REBOUNDING_ICICLES_03 BITMAP                  "..\\RES\\InGame\\Skill\\Rebounding_Icicles\\3.bmp"
+SKILL_REBOUNDING_ICICLES_04 BITMAP                  "..\\RES\\InGame\\Skill\\Rebounding_Icicles\\4.bmp"
+SKILL_ICON_REBOUNDING_ICICLES BITMAP                  "..\\RES\\InGame\\Skill\\Icon\\Icicles_Icon.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR              CURSOR                  "..\\RES\\cursor1.cur"
+#endif    // 中文 (繁體，台灣) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英文 (美國) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "..\\RES\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\RES\\GAME.ico"
+IDR_GAMETYPE            ICON                    "..\\RES\\gameDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_BUTTON_FULLSCREEN
+    BUTTON      ID_BUTTON_PAUSE
+    SEPARATOR
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New",                        ID_FILE_NEW
+        MENUITEM "Pause\tCtrl+Q",               ID_FILE_PAUSE
+        MENUITEM "&Open...",                    ID_FILE_OPEN
+        MENUITEM "&Save",                       ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...",                   ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Fullscreen\tCtrl+F",         ID_TOGGLE_FULLSCREEN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About game...",              ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "F",            ID_TOGGLE_FULLSCREEN,   VIRTKEY, CONTROL, NOINVERT
+    "Q",            ID_FILE_PAUSE,          VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 218, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About game"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Game Framework Version 4.8",IDC_STATIC,39,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002-2012",IDC_STATIC,39,23,119,8
+    DEFPUSHBUTTON   "OK",IDOK,172,7,39,14,WS_GROUP
+    LTEXT           "Liense: GPL",IDC_STATIC,39,35,119,8
+    PUSHBUTTON      "ReadMe",IDC_README,172,24,39,13,WS_GROUP
+    LTEXT           "Author: Woei-Kae Chen, CSIE Department, NTUT",IDC_STATIC,39,47,159,8
+    LTEXT           "http://www.ntut.edu.tw/~wkchen/game",IDC_STATIC,39,60,159,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "game MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "game"
+            VALUE "LegalCopyright", "Copyright (C) 1999"
+            VALUE "OriginalFilename", "game.EXE"
+            VALUE "ProductName", "game Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 68
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+END
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "game\n\nGame\n\n\nGame.Document\nGame Document"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "game"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE
+BEGIN
+    ID_BUTTON_FULLSCREEN    "Full Screen\nFull Screen"
+    ID_BUTTON_PAUSE         "Pause Game\nPause Game"
+    ID_BUTTON_UNITTEST      "Perform Unit Test"
+END
+
+#endif    // 英文 (美國) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\game.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
