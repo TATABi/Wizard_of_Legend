@@ -15,12 +15,12 @@ namespace game_framework {
 		void Left();
 		void Right();
 	private:
-		CMovingBitmap bm_background;
-		CMovingBitmap bm_cursor;
-		const int SKILL_X = 30;
-		bool isOpened;
-		int class_flag;	//技能種類
-		int type_flag;	//技能類型	(普攻,Dash....)
+		CMovingBitmap _bm_background;
+		CMovingBitmap _bm_cursor;
+		const int _SKILL_X = 30;
+		bool _isOpened;
+		int _class_flag;	//技能種類
+		int _type_flag;	//技能類型	(普攻,Dash....)
 	};
 
 }

@@ -12,12 +12,13 @@ namespace game_framework {
 		Map_Home(int , int, Character*);  // 設定初始中心點
 		~Map_Home();
 		void LoadBitmap();
-		void OnMove(std::vector<Skill*>);
-		void OnShow(std::vector<Skill*>*);
+		void OnMove(std::vector<Skill*>&);
+		void OnShow(std::vector<Skill*>&);
 		int* SetCharacterXY(int, int);
 		int GetMapStatus(int, int);
 	private:
 		Character* character;
+		vector<Enemy*> enemies;
 	};
 
 }

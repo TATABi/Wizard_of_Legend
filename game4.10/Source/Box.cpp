@@ -14,74 +14,74 @@ namespace game_framework {
 
 	void Box::Initialize() 
 	{
-		ani_offense.SetDelayCount(2);
-		ani_defense.SetDelayCount(2);
-		ani_misc.SetDelayCount(2);
-		category_flag = 0;
-		item_flag_x = 0;
-		item_flag_y = 0;
-		isOpened = isOpendOffense = isOpendDefense = isOpendMisc = false;
-		choose_flag = 0;
+		_ani_offense.SetDelayCount(2);
+		_ani_defense.SetDelayCount(2);
+		_ani_misc.SetDelayCount(2);
+		_category_flag = 0;
+		_item_flag_x = 0;
+		_item_flag_y = 0;
+		_isOpened = _isOpendOffense = _isOpendDefense = _isOpendMisc = false;
+		_choose_flag = 0;
 	}
 	void Box::LoadBitmap()
 	{	
-		bm_board.LoadBitmap(BOX_BOARD, RGB(50, 255, 0));
+		_bm_board.LoadBitmap(BOX_BOARD, RGB(50, 255, 0));
 
 		int m1[5] = { BOX_OFFENSE_01,BOX_OFFENSE_02,BOX_OFFENSE_03,BOX_OFFENSE_04,BOX_OFFENSE_05 };
 		for (int i = 0; i < 5; i++)
-			ani_offense.AddBitmap(m1[i], RGB(50, 255, 0));
+			_ani_offense.AddBitmap(m1[i], RGB(50, 255, 0));
 
 		int m2[5] = { BOX_DEFENSE_01,BOX_DEFENSE_02,BOX_DEFENSE_03,BOX_DEFENSE_04,BOX_DEFENSE_05 };
 		for (int i = 0; i < 5; i++)
-			ani_defense.AddBitmap(m2[i], RGB(50, 255, 0));
+			_ani_defense.AddBitmap(m2[i], RGB(50, 255, 0));
 
 		int m3[5] = { BOX_MISC_01,BOX_MISC_02,BOX_MISC_03,BOX_MISC_04,BOX_MISC_05 };
 		for (int i = 0; i < 5; i++)
-			ani_misc.AddBitmap(m3[i], RGB(50, 255, 0));
+			_ani_misc.AddBitmap(m3[i], RGB(50, 255, 0));
 
-		bm_item_board.LoadBitmap(BOX_ITEM_BOARD, RGB(50, 255, 0));
-		bm_cursor.LoadBitmap(BOX_CURSOR, RGB(50, 255, 0));
-		bm_equip_board.LoadBitmap(BOX_EQUIP_BOARD, RGB(50, 255, 0));
-		bm_offense_text.LoadBitmap(BOX_TEXT_OFFENSE, RGB(50, 255, 0));
-		bm_defense_text.LoadBitmap(BOX_TEXT_DEFENSE, RGB(50, 255, 0));
-		bm_misc_text.LoadBitmap(BOX_TEXT_MISC, RGB(50, 255, 0));
-		bm_unknown_item.LoadBitmap(ITEM_UNKNOWN, RGB(50, 255, 0));
+		_bm_item_board.LoadBitmap(BOX_ITEM_BOARD, RGB(50, 255, 0));
+		_bm_cursor.LoadBitmap(BOX_CURSOR, RGB(50, 255, 0));
+		_bm_equip_board.LoadBitmap(BOX_EQUIP_BOARD, RGB(50, 255, 0));
+		_bm_offense_text.LoadBitmap(BOX_TEXT_OFFENSE, RGB(50, 255, 0));
+		_bm_defense_text.LoadBitmap(BOX_TEXT_DEFENSE, RGB(50, 255, 0));
+		_bm_misc_text.LoadBitmap(BOX_TEXT_MISC, RGB(50, 255, 0));
+		_bm_unknown_item.LoadBitmap(ITEM_UNKNOWN, RGB(50, 255, 0));
 
-		bm_board.SetTopLeft(50, 70);
-		bm_equip_board.SetTopLeft(45, 300);
-		bm_item_board.SetTopLeft(50, 70);
-		bm_offense_text.SetTopLeft(70, 95);
-		bm_defense_text.SetTopLeft(70, 95);
-		bm_misc_text.SetTopLeft(70, 95);
-		bm_cursor.SetTopLeft(75,133);
+		_bm_board.SetTopLeft(50, 70);
+		_bm_equip_board.SetTopLeft(45, 300);
+		_bm_item_board.SetTopLeft(50, 70);
+		_bm_offense_text.SetTopLeft(70, 95);
+		_bm_defense_text.SetTopLeft(70, 95);
+		_bm_misc_text.SetTopLeft(70, 95);
+		_bm_cursor.SetTopLeft(75,133);
 
-		ani_offense.SetTopLeft(50, 70);
-		ani_defense.SetTopLeft(50, 70);
-		ani_misc.SetTopLeft(50, 70);
+		_ani_offense.SetTopLeft(50, 70);
+		_ani_defense.SetTopLeft(50, 70);
+		_ani_misc.SetTopLeft(50, 70);
 
 	}
 
 	void Box::OnMove()
 	{
-		if (isOpendOffense || isOpendDefense || isOpendMisc)		//開第二層
+		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)		//開第二層
 		{
-			bm_cursor.SetTopLeft(75 + item_flag_x * ITEM_X, 133 + item_flag_y * ITEM_Y);
+			_bm_cursor.SetTopLeft(75 + _item_flag_x * _ITEM_X, 133 + _item_flag_y * _ITEM_Y);
 		}
-		else if (isOpened)											//開第一層
+		else if (_isOpened)											//開第一層
 		{
-			switch (category_flag)
+			switch (_category_flag)
 			{
 			case 0:
-				if (!ani_offense.IsFinalBitmap())
-					ani_offense.OnMove();
+				if (!_ani_offense.IsFinalBitmap())
+					_ani_offense.OnMove();
 				break;
 			case 1:
-				if (!ani_defense.IsFinalBitmap())
-					ani_defense.OnMove();
+				if (!_ani_defense.IsFinalBitmap())
+					_ani_defense.OnMove();
 				break;
 			case 2:
-				if (!ani_misc.IsFinalBitmap())
-					ani_misc.OnMove();
+				if (!_ani_misc.IsFinalBitmap())
+					_ani_misc.OnMove();
 				break;
 			default:
 				break;
@@ -91,15 +91,15 @@ namespace game_framework {
 	
 	void Box::OnShow(Items *gitem)
 	{
-		if (isOpendOffense || isOpendDefense || isOpendMisc)
+		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)
 		{
-			bm_item_board.ShowBitmap();
+			_bm_item_board.ShowBitmap();
 			int row = 0, col = 0;
-			switch (category_flag)
+			switch (_category_flag)
 			{
 			
 			case 0:
-				bm_offense_text.ShowBitmap();
+				_bm_offense_text.ShowBitmap();
 				
 				for (int i = 0; i < gitem->GetAllItem().size(); i++)
 				{
@@ -116,15 +116,15 @@ namespace game_framework {
 							row++;
 						}
 						else {
-							bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
-							bm_unknown_item.ShowBitmap();
+							_bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
+							_bm_unknown_item.ShowBitmap();
 							row++;
 						}
 					}
 				}
 				break;
 			case 1:
-				bm_defense_text.ShowBitmap();
+				_bm_defense_text.ShowBitmap();
 
 				for (int i = 0; i < gitem->GetAllItem().size(); i++)
 				{
@@ -141,8 +141,8 @@ namespace game_framework {
 							row++;
 						}
 						else {
-							bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
-							bm_unknown_item.ShowBitmap();
+							_bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
+							_bm_unknown_item.ShowBitmap();
 							row++;
 						}
 					}
@@ -150,7 +150,7 @@ namespace game_framework {
 				break;
 
 			case 2:
-				bm_misc_text.ShowBitmap();
+				_bm_misc_text.ShowBitmap();
 
 				for (int i = 0; i < gitem->GetAllItem().size(); i++)
 				{
@@ -167,8 +167,8 @@ namespace game_framework {
 							row++;
 						}
 						else {
-							bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
-							bm_unknown_item.ShowBitmap();
+							_bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
+							_bm_unknown_item.ShowBitmap();
 							row++;
 						}
 					}
@@ -176,80 +176,75 @@ namespace game_framework {
 				break;
 			}
 
-			bm_cursor.ShowBitmap();
+			_bm_cursor.ShowBitmap();
 		}
-		else if (isOpened)
+		else if (_isOpened)
 		{
-			bm_board.ShowBitmap();
-			ani_offense.OnShow();
-			ani_defense.OnShow();
-			ani_misc.OnShow();
-			bm_equip_board.ShowBitmap();
+			_bm_board.ShowBitmap();
+			_ani_offense.OnShow();
+			_ani_defense.OnShow();
+			_ani_misc.OnShow();
+			_bm_equip_board.ShowBitmap();
 			
-			if (temp_item != nullptr) {
-				temp_item->SetXY(60, 310);
-				temp_item->OnShow();
+			if (_temp_item != nullptr) {
+				_temp_item->SetXY(60, 310);
+				_temp_item->OnShow();
 			}
 		}
 	}
 
 	void Box::Down()
 	{
-		if (isOpendOffense || isOpendDefense || isOpendMisc)
+		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)
 		{
-			if(item_flag_y < 3)
-				item_flag_y++;
+			if(_item_flag_y < 3)
+				_item_flag_y++;
 		}
-		else if (category_flag < 2 && isOpened)
+		else if (_category_flag < 2 && _isOpened)
 		{
-			category_flag++;
-			ani_offense.Reset();
-			ani_defense.Reset();
-			ani_misc.Reset();
+			_category_flag++;
+			_ani_offense.Reset();
+			_ani_defense.Reset();
+			_ani_misc.Reset();
 		}
 	}
 	void Box::Up()
 	{
-		if (isOpendOffense || isOpendDefense || isOpendMisc)
+		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)
 		{
-			if (item_flag_y > 0)
-				item_flag_y--;
+			if (_item_flag_y > 0)
+				_item_flag_y--;
 		}
-		else if (category_flag > 0 && isOpened)
+		else if (_category_flag > 0 && _isOpened)
 		{
-			category_flag--;
-			ani_offense.Reset();
-			ani_defense.Reset();
-			ani_misc.Reset();
+			_category_flag--;
+			_ani_offense.Reset();
+			_ani_defense.Reset();
+			_ani_misc.Reset();
 		}
 	}
 
 	void Box::Left()
 	{
-		if (item_flag_x > 0)
-			item_flag_x--;
+		if (_item_flag_x > 0)
+			_item_flag_x--;
 	}
 
 	void Box::Right()
 	{
-	
-		
-		if (item_flag_x < 5 )
-			item_flag_x++;
-		
-
-		
+		if (_item_flag_x < 5 )
+			_item_flag_x++;
 	}
 
 	void Box::Open(bool openBox)
 	{
-		isOpened = openBox;
+		_isOpened = openBox;
 		if (!openBox)
 		{
-			ani_offense.Reset();
-			ani_defense.Reset();
-			ani_misc.Reset();
-			category_flag =0;
+			_ani_offense.Reset();
+			_ani_defense.Reset();
+			_ani_misc.Reset();
+			_category_flag =0;
 		}
 
 	}
@@ -258,24 +253,24 @@ namespace game_framework {
 	{
 		if (!openopenBox)
 		{
-			isOpendOffense = false;
-			isOpendDefense = false;
-			isOpendMisc = false;
-			item_flag_x = 0;
-			item_flag_y = 0;
+			_isOpendOffense = false;
+			_isOpendDefense = false;
+			_isOpendMisc = false;
+			_item_flag_x = 0;
+			_item_flag_y = 0;
 		}
 		else
 		{
-			switch (category_flag)
+			switch (_category_flag)
 			{
 			case 0:
-				isOpendOffense = true;
+				_isOpendOffense = true;
 				break;
 			case 1:
-				isOpendDefense = true;
+				_isOpendDefense = true;
 				break;
 			case 2:
-				isOpendMisc = true;
+				_isOpendMisc = true;
 				break;
 			}
 		}
@@ -284,44 +279,44 @@ namespace game_framework {
 	bool Box::Equip(Items *gitem)
 	{
 		int item_num;
-		NUMBER_OF_OFFENSE = gitem->GetNumberOfItem("OFFENSE");
-		NUMBER_OF_DEFENSE = gitem->GetNumberOfItem("DEFENSE");
-		NUMBER_OF_MISC = gitem->GetNumberOfItem("MISC");
+		_NUMBER_OF_OFFENSE = gitem->GetNumberOfItem("OFFENSE");
+		_NUMBER_OF_DEFENSE = gitem->GetNumberOfItem("DEFENSE");
+		_NUMBER_OF_MISC = gitem->GetNumberOfItem("MISC");
 		
 
-		if (isOpendOffense) {
-			item_num = item_flag_x + item_flag_y * 6;
-			if (item_num >= NUMBER_OF_OFFENSE)
+		if (_isOpendOffense) {
+			item_num = _item_flag_x + _item_flag_y * 6;
+			if (item_num >= _NUMBER_OF_OFFENSE)
 				return false;
 			if (gitem->GetAllItem()[item_num]->HaveItem())
 			{
 				gitem->UnloadAllItem();
 				gitem->GetAllItem()[item_num]->Equip(true);
-				temp_item = gitem->GetAllItem()[item_num];
+				_temp_item = gitem->GetAllItem()[item_num];
 				return true;
 			}
 		}
-		else if (isOpendDefense) {
-			item_num = item_flag_x + item_flag_y * 6 + NUMBER_OF_OFFENSE;
-			if (item_num >= NUMBER_OF_OFFENSE + NUMBER_OF_DEFENSE)
+		else if (_isOpendDefense) {
+			item_num = _item_flag_x + _item_flag_y * 6 + _NUMBER_OF_OFFENSE;
+			if (item_num >= _NUMBER_OF_OFFENSE + _NUMBER_OF_DEFENSE)
 				return false;
 			if (gitem->GetAllItem()[item_num]->HaveItem())
 			{
 				gitem->UnloadAllItem();
 				gitem->GetAllItem()[item_num]->Equip(true);
-				temp_item = gitem->GetAllItem()[item_num];
+				_temp_item = gitem->GetAllItem()[item_num];
 				return true;
 			}
 		}
-		else if (isOpendMisc) {
-			item_num = item_flag_x + item_flag_y * 6 + NUMBER_OF_OFFENSE + NUMBER_OF_DEFENSE;
-			if (item_num >= NUMBER_OF_OFFENSE + NUMBER_OF_DEFENSE + NUMBER_OF_MISC)
+		else if (_isOpendMisc) {
+			item_num = _item_flag_x + _item_flag_y * 6 + _NUMBER_OF_OFFENSE + _NUMBER_OF_DEFENSE;
+			if (item_num >= _NUMBER_OF_OFFENSE + _NUMBER_OF_DEFENSE + _NUMBER_OF_MISC)
 				return false;
 			if (gitem->GetAllItem()[item_num]->HaveItem())
 			{
 				gitem->UnloadAllItem();
 				gitem->GetAllItem()[item_num]->Equip(true);
-				temp_item = gitem->GetAllItem()[item_num];
+				_temp_item = gitem->GetAllItem()[item_num];
 				return true;
 			}
 		}

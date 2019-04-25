@@ -10,7 +10,7 @@ namespace game_framework {
 		void Initialize(int, int);
 		void LoadBitmap();		
 		int Collision(int *, const int *, int, int); // 1 發生碰撞 2 發生碰撞而且被碰撞物體撞到牆 3 沒撞到
-		void OnMove(int, int, vector<Skill*>);		//傳入現在場上所有由主角發出的魔法
+		void OnMove(int, int, vector<Skill*>&);		//傳入現在場上所有由主角發出的魔法
 		void OnShow();		//傳入角色座標
 		bool IsLive();
 	private:

@@ -12,16 +12,16 @@ namespace game_framework {
 		GameMap(int, int);  // 設定初始中心點
 		~GameMap();
 		void Initialize(int, int);
-		void ParentLoadBitmap();
-		void ParentOnMove();
+		void LoadBitmapPressF();
+		void OnMoveBackgroundAndWall();
 		void OnShowBackground();
 		void OnShowWall();
 		void OnShowPressF();
 		int GetCharacterStatus();
 		int* GetCharacterPosition();
 		virtual void LoadBitmap()=0;
-		virtual void OnMove(vector<Skill*>)=0;
-		virtual void OnShow(std::vector<Skill*>*)=0;
+		virtual void OnMove(vector<Skill*>&)=0;
+		virtual void OnShow(std::vector<Skill*>&)=0;
 		virtual int* SetCharacterXY(int,int)=0;
 		virtual int GetMapStatus(int, int)=0;
 		
@@ -36,7 +36,6 @@ namespace game_framework {
 		const int collision_damage[4] = {23, 10, 24, 49};	//受到傷害判定範圍
 		const int CHARACTER_SCREEN_X = 285;
 		const int CHARACTER_SCREEN_Y = 205;
-		vector<Enemy*> enemies;
 		
 	};
 

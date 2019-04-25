@@ -10,6 +10,7 @@
 #include "Map_Home.h"
 #include "Map_Town.h"
 #include "Skill_Rebounding_Icicles.h"
+#include "Skill_Shock_Nova.h"
 
 namespace game_framework {
 	
@@ -74,12 +75,12 @@ namespace game_framework {
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		CAnimation ani_menu_1;
-		CAnimation ani_menu_2;
-		CMovingBitmap bm_option;
-		CMovingBitmap bm_quit;
-		CMovingBitmap bm_single_player;
-		int flags = 0;
+		CAnimation _ani_menu_1;
+		CAnimation _ani_menu_2;
+		CMovingBitmap _bm_option;
+		CMovingBitmap _bm_quit;
+		CMovingBitmap _bm_single_player;
+		int _flags = 0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -104,15 +105,15 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		CMovingBitmap bm_join;							// join遊戲的提示選單
-		CMovingBitmap bm_loading;						// loading字樣的圖片
-		CAnimation ani_light_beam;						// 角色在家中現身的動畫
-		HOME_FLAG flags;										// 現在畫面的狀態 0:顯示加入遊戲的選項 1:進入遊戲(沒開任何選單) 2:開啟道具箱 3:開啟書 4:傳送至Town
-		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
-		Map_Home map;									// 地圖
-		Box box;
-		Book book;
-		std::vector<Skill*> skillList;					//存放所有技能
+		CMovingBitmap _bm_join;							// join遊戲的提示選單
+		CMovingBitmap _bm_loading;						// loading字樣的圖片
+		CAnimation _ani_light_beam;						// 角色在家中現身的動畫
+		HOME_FLAG _flags;										// 現在畫面的狀態 0:顯示加入遊戲的選項 1:進入遊戲(沒開任何選單) 2:開啟道具箱 3:開啟書 4:傳送至Town
+		int _delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
+		Map_Home _map;									// 地圖
+		Box _box;
+		Book _book;
+		std::vector<Skill*> _skillList;					//存放所有技能
 		vector<Skill*>::iterator iter;
 		
 		
@@ -134,7 +135,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		CMovingBitmap bm_option;
+		CMovingBitmap _bm_option;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -159,12 +160,12 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		CMovingBitmap bm_loading;						// loading字樣的圖片
-		int flags;										// 
-		int delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
-		Map_Town map;									// 地圖
-		Store item_store;								//道具商店
-		std::vector<Skill*> skillList;
+		CMovingBitmap _bm_loading;						// loading字樣的圖片
+		int _flags;										// 
+		int _delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
+		Map_Town _map;									// 地圖
+		Store _item_store;								//道具商店
+		std::vector<Skill*> _skillList;
 
 	};
 	

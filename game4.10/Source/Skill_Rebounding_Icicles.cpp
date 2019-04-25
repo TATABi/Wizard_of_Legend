@@ -38,9 +38,8 @@ namespace game_framework
 		map_collision[3] = 5;
 		isDelete = false;
 		isStock = false;
-		speed = 20;
+		speed = 10;
 		cast_distance = 30;
-		
 		isInit[0] = isInit[1] = isInit[2] = isInit[3] = true;
 		ani_skill[0].SetDelayCount(1);
 		ani_skill[1].SetDelayCount(1);
@@ -118,7 +117,6 @@ namespace game_framework
 			if (isInit[0])
 			{
 				ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - ani_skill[0].Width() / 2 + xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - ani_skill[0].Height() / 2 + xy[1] - cxy[1]);
-				ani_skill[0].OnMove();
 				isInit[0] = false;
 				ani_1[0] = xy[0];
 				ani_1[1] = xy[1];
@@ -134,7 +132,7 @@ namespace game_framework
 			if (ani_skill[0].GetCurrentBitmapNumber() == 4)
 			{
 				ani_skill[1].SetTopLeft(CHARACTER_SCREEN_CENTER_X - ani_skill[1].Width() / 2 + xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - ani_skill[1].Height() / 2 + xy[1] - cxy[1]);
-				ani_skill[1].OnMove();
+				//ani_skill[1].OnMove();
 				isInit[1] = false;
 				ani_2[0] = xy[0];
 				ani_2[1] = xy[1];
@@ -149,7 +147,7 @@ namespace game_framework
 			if (ani_skill[1].GetCurrentBitmapNumber() == 4)
 			{
 				ani_skill[2].SetTopLeft(CHARACTER_SCREEN_CENTER_X - ani_skill[2].Width() / 2 + xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - ani_skill[2].Height() / 2 + xy[1] - cxy[1]);
-				ani_skill[2].OnMove();
+				//ani_skill[2].OnMove();
 				isInit[2] = false;
 				ani_3[0] = xy[0];
 				ani_3[1] = xy[1];
@@ -165,7 +163,7 @@ namespace game_framework
 			if (ani_skill[2].GetCurrentBitmapNumber() == 4)
 			{
 				ani_skill[3].SetTopLeft(CHARACTER_SCREEN_CENTER_X - ani_skill[3].Width() / 2 + xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - ani_skill[3].Height() / 2 + xy[1] - cxy[1]);
-				ani_skill[3].OnMove();
+				//ani_skill[3].OnMove();
 				isInit[3] = false;
 				ani_4[0] = xy[0];
 				ani_4[1] = xy[1];
@@ -197,6 +195,9 @@ namespace game_framework
 			if (!ani_skill[3].IsFinalBitmap() && !isInit[3])
 				ani_skill[3].OnShow();
 			
+			if (ani_skill[3].IsFinalBitmap())
+				isDelete = true;
+
 		}
 	}
 

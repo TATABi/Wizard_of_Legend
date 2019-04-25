@@ -27,7 +27,7 @@ namespace game_framework {
 		
 	}
 
-	void GameMap::ParentLoadBitmap()
+	void GameMap::LoadBitmapPressF()
 	{
 		int m[6] = { PRESS_F_01, PRESS_F_02, PRESS_F_03 , PRESS_F_04, PRESS_F_05, PRESS_F_06 };
 		for (int i = 0; i < 6;i++)
@@ -35,7 +35,7 @@ namespace game_framework {
 
 	}
 	
-	void GameMap::ParentOnMove()
+	void GameMap::OnMoveBackgroundAndWall()
 	{
 		_background.SetTopLeft(CHARACTER_SCREEN_X - cxy[0], CHARACTER_SCREEN_Y - cxy[1]);
 		_wall.SetTopLeft(CHARACTER_SCREEN_X - cxy[0], CHARACTER_SCREEN_Y - cxy[1]);

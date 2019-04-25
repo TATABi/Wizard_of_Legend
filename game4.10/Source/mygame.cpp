@@ -31,20 +31,20 @@ void CGameStateInit::OnInit()
 				   MENU_INIT_26, MENU_INIT_28, MENU_INIT_30, MENU_INIT_32, MENU_INIT_34, MENU_INIT_36, MENU_INIT_38, MENU_INIT_40, MENU_INIT_42, MENU_INIT_44,
 				   MENU_INIT_46, MENU_INIT_48 };
 	for (int i = 0; i < 23; i++)
-		ani_menu_1.AddBitmap(m1[i]);
+		_ani_menu_1.AddBitmap(m1[i]);
 
 	int m2[11] = { MENU_ENTERMENU_01, MENU_ENTERMENU_02, MENU_ENTERMENU_03, MENU_ENTERMENU_04, MENU_ENTERMENU_05, MENU_ENTERMENU_06, MENU_ENTERMENU_07,
 				   MENU_ENTERMENU_08, MENU_ENTERMENU_09, MENU_ENTERMENU_10, MENU_ENTERMENU_11 };
 	for (int i = 0; i < 11; i++)
-		ani_menu_2.AddBitmap(m2[i]);
+		_ani_menu_2.AddBitmap(m2[i]);
 
-	ani_menu_1.SetDelayCount(2);
-	ani_menu_2.SetDelayCount(1);
+	_ani_menu_1.SetDelayCount(2);
+	_ani_menu_2.SetDelayCount(1);
 	
 
-	bm_option.LoadBitmap(MENU_ENTERMENU_OPTIONS);
-	bm_quit.LoadBitmap(MENU_ENTERMENU_QUIT);
-	bm_single_player.LoadBitmap(MENU_ENTERMENU_SINGLE_PLAYER);
+	_bm_option.LoadBitmap(MENU_ENTERMENU_OPTIONS);
+	_bm_quit.LoadBitmap(MENU_ENTERMENU_QUIT);
+	_bm_single_player.LoadBitmap(MENU_ENTERMENU_SINGLE_PLAYER);
 
 
 	//global variable initialize...//
@@ -74,8 +74,8 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_ESC)								
 		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// Ãö³¬¹CÀ¸
 	else{
-		if (flags == 0)
-			flags = 1;
+		if (_flags == 0)
+			_flags = 1;
 	}
 }
 
@@ -97,13 +97,13 @@ void CGameStateInit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CAudio::Instance()->Play(AUDIO_BE, false);
 
 	if (nChar == KEY_UP || nChar == KEY_W)
-		flags--;
+		_flags--;
 	if (nChar == KEY_DOWN || nChar == KEY_S)
-		flags++;
+		_flags++;
 	if (nChar == KEY_SPACE || nChar == KEY_ENTER) {
-		if (ani_menu_2.IsFinalBitmap()) {
+		if (_ani_menu_2.IsFinalBitmap()) {
 
-			switch (flags) {
+			switch (_flags) {
 			case 1:
 				GotoGameState(GAME_STATE_RUN_HOME);
 				break;
@@ -119,51 +119,51 @@ void CGameStateInit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 	}
 
-	if (flags > 3)
-		flags = 3;
-	if (flags < 1)
-		flags = 1;
+	if (_flags > 3)
+		_flags = 3;
+	if (_flags < 1)
+		_flags = 1;
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	if (flags == 0)
-		flags = 1;
+	if (_flags == 0)
+		_flags = 1;
 }
 
 void CGameStateInit::OnRButtonDown(UINT nFlags, CPoint point)
 {	
-	if(flags == 0)
-		flags = 1;
+	if(_flags == 0)
+		_flags = 1;
 }
 
 void CGameStateInit::OnShow()
 {
 	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
-	switch (flags) {
+	switch (_flags) {
 	case 0:
-		ani_menu_1.OnMove();
-		ani_menu_1.SetTopLeft(0, 0);
-		ani_menu_1.OnShow();
+		_ani_menu_1.OnMove();
+		_ani_menu_1.SetTopLeft(0, 0);
+		_ani_menu_1.OnShow();
 		break;
 	case 1:
-		if (!ani_menu_2.IsFinalBitmap()) {
-			ani_menu_2.OnMove();
-			ani_menu_2.SetTopLeft(0, 0);
-			ani_menu_2.OnShow();
+		if (!_ani_menu_2.IsFinalBitmap()) {
+			_ani_menu_2.OnMove();
+			_ani_menu_2.SetTopLeft(0, 0);
+			_ani_menu_2.OnShow();
 		}
 		else {
-			bm_single_player.SetTopLeft(0, 0);
-			bm_single_player.ShowBitmap();
+			_bm_single_player.SetTopLeft(0, 0);
+			_bm_single_player.ShowBitmap();
 		}
 		break;
 	case 2:
-		bm_option.SetTopLeft(0, 0);
-		bm_option.ShowBitmap();
+		_bm_option.SetTopLeft(0, 0);
+		_bm_option.ShowBitmap();
 		break;
 	case 3:
-		bm_quit.SetTopLeft(0, 0);
-		bm_quit.ShowBitmap();
+		_bm_quit.SetTopLeft(0, 0);
+		_bm_quit.ShowBitmap();
 		break;
 	default:
 		break;
@@ -219,7 +219,7 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun_Home::CGameStateRun_Home(CGame *g)
-: CGameState(g), map(740, 918, &g_character)			//¨¤¦â¦b¦a¹Ï¤Wªº¦ì¸m			
+: CGameState(g), _map(740, 918, &g_character)			//¨¤¦â¦b¦a¹Ï¤Wªº¦ì¸m			
 {
 	
 }
@@ -227,7 +227,7 @@ CGameStateRun_Home::CGameStateRun_Home(CGame *g)
 CGameStateRun_Home::~CGameStateRun_Home()
 {
 	
-	for each (Skill* skill in skillList)
+	for each (Skill* skill in _skillList)
 	{
 		delete skill;
 	}
@@ -236,20 +236,20 @@ CGameStateRun_Home::~CGameStateRun_Home()
 
 void CGameStateRun_Home::OnBeginState()
 {
-	delay_counter = 30 * 1; // 1 seconds
-	map.Initialize(740, 918);
+	_delay_counter = 30 * 1; // 1 seconds
+	_map.Initialize(740, 918);
 	g_character.Initialize();
 
 	
 
 	//±q¨ä¥L³õ´º¦^¨Ó¤£¥Î¦A¦¸¥X²{¥[¤J¿ï³æ
-	if (ani_light_beam.IsFinalBitmap())
+	if (_ani_light_beam.IsFinalBitmap())
 	{
-		ani_light_beam.Reset();
-		flags = FLAG_HOME_NORMAL;
+		_ani_light_beam.Reset();
+		_flags = FLAG_HOME_NORMAL;
 	}
 	else 
-		flags = FLAG_JOIN;
+		_flags = FLAG_JOIN;
 
 	CAudio::Instance()->Stop(AUDIO_TITLE);
 	CAudio::Instance()->Play(AUDIO_HOME, true);
@@ -261,23 +261,23 @@ void CGameStateRun_Home::OnMove()
 
 	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
-	if(delay_counter > -1)
-		delay_counter--;
+	if(_delay_counter > -1)
+		_delay_counter--;
 
-	bm_join.SetTopLeft(100, 100);
-	bm_loading.SetTopLeft(0, 0);
-	g_character.OnMove(&map);
-	map.OnMove(skillList);
-	box.OnMove();
-	book.OnMove();
+	_bm_join.SetTopLeft(100, 100);
+	_bm_loading.SetTopLeft(0, 0);
+	g_character.OnMove(&_map);
+	_map.OnMove(_skillList);
+	_box.OnMove();
+	_book.OnMove();
 	g_bag.OnMove(g_items.GetItemInBag());
 	g_ui.OnMove();
 	g_items.Effect();
 
 	
-	for each (Skill* skill in skillList)
+	for each (Skill* skill in _skillList)
 	{
-		skill->OnMove(map.GetCharacterPosition(), &map);
+		skill->OnMove(_map.GetCharacterPosition(), &_map);
 	}
 
 
@@ -287,12 +287,12 @@ void CGameStateRun_Home::OnInit()
 {
 
 
-	bm_join.LoadBitmap(JOIN);
-	bm_loading.LoadBitmap(LOADING);
+	_bm_join.LoadBitmap(JOIN);
+	_bm_loading.LoadBitmap(LOADING);
 
-	map.LoadBitmap();
-	box.LoadBitmap();
-	book.LoadBitmap();
+	_map.LoadBitmap();
+	_box.LoadBitmap();
+	_book.LoadBitmap();
 
 	CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
 	CAudio::Instance()->Load(AUDIO_PUTTING, "sounds\\putting.mp3");
@@ -301,14 +301,14 @@ void CGameStateRun_Home::OnInit()
 	CAudio::Instance()->Load(AUDIO_ARRIVAL, "sounds\\arrival.mp3");
 	CAudio::Instance()->Load(AUDIO_PULL2, "sounds\\pull2.mp3");
 
-	ani_light_beam.SetDelayCount(1);
-	ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255, 0));
-	ani_light_beam.AddBitmap(LIGHT_BEAM02, RGB(50, 255, 0));
-	ani_light_beam.AddBitmap(LIGHT_BEAM03, RGB(50, 255, 0));
-	ani_light_beam.AddBitmap(LIGHT_BEAM04, RGB(50, 255, 0));
-	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
-	ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
-	ani_light_beam.SetTopLeft(0, 0);
+	_ani_light_beam.SetDelayCount(1);
+	_ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255, 0));
+	_ani_light_beam.AddBitmap(LIGHT_BEAM02, RGB(50, 255, 0));
+	_ani_light_beam.AddBitmap(LIGHT_BEAM03, RGB(50, 255, 0));
+	_ani_light_beam.AddBitmap(LIGHT_BEAM04, RGB(50, 255, 0));
+	_ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
+	_ani_light_beam.AddBitmap(LIGHT_BEAM05, RGB(50, 255, 0));
+	_ani_light_beam.SetTopLeft(0, 0);
 
 }
 
@@ -327,9 +327,9 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_F = 0x46;
 	const char KEY_TAB = 0x09;
 	
-	if (delay_counter < 0)
+	if (_delay_counter < 0)
 	{
-		switch (flags)
+		switch (_flags)
 		{
 		case FLAG_HOME_NORMAL:
 			//¶i¤J¹CÀ¸¡A¨S¦³¶}±Ò¥ô¦ó¿ï³æ
@@ -349,33 +349,33 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 					CAudio::Instance()->Play(AUDIO_DASH, false);
 				}
 			}
-			if (nChar == KEY_F && map.GetCharacterStatus() == 1)
+			if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 			{
 				GotoGameState(GAME_STATE_RUN_TOWN);			//¤Á´«¨ìtown
 			}
 
-			if (nChar == KEY_F && map.GetCharacterStatus() == 2)
+			if (nChar == KEY_F && _map.GetCharacterStatus() == 2)
 			{
-				box.Open(true);
-				flags = FLAG_BOX;		//¶}±Ò¹D¨ã½c
+				_box.Open(true);
+				_flags = FLAG_BOX;		//¶}±Ò¹D¨ã½c
 			}
 
-			if (nChar == KEY_F && map.GetCharacterStatus() == 3)
+			if (nChar == KEY_F && _map.GetCharacterStatus() == 3)
 			{
-				book.Open(true);		//¶}±Ò®Ñ
-				flags = FLAG_BOOK;
+				_book.Open(true);		//¶}±Ò®Ñ
+				_flags = FLAG_BOOK;
 			}
 
 			if (nChar == KEY_ESC)	//PAUSED¿ï³æ
 			{
 				g_pauseMenu.Paused(true);
-				flags = FLAG_HOME_PAUSED;
+				_flags = FLAG_HOME_PAUSED;
 			}
 
 			if (nChar == KEY_TAB)
 			{
 				g_bag.Open(true);
-				flags = FLAG_HOME_BAG;
+				_flags = FLAG_HOME_BAG;
 			}
 			break;
 
@@ -383,31 +383,31 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 			if (nChar == KEY_SPACE)		// ¥[¤J¹CÀ¸´£¥Ü¿ï³æ
 			{
-				flags = FLAG_HOME_NORMAL;				// ¨¤¦â¶i¤J¹CÀ¸
+				_flags = FLAG_HOME_NORMAL;				// ¨¤¦â¶i¤J¹CÀ¸
 			}
 			break;
 
 		case FLAG_BOX:							//¹D¨ã½c¿ï³æ
 			if (nChar == KEY_ESC)
 			{
-				box.Open(false);
-				flags = FLAG_HOME_NORMAL;
+				_box.Open(false);
+				_flags = FLAG_HOME_NORMAL;
 			}
 			if (nChar == KEY_DOWN || nChar == KEY_S)
 			{	
 				CAudio::Instance()->Play(AUDIO_PULL2, false);
-				box.Down();
+				_box.Down();
 			}
 			if (nChar == KEY_UP || nChar == KEY_W)
 			{
 				CAudio::Instance()->Play(AUDIO_PULL2, false);
-				box.Up();
+				_box.Up();
 			}
 			if (nChar == KEY_SPACE)
 			{
 				CAudio::Instance()->Play(AUDIO_PULL, false);
-				box.OpenOpen(true);
-				flags = FLAG_BOX_ITEM;
+				_box.OpenOpen(true);
+				_flags = FLAG_BOX_ITEM;
 			}
 			break;
 
@@ -416,28 +416,28 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			if (nChar == KEY_DOWN || nChar == KEY_S)
 			{
 				CAudio::Instance()->Play(AUDIO_PUTTING, false);
-				box.Down();
+				_box.Down();
 			}
 			if (nChar == KEY_UP || nChar == KEY_W)
 			{
 				CAudio::Instance()->Play(AUDIO_PUTTING, false);
-				box.Up();		
+				_box.Up();
 			}
 			if (nChar == KEY_LEFT || nChar == KEY_A)
 			{
-				box.Left();
+				_box.Left();
 				CAudio::Instance()->Play(AUDIO_PUTTING, false);
 			}
 			if (nChar == KEY_RIGHT || nChar == KEY_D)
 			{
-				box.Right();
+				_box.Right();
 				CAudio::Instance()->Play(AUDIO_PUTTING, false);
 			}
 			if (nChar == KEY_SPACE)
 			{
-				if (box.Equip(&g_items)) {
-					box.OpenOpen(false);
-					flags = FLAG_BOX;
+				if (_box.Equip(&g_items)) {
+					_box.OpenOpen(false);
+					_flags = FLAG_BOX;
 				}
 				else {
 					CAudio::Instance()->Play(AUDIO_NOMONEY, false);
@@ -445,8 +445,8 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 			if (nChar == KEY_ESC)
 			{
-				box.OpenOpen(false);
-				flags = FLAG_BOX;
+				_box.OpenOpen(false);
+				_flags = FLAG_BOX;
 			}
 			break;
 
@@ -457,7 +457,7 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				g_pauseMenu.PrePausedMenu();
 			if (nChar == KEY_ESC)
 			{
-				flags = FLAG_HOME_NORMAL;
+				_flags = FLAG_HOME_NORMAL;
 				g_pauseMenu.Paused(false);
 			}
 			if (nChar == KEY_SPACE)
@@ -468,18 +468,18 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				switch (temp)
 				{
 				case 0:
-					flags = FLAG_HOME_NORMAL;
+					_flags = FLAG_HOME_NORMAL;
 					break;
 				case 1:
-					flags = FLAG_JOIN;
-					ani_light_beam.Reset();
-					map.Initialize(740, 918);
+					_flags = FLAG_JOIN;
+					_ani_light_beam.Reset();
+					_map.Initialize(740, 918);
 					CAudio::Instance()->Play(AUDIO_TITLE, true);
 					CAudio::Instance()->Stop(AUDIO_HOME);
 					GotoGameState(GAME_STATE_INIT);
 					break;
 				case 2:
-					flags = FLAG_HOME_OPTIONS;
+					_flags = FLAG_HOME_OPTIONS;
 					break;
 				case 3:
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// Ãö³¬¹CÀ¸
@@ -493,40 +493,57 @@ void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			{
 				g_pauseMenu.PrePausedMenu();
 				g_pauseMenu.PrePausedMenu();
-				flags = FLAG_HOME_PAUSED;
+				_flags = FLAG_HOME_PAUSED;
 			}
 			break;
 		case FLAG_HOME_BAG:
 			if (nChar == KEY_TAB || nChar == KEY_ESC)
 			{
 				g_bag.Open(false);
-				flags = FLAG_HOME_NORMAL;
+				_flags = FLAG_HOME_NORMAL;
 			}
+			if (nChar == KEY_DOWN || nChar == KEY_S)
+			{
+				g_bag.Down();
+			}
+			if (nChar == KEY_UP || nChar == KEY_W)
+			{
+				g_bag.Up();
+			}
+			if (nChar == KEY_LEFT || nChar == KEY_A)
+			{
+				g_bag.Left();
+			}
+			if (nChar == KEY_RIGHT || nChar == KEY_D)
+			{
+				g_bag.Right();
+			}
+
 			break;
 
 		case FLAG_BOOK:
 			
 			if (nChar == KEY_ESC)
 			{
-				book.Open(false);
-				flags = FLAG_HOME_NORMAL;
+				_book.Open(false);
+				_flags = FLAG_HOME_NORMAL;
 			}
 			
 			if (nChar == KEY_DOWN || nChar == KEY_S)
 			{
-				book.Down();
+				_book.Down();
 			}
 			if (nChar == KEY_UP || nChar == KEY_W)
 			{
-				book.Up();
+				_book.Up();
 			}
 			if (nChar == KEY_LEFT || nChar == KEY_A)
 			{
-				book.Left();
+				_book.Left();
 			}
 			if (nChar == KEY_RIGHT || nChar == KEY_D)
 			{
-				book.Right();
+				_book.Right();
 			}
 			break;
 			
@@ -560,8 +577,8 @@ void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // ³B²z·Æ¹«ªº°Ê§@
 {
-	skillList.push_back(new Skill_Rebounding_Icicles(point.x, point.y, map.GetCharacterPosition()));
-
+	_skillList.push_back(new Skill_Rebounding_Icicles(point.x, point.y, _map.GetCharacterPosition()));
+	//skillList.push_back(map.GetCharacter().);
 }
 
 void CGameStateRun_Home::OnLButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§@
@@ -576,7 +593,8 @@ void CGameStateRun_Home::OnMouseMove(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§
 
 void CGameStateRun_Home::OnRButtonDown(UINT nFlags, CPoint point)  // ³B²z·Æ¹«ªº°Ê§@
 {
-
+	_skillList.push_back(new Skill_Shock_Nova(point.x, point.y, _map.GetCharacterPosition()));
+	
 }
 
 void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§@
@@ -586,55 +604,47 @@ void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§
 
 void CGameStateRun_Home::OnShow()
 {
-	if (delay_counter < 0)
+	if (_delay_counter < 0)
 	{
-		map.OnShowBackground();
-		if (flags == 1)
-			bm_join.ShowBitmap();
+		_map.OnShowBackground();
+		if (_flags == 1)
+			_bm_join.ShowBitmap();
 		else
 		{
-			if (!ani_light_beam.IsFinalBitmap())
+			if (!_ani_light_beam.IsFinalBitmap())
 			{
 				CAudio::Instance()->Play(AUDIO_ARRIVAL, false);
-				ani_light_beam.OnMove();
-				ani_light_beam.OnShow();
+				_ani_light_beam.OnMove();
+				_ani_light_beam.OnShow();
 			}
 			else
 			{
-				map.OnShow(&skillList);
 
-				map.OnShowWall();
+				_map.OnShow(_skillList);
+
+				_map.OnShowWall();
 			
-				map.OnShowPressF();
+				_map.OnShowPressF();
+				
 
-				/*
-				for (iter = skillList.begin(); iter != skillList.end(); iter++)
+				_box.OnShow(&g_items);
+				_book.OnShow();
+				g_ui.OnShow();
+				g_bag.OnShow();
+				g_pauseMenu.OnShow();
+
+				for (iter = _skillList.begin(); iter != _skillList.end(); iter++)
 				{
-					
 					if ((*iter)->IsDelete() == true)
 					{
 						delete *iter;
-						iter = skillList.erase(iter);
-
+						iter = _skillList.erase(iter);
 					}
-					else
-					{
-						(*iter)->OnShow();		
-					}
-
-					if (iter == skillList.end())
+					if (iter == _skillList.end())
 					{
 						break;
 					}
 				}
-				*/
-				
-
-				box.OnShow(&g_items);
-				book.OnShow();
-				g_ui.OnShow();
-				g_bag.OnShow();
-				g_pauseMenu.OnShow();
 	
 			}
 			
@@ -642,7 +652,7 @@ void CGameStateRun_Home::OnShow()
 		}
 	}
 	else
-		bm_loading.ShowBitmap();
+		_bm_loading.ShowBitmap();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -666,14 +676,14 @@ void CGameStateRun_Options::OnBeginState()
 
 void CGameStateRun_Options::OnMove()							
 {
-	bm_option.SetTopLeft(0, 0);
+	_bm_option.SetTopLeft(0, 0);
 	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
 }
 
 void CGameStateRun_Options::OnInit()  								
 {
-	bm_option.LoadBitmap(MENU_OPTIONS);
+	_bm_option.LoadBitmap(MENU_OPTIONS);
 }
 
 void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -698,7 +708,7 @@ void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun_Options::OnShow()
 {
-	bm_option.ShowBitmap();
+	_bm_option.ShowBitmap();
 
 }
 
@@ -707,7 +717,7 @@ void CGameStateRun_Options::OnShow()
 ////Town
 /////////////////////////////////////////////////////////////////////////////
 CGameStateRun_Town::CGameStateRun_Town(CGame *g)
-	: CGameState(g), map(770, 1065)			//¨¤¦â¦b¦a¹Ï¤Wªº¦ì¸m			
+	: CGameState(g), _map(770, 1065)			//¨¤¦â¦b¦a¹Ï¤Wªº¦ì¸m			
 {
 
 		
@@ -720,16 +730,16 @@ CGameStateRun_Town::~CGameStateRun_Town()
 
 void CGameStateRun_Town::OnBeginState()
 {
-	delay_counter = 30 * 1; // 1 seconds
-	flags = 0;
+	_delay_counter = 30 * 1; // 1 seconds
+	_flags = 0;
 	g_character.Initialize();
-	map.Initialize(770, 1065);
+	_map.Initialize(770, 1065);
 	CAudio::Instance()->Stop(AUDIO_HOME);
 	CAudio::Instance()->Play(AUDIO_TOWN, true);
 	
 	//////²£¥ÍÀH¾÷¹D¨ã/////
 
-	item_store.Shelf(&g_items);
+	_item_store.Shelf(&g_items);
 
 }
 
@@ -738,16 +748,16 @@ void CGameStateRun_Town::OnMove()
 
 	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
-	if (delay_counter > -1)
-		delay_counter--;
+	if (_delay_counter > -1)
+		_delay_counter--;
 
-	bm_loading.SetTopLeft(0, 0);
-	g_character.OnMove(&map);
-	map.OnMove(skillList);
+	_bm_loading.SetTopLeft(0, 0);
+	g_character.OnMove(&_map);
+	_map.OnMove(_skillList);
 	g_ui.OnMove();
 	g_bag.OnMove(g_items.GetItemInBag());
 	g_items.Effect();
-	item_store.SetXY(map.GetCharacterPosition());
+	_item_store.SetXY(_map.GetCharacterPosition());
 	
 
 
@@ -755,13 +765,13 @@ void CGameStateRun_Town::OnMove()
 
 void CGameStateRun_Town::OnInit()
 {
-	bm_loading.LoadBitmap(LOADING);
-	map.LoadBitmap();
+	_bm_loading.LoadBitmap(LOADING);
+	_map.LoadBitmap();
 	CAudio::Instance()->Load(AUDIO_TOWN, "sounds\\TownBGM.wav");
 	CAudio::Instance()->Load(AUDIO_BUY, "sounds\\buy.mp3");
 	CAudio::Instance()->Load(AUDIO_NOMONEY, "sounds\\nomoney.mp3");
 
-	item_store.LoadBitmap();
+	_item_store.LoadBitmap();
 }
 
 void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -779,9 +789,9 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_F = 0x46;
 	const char KEY_TAB = 0x09;
 
-	if (delay_counter < 0)
+	if (_delay_counter < 0)
 	{
-		switch (flags)
+		switch (_flags)
 		{
 		case FLAG_TOWN_NORMAL:			//¤@¯ëª¬ºA¡A¨S¦³¶}±Ò¥ô¦ó¿ï³æ¡A¥i¥HÁÊ¶RªF¦è¡A¨«¸ô¡A¶i¶Ç°eªù
 			
@@ -801,39 +811,39 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 					CAudio::Instance()->Play(AUDIO_DASH, false);
 				}
 			}
-			if (nChar == KEY_F && map.GetCharacterStatus() == 1)
+			if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 			{
 				GotoGameState(GAME_STATE_RUN_HOME);		//¤Á´«³õ´º¨ìHome
 			}
 
-			if (nChar == KEY_F && map.GetCharacterStatus() == 2)
+			if (nChar == KEY_F && _map.GetCharacterStatus() == 2)
 			{
 				//¶iÃö¥d
 			}
 
-			if (nChar == KEY_F && map.GetCharacterStatus() == 3)	//¶R¹D¨ã1
+			if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//¶R¹D¨ã1
 			{
 				
-				if(item_store.Buy(0, &g_items))
+				if(_item_store.Buy(0, &g_items))
 					CAudio::Instance()->Play(AUDIO_BUY, false);
 				else
 					CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				
 			}
 
-			if (nChar == KEY_F && map.GetCharacterStatus() == 4)	//¶R¹D¨ã2
+			if (nChar == KEY_F && _map.GetCharacterStatus() == 4)	//¶R¹D¨ã2
 			{
 				
-				if (item_store.Buy(1, &g_items))
+				if (_item_store.Buy(1, &g_items))
 					CAudio::Instance()->Play(AUDIO_BUY, false);
 				else
 					CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 			}
 			
 
-			if (nChar == KEY_F && map.GetCharacterStatus() == 5)	//¶R¹D¨ã3
+			if (nChar == KEY_F && _map.GetCharacterStatus() == 5)	//¶R¹D¨ã3
 			{
-				if (item_store.Buy(2, &g_items))
+				if (_item_store.Buy(2, &g_items))
 					CAudio::Instance()->Play(AUDIO_BUY, false);
 				else
 					CAudio::Instance()->Play(AUDIO_NOMONEY, false);
@@ -843,13 +853,13 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			if (nChar == KEY_ESC)	//PAUSED¿ï³æ
 			{
 				g_pauseMenu.Paused(true);
-				flags = FLAG_TOWN_PAUSED;
+				_flags = FLAG_TOWN_PAUSED;
 			}
 
 			if (nChar == KEY_TAB)
 			{
 				g_bag.Open(true);
-				flags = FLAG_TOWN_BAG;
+				_flags = FLAG_TOWN_BAG;
 			}
 			break;
 
@@ -860,7 +870,7 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				g_pauseMenu.PrePausedMenu();
 			if (nChar == KEY_ESC)
 			{
-				flags = FLAG_TOWN_NORMAL;
+				_flags = FLAG_TOWN_NORMAL;
 				g_pauseMenu.Paused(false);
 			}
 			if (nChar == KEY_SPACE)
@@ -871,16 +881,16 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				switch (temp)
 				{
 				case 0:
-					flags = FLAG_TOWN_NORMAL;
+					_flags = FLAG_TOWN_NORMAL;
 					break;
 				case 1:
-					flags = FLAG_JOIN;
+					_flags = FLAG_JOIN;
 					CAudio::Instance()->Play(AUDIO_TITLE, true);
 					CAudio::Instance()->Stop(AUDIO_TOWN);
 					GotoGameState(GAME_STATE_INIT);
 					break;
 				case 2:
-					flags = FLAG_TOWN_OPTIONS;
+					_flags = FLAG_TOWN_OPTIONS;
 					break;
 				case 3:
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// Ãö³¬¹CÀ¸
@@ -894,7 +904,7 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			{
 				g_pauseMenu.PrePausedMenu();
 				g_pauseMenu.PrePausedMenu();
-				flags = FLAG_TOWN_PAUSED;
+				_flags = FLAG_TOWN_PAUSED;
 			}
 			break;
 
@@ -902,7 +912,7 @@ void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			if (nChar == KEY_TAB || nChar == KEY_ESC)
 			{
 				g_bag.Open(false);
-				flags = FLAG_TOWN_NORMAL;
+				_flags = FLAG_TOWN_NORMAL;
 			}
 			break;
 		
@@ -962,20 +972,20 @@ void CGameStateRun_Town::OnRButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§
 
 void CGameStateRun_Town::OnShow()
 {
-	if (delay_counter < 0)
+	if (_delay_counter < 0)
 	{
-		map.OnShowBackground();
-		item_store.OnShow(map.GetCharacterPosition());
+		_map.OnShowBackground();
+		_item_store.OnShow(_map.GetCharacterPosition());
 		g_character.OnShow();
-		map.OnShowWall();
-		map.OnShowPressF();
+		_map.OnShowWall();
+		_map.OnShowPressF();
 		g_ui.OnShow();
 		g_bag.OnShow();
 		g_pauseMenu.OnShow();
 
 	}
 	else
-		bm_loading.ShowBitmap();
+		_bm_loading.ShowBitmap();
 }
 
 }

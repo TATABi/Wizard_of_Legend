@@ -12,82 +12,73 @@ namespace game_framework {
 	Item::Item(int bm, string type, int number,int diamond, bool (*effect)(), void (*strip)())
 	{
 		Initialize();
-		bm_number = bm;
-		this->type = type;
-		this->number = number;
-		this->diamond = diamond;
-		Launched = effect;
-		Stripping = strip;
+		_bm_number = bm;
+		_type = type;
+		_number = number;
+		_diamond = diamond;
+		_Launched = effect;
+		_Stripping = strip;
 	}
 	
 	void Item::Initialize()
 	{
-		isEquiped = false; 
-		isLuanched = false;
-		isOwned = false;
+		_isEquiped = false; 
+		_isLuanched = false;
+		_isOwned = false;
 	}
 
 	void Item::LoadBitmap()
 	{
-		bm_item.LoadBitmap(bm_number, RGB(50, 255, 0));
+		_bm_item.LoadBitmap(_bm_number, RGB(50, 255, 0));
+		//_bm_info.LoadBitmap
 	}
 
 	void Item::SetXY(int x, int y)
 	{
-		bm_item.SetTopLeft(x, y);
+		_bm_item.SetTopLeft(x, y);
 	}
 	
 	void Item::OnShow()
 	{
-		bm_item.ShowBitmap();
+		_bm_item.ShowBitmap();
 	}
 
 	void Item::Equip(bool equip)
 	{
-		if (isOwned)
+		if (_isOwned)
 		{
-			isEquiped = equip;
+			_isEquiped = equip;
 
-			if (isEquiped == false && isLuanched)
+			if (_isEquiped == false && _isLuanched)
 			{
-				isLuanched = false;
-				Stripping();
-				/*
-				if (number == 3) {
-					CharacterData::Max_HP = 500;
-					if (CharacterData::Max_HP < CharacterData::HP)
-						CharacterData::HP = CharacterData::Max_HP;
-				}
-				if (number == 5)
-					CharacterData::Move_Coefficient = 1;
-				*/
+				_isLuanched = false;
+				_Stripping();
 			}
-			
 		}
 	}
 
 	bool Item::IsEquiped()
 	{
-		return isEquiped;
+		return _isEquiped;
 	}
 
 	void Item::Effect()			//一直做
 	{
-		if (isEquiped && !isLuanched)	//裝備 &還未發動效果
-			isLuanched = Launched();
+		if (_isEquiped && !_isLuanched)	//裝備 &還未發動效果
+			_isLuanched = _Launched();
 	}
 	
 	bool Item::HaveItem()	//是否擁有Item
 	{
-		return isOwned;
+		return _isOwned;
 	}
 
 	bool Item::BuyItem()
 	{
-		if (CharacterData::Diamond >= diamond && !isOwned)
+		if (CharacterData::Diamond >= _diamond && !_isOwned)
 		{
-			isOwned = true;
-			CharacterData::Diamond -= diamond;
+			_isOwned = true;
+			CharacterData::Diamond -= _diamond;
 			return true;
 		}
 		else
@@ -96,12 +87,12 @@ namespace game_framework {
 
 	string Item::GetType()
 	{	
-		return type;
+		return _type;
 	}
 
 	int Item::GetNumber()
 	{
-		return number;
+		return _number;
 	}
 
 

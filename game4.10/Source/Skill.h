@@ -20,7 +20,6 @@ namespace game_framework {
 	protected:
 		CMovingBitmap bm_skill_icon;
 		float dx, dy;								//技能的移動向量
-		//int xy[2];									//技能在地圖上的位置
 		int cast_distance;							//技能施放時與角色的距離
 		float rx, ry;								//技能實際飛行位置(用來修正float int 轉換出現的抖動)
 		int speed;									//移動速度

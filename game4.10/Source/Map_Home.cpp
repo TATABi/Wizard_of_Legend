@@ -29,14 +29,14 @@ namespace game_framework {
 		for (iter = enemies.begin(); iter != enemies.end(); iter++)
 			(*iter)->LoadBitmap();
 		
-		ParentLoadBitmap();
+		LoadBitmapPressF();
 		_background.LoadBitmap(MAP_HOME);
 		_wall.LoadBitmap(MAP_HOME_WALL, RGB(50, 255, 0));
 	}
 
-	void Map_Home::OnMove(std::vector<Skill*> skills)
+	void Map_Home::OnMove(std::vector<Skill*> &skills)
 	{
-		ParentOnMove();
+		OnMoveBackgroundAndWall();
 		character_status = home_map[cxy[0] + collision_move[0] + 10][cxy[1] + collision_move[1] + 3];
 		int temp_x = 0, temp_y = 0;
 		if (character_status == 1 || character_status == 2 || character_status == 3)
@@ -95,14 +95,14 @@ namespace game_framework {
 
 	}
 
-	void Map_Home::OnShow(std::vector<Skill*> *skills)
+	void Map_Home::OnShow(std::vector<Skill*> &skills)
 	{
 		//¹Ï¼h®ÄªG
 
 		vector<Layer*> layer;
 		
 		layer.insert(layer.end(), enemies.begin(), enemies.end());	
-		layer.insert(layer.end(), skills->begin(), skills->end());
+		layer.insert(layer.end(), skills.begin(), skills.end());
 		layer.push_back(character);
 
 		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });

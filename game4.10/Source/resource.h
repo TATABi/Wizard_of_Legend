@@ -237,6 +237,7 @@
 #define BOOK_BOARD                      487
 #define BOOK_CURSOR                     488
 #define SKILL_ICON_DASH_WIND            490
+#define SKILL_ICON_AIR_BURST            490
 #define ITEM_SOLD_OUT                   491
 #define BOX_EQUIP_BOARD                 492
 #define SKILL_REBOUNDING_ICICLES_01     496
@@ -245,6 +246,19 @@
 #define SKILL_REBOUNDING_ICICLES_04     499
 #define IDB_BITMAP8                     500
 #define SKILL_ICON_REBOUNDING_ICICLES   500
+#define SKILL_ICON_AIR_SPINNER          501
+#define SKILL_ICON_SHOCK_NOVA           502
+#define BAG_ITEM_CURSOR                 503
+#define SKILL_SHOCK_NOVA_01             504
+#define SKILL_SHOCK_NOVA_02             505
+#define SKILL_SHOCK_NOVA_03             506
+#define SKILL_SHOCK_NOVA_04             507
+#define SKILL_SHOCK_NOVA_05             508
+#define SKILL_SHOCK_NOVA_06             509
+#define SKILL_SHOCK_NOVA_07             510
+#define IDB_BITMAP11                    511
+#define SKILL_SHOCK_NOVA_08             511
+#define SKILL_SHOCK_NOVA_09             512
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -257,7 +271,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        501
+#define _APS_NEXT_RESOURCE_VALUE        513
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

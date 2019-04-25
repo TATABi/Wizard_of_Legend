@@ -296,6 +296,7 @@
     <ClCompile Include="Source\Layer.cpp" />
     <ClCompile Include="Source\Skill.cpp" />
     <ClCompile Include="Source\Skill_Rebounding_Icicles.cpp" />
+    <ClCompile Include="Source\Skill_Shock_Nova.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -343,6 +344,7 @@
     <ClInclude Include="Source\Layer.h" />
     <ClInclude Include="Source\Skill.h" />
     <ClInclude Include="Source\Skill_Rebounding_Icicles.h" />
+    <ClInclude Include="Source\Skill_Shock_Nova.h" />
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
@@ -460,6 +462,7 @@
     <Image Include="RES\Character\Up\up (8).bmp" />
     <Image Include="RES\Character\Up\up (9).bmp" />
     <Image Include="RES\Corsor.bmp" />
+    <Image Include="RES\InGame\Bag\Bag_Item_Cursor.bmp" />
     <Image Include="RES\InGame\Bag\Board.bmp" />
     <Image Include="RES\InGame\Book\Book_board.bmp" />
     <Image Include="RES\InGame\Book\cursor.bmp" />
@@ -525,12 +528,25 @@
     <Image Include="RES\InGame\Press_F\04.bmp" />
     <Image Include="RES\InGame\Press_F\05.bmp" />
     <Image Include="RES\InGame\Press_F\06.bmp" />
+    <Image Include="RES\InGame\Skill\Icon\Air_Burst_Icon.bmp" />
+    <Image Include="RES\InGame\Skill\Icon\Air_Spinner_Icon.bmp" />
     <Image Include="RES\InGame\Skill\Icon\Icicles_Icon.bmp" />
+    <Image Include="RES\InGame\Skill\Icon\Rebounding_Icicles_Icon.bmp" />
+    <Image Include="RES\InGame\Skill\Icon\Shock_Nova_Icon.bmp" />
     <Image Include="RES\InGame\Skill\Icon\windDash.bmp" />
     <Image Include="RES\InGame\Skill\Rebounding_Icicles\1.bmp" />
     <Image Include="RES\InGame\Skill\Rebounding_Icicles\2.bmp" />
     <Image Include="RES\InGame\Skill\Rebounding_Icicles\3.bmp" />
     <Image Include="RES\InGame\Skill\Rebounding_Icicles\4.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\1.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\2.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\3.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\4.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\5.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\6.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\7.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\8.bmp" />
+    <Image Include="RES\InGame\Skill\Shock_Nova\9.bmp" />
     <Image Include="RES\InGame\Skill\windDash.bmp" />
     <Image Include="RES\InGame\Town\sold_out.bmp" />
     <Image Include="RES\InGame\Town\Town.bmp" />

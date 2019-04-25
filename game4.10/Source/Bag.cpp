@@ -13,62 +13,97 @@ namespace game_framework {
 
 	void Bag::Initialize()
 	{
-		isOpened =  false;
+		_isOpened =  false;
+		_itemAmount = 0;
 	}
 	void Bag::LoadBitmap()
 	{
-		bm_bag.LoadBitmap(BAG_BOARD, RGB(50, 255, 0));
-
-		bm_bag.SetTopLeft(50, 70);
-
-		/*
-		skill1.LoadBitmap(SKILL_LOVE, RGB(50, 255, 0));
-		skill2.LoadBitmap(SKILL_DASH_WIND, RGB(50, 255, 0));
-		skill1.SetTopLeft(75, 103);
-		skill2.SetTopLeft(100, 103);
-		*/
+		_bm_bag.LoadBitmap(BAG_BOARD, RGB(50, 255, 0));
+		_bm_skill1.LoadBitmap(SKILL_ICON_AIR_SPINNER, RGB(50, 255, 0));
+		_bm_skill2.LoadBitmap(SKILL_ICON_AIR_BURST, RGB(50, 255, 0));
+		_bm_skill3.LoadBitmap(SKILL_ICON_REBOUNDING_ICICLES, RGB(50, 255, 0));
+		_bm_skill4.LoadBitmap(SKILL_ICON_SHOCK_NOVA, RGB(50, 255, 0));
+		_bm_item_cursor.LoadBitmap(BAG_ITEM_CURSOR, RGB(50, 255, 0));
+		SetTopLeft();
 	}
 
-	void Bag::OnMove(vector<Item*> item)
+	void Bag::SetTopLeft()
 	{
-		if (isOpened)
+		_bm_bag.SetTopLeft(50, 70);
+		_bm_skill1.SetTopLeft(75, 103);
+		_bm_skill2.SetTopLeft(100, 103);
+		_bm_skill3.SetTopLeft(125, 103);
+		_bm_skill4.SetTopLeft(150, 103);
+		_bm_item_cursor.SetTopLeft(67, 170);
+	}
+
+	void Bag::OnMove(vector<Item*> &items)
+	{
+		if (_isOpened)
 		{
-			temp_item = item;
+			_items = items;
 		}
 	}
 
 	void Bag::OnShow()
 	{
+		_bm_item_cursor.SetTopLeft(67 + 25 * _flags[0], 170 + _flags[1] * 25);
+
 		int row = 0;
 		int col = 0;
 
-		if (isOpened)
+		if (_isOpened)
 		{
-			bm_bag.ShowBitmap();
+			_bm_bag.ShowBitmap();
 
-			for (int i = 0; i < temp_item.size(); i++)
+			for (int i = 0; i < _items.size(); i++)
 			{
 				if (row == 6) {
 					row = 0;
 					col++;
 				}
 
-				temp_item[i]->SetXY(67 + 25 * row, 170 + 25 * col);
-				temp_item[i]->OnShow();
-				row++;			
-				
+				_items[i]->SetXY(67 + 25 * row, 170 + 25 * col);
+				_items[i]->OnShow();
+				row++;						
 			}
-			/*
-			skill1.ShowBitmap(0.7);
-			skill2.ShowBitmap(0.7);
-			*/
+			_bm_skill1.ShowBitmap(0.7);
+			_bm_skill2.ShowBitmap(0.7);
+			_bm_skill3.ShowBitmap(0.7);
+			_bm_skill4.ShowBitmap(0.7);
+			_bm_item_cursor.ShowBitmap();
 		}
 	}
 
-	void Bag::Open(bool opened)
+	void Bag::Open(bool isOpened)
 	{
-		isOpened = opened;
+		_flags[0] = 0;
+		_flags[1] = 0;
+		_isOpened = isOpened;
 	}
 
-	
+	void Bag::Left() 
+	{
+		if (_flags[0] > 0 )
+			_flags[0]--;
+	}
+
+	void Bag::Right()
+	{
+		if (_flags[0] < 5)
+			_flags[0]++;
+	}
+
+	void Bag::Up()
+	{
+		if (_flags[1] > 0)
+			_flags[1]--;
+	}
+
+	void Bag::Down()
+	{
+		if (_flags[1] < 1 )
+			_flags[1]++;
+	}
+
 }

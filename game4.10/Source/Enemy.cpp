@@ -26,7 +26,7 @@ namespace game_framework {
 		bm_stand.LoadBitmap(ENEMY_BLOCKHEAD, RGB(50, 255, 0));
 	}
 	
-	void Enemy::OnMove(int cx, int cy, vector<Skill*> skills)
+	void Enemy::OnMove(int cx, int cy, vector<Skill*> &skills)
 	{
 		bm_stand.SetTopLeft(CHARACTER_SCREEN_X + xy[0] - cx, CHARACTER_SCREEN_Y + xy[1] - cy);
 
