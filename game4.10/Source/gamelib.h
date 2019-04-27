@@ -83,7 +83,6 @@
 enum GAME_STATES {
 	GAME_STATE_INIT,
 	GAME_STATE_RUN_HOME,
-	GAME_STATE_RUN_OPTIONS,
 	GAME_STATE_RUN_TOWN,
 	/*
 	GAME_STATE_RUN_LOADING,
@@ -98,6 +97,20 @@ enum GAME_STATES {
 	GAME_STATE_RUN_LEVEL_9,
 	*/
 	GAME_STATE_OVER
+};
+
+enum AUDIO_ID {				// 定義各種音效的編號
+	AUDIO_BE,
+	AUDIO_TITLE,
+	AUDIO_HOME,
+	AUDIO_DASH,
+	AUDIO_TOWN,
+	AUDIO_ARRIVAL,
+	AUDIO_PULL,
+	AUDIO_PUTTING,
+	AUDIO_PULL2,
+	AUDIO_BUY,
+	AUDIO_NOMONEY
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -286,7 +299,6 @@ private:
 class CGame;
 class CGameStateInit;
 class CGameStateRun_Home;
-class CGameStateRun_Options;
 class CGameStateRun_Town;
 /*
 class CGameStateRun_Loading;

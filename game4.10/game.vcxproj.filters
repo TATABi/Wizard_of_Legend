@@ -27,6 +27,7 @@
     <ClCompile Include="Source\Skill_Rebounding_Icicles.cpp" />
     <ClCompile Include="Source\Layer.cpp" />
     <ClCompile Include="Source\Skill_Shock_Nova.cpp" />
+    <ClCompile Include="Source\Init_State_Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -58,6 +59,7 @@
     <ClInclude Include="Source\Skill_Rebounding_Icicles.h" />
     <ClInclude Include="Source\Layer.h" />
     <ClInclude Include="Source\Skill_Shock_Nova.h" />
+    <ClInclude Include="Source\Init_State_Controller.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />

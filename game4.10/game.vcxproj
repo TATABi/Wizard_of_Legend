@@ -283,6 +283,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="Source\Init_State_Controller.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Items.cpp" />
     <ClCompile Include="Source\MainFrm.cpp">
@@ -332,6 +333,7 @@
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\GameMap.h" />
     <ClInclude Include="Source\gameView.h" />
+    <ClInclude Include="Source\Init_State_Controller.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Items.h" />
     <ClInclude Include="Source\Map_Home.h" />

@@ -21,35 +21,10 @@ void CGameStateInit::OnInit()
 
 	ShowInitProgress(0);	// 一開始的loading進度為0%
 
-	if (CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav"))
-		CAudio::Instance()->Play(AUDIO_TITLE, true);
-
-	CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
-	
-	
-	int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,
-				   MENU_INIT_26, MENU_INIT_28, MENU_INIT_30, MENU_INIT_32, MENU_INIT_34, MENU_INIT_36, MENU_INIT_38, MENU_INIT_40, MENU_INIT_42, MENU_INIT_44,
-				   MENU_INIT_46, MENU_INIT_48 };
-	for (int i = 0; i < 23; i++)
-		_ani_menu_1.AddBitmap(m1[i]);
-
-	int m2[11] = { MENU_ENTERMENU_01, MENU_ENTERMENU_02, MENU_ENTERMENU_03, MENU_ENTERMENU_04, MENU_ENTERMENU_05, MENU_ENTERMENU_06, MENU_ENTERMENU_07,
-				   MENU_ENTERMENU_08, MENU_ENTERMENU_09, MENU_ENTERMENU_10, MENU_ENTERMENU_11 };
-	for (int i = 0; i < 11; i++)
-		_ani_menu_2.AddBitmap(m2[i]);
-
-	_ani_menu_1.SetDelayCount(2);
-	_ani_menu_2.SetDelayCount(1);
-	
-
-	_bm_option.LoadBitmap(MENU_ENTERMENU_OPTIONS);
-	_bm_quit.LoadBitmap(MENU_ENTERMENU_QUIT);
-	_bm_single_player.LoadBitmap(MENU_ENTERMENU_SINGLE_PLAYER);
-
+	_controller.Initialize();
 
 	//global variable initialize...//
 
-	
 	g_items.LoadBitmap();
 	g_pauseMenu.LoadBitmap();
 	g_character.LoadBitmap();
@@ -57,118 +32,42 @@ void CGameStateInit::OnInit()
 	g_bag.LoadBitmap();
 	
 	/////////////////////////////////
+
 	ShowInitProgress(65);
 
 }
 
 void CGameStateInit::OnBeginState()
 {
-
+	_controller.Begin();
 }
 
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	const char KEY_ESC = 27;
-
-	if (nChar == KEY_ESC)								
-		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
-	else{
-		if (_flags == 0)
-			_flags = 1;
-	}
+	_controller.OnKeyUp(nChar, nRepCnt, nFlags);
 }
 
 void CGameStateInit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-
-	const char KEY_UP    = 0x26; // keyboard上箭頭
-	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	const char KEY_LEFT = 0x25; // keyboard左箭頭
-	const char KEY_RIGHT = 0x27; // keyboard右箭頭
-	const char KEY_W = 0x57;
-	const char KEY_S = 0x53;
-	const char KEY_A = 0x41;
-	const char KEY_D = 0x44;
-	const char KEY_SPACE = 0x20;
-	const char KEY_ENTER = 0xD;
-	
-	CAudio::Instance()->Stop(AUDIO_BE);
-	CAudio::Instance()->Play(AUDIO_BE, false);
-
-	if (nChar == KEY_UP || nChar == KEY_W)
-		_flags--;
-	if (nChar == KEY_DOWN || nChar == KEY_S)
-		_flags++;
-	if (nChar == KEY_SPACE || nChar == KEY_ENTER) {
-		if (_ani_menu_2.IsFinalBitmap()) {
-
-			switch (_flags) {
-			case 1:
-				GotoGameState(GAME_STATE_RUN_HOME);
-				break;
-			case 2:
-				GotoGameState(GAME_STATE_RUN_OPTIONS);
-				break;
-			case 3:
-				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
-				break;
-			default:
-				break;
-			}
-		}
-	}
-
-	if (_flags > 3)
-		_flags = 3;
-	if (_flags < 1)
-		_flags = 1;
+	_controller.OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	if (_flags == 0)
-		_flags = 1;
+	_controller.OnLButtonDown(nFlags, point);
 }
 
 void CGameStateInit::OnRButtonDown(UINT nFlags, CPoint point)
-{	
-	if(_flags == 0)
-		_flags = 1;
+{
+	_controller.OnRButtonDown(nFlags, point);
 }
 
 void CGameStateInit::OnShow()
 {
-	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
-	switch (_flags) {
-	case 0:
-		_ani_menu_1.OnMove();
-		_ani_menu_1.SetTopLeft(0, 0);
-		_ani_menu_1.OnShow();
-		break;
-	case 1:
-		if (!_ani_menu_2.IsFinalBitmap()) {
-			_ani_menu_2.OnMove();
-			_ani_menu_2.SetTopLeft(0, 0);
-			_ani_menu_2.OnShow();
-		}
-		else {
-			_bm_single_player.SetTopLeft(0, 0);
-			_bm_single_player.ShowBitmap();
-		}
-		break;
-	case 2:
-		_bm_option.SetTopLeft(0, 0);
-		_bm_option.ShowBitmap();
-		break;
-	case 3:
-		_bm_quit.SetTopLeft(0, 0);
-		_bm_quit.ShowBitmap();
-		break;
-	default:
-		break;
-	}
-
+	if(_controller.IsSwitchGameState())
+		GotoGameState(_controller.GotoGameState());
+	_controller.OnShow();
 }								
 
 /////////////////////////////////////////////////////////////////////////////
@@ -657,64 +556,6 @@ void CGameStateRun_Home::OnShow()
 	else
 		_bm_loading.ShowBitmap();
 }
-
-////////////////////////////////////////////////////////////////////////////////////
-
-
-CGameStateRun_Options::CGameStateRun_Options(CGame *g)
-	: CGameState(g)
-{
-
-}
-
-CGameStateRun_Options::~CGameStateRun_Options()
-{
-
-}
-
-void CGameStateRun_Options::OnBeginState()
-{
-
-}
-
-void CGameStateRun_Options::OnMove()							
-{
-	_bm_option.SetTopLeft(0, 0);
-	SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
-
-}
-
-void CGameStateRun_Options::OnInit()  								
-{
-	_bm_option.LoadBitmap(MENU_OPTIONS);
-}
-
-void CGameStateRun_Options::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
-{
-	const char KEY_UP = 0x26; // keyboard上箭頭
-	const char KEY_DOWN = 0x28; // keyboard下箭頭
-	const char KEY_LEFT = 0x25; // keyboard左箭頭
-	const char KEY_RIGHT = 0x27; // keyboard右箭頭
-	const char KEY_W = 0x57;
-	const char KEY_S = 0x53;
-	const char KEY_A = 0x41;
-	const char KEY_D = 0x44;
-	const char KEY_ENTER = 0xD;
-	const char KEY_SPACE = 0x20;
-	const char KEY_BACKSPACE = 0X08;
-
-	CAudio::Instance()->Play(AUDIO_BE);
-
-	if (nChar == KEY_SPACE || nChar == KEY_BACKSPACE)
-		GotoGameState(GAME_STATE_INIT);
-}
-
-void CGameStateRun_Options::OnShow()
-{
-	_bm_option.ShowBitmap();
-
-}
-
 
 /////////////////////////////////////////////////////////////////////////////
 ////Town

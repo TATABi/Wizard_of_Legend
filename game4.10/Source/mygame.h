@@ -11,6 +11,7 @@
 #include "Map_Town.h"
 #include "Skill_Rebounding_Icicles.h"
 #include "Skill_Shock_Nova.h"
+#include "Init_State_Controller.h"
 
 namespace game_framework {
 	
@@ -24,19 +25,7 @@ namespace game_framework {
 	static PausedMenu g_pauseMenu;
 	static Bag g_bag;
 
-	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_BE,		
-		AUDIO_TITLE,
-		AUDIO_HOME,
-		AUDIO_DASH,
-		AUDIO_TOWN,
-		AUDIO_ARRIVAL,
-		AUDIO_PULL,
-		AUDIO_PUTTING,
-		AUDIO_PULL2,
-		AUDIO_BUY,
-		AUDIO_NOMONEY
-	};
+	
 
 	enum HOME_FLAG {
 		FLAG_HOME_NORMAL,
@@ -75,12 +64,16 @@ namespace game_framework {
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
+
+		Init_State_Controller _controller;
+		/*
 		CAnimation _ani_menu_1;
 		CAnimation _ani_menu_2;
 		CMovingBitmap _bm_option;
 		CMovingBitmap _bm_quit;
 		CMovingBitmap _bm_single_player;
 		int _flags = 0;
+		*/
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -119,6 +112,7 @@ namespace game_framework {
 		
 	};
 
+	/*
 	/////////////////////////////////////////////////////////////////////////////
 	//Options 
 	//
@@ -137,7 +131,7 @@ namespace game_framework {
 	private:
 		CMovingBitmap _bm_option;
 	};
-
+	*/
 	/////////////////////////////////////////////////////////////////////////////
 	//Town
 	//
