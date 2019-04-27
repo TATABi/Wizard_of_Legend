@@ -62,6 +62,8 @@ namespace game_framework {
 		const int DASH_STR_PIXEL = 20;
 		int _dash_delay_counter;
 		int _dash_counter;
+		bool _isUseSkill;
+		int _useSkillCounter;
 	};
 }
 

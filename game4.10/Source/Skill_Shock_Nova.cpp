@@ -12,9 +12,8 @@ namespace game_framework
 {
 	Skill_Shock_Nova::Skill_Shock_Nova(int mousreX, int mouseY, int *cxy) 		//中心往滑鼠位置的向量
 	{
-		LoadBitmap();
 		Initialize(mousreX, mouseY, cxy);
-		
+		LoadBitmap();	
 	}
 
 	Skill_Shock_Nova::~Skill_Shock_Nova()
@@ -39,12 +38,11 @@ namespace game_framework
 		isStock = false;
 		speed = 20;
 		cast_distance = 30;
-		isInit = true;
-		xy[0] = cxy[0] + 35 - ani_skill[0].Width() / 2;
-		xy[1] = cxy[1] + 35 - ani_skill[0].Height() / 2;
+		_isInit = true;
+		_counter = 4;
 
 		ani_skill[0].SetDelayCount(1);
-		ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - ani_skill[0].Width() / 2, CHARACTER_SCREEN_CENTER_Y - ani_skill[0].Height() / 2);
+		
 
 	}
 
@@ -62,28 +60,40 @@ namespace game_framework
 
 	void Skill_Shock_Nova::OnMove(int *cxy, GameMap *map)
 	{
-
-		if (lifeTimer == 0 ) //時間到
-		{
-			isDelete = true;
-		}
-		
-		lifeTimer--;
-		if (!isInit)
+		if (_counter == 0)
 		{
 			damage = 20;
-			ani_skill[0].OnMove();
-		}
-		isInit = false;		
 
+			if (lifeTimer == 0) //時間到
+			{
+				isDelete = true;
+			}
+
+			lifeTimer--;
+			if (!_isInit)
+			{
+				ani_skill[0].OnMove();
+			}
+			else
+			{
+				xy[0] = cxy[0] + 35 - ani_skill[0].Width() / 2;
+				xy[1] = cxy[1] + 35 - ani_skill[0].Height() / 2;
+				ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - ani_skill[0].Width() / 2, CHARACTER_SCREEN_CENTER_Y - ani_skill[0].Height() / 2);
+				_isInit = false;
+			}
+		}
+		else
+		{
+			_counter--;
+		}
 
 	}
 
 	void Skill_Shock_Nova::OnShow()
 	{
-		if (!isDelete)
+		if (!isDelete && _counter==0)
 		{
-			if (!ani_skill[0].IsFinalBitmap() && ani_skill[0].GetCurrentBitmapNumber()!=0)
+			if (!ani_skill[0].IsFinalBitmap() && ani_skill[0].GetCurrentBitmapNumber() != 0)
 				ani_skill[0].OnShow();
 			else if(ani_skill[0].GetCurrentBitmapNumber() != 0)
 				isDelete = true;

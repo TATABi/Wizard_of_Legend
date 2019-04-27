@@ -286,6 +286,21 @@ SKILL_SHOCK_NOVA_06     BITMAP                  "..\\RES\\InGame\\Skill\\Shock_N
 SKILL_SHOCK_NOVA_07     BITMAP                  "..\\RES\\InGame\\Skill\\Shock_Nova\\7.bmp"
 SKILL_SHOCK_NOVA_08     BITMAP                  "..\\RES\\InGame\\Skill\\Shock_Nova\\8.bmp"
 SKILL_SHOCK_NOVA_09     BITMAP                  "..\\RES\\InGame\\Skill\\Shock_Nova\\9.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_01 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\01.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_02 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\02.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_03 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\03.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_04 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\04.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_05 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\05.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_06 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\06.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_07 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\07.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_08 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\08.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_09 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\09.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_10 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\10.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_11 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\11.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_12 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\12.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_13 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\13.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_14 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\14.bmp"
+CHARACTER_SKILL_SHOCK_NOVA_15 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\15.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

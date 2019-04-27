@@ -34,7 +34,7 @@ namespace game_framework {
 		_wall.LoadBitmap(MAP_HOME_WALL, RGB(50, 255, 0));
 	}
 
-	void Map_Home::OnMove(std::vector<Skill*> &skills)
+	void Map_Home::OnMove()
 	{
 		OnMoveBackgroundAndWall();
 		character_status = home_map[cxy[0] + collision_move[0] + 10][cxy[1] + collision_move[1] + 3];
@@ -67,7 +67,12 @@ namespace game_framework {
 			ani_press_f.Reset();
 			isPressF = false;
 		}
+		/////////////////Skills移動/////////////////////////////
 
+		for each (Skill* skill in _skillList)
+		{
+			skill->OnMove(GetCharacterPosition(), &(*this));
+		}
 
 		/////////////////Enemy移動/////////////////////////////
 	   
@@ -83,7 +88,7 @@ namespace game_framework {
 			}
 			else
 			{
-				(*iter)->OnMove(cxy[0], cxy[1], skills);
+				(*iter)->OnMove(cxy[0], cxy[1], _skillList);
 			}
 
 			if (iter == enemies.end())
@@ -91,18 +96,16 @@ namespace game_framework {
 				break;
 			}
 		}
-		
-
 	}
 
-	void Map_Home::OnShow(std::vector<Skill*> &skills)
+	void Map_Home::OnShow()
 	{
 		//圖層效果
 
 		vector<Layer*> layer;
 		
 		layer.insert(layer.end(), enemies.begin(), enemies.end());	
-		layer.insert(layer.end(), skills.begin(), skills.end());
+		layer.insert(layer.end(), _skillList.begin(), _skillList.end());
 		layer.push_back(character);
 
 		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });
@@ -110,6 +113,20 @@ namespace game_framework {
 		vector<Layer*>::iterator iter;
 		for (iter = layer.begin(); iter != layer.end(); iter++)
 			(*iter)->OnShow();
+
+		vector<Skill*>::iterator it;
+		for (it = _skillList.begin(); it != _skillList.end(); it++)
+		{
+			if ((*it)->IsDelete() == true)
+			{
+				delete *it;
+				it = _skillList.erase(it);
+			}
+			if (it == _skillList.end())
+			{
+				break;
+			}
+		}
 	}
 	
 	int* Map_Home::SetCharacterXY(int dx, int dy)

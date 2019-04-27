@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include "Character.h"
 #include "Skill_Rebounding_Icicles.h"
+#include "Skill_Shock_Nova.h"
 
 namespace game_framework {
 
@@ -37,6 +38,8 @@ namespace game_framework {
 		_isSlash = false;
 		_dash_delay_counter = DASH_DELAY;
 		_dash_counter = 9;
+		_isUseSkill = false;
+		_useSkillCounter = 0;
 	}
 
 	void Character::LoadBitmap()
@@ -125,225 +128,230 @@ namespace game_framework {
 	}
 
 	void Character::OnMove(GameMap *map)
-	{	
+	{
+		if (_useSkillCounter == 0)
+		{
 
-		if (!_isDashLock)
-		{
-			_horizontal = 0;
-			_vertical = 0;
-		}
+			if (!_isDashLock)
+			{
+				_horizontal = 0;
+				_vertical = 0;
+			}
 
-		//初始移動系數
-		if (_isDash)
-		{
-			_SLASH_PIXEL = (int)(DASH_SLASH_PIXEL * CharacterData::Move_Coefficient);
-			_STR_PIXEL = (int)(DASH_STR_PIXEL * CharacterData::Move_Coefficient);
-		}
-		else if (_isRunning)
-		{
-			_SLASH_PIXEL = (int)(RUN_SLASH_PIXEL * CharacterData::Move_Coefficient);
-			_STR_PIXEL = (int)(RUN_STR_PIXEL * CharacterData::Move_Coefficient);
-		}
-		else
-		{
-			_SLASH_PIXEL = (int)(NORMAL_SLASH_PIXEL * CharacterData::Move_Coefficient);
-			_STR_PIXEL = (int)(NORMAL_STR_PIXEL * CharacterData::Move_Coefficient);
-		}
-
-		//計算移動距離
-		if (IsSlash() && !_isDashLock) //如果斜走
-		{
-			if (_isMovingDown)
+			//初始移動系數
+			if (_isDash)
 			{
-				if (_vertical < _SLASH_PIXEL)
-					_vertical += _SLASH_PIXEL;
+				_SLASH_PIXEL = (int)(DASH_SLASH_PIXEL * CharacterData::Move_Coefficient);
+				_STR_PIXEL = (int)(DASH_STR_PIXEL * CharacterData::Move_Coefficient);
 			}
-			if (_isMovingUp)
+			else if (_isRunning)
 			{
-				if (_vertical > -_SLASH_PIXEL)
-					_vertical -= _SLASH_PIXEL;
+				_SLASH_PIXEL = (int)(RUN_SLASH_PIXEL * CharacterData::Move_Coefficient);
+				_STR_PIXEL = (int)(RUN_STR_PIXEL * CharacterData::Move_Coefficient);
 			}
-			if (_isMovingRight)
-			{
-				if (_horizontal < _SLASH_PIXEL)
-					_horizontal += _SLASH_PIXEL;
-			}
-			if (_isMovingLeft)
-			{
-				if (_horizontal > -_SLASH_PIXEL)
-					_horizontal -= _SLASH_PIXEL;
-			}
-		}
-		else if(!_isDashLock)
-		{
-			if (_isMovingDown)
-			{
-				if (_vertical < _STR_PIXEL)
-					_vertical += _STR_PIXEL;
-			}
-			if (_isMovingUp)
-			{
-				if (_vertical > -_STR_PIXEL)
-					_vertical -= _STR_PIXEL;
-			}
-			if (_isMovingRight)
-			{
-				if (_horizontal < _STR_PIXEL)
-					_horizontal += _STR_PIXEL;
-			}
-			if (_isMovingLeft)
-			{
-				if (_horizontal > -_STR_PIXEL)
-					_horizontal -= _STR_PIXEL;
-			}
-		}
-
-		
-		//判斷方向
-		if (_horizontal != 0 && !_isDashLock)
-		{
-			if (_horizontal < 0)
-				_directionFlag = 1;	//左
 			else
-				_directionFlag = 0;	//右
-		}
-		else if (!_isDashLock)
-		{
-			if (_vertical < 0)
-				_directionFlag = 3;	//上
-			else if (_vertical > 0)
-				_directionFlag = 2;	//下
-		}
+			{
+				_SLASH_PIXEL = (int)(NORMAL_SLASH_PIXEL * CharacterData::Move_Coefficient);
+				_STR_PIXEL = (int)(NORMAL_STR_PIXEL * CharacterData::Move_Coefficient);
+			}
 
-		//維持上一格狀態的方向
-
-		if (_dash_delay_counter < DASH_DELAY && _dash_delay_counter > 0)
-			_dash_delay_counter--;
-		else
-			_dash_delay_counter = DASH_DELAY;
-
-		//動畫
-		if (_isDash)
-		{
-			_run_counter = 45;
-			if (IsMoving() && IsSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
+			//計算移動距離
+			if (IsSlash() && !_isDashLock) //如果斜走
 			{
 				if (_isMovingDown)
 				{
-					_isDashLock ? NULL : _directionFlag = 2;		//Dash中不能改方向
+					if (_vertical < _SLASH_PIXEL)
+						_vertical += _SLASH_PIXEL;
 				}
-				else
+				if (_isMovingUp)
 				{
-					_isDashLock ? NULL : _directionFlag = 3;
+					if (_vertical > -_SLASH_PIXEL)
+						_vertical -= _SLASH_PIXEL;
+				}
+				if (_isMovingRight)
+				{
+					if (_horizontal < _SLASH_PIXEL)
+						_horizontal += _SLASH_PIXEL;
+				}
+				if (_isMovingLeft)
+				{
+					if (_horizontal > -_SLASH_PIXEL)
+						_horizontal -= _SLASH_PIXEL;
 				}
 			}
-			else		//停止移動時按空白鍵，朝面相方向滑動(沒有斜向)；或是非斜向移動時		
+			else if (!_isDashLock)
+			{
+				if (_isMovingDown)
+				{
+					if (_vertical < _STR_PIXEL)
+						_vertical += _STR_PIXEL;
+				}
+				if (_isMovingUp)
+				{
+					if (_vertical > -_STR_PIXEL)
+						_vertical -= _STR_PIXEL;
+				}
+				if (_isMovingRight)
+				{
+					if (_horizontal < _STR_PIXEL)
+						_horizontal += _STR_PIXEL;
+				}
+				if (_isMovingLeft)
+				{
+					if (_horizontal > -_STR_PIXEL)
+						_horizontal -= _STR_PIXEL;
+				}
+			}
+
+
+			//判斷方向
+			if (_horizontal != 0 && !_isDashLock)
+			{
+				if (_horizontal < 0)
+					_directionFlag = 1;	//左
+				else
+					_directionFlag = 0;	//右
+			}
+			else if (!_isDashLock)
+			{
+				if (_vertical < 0)
+					_directionFlag = 3;	//上
+				else if (_vertical > 0)
+					_directionFlag = 2;	//下
+			}
+
+			//維持上一格狀態的方向
+
+			if (_dash_delay_counter < DASH_DELAY && _dash_delay_counter > 0)
+				_dash_delay_counter--;
+			else
+				_dash_delay_counter = DASH_DELAY;
+
+			//動畫
+			if (_isDash)
+			{
+				_run_counter = 45;
+				if (IsMoving() && IsSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
+				{
+					if (_isMovingDown)
+					{
+						_isDashLock ? NULL : _directionFlag = 2;		//Dash中不能改方向
+					}
+					else
+					{
+						_isDashLock ? NULL : _directionFlag = 3;
+					}
+				}
+				else		//停止移動時按空白鍵，朝面相方向滑動(沒有斜向)；或是非斜向移動時		
+				{
+					switch (_directionFlag)
+					{
+					case 0:
+						_horizontal = _STR_PIXEL;
+						break;
+					case 1:
+						_horizontal = -_STR_PIXEL;
+						break;
+					case 2:
+						_vertical = _STR_PIXEL;
+						break;
+					case 3:
+						_vertical = -_STR_PIXEL;
+						break;
+					}
+				}
+
+				_ani_dash_right.OnMove();
+				_ani_dash_left.OnMove();
+				_ani_dash_down.OnMove();
+				_ani_dash_up.OnMove();
+
+				_dash_counter--;
+
+				_isDashLock = true;
+
+				if (_dash_counter == 0)
+				{
+					_isDashLock = false;
+					_isDash = false;
+					_ani_dash_right.Reset();
+					_ani_dash_left.Reset();
+					_ani_dash_down.Reset();
+					_ani_dash_up.Reset();
+					_dash_counter = 9;
+				}
+
+			}
+			else if (IsMoving())   //走動
+			{
+				if (_run_counter >= 0)
+					_run_counter--;
+				if (_run_counter < 0)
+					_isRunning = true;
+
+				switch (_directionFlag)
+				{
+				case 0:
+					_ani_right.OnMove();
+					break;
+				case 1:
+					_ani_left.OnMove();
+					break;
+				case 2:
+					_ani_down.OnMove();
+					break;
+				case 3:
+					_ani_up.OnMove();
+					break;
+				}
+			}
+			else    //站著不動
+			{
+				_isRunning = false;
+				_run_counter = 45;
+				_ani_run_right.Reset();
+				_ani_run_left.Reset();
+				_ani_run_down.Reset();
+				_ani_run_up.Reset();
+			}
+
+
+			if (_isRunning)			//跑步氣流動畫
 			{
 				switch (_directionFlag)
 				{
 				case 0:
-					_horizontal = _STR_PIXEL;
+					if (!_ani_run_right.IsFinalBitmap())
+						_ani_run_right.OnMove();
 					break;
 				case 1:
-					_horizontal = -_STR_PIXEL;
+					if (!_ani_run_left.IsFinalBitmap())
+						_ani_run_left.OnMove();
 					break;
 				case 2:
-					_vertical = _STR_PIXEL;
+					if (!_ani_run_down.IsFinalBitmap())
+						_ani_run_down.OnMove();
 					break;
 				case 3:
-					_vertical = -_STR_PIXEL;
+					if (!_ani_run_up.IsFinalBitmap())
+						_ani_run_up.OnMove();
 					break;
 				}
 			}
-
-			_ani_dash_right.OnMove();
-			_ani_dash_left.OnMove();
-			_ani_dash_down.OnMove();
-			_ani_dash_up.OnMove();
-
-			_dash_counter--;
-
-			_isDashLock = true;
-
-			if (_dash_counter == 0)
+			else
 			{
-				_isDashLock = false;
-				_isDash = false;
-				_ani_dash_right.Reset();
-				_ani_dash_left.Reset();
-				_ani_dash_down.Reset();
-				_ani_dash_up.Reset();
-				_dash_counter = 9;
+				_ani_run_right.Reset();
+				_ani_run_left.Reset();
+				_ani_run_down.Reset();
+				_ani_run_up.Reset();
 			}
+
+			int *temp_xy = map->SetCharacterXY(_horizontal, _vertical);	//更新角色在map的位置
+			xy[0] = temp_xy[0];
+			xy[1] = temp_xy[1];
+		}
 		
-		}
-		else if (IsMoving())   //走動
-		{
-			if(_run_counter>=0)
-				_run_counter--;
-			if (_run_counter < 0)
-				_isRunning = true;
-
-			switch (_directionFlag)
-			{
-			case 0:
-				_ani_right.OnMove();
-				break;
-			case 1:
-				_ani_left.OnMove();
-				break;
-			case 2:
-				_ani_down.OnMove();
-				break;
-			case 3:
-				_ani_up.OnMove();
-				break;
-			}
-		}
-		else    //站著不動
-		{
-			_isRunning = false;
-			_run_counter = 45;
-			_ani_run_right.Reset();
-			_ani_run_left.Reset();
-			_ani_run_down.Reset();
-			_ani_run_up.Reset();
-		}
-
-
-		if (_isRunning)			//跑步氣流動畫
-		{
-			switch (_directionFlag)
-			{
-			case 0:
-				if (!_ani_run_right.IsFinalBitmap())
-					_ani_run_right.OnMove();
-				break;
-			case 1:
-				if (!_ani_run_left.IsFinalBitmap())
-					_ani_run_left.OnMove();
-				break;
-			case 2:
-				if (!_ani_run_down.IsFinalBitmap())
-					_ani_run_down.OnMove();
-				break;
-			case 3:
-				if (!_ani_run_up.IsFinalBitmap())
-					_ani_run_up.OnMove();
-				break;
-			}
-		}
-		else
-		{
-			_ani_run_right.Reset();
-			_ani_run_left.Reset();
-			_ani_run_down.Reset();
-			_ani_run_up.Reset();
-		}
-
-		int *temp_xy = map->SetCharacterXY(_horizontal, _vertical);	//更新角色在map的位置
-		xy[0] = temp_xy[0];
-		xy[1] = temp_xy[1];
+		
 	}
 
 	void Character::Dash() 
@@ -487,9 +495,19 @@ namespace game_framework {
 
 	Skill* Character::generateSkill(int skillNum, int x, int y)
 	{
-		if (skillNum == 1)
+		if (skillNum == 1 && _useSkillCounter == 0)
+		{
+			
+		}
+		else if (skillNum == 2 && _useSkillCounter == 0)
 		{
 			return new Skill_Rebounding_Icicles(x, y, xy);
+			_useSkillCounter = 30;
+		}
+		else if (skillNum == 3 && _useSkillCounter == 0)
+		{
+			return new Skill_Shock_Nova(x, y, xy);
+			_useSkillCounter = 30;
 		}
 	}
 

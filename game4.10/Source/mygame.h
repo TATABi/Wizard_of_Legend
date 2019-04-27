@@ -113,8 +113,8 @@ namespace game_framework {
 		Map_Home _map;									// 地圖
 		Box _box;
 		Book _book;
-		std::vector<Skill*> _skillList;					//存放所有技能
-		vector<Skill*>::iterator iter;
+		//std::vector<Skill*> _skillList;					//存放所有技能
+		//vector<Skill*>::iterator iter;
 		
 		
 	};

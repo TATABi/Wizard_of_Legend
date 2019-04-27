@@ -28,7 +28,7 @@ namespace game_framework {
 		_wall.LoadBitmap(MAP_TOWN_WALL, RGB(50, 255, 0));
 	}
 
-	void Map_Town::OnMove(std::vector<Skill*> &skills)
+	void Map_Town::OnMove()
 	{
 		OnMoveBackgroundAndWall();
 		character_status = town_map[cxy[0] + collision_move[0] + 10][cxy[1] + collision_move[1] + 3];
@@ -75,13 +75,13 @@ namespace game_framework {
 
 		vector<Enemy*>::iterator iter;
 		for (iter = enemies.begin(); iter != enemies.end(); iter++)
-			(*iter)->OnMove(cxy[0], cxy[1], skills);
+			(*iter)->OnMove(cxy[0], cxy[1], _skillList);
 
 
 	}
 
 
-	void Map_Town::OnShow(std::vector<Skill*> &skills)
+	void Map_Town::OnShow()
 	{
 		vector<Enemy*>::iterator iter;
 		for (iter = enemies.begin(); iter != enemies.end(); iter++)

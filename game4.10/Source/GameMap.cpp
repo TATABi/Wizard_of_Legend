@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "GameMap.h"
+#include "Character.h"
 
 namespace game_framework {
 	
@@ -14,7 +15,10 @@ namespace game_framework {
 	}
 	
 	GameMap::~GameMap() {
-	
+		for each (Skill* skill in _skillList)
+		{
+			delete skill;
+		}
 	}
 
 	void GameMap::Initialize(int x, int y) 
@@ -24,7 +28,6 @@ namespace game_framework {
 		ani_press_f.SetDelayCount(2);
 		isPressF = false;
 		character_status = 0;
-		
 	}
 
 	void GameMap::LoadBitmapPressF()
@@ -67,7 +70,10 @@ namespace game_framework {
 		return cxy;
 	}
 
-
+	void GameMap::CharacterUseSkill(int skillNum, int x, int y)
+	{
+		_skillList.push_back(character->generateSkill(skillNum, x, y));
+	}
 
 }
 

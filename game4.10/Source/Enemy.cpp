@@ -28,30 +28,32 @@ namespace game_framework {
 	
 	void Enemy::OnMove(int cx, int cy, vector<Skill*> &skills)
 	{
-		bm_stand.SetTopLeft(CHARACTER_SCREEN_X + xy[0] - cx, CHARACTER_SCREEN_Y + xy[1] - cy);
-
-		std:: vector<Skill*>::iterator iter;
-		for (iter = skills.begin(); iter != skills.end(); iter++)
+		if (hp > 0)
 		{
-			int *skill_hitbox = (*iter)->GetHitbox();
-			int *skill_position = (*iter)->GetPosition();
+			bm_stand.SetTopLeft(CHARACTER_SCREEN_X + xy[0] - cx, CHARACTER_SCREEN_Y + xy[1] - cy);
 
-			int x1 = xy[0] + collision_damage[0];
-			int y1 = xy[1] + collision_damage[1];
-			int l1 = collision_damage[2];
-			int w1 = collision_damage[3];
-
-			int x2 = skill_position[0] + skill_hitbox[0];
-			int y2 = skill_position[1] + skill_hitbox[1];
-			int l2 = skill_hitbox[2];
-			int w2 = skill_hitbox[3];
-
-			if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //發生碰撞
+			std::vector<Skill*>::iterator iter;
+			for (iter = skills.begin(); iter != skills.end(); iter++)
 			{
-				hp -= (*iter)->GetDamage();
+				int *skill_hitbox = (*iter)->GetHitbox();
+				int *skill_position = (*iter)->GetPosition();
+
+				int x1 = xy[0] + collision_damage[0];
+				int y1 = xy[1] + collision_damage[1];
+				int l1 = collision_damage[2];
+				int w1 = collision_damage[3];
+
+				int x2 = skill_position[0] + skill_hitbox[0];
+				int y2 = skill_position[1] + skill_hitbox[1];
+				int l2 = skill_hitbox[2];
+				int w2 = skill_hitbox[3];
+
+				if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //發生碰撞
+				{
+					hp -= (*iter)->GetDamage();
+				}
 			}
-		}			
-			
+		}
 	}
 
 	void Enemy::OnShow()

@@ -6,6 +6,7 @@
 #include "Skill.h"
 
 namespace game_framework {
+	class Character;
 
 	class GameMap {
 	public:
@@ -19,9 +20,12 @@ namespace game_framework {
 		void OnShowPressF();
 		int GetCharacterStatus();
 		int* GetCharacterPosition();
+		void CharacterUseSkill(int, int, int);
 		virtual void LoadBitmap()=0;
-		virtual void OnMove(vector<Skill*>&)=0;
-		virtual void OnShow(std::vector<Skill*>&)=0;
+		//virtual void OnMove(vector<Skill*>&)=0;
+		virtual void OnMove() = 0;
+		//virtual void OnShow(std::vector<Skill*>&)=0;
+		virtual void OnShow() = 0;
 		virtual int* SetCharacterXY(int,int)=0;
 		virtual int GetMapStatus(int, int)=0;
 		
@@ -36,7 +40,8 @@ namespace game_framework {
 		const int collision_damage[4] = {23, 10, 24, 49};	//¨ü¨ì¶Ë®`§P©w½d³ò
 		const int CHARACTER_SCREEN_X = 285;
 		const int CHARACTER_SCREEN_Y = 205;
-		
+		Character* character;
+		std::vector<Skill*> _skillList;
 	};
 
 }

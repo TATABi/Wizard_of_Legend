@@ -16,7 +16,8 @@ namespace game_framework {
 		void LoadBitmap();
 		void Initialize(int, int, int*);
 	private:
-		bool isInit;
+		bool _isInit;
+		int _counter;	//用來播角色施放即能時的動畫
 	};
 }
 #endif

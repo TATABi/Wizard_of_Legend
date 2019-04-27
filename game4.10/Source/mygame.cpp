@@ -226,12 +226,12 @@ CGameStateRun_Home::CGameStateRun_Home(CGame *g)
 
 CGameStateRun_Home::~CGameStateRun_Home()
 {
-	
+	/*
 	for each (Skill* skill in _skillList)
 	{
 		delete skill;
 	}
-	
+	*/
 }
 
 void CGameStateRun_Home::OnBeginState()
@@ -267,19 +267,20 @@ void CGameStateRun_Home::OnMove()
 	_bm_join.SetTopLeft(100, 100);
 	_bm_loading.SetTopLeft(0, 0);
 	g_character.OnMove(&_map);
-	_map.OnMove(_skillList);
+	//_map.OnMove(_skillList);
+	_map.OnMove();
 	_box.OnMove();
 	_book.OnMove();
 	g_bag.OnMove(g_items.GetItemInBag());
 	g_ui.OnMove();
 	g_items.Effect();
 
-	
+	/*
 	for each (Skill* skill in _skillList)
 	{
 		skill->OnMove(_map.GetCharacterPosition(), &_map);
 	}
-
+	*/
 
 }
 
@@ -577,8 +578,8 @@ void CGameStateRun_Home::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun_Home::OnLButtonDown(UINT nFlags, CPoint point)  // ³B²z·Æ¹«ªº°Ê§@
 {
-	_skillList.push_back(new Skill_Rebounding_Icicles(point.x, point.y, _map.GetCharacterPosition()));
-	//skillList.push_back(map.GetCharacter().);
+	//_skillList.push_back(new Skill_Rebounding_Icicles(point.x, point.y, _map.GetCharacterPosition()));
+	_map.CharacterUseSkill(2, point.x, point.y);
 }
 
 void CGameStateRun_Home::OnLButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§@
@@ -593,8 +594,8 @@ void CGameStateRun_Home::OnMouseMove(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§
 
 void CGameStateRun_Home::OnRButtonDown(UINT nFlags, CPoint point)  // ³B²z·Æ¹«ªº°Ê§@
 {
-	_skillList.push_back(new Skill_Shock_Nova(point.x, point.y, _map.GetCharacterPosition()));
-	
+	//_skillList.push_back(new Skill_Shock_Nova(point.x, point.y, _map.GetCharacterPosition()));
+	_map.CharacterUseSkill(3, point.x, point.y);
 }
 
 void CGameStateRun_Home::OnRButtonUp(UINT nFlags, CPoint point)	// ³B²z·Æ¹«ªº°Ê§@
@@ -620,7 +621,8 @@ void CGameStateRun_Home::OnShow()
 			else
 			{
 
-				_map.OnShow(_skillList);
+				//_map.OnShow(_skillList);
+				_map.OnShow();
 
 				_map.OnShowWall();
 			
@@ -633,6 +635,7 @@ void CGameStateRun_Home::OnShow()
 				g_bag.OnShow();
 				g_pauseMenu.OnShow();
 
+				/*
 				for (iter = _skillList.begin(); iter != _skillList.end(); iter++)
 				{
 					if ((*iter)->IsDelete() == true)
@@ -645,7 +648,7 @@ void CGameStateRun_Home::OnShow()
 						break;
 					}
 				}
-	
+				*/
 			}
 			
 			
@@ -753,7 +756,7 @@ void CGameStateRun_Town::OnMove()
 
 	_bm_loading.SetTopLeft(0, 0);
 	g_character.OnMove(&_map);
-	_map.OnMove(_skillList);
+	//_map.OnMove(_skillList);
 	g_ui.OnMove();
 	g_bag.OnMove(g_items.GetItemInBag());
 	g_items.Effect();

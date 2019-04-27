@@ -10,8 +10,8 @@ namespace game_framework {
 		Map_Town(int, int);  // 設定初始中心點
 		~Map_Town();
 		void LoadBitmap();
-		void OnMove(std::vector<Skill*>&);
-		void OnShow(std::vector<Skill*>&);
+		void OnMove();
+		void OnShow();
 		int* SetCharacterXY(int, int);
 		int GetMapStatus(int, int);
 	private:
