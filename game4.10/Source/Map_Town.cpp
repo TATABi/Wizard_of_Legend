@@ -5,10 +5,13 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Map_Town.h"
+#include "algorithm"
 
 namespace game_framework {
 
-	Map_Town::Map_Town(int x, int y) : GameMap(x, y) {
+	Map_Town::Map_Town(int x, int y, Character* c) : GameMap(x, y)
+	{
+		character = c;
 	}
 
 	Map_Town::~Map_Town() {
@@ -72,26 +75,95 @@ namespace game_framework {
 			isPressF = false;
 		}
 
+		/////////////////Skills移動/////////////////////////////
+
+		for each (Skill* skill in _skillList)
+		{
+			skill->OnMove(GetCharacterPosition(), &(*this));
+		}
+
+		/////////////////Enemy移動/////////////////////////////
 
 		vector<Enemy*>::iterator iter;
 		for (iter = enemies.begin(); iter != enemies.end(); iter++)
-			(*iter)->OnMove(cxy[0], cxy[1], _skillList);
+		{
 
+			if (!(*iter)->IsLive())
+			{
+				delete *iter;
+				iter = enemies.erase(iter);
+
+			}
+			else
+			{
+				(*iter)->OnMove(cxy[0], cxy[1], _skillList);
+			}
+
+			if (iter == enemies.end())
+			{
+				break;
+			}
+		}
 
 	}
 
 
 	void Map_Town::OnShow()
 	{
-		vector<Enemy*>::iterator iter;
-		for (iter = enemies.begin(); iter != enemies.end(); iter++)
+		//圖層效果
+
+		vector<Layer*> layer;
+
+		layer.insert(layer.end(), enemies.begin(), enemies.end());
+		layer.insert(layer.end(), _skillList.begin(), _skillList.end());
+		layer.push_back(character);
+
+		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });
+
+		vector<Layer*>::iterator iter;
+		for (iter = layer.begin(); iter != layer.end(); iter++)
 			(*iter)->OnShow();
+
+		vector<Skill*>::iterator it;
+		for (it = _skillList.begin(); it != _skillList.end(); it++)
+		{
+			if ((*it)->IsDelete() == true)
+			{
+				delete *it;
+				it = _skillList.erase(it);
+			}
+			if (it == _skillList.end())
+			{
+				break;
+			}
+		}
 	}
 
 	int* Map_Town::SetCharacterXY(int dx, int dy)
 	{
+		int slow_x = (int)dx / 3;
+		int slow_y = (int)dy / 3;
 
+		////////角色移動與怪物碰撞//////
+		vector<Enemy*>::iterator iter;
+		for (iter = enemies.begin(); iter != enemies.end(); iter++)
+		{
+			int temp = (*iter)->Collision(cxy, collision_move, dx, dy);
+			if (temp == 1)
+			{
+				dx = slow_x;
+				dy = slow_y;
+				break;
+			}
+			else if (temp == 2)
+			{
 
+				dx = dy = 0;
+			}
+
+		}
+
+		//////////與地圖碰撞////////////
 		if (town_map[cxy[0] + collision_move[0] + dx][cxy[1] + collision_move[1] + dy] != -1							//左上
 			&& town_map[cxy[0] + collision_move[0] + collision_move[2] + dx][cxy[1] + collision_move[1] + dy] != -1				//右上
 			&& town_map[cxy[0] + collision_move[0] + dx][cxy[1] + collision_move[1] + collision_move[3] + dy] != -1				//左下

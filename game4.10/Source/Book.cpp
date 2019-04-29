@@ -7,7 +7,8 @@
 #include "Book.h"
 
 namespace game_framework {
-	Book::Book() {
+	Book::Book() 
+	{
 		Initialize();
 	}
 

@@ -9,7 +9,7 @@ namespace game_framework {
 	class Character : public Layer{
 	public:
 		Character();
-		void Initialize();				
+		void Initialize(int*);				
 		void LoadBitmap();			
 		void OnMove(GameMap *);				
 		void OnShow();				

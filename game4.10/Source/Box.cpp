@@ -197,11 +197,15 @@ namespace game_framework {
 	{
 		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)
 		{
-			if(_item_flag_y < 3)
+			if (_item_flag_y < 3)
+			{
+				CAudio::Instance()->Play(AUDIO_PUTTING, false);
 				_item_flag_y++;
+			}
 		}
 		else if (_category_flag < 2 && _isOpened)
 		{
+			CAudio::Instance()->Play(AUDIO_PULL2, false);
 			_category_flag++;
 			_ani_offense.Reset();
 			_ani_defense.Reset();
@@ -213,10 +217,14 @@ namespace game_framework {
 		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)
 		{
 			if (_item_flag_y > 0)
+			{
+				CAudio::Instance()->Play(AUDIO_PUTTING, false);
 				_item_flag_y--;
+			}
 		}
 		else if (_category_flag > 0 && _isOpened)
 		{
+			CAudio::Instance()->Play(AUDIO_PULL2, false);
 			_category_flag--;
 			_ani_offense.Reset();
 			_ani_defense.Reset();
@@ -226,14 +234,26 @@ namespace game_framework {
 
 	void Box::Left()
 	{
-		if (_item_flag_x > 0)
-			_item_flag_x--;
+		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)
+		{
+			if (_item_flag_x > 0)
+			{
+				CAudio::Instance()->Play(AUDIO_PUTTING, false);
+				_item_flag_x--;
+			}
+		}
 	}
 
 	void Box::Right()
 	{
-		if (_item_flag_x < 5 )
-			_item_flag_x++;
+		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)
+		{
+			if (_item_flag_x < 5)
+			{
+				CAudio::Instance()->Play(AUDIO_PUTTING, false);
+				_item_flag_x++;
+			}
+		}
 	}
 
 	void Box::Open(bool openBox)
@@ -253,6 +273,7 @@ namespace game_framework {
 	{
 		if (!openopenBox)
 		{
+			CAudio::Instance()->Play(AUDIO_PULL, false);
 			_isOpendOffense = false;
 			_isOpendDefense = false;
 			_isOpendMisc = false;
@@ -287,7 +308,10 @@ namespace game_framework {
 		if (_isOpendOffense) {
 			item_num = _item_flag_x + _item_flag_y * 6;
 			if (item_num >= _NUMBER_OF_OFFENSE)
+			{
+				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
+			}
 			if (gitem->GetAllItem()[item_num]->HaveItem())
 			{
 				gitem->UnloadAllItem();
@@ -299,7 +323,10 @@ namespace game_framework {
 		else if (_isOpendDefense) {
 			item_num = _item_flag_x + _item_flag_y * 6 + _NUMBER_OF_OFFENSE;
 			if (item_num >= _NUMBER_OF_OFFENSE + _NUMBER_OF_DEFENSE)
+			{
+				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
+			}
 			if (gitem->GetAllItem()[item_num]->HaveItem())
 			{
 				gitem->UnloadAllItem();
@@ -311,7 +338,10 @@ namespace game_framework {
 		else if (_isOpendMisc) {
 			item_num = _item_flag_x + _item_flag_y * 6 + _NUMBER_OF_OFFENSE + _NUMBER_OF_DEFENSE;
 			if (item_num >= _NUMBER_OF_OFFENSE + _NUMBER_OF_DEFENSE + _NUMBER_OF_MISC)
+			{
+				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
+			}
 			if (gitem->GetAllItem()[item_num]->HaveItem())
 			{
 				gitem->UnloadAllItem();
@@ -321,6 +351,7 @@ namespace game_framework {
 			}
 		}
 
+		CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 		return false;
 
 		

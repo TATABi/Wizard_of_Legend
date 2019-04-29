@@ -16,7 +16,6 @@ namespace game_framework {
 		_instruction = SINGLE_PLAYER;
 		_game_state_num = -1;
 		_isSwitch = false;
-		delayCounter = 0.3 * 30;
 	}
 
 	void Init_State_Controller::Initialize()
@@ -119,52 +118,44 @@ namespace game_framework {
 	{
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
-		if (delayCounter > 0)
+	
+		switch (_flag) 
 		{
-			_bm_loading.SetTopLeft(0, 0);
-			_bm_loading.ShowBitmap();
-			delayCounter--;
-		}
-		else {
-			switch (_flag) 
-			{
-			case FLAG_INIT_INIT:
-				_ani_menu_1.OnMove();
-				_ani_menu_1.SetTopLeft(0, 0);
-				_ani_menu_1.OnShow();
-				break;
+		case FLAG_INIT_INIT:
+			_ani_menu_1.OnMove();
+			_ani_menu_1.SetTopLeft(0, 0);
+			_ani_menu_1.OnShow();
+			break;
 
-			case FLAG_INIT_MENU:
-				if (!_ani_menu_2.IsFinalBitmap()) {
-					_ani_menu_2.OnMove();
-					_ani_menu_2.SetTopLeft(0, 0);
-					_ani_menu_2.OnShow();
-				}
-				else {
-					switch (_instruction)
-					{
-					case SINGLE_PLAYER:
-						_bm_single_player.SetTopLeft(0, 0);
-						_bm_single_player.ShowBitmap();
-						break;
-					case OPTION:
-						_bm_option.SetTopLeft(0, 0);
-						_bm_option.ShowBitmap();
-						break;
-					case QUIT:
-						_bm_quit.SetTopLeft(0, 0);
-						_bm_quit.ShowBitmap();
-						break;
-					}
-					
-				}
-				break;
-
-			case FLAG_INIT_OPTION:
-				_bm_option_page.SetTopLeft(0, 0);
-				_bm_option_page.ShowBitmap();
-				break;
+		case FLAG_INIT_MENU:
+			if (!_ani_menu_2.IsFinalBitmap()) {
+				_ani_menu_2.OnMove();
+				_ani_menu_2.SetTopLeft(0, 0);
+				_ani_menu_2.OnShow();
 			}
+			else {
+				switch (_instruction)
+				{
+				case SINGLE_PLAYER:
+					_bm_single_player.SetTopLeft(0, 0);
+					_bm_single_player.ShowBitmap();
+					break;
+				case OPTION:
+					_bm_option.SetTopLeft(0, 0);
+					_bm_option.ShowBitmap();
+					break;
+				case QUIT:
+					_bm_quit.SetTopLeft(0, 0);
+					_bm_quit.ShowBitmap();
+					break;
+				}
+				
+			}
+			break;
+		case FLAG_INIT_OPTION:
+			_bm_option_page.SetTopLeft(0, 0);
+			_bm_option_page.ShowBitmap();
+			break;
 		}
 	}
 

@@ -12,11 +12,14 @@ namespace game_framework {
 
 	Character::Character()
 	{
-		Initialize();
+		int xy[2] = { 0, 0 };
+		Initialize(xy);
 	}
 
-	void Character::Initialize()
+	void Character::Initialize(int* xy)
 	{
+		this->xy[0] = xy[0];
+		this->xy[1] = xy[1];
 		_ani_down.SetDelayCount(2);
 		_ani_up.SetDelayCount(2);
 		_ani_left.SetDelayCount(2);
@@ -40,6 +43,7 @@ namespace game_framework {
 		_dash_counter = 9;
 		_isUseSkill = false;
 		_useSkillCounter = 0;
+
 	}
 
 	void Character::LoadBitmap()
@@ -354,11 +358,15 @@ namespace game_framework {
 		
 	}
 
-	void Character::Dash() 
+	void Character::Dash()
 	{
-		_isDash = true;
-		_isRunning = false;
-		_dash_delay_counter--;
+		if (CanDash())
+		{
+			_isDash = true;
+			_isRunning = false;
+			_dash_delay_counter--;
+			CAudio::Instance()->Play(AUDIO_DASH, false);
+		}
 	}
 
 	void Character::OnShow() 

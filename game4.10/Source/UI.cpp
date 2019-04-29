@@ -8,58 +8,45 @@
 
 namespace game_framework {
 
-	UI::UI()
-	{
-		Initialize();
-	}
-
-	UI::~UI()
-	{
-		
-	}
-
-	void UI::Initialize()
-	{
-		
-	}
+	UI::UI(){}
 
 	void UI::LoadBitmap()
 	{
+		_bm_status.LoadBitmap(UI_STATUS, RGB(50, 255, 0));
+		_bm_money.LoadBitmap(UI_MONEY, RGB(50, 255, 0));
+		_bm_diamond.LoadBitmap(UI_DIAMOND, RGB(50, 255, 0));
+		_bm_skill1_background.LoadBitmap(UI_SKILL_BACKGROUND, RGB(50, 255, 0));
+		_bm_skill2_background.LoadBitmap(UI_SKILL_BACKGROUND, RGB(50, 255, 0));
+		_bm_skill3_background.LoadBitmap(UI_SKILL_BACKGROUND, RGB(50, 255, 0));
+		_bm_skill4_background.LoadBitmap(UI_SKILL_BACKGROUND, RGB(50, 255, 0));
+		_bm_key_q.LoadBitmap(UI_KEY_Q, RGB(50, 255, 0));
+		_bm_key_space.LoadBitmap(UI_KEY_SPACE, RGB(50, 255, 0));
+		_bm_right_button.LoadBitmap(UI_KEY_RIGHT, RGB(50, 255, 0));
+		_bm_left_button.LoadBitmap(UI_KEY_LEFT, RGB(50, 255, 0));
+		_bm_slash.LoadBitmap(IDB_SLASH, RGB(0, 0, 0));
+		_integer.LoadBitmap();
 
-		bm_status.LoadBitmap(UI_STATUS, RGB(50, 255, 0));
-		bm_money.LoadBitmap(UI_MONEY, RGB(50, 255, 0));
-		bm_diamond.LoadBitmap(UI_DIAMOND, RGB(50, 255, 0));
-		bm_skill1_background.LoadBitmap(UI_SKILL_BACKGROUND, RGB(50, 255, 0));
-		bm_skill2_background.LoadBitmap(UI_SKILL_BACKGROUND, RGB(50, 255, 0));
-		bm_skill3_background.LoadBitmap(UI_SKILL_BACKGROUND, RGB(50, 255, 0));
-		bm_skill4_background.LoadBitmap(UI_SKILL_BACKGROUND, RGB(50, 255, 0));
-		bm_key_q.LoadBitmap(UI_KEY_Q, RGB(50, 255, 0));
-		bm_key_space.LoadBitmap(UI_KEY_SPACE, RGB(50, 255, 0));
-		bm_right_button.LoadBitmap(UI_KEY_RIGHT, RGB(50, 255, 0));
-		bm_left_button.LoadBitmap(UI_KEY_LEFT, RGB(50, 255, 0));
-		bm_slash.LoadBitmap(IDB_SLASH, RGB(0, 0, 0));
-
-		integer.LoadBitmap();
-		/*
-		/////////////////////////////test
-		skill1.LoadBitmap(SKILL_LOVE, RGB(50, 255, 0));
-		skill2.LoadBitmap(SKILL_DASH_WIND, RGB(50, 255, 0));
-		skill1.SetTopLeft(27, 440);
-		skill2.SetTopLeft(54, 440);
-		///////////////////////////////test
-		*/
-		bm_status.SetTopLeft(25, 30);
-		bm_diamond.SetTopLeft(300, 430);
-		bm_money.SetTopLeft(300, 450);
-		bm_skill1_background.SetTopLeft(27, 440);
-		bm_skill2_background.SetTopLeft(54, 440);
-		bm_skill3_background.SetTopLeft(81, 440);
-		bm_skill4_background.SetTopLeft(108, 440);
-		bm_left_button.SetTopLeft(27, 414);
-		bm_key_space.SetTopLeft(54, 415);
-		bm_right_button.SetTopLeft(81, 414);
-		bm_key_q.SetTopLeft(108, 416);
-		bm_slash.SetTopLeft(103, 25);
+		_bm_skill_1.LoadBitmap(SKILL_ICON_AIR_SPINNER, RGB(50, 255, 0));
+		_bm_skill_2.LoadBitmap(SKILL_ICON_AIR_BURST, RGB(50, 255, 0));
+		_bm_skill_3.LoadBitmap(SKILL_ICON_REBOUNDING_ICICLES, RGB(50, 255, 0));
+		_bm_skill_4.LoadBitmap(SKILL_ICON_SHOCK_NOVA, RGB(50, 255, 0));
+		_bm_skill_1.SetTopLeft(27, 440);
+		_bm_skill_2.SetTopLeft(54, 440);
+		_bm_skill_3.SetTopLeft(81, 440);
+		_bm_skill_4.SetTopLeft(108, 440);
+		
+		_bm_status.SetTopLeft(25, 30);
+		_bm_diamond.SetTopLeft(300, 430);
+		_bm_money.SetTopLeft(300, 450);
+		_bm_skill1_background.SetTopLeft(27, 440);
+		_bm_skill2_background.SetTopLeft(54, 440);
+		_bm_skill3_background.SetTopLeft(81, 440);
+		_bm_skill4_background.SetTopLeft(108, 440);
+		_bm_left_button.SetTopLeft(27, 414);
+		_bm_key_space.SetTopLeft(54, 415);
+		_bm_right_button.SetTopLeft(81, 414);
+		_bm_key_q.SetTopLeft(108, 416);
+		_bm_slash.SetTopLeft(103, 25);
 		
 
 	}
@@ -71,39 +58,40 @@ namespace game_framework {
 	
 	void UI::OnShow()
 	{
-		bm_status.ShowBitmap();
-		bm_money.ShowBitmap();
-		bm_diamond.ShowBitmap();
-		bm_skill1_background.ShowBitmap();
-		bm_skill2_background.ShowBitmap();
-		bm_skill3_background.ShowBitmap();
-		bm_skill4_background.ShowBitmap();
-		bm_key_q.ShowBitmap();
-		bm_key_space.ShowBitmap();
-		bm_right_button.ShowBitmap();
-		bm_left_button.ShowBitmap();
+		_bm_status.ShowBitmap();
+		_bm_money.ShowBitmap();
+		_bm_diamond.ShowBitmap();
+		_bm_skill1_background.ShowBitmap();
+		_bm_skill2_background.ShowBitmap();
+		_bm_skill3_background.ShowBitmap();
+		_bm_skill4_background.ShowBitmap();
+		_bm_key_q.ShowBitmap();
+		_bm_key_space.ShowBitmap();
+		_bm_right_button.ShowBitmap();
+		_bm_left_button.ShowBitmap();
 
-		/*
-		skill1.ShowBitmap();
-		skill2.ShowBitmap();
-		*/
+		
+		_bm_skill_1.ShowBitmap();
+		_bm_skill_2.ShowBitmap();
+		_bm_skill_3.ShowBitmap();
+		_bm_skill_4.ShowBitmap();
 		
 		CalculateHP();
 		CalculateMP();
 
-		integer.SetTopLeft(320, 453);
-		integer.SetInteger(CharacterData::Money);
-		integer.ShowBitmap();
-		integer.SetTopLeft(320, 433);
-		integer.SetInteger(CharacterData::Diamond);
-		integer.ShowBitmap();
-		integer.SetTopLeft(112, 25);
-		integer.SetInteger(CharacterData::Max_HP);
-		integer.ShowBitmap();
-		integer.SetTopLeft(83, 25);
-		integer.SetInteger(CharacterData::HP);
-		integer.ShowBitmap();
-		bm_slash.ShowBitmap();
+		_integer.SetTopLeft(320, 453);
+		_integer.SetInteger(CharacterData::Money);
+		_integer.ShowBitmap();
+		_integer.SetTopLeft(320, 433);
+		_integer.SetInteger(CharacterData::Diamond);
+		_integer.ShowBitmap();
+		_integer.SetTopLeft(112, 25);
+		_integer.SetInteger(CharacterData::Max_HP);
+		_integer.ShowBitmap();
+		_integer.SetTopLeft(83, 25);
+		_integer.SetInteger(CharacterData::HP);
+		_integer.ShowBitmap();
+		_bm_slash.ShowBitmap();
 
 			
 	}

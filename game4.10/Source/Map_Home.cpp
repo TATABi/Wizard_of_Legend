@@ -9,13 +9,14 @@
 
 namespace game_framework {
 
-	Map_Home::Map_Home(int x, int y, Character* c) : GameMap(x, y){
+	Map_Home::Map_Home(int x, int y, Character* c) : GameMap(x, y)
+	{
 		enemies.push_back(new Enemy(650, 918));
 		character = c;
 	}
 
-	Map_Home::~Map_Home() {
-		
+	Map_Home::~Map_Home()
+	{	
 		vector<Enemy*>::iterator iter;
 		for (iter = enemies.begin(); iter != enemies.end(); iter++)
 			delete *iter;

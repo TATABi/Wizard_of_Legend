@@ -37,7 +37,6 @@ namespace game_framework {
 		CMovingBitmap _bm_single_player;
 		CMovingBitmap _bm_loading;
 		CMovingBitmap _bm_option_page;
-		int delayCounter;
 		int _flag;
 		int _instruction;
 		int _game_state_num;

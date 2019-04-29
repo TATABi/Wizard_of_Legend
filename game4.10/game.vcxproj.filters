@@ -28,6 +28,8 @@
     <ClCompile Include="Source\Layer.cpp" />
     <ClCompile Include="Source\Skill_Shock_Nova.cpp" />
     <ClCompile Include="Source\Init_State_Controller.cpp" />
+    <ClCompile Include="Source\Home_State_Controller.cpp" />
+    <ClCompile Include="Source\Global_Class.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -60,6 +62,8 @@
     <ClInclude Include="Source\Layer.h" />
     <ClInclude Include="Source\Skill_Shock_Nova.h" />
     <ClInclude Include="Source\Init_State_Controller.h" />
+    <ClInclude Include="Source\Home_State_Controller.h" />
+    <ClInclude Include="Source\Global_Class.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
