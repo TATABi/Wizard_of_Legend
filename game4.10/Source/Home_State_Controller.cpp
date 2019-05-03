@@ -9,12 +9,9 @@
 
 namespace game_framework {
 
-	Home_State_Controller::Home_State_Controller()
-	:_map(740, 918, &Global_Class::g_character)
-	{}
+	Home_State_Controller::Home_State_Controller():_map(740, 918, &Global_Class::g_character){}
 
-	Home_State_Controller::~Home_State_Controller()
-	{}
+	Home_State_Controller::~Home_State_Controller(){}
 
 	void Home_State_Controller::Begin()
 	{
@@ -38,11 +35,6 @@ namespace game_framework {
 		CAudio::Instance()->Stop(AUDIO_TOWN);
 	}
 
-	void Home_State_Controller::LoadBitmap()
-	{
-		
-	}
-
 	void Home_State_Controller::Initialize()
 	{
 		_character =& Global_Class::g_character;
@@ -61,11 +53,9 @@ namespace game_framework {
 		
 		_bm_join.LoadBitmap(JOIN);
 		_bm_loading.LoadBitmap(LOADING);
-
 		_box.LoadBitmap();
 		_book.LoadBitmap();
 		_map.LoadBitmap();
-
 
 		_ani_light_beam.SetDelayCount(1);
 		_ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255, 0));
@@ -293,15 +283,6 @@ namespace game_framework {
 				{
 					_book.Open(false);
 					_flag = FLAG_HOME_NORMAL;
-				}
-
-				if (nChar == KEY_DOWN || nChar == KEY_S)
-				{
-					_book.Down();
-				}
-				if (nChar == KEY_UP || nChar == KEY_W)
-				{
-					_book.Up();
 				}
 				if (nChar == KEY_LEFT || nChar == KEY_A)
 				{

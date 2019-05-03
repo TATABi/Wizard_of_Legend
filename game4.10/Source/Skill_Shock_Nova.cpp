@@ -23,82 +23,81 @@ namespace game_framework
 
 	void Skill_Shock_Nova::Initialize(int mouseX, int mouseY, int* cxy)
 	{
-		damage = 0;
-		backDistance = 10;
-		hitbox[0] = 13;
-		hitbox[1] = 13;
-		hitbox[2] = 187;
-		hitbox[3] = 187;
-		lifeTimer = 300;
-		map_collision[0] = 0;
-		map_collision[1] = 0;
-		map_collision[2] = 0;
-		map_collision[3] = 0;
-		isDelete = false;
-		isStock = false;
-		speed = 20;
-		cast_distance = 30;
+		_damage = 0;
+		_backDistance = 10;
+		_hitbox[0] = 13;
+		_hitbox[1] = 13;
+		_hitbox[2] = 187;
+		_hitbox[3] = 187;
+		_lifeTimer = 300;
+		_map_collision[0] = 0;
+		_map_collision[1] = 0;
+		_map_collision[2] = 0;
+		_map_collision[3] = 0;
+		_isDelete = false;
+		_isStock = false;
+		_speed = 20;
+		_cast_distance = 30;
 		_isInit = true;
-		_counter = 4;
-
-		ani_skill[0].SetDelayCount(1);
-		
+		_counter = 5;
+		_time = 6;
+		_ani_skill[0].SetDelayCount(1);
 
 	}
 
 	void Skill_Shock_Nova::LoadBitmap()
 	{
-		bm_skill_icon.LoadBitmap(SKILL_ICON_SHOCK_NOVA, RGB(50, 255, 0));
+		_bm_skill_icon.LoadBitmap(SKILL_ICON_SHOCK_NOVA, RGB(50, 255, 0));
 
 
-		int ani[9] = { SKILL_SHOCK_NOVA_01,SKILL_SHOCK_NOVA_02,SKILL_SHOCK_NOVA_03, SKILL_SHOCK_NOVA_04,SKILL_SHOCK_NOVA_05,SKILL_SHOCK_NOVA_06,SKILL_SHOCK_NOVA_07 ,SKILL_SHOCK_NOVA_08 ,SKILL_SHOCK_NOVA_09};
+		int ani[3] = { SKILL_SHOCK_NOVA_01,SKILL_SHOCK_NOVA_02,SKILL_SHOCK_NOVA_03 };
 
-		for (int i = 0; i < 9; i++)
-			ani_skill[0].AddBitmap(ani[i], RGB(50, 255, 0));
+		for (int i = 0; i < 3; i++)
+			_ani_skill[0].AddBitmap(ani[i], RGB(50, 255, 0));
 
 	}
 
 	void Skill_Shock_Nova::OnMove(int *cxy, GameMap *map)
 	{
+		_counter == 0 ? NULL : _counter--;
+		
+		_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cxy[0], CHARACTER_SCREEN_X + _xy[1] - cxy[1]);
+
 		if (_counter == 0)
 		{
-			damage = 20;
+			_damage = 20;
 
-			if (lifeTimer == 0) //時間到
+			if (_lifeTimer == 0) //時間到
 			{
-				isDelete = true;
+				_isDelete = true;
 			}
 
-			lifeTimer--;
+			_lifeTimer--;
 			if (!_isInit)
 			{
-				ani_skill[0].OnMove();
+				_ani_skill[0].OnMove();
 			}
 			else
 			{
-				xy[0] = cxy[0] + 35 - ani_skill[0].Width() / 2;
-				xy[1] = cxy[1] + 35 - ani_skill[0].Height() / 2;
-				ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - ani_skill[0].Width() / 2, CHARACTER_SCREEN_CENTER_Y - ani_skill[0].Height() / 2);
+				_xy[0] = cxy[0] - (_ani_skill[0].Width() - 70) / 2 + 2;
+				_xy[1] = cxy[1] - (_ani_skill[0].Height() - 70) / 2 - 52;
 				_isInit = false;
 			}
-		}
-		else
-		{
-			_counter--;
 		}
 
 	}
 
 	void Skill_Shock_Nova::OnShow()
 	{
-		if (!isDelete && _counter==0)
+		if (!_isDelete && _counter==0)
 		{
-			if (!ani_skill[0].IsFinalBitmap() && ani_skill[0].GetCurrentBitmapNumber() != 0)
-				ani_skill[0].OnShow();
-			else if(ani_skill[0].GetCurrentBitmapNumber() != 0)
-				isDelete = true;
-
+			_ani_skill[0].OnShow();
+			if (_ani_skill[0].IsFinalBitmap())
+			{
+				_time == 0 ? _isDelete = true : _ani_skill[0].Reset(), _time--;
+			}
 		}
+		
 	}
 
 

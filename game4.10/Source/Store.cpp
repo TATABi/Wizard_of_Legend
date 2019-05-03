@@ -14,14 +14,14 @@ namespace game_framework {
 	}
 
 	void Store::Initialize() {
-		isItemSoldOut[0] = false;
-		isItemSoldOut[1] = false;
-		isItemSoldOut[2] = false;
+		_isItemSoldOut[0] = false;
+		_isItemSoldOut[1] = false;
+		_isItemSoldOut[2] = false;
 	}
 
 	void Store::LoadBitmap()
 	{
-		bm_sold_out.LoadBitmap(ITEM_SOLD_OUT, RGB(50, 255, 0));
+		_bm_sold_out.LoadBitmap(ITEM_SOLD_OUT, RGB(50, 255, 0));
 	}
 
 	bool Store::Buy(int number, Items *gitem)
@@ -47,20 +47,20 @@ namespace game_framework {
 		}
 
 
-		if (store_item[num]->BuyItem()) {
+		if (_store_item[num]->BuyItem()) {
 			int r;
 
 			if (gitem->GetItemInStore().size() > 2) {
 				r = rand() % gitem->GetItemInStore().size();
 
-				while (store_item[item_1]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber() || store_item[item_2]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber())
+				while (_store_item[item_1]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber() || _store_item[item_2]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber())
 					r = rand() % gitem->GetItemInStore().size();
 
-				store_item.erase(store_item.begin() + num);
-				store_item.insert(store_item.begin() + num, gitem->GetItemInStore()[r]);
+				_store_item.erase(_store_item.begin() + num);
+				_store_item.insert(_store_item.begin() + num, gitem->GetItemInStore()[r]);
 			}
 			else
-				isItemSoldOut[num] = true;
+				_isItemSoldOut[num] = true;
 
 			return true;
 		}
@@ -73,48 +73,48 @@ namespace game_framework {
 
 		if (gitem->GetItemInStore().size() > 0) {
 			srand((unsigned int)time(NULL));	//�üƺؤl
-			store_item.clear();
+			_store_item.clear();
 			int r;
 			for (int i = 0; i < 3; i++) {
 				r = rand() % gitem->GetItemInStore().size();
 
 				for (int j = 0; j < i; j++) {
-					if (store_item[j]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber()) {
+					if (_store_item[j]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber()) {
 						r = rand() % gitem->GetItemInStore().size();
 						j = 0;
 					}
 				}
-				store_item.push_back(gitem->GetItemInStore()[r]);
+				_store_item.push_back(gitem->GetItemInStore()[r]);
 			}
 		}
 	}
 
 	void Store::SetXY(int *cxy)
 	{
-		store_item[0]->SetXY(285 + 525 - cxy[0], 205 + 990 - cxy[1]);
-		store_item[1]->SetXY(285 + 575 - cxy[0], 205 + 990 - cxy[1]);
-		store_item[2]->SetXY(285 + 620 - cxy[0], 205 + 990 - cxy[1]);
+		_store_item[0]->SetXY(285 + 525 - cxy[0], 205 + 990 - cxy[1]);
+		_store_item[1]->SetXY(285 + 575 - cxy[0], 205 + 990 - cxy[1]);
+		_store_item[2]->SetXY(285 + 620 - cxy[0], 205 + 990 - cxy[1]);
 	}
 
 	void Store::OnShow(int *cxy)
 	{
 		
-		isItemSoldOut[0] ? NULL : store_item[0]->OnShow();
-		isItemSoldOut[1] ? NULL : store_item[1]->OnShow();
-		isItemSoldOut[2] ? NULL : store_item[2]->OnShow();
+		_isItemSoldOut[0] ? NULL : _store_item[0]->OnShow();
+		_isItemSoldOut[1] ? NULL : _store_item[1]->OnShow();
+		_isItemSoldOut[2] ? NULL : _store_item[2]->OnShow();
 		
 		
-		if (store_item[0]->HaveItem()) {
-			bm_sold_out.SetTopLeft(285 + 520 - cxy[0], 205 + 1018 - cxy[1]);
-			bm_sold_out.ShowBitmap();
+		if (_store_item[0]->HaveItem()) {
+			_bm_sold_out.SetTopLeft(285 + 520 - cxy[0], 205 + 1018 - cxy[1]);
+			_bm_sold_out.ShowBitmap();
 		}
-		if (store_item[1]->HaveItem()) {
-			bm_sold_out.SetTopLeft(285 + 569 - cxy[0], 205 + 1018 - cxy[1]);
-			bm_sold_out.ShowBitmap();
+		if (_store_item[1]->HaveItem()) {
+			_bm_sold_out.SetTopLeft(285 + 569 - cxy[0], 205 + 1018 - cxy[1]);
+			_bm_sold_out.ShowBitmap();
 		}
-		if (store_item[2]->HaveItem()) {
-			bm_sold_out.SetTopLeft(285 + 618 - cxy[0], 205 + 1018 - cxy[1]);
-			bm_sold_out.ShowBitmap();
+		if (_store_item[2]->HaveItem()) {
+			_bm_sold_out.SetTopLeft(285 + 618 - cxy[0], 205 + 1018 - cxy[1]);
+			_bm_sold_out.ShowBitmap();
 		}
 		
 	}

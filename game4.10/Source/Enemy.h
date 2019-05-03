@@ -14,10 +14,10 @@ namespace game_framework {
 		void OnShow();		//傳入角色座標
 		bool IsLive();
 	private:
-		CMovingBitmap bm_stand;
-		int hp;
-		const int collision_damage[4] = { 0, 0, 34, 57 };
-		const int collision_move[4] = { 8, 41, 16, 16 };		//只有和地圖物件是使用此碰撞窗
+		CMovingBitmap _bm_stand;
+		int _hp;
+		const int _collision_damage[4] = { 0, 0, 34, 57 };
+		const int _collision_move[4] = { 8, 41, 16, 16 };		//只有和地圖物件是使用此碰撞窗
 
 	};
 

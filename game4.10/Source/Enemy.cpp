@@ -16,21 +16,23 @@ namespace game_framework {
 
 	void Enemy::Initialize(int x, int y)
 	{
-		xy[0] = x;
-		xy[1] = y;
-		hp = 1;
+		_xy[0] = x;
+		_xy[1] = y;
+		_hp = 10;
 	}
 
 	void Enemy::LoadBitmap()
 	{
-		bm_stand.LoadBitmap(ENEMY_BLOCKHEAD, RGB(50, 255, 0));
+		_bm_stand.LoadBitmap(ENEMY_BLOCKHEAD, RGB(50, 255, 0));
 	}
 	
 	void Enemy::OnMove(int cx, int cy, vector<Skill*> &skills)
 	{
-		if (hp > 0)
+		if (_hp > 0)
 		{
-			bm_stand.SetTopLeft(CHARACTER_SCREEN_X + xy[0] - cx, CHARACTER_SCREEN_Y + xy[1] - cy);
+			// 技能碰撞判定
+
+			_bm_stand.SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);
 
 			std::vector<Skill*>::iterator iter;
 			for (iter = skills.begin(); iter != skills.end(); iter++)
@@ -38,10 +40,10 @@ namespace game_framework {
 				int *skill_hitbox = (*iter)->GetHitbox();
 				int *skill_position = (*iter)->GetPosition();
 
-				int x1 = xy[0] + collision_damage[0];
-				int y1 = xy[1] + collision_damage[1];
-				int l1 = collision_damage[2];
-				int w1 = collision_damage[3];
+				int x1 = _xy[0] + _collision_damage[0];
+				int y1 = _xy[1] + _collision_damage[1];
+				int l1 = _collision_damage[2];
+				int w1 = _collision_damage[3];
 
 				int x2 = skill_position[0] + skill_hitbox[0];
 				int y2 = skill_position[1] + skill_hitbox[1];
@@ -50,7 +52,8 @@ namespace game_framework {
 
 				if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //發生碰撞
 				{
-					hp -= (*iter)->GetDamage();
+					_hp -= (*iter)->GetDamage(this);			//扣血
+					//(*iter)->AttackedThisEnemy(this);		//避免產生重複傷害
 				}
 			}
 		}
@@ -58,19 +61,19 @@ namespace game_framework {
 
 	void Enemy::OnShow()
 	{
-		bm_stand.ShowBitmap();
+		_bm_stand.ShowBitmap();
 	}
 	
 	int Enemy::Collision(int *cxy, const int* collision, int dx, int dy)
 	{
 		int x1 = cxy[0] + collision[0] + dx;
 		int y1 = cxy[1] + collision[1] + dy;
-		int x2 = xy[0] + collision_move[0];
-		int y2 = xy[1] + collision_move[1];
+		int x2 = _xy[0] + _collision_move[0];
+		int y2 = _xy[1] + _collision_move[1];
 		int l1 = collision[2];
 		int w1 = collision[3];
-		int l2 = collision_move[2];
-		int w2 = collision_move[3];
+		int l2 = _collision_move[2];
+		int w2 = _collision_move[3];
 		int e_dx = 0, e_dy = 0;
 
 		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2))	//發生碰撞
@@ -78,13 +81,13 @@ namespace game_framework {
 			e_dx = (int)(dx / 3);
 			e_dy = (int)(dy / 3);
 
-			if (home_map[xy[0] + collision_move[0] + e_dx][xy[1] + collision_move[1] + e_dy] != -1							//左上
-				&& home_map[xy[0] + collision_move[0] + collision_move[2] + e_dx][xy[1] + collision_move[1] + e_dy] != -1				//右上
-				&& home_map[xy[0] + collision_move[0] + e_dx][xy[1] + collision_move[1] + collision_move[3] + e_dy] != -1				//左下
-				&& home_map[xy[0] + collision_move[0] + collision_move[2] + e_dx][xy[1] + collision_move[1] + collision_move[3] + e_dy] != -1)		//右下
+			if (home_map[_xy[0] + _collision_move[0] + e_dx][_xy[1] + _collision_move[1] + e_dy] != -1							//左上
+				&& home_map[_xy[0] + _collision_move[0] + _collision_move[2] + e_dx][_xy[1] + _collision_move[1] + e_dy] != -1				//右上
+				&& home_map[_xy[0] + _collision_move[0] + e_dx][_xy[1] + _collision_move[1] + _collision_move[3] + e_dy] != -1				//左下
+				&& home_map[_xy[0] + _collision_move[0] + _collision_move[2] + e_dx][_xy[1] + _collision_move[1] + _collision_move[3] + e_dy] != -1)		//右下
 			{
-				xy[0] += e_dx;
-				xy[1] += e_dy;
+				_xy[0] += e_dx;
+				_xy[1] += e_dy;
 				return 1;			//被推到撞牆
 			}
 			
@@ -96,6 +99,6 @@ namespace game_framework {
 
 	bool Enemy::IsLive()
 	{
-		return hp > 0;
+		return _hp > 0;
 	}
 }

@@ -13,9 +13,9 @@ namespace game_framework {
 
 		void OnShow(int *);
 	private:
-		CMovingBitmap bm_sold_out;
-		bool isItemSoldOut[3] = {false,false,false};
-		vector<Item *> store_item;
+		CMovingBitmap _bm_sold_out;
+		bool _isItemSoldOut[3] = {false,false,false};
+		vector<Item *> _store_item;
 
 	};
 

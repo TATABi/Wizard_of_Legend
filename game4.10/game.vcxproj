@@ -321,6 +321,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Source\Store.cpp" />
+    <ClCompile Include="Source\Town_State_Controller.cpp" />
     <ClCompile Include="Source\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +356,7 @@
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
     <ClInclude Include="Source\Store.h" />
+    <ClInclude Include="Source\Town_State_Controller.h" />
     <ClInclude Include="Source\UI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -467,6 +469,50 @@
     <Image Include="RES\Character\Up\up (7).bmp" />
     <Image Include="RES\Character\Up\up (8).bmp" />
     <Image Include="RES\Character\Up\up (9).bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\1.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\10.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\11.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\2.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\3.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\4.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\5.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\6.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\7.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\8.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Down\9.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\1.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\10.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\11.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\2.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\3.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\4.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\5.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\6.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\7.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\8.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Left\9.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\1.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\10.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\11.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\2.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\3.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\4.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\5.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\6.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\7.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\8.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Right\9.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\1.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\10.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\11.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\2.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\3.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\4.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\5.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\6.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\7.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\8.bmp" />
+    <Image Include="RES\Character\Use_Rebounding_Icicles\Up\9.bmp" />
     <Image Include="RES\Character\Use_Shock_Nova\01.bmp" />
     <Image Include="RES\Character\Use_Shock_Nova\02.bmp" />
     <Image Include="RES\Character\Use_Shock_Nova\03.bmp" />
@@ -487,6 +533,10 @@
     <Image Include="RES\InGame\Bag\Board.bmp" />
     <Image Include="RES\InGame\Book\Book_board.bmp" />
     <Image Include="RES\InGame\Book\cursor.bmp" />
+    <Image Include="RES\InGame\Book\Skill_Des\Air_Brust_Des.bmp" />
+    <Image Include="RES\InGame\Book\Skill_Des\Air_Spinner_Des.bmp" />
+    <Image Include="RES\InGame\Book\Skill_Des\Rebounding_Icicles_Des.bmp" />
+    <Image Include="RES\InGame\Book\Skill_Des\Shock_Nova_Des.bmp" />
     <Image Include="RES\InGame\Box\board.bmp" />
     <Image Include="RES\InGame\Box\DEFENSE\00.bmp" />
     <Image Include="RES\InGame\Box\DEFENSE\01.bmp" />

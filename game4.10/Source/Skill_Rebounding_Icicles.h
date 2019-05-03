@@ -16,8 +16,8 @@ namespace game_framework {
 		void LoadBitmap();
 		void Initialize(int, int, int*);
 	private:
-		bool isInit[4];
-		int ani_1[2], ani_2[2], ani_3[2], ani_4[2];
+		bool _isInit[4];		//是否第一張動畫
+		int _ani_1[2], _ani_2[2], _ani_3[2], _ani_4[2];		//技能的位置
 		
 	};
 }

@@ -18,6 +18,7 @@ namespace game_framework {
 	private:
 		bool _isInit;
 		int _counter;	//用來播角色施放即能時的動畫
+		int _time;		//施放技能的長度，時間內技能都有效，重複播放動畫
 	};
 }
 #endif

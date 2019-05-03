@@ -15,7 +15,7 @@ namespace game_framework {
 
 	int Layer::GetY()
 	{
-		return xy[1];
+		return _xy[1];
 	}
 
 }

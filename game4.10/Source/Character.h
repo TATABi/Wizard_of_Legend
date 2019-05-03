@@ -6,6 +6,15 @@
 
 namespace game_framework {
 
+	enum DIRECTION{
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT
+	};
+
+
+
 	class Character : public Layer{
 	public:
 		Character();
@@ -21,7 +30,9 @@ namespace game_framework {
 		void Dash();
 		bool IsMoving();
 		bool CanDash();
-		Skill* generateSkill(int, int, int);	//skill num
+		bool IsUsingSkill();
+		Skill* GenerateSkill(int, int, int);	//skill num
+		int CaculateDirection(int, int);
 	protected:
 		CAnimation _ani_up;		//向上動畫
 		CAnimation _ani_down;	//向下動畫
@@ -36,6 +47,13 @@ namespace game_framework {
 		CAnimation _ani_dash_left;
 		CAnimation _ani_dash_right;
 		CAnimation _ani_arrival;			//出場動畫
+		CAnimation _ani_useSkill_1;
+		CAnimation _ani_useSkill_2_up;
+		CAnimation _ani_useSkill_2_down;
+		CAnimation _ani_useSkill_2_left;
+		CAnimation _ani_useSkill_2_right;
+		CAnimation _ani_useSkill_3_down;
+		CAnimation* _ani_useSkill;
 		CMovingBitmap _bm_stand_up;		//向上靜止
 		CMovingBitmap _bm_stand_down;	//向下靜止
 		CMovingBitmap _bm_stand_left;	//向左靜止
@@ -50,20 +68,24 @@ namespace game_framework {
 		bool _isRunning;				//跑步
 		bool _isDashLock;
 		bool _isSlash;
+		bool _isUsingSkill;
+		int _useSkillNum;
 		int _SLASH_PIXEL;			//斜線移動速度
 		int _STR_PIXEL;				//直線移動速度
 		const int DASH_DELAY = 15;
 		int _run_counter;			// 計算角色是否要奔跑
-		const int NORMAL_SLASH_PIXEL = 5;
+		const int NORMAL_SLASH_PIXEL = 4;
 		const int NORMAL_STR_PIXEL = 6;
 		const int RUN_SLASH_PIXEL = 7;
 		const int RUN_STR_PIXEL = 10;
-		const int DASH_SLASH_PIXEL = 14;
+		const int DASH_SLASH_PIXEL = 13;
 		const int DASH_STR_PIXEL = 20;
-		int _dash_delay_counter;
-		int _dash_counter;
-		bool _isUseSkill;
-		int _useSkillCounter;
+		int _dash_delay_counter;  //讓玩家無法一直dash (dash和dash之間有間隔)
+		int _dash_counter;	//用來reset dash 動畫
+		double _dash_resistance;
+
+		const int CHARACTER_SCREEN_CENTER_X = 320;
+		const int CHARACTER_SCREEN_CENTER_Y = 240;
 	};
 }
 

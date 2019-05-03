@@ -19,8 +19,8 @@ namespace game_framework {
 		vector<Item*> GetAllItem();	//擁有的道具
 		vector<Item*> GetItemInStore();	//還未購買的道具
 	private:
-		vector<Item*> items;			//所有道具
-		vector<Item*> temp_items;		//用來篩選
+		vector<Item*> _items;			//所有道具
+		vector<Item*> _temp_items;		//用來篩選
 		const int NUMBER_OF_OFFENSE = 2;
 		const int NUMBER_OF_DEFENSE = 3;
 		const int NUMBER_OF_MISC = 2;

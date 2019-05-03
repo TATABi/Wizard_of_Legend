@@ -5,41 +5,63 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Skill.h"
+#include "Enemy.h"
 
 namespace game_framework
 {
-	Skill::Skill()
-	{
+	Skill::Skill(){}
 
-	}
-
-	Skill::~Skill()
-	{
-
-	}
+	Skill::~Skill(){}
 
 	bool Skill::IsDelete()
 	{
-		return isDelete;
+		return _isDelete;
 	}
 
 	void Skill::Init()
 	{
-		isDelete = false;
+		_isDelete = false;
 	}
 
 	int* Skill::GetHitbox()
 	{
-		return hitbox;
+		return _hitbox;
 	}
 
-	int Skill::GetDamage()
+	int Skill::GetDamage(Enemy* enemy)
 	{
-		return damage;
+		if (AttackedThisEnemy(enemy))
+			return 0;
+		else
+			return _damage;
 	}
 
 	int* Skill::GetPosition()
 	{
-		return xy;
+		return _xy;
+	}
+
+	bool Skill::AttackedThisEnemy(Enemy* enemy)
+	{
+		bool isExist = false;
+
+		for (int i = 0; i < _enemyList.size(); i++)
+		{
+			if (_enemyList[i] == enemy)
+			{
+				isExist = true;
+				break;
+			}
+		}
+		
+		if (isExist)
+		{
+			return true;
+		}
+		else
+		{
+			_enemyList.push_back(enemy);
+			return false;
+		}
 	}
 }

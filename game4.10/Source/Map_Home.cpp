@@ -11,14 +11,14 @@ namespace game_framework {
 
 	Map_Home::Map_Home(int x, int y, Character* c) : GameMap(x, y)
 	{
-		enemies.push_back(new Enemy(650, 918));
-		character = c;
+		_enemies.push_back(new Enemy(650, 918));
+		_character = c;
 	}
 
 	Map_Home::~Map_Home()
 	{	
 		vector<Enemy*>::iterator iter;
-		for (iter = enemies.begin(); iter != enemies.end(); iter++)
+		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 			delete *iter;
 		
 	}
@@ -27,7 +27,7 @@ namespace game_framework {
 	{
 		
 		vector<Enemy*>::iterator iter;
-		for (iter = enemies.begin(); iter != enemies.end(); iter++)
+		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 			(*iter)->LoadBitmap();
 		
 		LoadBitmapPressF();
@@ -38,35 +38,35 @@ namespace game_framework {
 	void Map_Home::OnMove()
 	{
 		OnMoveBackgroundAndWall();
-		character_status = home_map[cxy[0] + collision_move[0] + 10][cxy[1] + collision_move[1] + 3];
+		_character_status = home_map[_cxy[0] + _collision_move[0] + 10][_cxy[1] + _collision_move[1] + 3];
 		int temp_x = 0, temp_y = 0;
-		if (character_status == 1 || character_status == 2 || character_status == 3)
+		if (_character_status == 1 || _character_status == 2 || _character_status == 3)
 		{
-			switch (character_status)
+			switch (_character_status)
 			{
 			case 1:						//傳送門
 				temp_x = 768;
 				temp_y = 360;
-				ani_press_f.OnMove();
+				_ani_press_f.OnMove();
 				break;
 			case 2:						//道具箱
 				temp_x = 865;
 				temp_y = 1137;
-				ani_press_f.OnMove();
+				_ani_press_f.OnMove();
 				break;
 			case 3:						// 書
 				temp_x = 1235;
 				temp_y = 840;
-				ani_press_f.OnMove();
+				_ani_press_f.OnMove();
 				break;
 			}
-			isPressF = true;
-			ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - cxy[0], CHARACTER_SCREEN_Y + temp_y - cxy[1]);
+			_isPressF = true;
+			_ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - _cxy[0], CHARACTER_SCREEN_Y + temp_y - _cxy[1]);
 		}
 		else
 		{
-			ani_press_f.Reset();
-			isPressF = false;
+			_ani_press_f.Reset();
+			_isPressF = false;
 		}
 		/////////////////Skills移動/////////////////////////////
 
@@ -78,21 +78,21 @@ namespace game_framework {
 		/////////////////Enemy移動/////////////////////////////
 	   
 		vector<Enemy*>::iterator iter;
-		for (iter = enemies.begin(); iter != enemies.end(); iter++)
+		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 		{
 
 			if (!(*iter)->IsLive())
 			{
 				delete *iter;
-				iter = enemies.erase(iter);
+				iter = _enemies.erase(iter);
 
 			}
 			else
 			{
-				(*iter)->OnMove(cxy[0], cxy[1], _skillList);
+				(*iter)->OnMove(_cxy[0], _cxy[1], _skillList);
 			}
 
-			if (iter == enemies.end())
+			if (iter == _enemies.end())
 			{
 				break;
 			}
@@ -105,9 +105,9 @@ namespace game_framework {
 
 		vector<Layer*> layer;
 		
-		layer.insert(layer.end(), enemies.begin(), enemies.end());	
+		layer.insert(layer.end(), _enemies.begin(), _enemies.end());	
 		layer.insert(layer.end(), _skillList.begin(), _skillList.end());
-		layer.push_back(character);
+		layer.push_back(_character);
 
 		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });
 
@@ -137,9 +137,9 @@ namespace game_framework {
 
 		////////角色移動與怪物碰撞//////
 		vector<Enemy*>::iterator iter;
-		for (iter = enemies.begin(); iter != enemies.end(); iter++)
+		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 		{
-			int temp = (*iter)->Collision(cxy, collision_move, dx, dy);
+			int temp = (*iter)->Collision(_cxy, _collision_move, dx, dy);
 			if (temp == 1)
 			{
 				dx = slow_x;
@@ -155,16 +155,16 @@ namespace game_framework {
 		}
 
 		//////////與地圖碰撞////////////
-		if (home_map[cxy[0] + collision_move[0] + dx][cxy[1] + collision_move[1] + dy] != -1							//左上
-			&& home_map[cxy[0] + collision_move[0] + collision_move[2] + dx][cxy[1] + collision_move[1] + dy] != -1				//右上
-			&& home_map[cxy[0] + collision_move[0] + dx][cxy[1] + collision_move[1] + collision_move[3] + dy] != -1				//左下
-			&& home_map[cxy[0] + collision_move[0] + collision_move[2] + dx][cxy[1] + collision_move[1] + collision_move[3] + dy] != -1)		//右下
+		if (home_map[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + dy] != -1							//左上
+			&& home_map[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + dy] != -1				//右上
+			&& home_map[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1				//左下
+			&& home_map[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1)		//右下
 		{
-			cxy[0] += dx;
-			cxy[1] += dy;
+			_cxy[0] += dx;
+			_cxy[1] += dy;
 		}
 
-		return cxy;
+		return _cxy;
 	}
 
 	int Map_Home::GetMapStatus(int x, int y)

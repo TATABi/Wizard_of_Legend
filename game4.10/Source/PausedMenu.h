@@ -13,13 +13,13 @@ namespace game_framework {
 		void PrePausedMenu();
 		int EnterPauseMenu(); //按space 回傳給mygmae flag 切換狀態
 	private:
-		CMovingBitmap bm_paused_resume;
-		CMovingBitmap bm_paused_title;
-		CMovingBitmap bm_paused_options;
-		CMovingBitmap bm_paused_quit;
-		CMovingBitmap bm_pause_optionss;
-		bool isPaused;
-		int paused_flag; //暫停選單
+		CMovingBitmap _bm_paused_resume;
+		CMovingBitmap _bm_paused_title;
+		CMovingBitmap _bm_paused_options;
+		CMovingBitmap _bm_paused_quit;
+		CMovingBitmap _bm_pause_optionss;
+		bool _isPaused;
+		int _paused_flag; //暫停選單
 	};
 }
 

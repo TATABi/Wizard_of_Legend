@@ -15,7 +15,7 @@ namespace game_framework {
 		int* SetCharacterXY(int, int);
 		int GetMapStatus(int, int);
 	private:
-		vector<Enemy*> enemies;
+		vector<Enemy*> _enemies;
 	};
 
 }

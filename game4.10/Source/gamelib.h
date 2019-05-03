@@ -113,6 +113,19 @@ enum AUDIO_ID {				// 定義各種音效的編號
 	AUDIO_NOMONEY
 };
 
+const char KEY_LEFT = 0x25; // keyboard左箭頭
+const char KEY_UP = 0x26; // keyboard上箭頭
+const char KEY_RIGHT = 0x27; // keyboard右箭頭
+const char KEY_DOWN = 0x28; // keyboard下箭頭
+const char KEY_W = 0x57;
+const char KEY_S = 0x53;
+const char KEY_A = 0x41;
+const char KEY_D = 0x44;
+const char KEY_F = 0x46;
+const char KEY_ESC = 27;
+const char KEY_SPACE = 0x20;
+const char KEY_TAB = 0x09;
+
 /////////////////////////////////////////////////////////////////////////////
 // Header for STL (Standard Template Library)
 /////////////////////////////////////////////////////////////////////////////
