@@ -31,6 +31,7 @@
     <ClCompile Include="Source\Home_State_Controller.cpp" />
     <ClCompile Include="Source\Global_Class.cpp" />
     <ClCompile Include="Source\Town_State_Controller.cpp" />
+    <ClCompile Include="Source\A_Star.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -66,6 +67,7 @@
     <ClInclude Include="Source\Home_State_Controller.h" />
     <ClInclude Include="Source\Global_Class.h" />
     <ClInclude Include="Source\Town_State_Controller.h" />
+    <ClInclude Include="Source\A_Star.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />

@@ -261,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
+    <ClCompile Include="Source\A_Star.cpp" />
     <ClCompile Include="Source\Bag.cpp" />
     <ClCompile Include="Source\Book.cpp" />
     <ClCompile Include="Source\Box.cpp" />
@@ -326,6 +327,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\A_Star.h" />
     <ClInclude Include="Source\Bag.h" />
     <ClInclude Include="Source\Book.h" />
     <ClInclude Include="Source\Box.h" />

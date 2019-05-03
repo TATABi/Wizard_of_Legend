@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include <cmath>
 #include "Map_Home_Logic.h"
+
 namespace game_framework {
 
 	Enemy::Enemy(int x, int y)
@@ -18,7 +19,7 @@ namespace game_framework {
 	{
 		_xy[0] = x;
 		_xy[1] = y;
-		_hp = 10;
+		_hp = 5;
 	}
 
 	void Enemy::LoadBitmap()
@@ -52,10 +53,17 @@ namespace game_framework {
 
 				if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //發生碰撞
 				{
-					_hp -= (*iter)->GetDamage(this);			//扣血
-					//(*iter)->AttackedThisEnemy(this);		//避免產生重複傷害
+					_hp -= (*iter)->GetDamage(this);			//扣血 把自己傳進去判斷是否已經受到過此技能的傷害
 				}
 			}
+
+			//自動尋路
+
+			//目標 cx, cy
+
+
+
+
 		}
 	}
 

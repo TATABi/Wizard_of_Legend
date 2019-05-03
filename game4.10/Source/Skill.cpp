@@ -31,9 +31,9 @@ namespace game_framework
 	int Skill::GetDamage(Enemy* enemy)
 	{
 		if (AttackedThisEnemy(enemy))
-			return 0;
+			return _damage;	
 		else
-			return _damage;
+			return 0;
 	}
 
 	int* Skill::GetPosition()
@@ -56,12 +56,12 @@ namespace game_framework
 		
 		if (isExist)
 		{
-			return true;
+			return false;
 		}
 		else
 		{
 			_enemyList.push_back(enemy);
-			return false;
+			return true;
 		}
 	}
 }
