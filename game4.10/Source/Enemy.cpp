@@ -26,6 +26,11 @@ namespace game_framework {
 		_is_detour = _is_left = _is_right = _is_up = _is_down = false;
 		_detour_time = 0;
 		_is_x_arrive = _is_y_arrive = false;
+
+		for (int i = 0; i < 4; i++)
+		{
+			_neighbor[i] = true;
+		}
 	}
 
 	void Enemy::LoadBitmap()
@@ -173,10 +178,7 @@ namespace game_framework {
 
 		if (!_is_detour)
 		{
-			for (int i = 0; i < 4; i++)
-			{
-				_neighbor[i] = true;
-			}
+		
 
 			if ((abs(midX - cMidX) > _zone))
 			{
@@ -244,28 +246,36 @@ namespace game_framework {
 		{
 			if (_is_up)
 			{
-				_xy[1] -= _step;
-				_detour_time--;
+				
+				IsMove(0, -_step) ? _xy[1] -= _step : NULL;
+				//_detour_time--;
 			}
 			else if (_is_down)
 			{
-				_xy[1] += _step;
-				_detour_time--;
+				IsMove(0, _step) ? _xy[1] += _step : NULL;
+				
+				//_xy[1] += _step;
+				//_detour_time--;
 			}
 			else if(_is_left)
 			{
-				_xy[0] -= _step;
-				_detour_time--;
+				IsMove(-_step, 0) ? _xy[0] -= _step : NULL;
+				//_xy[0] -= _step;
+				//_detour_time--;
 			}
 			else if (_is_right)
 			{
-				_xy[0] += _step;
-				_detour_time--;
+				IsMove(_step, 0) ? _xy[0] += _step : NULL;
+				//_xy[0] += _step;
+				//_detour_time--;
 			}
 
-			if (_detour_time == 0)
+			_detour_time--;
+
+			if (_detour_time <= 0)
 			{
 				_is_detour = false;
+
 				for (int i; i < 4; i++)
 				{
 					_neighbor[i] = true;
@@ -274,8 +284,7 @@ namespace game_framework {
 				_is_right = false;
 				_is_up = false;
 				_is_down = false;
-				_is_x_arrive = false;
-				_is_y_arrive = false;
+				
 			}
 		}
 		if ((currentX == _xy[0]) && (currentY == _xy[1]) && ((!_is_x_arrive) || (!_is_y_arrive)))
@@ -325,7 +334,7 @@ namespace game_framework {
 					//向左檢查
 					if (IsMove(-_step * (i + 1), 0))
 					{
-						if (IsMove(_step * (i + 1), _step))
+						if (IsMove(-_step * (i + 1), _step))
 						{
 							_detour_time = i;
 							_is_left = true;
@@ -369,7 +378,7 @@ namespace game_framework {
 					//向上檢查
 					if (IsMove(0, -_step * (i + 1)))
 					{
-						if (IsMove(_step, _step * (i + 1)))
+						if (IsMove(_step, -_step * (i + 1)))
 						{
 							_detour_time = i;
 							_is_up = true;
