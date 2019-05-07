@@ -13,8 +13,6 @@ namespace game_framework {
 		RIGHT
 	};
 
-
-
 	class Character : public Layer{
 	public:
 		Character();

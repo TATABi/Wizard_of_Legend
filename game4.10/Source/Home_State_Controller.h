@@ -44,13 +44,11 @@ namespace game_framework {
 		Map_Home _map;									
 		Box _box;
 		Book _book;
-		
 		Character *_character;
 		PausedMenu *_pauseMenu;
 		Bag *_bag;
 		Items *_items;
 		UI *_ui;
-		
 		int _game_state_num;
 		bool _isSwitch;
 

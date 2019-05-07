@@ -11,7 +11,9 @@ namespace game_framework {
 
 	Map_Home::Map_Home(int x, int y, Character* c) : GameMap(x, y)
 	{
-		_enemies.push_back(new Enemy(650, 918));
+		//加入敵人
+		//(632,798), (928,1077)
+		_enemies.push_back(new Enemy(650, 918, AREA_1, 40));
 		_character = c;
 	}
 
@@ -20,12 +22,10 @@ namespace game_framework {
 		vector<Enemy*>::iterator iter;
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 			delete *iter;
-		
 	}
 
 	void Map_Home::LoadBitmap()
 	{
-		
 		vector<Enemy*>::iterator iter;
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 			(*iter)->LoadBitmap();
@@ -37,6 +37,17 @@ namespace game_framework {
 
 	void Map_Home::OnMove()
 	{
+		//AREA_1
+		if ((_cxy[0] >= 633) && (_cxy[1] >= 811) && (_cxy[0] <= 926) && (_cxy[1]) <= 1081)
+		{
+			for (int i = 0; i < _enemies.size(); i++)
+			{
+				if (_enemies[i]->Area() == AREA_1)
+				{
+					_enemies[i]->NotifyCharge();
+				}
+			}
+		}
 		OnMoveBackgroundAndWall();
 		_character_status = home_map[_cxy[0] + _collision_move[0] + 10][_cxy[1] + _collision_move[1] + 3];
 		int temp_x = 0, temp_y = 0;
@@ -80,12 +91,10 @@ namespace game_framework {
 		vector<Enemy*>::iterator iter;
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 		{
-
 			if (!(*iter)->IsLive())
 			{
 				delete *iter;
 				iter = _enemies.erase(iter);
-
 			}
 			else
 			{
@@ -148,10 +157,8 @@ namespace game_framework {
 			}
 			else if (temp == 2)
 			{
-				
 				dx = dy = 0;
 			}
-
 		}
 
 		//////////與地圖碰撞////////////
@@ -163,7 +170,6 @@ namespace game_framework {
 			_cxy[0] += dx;
 			_cxy[1] += dy;
 		}
-
 		return _cxy;
 	}
 
@@ -171,6 +177,4 @@ namespace game_framework {
 	{
 		return home_map[x][y];
 	}
-
-
 }

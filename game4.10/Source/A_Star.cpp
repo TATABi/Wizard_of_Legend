@@ -7,78 +7,119 @@
 #include "A_Star.h"
 
 namespace game_framework {
-
-	A_Star::A_Star(int *mapInfo, int width, int height, int start, int end)
+	A_Star::A_Star(const int map[][1600], int sx, int sy, int ex, int ey, int side) : _sx(sx), _sy(sy), _ex(ex), _ey(ey), _side(side)
 	{
-		Width = width;
-		Height = height;
-		Start = start;
-		End = end;
-
-		//把二???保存到一???中去，便于信息的?理 
-		map = new int[Width * Height];
-		for (int i = 0; i < Width * Height; i++)
+		_isDone = false;
+		_map = nullptr;
+		_rects = nullptr;
+		if((_sx != _ex) || (_sy != _ey))
 		{
-			//map[i] = mapInfo[i / width][i % width]; 
-			map[i] = mapInfo[i];
-		}
+			_col = sizeof(map[0]) / sizeof(map[0][0]);
+			//new _map & rects
+			_map = new int *[_side];
+			_rects = new Rect*[_side];
+			for (int i = 0; i < _side; i++)
+			{
+				_rects[i] = new Rect[_side];
+				_map[i] = new int[_side];
+			}
 
-		//??每一???的位置信息 
-		rect = new Rect[Width * Height];
-		for (int i = 0; i < (Width * Height); i++)
-		{
-			rect[i].x = i % Width;
-			rect[i].y = i / Width;
-		}
-
-		//初始化起? 
-		rect[Start].g_value = 0;
-		rect[Start].h_value = get_h_value(Start);
-		rect[Start].pre = NULL;
-
-		//把起?加入open_list中 
-		open_list.push_back(Start);
+			//initialize rects
+			for (int i = 0; i < _side; i++)
+			{
+				for (int j = 0; j < _side; j++)
+				{
+					_rects[i][j]._position._x = i;
+					_rects[i][j]._position._y = j;
+					_rects[i][j]._parent = NULL;
+				}
+			}
+			//initialize map
+			for (int i = 0; i < _side; i++)
+			{
+				for (int j = 0; j < _side; j++)
+				{
+					int *mapXY = array_to_map(i, j);									//將i, j轉成地圖座標
+					int mapX = mapXY[0];
+					int mapY = mapXY[1];
+					if ((mapX > 0) && (mapX < _col) && (mapY > 0) && (mapY < _col))		//如果沒超出map範圍，將map資訊寫入_map
+					{
+						_map[i][j] = map[mapX][mapY];
+					}
+					else
+					{
+						_map[i][j] = -1;												//不能通過
+					}
+				}
+			}
+			//將起點加入openlist
+			_rects[_side / 2][_side / 2]._parent = NULL;
+			_rects[_side / 2][_side / 2]._GValue = 0;
+			_rects[_side / 2][_side / 2]._HValue = get_h_value(_rects[_side / 2][_side / 2]._position);
+			_openList.push_back(_rects[_side / 2][_side / 2]._position);
+			findRoad();
+			getResult();
+			_isDone = true;
+		}	
 	}
 
 	A_Star::~A_Star()
 	{
-		if (map != NULL)
+		if (_map != nullptr)
 		{
-			delete[] map;
+			for (int i = 0; i < _side; i++)
+			{
+				delete[] _map[i];
+			}
+			delete[] _map;
 		}
-		if (rect != NULL)
+		if (_rects != nullptr)
 		{
-			delete[] rect;
+			for (int i = 0; i < _side; i++)
+			{
+				delete[] _rects[i];
+			}
+			delete[] _rects;
 		}
 	}
 
-	int A_Star::get_g_value(int pos)
+	int* A_Star::array_to_map(int x, int y) const
 	{
-		//只允?玩家往上下左右四?方向行走，所以?里的g值只需要在父??的g值上加10 
-		return (rect[pos].pre->g_value + 10);
+		int tempX = x - _side / 2 + _sx;
+		int tempY = y - _side / 2 + _sy;
+		int ans[2] = { tempX, tempY };
+		ans[0] = tempX;
+		ans[1] = tempY;
+		return ans;
 	}
 
-	int A_Star::get_h_value(int pos)
+	int * A_Star::map_to_array(int x, int y) const
 	{
-		//返回??到??的Manhattan距离，乘以10是?了方便?算机?算 
-		return (10 * (abs(End / Width - pos / Width) + abs(End % Width - pos % Width)));
+		int tempX = x - _sx + _side / 2;
+		int tempY = y - _sy + _side / 2;
+		int ans[2] = { tempX, tempY };
+		ans[0] = tempX;
+		ans[1] = tempY;
+		return ans;
 	}
 
-	void A_Star::getResultPath()
+	int A_Star::get_h_value(Position pos) const
 	{
-		Rect *temp = &rect[End];
-		while (temp != NULL)
-		{
-			result.push_back(*temp);
-			temp = temp->pre;
-		}
-		return;
+		//估算和終點距離
+		int *endXY = map_to_array(_ex, _ey);
+		int endX = endXY[0];
+		int endY = endXY[1];
+		return abs(pos._x - endX) + abs(pos._y - endY);
 	}
 
-	bool A_Star::isReachable(int pos)
+	int A_Star::get_g_value(Position pos) const
 	{
-		if ((pos / Width < Height) && (pos / Width >= 0) &&
-			(pos % Width < Width) && (pos % Width >= 0))
+		return ((_rects[pos._x][pos._y])._parent->_GValue) + 1;
+	}
+
+	bool A_Star::IsReachable(Position pos) const
+	{
+		if ((pos._x >= 0) && (pos._x < _side) && (pos._y >= 0) && (pos._y < _side))
 		{
 			return true;
 		}
@@ -88,36 +129,56 @@ namespace game_framework {
 		}
 	}
 
-	//如果pos不可?或者它在close_list中?跳?它，否?，?行如下操作 
-	//如果pos不在open_list中?加入open_list，并把?前方格?置?它的父? 
-	//如果pos在open_list中??查g的大小，如果更小?把它的父??置??前方格 
-	bool A_Star::testRoad(int pos, int cur)
+	void A_Star::getResult()
 	{
-		if (isReachable(pos))
+		int *endXY = map_to_array(_ex, _ey);
+		int endX = endXY[0];
+		int endY = endXY[1];
+		_closeList.clear();
+		_openList.clear();
+		Rect* rect = &(_rects[endX][endY]);
+		while (rect != NULL)
 		{
-			if (pos == End)
+			_result.push_back(rect->_position);
+			rect = rect->_parent;
+		}
+	}
+
+	bool A_Star::testRoad(Position pos, Position current)
+	{
+		int *endXY = map_to_array(_ex, _ey);
+		int endX = endXY[0];
+		int endY = endXY[1];
+		//檢查是否在array裡面
+		if (IsReachable(pos))
+		{
+			//檢查是否為終點
+			if ((pos._x == endX) && (pos._y == endY))
 			{
-				rect[pos].pre = &rect[cur];
+				_rects[pos._x][pos._y]._parent = &(_rects[current._x][current._y]);
 				return true;
 			}
-			if (map[pos] != 1) //1代表障?物，0?可通行 
+			//判斷地圖能不能走
+			if (_map[pos._x][pos._y] != -1)
 			{
-				if (close_list.end() == find(close_list.begin(), close_list.end(), pos))
-				{
-					std::list<int>::iterator iter = find(open_list.begin(), open_list.end(), pos);
-					if (iter == open_list.end())
+				//判斷是否出現在closeList
+				if (_closeList.end() == std::find(_closeList.begin(), _closeList.end(), pos))
+				{	
+					//如果pos不在openlist則加入他
+					if (_openList.end() == std::find(_openList.begin(), _openList.end(), pos))
 					{
-						open_list.push_back(pos);
-						rect[pos].pre = &rect[cur];
-						rect[pos].h_value = get_h_value(pos);
-						rect[pos].g_value = get_g_value(pos);
+						_openList.push_back(pos);
+						(_rects[pos._x][pos._y])._parent = &_rects[current._x][current._y];
+						(_rects[pos._x][pos._y])._GValue = get_g_value(pos);
+						(_rects[pos._x][pos._y])._HValue = get_h_value(pos);
 					}
 					else
 					{
-						if ((rect[cur].g_value + 10) < rect[pos].g_value)
+						//檢查新路線是否較好
+						if ((_rects[current._x][current._y]._GValue + 1) < _rects[pos._x][pos._y]._GValue)
 						{
-							rect[pos].pre = &rect[cur];
-							rect[pos].g_value = get_g_value(pos);
+							_rects[pos._x][pos._y]._parent = &_rects[current._x][current._y];
+							_rects[pos._x][pos._y]._GValue = get_g_value(pos);
 						}
 					}
 				}
@@ -126,60 +187,94 @@ namespace game_framework {
 		return false;
 	}
 
-	bool A_Star::Find()
+	bool A_Star::findRoad()
 	{
-		//遍?open_list，查找F值最小的??作??前要?理的?? 
-		//如果open_list?空，?表明?有解?方案 
-		if (open_list.empty())
+		//檢查openlist是否為空
+		if (_openList.empty())
 		{
+			//如果空了則終止檢查
 			return false;
 		}
-
-		int f_value = 0;
-		int min_f_value = -1;
-		std::list<int>::iterator iter, save;
-		for (iter = open_list.begin(); iter != open_list.end(); iter++)
+		int FValue = 0;
+		int min_FValue = -1;
+		std::list<Position>::iterator it, save;
+		for (it = _openList.begin(); it != _openList.end(); it++)
 		{
-			f_value = rect[*iter].g_value + rect[*iter].h_value;
-			//?里的min==f也?重新?它?值，?致open_list中靠后的元素具有更高的优先? 
-			//不????要 
-			if ((min_f_value == -1) || (min_f_value >= f_value))
+			//計算FValue
+			FValue = _rects[(*it)._x][(*it)._y]._GValue + _rects[(*it)._x][(*it)._y]._HValue;
+			if ((min_FValue == -1) || (min_FValue >= FValue))
 			{
-				min_f_value = f_value;
-				save = iter;
+				min_FValue = FValue;
+				save = it;
 			}
 		}
+		//把FValue最小的位置從openlist拿掉，加入closeList
+		Position currentPos = *save;
+		_closeList.push_back(currentPos);
+		_openList.erase(save);
 
-		//把??F值最小的??移到close_list中 
-		int cur = *save;
-		close_list.push_back(cur);
-		open_list.erase(save);
+		//檢查上下左右
+		Position up;
+		up._x = currentPos._x;
+		up._y = currentPos._y + 1;
+		Position down;
+		down._x = currentPos._x;
+		down._y = currentPos._y - 1;
+		Position left;
+		left._x = currentPos._x - 1;
+		left._y = currentPos._y;
+		Position right;
+		right._x = currentPos._x + 1;
+		right._y = currentPos._y;
 
-
-		//??前方格的上下左右相?方格?行?? 
-		//如果???入了open_list??束 
-		int up = cur - Width;
-		int down = cur + Width;
-		int left = cur - 1;
-		int right = cur + 1;
-		if (true == testRoad(up, cur))
+	
+		if (testRoad(up, currentPos))
 		{
 			return true;
 		}
-		if (true == testRoad(down, cur))
+		if (testRoad(down, currentPos))
 		{
 			return true;
 		}
-		if (true == testRoad(left, cur))
+		if (testRoad(left, currentPos))
 		{
 			return true;
 		}
-		if (true == testRoad(right, cur))
+		if (testRoad(right, currentPos))
 		{
 			return true;
 		}
-
-		return Find();
+		return findRoad();
 	}
 
+	int A_Star::getX()
+	{
+		if (_result.size() > 1)
+		{
+			std::list<Position>::iterator it = _result.end();
+			it--;
+			int tempX = (*it)._x;
+			it--;
+			int ansX = (*it)._x;
+			return ansX - tempX;
+		}
+	}
+
+	int A_Star::getY()
+	{
+		if (_result.size() > 1) 
+		{
+			std::list<Position>::iterator it = _result.end();
+			it--;
+			int tempY = (*it)._y;
+			it--;
+			int ansY = (*it)._y;
+			return ansY - tempY;
+		}
+	}
+
+	bool A_Star::getIsDone()
+	{
+		return _isDone;
+	}
 }
