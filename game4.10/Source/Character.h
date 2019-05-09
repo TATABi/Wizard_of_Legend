@@ -21,7 +21,7 @@ namespace game_framework {
 		Character();
 		void Initialize(int*);				
 		void LoadBitmap();			
-		void OnMove(GameMap *);				
+		void OnMove(GameMap *);
 		void OnShow();				
 		void SetMovingDown(bool flag);
 		void SetMovingLeft(bool flag);	
@@ -34,6 +34,7 @@ namespace game_framework {
 		bool IsUsingSkill();
 		Skill* GenerateSkill(int, int, int);	//skill num
 		int CaculateDirection(int, int);
+		void Suffer(int);	//承受傷害 temp暫時使用
 	protected:
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;	//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right; //跑步時的氣流
@@ -44,6 +45,7 @@ namespace game_framework {
 		CAnimation _ani_useSkill_3_down, _ani_useSkill_3_up;
 		CAnimation* _ani_useSkill;
 		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;	//站立
+		CMovingBitmap _bm_hurt_left, _bm_hurt_right;
 		int _horizontal, _vertical;	//上下左右判定(移動距離)  (-MOVING_PIXEL,0,MOVING_PIXEL)	
 		int _directionFlag;			// 紀錄角色面向哪面 (順時鐘，從12點開始，總共8個方向) = (0, 1, 2, 3, 4, 5, 6, 7);???改?
 		bool _isMovingDown, _isMovingLeft, _isMovingRight, _isMovingUp;		//移動方向
@@ -52,6 +54,7 @@ namespace game_framework {
 		bool _isDashLock;
 		bool _isSlash;
 		bool _isUsingSkill;
+		bool _isHurt;
 		int _useSkillNum;
 		int _SLASH_PIXEL;			//斜線移動速度
 		int _STR_PIXEL;				//直線移動速度
@@ -66,6 +69,7 @@ namespace game_framework {
 		int _dash_delay_counter;  //讓玩家無法一直dash (dash和dash之間有間隔)
 		int _dash_counter;	//用來reset dash 動畫
 		double _dash_resistance;
+		int _hit_recover_counter;
 	};
 }
 

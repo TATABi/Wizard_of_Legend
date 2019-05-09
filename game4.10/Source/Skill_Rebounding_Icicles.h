@@ -13,6 +13,7 @@ namespace game_framework {
 		~Skill_Rebounding_Icicles();
 		void OnMove(int *, GameMap *);
 		int GetDamage(Enemy *);
+		//int GetDamage(Layer )
 		void OnShow();
 		void LoadBitmap();
 		void Initialize(int, int, int*);

@@ -26,12 +26,11 @@ namespace game_framework {
 		_detour_time = 0;
 		_is_x_arrive = _is_y_arrive = false;
 		_state = NOTHING;
-		_get_hurt = false;
-		_get_hurt_counter = 0;
-		_attack_counter = 0;
+		_hit_recover_counter = 0;
+		_hit_recover_flag = false;
 		_hp = 100;
 		_step = 20;
-		_zone = 30;
+		_zone = 25;
 		_damage = 10;
 		
 		for (int i = 0; i < 4; i++)
@@ -59,15 +58,7 @@ namespace game_framework {
 			int currentX = _xy[0];
 			int currentY = _xy[1];
 
-			_get_hurt_counter != 0 ? _get_hurt_counter-- : NULL;
-			
-			if (pow(_xy[0] - _ori_x, 2) + pow(_xy[1] - _ori_y, 2) > pow(CHARGING_ZONE, 2) && _state != HIT_RECOVER)
-			{
-				_state = RESET;
-			}
-			
 			// 技能碰撞判定
-			
 			std::vector<Skill*>::iterator iter;
 			for (iter = skills.begin(); iter != skills.end(); iter++)
 			{
@@ -75,39 +66,44 @@ namespace game_framework {
 				_hp -= (*iter)->GetDamage(this);
 				if (_hp != ori_hp)
 				{
-					_get_hurt = true;
-					//_pre_state = _state;
 					_state = HIT_RECOVER;
+					_hit_recover_counter = 30 * 0.5;
+					_hit_recover_flag = false;
 				}
 			}
 			
 
-			//自動尋路
 			switch (_state)
 			{
 			case CHARGING:
 				MoveToTarget(cx, cy);
-				//_target_x = cx;
-				//_target_y = cy;
+				if (IsInAttackZone(cx, cy))
+					_state = ATTACKING;
+				if (pow(_xy[0] - _ori_x, 2) + pow(_xy[1] - _ori_y, 2) > pow(CHARGING_ZONE, 2) && _state != HIT_RECOVER) //離開攻擊範圍
+					_state = RESET;
+				
 				break;
 
 			case RESET:
 				MoveToTarget(_ori_x, _ori_y);
-				//_target_x = _ori_x;
-				//_target_y = _ori_y;
+				if (currentX == _xy[0] && currentY == _xy[1])
+					_state = NOTHING;
 				break;
 			
 			case ATTACKING:
+				//攻擊動畫結束後回到 CHARGING 狀態
 				break;
-
 			case NOTHING:
+				if (IsInAttackZone(cx, cy))
+					_state = CHARGING;
 				break;
 
-			case HIT_RECOVER:
+			case HIT_RECOVER:	
+				_hit_recover_counter > 0 ? _hit_recover_counter-- : NULL;
+				_hit_recover_counter == 0 ? _state = CHARGING : NULL;
+				
 				break;
 			}
-
-			_attack_counter > 0 ? _attack_counter-- : NULL;
 
 			Move(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);
 
@@ -139,6 +135,21 @@ namespace game_framework {
 	{
 		return _hitbox;
 	}
+
+	bool Enemy::IsInAttackZone(int target_x, int target_y)
+	{
+		int cMidX = target_x + 35;
+		int cMidY = target_y + 35;
+		int midX = _xy[0] + _hitbox[0] + _hitbox[2] / 2;
+		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;
+
+		if ((abs(midX - cMidX) < _zone) && (abs(midY - cMidY) < _zone))
+			return true;
+		else
+			return false;
+			
+
+	}
 	
 	bool Enemy::CanAchieved(int dx, int dy)
 	{
@@ -163,7 +174,7 @@ namespace game_framework {
 
 	void Enemy::NotifyCharge()
 	{
-		if(_state != HIT_RECOVER)
+		if(_state != HIT_RECOVER && _state != ATTACKING)
 			_state = CHARGING;
 	}
 
@@ -176,8 +187,8 @@ namespace game_framework {
 	{
 		int currentX = _xy[0];
 		int currentY = _xy[1];
-		int midX = _xy[0] + (_collision_move[0] + _collision_move[2]) / 2;
-		int midY = _xy[1] + 3 * (_collision_move[1] + _collision_move[3]) / 4;
+		int midX = _xy[0] + _hitbox[0] + _hitbox[2] / 2;
+		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;
 		int cMidX = target_x + 35;
 		int cMidY = target_y + 35;
 
@@ -186,6 +197,7 @@ namespace game_framework {
 		{
 			int temp_step = _step;
 
+			//斜走放慢速度
 			if ((abs(midX - cMidX) > _zone) && (abs(midY - cMidY) > _zone))
 				temp_step = (float)(_step) * 0.6 + 0.5;
 
@@ -405,19 +417,12 @@ namespace game_framework {
 			
 		}
 
-		/*
-		if (_state == RESET && (currentX == _xy[0]) && (currentY == _xy[1]) && _state != HIT_RECOVER)
-			_state = NOTHING;
-
-		if (_state == CHARGING && (currentX == _xy[0]) && (currentY == _xy[1]) && _state != HIT_RECOVER)
-			_state = ATTACKING;
-		*/
-
-		if (_state == RESET && (currentX == _xy[0]) && (currentY == _xy[1]) && _state != HIT_RECOVER)
-			_state = NOTHING;
-
-		if (_state == CHARGING && (currentX == _xy[0]) && (currentY == _xy[1]) && _state != HIT_RECOVER)
-			_attack_counter == 0 ? _state = ATTACKING : NULL;
+		if (currentX == _xy[0] && currentY == _xy[1])
+		{
+			_state == CHARGING ? _state = ATTACKING : NULL;
+			_state == RESET ? _xy[0] = _ori_x, _xy[1] = _ori_y : NULL;	//加上動畫
+		}
+ 
 	}
 
 }

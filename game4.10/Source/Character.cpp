@@ -54,8 +54,10 @@ namespace game_framework {
 		_dash_delay_counter = DASH_DELAY;
 		_dash_counter = 9;
 		_isUsingSkill = false;
+		_isHurt = false;
 		_useSkillNum = 0;
 		_dash_resistance = 1;
+		_hit_recover_counter = 0;
 		
 	}
 
@@ -167,6 +169,8 @@ namespace game_framework {
 		_bm_stand_up.LoadBitmap(CHARACTER_STAND_UP, RGB(50, 255, 0));
 		_bm_stand_left.LoadBitmap(CHARACTER_STAND_LEFT, RGB(50, 255, 0));
 		_bm_stand_right.LoadBitmap(CHARACTER_STAND_RIGHT, RGB(50, 255, 0));
+		_bm_hurt_left.LoadBitmap(CHARACTER_HURT_LEFT, RGB(50, 255, 0));
+		_bm_hurt_right.LoadBitmap(CHARACTER_HURT_RIGHT, RGB(50, 255, 0));
 
 		_ani_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
@@ -191,17 +195,30 @@ namespace game_framework {
 		_ani_useSkill_2_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_useSkill_3_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_useSkill_3_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		_bm_hurt_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		_bm_hurt_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+	}
 
+	void Character::Suffer(int damage)
+	{
+		CharacterData::HP -= damage;
+		_isHurt = true;
+		_hit_recover_counter = 30 * 0.5;
 	}
 
 	void Character::OnMove(GameMap *map)
 	{
-		if (_isUsingSkill)
+		if (_isHurt)
+		{
+			_run_counter = 0;
+			_hit_recover_counter > 0 ? _hit_recover_counter-- : NULL;
+			_hit_recover_counter == 0 ? _isHurt = false : NULL;
+		}
+		else if (_isUsingSkill)
 		{
 			_run_counter = 0;
 			_ani_useSkill->OnMove();
 		}
-
 		else {
 			if (!_isDashLock)
 			{
@@ -429,7 +446,26 @@ namespace game_framework {
 
 	void Character::OnShow() 
 	{	
-		if (_isUsingSkill)
+		/////////////////////////////////  受傷圖片待加上下 /////////////////////////////
+		if (_isHurt)
+		{
+			switch (_directionFlag)
+			{
+			case RIGHT:
+				_bm_hurt_right.ShowBitmap();
+				break;
+			case LEFT:
+				_bm_hurt_left.ShowBitmap();
+				break;
+			case DOWN:
+				_bm_hurt_right.ShowBitmap();
+				break;
+			case UP:
+				_bm_hurt_left.ShowBitmap();
+				break;
+			}
+		}
+		else if (_isUsingSkill)
 		{
 			_ani_useSkill->OnShow();
 
