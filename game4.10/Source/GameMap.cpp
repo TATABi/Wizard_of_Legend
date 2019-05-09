@@ -35,6 +35,7 @@ namespace game_framework {
 		
 		for (int i = 0; i < _enemies.size(); i++)
 			_enemies[i]->Reset();	
+		
 	}
 
 	void GameMap::LoadBitmapPressF()
@@ -93,23 +94,6 @@ namespace game_framework {
 	{
 		for each (Enemy* enemy in _enemies)
 			enemy->OnMove(_cxy[0], _cxy[1], _skillList);
-
-		/*
-		vector<Enemy*>::iterator iter;
-		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
-		{
-			if (!(*iter)->IsLive())
-			{
-				delete *iter;
-				iter = _enemies.erase(iter);
-			}
-			else
-				(*iter)->OnMove(_cxy[0], _cxy[1], _skillList);
-
-			if (iter == _enemies.end())
-				break;
-		}
-		*/
 	}
 	
 	void GameMap::OnShow()

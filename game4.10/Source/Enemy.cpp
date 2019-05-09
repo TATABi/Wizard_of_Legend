@@ -26,73 +26,96 @@ namespace game_framework {
 		_detour_time = 0;
 		_is_x_arrive = _is_y_arrive = false;
 		_state = NOTHING;
-
+		_get_hurt = false;
+		_get_hurt_counter = 0;
+		_attack_counter = 0;
+		_hp = 100;
+		_step = 20;
+		_zone = 30;
+		_damage = 10;
+		
 		for (int i = 0; i < 4; i++)
-		{
 			_neighbor[i] = true;
-		}
+	}
 
+	void Enemy::LoadBitmap()
+	{
+		LoadBitmap_2();
+
+		int ani[7] = { GET_HURT_01, GET_HURT_02, GET_HURT_03, GET_HURT_04, GET_HURT_05, GET_HURT_06, GET_HURT_07 };
+		for (int i = 0; i < 7; i++)
+			_ani_hurt.AddBitmap(ani[i], RGB(50, 255, 0));
+
+		_ani_hurt.SetDelayCount(1);
+
+		
 	}
 
 	void Enemy::OnMove(int cx, int cy, vector<Skill*> &skills)
 	{
+		
 		if (_hp > 0)
 		{
+			int currentX = _xy[0];
+			int currentY = _xy[1];
+
+			_get_hurt_counter != 0 ? _get_hurt_counter-- : NULL;
 			
-			if (pow(_xy[0] - _ori_x, 2) + pow(_xy[1] - _ori_y, 2) > pow(CHARGING_ZONE, 2))
+			if (pow(_xy[0] - _ori_x, 2) + pow(_xy[1] - _ori_y, 2) > pow(CHARGING_ZONE, 2) && _state != HIT_RECOVER)
 			{
 				_state = RESET;
 			}
 			
-
 			// 技能碰撞判定
 			
 			std::vector<Skill*>::iterator iter;
 			for (iter = skills.begin(); iter != skills.end(); iter++)
 			{
-				int *skill_hitbox = (*iter)->GetHitbox();
-				int *skill_position = (*iter)->GetPosition();
-
-				int x1 = _xy[0] + _collision_damage[0];
-				int y1 = _xy[1] + _collision_damage[1];
-				int l1 = _collision_damage[2];
-				int w1 = _collision_damage[3];
-
-				int x2 = skill_position[0] + skill_hitbox[0];
-				int y2 = skill_position[1] + skill_hitbox[1];
-				int l2 = skill_hitbox[2];
-				int w2 = skill_hitbox[3];
-
-				if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //發生碰撞
+				int ori_hp = _hp;
+				_hp -= (*iter)->GetDamage(this);
+				if (_hp != ori_hp)
 				{
-					_hp -= (*iter)->GetDamage(this);			//扣血 把自己傳進去判斷是否已經受到過此技能的傷害
+					_get_hurt = true;
+					//_pre_state = _state;
+					_state = HIT_RECOVER;
 				}
 			}
 			
-			
+
 			//自動尋路
 			switch (_state)
 			{
 			case CHARGING:
 				MoveToTarget(cx, cy);
-				_target_x = cx;
-				_target_y = cy;
+				//_target_x = cx;
+				//_target_y = cy;
 				break;
+
 			case RESET:
 				MoveToTarget(_ori_x, _ori_y);
-				_target_x = _ori_x;
-				_target_y = _ori_y;
-				
+				//_target_x = _ori_x;
+				//_target_y = _ori_y;
 				break;
+			
 			case ATTACKING:
 				break;
+
 			case NOTHING:
+				break;
+
+			case HIT_RECOVER:
 				break;
 			}
 
+			_attack_counter > 0 ? _attack_counter-- : NULL;
+
 			Move(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);
+
 			
+
 		}
+
+			
 	}
 
 	void Enemy::SetXY(int x, int y)
@@ -102,7 +125,7 @@ namespace game_framework {
 	}
 	
 
-	int* Enemy::GetEnemyXY() 
+	int* Enemy::GetPosition() 
 	{
 		return _xy;
 	}
@@ -110,6 +133,11 @@ namespace game_framework {
 	int* Enemy::GetCollisionMove() 
 	{
 		return _collision_move;
+	}
+
+	int *Enemy::GetHitbox()
+	{
+		return _hitbox;
 	}
 	
 	bool Enemy::CanAchieved(int dx, int dy)
@@ -135,7 +163,8 @@ namespace game_framework {
 
 	void Enemy::NotifyCharge()
 	{
-		_state = CHARGING;
+		if(_state != HIT_RECOVER)
+			_state = CHARGING;
 	}
 
 	int Enemy::Area()
@@ -376,10 +405,19 @@ namespace game_framework {
 			
 		}
 
-		
-		if (_state == RESET && (currentX == _xy[0]) && (currentY == _xy[1]))
+		/*
+		if (_state == RESET && (currentX == _xy[0]) && (currentY == _xy[1]) && _state != HIT_RECOVER)
 			_state = NOTHING;
-		
+
+		if (_state == CHARGING && (currentX == _xy[0]) && (currentY == _xy[1]) && _state != HIT_RECOVER)
+			_state = ATTACKING;
+		*/
+
+		if (_state == RESET && (currentX == _xy[0]) && (currentY == _xy[1]) && _state != HIT_RECOVER)
+			_state = NOTHING;
+
+		if (_state == CHARGING && (currentX == _xy[0]) && (currentY == _xy[1]) && _state != HIT_RECOVER)
+			_attack_counter == 0 ? _state = ATTACKING : NULL;
 	}
 
 }

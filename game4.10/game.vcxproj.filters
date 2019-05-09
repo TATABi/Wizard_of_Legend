@@ -457,6 +457,23 @@
     <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\02.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\03.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\04.bmp" />
+    <Image Include="RES\InGame\GetHurt\01.bmp" />
+    <Image Include="RES\InGame\GetHurt\02.bmp" />
+    <Image Include="RES\InGame\GetHurt\03.bmp" />
+    <Image Include="RES\InGame\GetHurt\04.bmp" />
+    <Image Include="RES\InGame\GetHurt\05.bmp" />
+    <Image Include="RES\InGame\GetHurt\06.bmp" />
+    <Image Include="RES\InGame\GetHurt\07.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Left\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Left\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Left\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Left\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Left\05.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Right\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Right\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Right\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Right\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Attack\Right\05.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

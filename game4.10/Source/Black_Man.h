@@ -15,15 +15,9 @@ namespace game_framework {
 		~Black_Man();
 		void Init();
 		void Reset();
-		void LoadBitmap();
+		void LoadBitmap_2();
 		void Move(int, int);
-		void OnShow();								//傳入角色座標
-	private:
-		
-		CMovingBitmap _bm_stand_left, _bm_stand_right;
-		CAnimation _ani_left, _ani_right;
-		//CAnimation *_ani;
-		
+		void OnShow();						
 	};
 
 }

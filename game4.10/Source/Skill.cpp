@@ -28,13 +28,6 @@ namespace game_framework
 		return _hitbox;
 	}
 
-	int Skill::GetDamage(Enemy* enemy)
-	{
-		if (AttackedThisEnemy(enemy))
-			return _damage;	
-		else
-			return 0;
-	}
 
 	int* Skill::GetPosition()
 	{

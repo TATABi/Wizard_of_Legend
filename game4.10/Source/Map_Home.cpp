@@ -16,7 +16,6 @@ namespace game_framework {
 	{
 		//¥[¤J¼Ä¤H
 		//(632,798), (928,1077)
-		//_enemies.push_back(new Enemy(650, 918, AREA_1, 40));
 		_enemies.push_back(new Black_Man(650, 918, AREA_1, 40));
 		_character = c;
 	}
@@ -27,12 +26,6 @@ namespace game_framework {
 	{
 		for each (Enemy* enemy in _enemies)
 			enemy->LoadBitmap();
-
-		/*
-		vector<Enemy*>::iterator iter;
-		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
-			(*iter)->LoadBitmap();
-		*/
 
 		LoadBitmapPressF();
 		_background.LoadBitmap(MAP_HOME);
@@ -103,7 +96,7 @@ namespace game_framework {
 		vector<Enemy*>::iterator iter;
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 		{
-			int *e_xy = (*iter)->GetEnemyXY();
+			int *e_xy = (*iter)->GetPosition();
 			int *e_collision_move = (*iter)->GetCollisionMove();
 
 			int x1 = _cxy[0] + _collision_move[0] + dx;

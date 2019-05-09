@@ -23,16 +23,16 @@ namespace game_framework
 
 	void Skill_Shock_Nova::Initialize(int mouseX, int mouseY, int* cxy)
 	{
-		_damage = 0;
+		_damage = 1;
 		_backDistance = 10;
-		_hitbox[0] = 13;
-		_hitbox[1] = 13;
-		_hitbox[2] = 187;
-		_hitbox[3] = 187;
+		_hitbox[0] = 75;
+		_hitbox[1] = 50;
+		_hitbox[2] = 96;
+		_hitbox[3] = 96;
 		_lifeTimer = 300;
-		_map_collision[0] = 0;
+		_map_collision[0] = 0;			//¶ê¤ß
 		_map_collision[1] = 0;
-		_map_collision[2] = 0;
+		_map_collision[2] = 0;				//¥b®|
 		_map_collision[3] = 0;
 		_isDelete = false;
 		_isStock = false;
@@ -42,6 +42,9 @@ namespace game_framework
 		_counter = 5;
 		_time = 6;
 		_ani_skill[0].SetDelayCount(1);
+
+
+
 
 	}
 
@@ -61,7 +64,8 @@ namespace game_framework
 	{
 		_counter == 0 ? NULL : _counter--;
 		
-		_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cxy[0], CHARACTER_SCREEN_X + _xy[1] - cxy[1]);
+		//_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cxy[0], CHARACTER_SCREEN_X + _xy[1] - cxy[1]);
+	
 
 		if (_counter == 0)
 		{
@@ -79,12 +83,45 @@ namespace game_framework
 			}
 			else
 			{
+				/*
 				_xy[0] = cxy[0] - (_ani_skill[0].Width() - 70) / 2 + 2;
 				_xy[1] = cxy[1] - (_ani_skill[0].Height() - 70) / 2 - 52;
+				*/
+
+				_xy[0] = cxy[0] - (_ani_skill[0].Width() - 70) / 2 + 2;
+				_xy[1] = cxy[1] - (_ani_skill[0].Height() - 70) / 2 + 25;
+
 				_isInit = false;
 			}
 		}
 
+		_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cxy[0], CHARACTER_SCREEN_Y + _xy[1] - cxy[1]);
+
+		
+
+	}
+
+	int Skill_Shock_Nova::GetDamage(Enemy *enemy)
+	{
+		int *enemy_hitbox = enemy->GetHitbox();
+		int *enemy_position = enemy->GetPosition();
+
+		float x1 = _xy[0] + _hitbox[0];
+		float y1 = _xy[1] + _hitbox[1];
+		float r = _hitbox[2];
+
+		float x2 = enemy_position[0] + enemy_hitbox[0];
+		float y2 = enemy_position[1] + enemy_hitbox[1];
+		float l2 = enemy_hitbox[2];
+		float w2 = enemy_hitbox[3];
+
+		if (pow(x1 - x2 + l2 / 2, 2) + pow(y1 - y2 + w2 / 2, 2) <= pow((l2 + w2) / 4 + r, 2) )
+		{
+			if (AttackedThisEnemy(enemy))
+				return _damage;
+		}
+
+		return 0;
 	}
 
 	void Skill_Shock_Nova::OnShow()
@@ -97,7 +134,6 @@ namespace game_framework
 				_time == 0 ? _isDelete = true : _ani_skill[0].Reset(), _time--;
 			}
 		}
-		
 	}
 
 

@@ -331,8 +331,25 @@
 #define ENEMY_BLACK_MAN_MOVE_RIGHT_01   597
 #define ENEMY_BLACK_MAN_MOVE_RIGHT_02   598
 #define ENEMY_BLACK_MAN_MOVE_RIGHT_03   599
-#define IDB_BITMAP15                    600
 #define ENEMY_BLACK_MAN_MOVE_RIGHT_04   600
+#define GET_HURT_01                     601
+#define GET_HURT_02                     602
+#define GET_HURT_03                     603
+#define GET_HURT_04                     604
+#define GET_HURT_05                     605
+#define GET_HURT_06                     606
+#define GET_HURT_07                     607
+#define ENEMY_BLACK_MAN_ATTACK_LEFT_01  608
+#define ENEMY_BLACK_MAN_ATTACK_LEFT_02  609
+#define ENEMY_BLACK_MAN_ATTACK_LEFT_03  610
+#define ENEMY_BLACK_MAN_ATTACK_LEFT_04  611
+#define ENEMY_BLACK_MAN_ATTACK_LEFT_05  612
+#define ENEMY_BLACK_MAN_ATTACK_RIGHT_01 613
+#define ENEMY_BLACK_MAN_ATTACK_RIGHT_02 614
+#define ENEMY_BLACK_MAN_ATTACK_RIGHT_03 615
+#define ENEMY_BLACK_MAN_ATTACK_RIGHT_04 616
+#define IDB_BITMAP16                    617
+#define ENEMY_BLACK_MAN_ATTACK_RIGHT_05 617
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -345,7 +362,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        601
+#define _APS_NEXT_RESOURCE_VALUE        618
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

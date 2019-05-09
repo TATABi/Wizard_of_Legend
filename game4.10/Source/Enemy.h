@@ -16,20 +16,27 @@ namespace game_framework {
 		void NotifyCharge();
 		int Area();
 		void SetXY(int, int);
-		int* GetEnemyXY();
+		int* GetPosition();
 		int* GetCollisionMove();
+		int* GetHitbox();
+		void LoadBitmap();
+		
+
 		virtual void Init() = 0;
-		virtual void LoadBitmap() = 0;
+		virtual void LoadBitmap_2() = 0;
 		virtual void Move(int, int) = 0;
 		virtual void OnShow() = 0;
 		virtual void Reset() = 0;
+		
+
 	//	virtual void Attack() = 0;
 	protected:
 		enum STATE {
 			ATTACKING,
 			CHARGING,
 			RESET,
-			NOTHING
+			NOTHING,
+			HIT_RECOVER
 		};
 
 		enum DIRECTION {
@@ -38,23 +45,28 @@ namespace game_framework {
 		};
 
 		STATE _state;
+		STATE _pre_state;
 		DIRECTION _direction;
 		void MoveToTarget(int, int);
 		int _hp, _step, _zone;
 		int _area;
 		int _ori_x, _ori_y;
 		int _target_x, _target_y;
-		int _collision_damage[4] = { 0, 0, 34, 57 };
-		int _collision_move[4] = { 8, 41, 16, 16 };		//只有和地圖物件是使用此碰撞窗
+		int _hitbox[4] = { 0 }; // { 0, 0, 34, 57 };
+		int _collision_move[4] = { 0 }; // { 8, 41, 16, 16 };		//只有和地圖物件是使用此碰撞窗
 		bool _is_x_arrive;
 		bool _is_y_arrive;
 		bool _is_detour, _is_left, _is_right, _is_up, _is_down;
 		bool _neighbor[4];	// 上下左右
 		int _detour_time;
-		//CMovingBitmap _bm_stand;
 		int _damage;
-
-
+		bool _get_hurt;
+		int _get_hurt_counter;
+		int _attack_counter;
+		CMovingBitmap _bm_stand_left, _bm_stand_right;
+		CAnimation _ani_hurt;
+		CAnimation _ani_left, _ani_right;
+		CAnimation _ani_attack_left, _ani_attack_right;
 	};
 }
 

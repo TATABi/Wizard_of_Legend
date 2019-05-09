@@ -14,8 +14,6 @@ namespace game_framework
 	{
 		Initialize(mousreX, mouseY, cxy);
 		LoadBitmap();
-		
-
 	}
 
 	Skill_Rebounding_Icicles::~Skill_Rebounding_Icicles()
@@ -83,6 +81,30 @@ namespace game_framework
 			_ani_skill[3].AddBitmap(ani[i], RGB(50, 255, 0));
 
 		
+	}
+
+	int Skill_Rebounding_Icicles::GetDamage(Enemy *enemy)
+	{
+		int *enemy_hitbox = enemy->GetHitbox();
+		int *enemy_position = enemy->GetPosition();
+
+		float x1 = _xy[0] + _hitbox[0];
+		float y1 = _xy[1] + _hitbox[1];
+		float l1 = _hitbox[2];
+		float w1 = _hitbox[3];
+
+		float x2 = enemy_position[0] + enemy_hitbox[0];
+		float y2 = enemy_position[1] + enemy_hitbox[1];
+		float l2 = enemy_hitbox[2];
+		float w2 = enemy_hitbox[3];
+
+		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //µo¥Í¸I¼²
+		{
+			if (AttackedThisEnemy(enemy))
+				return _damage;
+		}
+
+		return 0;
 	}
 
 	void Skill_Rebounding_Icicles::OnMove(int *cxy, GameMap *map)

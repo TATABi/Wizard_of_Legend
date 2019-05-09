@@ -366,6 +366,23 @@ ENEMY_BLACK_MAN_MOVE_RIGHT_01 BITMAP                  "..\\RES\\InGame\\Enemy\\D
 ENEMY_BLACK_MAN_MOVE_RIGHT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Right\\02.bmp"
 ENEMY_BLACK_MAN_MOVE_RIGHT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Right\\03.bmp"
 ENEMY_BLACK_MAN_MOVE_RIGHT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Right\\04.bmp"
+GET_HURT_01             BITMAP                  "..\\RES\\InGame\\GetHurt\\01.bmp"
+GET_HURT_02             BITMAP                  "..\\RES\\InGame\\GetHurt\\02.bmp"
+GET_HURT_03             BITMAP                  "..\\RES\\InGame\\GetHurt\\03.bmp"
+GET_HURT_04             BITMAP                  "..\\RES\\InGame\\GetHurt\\04.bmp"
+GET_HURT_05             BITMAP                  "..\\RES\\InGame\\GetHurt\\05.bmp"
+GET_HURT_06             BITMAP                  "..\\RES\\InGame\\GetHurt\\06.bmp"
+GET_HURT_07             BITMAP                  "..\\RES\\InGame\\GetHurt\\07.bmp"
+ENEMY_BLACK_MAN_ATTACK_LEFT_01 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\01.bmp"
+ENEMY_BLACK_MAN_ATTACK_LEFT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\02.bmp"
+ENEMY_BLACK_MAN_ATTACK_LEFT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\03.bmp"
+ENEMY_BLACK_MAN_ATTACK_LEFT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\04.bmp"
+ENEMY_BLACK_MAN_ATTACK_LEFT_05 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\05.bmp"
+ENEMY_BLACK_MAN_ATTACK_RIGHT_01 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\01.bmp"
+ENEMY_BLACK_MAN_ATTACK_RIGHT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\02.bmp"
+ENEMY_BLACK_MAN_ATTACK_RIGHT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\03.bmp"
+ENEMY_BLACK_MAN_ATTACK_RIGHT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\04.bmp"
+ENEMY_BLACK_MAN_ATTACK_RIGHT_05 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\05.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

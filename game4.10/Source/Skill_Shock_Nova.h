@@ -12,6 +12,7 @@ namespace game_framework {
 		Skill_Shock_Nova(int, int, int*);
 		~Skill_Shock_Nova();
 		void OnMove(int *, GameMap *);
+		int GetDamage(Enemy *);
 		void OnShow();
 		void LoadBitmap();
 		void Initialize(int, int, int*);

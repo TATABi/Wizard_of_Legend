@@ -96,7 +96,7 @@ namespace game_framework {
 		vector<Enemy*>::iterator iter;
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 		{
-			int *e_xy = (*iter)->GetEnemyXY();
+			int *e_xy = (*iter)->GetPosition();
 			int *e_collision_move = (*iter)->GetCollisionMove();
 
 			int x1 = _cxy[0] + _collision_move[0] + dx;
