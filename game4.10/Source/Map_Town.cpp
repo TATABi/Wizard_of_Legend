@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Map_Town.h"
+#include "Map_Town_Logic.h"
 #include "algorithm"
 
 namespace game_framework {
@@ -22,10 +23,11 @@ namespace game_framework {
 
 	void Map_Town::LoadBitmap()
 	{
+		
 		vector<Enemy*>::iterator iter;
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 			(*iter)->LoadBitmap();
-
+			
 		LoadBitmapPressF();
 		_background.LoadBitmap(MAP_TOWN);
 		_wall.LoadBitmap(MAP_TOWN_WALL, RGB(50, 255, 0));
@@ -33,9 +35,10 @@ namespace game_framework {
 
 	void Map_Town::OnMove()
 	{
-		OnMoveBackgroundAndWall();
-		_character_status = town_map[_cxy[0] + _collision_move[0] + 10][_cxy[1] + _collision_move[1] + 3];
+		_character_status = TOWN_LOGIC[_cxy[0] + _collision_move[0] + 10][_cxy[1] + _collision_move[1] + 3];
+	
 		int temp_x = 0, temp_y = 0;
+		
 		if (_character_status == 1 || _character_status == 2 || _character_status == 3 || _character_status == 4 || _character_status == 5)
 		{
 			switch (_character_status)
@@ -75,70 +78,15 @@ namespace game_framework {
 			_isPressF = false;
 		}
 
-		/////////////////Skills移動/////////////////////////////
+		OnMoveBackgroundAndWall();
 
-		for each (Skill* skill in _skillList)
-		{
-			skill->OnMove(GetCharacterPosition(), &(*this));
-		}
+		SkillOnMove();
 
-		/////////////////Enemy移動/////////////////////////////
+		EnemyOnMove();
 
-		vector<Enemy*>::iterator iter;
-		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
-		{
-
-			if (!(*iter)->IsLive())
-			{
-				delete *iter;
-				iter = _enemies.erase(iter);
-
-			}
-			else
-			{
-				(*iter)->OnMove(_cxy[0], _cxy[1], _skillList);
-			}
-
-			if (iter == _enemies.end())
-			{
-				break;
-			}
-		}
 
 	}
-
-
-	void Map_Town::OnShow()
-	{
-		//圖層效果
-
-		vector<Layer*> layer;
-
-		layer.insert(layer.end(), _enemies.begin(), _enemies.end());
-		layer.insert(layer.end(), _skillList.begin(), _skillList.end());
-		layer.push_back(_character);
-
-		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });
-
-		vector<Layer*>::iterator iter;
-		for (iter = layer.begin(); iter != layer.end(); iter++)
-			(*iter)->OnShow();
-
-		vector<Skill*>::iterator it;
-		for (it = _skillList.begin(); it != _skillList.end(); it++)
-		{
-			if ((*it)->IsDelete() == true)
-			{
-				delete *it;
-				it = _skillList.erase(it);
-			}
-			if (it == _skillList.end())
-			{
-				break;
-			}
-		}
-	}
-
+	
 	int* Map_Town::SetCharacterXY(int dx, int dy)
 	{
 		int slow_x = (int)dx / 3;
@@ -148,39 +96,60 @@ namespace game_framework {
 		vector<Enemy*>::iterator iter;
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 		{
-			int temp = (*iter)->Collision(_cxy, _collision_move, dx, dy);
-			if (temp == 1)
-			{
-				dx = slow_x;
-				dy = slow_y;
-				break;
-			}
-			else if (temp == 2)
-			{
+			int *e_xy = (*iter)->GetEnemyXY();
+			int *e_collision_move = (*iter)->GetCollisionMove();
 
+			int x1 = _cxy[0] + _collision_move[0] + dx;
+			int y1 = _cxy[1] + _collision_move[1] + dy;
+			int x2 = e_xy[0] + e_collision_move[0];
+			int y2 = e_xy[1] + e_collision_move[1];
+			int l1 = _collision_move[2];
+			int w1 = _collision_move[3];
+			int l2 = e_collision_move[2];
+			int w2 = e_collision_move[3];
+			
+			int e_dx = 0, e_dy = 0;
+
+			if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2))	//發生碰撞
+			{
+				e_dx = (int)(dx / 3);
+				e_dy = (int)(dy / 3);
+
+				if (TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1							//左上
+					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1				//右上
+					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1				//左下
+					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1)		//右下
+				{
+					e_xy[0] += e_dx;
+					e_xy[1] += e_dy;
+					//被推到撞牆
+					dx = slow_x;
+					dy = slow_y;
+					break;
+
+				}
+    			//被推
 				dx = dy = 0;
 			}
-
+			//沒撞到
 		}
 
 		//////////與地圖碰撞////////////
-		if (town_map[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + dy] != -1							//左上
-			&& town_map[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + dy] != -1				//右上
-			&& town_map[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1				//左下
-			&& town_map[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1)		//右下
+		if (TOWN_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + dy] != -1							//左上
+			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + dy] != -1				//右上
+			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1				//左下
+			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1)		//右下
 		{
 			_cxy[0] += dx;
 			_cxy[1] += dy;
 		}
-
 		return _cxy;
-
 	}
-
+	
 	int Map_Town::GetMapStatus(int x, int y)
 	{
-		return town_map[x][y];
+		return TOWN_LOGIC[x][y];
 	}
-
+	
 
 }

@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include "GameMap.h"
 #include "Character.h"
+#include <algorithm>
 
 namespace game_framework {
 	
@@ -14,11 +15,13 @@ namespace game_framework {
 		Initialize(x, y);
 	}
 	
-	GameMap::~GameMap() {
+	GameMap::~GameMap() 
+	{
 		for each (Skill* skill in _skillList)
-		{
 			delete skill;
-		}
+
+		for each (Enemy* enemy in _enemies)
+			delete enemy;
 	}
 
 	void GameMap::Initialize(int x, int y) 
@@ -28,6 +31,10 @@ namespace game_framework {
 		_ani_press_f.SetDelayCount(2);
 		_isPressF = false;
 		_character_status = 0;
+		
+		
+		for (int i = 0; i < _enemies.size(); i++)
+			_enemies[i]->Reset();	
 	}
 
 	void GameMap::LoadBitmapPressF()
@@ -75,7 +82,82 @@ namespace game_framework {
 		if(!_character->IsUsingSkill())
 			_skillList.push_back(_character->GenerateSkill(skillNum, x, y));
 	}
+	
+	void GameMap::SkillOnMove()
+	{
+		for each (Skill* skill in _skillList)
+			skill->OnMove(GetCharacterPosition(), &(*this));	
+	}
+	
+	void GameMap::EnemyOnMove()
+	{
+		for each (Enemy* enemy in _enemies)
+			enemy->OnMove(_cxy[0], _cxy[1], _skillList);
 
+		/*
+		vector<Enemy*>::iterator iter;
+		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
+		{
+			if (!(*iter)->IsLive())
+			{
+				delete *iter;
+				iter = _enemies.erase(iter);
+			}
+			else
+				(*iter)->OnMove(_cxy[0], _cxy[1], _skillList);
+
+			if (iter == _enemies.end())
+				break;
+		}
+		*/
+	}
+	
+	void GameMap::OnShow()
+	{
+		//¹Ï¼h®ÄªG
+
+		vector<Layer*> layer;
+
+		layer.insert(layer.end(), _enemies.begin(), _enemies.end());
+		layer.insert(layer.end(), _skillList.begin(), _skillList.end());
+		layer.push_back(_character);
+
+		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });
+
+		vector<Layer*>::iterator l_it;
+		for (l_it = layer.begin(); l_it != layer.end(); l_it++)
+			(*l_it)->OnShow();
+
+		CleanMemory();
+	}
+
+	void GameMap::CleanMemory()
+	{
+
+		vector<Skill*>::iterator s_it;
+		for (s_it = _skillList.begin(); s_it != _skillList.end(); s_it++)
+		{
+			if ((*s_it)->IsDelete() == true)
+			{
+				delete *s_it;
+				s_it = _skillList.erase(s_it);
+			}
+			if (s_it == _skillList.end())
+				break;
+		}
+
+		vector<Enemy*>::iterator e_it;
+		for (e_it = _enemies.begin(); e_it != _enemies.end(); e_it++)
+		{
+			if (!(*e_it)->IsLive())
+			{
+				delete *e_it;
+				e_it = _enemies.erase(e_it);
+			}
+			if (e_it == _enemies.end())
+				break;
+		}
+	}
 }
 
 

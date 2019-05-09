@@ -31,7 +31,7 @@
     <ClCompile Include="Source\Home_State_Controller.cpp" />
     <ClCompile Include="Source\Global_Class.cpp" />
     <ClCompile Include="Source\Town_State_Controller.cpp" />
-    <ClCompile Include="Source\A_Star.cpp" />
+    <ClCompile Include="Source\Black_Man.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -43,7 +43,6 @@
     <ClInclude Include="Source\GameMap.h" />
     <ClInclude Include="Source\gameView.h" />
     <ClInclude Include="Source\Map_Home.h" />
-    <ClInclude Include="Source\Map_Home_Logic.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Skill.h" />
@@ -52,7 +51,6 @@
     <ClInclude Include="Source\mygame.h" />
     <ClInclude Include="Source\UI.h" />
     <ClInclude Include="Source\Map_Town.h" />
-    <ClInclude Include="Source\Map_Town_Logic.h" />
     <ClInclude Include="Source\PausedMenu.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Items.h" />
@@ -67,7 +65,9 @@
     <ClInclude Include="Source\Home_State_Controller.h" />
     <ClInclude Include="Source\Global_Class.h" />
     <ClInclude Include="Source\Town_State_Controller.h" />
-    <ClInclude Include="Source\A_Star.h" />
+    <ClInclude Include="Source\Map_Town_Logic.h" />
+    <ClInclude Include="Source\Map_Home_Logic.h" />
+    <ClInclude Include="Source\Black_Man.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
@@ -417,6 +417,46 @@
     <Image Include="RES\Character\Use_Rebounding_Icicles\Right\9.bmp" />
     <Image Include="RES\Character\Use_Rebounding_Icicles\Right\10.bmp" />
     <Image Include="RES\Character\Use_Rebounding_Icicles\Right\11.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\01.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\02.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\03.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\04.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\05.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\06.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\07.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\08.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\09.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\10.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\11.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\12.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\13.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\14.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\15.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\01.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\02.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\03.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\04.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\05.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\06.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\07.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\08.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\09.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\10.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\11.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\12.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\13 - 複製.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\13.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\14.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Stand\left.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Stand\right.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\04.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

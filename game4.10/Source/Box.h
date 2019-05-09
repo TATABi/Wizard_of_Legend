@@ -1,6 +1,7 @@
 #ifndef BOX_H
 #define BOX_H
 #include "Items.h"
+
 namespace game_framework {
 	class Box {
 	public:

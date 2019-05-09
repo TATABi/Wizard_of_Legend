@@ -4,7 +4,6 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-
 #include "Home_State_Controller.h"
 
 namespace game_framework {

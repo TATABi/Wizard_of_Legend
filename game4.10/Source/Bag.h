@@ -1,6 +1,7 @@
 #ifndef BAG_H
 #define BAG_H
 #include "Item.h"
+
 namespace game_framework {
 	
 	class Bag {

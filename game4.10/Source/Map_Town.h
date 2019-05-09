@@ -1,6 +1,5 @@
 #ifndef MAP_TOWN_H
 #define MAP_TOWN_H
-#include "Map_Town_Logic.h"
 #include "GameMap.h"
 #include "Character.h"
 
@@ -11,11 +10,8 @@ namespace game_framework {
 		~Map_Town();
 		void LoadBitmap();
 		void OnMove();
-		void OnShow();
 		int* SetCharacterXY(int, int);
 		int GetMapStatus(int, int);
-	private:
-		vector<Enemy*> _enemies;
 	};
 
 }

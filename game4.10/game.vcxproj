@@ -264,8 +264,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
-    <ClCompile Include="Source\A_Star.cpp" />
     <ClCompile Include="Source\Bag.cpp" />
+    <ClCompile Include="Source\Black_Man.cpp" />
     <ClCompile Include="Source\Book.cpp" />
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
@@ -330,8 +330,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
-    <ClInclude Include="Source\A_Star.h" />
     <ClInclude Include="Source\Bag.h" />
+    <ClInclude Include="Source\Black_Man.h" />
     <ClInclude Include="Source\Book.h" />
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Character.h" />
@@ -533,6 +533,36 @@
     <Image Include="RES\Character\Use_Shock_Nova\13.bmp" />
     <Image Include="RES\Character\Use_Shock_Nova\14.bmp" />
     <Image Include="RES\Character\Use_Shock_Nova\15.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\01.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\02.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\03.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\04.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\05.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\06.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\07.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\08.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\09.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\10.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\11.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\12.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\13.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\14.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\Down\15.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\01.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\02.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\03.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\04.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\05.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\06.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\07.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\08.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\09.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\10.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\11.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\12.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\13 - 複製.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\13.bmp" />
+    <Image Include="RES\Character\Use_Shock_Nova\UP\14.bmp" />
     <Image Include="RES\Corsor.bmp" />
     <Image Include="RES\InGame\Bag\Bag_Item_Cursor.bmp" />
     <Image Include="RES\InGame\Bag\Board.bmp" />
@@ -567,6 +597,16 @@
     <Image Include="RES\InGame\Box\TEXT_Offense.bmp" />
     <Image Include="RES\InGame\Box\unknown_item.bmp" />
     <Image Include="RES\InGame\Enemy\Blockhead.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Stand\left.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\Stand\right.bmp" />
     <Image Include="RES\InGame\Home\Home.bmp" />
     <Image Include="RES\InGame\Home\wall.bmp" />
     <Image Include="RES\InGame\InGame_01.bmp" />

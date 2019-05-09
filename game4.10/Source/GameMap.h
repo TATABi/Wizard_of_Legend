@@ -5,6 +5,7 @@
 #include "Layer.h"
 #include "Skill.h"
 
+
 namespace game_framework {
 	class Character;
 
@@ -21,11 +22,14 @@ namespace game_framework {
 		int GetCharacterStatus();
 		int* GetCharacterPosition();
 		void CharacterUseSkill(int, int, int);
+		void OnShow();
+		void SkillOnMove();
+		void EnemyOnMove();
+		void CleanMemory();
 		virtual void LoadBitmap()=0;
 		virtual void OnMove() = 0;
-		virtual void OnShow() = 0;
-		virtual int* SetCharacterXY(int,int)=0;
-		virtual int GetMapStatus(int, int)=0;
+		virtual int* SetCharacterXY(int, int) = 0;
+		virtual int GetMapStatus(int, int) = 0;
 		
 	protected:
 		CMovingBitmap _background; //­I´º¹Ï
@@ -40,6 +44,7 @@ namespace game_framework {
 		const int CHARACTER_SCREEN_Y = 205;
 		Character* _character;
 		std::vector<Skill*> _skillList;
+		vector<Enemy*> _enemies;
 	};
 
 }
