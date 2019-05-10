@@ -33,6 +33,8 @@
     <ClCompile Include="Source\Town_State_Controller.cpp" />
     <ClCompile Include="Source\Black_Man.cpp" />
     <ClCompile Include="Source\Blockhead.cpp" />
+    <ClCompile Include="Source\Map_Level_One.cpp" />
+    <ClCompile Include="Source\Level_One_State_Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -70,6 +72,8 @@
     <ClInclude Include="Source\Map_Home_Logic.h" />
     <ClInclude Include="Source\Black_Man.h" />
     <ClInclude Include="Source\Blockhead.h" />
+    <ClInclude Include="Source\Map_Level_One.h" />
+    <ClInclude Include="Source\Level_One_State_Controller.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
@@ -507,6 +511,7 @@
     <Image Include="RES\InGame\Enemy\Dark_man\Get_Hurt\right.bmp" />
     <Image Include="RES\Character\Hurt\left.bmp" />
     <Image Include="RES\Character\Hurt\right.bmp" />
+    <Image Include="RES\InGame\Level_1\Map\FireMap.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

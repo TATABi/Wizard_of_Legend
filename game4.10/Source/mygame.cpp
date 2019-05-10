@@ -212,4 +212,60 @@ void CGameStateRun_Town::OnShow()
 	}
 }
 
+
+
+/////////////////////////////////////////////////////////////////////////////
+////Level 1
+/////////////////////////////////////////////////////////////////////////////
+
+CGameStateRun_Level_1::CGameStateRun_Level_1(CGame *g) : CGameState(g) {}
+
+CGameStateRun_Level_1::~CGameStateRun_Level_1() {}
+
+void CGameStateRun_Level_1::OnBeginState()
+{
+	_controller.Begin();
+}
+
+void CGameStateRun_Level_1::OnMove()
+{
+	_controller.OnMove();
+}
+
+void CGameStateRun_Level_1::OnInit()
+{
+	_controller.Initialize();
+}
+
+void CGameStateRun_Level_1::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	_controller.OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+void CGameStateRun_Level_1::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	_controller.OnKeyUp(nChar, nRepCnt, nFlags);
+}
+
+void CGameStateRun_Level_1::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+{
+	_controller.OnLButtonDown(nFlags, point);
+}
+
+void CGameStateRun_Level_1::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+{
+	_controller.OnRButtonDown(nFlags, point);
+}
+
+void CGameStateRun_Level_1::OnShow()
+{
+	_controller.OnShow();
+
+	if (_controller.IsSwitchGameState())
+	{
+		GotoGameState(_controller.GameState());
+	}
+}
+
+
 }

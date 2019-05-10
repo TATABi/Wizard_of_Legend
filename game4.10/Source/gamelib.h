@@ -68,7 +68,7 @@
 
 #define SIZE_X				 640		// 設定遊戲畫面的解析度為640x480
 #define SIZE_Y				 480		// 註：若不使用標準的解析度，則不能切換到全螢幕
-#define OPEN_AS_FULLSCREEN	 false		// 是否以全螢幕方式開啟遊戲
+#define OPEN_AS_FULLSCREEN	 true		// 是否以全螢幕方式開啟遊戲
 #define SHOW_LOAD_PROGRESS   true		// 是否顯示loading(OnInit)的進度
 #define DEFAULT_BG_COLOR	 RGB(0,0,0)	// 遊戲畫面預設的背景顏色(黑色)
 #define GAME_CYCLE_TIME		 33		    // 每33ms跑一次Move及Show(每秒30次)
@@ -84,9 +84,10 @@ enum GAME_STATES {
 	GAME_STATE_INIT,
 	GAME_STATE_RUN_HOME,
 	GAME_STATE_RUN_TOWN,
+	GAME_STATE_RUN_LEVEL_1,
 	/*
 	GAME_STATE_RUN_LOADING,
-	GAME_STATE_RUN_LEVEL_1,
+	
 	GAME_STATE_RUN_LEVEL_2,
 	GAME_STATE_RUN_LEVEL_3,
 	GAME_STATE_RUN_LEVEL_4,
@@ -313,9 +314,9 @@ class CGame;
 class CGameStateInit;
 class CGameStateRun_Home;
 class CGameStateRun_Town;
+class CGameStateRun_Level_1;
 /*
 class CGameStateRun_Loading;
-class CGameStateRun_Level_1;
 class CGameStateRun_Level_2;
 class CGameStateRun_Level_3;
 class CGameStateRun_Level_4;

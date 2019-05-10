@@ -69,7 +69,7 @@ namespace game_framework
 
 		if (_counter == 0)
 		{
-			_damage = 20;
+			_damage = 1;
 
 			if (_lifeTimer == 0) //®É¶¡¨ì
 			{

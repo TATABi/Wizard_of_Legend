@@ -15,7 +15,7 @@ namespace game_framework {
 		void OnShow();			
 		//int Attack(int, int);
 	private:
-		const int HP = 500;
+		const int HP = 15;
 		const int STEP = 5;
 		const int ZONE = 30;
 		const int DAMAGE = 20;

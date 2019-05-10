@@ -293,12 +293,14 @@
     <ClCompile Include="Source\Init_State_Controller.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Items.cpp" />
+    <ClCompile Include="Source\Level_One_State_Controller.cpp" />
     <ClCompile Include="Source\MainFrm.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Source\Map_Home.cpp" />
+    <ClCompile Include="Source\Map_Level_One.cpp" />
     <ClCompile Include="Source\Map_Town.cpp" />
     <ClCompile Include="Source\PausedMenu.cpp" />
     <ClCompile Include="Source\Layer.cpp" />
@@ -348,9 +350,11 @@
     <ClInclude Include="Source\Init_State_Controller.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Items.h" />
+    <ClInclude Include="Source\Level_One_State_Controller.h" />
     <ClInclude Include="Source\Map_Home.h" />
     <ClInclude Include="Source\Map_Home_Logic.h" />
     <ClInclude Include="Source\MainFrm.h" />
+    <ClInclude Include="Source\Map_Level_One.h" />
     <ClInclude Include="Source\Map_Town.h" />
     <ClInclude Include="Source\Map_Town_Logic.h" />
     <ClInclude Include="Source\PausedMenu.h" />
@@ -668,6 +672,7 @@
     <Image Include="RES\InGame\Item\Offense\01.bmp" />
     <Image Include="RES\InGame\Item\Offense\02.bmp" />
     <Image Include="RES\InGame\Join\Join.bmp" />
+    <Image Include="RES\InGame\Level_1\Map\FireMap.bmp" />
     <Image Include="RES\InGame\LightBeam\00.bmp" />
     <Image Include="RES\InGame\LightBeam\01.bmp" />
     <Image Include="RES\InGame\LightBeam\02.bmp" />

@@ -503,18 +503,18 @@ void CGameState::OnCycle() // Template Method
 CGame CGame::instance;
 
 CGame::CGame()
-: NUM_GAME_STATES(4)
+: NUM_GAME_STATES(5)
 {
 	running = true;
 	suspended = false;
 	gameStateTable[GAME_STATE_INIT] = new CGameStateInit(this);
 	gameStateTable[GAME_STATE_RUN_HOME]  = new CGameStateRun_Home(this);
 	gameStateTable[GAME_STATE_RUN_TOWN] = new CGameStateRun_Town(this);
-	
+	gameStateTable[GAME_STATE_RUN_LEVEL_1] = new CGameStateRun_Level_1(this);
 	/*
 	gameStateTable[GAME_STATE_RUN_TOWN] = new CGameStateRun_Town(this);
 	gameStateTable[GAME_STATE_RUN_LOADING] = new CGameStateRun_Loading(this);
-	gameStateTable[GAME_STATE_RUN_LEVEL_1] = new CGameStateRun_Level_1(this);
+	
 	gameStateTable[GAME_STATE_RUN_LEVEL_2] = new CGameStateRun_Level_2(this);
 	gameStateTable[GAME_STATE_RUN_LEVEL_3] = new CGameStateRun_Level_3(this);
 	gameStateTable[GAME_STATE_RUN_LEVEL_4] = new CGameStateRun_Level_4(this);

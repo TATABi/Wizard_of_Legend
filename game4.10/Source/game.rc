@@ -413,6 +413,7 @@ ENEMY_BLACK_MAN_HURT_LEFT BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_
 ENEMY_BLACK_MAN_HURT_RIGHT BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Get_Hurt\\right.bmp"
 CHARACTER_HURT_LEFT     BITMAP                  "..\\RES\\Character\\Hurt\\left.bmp"
 CHARACTER_HURT_RIGHT    BITMAP                  "..\\RES\\Character\\Hurt\\right.bmp"
+MAP_LEVEL_01            BITMAP                  "..\\RES\\InGame\\Level_1\\Map\\FireMap.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -91,7 +91,8 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 2)
 				{
-					//進關卡
+					_isSwitch = true;
+					_game_state_num = GAME_STATE_RUN_LEVEL_1;
 				}
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//買道具1
