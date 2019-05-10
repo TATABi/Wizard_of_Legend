@@ -14,7 +14,9 @@ namespace game_framework {
 		int* GetHitbox();	
 		int* GetPosition();
 		bool AttackedThisEnemy(Enemy*);			//之後改virtual
+		//bool AttackedThisEnemy(Layer*);
 		virtual int GetDamage(Enemy *) = 0;
+		//virtual int GetDamage(Layer *) = 0;
 		virtual void OnMove(int *, GameMap *) = 0;
 		virtual void OnShow() = 0;
 		virtual void LoadBitmap() = 0;
@@ -37,7 +39,7 @@ namespace game_framework {
 		bool _isDelete;
 		bool _isStock;								//卡到牆
 		CAnimation _ani_skill[8];					//技能動畫
-		vector<Enemy *> _enemyList;					//存放已經攻擊過的怪物
+		vector<Layer *> _enemyList;					//存放已經攻擊過的怪物
 	};
 
 

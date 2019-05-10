@@ -3,21 +3,22 @@
 
 #include "Enemy.h"
 
-#define HP 500
-#define  STEP 5
-#define  ZONE 30
-#define DAMAGE  20
-
 namespace game_framework {
 	class Black_Man : public Enemy {
 	public:
-		Black_Man(int, int, int, int);
+		Black_Man(int, int, int);
 		~Black_Man();
 		void Init();
 		void Reset();
 		void LoadBitmap_2();
 		void Move(int, int);
-		void OnShow();						
+		void OnShow();			
+		//int Attack(int, int);
+	private:
+		const int HP = 500;
+		const int STEP = 5;
+		const int ZONE = 30;
+		const int DAMAGE = 20;
 	};
 
 }

@@ -16,7 +16,10 @@ CGameStateInit::CGameStateInit(CGame *g) : CGameState(g){}
 void CGameStateInit::OnInit()
 {
 	ShowInitProgress(0);	// 一開始的loading進度為0%
+
 	_controller.Initialize();
+
+	ShowInitProgress(30);
 
 	//global variable initialize...//
 

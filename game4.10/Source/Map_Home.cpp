@@ -8,7 +8,7 @@
 #include "Map_Home_Logic.h"
 #include "algorithm"
 #include "Black_Man.h"
-
+#include "Blockhead.h"
 
 namespace game_framework {
 
@@ -16,7 +16,8 @@ namespace game_framework {
 	{
 		//¥[¤J¼Ä¤H
 		//(632,798), (928,1077)
-		_enemies.push_back(new Black_Man(650, 918, AREA_1, 40));
+		_enemies.push_back(new Black_Man(640, 900, AREA_1));
+		_enemies.push_back(new Blockhead(650, 918, AREA_2));
 		_character = c;
 	}
 

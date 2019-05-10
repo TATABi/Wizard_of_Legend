@@ -8,7 +8,7 @@
 #include "time.h"
 
 namespace game_framework {
-	Black_Man::Black_Man(int x, int y, int area, int zone) : Enemy(x, y, area, zone)
+	Black_Man::Black_Man(int x, int y, int area) : Enemy(x, y, area)
 	{
 		Init();
 	}
@@ -92,6 +92,7 @@ namespace game_framework {
 		case ATTACKING:				//§ðÀ»
 			_ani_attack_right.SetTopLeft(x, y);
 			_ani_attack_left.SetTopLeft(x, y);
+			//Attack();
 			break;
 		case CHARGING:				//²¾°Ê
 		case RESET:
@@ -174,5 +175,46 @@ namespace game_framework {
 		}
 		
 	}
+	/*
+	int Black_Man::Attack(int x, int y)
+	{
+		int c_hitbox[4] = { 23, 10, 24, 49 };
+		int damage_range[4];
+
+		switch (_direction)
+		{
+		case LEFT:
+			damage_range[0] = 6;
+			damage_range[1] = 12;
+			damage_range[2] = 26;
+			damage_range[2] = 51;
+			break;
+		case RIGHT:
+			damage_range[0] = 40;
+			damage_range[1] = 12;
+			damage_range[2] = 26;
+			damage_range[2] = 51;
+			break;
+		}
+
+		float x1 = _xy[0] + damage_range[0];
+		float y1 = _xy[1] + damage_range[1];
+		float l1 = damage_range[2];
+		float w1 = damage_range[3];
+
+		float x2 = x + c_hitbox[0];
+		float y2 = y + c_hitbox[1];
+		float l2 = c_hitbox[2];
+		float w2 = c_hitbox[3];
+
+		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //µo¥Í¸I¼²
+		{
+			return _damage;
+		}
+
+		return 0;
+	}
+	*/
+
 
 }

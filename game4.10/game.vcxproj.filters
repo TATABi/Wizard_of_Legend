@@ -32,6 +32,7 @@
     <ClCompile Include="Source\Global_Class.cpp" />
     <ClCompile Include="Source\Town_State_Controller.cpp" />
     <ClCompile Include="Source\Black_Man.cpp" />
+    <ClCompile Include="Source\Blockhead.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -68,6 +69,7 @@
     <ClInclude Include="Source\Map_Town_Logic.h" />
     <ClInclude Include="Source\Map_Home_Logic.h" />
     <ClInclude Include="Source\Black_Man.h" />
+    <ClInclude Include="Source\Blockhead.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />

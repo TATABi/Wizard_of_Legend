@@ -696,4 +696,13 @@ namespace game_framework {
 		}
 	}
 
+	int* Character::GetPosition()
+	{
+		return _xy;
+	}
+
+	int* Character::GetHitbox()
+	{
+		return _hitbox;
+	}
 }

@@ -266,6 +266,7 @@
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\Bag.cpp" />
     <ClCompile Include="Source\Black_Man.cpp" />
+    <ClCompile Include="Source\Blockhead.cpp" />
     <ClCompile Include="Source\Book.cpp" />
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
@@ -332,6 +333,7 @@
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\Bag.h" />
     <ClInclude Include="Source\Black_Man.h" />
+    <ClInclude Include="Source\Blockhead.h" />
     <ClInclude Include="Source\Book.h" />
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Character.h" />

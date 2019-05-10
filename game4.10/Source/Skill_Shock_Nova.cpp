@@ -136,5 +136,15 @@ namespace game_framework
 		}
 	}
 
+	int* Skill_Shock_Nova::GetPosition()
+	{
+		return _xy;
+	}
+
+	int* Skill_Shock_Nova::GetHitbox()
+	{
+		return _hitbox;
+	}
+
 
 }

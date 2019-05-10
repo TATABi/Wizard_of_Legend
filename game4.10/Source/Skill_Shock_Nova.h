@@ -13,9 +13,12 @@ namespace game_framework {
 		~Skill_Shock_Nova();
 		void OnMove(int *, GameMap *);
 		int GetDamage(Enemy *);
+		//int GetDamage(Layer *);
 		void OnShow();
 		void LoadBitmap();
 		void Initialize(int, int, int*);
+		int* GetPosition();
+		int* GetHitbox();
 	private:
 		bool _isInit;
 		int _counter;	//用來播角色施放即能時的動畫

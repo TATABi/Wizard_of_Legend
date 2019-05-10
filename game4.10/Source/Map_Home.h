@@ -6,7 +6,8 @@
 namespace game_framework {
 	class Map_Home : public GameMap {
 		enum AREA {
-			AREA_1
+			AREA_1,
+			AREA_2
 		};
 	public:
 		Map_Home(int, int, Character*);  // 設定初始中心點

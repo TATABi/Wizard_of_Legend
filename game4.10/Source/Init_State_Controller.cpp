@@ -8,7 +8,7 @@
 
 namespace game_framework {
 	
-	Init_State_Controller::Init_State_Controller(){}
+	Init_State_Controller::Init_State_Controller() { }
 
 	void Init_State_Controller::Begin()
 	{
@@ -25,25 +25,27 @@ namespace game_framework {
 
 		CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
 
+		
 		int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,
 			MENU_INIT_26, MENU_INIT_28, MENU_INIT_30, MENU_INIT_32, MENU_INIT_34, MENU_INIT_36, MENU_INIT_38, MENU_INIT_40, MENU_INIT_42, MENU_INIT_44,
 			MENU_INIT_46, MENU_INIT_48 };
 		for (int i = 0; i < 23; i++)
 			_ani_menu_1.AddBitmap(m1[i]);
-
+		
 		int m2[11] = { MENU_ENTERMENU_01, MENU_ENTERMENU_02, MENU_ENTERMENU_03, MENU_ENTERMENU_04, MENU_ENTERMENU_05, MENU_ENTERMENU_06, MENU_ENTERMENU_07,
 			MENU_ENTERMENU_08, MENU_ENTERMENU_09, MENU_ENTERMENU_10, MENU_ENTERMENU_11 };
 		for (int i = 0; i < 11; i++)
 			_ani_menu_2.AddBitmap(m2[i]);
 
-		_ani_menu_1.SetDelayCount(2);
-		_ani_menu_2.SetDelayCount(1);
-
+	
 		_bm_option.LoadBitmap(MENU_ENTERMENU_OPTIONS);
 		_bm_quit.LoadBitmap(MENU_ENTERMENU_QUIT);
 		_bm_single_player.LoadBitmap(MENU_ENTERMENU_SINGLE_PLAYER);
 		_bm_loading.LoadBitmap(LOADING);
 		_bm_option_page.LoadBitmap(MENU_OPTIONS);
+
+		_ani_menu_1.SetDelayCount(2);
+		_ani_menu_2.SetDelayCount(1);
 
 	}
 
@@ -124,7 +126,7 @@ namespace game_framework {
 		case FLAG_INIT_INIT:
 			_ani_menu_1.OnMove();
 			_ani_menu_1.SetTopLeft(0, 0);
-			_ani_menu_1.OnShow();
+			_ani_menu_1.OnShow();	
 			break;
 
 		case FLAG_INIT_MENU:
@@ -157,6 +159,7 @@ namespace game_framework {
 			_bm_option_page.ShowBitmap();
 			break;
 		}
+		
 	}
 
 	bool Init_State_Controller::IsSwitchGameState()

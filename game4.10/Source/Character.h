@@ -32,6 +32,8 @@ namespace game_framework {
 		bool IsMoving();
 		bool CanDash();
 		bool IsUsingSkill();
+		int* GetPosition();
+		int* GetHitbox();
 		Skill* GenerateSkill(int, int, int);	//skill num
 		int CaculateDirection(int, int);
 		void Suffer(int);	//承受傷害 temp暫時使用
@@ -70,6 +72,8 @@ namespace game_framework {
 		int _dash_counter;	//用來reset dash 動畫
 		double _dash_resistance;
 		int _hit_recover_counter;
+
+		int _hitbox[4] = { 23, 10, 24, 49 };
 	};
 }
 

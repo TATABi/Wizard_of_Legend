@@ -11,7 +11,7 @@
 #define CHARGING_ZONE 300
 
 namespace game_framework {
-	Enemy::Enemy(int x, int y, int area, int zone) : _ori_x(x), _ori_y(y), _area(area), _zone(zone)
+	Enemy::Enemy(int x, int y, int area) : _ori_x(x), _ori_y(y), _area(area)
 	{
 		Initialize(x, y);
 	}

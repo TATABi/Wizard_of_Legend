@@ -7,7 +7,7 @@ namespace game_framework {
 	class Enemy : public Layer {
 		
 	public:
-		Enemy(int, int, int, int);
+		Enemy(int, int, int);
 		~Enemy();
 		void Initialize(int, int);	
 		void OnMove(int, int, vector<Skill*>&);		//傳入現在場上所有由主角發出的魔法
@@ -28,8 +28,7 @@ namespace game_framework {
 		virtual void OnShow() = 0;
 		virtual void Reset() = 0;
 		
-
-	//	virtual void Attack() = 0;
+		//virtual int Attack(int*) = 0;
 	protected:
 		enum STATE {
 			ATTACKING,
@@ -63,7 +62,7 @@ namespace game_framework {
 		int _attack_counter;
 		int _hit_recover_counter;
 		bool _hit_recover_flag;
-		CMovingBitmap _bm_stand_left, _bm_stand_right;
+		CMovingBitmap _bm_stand_left, _bm_stand_right, _bm_stand;
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;
 		CAnimation _ani_hurt;
 		CAnimation _ani_left, _ani_right;
