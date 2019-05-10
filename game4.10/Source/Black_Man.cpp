@@ -82,7 +82,6 @@ namespace game_framework {
 
 	void Black_Man::Move(int x, int y)
 	{
-		
 		switch (_state)
 		{
 		case NOTHING:				//站立
@@ -114,7 +113,6 @@ namespace game_framework {
 
 	void Black_Man::OnShow()
 	{
-		
 		switch (_state)
 		{
 		case NOTHING:				//站立

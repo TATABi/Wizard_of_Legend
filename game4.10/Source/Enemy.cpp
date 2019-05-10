@@ -72,7 +72,6 @@ namespace game_framework {
 				}
 			}
 			
-
 			switch (_state)
 			{
 			case CHARGING:
@@ -81,7 +80,6 @@ namespace game_framework {
 					_state = ATTACKING;
 				if (pow(_xy[0] - _ori_x, 2) + pow(_xy[1] - _ori_y, 2) > pow(CHARGING_ZONE, 2) && _state != HIT_RECOVER) //離開攻擊範圍
 					_state = RESET;
-				
 				break;
 
 			case RESET:
@@ -101,17 +99,10 @@ namespace game_framework {
 			case HIT_RECOVER:	
 				_hit_recover_counter > 0 ? _hit_recover_counter-- : NULL;
 				_hit_recover_counter == 0 ? _state = CHARGING : NULL;
-				
 				break;
 			}
-
-			Move(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);
-
-			
-
-		}
-
-			
+			Move(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);	
+		}	
 	}
 
 	void Enemy::SetXY(int x, int y)
@@ -146,9 +137,7 @@ namespace game_framework {
 		if ((abs(midX - cMidX) < _zone) && (abs(midY - cMidY) < _zone))
 			return true;
 		else
-			return false;
-			
-
+			return false;		
 	}
 	
 	bool Enemy::CanAchieved(int dx, int dy)
@@ -191,8 +180,7 @@ namespace game_framework {
 		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;
 		int cMidX = target_x + 35;
 		int cMidY = target_y + 35;
-
-
+		int detourTime = 60;
 		if (!_is_detour)
 		{
 			int temp_step = _step;
@@ -269,7 +257,6 @@ namespace game_framework {
 		{
 			if (_is_up)
 			{
-				
 				CanAchieved(0, -_step) ? _xy[1] -= _step : NULL;
 			}
 			else if (_is_down)
@@ -286,13 +273,10 @@ namespace game_framework {
 				_direction = RIGHT;
 				CanAchieved(_step, 0) ? _xy[0] += _step : NULL;
 			}
-
 			_detour_time--;
-
-			if (_detour_time <= 0)
+			if (_detour_time < 0)
 			{
 				_is_detour = false;
-
 				for (int i = 0; i < 4; i++)
 				{
 					_neighbor[i] = true;
@@ -308,7 +292,7 @@ namespace game_framework {
 			_is_detour = true;
 			if (_neighbor[0] == false)	//上卡住
 			{
-				for (int i = 0; i < 60; i++)
+				for (int i = 0; i < detourTime; i++)
 				{
 					//向右檢查
 					if (CanAchieved(_step * (i + 1), 0))
@@ -335,7 +319,7 @@ namespace game_framework {
 			if (_neighbor[1] == false)	//下卡住
 			{
 				
-				for (int i = 0; i < 60; i++)
+				for (int i = 0; i < detourTime; i++)
 				{
 					//向右檢查
 					if (CanAchieved(_step * (i + 1), 0))
@@ -362,7 +346,7 @@ namespace game_framework {
 
 			if (_neighbor[2] == false)	//左卡住
 			{
-				for (int i = 0; i < 60; i++)
+				for (int i = 0; i < detourTime; i++)
 				{
 					//向上檢查
 					if (CanAchieved(0 , -_step * (i + 1)))
@@ -389,7 +373,7 @@ namespace game_framework {
 
 			if (_neighbor[3] == false)	//右卡住
 			{		
-				for (int i = 0; i < 60; i++)
+				for (int i = 0; i < detourTime; i++)
 				{
 					//向上檢查
 					if (CanAchieved(0, -_step * (i + 1)))
@@ -412,17 +396,12 @@ namespace game_framework {
 						}
 					}
 				}
-			}
-
-			
+			}		
 		}
-
 		if (currentX == _xy[0] && currentY == _xy[1])
 		{
-			_state == CHARGING ? _state = ATTACKING : NULL;
 			_state == RESET ? _xy[0] = _ori_x, _xy[1] = _ori_y : NULL;	//加上動畫
 		}
- 
 	}
 
 }
