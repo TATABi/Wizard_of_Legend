@@ -27,17 +27,19 @@ namespace game_framework {
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 			(*iter)->LoadBitmap();
 
-		//LoadBitmapPressF();
+		LoadBitmapPressF();
 		_background.LoadBitmap(MAP_LEVEL_01);
 		_wall.LoadBitmap(MAP_LEVEL_01, RGB(50, 255, 0));
 	}
 
 	void Map_Level_One::OnMove()
 	{
-		//_character_status = TOWN_LOGIC[_cxy[0] + _collision_move[0] + 10][_cxy[1] + _collision_move[1] + 3];
-
-		//int temp_x = 0, temp_y = 0;
 		/*
+		_character_status = LEVEL_1_LOGIC[_cxy[0] + _collision_move[0] + 10][_cxy[1] + _collision_move[1] + 3];
+
+		int temp_x = 0, temp_y = 0;
+		
+		
 		if (_character_status == 1 || _character_status == 2 || _character_status == 3 || _character_status == 4 || _character_status == 5)
 		{
 			switch (_character_status)
@@ -75,8 +77,8 @@ namespace game_framework {
 		{
 			_ani_press_f.Reset();
 			_isPressF = false;
-		}
-		*/
+		}*/
+		
 
 		OnMoveBackgroundAndWall();
 
@@ -116,10 +118,10 @@ namespace game_framework {
 				e_dx = (int)(dx / 3);
 				e_dy = (int)(dy / 3);
 
-				if (TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1							//左上
-					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1				//右上
-					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1				//左下
-					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1)		//右下
+				if (LEVEL_1_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1							//左上
+					&& LEVEL_1_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1				//右上
+					&& LEVEL_1_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1				//左下
+					&& LEVEL_1_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1)		//右下
 				{
 					e_xy[0] += e_dx;
 					e_xy[1] += e_dy;
@@ -136,24 +138,26 @@ namespace game_framework {
 		}
 
 		//////////與地圖碰撞////////////
-		if (TOWN_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + dy] != -1							//左上
-			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + dy] != -1				//右上
-			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1				//左下
-			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1)		//右下
+		if (LEVEL_1_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + dy] != -1							//左上
+			&& LEVEL_1_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + dy] != -1				//右上
+			&& LEVEL_1_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1				//左下
+			&& LEVEL_1_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1)		//右下
 		{
 			_cxy[0] += dx;
 			_cxy[1] += dy;
 		}
-		*/
+		
 		_cxy[0] += dx;
 		_cxy[1] += dy;
+		*/
 		return _cxy;
+		
 	}
 
 	int Map_Level_One::GetMapStatus(int x, int y)
 	{
 		return 0;
-		//TOWN_LOGIC[x][y];
+			//LEVEL_1_LOGIC[x][y];
 	}
 
 

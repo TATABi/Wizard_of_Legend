@@ -16,14 +16,15 @@ namespace game_framework {
 	{
 		_game_state_num = -1;
 		_isSwitch = false;
-		_delayCounter = 30 * 1; // 1 seconds
+		_delayCounter = 30 * 4; // 1 seconds
 		_map.Initialize(3000, 2830);
 		_character->Initialize(_map.GetCharacterPosition());
 		_flag = FLAG_NORMAL;
 		Global_Class::g_character.Initialize(_map.GetCharacterPosition());
 
+		
 		CAudio::Instance()->Stop(AUDIO_TOWN);
-
+		CAudio::Instance()->Play(AUDIO_LEVEL_FIRE, true);
 	}
 
 	void Level_One_State_Controller::Initialize()
@@ -34,8 +35,16 @@ namespace game_framework {
 		_items = &Global_Class::g_items;
 		_ui = &Global_Class::g_ui;
 
-		_bm_loading.LoadBitmap(LOADING);
+		CAudio::Instance()->Load(AUDIO_LEVEL_FIRE, "sounds\\FireBGM.wav");
+
+		_bm_loading_level.LoadBitmap(LOADING_LEVEL);
+		_bm_loading_chess.LoadBitmap(LOADING_CHESS, RGB(50, 255, 0));
+		_bm_loading_chess.SetTopLeft(-100, -100);
 		_map.LoadBitmap();
+
+		_chess_xy[0] = 62;
+		_chess_xy[1] = 135;
+		_isUpDown = true;
 	}
 
 	void Level_One_State_Controller::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -161,7 +170,25 @@ namespace game_framework {
 		if (_delayCounter > -1)
 			_delayCounter--;
 
-		_bm_loading.SetTopLeft(0, 0);
+		_bm_loading_level.SetTopLeft(0, 0);
+		_bm_loading_chess.SetTopLeft(_chess_xy[0], _chess_xy[1]);
+
+
+		if (_delayCounter < 110)
+		{
+			_chess_xy[0] < 212 ? _chess_xy[0] += 2 : NULL;
+			if (_isUpDown)
+			{
+
+				_chess_xy[1] >= 137 ? _isUpDown = false : _chess_xy[1] += 2;
+
+			}
+			else
+			{
+				_chess_xy[1] <= 133 ? _isUpDown = true : _chess_xy[1] -= 2;
+			}
+		}
+
 		Global_Class::g_character.OnMove(&_map);
 		_map.OnMove();
 		Global_Class::g_bag.OnMove(Global_Class::g_items.GetItemInBag());
@@ -180,7 +207,10 @@ namespace game_framework {
 			Global_Class::g_pauseMenu.OnShow();
 		}
 		else
-			_bm_loading.ShowBitmap();
+		{
+			_bm_loading_level.ShowBitmap();
+			_bm_loading_chess.ShowBitmap();
+		}
 	}
 
 	bool Level_One_State_Controller::IsSwitchGameState()

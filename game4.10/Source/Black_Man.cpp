@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include "Black_man.h"
 #include "time.h"
+#include "CharacterData.h"
 
 namespace game_framework {
 	Black_Man::Black_Man(int x, int y, int area) : Enemy(x, y, area)
@@ -40,7 +41,9 @@ namespace game_framework {
 		_state = NOTHING;
 
 		_xy[0] = _ori_x;
-		_xy[1] = _ori_y; 
+		_xy[1] = _ori_y;
+
+		isAttack = false;
 		
 	}
 
@@ -80,8 +83,13 @@ namespace game_framework {
 		_ani_attack_left.SetDelayCount(2);
 	}
 
-	void Black_Man::Move(int x, int y)
+	void Black_Man::Move(int cx, int cy)
 	{
+		int x = CHARACTER_SCREEN_X + _xy[0] - cx; 
+		int y = CHARACTER_SCREEN_Y + _xy[1] - cy;
+		c_x = cx;
+		c_y = cy;
+
 		switch (_state)
 		{
 		case NOTHING:				//站立
@@ -91,7 +99,8 @@ namespace game_framework {
 		case ATTACKING:				//攻擊
 			_ani_attack_right.SetTopLeft(x, y);
 			_ani_attack_left.SetTopLeft(x, y);
-			//Attack();
+			if (_ani_attack_left.GetCurrentBitmapNumber() == 2 || _ani_attack_right.GetCurrentBitmapNumber() == 2)
+				Attack(c_x, c_y);
 			break;
 		case CHARGING:				//移動
 		case RESET:
@@ -142,7 +151,7 @@ namespace game_framework {
 					_ani_attack_right.Reset();
 					_state = CHARGING;
 				}
-			}			
+			}
 			break;
 
 		case CHARGING:				//移動
@@ -165,7 +174,8 @@ namespace game_framework {
 			}
 			else
 			{
-				_ani_hurt.Reset();
+				//_ani_hurt.Reset();
+				ResetAnimation();
 				_hit_recover_flag = true;
 			}
 			break;
@@ -173,8 +183,8 @@ namespace game_framework {
 		}
 		
 	}
-	/*
-	int Black_Man::Attack(int x, int y)
+	
+	void Black_Man::Attack(int cx, int cy)
 	{
 		int c_hitbox[4] = { 23, 10, 24, 49 };
 		int damage_range[4];
@@ -200,19 +210,30 @@ namespace game_framework {
 		float l1 = damage_range[2];
 		float w1 = damage_range[3];
 
-		float x2 = x + c_hitbox[0];
-		float y2 = y + c_hitbox[1];
+		float x2 = cx + c_hitbox[0];
+		float y2 = cy + c_hitbox[1];
 		float l2 = c_hitbox[2];
 		float w2 = c_hitbox[3];
 
+		//CharacterData::HP -= DAMAGE;
+		
 		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //發生碰撞
 		{
-			return _damage;
+			CharacterData::HP -= DAMAGE;
 		}
+		
 
-		return 0;
 	}
-	*/
+	
+
+	void Black_Man::ResetAnimation()
+	{
+		_ani_hurt.Reset();
+		_ani_left.Reset();
+		_ani_right.Reset();
+		_ani_attack_left.Reset();
+		_ani_attack_right.Reset();
+	}
 
 
 }

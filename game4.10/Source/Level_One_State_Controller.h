@@ -30,7 +30,8 @@ namespace game_framework {
 		int GameState();
 
 	private:
-		CMovingBitmap _bm_loading;						// loading字樣的圖片
+		CMovingBitmap _bm_loading_level;						// loading字樣的圖片
+		CMovingBitmap _bm_loading_chess;
 		FLAG _flag;
 		int _delayCounter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 		Map_Level_One _map;
@@ -41,6 +42,8 @@ namespace game_framework {
 		UI *_ui;
 		int _game_state_num;
 		bool _isSwitch;
+		int _chess_xy[2];
+		bool _isUpDown;
 
 	};
 

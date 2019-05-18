@@ -30,7 +30,7 @@ namespace game_framework {
 		_hit_recover_flag = false;
 		_hp = 100;
 		_step = 20;
-		_zone = 25;
+		_zone = 30;
 		_damage = 10;
 		
 		for (int i = 0; i < 4; i++)
@@ -91,6 +91,7 @@ namespace game_framework {
 			case ATTACKING:
 				//攻擊動畫結束後回到 CHARGING 狀態
 				break;
+
 			case NOTHING:
 				if (IsInAttackZone(cx, cy))
 					_state = CHARGING;
@@ -101,7 +102,8 @@ namespace game_framework {
 				_hit_recover_counter == 0 ? _state = CHARGING : NULL;
 				break;
 			}
-			Move(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);	
+			//Move(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);	
+			Move(cx, cy);
 		}	
 	}
 
@@ -181,6 +183,7 @@ namespace game_framework {
 		int cMidX = target_x + 35;
 		int cMidY = target_y + 35;
 		int detourTime = 60;
+
 		if (!_is_detour)
 		{
 			int temp_step = _step;
@@ -398,10 +401,11 @@ namespace game_framework {
 				}
 			}		
 		}
+		
+		
 		if (currentX == _xy[0] && currentY == _xy[1])
-		{
-			_state == RESET ? _xy[0] = _ori_x, _xy[1] = _ori_y : NULL;	//加上動畫
-		}
+			_state == RESET ? _xy[0] = _ori_x, _xy[1] = _ori_y : _state == ATTACKING;	//加上動畫
+		
 	}
 
 }

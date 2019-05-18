@@ -512,6 +512,7 @@
     <Image Include="RES\Character\Hurt\left.bmp" />
     <Image Include="RES\Character\Hurt\right.bmp" />
     <Image Include="RES\InGame\Level_1\Map\FireMap.bmp" />
+    <Image Include="RES\InGame\Loading\chess.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

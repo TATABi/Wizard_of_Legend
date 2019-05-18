@@ -13,12 +13,15 @@ namespace game_framework {
 		void LoadBitmap_2();
 		void Move(int, int);
 		void OnShow();			
-		//int Attack(int, int);
+		void Attack(int, int);
+		void ResetAnimation();
 	private:
 		const int HP = 15;
 		const int STEP = 5;
 		const int ZONE = 30;
 		const int DAMAGE = 20;
+		bool isAttack;
+		int c_x, c_y;
 	};
 
 }

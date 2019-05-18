@@ -128,10 +128,13 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <HeapReserveSize>16000000</HeapReserveSize>
+      <HeapReserveSize>
+      </HeapReserveSize>
       <LargeAddressAware>
       </LargeAddressAware>
       <SubSystem>Windows</SubSystem>
+      <HeapCommitSize>
+      </HeapCommitSize>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -682,6 +685,7 @@
     <Image Include="RES\InGame\LightBeam\06.bmp" />
     <Image Include="RES\InGame\LightBeam\07.bmp" />
     <Image Include="RES\InGame\LightBeam\08.bmp" />
+    <Image Include="RES\InGame\Loading\chess.bmp" />
     <Image Include="RES\InGame\Loading\Loading.bmp" />
     <Image Include="RES\InGame\Loading\LoadingLevel.bmp" />
     <Image Include="RES\InGame\Magic\Love.bmp" />
