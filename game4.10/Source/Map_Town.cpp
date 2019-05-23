@@ -35,7 +35,7 @@ namespace game_framework {
 
 	void Map_Town::OnMove()
 	{
-		_character_status = TOWN_LOGIC[_cxy[0] + _collision_move[0] + 10][_cxy[1] + _collision_move[1] + 3];
+		_character_status = GetMapStatus(_cxy[0] + 35, _cxy[1] + 56);
 	
 		int temp_x = 0, temp_y = 0;
 		
@@ -87,7 +87,7 @@ namespace game_framework {
 
 	}
 	
-	int* Map_Town::SetCharacterXY(int dx, int dy)
+	int* Map_Town::SetCharacterXY(int dx, int dy, int* collision_move)
 	{
 		int slow_x = (int)dx / 3;
 		int slow_y = (int)dy / 3;
@@ -99,12 +99,12 @@ namespace game_framework {
 			int *e_xy = (*iter)->GetPosition();
 			int *e_collision_move = (*iter)->GetCollisionMove();
 
-			int x1 = _cxy[0] + _collision_move[0] + dx;
-			int y1 = _cxy[1] + _collision_move[1] + dy;
+			int x1 = _cxy[0] + collision_move[0] + dx;
+			int y1 = _cxy[1] + collision_move[1] + dy;
 			int x2 = e_xy[0] + e_collision_move[0];
 			int y2 = e_xy[1] + e_collision_move[1];
-			int l1 = _collision_move[2];
-			int w1 = _collision_move[3];
+			int l1 = collision_move[2];
+			int w1 = collision_move[3];
 			int l2 = e_collision_move[2];
 			int w2 = e_collision_move[3];
 			
@@ -115,10 +115,10 @@ namespace game_framework {
 				e_dx = (int)(dx / 3);
 				e_dy = (int)(dy / 3);
 
-				if (TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1							//左上
-					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1				//右上
-					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1				//左下
-					&& TOWN_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1)		//右下
+				if (GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) != -1							//左上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) != -1				//右上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) != -1				//左下
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) != -1)		//右下
 				{
 					e_xy[0] += e_dx;
 					e_xy[1] += e_dy;
@@ -135,20 +135,41 @@ namespace game_framework {
 		}
 
 		//////////與地圖碰撞////////////
-		if (TOWN_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + dy] != -1							//左上
-			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + dy] != -1				//右上
-			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1				//左下
-			&& TOWN_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1)		//右下
+		if (GetMapStatus(_cxy[0] + collision_move[0] + dx, _cxy[1] + collision_move[1] + dy) != -1							//左上
+			&& GetMapStatus(_cxy[0] + collision_move[0] + collision_move[2] + dx, _cxy[1] + collision_move[1] + dy) != -1				//右上
+			&& GetMapStatus(_cxy[0] + collision_move[0] + dx, _cxy[1] + collision_move[1] + collision_move[3] + dy) != -1				//左下
+			&& GetMapStatus(_cxy[0] + collision_move[0] + collision_move[2] + dx, _cxy[1] + collision_move[1] + collision_move[3] + dy) != -1)		//右下
 		{
 			_cxy[0] += dx;
 			_cxy[1] += dy;
 		}
 		return _cxy;
 	}
+
+
+	bool Map_Town::SetEnemyXY(int x, int y, int* collision_move)
+	{
+		int ex = x + collision_move[0];
+		int ey = y + collision_move[1];
+		int l = collision_move[2];
+		int w = collision_move[3];
+
+		//////////與地圖碰撞////////////
+		if (GetMapStatus(ex, ey) != -1
+			&& GetMapStatus(ex + l, ey) != -1
+			&& GetMapStatus(ex + l, ey + w) != -1
+			&& GetMapStatus(ex, ey + w) != -1)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	
 	int Map_Town::GetMapStatus(int x, int y)
 	{
-		return TOWN_LOGIC[x][y];
+		return TOWN_LOGIC[int(x/10)][int(y/10)];
 	}
 	
 

@@ -8,7 +8,7 @@
 #include "time.h"
 
 namespace game_framework {
-	Blockhead::Blockhead(int x, int y, int area) : Enemy(x, y, area)
+	Blockhead::Blockhead(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
 	}
@@ -46,8 +46,11 @@ namespace game_framework {
 		_bm_stand.LoadBitmap(ENEMY_BLOCKHEAD, RGB(50, 255, 0));
 	}
 
-	void Blockhead::Move(int x, int y)
+	void Blockhead::Move(int cx, int cy)
 	{
+
+		int x = CHARACTER_SCREEN_X + _xy[0] - cx;
+		int y = CHARACTER_SCREEN_Y + _xy[1] - cy;
 
 		switch (_state)
 		{

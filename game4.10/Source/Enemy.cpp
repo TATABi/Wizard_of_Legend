@@ -7,11 +7,12 @@
 #include "gamelib.h"
 #include "Enemy.h"
 #include "Map_Home_Logic.h"
+#include "GameMap.h"
 
 #define CHARGING_ZONE 300
 
 namespace game_framework {
-	Enemy::Enemy(int x, int y, int area) : _ori_x(x), _ori_y(y), _area(area)
+	Enemy::Enemy(int x, int y, int area, GameMap* map) : _ori_x(x), _ori_y(y), _area(area), _map(map)
 	{
 		Initialize(x, y);
 	}
@@ -90,6 +91,10 @@ namespace game_framework {
 			
 			case ATTACKING:
 				//攻擊動畫結束後回到 CHARGING 狀態
+				if (cx >= _xy[0])
+					_direction = RIGHT;
+				else
+					_direction = LEFT;
 				break;
 
 			case NOTHING:
@@ -107,10 +112,10 @@ namespace game_framework {
 		}	
 	}
 
-	void Enemy::SetXY(int x, int y)
+	void Enemy::SetXY(int dx, int dy)
 	{
-		_xy[0] += x;
-		_xy[1] += y;
+		_xy[0] += dx;
+		_xy[1] += dy;
 	}
 	
 
@@ -144,6 +149,9 @@ namespace game_framework {
 	
 	bool Enemy::CanAchieved(int dx, int dy)
 	{
+		return _map->SetEnemyXY(_xy[0] + dx, _xy[1] + dy, _collision_move);
+
+		/*
 		int x1 = _xy[0] + _collision_move[0];
 		int y1 = _xy[1] + _collision_move[1];
 		int x2 = x1 + _collision_move[2];
@@ -156,6 +164,7 @@ namespace game_framework {
 			return true;
 		}
 		return false;
+		*/
 	}
 
 	bool Enemy::IsLive()
@@ -404,7 +413,9 @@ namespace game_framework {
 		
 		
 		if (currentX == _xy[0] && currentY == _xy[1])
-			_state == RESET ? _xy[0] = _ori_x, _xy[1] = _ori_y : _state == ATTACKING;	//加上動畫
+		{
+			_state == RESET ? _xy[0] = _ori_x, _xy[1] = _ori_y : _state = ATTACKING;	//加上動畫
+		}
 		
 	}
 

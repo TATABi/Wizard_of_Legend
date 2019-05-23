@@ -16,8 +16,8 @@ namespace game_framework {
 	{
 		//加入敵人
 		//(632,798), (928,1077)
-		_enemies.push_back(new Black_Man(640, 900, AREA_1));
-		_enemies.push_back(new Blockhead(650, 918, AREA_2));
+		_enemies.push_back(new Black_Man(640, 900, AREA_1, this));
+		_enemies.push_back(new Blockhead(650, 918, AREA_2, this));
 		_character = c;
 	}
 
@@ -35,6 +35,8 @@ namespace game_framework {
 
 	void Map_Home::OnMove()
 	{
+		_character_status = GetMapStatus(_cxy[0] + 35, _cxy[1] + 56);
+
 		//AREA_1
 		if ((_cxy[0] >= 633) && (_cxy[1] >= 811) && (_cxy[0] <= 926) && (_cxy[1]) <= 1081)
 		{
@@ -45,9 +47,7 @@ namespace game_framework {
 					_enemies[i]->NotifyCharge();
 				}
 			}
-		}
-		
-		_character_status = HOME_LOGIC[_cxy[0] + _collision_move[0] + 10][_cxy[1] + _collision_move[1] + 3];
+		}	
 
 		int temp_x = 0, temp_y = 0;
 
@@ -88,7 +88,7 @@ namespace game_framework {
 	  
 	}
 	
-	int* Map_Home::SetCharacterXY(int dx, int dy)
+	int* Map_Home::SetCharacterXY(int dx, int dy, int* collision_move)
 	{
 		int slow_x = (int)dx/3;
 		int slow_y = (int)dy/3;
@@ -100,12 +100,12 @@ namespace game_framework {
 			int *e_xy = (*iter)->GetPosition();
 			int *e_collision_move = (*iter)->GetCollisionMove();
 
-			int x1 = _cxy[0] + _collision_move[0] + dx;
-			int y1 = _cxy[1] + _collision_move[1] + dy;
+			int x1 = _cxy[0] + collision_move[0] + dx;
+			int y1 = _cxy[1] + collision_move[1] + dy;
 			int x2 = e_xy[0] + e_collision_move[0];
 			int y2 = e_xy[1] + e_collision_move[1];
-			int l1 = _collision_move[2];
-			int w1 = _collision_move[3];
+			int l1 = collision_move[2];
+			int w1 = collision_move[3];
 			int l2 = e_collision_move[2];
 			int w2 = e_collision_move[3];
 
@@ -116,10 +116,10 @@ namespace game_framework {
 				e_dx = (int)(dx / 3);
 				e_dy = (int)(dy / 3);
 
-				if (HOME_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1							//左上
-					&& HOME_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_dy] != -1				//右上
-					&& HOME_LOGIC[e_xy[0] + e_collision_move[0] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1				//左下
-					&& HOME_LOGIC[e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx][e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy] != -1)		//右下
+				if (GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) != -1							//左上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) != -1				//右上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) != -1				//左下
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) != -1)		//右下
 				{
 					e_xy[0] += e_dx;
 					e_xy[1] += e_dy;
@@ -136,21 +136,42 @@ namespace game_framework {
 		}
 
 		//////////與地圖碰撞////////////
-		if (HOME_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + dy] != -1							//左上
-			&& HOME_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + dy] != -1				//右上
-			&& HOME_LOGIC[_cxy[0] + _collision_move[0] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1				//左下
-			&& HOME_LOGIC[_cxy[0] + _collision_move[0] + _collision_move[2] + dx][_cxy[1] + _collision_move[1] + _collision_move[3] + dy] != -1)		//右下
+		if (GetMapStatus(_cxy[0] + collision_move[0] + dx, _cxy[1] + collision_move[1] + dy) != -1							//左上
+			&& GetMapStatus(_cxy[0] + collision_move[0] + collision_move[2] + dx, _cxy[1] + collision_move[1] + dy) != -1				//右上
+			&& GetMapStatus(_cxy[0] + collision_move[0] + dx, _cxy[1] + collision_move[1] + collision_move[3] + dy) != -1				//左下
+			&& GetMapStatus(_cxy[0] + collision_move[0] + collision_move[2] + dx, _cxy[1] + collision_move[1] + collision_move[3] + dy) != -1)		//右下
 		{
 			_cxy[0] += dx;
 			_cxy[1] += dy;
 		}
+
 		return _cxy;
+	}
+
+	
+	bool Map_Home::SetEnemyXY(int x, int y, int* collision_move)
+	{
+		int ex = x + collision_move[0];
+		int ey = y + collision_move[1];
+		int l = collision_move[2];
+		int w = collision_move[3];
+
+		//////////與地圖碰撞////////////
+		if (GetMapStatus(ex, ey) != -1						
+			&& GetMapStatus(ex + l, ey) != -1			
+			&& GetMapStatus(ex + l, ey + w) != -1			
+			&& GetMapStatus(ex, ey + w) != -1)
+		{
+			return true;
+		}
+
+		return false;
 	}
 	
 
 	int Map_Home::GetMapStatus(int x, int y)
 	{
-		return HOME_LOGIC[x][y];
+		return HOME_LOGIC[int(x/10)][int(y/10)];
 	}
 	
 }

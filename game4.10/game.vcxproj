@@ -358,6 +358,7 @@
     <ClInclude Include="Source\Map_Home_Logic.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Map_Level_One.h" />
+    <ClInclude Include="Source\Map_Level_One_Logic.h" />
     <ClInclude Include="Source\Map_Town.h" />
     <ClInclude Include="Source\Map_Town_Logic.h" />
     <ClInclude Include="Source\PausedMenu.h" />

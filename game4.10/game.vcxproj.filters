@@ -74,6 +74,7 @@
     <ClInclude Include="Source\Blockhead.h" />
     <ClInclude Include="Source\Map_Level_One.h" />
     <ClInclude Include="Source\Level_One_State_Controller.h" />
+    <ClInclude Include="Source\Map_Level_One_Logic.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />

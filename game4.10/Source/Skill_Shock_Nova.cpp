@@ -25,10 +25,10 @@ namespace game_framework
 	{
 		_damage = 1;
 		_backDistance = 10;
-		_hitbox[0] = 75;
-		_hitbox[1] = 50;
-		_hitbox[2] = 96;
-		_hitbox[3] = 96;
+		_hitbox[0] = 103;
+		_hitbox[1] = 105;
+		_hitbox[2] = 95;
+		_hitbox[3] = 95;
 		_lifeTimer = 300;
 		_map_collision[0] = 0;			//¶ê¤ß
 		_map_collision[1] = 0;
@@ -115,12 +115,17 @@ namespace game_framework
 		float l2 = enemy_hitbox[2];
 		float w2 = enemy_hitbox[3];
 
-		if (pow(x1 - x2 + l2 / 2, 2) + pow(y1 - y2 + w2 / 2, 2) <= pow((l2 + w2) / 4 + r, 2) )
+		for (int i = 0; i < l2; i++)
 		{
-			if (AttackedThisEnemy(enemy))
-				return _damage;
+			for (int j = 0; j < w2; j++)
+			{
+				if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
+				{
+					if (AttackedThisEnemy(enemy))
+						return _damage;
+				}
+			}
 		}
-
 		return 0;
 	}
 

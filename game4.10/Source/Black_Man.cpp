@@ -9,7 +9,7 @@
 #include "CharacterData.h"
 
 namespace game_framework {
-	Black_Man::Black_Man(int x, int y, int area) : Enemy(x, y, area)
+	Black_Man::Black_Man(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
 	}
@@ -26,14 +26,14 @@ namespace game_framework {
 		_collision_move[0] = 29;
 		_collision_move[1] = 47;
 		_collision_move[2] = 17;
-		_collision_move[3] = 12;	
+		_collision_move[3] = 12;
 	}
 
 	void Black_Man::Reset()
 	{
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
-		
+
 		_hp = HP;
 		_step = STEP;
 		_zone = ZONE;
@@ -43,13 +43,11 @@ namespace game_framework {
 		_xy[0] = _ori_x;
 		_xy[1] = _ori_y;
 
-		isAttack = false;
-		
 	}
 
 	void Black_Man::LoadBitmap_2()
 	{
-		
+
 		_bm_stand_left.LoadBitmap(ENEMY_BLACK_MAN_STAND_LEFT, RGB(50, 255, 0));
 		_bm_stand_right.LoadBitmap(ENEMY_BLACK_MAN_STAND_RIGHT, RGB(50, 255, 0));
 		_bm_hurt_left.LoadBitmap(ENEMY_BLACK_MAN_HURT_LEFT, RGB(50, 255, 0));
@@ -66,14 +64,14 @@ namespace game_framework {
 		int ani_3[18] = { ENEMY_BLACK_MAN_ATTACK_RIGHT_01, ENEMY_BLACK_MAN_ATTACK_RIGHT_02, ENEMY_BLACK_MAN_ATTACK_RIGHT_03, ENEMY_BLACK_MAN_ATTACK_RIGHT_04, ENEMY_BLACK_MAN_ATTACK_RIGHT_05,
 			ENEMY_BLACK_MAN_ATTACK_RIGHT_06, ENEMY_BLACK_MAN_ATTACK_RIGHT_07, ENEMY_BLACK_MAN_ATTACK_RIGHT_08, ENEMY_BLACK_MAN_ATTACK_RIGHT_09, ENEMY_BLACK_MAN_ATTACK_RIGHT_10,
 			ENEMY_BLACK_MAN_ATTACK_RIGHT_11, ENEMY_BLACK_MAN_ATTACK_RIGHT_12, ENEMY_BLACK_MAN_ATTACK_RIGHT_13, ENEMY_BLACK_MAN_ATTACK_RIGHT_14, ENEMY_BLACK_MAN_ATTACK_RIGHT_15,
-			ENEMY_BLACK_MAN_ATTACK_RIGHT_16, ENEMY_BLACK_MAN_ATTACK_RIGHT_17, ENEMY_BLACK_MAN_ATTACK_RIGHT_18};
+			ENEMY_BLACK_MAN_ATTACK_RIGHT_16, ENEMY_BLACK_MAN_ATTACK_RIGHT_17, ENEMY_BLACK_MAN_ATTACK_RIGHT_18 };
 		for (int i = 0; i < 13; i++)
 			_ani_attack_right.AddBitmap(ani_3[i], RGB(50, 255, 0));
 
 		int ani_4[18] = { ENEMY_BLACK_MAN_ATTACK_LEFT_01, ENEMY_BLACK_MAN_ATTACK_LEFT_02, ENEMY_BLACK_MAN_ATTACK_LEFT_03, ENEMY_BLACK_MAN_ATTACK_LEFT_04, ENEMY_BLACK_MAN_ATTACK_LEFT_05,
 			ENEMY_BLACK_MAN_ATTACK_LEFT_06, ENEMY_BLACK_MAN_ATTACK_LEFT_07, ENEMY_BLACK_MAN_ATTACK_LEFT_08, ENEMY_BLACK_MAN_ATTACK_LEFT_09, ENEMY_BLACK_MAN_ATTACK_LEFT_10,
 			ENEMY_BLACK_MAN_ATTACK_LEFT_11, ENEMY_BLACK_MAN_ATTACK_LEFT_12, ENEMY_BLACK_MAN_ATTACK_LEFT_13, ENEMY_BLACK_MAN_ATTACK_LEFT_14, ENEMY_BLACK_MAN_ATTACK_LEFT_15,
-			ENEMY_BLACK_MAN_ATTACK_LEFT_16, ENEMY_BLACK_MAN_ATTACK_LEFT_17, ENEMY_BLACK_MAN_ATTACK_LEFT_18};
+			ENEMY_BLACK_MAN_ATTACK_LEFT_16, ENEMY_BLACK_MAN_ATTACK_LEFT_17, ENEMY_BLACK_MAN_ATTACK_LEFT_18 };
 		for (int i = 0; i < 13; i++)
 			_ani_attack_left.AddBitmap(ani_4[i], RGB(50, 255, 0));
 
@@ -85,10 +83,8 @@ namespace game_framework {
 
 	void Black_Man::Move(int cx, int cy)
 	{
-		int x = CHARACTER_SCREEN_X + _xy[0] - cx; 
+		int x = CHARACTER_SCREEN_X + _xy[0] - cx;
 		int y = CHARACTER_SCREEN_Y + _xy[1] - cy;
-		c_x = cx;
-		c_y = cy;
 
 		switch (_state)
 		{
@@ -99,8 +95,7 @@ namespace game_framework {
 		case ATTACKING:				//攻擊
 			_ani_attack_right.SetTopLeft(x, y);
 			_ani_attack_left.SetTopLeft(x, y);
-			if (_ani_attack_left.GetCurrentBitmapNumber() == 2 || _ani_attack_right.GetCurrentBitmapNumber() == 2)
-				Attack(c_x, c_y);
+			_isAttack ? NULL  : Attack(cx, cy);
 			break;
 		case CHARGING:				//移動
 		case RESET:
@@ -125,7 +120,7 @@ namespace game_framework {
 		switch (_state)
 		{
 		case NOTHING:				//站立
-			if(_direction == LEFT)
+			if (_direction == LEFT)
 				_bm_stand_left.ShowBitmap();
 			else
 				_bm_stand_right.ShowBitmap();
@@ -135,22 +130,30 @@ namespace game_framework {
 			if (_direction == LEFT)
 			{
 				_ani_attack_left.OnShow();
+
 				_ani_attack_left.OnMove();
+
 				if (_ani_attack_left.IsFinalBitmap())
 				{
+					_isAttack = false;
 					_ani_attack_left.Reset();
 					_state = CHARGING;
 				}
+
 			}
 			else
 			{
 				_ani_attack_right.OnShow();	//暫時使用
+
 				_ani_attack_right.OnMove();
+
 				if (_ani_attack_right.IsFinalBitmap())
 				{
+					_isAttack = false;
 					_ani_attack_right.Reset();
 					_state = CHARGING;
 				}
+
 			}
 			break;
 
@@ -179,52 +182,41 @@ namespace game_framework {
 				_hit_recover_flag = true;
 			}
 			break;
-
 		}
-		
 	}
-	
+
 	void Black_Man::Attack(int cx, int cy)
 	{
 		int c_hitbox[4] = { 23, 10, 24, 49 };
 		int damage_range[4];
-
-		switch (_direction)
-		{
-		case LEFT:
-			damage_range[0] = 6;
-			damage_range[1] = 12;
-			damage_range[2] = 26;
-			damage_range[2] = 51;
-			break;
-		case RIGHT:
-			damage_range[0] = 40;
-			damage_range[1] = 12;
-			damage_range[2] = 26;
-			damage_range[2] = 51;
-			break;
-		}
-
-		float x1 = _xy[0] + damage_range[0];
-		float y1 = _xy[1] + damage_range[1];
-		float l1 = damage_range[2];
-		float w1 = damage_range[3];
+		float x1 = _xy[0] + 35;
+		float y1 = _xy[1] + 35;
+		float r = 50;
 
 		float x2 = cx + c_hitbox[0];
 		float y2 = cy + c_hitbox[1];
 		float l2 = c_hitbox[2];
 		float w2 = c_hitbox[3];
 
-		//CharacterData::HP -= DAMAGE;
-		
-		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //發生碰撞
-		{
-			CharacterData::HP -= DAMAGE;
-		}
-		
 
+		for (int i = 0; i < l2; i++)
+		{
+			for (int j = 0; j < w2; j++)
+			{
+				if (!_isAttack)
+					if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
+					{
+						CharacterData::HP -= DAMAGE;
+						_isAttack = true;
+						break;
+					}
+			}
+
+			if (_isAttack)
+				break;
+			
+		}
 	}
-	
 
 	void Black_Man::ResetAnimation()
 	{
@@ -234,6 +226,4 @@ namespace game_framework {
 		_ani_attack_left.Reset();
 		_ani_attack_right.Reset();
 	}
-
-
 }

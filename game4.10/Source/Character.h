@@ -72,7 +72,7 @@ namespace game_framework {
 		int _dash_counter;	//用來reset dash 動畫
 		double _dash_resistance;
 		int _hit_recover_counter;
-
+		int _collision_move[4] = { 24, 53, 20 , 7 };   //(x,y,l,w) collision_move	碰撞判定範圍
 		int _hitbox[4] = { 23, 10, 24, 49 };
 	};
 }

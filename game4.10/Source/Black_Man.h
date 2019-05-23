@@ -6,7 +6,7 @@
 namespace game_framework {
 	class Black_Man : public Enemy {
 	public:
-		Black_Man(int, int, int);
+		Black_Man(int, int, int, GameMap*);
 		~Black_Man();
 		void Init();
 		void Reset();
@@ -20,8 +20,8 @@ namespace game_framework {
 		const int STEP = 5;
 		const int ZONE = 30;
 		const int DAMAGE = 20;
-		bool isAttack;
-		int c_x, c_y;
+		int _attackCounter = 4 * 1;
+		bool _isAttack = false;
 	};
 
 }

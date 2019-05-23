@@ -427,7 +427,7 @@ namespace game_framework {
 				_ani_run_down.Reset();
 				_ani_run_up.Reset();
 			}
-				int *temp_xy = map->SetCharacterXY(_horizontal, _vertical);	//更新角色在map的位置
+				int *temp_xy = map->SetCharacterXY(_horizontal, _vertical, _collision_move);	//更新角色在map的位置
 				_xy[0] = temp_xy[0];
 				_xy[1] = temp_xy[1];
 		}

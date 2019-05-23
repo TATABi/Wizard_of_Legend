@@ -6,7 +6,7 @@
 namespace game_framework {
 	class Blockhead : public Enemy {
 	public:
-		Blockhead(int, int, int);
+		Blockhead(int, int, int, GameMap*);
 		~Blockhead();
 		void Init();
 		void Reset();

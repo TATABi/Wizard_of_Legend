@@ -4,10 +4,11 @@
 #include "Layer.h"
 
 namespace game_framework {
+	class GameMap;
+
 	class Enemy : public Layer {
-		
 	public:
-		Enemy(int, int, int);
+		Enemy(int, int, int, GameMap*);
 		~Enemy();
 		void Initialize(int, int);	
 		void OnMove(int, int, vector<Skill*>&);		//傳入現在場上所有由主角發出的魔法
@@ -67,6 +68,7 @@ namespace game_framework {
 		CAnimation _ani_hurt;
 		CAnimation _ani_left, _ani_right;
 		CAnimation _ani_attack_left, _ani_attack_right;
+		GameMap* _map;
 	};
 }
 
