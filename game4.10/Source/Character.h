@@ -36,7 +36,7 @@ namespace game_framework {
 		int* GetHitbox();
 		Skill* GenerateSkill(int, int, int);	//skill num
 		int CaculateDirection(int, int);
-		void Suffer(int);	//承受傷害 temp暫時使用
+		void IsHurt();
 	protected:
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;	//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right; //跑步時的氣流
@@ -74,6 +74,7 @@ namespace game_framework {
 		int _hit_recover_counter;
 		int _collision_move[4] = { 24, 53, 20 , 7 };   //(x,y,l,w) collision_move	碰撞判定範圍
 		int _hitbox[4] = { 23, 10, 24, 49 };
+		int _hp;	//暫存HP，用來檢查是否扣血
 	};
 }
 

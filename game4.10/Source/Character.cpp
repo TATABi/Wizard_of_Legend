@@ -44,6 +44,7 @@ namespace game_framework {
 		_ani_useSkill_3_down.SetDelayCount(1);
 		_ani_useSkill_3_up.SetDelayCount(1);
 
+		_hp = CharacterData::HP;
 		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
 		_horizontal = 0;
 		_vertical = 0;
@@ -199,20 +200,13 @@ namespace game_framework {
 		_bm_hurt_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 	}
 
-	void Character::Suffer(int damage)
-	{
-		CharacterData::HP -= damage;
-		_isHurt = true;
-		_hit_recover_counter = 30 * 0.5;
-	}
-
 	void Character::OnMove(GameMap *map)
 	{
+		IsHurt();
+
 		if (_isHurt)
 		{
 			_run_counter = 0;
-			_hit_recover_counter > 0 ? _hit_recover_counter-- : NULL;
-			_hit_recover_counter == 0 ? _isHurt = false : NULL;
 		}
 		else if (_isUsingSkill)
 		{
@@ -704,5 +698,23 @@ namespace game_framework {
 	int* Character::GetHitbox()
 	{
 		return _hitbox;
+	}
+
+	void Character::IsHurt()
+	{
+		if (_hit_recover_counter == 0)
+		{
+			if (CharacterData::HP < _hp)
+			{
+				_isHurt = true;
+				_hit_recover_counter = 5;
+			}
+			else
+				_isHurt = false;
+
+			_hp = CharacterData::HP;
+		}
+		else
+			_hit_recover_counter > 0 ? _hit_recover_counter-- : NULL;
 	}
 }
