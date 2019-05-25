@@ -35,7 +35,11 @@
     <ClCompile Include="Source\Blockhead.cpp" />
     <ClCompile Include="Source\Map_Level_One.cpp" />
     <ClCompile Include="Source\Level_One_State_Controller.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Source\Counter.cpp" />
+=======
+    <ClCompile Include="Source\Controller.cpp" />
+>>>>>>> 5c469d1843cdd9b9eea441d9f89e15b3bf06a50d
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -76,8 +80,12 @@
     <ClInclude Include="Source\Map_Level_One.h" />
     <ClInclude Include="Source\Level_One_State_Controller.h" />
     <ClInclude Include="Source\Map_Level_One_Logic.h" />
+<<<<<<< HEAD
     <ClInclude Include="Source\GameData.h" />
     <ClInclude Include="Source\Counter.h" />
+=======
+    <ClInclude Include="Source\Controller.h" />
+>>>>>>> 5c469d1843cdd9b9eea441d9f89e15b3bf06a50d
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />

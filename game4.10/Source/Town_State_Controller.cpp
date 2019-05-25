@@ -6,11 +6,10 @@
 #include "gamelib.h"
 #include "Town_State_Controller.h"
 
+
 namespace game_framework {
 
-	Town_State_Controller::Town_State_Controller() : _map(770, 1065, &Global_Class::g_character) {}
-
-	Town_State_Controller::~Town_State_Controller(){}
+	Town_State_Controller::Town_State_Controller() :Controller(), _map(770, 1065, &Global_Class::g_character) {}
 
 	void Town_State_Controller::Begin()
 	{
@@ -63,6 +62,7 @@ namespace game_framework {
 	{
 		if (_delayCounter < 0)
 		{
+			Cheater(nChar);
 			switch (_flag)
 			{
 			case FLAG_TOWN_NORMAL:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
@@ -190,7 +190,6 @@ namespace game_framework {
 				break;
 			}
 		}
-
 	}
 
 	void Town_State_Controller::OnLButtonDown(UINT nFlags, CPoint point)
@@ -234,15 +233,5 @@ namespace game_framework {
 		}
 		else
 			_bm_loading.ShowBitmap();
-	}
-
-	bool Town_State_Controller::IsSwitchGameState()
-	{
-		return _isSwitch;
-	}
-
-	int Town_State_Controller::GameState()
-	{
-		return _game_state_num;
 	}
 }

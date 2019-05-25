@@ -7,10 +7,7 @@
 #include "Home_State_Controller.h"
 
 namespace game_framework {
-
-	Home_State_Controller::Home_State_Controller():_map(740, 918, &Global_Class::g_character){}
-
-	Home_State_Controller::~Home_State_Controller(){}
+	Home_State_Controller::Home_State_Controller():Controller(), _map(740, 918, &Global_Class::g_character){}
 
 	void Home_State_Controller::Begin()
 	{
@@ -80,12 +77,15 @@ namespace game_framework {
 
 	void Home_State_Controller::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
+
 		if (_delayCounter < 0)
 		{
+			Cheater(nChar);
 			switch (_flag)
 			{
 			case FLAG_HOME_NORMAL:
 				//進入遊戲，沒有開啟任何選單
+			
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					_character->SetMovingDown(true);
 				if (nChar == KEY_UP || nChar == KEY_W)
@@ -102,6 +102,7 @@ namespace game_framework {
 						CAudio::Instance()->Play(AUDIO_DASH, false);
 					}
 				}
+
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 				{
 					_isSwitch = true;
@@ -292,7 +293,6 @@ namespace game_framework {
 					_book.Right();
 				}
 				break;
-
 			}
 		}
 	}
@@ -355,15 +355,5 @@ namespace game_framework {
 		}
 		else
 			_bm_loading.ShowBitmap();
-	}
-
-	bool Home_State_Controller::IsSwitchGameState()
-	{
-		return _isSwitch;
-	}
-
-	int Home_State_Controller::GameState()
-	{
-		return _game_state_num;
 	}
 }

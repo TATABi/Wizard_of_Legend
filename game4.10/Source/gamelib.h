@@ -129,6 +129,12 @@ const char KEY_F = 0x46;
 const char KEY_ESC = 27;
 const char KEY_SPACE = 0x20;
 const char KEY_TAB = 0x09;
+const char KEY_F1 = 0x70;
+const char KEY_F2 = 0x71;
+const char KEY_F3 = 0x72;
+const char KEY_F4 = 0x73;
+const char KEY_F5 = 0x74;
+const char KEY_ENTER = 0xD;
 
 /////////////////////////////////////////////////////////////////////////////
 // Header for STL (Standard Template Library)
