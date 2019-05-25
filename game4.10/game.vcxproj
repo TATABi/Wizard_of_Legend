@@ -310,6 +310,7 @@
     <ClCompile Include="Source\Skill.cpp" />
     <ClCompile Include="Source\Skill_Rebounding_Icicles.cpp" />
     <ClCompile Include="Source\Skill_Shock_Nova.cpp" />
+    <ClCompile Include="Source\Controller.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -342,6 +343,7 @@
     <ClInclude Include="Source\Book.h" />
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Character.h" />
+    <ClInclude Include="Source\Controller.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\CharacterData.h" />

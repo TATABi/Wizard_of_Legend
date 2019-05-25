@@ -4,10 +4,11 @@
 #include "Map_Town.h"
 #include "Store.h"
 #include "Global_Class.h"
+#include "Controller.h"
 
 namespace game_framework {
 
-	class Town_State_Controller {
+	class Town_State_Controller : public Controller{
 
 		enum FLAG 
 		{
@@ -19,7 +20,6 @@ namespace game_framework {
 
 	public:
 		Town_State_Controller();
-		~Town_State_Controller();
 		void Initialize();
 		void Begin();
 		void OnKeyUp(UINT, UINT, UINT);
@@ -28,8 +28,6 @@ namespace game_framework {
 		void OnRButtonDown(UINT, CPoint);
 		void OnMove();
 		void OnShow();
-		bool IsSwitchGameState();
-		int GameState();
 
 	private:
 		CMovingBitmap _bm_loading;						// loading字樣的圖片
@@ -42,12 +40,6 @@ namespace game_framework {
 		Items *_items;
 		UI *_ui;
 		int _delayCounter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
-		int _game_state_num;
-		bool _isSwitch;
-
-		
-		
-		
 	};
 
 }

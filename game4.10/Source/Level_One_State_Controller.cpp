@@ -7,11 +7,8 @@
 #include "Level_One_State_Controller.h"
 
 namespace game_framework {
-
-	Level_One_State_Controller::Level_One_State_Controller() : _map(3000, 2830, &Global_Class::g_character) {}
-
-	Level_One_State_Controller::~Level_One_State_Controller() {}
-
+	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(3000, 2830, &Global_Class::g_character) {}
+	
 	void Level_One_State_Controller::Begin()
 	{
 		_game_state_num = -1;
@@ -63,6 +60,7 @@ namespace game_framework {
 	{
 		if (_delayCounter < 0)
 		{
+			Cheater(nChar);
 			switch (_flag)
 			{
 			case FLAG_NORMAL:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
@@ -179,9 +177,7 @@ namespace game_framework {
 			_chess_xy[0] < 212 ? _chess_xy[0] += 2 : NULL;
 			if (_isUpDown)
 			{
-
 				_chess_xy[1] >= 137 ? _isUpDown = false : _chess_xy[1] += 2;
-
 			}
 			else
 			{
@@ -211,15 +207,5 @@ namespace game_framework {
 			_bm_loading_level.ShowBitmap();
 			_bm_loading_chess.ShowBitmap();
 		}
-	}
-
-	bool Level_One_State_Controller::IsSwitchGameState()
-	{
-		return _isSwitch;
-	}
-
-	int Level_One_State_Controller::GameState()
-	{
-		return _game_state_num;
 	}
 }

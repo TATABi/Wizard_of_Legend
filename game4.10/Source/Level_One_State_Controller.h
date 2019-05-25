@@ -3,10 +3,11 @@
 
 #include "Map_Level_One.h"
 #include "Global_Class.h"
+#include "Controller.h"
 
 namespace game_framework {
 
-	class Level_One_State_Controller {
+	class Level_One_State_Controller : public Controller{
 
 		enum FLAG {
 			FLAG_NORMAL,
@@ -17,7 +18,6 @@ namespace game_framework {
 
 	public:
 		Level_One_State_Controller();
-		~Level_One_State_Controller();
 		void Initialize();
 		void Begin();
 		void OnKeyUp(UINT, UINT, UINT);
@@ -26,8 +26,6 @@ namespace game_framework {
 		void OnRButtonDown(UINT, CPoint);
 		void OnMove();
 		void OnShow();
-		bool IsSwitchGameState();
-		int GameState();
 
 	private:
 		CMovingBitmap _bm_loading_level;						// loading字樣的圖片
@@ -40,13 +38,9 @@ namespace game_framework {
 		Bag *_bag;
 		Items *_items;
 		UI *_ui;
-		int _game_state_num;
-		bool _isSwitch;
 		int _chess_xy[2];
 		bool _isUpDown;
-
 	};
-
 }
 
 #endif

@@ -7,8 +7,10 @@
 #include "Init_State_Controller.h"
 
 namespace game_framework {
-	
-	Init_State_Controller::Init_State_Controller() { }
+	Init_State_Controller::Init_State_Controller() : Controller()
+	{
+
+	} 
 
 	void Init_State_Controller::Begin()
 	{
@@ -53,9 +55,9 @@ namespace game_framework {
 
 	void Init_State_Controller::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
+		Cheater(nChar);
 		CAudio::Instance()->Stop(AUDIO_BE);
 		CAudio::Instance()->Play(AUDIO_BE, false);
-
 		switch (_flag)
 		{
 		case FLAG_INIT_INIT:
@@ -119,8 +121,6 @@ namespace game_framework {
 	void Init_State_Controller::OnShow()
 	{
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
-
-	
 		switch (_flag) 
 		{
 		case FLAG_INIT_INIT:
@@ -151,7 +151,6 @@ namespace game_framework {
 					_bm_quit.ShowBitmap();
 					break;
 				}
-				
 			}
 			break;
 		case FLAG_INIT_OPTION:
@@ -159,15 +158,5 @@ namespace game_framework {
 			_bm_option_page.ShowBitmap();
 			break;
 		}
-		
-	}
-
-	bool Init_State_Controller::IsSwitchGameState()
-	{
-		return _isSwitch;
-	}
-	int Init_State_Controller::GotoGameState()
-	{
-		return _game_state_num;
 	}
 }

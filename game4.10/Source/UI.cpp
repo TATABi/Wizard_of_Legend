@@ -47,8 +47,6 @@ namespace game_framework {
 		_bm_right_button.SetTopLeft(81, 414);
 		_bm_key_q.SetTopLeft(108, 416);
 		_bm_slash.SetTopLeft(103, 25);
-		
-
 	}
 	
 	void UI::OnMove()
@@ -70,7 +68,6 @@ namespace game_framework {
 		_bm_right_button.ShowBitmap();
 		_bm_left_button.ShowBitmap();
 
-		
 		_bm_skill_1.ShowBitmap();
 		_bm_skill_2.ShowBitmap();
 		_bm_skill_3.ShowBitmap();
@@ -91,9 +88,7 @@ namespace game_framework {
 		_integer.SetTopLeft(83, 25);
 		_integer.SetInteger(CharacterData::HP);
 		_integer.ShowBitmap();
-		_bm_slash.ShowBitmap();
-
-			
+		_bm_slash.ShowBitmap();		
 	}
 
 	void UI::CalculateHP()
@@ -103,16 +98,14 @@ namespace game_framework {
 		const int MAX_HP_Y2 = 46;
 		float temp_hp;
 		int x1;
-		temp_hp = (float)(CharacterData::Max_HP - CharacterData::HP) / CharacterData::Max_HP ;		//計算血量差值
+		temp_hp = (float)(CharacterData::Max_HP - CharacterData::HP) / CharacterData::Max_HP;		//計算血量差值
 		x1 = (int)(temp_hp * 81);
-
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣血)
 		pb = pDC->SelectObject(&b);
 		pDC->Rectangle(MAX_HP_X2-x1, MAX_HP_Y1, MAX_HP_X2, MAX_HP_Y2);
 		pDC->SelectObject(pb);						// 釋放 brush
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-	
 	}
 
 	void UI::CalculateMP()
@@ -124,13 +117,11 @@ namespace game_framework {
 		int x1;
 		temp_mp = (float)(CharacterData::Max_MP - CharacterData::MP) / CharacterData::Max_MP;		//計算MP差值
 		x1 = (int)(temp_mp * 65);
-
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣MP)
 		pb = pDC->SelectObject(&b);
 		pDC->Rectangle(Max_MP_X2 - x1, MAX_MP_Y1, Max_MP_X2, MAX_MP_Y2);
 		pDC->SelectObject(pb);						// 釋放 brush
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-	
 	}
 }

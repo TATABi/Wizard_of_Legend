@@ -5,10 +5,11 @@
 #include "Box.h"
 #include "Book.h"
 #include "Global_Class.h"
+#include "Controller.h"
 
 namespace game_framework {
 
-	class Home_State_Controller {
+	class Home_State_Controller :public Controller {
 
 		enum FLAG {
 			FLAG_HOME_NORMAL,
@@ -23,7 +24,6 @@ namespace game_framework {
 
 	public:
 		Home_State_Controller();
-		~Home_State_Controller();
 		void Initialize();
 		void Begin();
 		void OnKeyUp(UINT, UINT, UINT);
@@ -32,8 +32,6 @@ namespace game_framework {
 		void OnRButtonDown(UINT, CPoint);
 		void OnMove();
 		void OnShow();
-		bool IsSwitchGameState();
-		int GameState();
 
 	private:
 		CMovingBitmap _bm_join;							// join遊戲的提示選單
@@ -49,11 +47,7 @@ namespace game_framework {
 		Bag *_bag;
 		Items *_items;
 		UI *_ui;
-		int _game_state_num;
-		bool _isSwitch;
-
 	};
-
 }
 
 #endif
