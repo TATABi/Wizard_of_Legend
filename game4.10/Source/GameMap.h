@@ -28,7 +28,7 @@ namespace game_framework {
 		void CleanMemory();
 		virtual void LoadBitmap()=0;
 		virtual void OnMove() = 0;
-		virtual int* SetCharacterXY(int, int, int*) = 0;
+		virtual int* SetCharacterXY(int, int, const int*) = 0;
 		virtual bool SetEnemyXY(int, int, int*) = 0;
 		virtual int GetMapStatus(int, int) = 0;
 		

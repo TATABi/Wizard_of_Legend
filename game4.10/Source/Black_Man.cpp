@@ -201,7 +201,14 @@ namespace game_framework {
 
 		for (int i = 0; i < l2; i++)
 		{
-			for (int j = 0; j < w2; j++)
+			int step = 0;
+
+			if (i == 0 || i == l2 - 1)
+				step = 1;
+			else
+				step = w2 - 1;
+
+			for (int j = 0; j < w2; j = j + step)
 			{
 				if (!_isAttack)
 					if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))

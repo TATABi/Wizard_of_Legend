@@ -80,7 +80,7 @@ namespace game_framework {
 
 	void GameMap::CharacterUseSkill(int skillNum, int x, int y)
 	{
-		if(!_character->IsUsingSkill())
+		if(!_character->IsUsingSkill() && !_character->IsHurt())
 			_skillList.push_back(_character->GenerateSkill(skillNum, x, y));
 	}
 	

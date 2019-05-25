@@ -88,7 +88,7 @@ namespace game_framework {
 	  
 	}
 	
-	int* Map_Home::SetCharacterXY(int dx, int dy, int* collision_move)
+	int* Map_Home::SetCharacterXY(int dx, int dy, const int* collision_move)
 	{
 		int slow_x = (int)dx/3;
 		int slow_y = (int)dy/3;

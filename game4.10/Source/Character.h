@@ -3,6 +3,7 @@
 #include "GameMap.h"
 #include "CharacterData.h"
 #include "Layer.h"
+#include "Counter.h"
 
 #define CHARACTER_SCREEN_CENTER_X 320
 #define CHARACTER_SCREEN_CENTER_Y 240
@@ -33,10 +34,11 @@ namespace game_framework {
 		bool CanDash();
 		bool IsUsingSkill();
 		int* GetPosition();
-		int* GetHitbox();
+		const int* GetHitbox();
 		Skill* GenerateSkill(int, int, int);	//skill num
 		int CaculateDirection(int, int);
-		void IsHurt();
+		void GetHurt();
+		bool IsHurt();
 	protected:
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;	//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right; //跑步時的氣流
@@ -52,28 +54,30 @@ namespace game_framework {
 		int _directionFlag;			// 紀錄角色面向哪面 (順時鐘，從12點開始，總共8個方向) = (0, 1, 2, 3, 4, 5, 6, 7);???改?
 		bool _isMovingDown, _isMovingLeft, _isMovingRight, _isMovingUp;		//移動方向
 		bool _isDash;
-		bool _isRunning;				//跑步
-		bool _isDashLock;
+	//	bool _isRunning;				//跑步
+	//	bool _isDashLock;
 		bool _isSlash;
 		bool _isUsingSkill;
 		bool _isHurt;
 		int _useSkillNum;
 		int _SLASH_PIXEL;			//斜線移動速度
 		int _STR_PIXEL;				//直線移動速度
-		const int DASH_DELAY = 15;
+		//const int DASH_DELAY = 15;
 		const int NORMAL_SLASH_PIXEL = 4;
 		const int NORMAL_STR_PIXEL = 6;
 		const int RUN_SLASH_PIXEL = 7;
 		const int RUN_STR_PIXEL = 10;
 		const int DASH_SLASH_PIXEL = 13;
-		const int DASH_STR_PIXEL = 20;
-		int _run_counter;			// 計算角色是否要奔跑
-		int _dash_delay_counter;  //讓玩家無法一直dash (dash和dash之間有間隔)
-		int _dash_counter;	//用來reset dash 動畫
+		const int DASH_STR_PIXEL = 20;		
+		Counter _run_counter;	// 計算角色是否要奔跑
+		Counter _dash_cooldown_counter;
+		Counter _dash_move_counter;
+		//int _dash_delay_counter;  //讓玩家無法一直dash (dash和dash之間有間隔)
+		//int _dash_counter;	//用來reset dash 動畫
 		double _dash_resistance;
 		int _hit_recover_counter;
-		int _collision_move[4] = { 24, 53, 20 , 7 };   //(x,y,l,w) collision_move	碰撞判定範圍
-		int _hitbox[4] = { 23, 10, 24, 49 };
+		//int _collision_move[4] = { 24, 53, 20 , 7 };   //(x,y,l,w) collision_move	碰撞判定範圍
+		//int _hitbox[4] = { 23, 10, 24, 49 };
 		int _hp;	//暫存HP，用來檢查是否扣血
 	};
 }

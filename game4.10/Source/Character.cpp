@@ -8,6 +8,7 @@
 #include "Skill_Rebounding_Icicles.h"
 #include "Skill_Shock_Nova.h"
 #include "math.h"
+#include "GameData.h"
 
 const float M_PI = atan(1.0) * 4;
 
@@ -45,20 +46,25 @@ namespace game_framework {
 		_ani_useSkill_3_up.SetDelayCount(1);
 
 		_hp = CharacterData::HP;
-		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
+		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash  = false;
 		_horizontal = 0;
 		_vertical = 0;
 		_directionFlag = DOWN; //面向下
-		_run_counter = 45;
-		_isDashLock = false;
+		//_run_counter = 45;
+		//_isDashLock = false;
 		_isSlash = false;
-		_dash_delay_counter = DASH_DELAY;
-		_dash_counter = 9;
+		//_dash_delay_counter = DASH_DELAY;
+		//_dash_counter = 9;
 		_isUsingSkill = false;
 		_isHurt = false;
 		_useSkillNum = 0;
 		_dash_resistance = 1;
 		_hit_recover_counter = 0;
+
+		_run_counter.Set(WALK_TO_RUN_TIME);
+		//_dash_cooldown_counter.Set(DASH_COOLDOWN_TIME);
+		_dash_cooldown_counter.Stop();
+		_dash_move_counter.Stop();
 		
 	}
 
@@ -202,30 +208,32 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{
-		IsHurt();
+		GetHurt();
 
 		if (_isHurt)
 		{
-			_run_counter = 0;
+			//_run_counter = 0;
+			_run_counter.Reset();
 		}
 		else if (_isUsingSkill)
 		{
-			_run_counter = 0;
+			//_run_counter = 0;
+			_run_counter.Reset();
 			_ani_useSkill->OnMove();
 		}
 		else {
-			if (!_isDashLock)
+			if (_dash_cooldown_counter.Result() == true)//!_isDashLock)
 			{
 				_horizontal = 0;
 				_vertical = 0;
 			}
 			//初始移動系數
-			if (_isDash)
+			if (_dash_move_counter.Result() == false)//_isDash)
 			{
 				_SLASH_PIXEL = (int)(DASH_SLASH_PIXEL * CharacterData::Move_Coefficient) * _dash_resistance;
 				_STR_PIXEL = (int)(DASH_STR_PIXEL * CharacterData::Move_Coefficient) * _dash_resistance;
 			}
-			else if (_isRunning)
+			else if (_run_counter.Result())
 			{
 				_SLASH_PIXEL = (int)(RUN_SLASH_PIXEL * CharacterData::Move_Coefficient);
 				_STR_PIXEL = (int)(RUN_STR_PIXEL * CharacterData::Move_Coefficient);
@@ -235,8 +243,8 @@ namespace game_framework {
 				_SLASH_PIXEL = (int)(NORMAL_SLASH_PIXEL * CharacterData::Move_Coefficient);
 				_STR_PIXEL = (int)(NORMAL_STR_PIXEL * CharacterData::Move_Coefficient);
 			}
-				//計算移動距離
-			if (IsSlash() && !_isDashLock) //如果斜走
+			//計算移動距離
+			if (IsSlash() && _dash_cooldown_counter.Result() == true)//!_isDashLock) //如果斜走
 			{
 				if (_isMovingDown)
 				{
@@ -259,7 +267,7 @@ namespace game_framework {
 						_horizontal -= _SLASH_PIXEL;
 				}
 			}
-			else if (!_isDashLock)
+			else if (_dash_cooldown_counter.Result() == true)//!_isDashLock)
 			{
 				if (_isMovingDown)
 				{
@@ -284,14 +292,14 @@ namespace game_framework {
 			}
 
 			//判斷方向
-			if (_horizontal != 0 && !_isDashLock)
+			if (_horizontal != 0 && _dash_cooldown_counter.Result() == true)//!_isDashLock)
 			{
 				if (_horizontal < 0)
 					_directionFlag = LEFT;	//左
 				else
 					_directionFlag = RIGHT;	//右
 			}
-			else if (!_isDashLock)
+			else if (_dash_cooldown_counter.Result() == true)//!_isDashLock)
 			{
 				if (_vertical < 0)
 					_directionFlag = UP;	//上
@@ -300,24 +308,33 @@ namespace game_framework {
 			}
 
 			//維持上一格狀態的方向
+			/*
 			if (_dash_delay_counter < DASH_DELAY && _dash_delay_counter > 0)
 				_dash_delay_counter--;
 			else
 				_dash_delay_counter = DASH_DELAY;
-			
+			*/
+
+			_dash_cooldown_counter.Result() ?  _dash_cooldown_counter.Stop() : _dash_cooldown_counter.Count();
+
+
 			//動畫
-			if (_isDash)
+			if (_dash_move_counter.Result() == false)//_isDash)
 			{
-				_run_counter = 45;
+				_run_counter.Reset();
+
 				if (IsMoving() && IsSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
 				{
 					if (_isMovingDown)
 					{
-						_isDashLock ? NULL : _directionFlag = DOWN;		//Dash中不能改方向
+						//_isDashLock ? NULL : _directionFlag = DOWN;		//Dash中不能改方向
+
+						_dash_cooldown_counter.Result() == false ? NULL : _directionFlag = DOWN;
 					}
 					else
 					{
-						_isDashLock ? NULL : _directionFlag = UP;
+						//_isDashLock ? NULL : _directionFlag = UP;
+						_dash_cooldown_counter.Result() == false ? NULL : _directionFlag = UP;
 					}
 				}
 				else		//停止移動時按空白鍵，朝面相方向滑動(沒有斜向)；或是非斜向移動時		
@@ -342,8 +359,23 @@ namespace game_framework {
 				_ani_dash_left.OnMove();
 				_ani_dash_down.OnMove();
 				_ani_dash_up.OnMove();
-				_dash_counter--;
-				_isDashLock = true;
+
+				_dash_move_counter.Count();
+
+				/*
+				if (_dash_move_counter.Result() == true)
+				{
+					_ani_dash_right.Reset();
+					_ani_dash_left.Reset();
+					_ani_dash_down.Reset();
+					_ani_dash_up.Reset();
+					_dash_move_counter.Stop();
+				}
+				*/
+
+			//	_dash_counter--;
+			//	_isDashLock = true;
+				/*
 				if (_dash_counter < 3)
 				{
 					_dash_resistance *= 0.1;
@@ -359,13 +391,36 @@ namespace game_framework {
 					_dash_counter = 9;
 					_dash_resistance = 1;
 				}
+				*/
+
+				if (_dash_move_counter.Now() < 3)
+				{
+					_dash_resistance *= 0.1;
+				}
+				if (_dash_move_counter.Result() == true)
+				{
+					//_isDashLock = false;
+					//_isDash = false;
+					_ani_dash_right.Reset();
+					_ani_dash_left.Reset();
+					_ani_dash_down.Reset();
+					_ani_dash_up.Reset();
+					_dash_move_counter.Stop();
+					_dash_resistance = 1;
+				}
+
+
 			}
 			else if (IsMoving())   //走動
 			{
+				/*
 				if (_run_counter >= 0)
 					_run_counter--;
 				if (_run_counter < 0)
 					_isRunning = true;
+					*/
+				_run_counter.Count();
+
 				switch (_directionFlag)
 				{
 				case RIGHT:
@@ -384,15 +439,16 @@ namespace game_framework {
 			}
 			else    //站著不動
 			{
-				_isRunning = false;
-				_run_counter = 45;
+				//_isRunning = false;
+				//_run_counter = 45;
+				_run_counter.Reset();
 				_ani_run_right.Reset();
 				_ani_run_left.Reset();
 				_ani_run_down.Reset();
 				_ani_run_up.Reset();
 			}
 
-			if (_isRunning)			//跑步氣流動畫
+			if (_run_counter.Result())			//跑步氣流動畫
 			{
 				switch (_directionFlag)
 				{
@@ -421,7 +477,7 @@ namespace game_framework {
 				_ani_run_down.Reset();
 				_ani_run_up.Reset();
 			}
-				int *temp_xy = map->SetCharacterXY(_horizontal, _vertical, _collision_move);	//更新角色在map的位置
+				int *temp_xy = map->SetCharacterXY(_horizontal, _vertical, MOVE_HITBOX);	//更新角色在map的位置
 				_xy[0] = temp_xy[0];
 				_xy[1] = temp_xy[1];
 		}
@@ -429,13 +485,40 @@ namespace game_framework {
 
 	void Character::Dash()
 	{
+		/*
 		if (CanDash())
 		{
 			_isDash = true;
-			_isRunning = false;
-			_dash_delay_counter--;
+			//_isRunning = false;
+			_run_counter.Reset();
+			//_dash_delay_counter--;
+			_dash_cooldown_counter.Start();
 			CAudio::Instance()->Play(AUDIO_DASH, false);
 		}
+		*/
+
+		if (CanDash())
+		{
+			_run_counter.Reset();
+			_dash_cooldown_counter.Set(DASH_COOLDOWN_TIME);
+			_dash_cooldown_counter.Start();
+			_dash_move_counter.Set(DASH_MOVE_TIME);
+			_dash_move_counter.Start();
+			CAudio::Instance()->Play(AUDIO_DASH, false);
+		}
+
+	}
+
+	bool Character::CanDash()
+	{
+		/*
+		if (_dash_delay_counter == DASH_DELAY)
+		return true;
+
+		return false;
+		*/
+		return _dash_cooldown_counter.Result();
+
 	}
 
 	void Character::OnShow() 
@@ -470,7 +553,7 @@ namespace game_framework {
 			}
 
 		}
-		else if (_isDash)
+		else if (_dash_move_counter.Result() == false)//_isDash)
 		{
 			switch (_directionFlag)
 			{
@@ -491,7 +574,7 @@ namespace game_framework {
 		}
 		else
 		{
-			if (_isRunning && !_ani_run_right.IsFinalBitmap() && !_ani_run_left.IsFinalBitmap()
+			if (_run_counter.Result() && !_ani_run_right.IsFinalBitmap() && !_ani_run_left.IsFinalBitmap()
 				&& !_ani_run_down.IsFinalBitmap() && !_ani_run_up.IsFinalBitmap())
 			{
 				switch (_directionFlag)
@@ -590,17 +673,11 @@ namespace game_framework {
 			return true;
 
 		return false;
-	}
-
-	bool Character::CanDash()
-	{
-		if (_dash_delay_counter == DASH_DELAY)
-			return true;
-		return false;
-	}
+	}	
 
 	Skill* Character::GenerateSkill(int skillNum, int x, int y)
 	{
+
 		int direction = CaculateDirection(x, y);
 
 		if (skillNum == 1)
@@ -695,19 +772,19 @@ namespace game_framework {
 		return _xy;
 	}
 
-	int* Character::GetHitbox()
+	const int* Character::GetHitbox()
 	{
-		return _hitbox;
+		return HITBOX;
 	}
 
-	void Character::IsHurt()
+	void Character::GetHurt()
 	{
 		if (_hit_recover_counter == 0)
 		{
 			if (CharacterData::HP < _hp)
 			{
 				_isHurt = true;
-				_hit_recover_counter = 5;
+				_hit_recover_counter = CHARACTER_HIT_RECOVER_TIME;
 			}
 			else
 				_isHurt = false;
@@ -717,4 +794,10 @@ namespace game_framework {
 		else
 			_hit_recover_counter > 0 ? _hit_recover_counter-- : NULL;
 	}
+
+	bool Character::IsHurt()
+	{
+		return _isHurt ? true : false;
+	}
+
 }

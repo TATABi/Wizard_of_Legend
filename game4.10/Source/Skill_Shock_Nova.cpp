@@ -115,9 +115,18 @@ namespace game_framework
 		float l2 = enemy_hitbox[2];
 		float w2 = enemy_hitbox[3];
 
+
+		//檢查碰撞"外框"是否有接觸
 		for (int i = 0; i < l2; i++)
 		{
-			for (int j = 0; j < w2; j++)
+			int step = 0;
+
+			if (i == 0 || i == l2 - 1)
+				step = 1;
+			else
+				step = w2 - 1;
+
+			for (int j = 0; j < w2; j = j + step)
 			{
 				if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 				{

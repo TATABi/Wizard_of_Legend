@@ -35,6 +35,7 @@
     <ClCompile Include="Source\Blockhead.cpp" />
     <ClCompile Include="Source\Map_Level_One.cpp" />
     <ClCompile Include="Source\Level_One_State_Controller.cpp" />
+    <ClCompile Include="Source\Counter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -75,6 +76,8 @@
     <ClInclude Include="Source\Map_Level_One.h" />
     <ClInclude Include="Source\Level_One_State_Controller.h" />
     <ClInclude Include="Source\Map_Level_One_Logic.h" />
+    <ClInclude Include="Source\GameData.h" />
+    <ClInclude Include="Source\Counter.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
