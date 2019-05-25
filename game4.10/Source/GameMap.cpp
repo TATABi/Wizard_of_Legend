@@ -7,6 +7,7 @@
 #include "GameMap.h"
 #include "Character.h"
 #include <algorithm>
+#include "GameData.h"
 
 namespace game_framework {
 	

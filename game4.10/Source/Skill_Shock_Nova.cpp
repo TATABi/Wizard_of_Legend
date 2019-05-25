@@ -16,10 +16,7 @@ namespace game_framework
 		LoadBitmap();	
 	}
 
-	Skill_Shock_Nova::~Skill_Shock_Nova()
-	{
-
-	}
+	Skill_Shock_Nova::~Skill_Shock_Nova(){}
 
 	void Skill_Shock_Nova::Initialize(int mouseX, int mouseY, int* cxy)
 	{
@@ -30,7 +27,7 @@ namespace game_framework
 		_hitbox[2] = 95;
 		_hitbox[3] = 95;
 		_lifeTimer = 300;
-		_map_collision[0] = 0;			//¶ê¤ß
+		_map_collision[0] = 0;				//¶ê¤ß
 		_map_collision[1] = 0;
 		_map_collision[2] = 0;				//¥b®|
 		_map_collision[3] = 0;
@@ -42,9 +39,6 @@ namespace game_framework
 		_counter = 5;
 		_time = 6;
 		_ani_skill[0].SetDelayCount(1);
-
-
-
 
 	}
 
@@ -63,9 +57,6 @@ namespace game_framework
 	void Skill_Shock_Nova::OnMove(int *cxy, GameMap *map)
 	{
 		_counter == 0 ? NULL : _counter--;
-		
-		//_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cxy[0], CHARACTER_SCREEN_X + _xy[1] - cxy[1]);
-	
 
 		if (_counter == 0)
 		{
@@ -83,11 +74,6 @@ namespace game_framework
 			}
 			else
 			{
-				/*
-				_xy[0] = cxy[0] - (_ani_skill[0].Width() - 70) / 2 + 2;
-				_xy[1] = cxy[1] - (_ani_skill[0].Height() - 70) / 2 - 52;
-				*/
-
 				_xy[0] = cxy[0] - (_ani_skill[0].Width() - 70) / 2 + 2;
 				_xy[1] = cxy[1] - (_ani_skill[0].Height() - 70) / 2 + 25;
 

@@ -7,7 +7,7 @@
 #include "Map_Town.h"
 #include "Map_Town_Logic.h"
 #include "algorithm"
-
+#include "GameData.h"
 namespace game_framework {
 
 	Map_Town::Map_Town(int x, int y, Character* c) : GameMap(x, y)

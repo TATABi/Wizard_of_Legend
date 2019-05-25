@@ -9,6 +9,7 @@
 #include "algorithm"
 #include "Black_Man.h"
 #include "Blockhead.h"
+#include "GameData.h"
 
 namespace game_framework {
 
