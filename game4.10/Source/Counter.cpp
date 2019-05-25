@@ -16,10 +16,14 @@ namespace game_framework {
 		_is_start = true;
 	}
 
-	void Counter::Set(int time)
+	void Counter::SetTime(int time)
 	{
 		_time = time;
-		_counter = time;
+	}
+
+	void Counter::SetCount(int count)
+	{
+		_counter = count;
 	}
 
 	void Counter::Count()

@@ -20,6 +20,7 @@ namespace game_framework {
 	double CharacterData::Move_Coefficient = 1;
 	double CharacterData::CD_Coefficient = 1;
 	int CharacterData::MP_Charge_Constant = 4;
+	bool CharacterData::INVINCIBLE = false;
 	
 
 }

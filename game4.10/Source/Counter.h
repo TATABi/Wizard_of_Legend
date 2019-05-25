@@ -6,7 +6,8 @@ namespace game_framework {
 	class Counter {
 	public:
 		Counter();
-		void Set(int);	//設定 _time
+		void SetTime(int);	//設定 _time
+		void SetCount(int);
 		void Count();	//Counter 減1
 		bool Result();	//Counter是否為0
 		void Reset();	//重設Counter 之 _counter 為 _time 

@@ -61,7 +61,7 @@ namespace game_framework {
 		_dash_resistance = 1;
 		_hit_recover_counter = 0;
 
-		_run_counter.Set(WALK_TO_RUN_TIME);
+		_run_counter.SetTime(WALK_TO_RUN_TIME);
 		//_dash_cooldown_counter.Set(DASH_COOLDOWN_TIME);
 		_dash_cooldown_counter.Stop();
 		_dash_move_counter.Stop();
@@ -227,6 +227,7 @@ namespace game_framework {
 				_horizontal = 0;
 				_vertical = 0;
 			}
+
 			//初始移動系數
 			if (_dash_move_counter.Result() == false)//_isDash)
 			{
@@ -243,6 +244,7 @@ namespace game_framework {
 				_SLASH_PIXEL = (int)(NORMAL_SLASH_PIXEL * CharacterData::Move_Coefficient);
 				_STR_PIXEL = (int)(NORMAL_STR_PIXEL * CharacterData::Move_Coefficient);
 			}
+
 			//計算移動距離
 			if (IsSlash() && _dash_cooldown_counter.Result() == true)//!_isDashLock) //如果斜走
 			{
@@ -500,9 +502,11 @@ namespace game_framework {
 		if (CanDash())
 		{
 			_run_counter.Reset();
-			_dash_cooldown_counter.Set(DASH_COOLDOWN_TIME);
+			_dash_cooldown_counter.SetTime(DASH_COOLDOWN_TIME);
+			_dash_cooldown_counter.Reset();
 			_dash_cooldown_counter.Start();
-			_dash_move_counter.Set(DASH_MOVE_TIME);
+			_dash_move_counter.SetTime(DASH_MOVE_TIME);
+			_dash_move_counter.Reset();
 			_dash_move_counter.Start();
 			CAudio::Instance()->Play(AUDIO_DASH, false);
 		}

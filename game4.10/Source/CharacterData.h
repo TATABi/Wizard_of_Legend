@@ -17,6 +17,7 @@ namespace game_framework {
 		static double Move_Coefficient;	//移動速度係數
 		static double CD_Coefficient;	//技能冷卻係數
 		static int MP_Charge_Constant;	//MP累積常數
+		static bool INVINCIBLE;			//Dash 時無敵
 		//static void InitializeStatus();
 
 		//static bool IsEquiped_Item[];
