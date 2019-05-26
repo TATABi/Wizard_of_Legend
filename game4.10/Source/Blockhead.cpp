@@ -6,7 +6,6 @@
 #include "gamelib.h"
 #include "Blockhead.h"
 #include "time.h"
-#include "GameData.h"
 
 namespace game_framework {
 	Blockhead::Blockhead(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)

@@ -7,7 +7,6 @@
 #include "Black_man.h"
 #include "time.h"
 #include "CharacterData.h"
-#include "GameData.h"
 
 namespace game_framework {
 	Black_Man::Black_Man(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
