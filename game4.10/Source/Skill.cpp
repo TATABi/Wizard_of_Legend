@@ -51,4 +51,9 @@ namespace game_framework
 			return true;
 		}
 	}
+
+	void Skill::RefreshEnemyList()
+	{
+		_enemyList.clear();
+	}
 }

@@ -15,13 +15,16 @@ namespace game_framework {
 		void OnShow();			
 		void Attack(int, int);
 		void ResetAnimation();
+		void CalculateHP();
 	private:
-		const int HP = 15;
+		CMovingBitmap _bm_hp_bar;
+		const int HP = 30;
 		const int STEP = 5;
 		const int ZONE = 30;
 		const int DAMAGE = 20;
 		int _attackCounter = 4 * 1;
 		bool _isAttack = false;
+		int x, y;
 	};
 
 }

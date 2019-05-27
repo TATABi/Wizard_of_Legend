@@ -57,7 +57,6 @@ namespace game_framework {
 		_dash_counter = 9;
 		_isUsingSkill = false;
 		_isHurt = false;
-		_useSkillNum = 0;
 		_dash_resistance = 1;
 		_hit_recover_counter = 0;
 
@@ -85,6 +84,22 @@ namespace game_framework {
 		for (int i = 0; i < 9; i++)
 			_ani_right.AddBitmap(m4[i], RGB(50, 255, 0));
 
+		int m9[4] = { CHARACTER_RUN_DOWN_01,CHARACTER_RUN_DOWN_02,CHARACTER_RUN_DOWN_03,CHARACTER_RUN_DOWN_04 };
+		for (int i = 0; i < 4; i++)
+			_ani_run_down.AddBitmap(m9[i], RGB(50, 255, 0));
+
+		int m10[5] = { CHARACTER_RUN_UP_01,CHARACTER_RUN_UP_02,CHARACTER_RUN_UP_03,CHARACTER_RUN_UP_04, CHARACTER_RUN_UP_05 };
+		for (int i = 0; i < 5; i++)
+			_ani_run_up.AddBitmap(m10[i], RGB(50, 255, 0));
+
+		int m11[4] = { CHARACTER_RUN_LEFT_01,CHARACTER_RUN_LEFT_02,CHARACTER_RUN_LEFT_03,CHARACTER_RUN_LEFT_03 };
+		for (int i = 0; i < 4; i++)
+			_ani_run_left.AddBitmap(m11[i], RGB(50, 255, 0));
+
+		int m12[4] = { CHARACTER_RUN_RIGHT_01,CHARACTER_RUN_RIGHT_02,CHARACTER_RUN_RIGHT_03,CHARACTER_RUN_RIGHT_03 };
+		for (int i = 0; i < 4; i++)
+			_ani_run_right.AddBitmap(m12[i], RGB(50, 255, 0));
+
 		int m5[9] = { CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_02,
 			CHARACTER_DASH_UP_03,CHARACTER_DASH_UP_03,CHARACTER_DASH_UP_04,CHARACTER_DASH_UP_04 };
 		for (int i = 0; i < 9; i++)
@@ -106,29 +121,14 @@ namespace game_framework {
 		for (int i = 0; i < 9; i++)
 			_ani_dash_right.AddBitmap(m8[i], RGB(50, 255, 0));
 
-		int m9[4] = { CHARACTER_RUN_DOWN_01,CHARACTER_RUN_DOWN_02,CHARACTER_RUN_DOWN_03,CHARACTER_RUN_DOWN_04 };
-		for (int i = 0; i < 4; i++)
-			_ani_run_down.AddBitmap(m9[i], RGB(50, 255, 0));
-
-		int m10[5] = { CHARACTER_RUN_UP_01,CHARACTER_RUN_UP_02,CHARACTER_RUN_UP_03,CHARACTER_RUN_UP_04, CHARACTER_RUN_UP_05 };
-		for (int i = 0; i < 5; i++)
-			_ani_run_up.AddBitmap(m10[i], RGB(50, 255, 0));
-
-		int m11[4] = { CHARACTER_RUN_LEFT_01,CHARACTER_RUN_LEFT_02,CHARACTER_RUN_LEFT_03,CHARACTER_RUN_LEFT_03 };
-		for (int i = 0; i < 4; i++)
-			_ani_run_left.AddBitmap(m11[i], RGB(50, 255, 0));
-
-		int m12[4] = { CHARACTER_RUN_RIGHT_01,CHARACTER_RUN_RIGHT_02,CHARACTER_RUN_RIGHT_03,CHARACTER_RUN_RIGHT_03 };
-		for (int i = 0; i < 4; i++)
-			_ani_run_right.AddBitmap(m12[i], RGB(50, 255, 0));
-
-		//////temp
+		//-------------------skill 1-------------------//
 		int m13[14] = { CHARACTER_SKILL_SHOCK_NOVA_UP_01, CHARACTER_SKILL_SHOCK_NOVA_UP_02, CHARACTER_SKILL_SHOCK_NOVA_UP_03, CHARACTER_SKILL_SHOCK_NOVA_UP_04, CHARACTER_SKILL_SHOCK_NOVA_UP_05,
 			CHARACTER_SKILL_SHOCK_NOVA_UP_06, CHARACTER_SKILL_SHOCK_NOVA_UP_07, CHARACTER_SKILL_SHOCK_NOVA_UP_08, CHARACTER_SKILL_SHOCK_NOVA_UP_09, CHARACTER_SKILL_SHOCK_NOVA_UP_10,
 			CHARACTER_SKILL_SHOCK_NOVA_UP_11, CHARACTER_SKILL_SHOCK_NOVA_UP_12, CHARACTER_SKILL_SHOCK_NOVA_UP_13, CHARACTER_SKILL_SHOCK_NOVA_UP_14 };
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_1.AddBitmap(m13[i], RGB(50, 255, 0));
-		////////
+	
+		//-------------------skill 2-------------------//
 		int m14_1[11] = { CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_01, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_02, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_03, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_04, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_05,
 			CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_06, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_07, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_08, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_09, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_10,
 			CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_11 };
@@ -153,12 +153,12 @@ namespace game_framework {
 		for (int i = 0; i < 11; i++)
 			_ani_useSkill_2_right.AddBitmap(m14_4[i], RGB(50, 255, 0));
 
+		//-------------------skill 3-------------------//
 		int m15[14] = { CHARACTER_SKILL_SHOCK_NOVA_DOWN_01, CHARACTER_SKILL_SHOCK_NOVA_DOWN_02, CHARACTER_SKILL_SHOCK_NOVA_DOWN_03, CHARACTER_SKILL_SHOCK_NOVA_DOWN_04, CHARACTER_SKILL_SHOCK_NOVA_DOWN_05,
 			CHARACTER_SKILL_SHOCK_NOVA_DOWN_06, CHARACTER_SKILL_SHOCK_NOVA_DOWN_07, CHARACTER_SKILL_SHOCK_NOVA_DOWN_08, CHARACTER_SKILL_SHOCK_NOVA_DOWN_09, CHARACTER_SKILL_SHOCK_NOVA_DOWN_10,
 			CHARACTER_SKILL_SHOCK_NOVA_DOWN_11, CHARACTER_SKILL_SHOCK_NOVA_DOWN_12, CHARACTER_SKILL_SHOCK_NOVA_DOWN_13, CHARACTER_SKILL_SHOCK_NOVA_DOWN_14 };
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_3_down.AddBitmap(m15[i], RGB(50, 255, 0));
-
 
 		int m16[14] = { CHARACTER_SKILL_SHOCK_NOVA_UP_01, CHARACTER_SKILL_SHOCK_NOVA_UP_02, CHARACTER_SKILL_SHOCK_NOVA_UP_03, CHARACTER_SKILL_SHOCK_NOVA_UP_04, CHARACTER_SKILL_SHOCK_NOVA_UP_05,
 			CHARACTER_SKILL_SHOCK_NOVA_UP_06, CHARACTER_SKILL_SHOCK_NOVA_UP_07, CHARACTER_SKILL_SHOCK_NOVA_UP_08, CHARACTER_SKILL_SHOCK_NOVA_UP_09, CHARACTER_SKILL_SHOCK_NOVA_UP_10,
@@ -574,7 +574,6 @@ namespace game_framework {
 			if (!_isUsingSkill)
 			{
 				_isUsingSkill = true;
-				_useSkillNum = 1;
 				_ani_useSkill = &_ani_useSkill_1;
 			}
 		}
@@ -583,7 +582,6 @@ namespace game_framework {
 			if (!_isUsingSkill)
 			{
 				_isUsingSkill = true;
-				_useSkillNum = 2;
 
 				switch (direction)
 				{
@@ -609,7 +607,6 @@ namespace game_framework {
 			if (!_isUsingSkill)
 			{
 				_isUsingSkill = true;
-				_useSkillNum = 3;
 
 				if (y > SIZE_Y / 2)
 					_ani_useSkill = &_ani_useSkill_3_down;

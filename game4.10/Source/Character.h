@@ -56,15 +56,14 @@ namespace game_framework {
 		bool _isRunning;													//跑步
 		bool _isDashLock;													//Dash中不能改變移動方向，必須等Dash結束
 		bool _isUsingSkill;													//是否正在使用技能
-		bool _isHurt;														//被毆
-		int _useSkillNum;
-		float _step;
-		int _run_counter;			// 計算角色是否要奔跑
-		int _dash_delay_counter;  //讓玩家無法一直dash (dash和dash之間有間隔)
-		int _dash_counter;	//用來reset dash 動畫
-		double _dash_resistance;
-		int _hit_recover_counter;
-		int _hp;	//暫存HP，用來檢查是否扣血
+		bool _isHurt;														//被毆											
+		float _step;														//紀錄移動距離
+		int _run_counter;													// 計算角色是否要奔跑
+		int _dash_delay_counter;											//讓玩家無法一直dash (dash和dash之間有間隔)
+		int _dash_counter;													//用來reset dash 動畫
+		double _dash_resistance;											//Dash時的阻力，並非是等速移動
+		int _hit_recover_counter;											//被爆打的硬直時間
+		int _hp;															//暫存HP，用來檢查是否扣血
 	};
 }
 

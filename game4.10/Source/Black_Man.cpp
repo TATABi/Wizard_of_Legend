@@ -48,6 +48,7 @@ namespace game_framework {
 
 	void Black_Man::LoadBitmap_2()
 	{
+		_bm_hp_bar.LoadBitmap(ENEMY_HP_BAR_M);
 
 		_bm_stand_left.LoadBitmap(ENEMY_BLACK_MAN_STAND_LEFT, RGB(50, 255, 0));
 		_bm_stand_right.LoadBitmap(ENEMY_BLACK_MAN_STAND_RIGHT, RGB(50, 255, 0));
@@ -84,8 +85,8 @@ namespace game_framework {
 
 	void Black_Man::Move(int cx, int cy)
 	{
-		int x = CHARACTER_SCREEN_X + _xy[0] - cx;
-		int y = CHARACTER_SCREEN_Y + _xy[1] - cy;
+		x = CHARACTER_SCREEN_X + _xy[0] - cx;
+		y = CHARACTER_SCREEN_Y + _xy[1] - cy;
 
 		switch (_state)
 		{
@@ -178,12 +179,13 @@ namespace game_framework {
 			}
 			else
 			{
-				//_ani_hurt.Reset();
 				ResetAnimation();
 				_hit_recover_flag = true;
 			}
 			break;
 		}
+
+		CalculateHP();
 	}
 
 	void Black_Man::Attack(int cx, int cy)
@@ -233,5 +235,29 @@ namespace game_framework {
 		_ani_right.Reset();
 		_ani_attack_left.Reset();
 		_ani_attack_right.Reset();
+	}
+
+	void Black_Man::CalculateHP()
+	{
+		int sx = x + (_bm_stand_left.Width() - _bm_hp_bar.Width()) / 2;
+		int sy = y;
+		int Max_HP_X2 = sx + 53;
+		int MAX_HP_Y1 = sy + 1;
+		int MAX_HP_Y2 = sy + 5;
+		int X1;
+		float temp_hp;
+		
+		_bm_hp_bar.SetTopLeft(sx, sy);
+		_bm_hp_bar.ShowBitmap();
+
+		temp_hp = (float)(HP - _hp) / HP;			//計算HP差值
+		X1 = (int)(temp_hp * 52);
+		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣MP)
+		pb = pDC->SelectObject(&b);
+		pDC->Rectangle(Max_HP_X2 - X1, MAX_HP_Y1, Max_HP_X2, MAX_HP_Y2);
+		pDC->SelectObject(pb);						// 釋放 brush
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+		
 	}
 }

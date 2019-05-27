@@ -13,6 +13,7 @@ namespace game_framework {
 		void Init();
 		int* GetHitbox();	
 		bool AttackedThisEnemy(Enemy*);			//之後改virtual
+		void RefreshEnemyList();				//重製怪物表單 (讓怪物可以被重複攻擊)
 		virtual int GetDamage(Enemy *) = 0;
 		virtual void OnMove(int *, GameMap *) = 0;
 		virtual void OnShow() = 0;

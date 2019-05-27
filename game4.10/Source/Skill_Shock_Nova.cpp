@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include <math.h>
 #include "Skill_Shock_Nova.h"
+#include "CharacterData.h"
 
 
 namespace game_framework
@@ -23,7 +24,7 @@ namespace game_framework
 
 	void Skill_Shock_Nova::Initialize(int mouseX, int mouseY, float* cxy)
 	{
-		_damage = 1;
+		_damage = 2;
 		_backDistance = 10;
 		_hitbox[0] = 103;
 		_hitbox[1] = 105;
@@ -39,12 +40,10 @@ namespace game_framework
 		_speed = 20;
 		_cast_distance = 30;
 		_isInit = true;
-		_counter = 5;
+		_delay_counter = 5;
 		_time = 6;
 		_ani_skill[0].SetDelayCount(1);
-
-
-
+		_re_attack_counter = RE;
 
 	}
 
@@ -62,14 +61,13 @@ namespace game_framework
 
 	void Skill_Shock_Nova::OnMove(int *cxy, GameMap *map)
 	{
-		_counter == 0 ? NULL : _counter--;
-		
-		//_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cxy[0], CHARACTER_SCREEN_X + _xy[1] - cxy[1]);
-	
 
-		if (_counter == 0)
+
+		_delay_counter > 0 ? _delay_counter-- : NULL;
+		_re_attack_counter > 0 ? _re_attack_counter-- : NULL;
+
+		if (_delay_counter == 0)
 		{
-			_damage = 1;
 
 			if (_lifeTimer == 0) //®É¶¡¨ì
 			{
@@ -83,11 +81,6 @@ namespace game_framework
 			}
 			else
 			{
-				/*
-				_xy[0] = cxy[0] - (_ani_skill[0].Width() - 70) / 2 + 2;
-				_xy[1] = cxy[1] - (_ani_skill[0].Height() - 70) / 2 - 52;
-				*/
-
 				_xy[0] = cxy[0] - (_ani_skill[0].Width() - 70) / 2 + 2;
 				_xy[1] = cxy[1] - (_ani_skill[0].Height() - 70) / 2 + 25;
 
@@ -97,7 +90,12 @@ namespace game_framework
 
 		_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cxy[0], CHARACTER_SCREEN_Y + _xy[1] - cxy[1]);
 
-		
+		if (_re_attack_counter == 0)
+		{
+			RefreshEnemyList();
+			_re_attack_counter = RE;
+		}
+
 
 	}
 
@@ -131,7 +129,7 @@ namespace game_framework
 				if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 				{
 					if (AttackedThisEnemy(enemy))
-						return _damage;
+						return _damage * CharacterData::Attack_Coefficient;
 				}
 			}
 		}
@@ -140,7 +138,7 @@ namespace game_framework
 
 	void Skill_Shock_Nova::OnShow()
 	{
-		if (!_isDelete && _counter==0)
+		if (!_isDelete && _delay_counter ==0)
 		{
 			_ani_skill[0].OnShow();
 			if (_ani_skill[0].IsFinalBitmap())

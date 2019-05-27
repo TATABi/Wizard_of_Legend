@@ -327,7 +327,7 @@ void CAudio::Stop(unsigned id)
 {
 	if (!isOpened)
 		return;
-	GAME_ASSERT(info.find(id) != info.end(), "Can not stop audio: incorrect Audio ID!");
+ 	GAME_ASSERT(info.find(id) != info.end(), "Can not stop audio: incorrect Audio ID!");
 	if (info[id].isGood) {
 		char command[MAX_MCI_COMMAND_SIZE];
 		sprintf(command, "stop device%d", id);

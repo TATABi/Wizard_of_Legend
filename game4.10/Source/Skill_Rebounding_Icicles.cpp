@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include <math.h>
 #include "Skill_Rebounding_Icicles.h"
+#include "CharacterData.h"
 
 
 namespace game_framework
@@ -23,7 +24,7 @@ namespace game_framework
 
 	void Skill_Rebounding_Icicles::Initialize(int mouseX, int mouseY, float* cxy)
 	{
-		_damage = 1;
+		_damage = 8;
 		_backDistance = 10;
 		_hitbox[0] = 32;
 		_hitbox[1] = 10;
@@ -101,7 +102,7 @@ namespace game_framework
 		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //µo¥Í¸I¼²
 		{
 			if (AttackedThisEnemy(enemy))
-				return _damage;
+				return _damage * CharacterData::Attack_Coefficient;
 		}
 
 		return 0;

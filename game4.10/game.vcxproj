@@ -653,6 +653,7 @@
     <Image Include="RES\InGame\Enemy\Dark_man\Attack\Right\9.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Get_Hurt\left.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Get_Hurt\right.bmp" />
+    <Image Include="RES\InGame\Enemy\Dark_man\HP\HP_Bar.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\01.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\02.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Move\Left\03.bmp" />
@@ -663,6 +664,7 @@
     <Image Include="RES\InGame\Enemy\Dark_man\Move\Right\04.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Stand\left.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Stand\right.bmp" />
+    <Image Include="RES\InGame\Enemy\HP_bar\M.bmp" />
     <Image Include="RES\InGame\GetHurt\01.bmp" />
     <Image Include="RES\InGame\GetHurt\02.bmp" />
     <Image Include="RES\InGame\GetHurt\03.bmp" />
