@@ -17,5 +17,10 @@ namespace game_framework {
 	{
 		return _xy[1];
 	}
-
+/*
+	float Layer::GetPosition()
+	{
+		return _xy;
+	}
+	*/
 }

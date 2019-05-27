@@ -46,68 +46,63 @@ namespace game_framework {
 		_ani_useSkill_3_up.SetDelayCount(1);
 
 		_hp = CharacterData::HP;
-		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash  = false;
+		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
 		_horizontal = 0;
 		_vertical = 0;
 		_directionFlag = DOWN; //面向下
-		//_run_counter = 45;
-		//_isDashLock = false;
+		_run_counter = 45;
+		_isDashLock = false;
 		_isSlash = false;
-		//_dash_delay_counter = DASH_DELAY;
-		//_dash_counter = 9;
+		_dash_delay_counter = DASH_DELAY;
+		_dash_counter = 9;
 		_isUsingSkill = false;
 		_isHurt = false;
 		_useSkillNum = 0;
 		_dash_resistance = 1;
 		_hit_recover_counter = 0;
 
-		_run_counter.SetTime(WALK_TO_RUN_TIME);
-		//_dash_cooldown_counter.Set(DASH_COOLDOWN_TIME);
-		_dash_cooldown_counter.Stop();
-		_dash_move_counter.Stop();
-		
 	}
 
 	void Character::LoadBitmap()
 	{
 		int m1[10] = { CHARACTER_DOWN_01,CHARACTER_DOWN_02,CHARACTER_DOWN_03,CHARACTER_DOWN_04,CHARACTER_DOWN_05,
-					   CHARACTER_DOWN_06,CHARACTER_DOWN_07,CHARACTER_DOWN_08,CHARACTER_DOWN_09,CHARACTER_DOWN_10};
+			CHARACTER_DOWN_06,CHARACTER_DOWN_07,CHARACTER_DOWN_08,CHARACTER_DOWN_09,CHARACTER_DOWN_10 };
 		for (int i = 0; i < 10; i++)
 			_ani_down.AddBitmap(m1[i], RGB(50, 255, 0));
 
 		int m2[10] = { CHARACTER_UP_01,CHARACTER_UP_02,CHARACTER_UP_03,CHARACTER_UP_04,CHARACTER_UP_05,
-			           CHARACTER_UP_06,CHARACTER_UP_07,CHARACTER_UP_08,CHARACTER_UP_09,CHARACTER_UP_10 };
+			CHARACTER_UP_06,CHARACTER_UP_07,CHARACTER_UP_08,CHARACTER_UP_09,CHARACTER_UP_10 };
 		for (int i = 0; i < 10; i++)
 			_ani_up.AddBitmap(m2[i], RGB(50, 255, 0));
 
 		int m3[9] = { CHARACTER_LEFT_01,CHARACTER_LEFT_02,CHARACTER_LEFT_03,CHARACTER_LEFT_04,CHARACTER_LEFT_05,
-					  CHARACTER_LEFT_06,CHARACTER_LEFT_07,CHARACTER_LEFT_08,CHARACTER_LEFT_09 };
+			CHARACTER_LEFT_06,CHARACTER_LEFT_07,CHARACTER_LEFT_08,CHARACTER_LEFT_09 };
 		for (int i = 0; i < 9; i++)
 			_ani_left.AddBitmap(m3[i], RGB(50, 255, 0));
 
 		int m4[9] = { CHARACTER_RIGHT_01,CHARACTER_RIGHT_02,CHARACTER_RIGHT_03,CHARACTER_RIGHT_04,CHARACTER_RIGHT_05,
-				      CHARACTER_RIGHT_06,CHARACTER_RIGHT_07,CHARACTER_RIGHT_08,CHARACTER_RIGHT_09 };
+			CHARACTER_RIGHT_06,CHARACTER_RIGHT_07,CHARACTER_RIGHT_08,CHARACTER_RIGHT_09 };
 		for (int i = 0; i < 9; i++)
 			_ani_right.AddBitmap(m4[i], RGB(50, 255, 0));
 
 		int m5[9] = { CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_01,CHARACTER_DASH_UP_02,
-					  CHARACTER_DASH_UP_03,CHARACTER_DASH_UP_03,CHARACTER_DASH_UP_04,CHARACTER_DASH_UP_04 };
+			CHARACTER_DASH_UP_03,CHARACTER_DASH_UP_03,CHARACTER_DASH_UP_04,CHARACTER_DASH_UP_04 };
 		for (int i = 0; i < 9; i++)
 			_ani_dash_up.AddBitmap(m5[i], RGB(50, 255, 0));
 
 		int m6[9] = { CHARACTER_DASH_DOWN_01,CHARACTER_DASH_DOWN_01,CHARACTER_DASH_DOWN_01,CHARACTER_DASH_DOWN_01,CHARACTER_DASH_DOWN_02,
-					  CHARACTER_DASH_DOWN_03,CHARACTER_DASH_DOWN_03,CHARACTER_DASH_DOWN_04,CHARACTER_DASH_DOWN_04 };
+			CHARACTER_DASH_DOWN_03,CHARACTER_DASH_DOWN_03,CHARACTER_DASH_DOWN_04,CHARACTER_DASH_DOWN_04 };
 		for (int i = 0; i < 9; i++)
 			_ani_dash_down.AddBitmap(m6[i], RGB(50, 255, 0));
 
 
 		int m7[9] = { CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_02,
-					  CHARACTER_DASH_LEFT_02,CHARACTER_DASH_LEFT_03,CHARACTER_DASH_LEFT_04,CHARACTER_DASH_LEFT_05 };
+			CHARACTER_DASH_LEFT_02,CHARACTER_DASH_LEFT_03,CHARACTER_DASH_LEFT_04,CHARACTER_DASH_LEFT_05 };
 		for (int i = 0; i < 9; i++)
 			_ani_dash_left.AddBitmap(m7[i], RGB(50, 255, 0));
 
 		int m8[9] = { CHARACTER_DASH_RIGHT_01,CHARACTER_DASH_RIGHT_01,CHARACTER_DASH_RIGHT_01,CHARACTER_DASH_RIGHT_01,CHARACTER_DASH_RIGHT_02,
-					  CHARACTER_DASH_RIGHT_02,CHARACTER_DASH_RIGHT_03,CHARACTER_DASH_RIGHT_04,CHARACTER_DASH_RIGHT_05 };
+			CHARACTER_DASH_RIGHT_02,CHARACTER_DASH_RIGHT_03,CHARACTER_DASH_RIGHT_04,CHARACTER_DASH_RIGHT_05 };
 		for (int i = 0; i < 9; i++)
 			_ani_dash_right.AddBitmap(m8[i], RGB(50, 255, 0));
 
@@ -122,56 +117,56 @@ namespace game_framework {
 		int m11[4] = { CHARACTER_RUN_LEFT_01,CHARACTER_RUN_LEFT_02,CHARACTER_RUN_LEFT_03,CHARACTER_RUN_LEFT_03 };
 		for (int i = 0; i < 4; i++)
 			_ani_run_left.AddBitmap(m11[i], RGB(50, 255, 0));
-		
+
 		int m12[4] = { CHARACTER_RUN_RIGHT_01,CHARACTER_RUN_RIGHT_02,CHARACTER_RUN_RIGHT_03,CHARACTER_RUN_RIGHT_03 };
 		for (int i = 0; i < 4; i++)
 			_ani_run_right.AddBitmap(m12[i], RGB(50, 255, 0));
-		
+
 		//////temp
-		int m13[14] = {CHARACTER_SKILL_SHOCK_NOVA_UP_01, CHARACTER_SKILL_SHOCK_NOVA_UP_02, CHARACTER_SKILL_SHOCK_NOVA_UP_03, CHARACTER_SKILL_SHOCK_NOVA_UP_04, CHARACTER_SKILL_SHOCK_NOVA_UP_05,
+		int m13[14] = { CHARACTER_SKILL_SHOCK_NOVA_UP_01, CHARACTER_SKILL_SHOCK_NOVA_UP_02, CHARACTER_SKILL_SHOCK_NOVA_UP_03, CHARACTER_SKILL_SHOCK_NOVA_UP_04, CHARACTER_SKILL_SHOCK_NOVA_UP_05,
 			CHARACTER_SKILL_SHOCK_NOVA_UP_06, CHARACTER_SKILL_SHOCK_NOVA_UP_07, CHARACTER_SKILL_SHOCK_NOVA_UP_08, CHARACTER_SKILL_SHOCK_NOVA_UP_09, CHARACTER_SKILL_SHOCK_NOVA_UP_10,
 			CHARACTER_SKILL_SHOCK_NOVA_UP_11, CHARACTER_SKILL_SHOCK_NOVA_UP_12, CHARACTER_SKILL_SHOCK_NOVA_UP_13, CHARACTER_SKILL_SHOCK_NOVA_UP_14 };
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_1.AddBitmap(m13[i], RGB(50, 255, 0));
 		////////
 		int m14_1[11] = { CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_01, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_02, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_03, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_04, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_05,
-						CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_06, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_07, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_08, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_09, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_10,
-						CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_11 };
+			CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_06, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_07, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_08, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_09, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_10,
+			CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_11 };
 		for (int i = 0; i < 11; i++)
 			_ani_useSkill_2_down.AddBitmap(m14_1[i], RGB(50, 255, 0));
 
 		int m14_2[11] = { CHARACTER_SKILL_REBOUNDING_ICICLES_UP_01, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_02, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_03, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_04, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_05,
-						  CHARACTER_SKILL_REBOUNDING_ICICLES_UP_06, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_07, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_08, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_09, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_10,
-						  CHARACTER_SKILL_REBOUNDING_ICICLES_UP_11 };
+			CHARACTER_SKILL_REBOUNDING_ICICLES_UP_06, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_07, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_08, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_09, CHARACTER_SKILL_REBOUNDING_ICICLES_UP_10,
+			CHARACTER_SKILL_REBOUNDING_ICICLES_UP_11 };
 		for (int i = 0; i < 11; i++)
 			_ani_useSkill_2_up.AddBitmap(m14_2[i], RGB(50, 255, 0));
 
 		int m14_3[11] = { CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_01, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_02, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_03, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_04, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_05,
-						  CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_06, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_07, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_08, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_09, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_10,
-						  CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_11 };
+			CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_06, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_07, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_08, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_09, CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_10,
+			CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_11 };
 		for (int i = 0; i < 11; i++)
 			_ani_useSkill_2_left.AddBitmap(m14_3[i], RGB(50, 255, 0));
 
 		int m14_4[11] = { CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_01, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_02, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_03, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_04, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_05,
-						  CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_06, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_07, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_08, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_09, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_10,
-					      CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_11 };
+			CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_06, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_07, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_08, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_09, CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_10,
+			CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_11 };
 		for (int i = 0; i < 11; i++)
 			_ani_useSkill_2_right.AddBitmap(m14_4[i], RGB(50, 255, 0));
 
 		int m15[14] = { CHARACTER_SKILL_SHOCK_NOVA_DOWN_01, CHARACTER_SKILL_SHOCK_NOVA_DOWN_02, CHARACTER_SKILL_SHOCK_NOVA_DOWN_03, CHARACTER_SKILL_SHOCK_NOVA_DOWN_04, CHARACTER_SKILL_SHOCK_NOVA_DOWN_05,
-						CHARACTER_SKILL_SHOCK_NOVA_DOWN_06, CHARACTER_SKILL_SHOCK_NOVA_DOWN_07, CHARACTER_SKILL_SHOCK_NOVA_DOWN_08, CHARACTER_SKILL_SHOCK_NOVA_DOWN_09, CHARACTER_SKILL_SHOCK_NOVA_DOWN_10,
-						CHARACTER_SKILL_SHOCK_NOVA_DOWN_11, CHARACTER_SKILL_SHOCK_NOVA_DOWN_12, CHARACTER_SKILL_SHOCK_NOVA_DOWN_13, CHARACTER_SKILL_SHOCK_NOVA_DOWN_14 };
+			CHARACTER_SKILL_SHOCK_NOVA_DOWN_06, CHARACTER_SKILL_SHOCK_NOVA_DOWN_07, CHARACTER_SKILL_SHOCK_NOVA_DOWN_08, CHARACTER_SKILL_SHOCK_NOVA_DOWN_09, CHARACTER_SKILL_SHOCK_NOVA_DOWN_10,
+			CHARACTER_SKILL_SHOCK_NOVA_DOWN_11, CHARACTER_SKILL_SHOCK_NOVA_DOWN_12, CHARACTER_SKILL_SHOCK_NOVA_DOWN_13, CHARACTER_SKILL_SHOCK_NOVA_DOWN_14 };
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_3_down.AddBitmap(m15[i], RGB(50, 255, 0));
 
-		
+
 		int m16[14] = { CHARACTER_SKILL_SHOCK_NOVA_UP_01, CHARACTER_SKILL_SHOCK_NOVA_UP_02, CHARACTER_SKILL_SHOCK_NOVA_UP_03, CHARACTER_SKILL_SHOCK_NOVA_UP_04, CHARACTER_SKILL_SHOCK_NOVA_UP_05,
-						CHARACTER_SKILL_SHOCK_NOVA_UP_06, CHARACTER_SKILL_SHOCK_NOVA_UP_07, CHARACTER_SKILL_SHOCK_NOVA_UP_08, CHARACTER_SKILL_SHOCK_NOVA_UP_09, CHARACTER_SKILL_SHOCK_NOVA_UP_10,
-						CHARACTER_SKILL_SHOCK_NOVA_UP_11, CHARACTER_SKILL_SHOCK_NOVA_UP_12, CHARACTER_SKILL_SHOCK_NOVA_UP_13, CHARACTER_SKILL_SHOCK_NOVA_UP_14};
+			CHARACTER_SKILL_SHOCK_NOVA_UP_06, CHARACTER_SKILL_SHOCK_NOVA_UP_07, CHARACTER_SKILL_SHOCK_NOVA_UP_08, CHARACTER_SKILL_SHOCK_NOVA_UP_09, CHARACTER_SKILL_SHOCK_NOVA_UP_10,
+			CHARACTER_SKILL_SHOCK_NOVA_UP_11, CHARACTER_SKILL_SHOCK_NOVA_UP_12, CHARACTER_SKILL_SHOCK_NOVA_UP_13, CHARACTER_SKILL_SHOCK_NOVA_UP_14 };
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_3_up.AddBitmap(m16[i], RGB(50, 255, 0));
 
-		
+
 		_bm_stand_down.LoadBitmap(CHARACTER_STAND_DOWN, RGB(50, 255, 0));
 		_bm_stand_up.LoadBitmap(CHARACTER_STAND_UP, RGB(50, 255, 0));
 		_bm_stand_left.LoadBitmap(CHARACTER_STAND_LEFT, RGB(50, 255, 0));
@@ -208,33 +203,33 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{
-		GetHurt();
+		IsHurt();
 
 		if (_isHurt)
 		{
-			//_run_counter = 0;
-			_run_counter.Reset();
+			_dash_delay_counter = DASH_DELAY;
+			_isDashLock = false;
+			_isDash = false;
+			_run_counter = 45;
 		}
 		else if (_isUsingSkill)
 		{
-			//_run_counter = 0;
-			_run_counter.Reset();
+			_run_counter = 45;
 			_ani_useSkill->OnMove();
 		}
 		else {
-			if (_dash_cooldown_counter.Result() == true)//!_isDashLock)
+			if (!_isDashLock)
 			{
 				_horizontal = 0;
 				_vertical = 0;
 			}
-
 			//初始移動系數
-			if (_dash_move_counter.Result() == false)//_isDash)
+			if (_isDash)
 			{
 				_SLASH_PIXEL = (int)(DASH_SLASH_PIXEL * CharacterData::Move_Coefficient) * _dash_resistance;
 				_STR_PIXEL = (int)(DASH_STR_PIXEL * CharacterData::Move_Coefficient) * _dash_resistance;
 			}
-			else if (_run_counter.Result())
+			else if (_isRunning)
 			{
 				_SLASH_PIXEL = (int)(RUN_SLASH_PIXEL * CharacterData::Move_Coefficient);
 				_STR_PIXEL = (int)(RUN_STR_PIXEL * CharacterData::Move_Coefficient);
@@ -244,9 +239,8 @@ namespace game_framework {
 				_SLASH_PIXEL = (int)(NORMAL_SLASH_PIXEL * CharacterData::Move_Coefficient);
 				_STR_PIXEL = (int)(NORMAL_STR_PIXEL * CharacterData::Move_Coefficient);
 			}
-
 			//計算移動距離
-			if (IsSlash() && _dash_cooldown_counter.Result() == true)//!_isDashLock) //如果斜走
+			if (IsSlash() && !_isDashLock) //如果斜走
 			{
 				if (_isMovingDown)
 				{
@@ -269,7 +263,7 @@ namespace game_framework {
 						_horizontal -= _SLASH_PIXEL;
 				}
 			}
-			else if (_dash_cooldown_counter.Result() == true)//!_isDashLock)
+			else if (!_isDashLock)
 			{
 				if (_isMovingDown)
 				{
@@ -294,14 +288,14 @@ namespace game_framework {
 			}
 
 			//判斷方向
-			if (_horizontal != 0 && _dash_cooldown_counter.Result() == true)//!_isDashLock)
+			if (_horizontal != 0 && !_isDashLock)
 			{
 				if (_horizontal < 0)
 					_directionFlag = LEFT;	//左
 				else
 					_directionFlag = RIGHT;	//右
 			}
-			else if (_dash_cooldown_counter.Result() == true)//!_isDashLock)
+			else if (!_isDashLock)
 			{
 				if (_vertical < 0)
 					_directionFlag = UP;	//上
@@ -310,33 +304,24 @@ namespace game_framework {
 			}
 
 			//維持上一格狀態的方向
-			/*
 			if (_dash_delay_counter < DASH_DELAY && _dash_delay_counter > 0)
 				_dash_delay_counter--;
 			else
 				_dash_delay_counter = DASH_DELAY;
-			*/
-
-			_dash_cooldown_counter.Result() ?  _dash_cooldown_counter.Stop() : _dash_cooldown_counter.Count();
-
 
 			//動畫
-			if (_dash_move_counter.Result() == false)//_isDash)
+			if (_isDash)
 			{
-				_run_counter.Reset();
-
+				_run_counter = 45;
 				if (IsMoving() && IsSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
 				{
 					if (_isMovingDown)
 					{
-						//_isDashLock ? NULL : _directionFlag = DOWN;		//Dash中不能改方向
-
-						_dash_cooldown_counter.Result() == false ? NULL : _directionFlag = DOWN;
+						_isDashLock ? NULL : _directionFlag = DOWN;		//Dash中不能改方向
 					}
 					else
 					{
-						//_isDashLock ? NULL : _directionFlag = UP;
-						_dash_cooldown_counter.Result() == false ? NULL : _directionFlag = UP;
+						_isDashLock ? NULL : _directionFlag = UP;
 					}
 				}
 				else		//停止移動時按空白鍵，朝面相方向滑動(沒有斜向)；或是非斜向移動時		
@@ -361,23 +346,8 @@ namespace game_framework {
 				_ani_dash_left.OnMove();
 				_ani_dash_down.OnMove();
 				_ani_dash_up.OnMove();
-
-				_dash_move_counter.Count();
-
-				/*
-				if (_dash_move_counter.Result() == true)
-				{
-					_ani_dash_right.Reset();
-					_ani_dash_left.Reset();
-					_ani_dash_down.Reset();
-					_ani_dash_up.Reset();
-					_dash_move_counter.Stop();
-				}
-				*/
-
-			//	_dash_counter--;
-			//	_isDashLock = true;
-				/*
+				_dash_counter--;
+				_isDashLock = true;
 				if (_dash_counter < 3)
 				{
 					_dash_resistance *= 0.1;
@@ -393,36 +363,13 @@ namespace game_framework {
 					_dash_counter = 9;
 					_dash_resistance = 1;
 				}
-				*/
-
-				if (_dash_move_counter.Now() < 3)
-				{
-					_dash_resistance *= 0.1;
-				}
-				if (_dash_move_counter.Result() == true)
-				{
-					//_isDashLock = false;
-					//_isDash = false;
-					_ani_dash_right.Reset();
-					_ani_dash_left.Reset();
-					_ani_dash_down.Reset();
-					_ani_dash_up.Reset();
-					_dash_move_counter.Stop();
-					_dash_resistance = 1;
-				}
-
-
 			}
 			else if (IsMoving())   //走動
 			{
-				/*
 				if (_run_counter >= 0)
 					_run_counter--;
 				if (_run_counter < 0)
 					_isRunning = true;
-					*/
-				_run_counter.Count();
-
 				switch (_directionFlag)
 				{
 				case RIGHT:
@@ -441,16 +388,15 @@ namespace game_framework {
 			}
 			else    //站著不動
 			{
-				//_isRunning = false;
-				//_run_counter = 45;
-				_run_counter.Reset();
+				_isRunning = false;
+				_run_counter = 45;
 				_ani_run_right.Reset();
 				_ani_run_left.Reset();
 				_ani_run_down.Reset();
 				_ani_run_up.Reset();
 			}
 
-			if (_run_counter.Result())			//跑步氣流動畫
+			if (_isRunning)			//跑步氣流動畫
 			{
 				switch (_directionFlag)
 				{
@@ -479,54 +425,26 @@ namespace game_framework {
 				_ani_run_down.Reset();
 				_ani_run_up.Reset();
 			}
-				int *temp_xy = map->SetCharacterXY(_horizontal, _vertical, MOVE_HITBOX);	//更新角色在map的位置
-				_xy[0] = temp_xy[0];
-				_xy[1] = temp_xy[1];
+			int *temp_xy = map->SetCharacterXY(_horizontal, _vertical, CHARACTER_MOVE_HITBOX);	//更新角色在map的位置
+
+			_xy[0] = temp_xy[0];
+			_xy[1] = temp_xy[1];
 		}
 	}
 
 	void Character::Dash()
 	{
-		/*
 		if (CanDash())
 		{
 			_isDash = true;
-			//_isRunning = false;
-			_run_counter.Reset();
-			//_dash_delay_counter--;
-			_dash_cooldown_counter.Start();
+			_isRunning = false;
+			_dash_delay_counter--;
 			CAudio::Instance()->Play(AUDIO_DASH, false);
 		}
-		*/
-
-		if (CanDash())
-		{
-			_run_counter.Reset();
-			_dash_cooldown_counter.SetTime(DASH_COOLDOWN_TIME);
-			_dash_cooldown_counter.Reset();
-			_dash_cooldown_counter.Start();
-			_dash_move_counter.SetTime(DASH_MOVE_TIME);
-			_dash_move_counter.Reset();
-			_dash_move_counter.Start();
-			CAudio::Instance()->Play(AUDIO_DASH, false);
-		}
-
 	}
 
-	bool Character::CanDash()
+	void Character::OnShow()
 	{
-		/*
-		if (_dash_delay_counter == DASH_DELAY)
-		return true;
-
-		return false;
-		*/
-		return _dash_cooldown_counter.Result();
-
-	}
-
-	void Character::OnShow() 
-	{	
 		/////////////////////////////////  受傷圖片待加上下 /////////////////////////////
 		if (_isHurt)
 		{
@@ -557,7 +475,7 @@ namespace game_framework {
 			}
 
 		}
-		else if (_dash_move_counter.Result() == false)//_isDash)
+		else if (_isDash)
 		{
 			switch (_directionFlag)
 			{
@@ -578,7 +496,7 @@ namespace game_framework {
 		}
 		else
 		{
-			if (_run_counter.Result() && !_ani_run_right.IsFinalBitmap() && !_ani_run_left.IsFinalBitmap()
+			if (_isRunning && !_ani_run_right.IsFinalBitmap() && !_ani_run_left.IsFinalBitmap()
 				&& !_ani_run_down.IsFinalBitmap() && !_ani_run_up.IsFinalBitmap())
 			{
 				switch (_directionFlag)
@@ -638,7 +556,7 @@ namespace game_framework {
 				}
 			}
 		}
-		
+
 
 	}
 
@@ -677,11 +595,17 @@ namespace game_framework {
 			return true;
 
 		return false;
-	}	
+	}
+
+	bool Character::CanDash()
+	{
+		if (_dash_delay_counter == DASH_DELAY)
+			return true;
+		return false;
+	}
 
 	Skill* Character::GenerateSkill(int skillNum, int x, int y)
 	{
-
 		int direction = CaculateDirection(x, y);
 
 		if (skillNum == 1)
@@ -725,12 +649,12 @@ namespace game_framework {
 			{
 				_isUsingSkill = true;
 				_useSkillNum = 3;
-				
+
 				if (y > SIZE_Y / 2)
 					_ani_useSkill = &_ani_useSkill_3_down;
 				else
 					_ani_useSkill = &_ani_useSkill_3_up;
-					
+
 				return new Skill_Shock_Nova(x, y, _xy);
 			}
 		}
@@ -778,17 +702,17 @@ namespace game_framework {
 
 	const int* Character::GetHitbox()
 	{
-		return HITBOX;
+		return CHARACTER_HITBOX;
 	}
 
-	void Character::GetHurt()
+	bool Character::IsHurt()
 	{
 		if (_hit_recover_counter == 0)
 		{
 			if (CharacterData::HP < _hp)
 			{
 				_isHurt = true;
-				_hit_recover_counter = CHARACTER_HIT_RECOVER_TIME;
+				_hit_recover_counter = 5;
 			}
 			else
 				_isHurt = false;
@@ -797,11 +721,7 @@ namespace game_framework {
 		}
 		else
 			_hit_recover_counter > 0 ? _hit_recover_counter-- : NULL;
-	}
 
-	bool Character::IsHurt()
-	{
-		return _isHurt ? true : false;
+		return _isHurt;
 	}
-
 }
