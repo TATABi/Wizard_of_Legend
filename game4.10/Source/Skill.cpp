@@ -28,12 +28,6 @@ namespace game_framework
 		return _hitbox;
 	}
 
-
-	int* Skill::GetPosition()
-	{
-		return _xy;
-	}
-
 	bool Skill::AttackedThisEnemy(Enemy* enemy)
 	{
 		bool isExist = false;

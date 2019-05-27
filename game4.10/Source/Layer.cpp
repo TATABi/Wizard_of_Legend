@@ -9,18 +9,16 @@
 
 namespace game_framework {
 
-	Layer::Layer()
-	{
-	}
+	Layer::Layer() {}
 
 	int Layer::GetY()
 	{
 		return _xy[1];
 	}
-/*
-	float Layer::GetPosition()
+
+	float* Layer::GetPosition()
 	{
 		return _xy;
 	}
-	*/
+
 }

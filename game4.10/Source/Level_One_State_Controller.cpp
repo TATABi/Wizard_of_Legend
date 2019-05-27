@@ -74,13 +74,7 @@ namespace game_framework {
 				if (nChar == KEY_RIGHT || nChar == KEY_D)
 					Global_Class::g_character.SetMovingRight(true);
 				if (nChar == KEY_SPACE)
-				{
-					if (Global_Class::g_character.CanDash())
-					{
-						Global_Class::g_character.Dash();
-						CAudio::Instance()->Play(AUDIO_DASH, false);
-					}
-				}
+					Global_Class::g_character.Dash();
 				if (nChar == KEY_ESC)	//PAUSED¿ï³æ
 				{
 					Global_Class::g_pauseMenu.Paused(true);

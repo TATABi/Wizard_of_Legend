@@ -47,8 +47,8 @@ namespace game_framework {
 
 		_hp = CharacterData::HP;
 		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
-		_horizontal = 0;
-		_vertical = 0;
+		_dx = 0;
+		_dy = 0;
 		_directionFlag = DOWN; //面向下
 		_run_counter = 45;
 		_isDashLock = false;
@@ -220,8 +220,8 @@ namespace game_framework {
 		else {
 			if (!_isDashLock)
 			{
-				_horizontal = 0;
-				_vertical = 0;
+				_dx = 0;
+				_dy = 0;
 			}
 			//初始移動系數
 			if (_isDash)
@@ -243,63 +243,46 @@ namespace game_framework {
 			if (IsSlash() && !_isDashLock) //如果斜走
 			{
 				if (_isMovingDown)
-				{
-					if (_vertical < _SLASH_PIXEL)
-						_vertical += _SLASH_PIXEL;
-				}
+					_dy += _SLASH_PIXEL;
+				
 				if (_isMovingUp)
-				{
-					if (_vertical > -_SLASH_PIXEL)
-						_vertical -= _SLASH_PIXEL;
-				}
+					_dy -= _SLASH_PIXEL;
+		
 				if (_isMovingRight)
-				{
-					if (_horizontal < _SLASH_PIXEL)
-						_horizontal += _SLASH_PIXEL;
-				}
+					_dx += _SLASH_PIXEL;
+
 				if (_isMovingLeft)
-				{
-					if (_horizontal > -_SLASH_PIXEL)
-						_horizontal -= _SLASH_PIXEL;
-				}
+					_dx -= _SLASH_PIXEL;
 			}
 			else if (!_isDashLock)
 			{
 				if (_isMovingDown)
-				{
-					if (_vertical < _STR_PIXEL)
-						_vertical += _STR_PIXEL;
-				}
+					_dy += _STR_PIXEL;
+
 				if (_isMovingUp)
-				{
-					if (_vertical > -_STR_PIXEL)
-						_vertical -= _STR_PIXEL;
-				}
+					_dy -= _STR_PIXEL;
+				
 				if (_isMovingRight)
-				{
-					if (_horizontal < _STR_PIXEL)
-						_horizontal += _STR_PIXEL;
-				}
+					_dx += _STR_PIXEL;
+
 				if (_isMovingLeft)
-				{
-					if (_horizontal > -_STR_PIXEL)
-						_horizontal -= _STR_PIXEL;
-				}
+					_dx -= _STR_PIXEL;
+
 			}
 
 			//判斷方向
-			if (_horizontal != 0 && !_isDashLock)
+			if (_dx != 0 && !_isDashLock)
 			{
-				if (_horizontal < 0)
+				if (_dx < 0)
 					_directionFlag = LEFT;	//左
 				else
 					_directionFlag = RIGHT;	//右
 			}
 			else if (!_isDashLock)
 			{
-				if (_vertical < 0)
+				if (_dy < 0)
 					_directionFlag = UP;	//上
-				else if (_vertical > 0)
+				else if (_dy > 0)
 					_directionFlag = DOWN;	//下
 			}
 
@@ -329,16 +312,16 @@ namespace game_framework {
 					switch (_directionFlag)
 					{
 					case RIGHT:
-						_horizontal = _STR_PIXEL;
+						_dx = _STR_PIXEL;
 						break;
 					case LEFT:
-						_horizontal = -_STR_PIXEL;
+						_dx = -_STR_PIXEL;
 						break;
 					case DOWN:
-						_vertical = _STR_PIXEL;
+						_dy = _STR_PIXEL;
 						break;
 					case UP:
-						_vertical = -_STR_PIXEL;
+						_dy = -_STR_PIXEL;
 						break;
 					}
 				}
@@ -425,7 +408,7 @@ namespace game_framework {
 				_ani_run_down.Reset();
 				_ani_run_up.Reset();
 			}
-			int *temp_xy = map->SetCharacterXY(_horizontal, _vertical, CHARACTER_MOVE_HITBOX);	//更新角色在map的位置
+			int *temp_xy = map->SetCharacterXY(_dx, _dy, CHARACTER_MOVE_HITBOX);	//更新角色在map的位置
 
 			_xy[0] = temp_xy[0];
 			_xy[1] = temp_xy[1];
@@ -516,7 +499,7 @@ namespace game_framework {
 				}
 			}
 
-			if (_horizontal != 0 || _vertical != 0) {
+			if (_dx != 0 || _dy != 0) {
 				switch (_directionFlag)
 				{
 				case RIGHT:
@@ -604,9 +587,9 @@ namespace game_framework {
 		return false;
 	}
 
-	Skill* Character::GenerateSkill(int skillNum, int x, int y)
+	Skill* Character::GenerateSkill(int skillNum, float x, float y)
 	{
-		int direction = CaculateDirection(x, y);
+		int direction = CaculateVector(x, y);
 
 		if (skillNum == 1)
 		{
@@ -669,7 +652,7 @@ namespace game_framework {
 		return _isUsingSkill;
 	}
 
-	int Character::CaculateDirection(int x, int y)
+	int Character::CaculateVector(int x, int y)
 	{
 		float angle = atan2(y - CHARACTER_SCREEN_CENTER_Y, x - CHARACTER_SCREEN_CENTER_X) * 180 / 3.14;
 
@@ -693,11 +676,6 @@ namespace game_framework {
 			_directionFlag = LEFT;
 			return LEFT;
 		}
-	}
-
-	int* Character::GetPosition()
-	{
-		return _xy;
 	}
 
 	const int* Character::GetHitbox()

@@ -9,14 +9,14 @@ namespace game_framework {
 	class Skill_Rebounding_Icicles : public Skill
 	{
 	public:
-		Skill_Rebounding_Icicles(int, int, int*);
+		Skill_Rebounding_Icicles(int, int, float*);
 		~Skill_Rebounding_Icicles();
 		void OnMove(int *, GameMap *);
 		int GetDamage(Enemy *);
 		//int GetDamage(Layer *);
 		void OnShow();
 		void LoadBitmap();
-		void Initialize(int, int, int*);
+		void Initialize(int, int, float*);
 	private:
 		bool _isInit[4];		//是否第一張動畫
 		int _ani_1[2], _ani_2[2], _ani_3[2], _ani_4[2];		//技能的位置

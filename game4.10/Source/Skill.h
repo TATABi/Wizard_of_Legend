@@ -12,15 +12,12 @@ namespace game_framework {
 		bool IsDelete();
 		void Init();
 		int* GetHitbox();	
-		int* GetPosition();
 		bool AttackedThisEnemy(Enemy*);			//之後改virtual
-		//bool AttackedThisEnemy(Layer*);
 		virtual int GetDamage(Enemy *) = 0;
-		//virtual int GetDamage(Layer *) = 0;
 		virtual void OnMove(int *, GameMap *) = 0;
 		virtual void OnShow() = 0;
 		virtual void LoadBitmap() = 0;
-		virtual void Initialize(int, int, int*) = 0;	
+		virtual void Initialize(int, int, float*) = 0;	
 	protected:
 		CMovingBitmap _bm_skill_icon;
 		float _dx, _dy;								//技能的移動向量

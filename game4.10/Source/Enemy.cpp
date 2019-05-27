@@ -119,11 +119,6 @@ namespace game_framework {
 	}
 	
 
-	int* Enemy::GetPosition() 
-	{
-		return _xy;
-	}
-
 	int* Enemy::GetCollisionMove() 
 	{
 		return _collision_move;

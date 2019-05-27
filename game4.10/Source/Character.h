@@ -4,9 +4,6 @@
 #include "CharacterData.h"
 #include "Layer.h"
 
-#define CHARACTER_SCREEN_CENTER_X 320
-#define CHARACTER_SCREEN_CENTER_Y 240
-
 namespace game_framework {
 
 	enum DIRECTION {
@@ -16,40 +13,51 @@ namespace game_framework {
 		RIGHT
 	};
 
+	enum STATE {
+		RUN,
+		MOVE,
+		STAND,
+		DASH,
+		HURT,
+		ATTACK
+	};
+
 	class Character : public Layer {
 	public:
 		Character();
-		void Initialize(int*);
-		void LoadBitmap();
-		void OnMove(GameMap *);
-		void OnShow();
-		void SetMovingDown(bool flag);
-		void SetMovingLeft(bool flag);
-		void SetMovingRight(bool flag);
-		void SetMovingUp(bool flag);
-		bool IsSlash();
-		void Dash();
-		bool IsMoving();
-		bool CanDash();
-		bool IsUsingSkill();
-		int* GetPosition();
-		const int* GetHitbox();
-		Skill* GenerateSkill(int, int, int);	//skill num
-		int CaculateDirection(int, int);
-		bool IsHurt();
-	protected:
-		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;	//走路動畫
-		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right; //跑步時的氣流
-		CAnimation _ani_dash_up, _ani_dash_down, _ani_dash_left, _ani_dash_right; //dash動畫
-		CAnimation _ani_arrival;			//出場動畫
-		CAnimation _ani_useSkill_1;
-		CAnimation _ani_useSkill_2_up, _ani_useSkill_2_down, _ani_useSkill_2_left, _ani_useSkill_2_right;
-		CAnimation _ani_useSkill_3_down, _ani_useSkill_3_up;
-		CAnimation* _ani_useSkill;
-		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;	//站立
-		CMovingBitmap _bm_hurt_left, _bm_hurt_right;
-		int _horizontal, _vertical;	//上下左右判定(移動距離)  (-MOVING_PIXEL,0,MOVING_PIXEL)	
-		int _directionFlag;			// 紀錄角色面向哪面 (順時鐘，從12點開始，總共8個方向) = (0, 1, 2, 3, 4, 5, 6, 7);???改?
+		void Initialize(int*);							//重製角色座標、數據
+		void LoadBitmap();								//載入動畫、圖片
+		void OnMove(GameMap *);							//傳入地圖用以判斷所處位置
+		void OnShow();									//顯示
+		void SetMovingDown(bool flag);					//往下移動
+		void SetMovingLeft(bool flag);					//往左移動
+		void SetMovingRight(bool flag);					//往右移動
+		void SetMovingUp(bool flag);					//往上移動
+		void Dash();									//Dash 位移
+		const int* GetHitbox();							//碰撞窗
+		Skill* GenerateSkill(int, float, float);		//生成技能 (skill number, 生成座標)
+		bool IsUsingSkill();							//是否正在使用技能(播放角色使用技能的動畫)
+		bool IsHurt();									//是否被毆，被毆時不能用技能
+	private:
+		bool IsSlash();									//是否斜走
+		bool CanDash();									//是否可以Dash
+		bool IsMoving();								//是否有輸入任何(上下左右)移動指令
+		int CaculateVector(int, int);					//計算滑鼠的 Vector，用來判定技能施放時，角色該面對的方向
+
+		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;												//走路動畫
+		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right;								//跑步時的氣流
+		CAnimation _ani_dash_up, _ani_dash_down, _ani_dash_left, _ani_dash_right;							//dash動畫
+		//CAnimation _ani_arrival;																			//出場動畫
+		//CAnimation _ani_dead;																				//死亡動畫
+		CAnimation _ani_useSkill_1;																			//使用Skill 1 動畫
+		CAnimation _ani_useSkill_2_up, _ani_useSkill_2_down, _ani_useSkill_2_left, _ani_useSkill_2_right;	//使用Skill 2 動畫
+		CAnimation _ani_useSkill_3_down, _ani_useSkill_3_up;												//使用Skill 3 動畫
+		CAnimation* _ani_useSkill;																			//暫存現在使用的技能
+		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;						//站立圖
+		CMovingBitmap _bm_hurt_left, _bm_hurt_right;														//被毆圖
+
+		int _dx, _dy;														//移動距離
+		DIRECTION _direction;											// 紀錄角色面向哪面
 		bool _isMovingDown, _isMovingLeft, _isMovingRight, _isMovingUp;		//移動方向
 		bool _isDash;
 		bool _isRunning;				//跑步

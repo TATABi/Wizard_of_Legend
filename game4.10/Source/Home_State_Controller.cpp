@@ -95,13 +95,8 @@ namespace game_framework {
 				if (nChar == KEY_RIGHT || nChar == KEY_D)
 					_character->SetMovingRight(true);
 				if (nChar == KEY_SPACE)
-				{
-					if (_character->CanDash())
-					{
-						_character->Dash();
-						CAudio::Instance()->Play(AUDIO_DASH, false);
-					}
-				}
+					_character->Dash();
+				
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 				{

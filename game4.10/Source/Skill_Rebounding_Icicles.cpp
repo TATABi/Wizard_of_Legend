@@ -10,7 +10,7 @@
 
 namespace game_framework
 {
-	Skill_Rebounding_Icicles::Skill_Rebounding_Icicles(int mousreX, int mouseY, int *cxy) 		//中心往滑鼠位置的向量
+	Skill_Rebounding_Icicles::Skill_Rebounding_Icicles(int mousreX, int mouseY, float *cxy) 		//中心往滑鼠位置的向量
 	{
 		Initialize(mousreX, mouseY, cxy);
 		LoadBitmap();
@@ -21,7 +21,7 @@ namespace game_framework
 	
 	}
 
-	void Skill_Rebounding_Icicles::Initialize(int mouseX, int mouseY, int* cxy)
+	void Skill_Rebounding_Icicles::Initialize(int mouseX, int mouseY, float* cxy)
 	{
 		_damage = 1;
 		_backDistance = 10;
@@ -86,7 +86,7 @@ namespace game_framework
 	int Skill_Rebounding_Icicles::GetDamage(Enemy *enemy)
 	{
 		int *enemy_hitbox = enemy->GetHitbox();
-		int *enemy_position = enemy->GetPosition();
+		float *enemy_position = enemy->GetPosition();
 
 		float x1 = _xy[0] + _hitbox[0];
 		float y1 = _xy[1] + _hitbox[1];

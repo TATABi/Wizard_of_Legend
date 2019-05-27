@@ -17,7 +17,6 @@ namespace game_framework {
 		void NotifyCharge();
 		int Area();
 		void SetXY(int, int);
-		int* GetPosition();
 		int* GetCollisionMove();
 		int* GetHitbox();
 		void LoadBitmap();

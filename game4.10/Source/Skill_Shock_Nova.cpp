@@ -10,7 +10,7 @@
 
 namespace game_framework
 {
-	Skill_Shock_Nova::Skill_Shock_Nova(int mousreX, int mouseY, int *cxy) 		//中心往滑鼠位置的向量
+	Skill_Shock_Nova::Skill_Shock_Nova(int mousreX, int mouseY, float *cxy) 		//中心往滑鼠位置的向量
 	{
 		Initialize(mousreX, mouseY, cxy);
 		LoadBitmap();	
@@ -21,7 +21,7 @@ namespace game_framework
 
 	}
 
-	void Skill_Shock_Nova::Initialize(int mouseX, int mouseY, int* cxy)
+	void Skill_Shock_Nova::Initialize(int mouseX, int mouseY, float* cxy)
 	{
 		_damage = 1;
 		_backDistance = 10;
@@ -104,7 +104,7 @@ namespace game_framework
 	int Skill_Shock_Nova::GetDamage(Enemy *enemy)
 	{
 		int *enemy_hitbox = enemy->GetHitbox();
-		int *enemy_position = enemy->GetPosition();
+		float *enemy_position = enemy->GetPosition();
 
 		float x1 = _xy[0] + _hitbox[0];
 		float y1 = _xy[1] + _hitbox[1];
@@ -148,11 +148,6 @@ namespace game_framework
 				_time == 0 ? _isDelete = true : _ani_skill[0].Reset(), _time--;
 			}
 		}
-	}
-
-	int* Skill_Shock_Nova::GetPosition()
-	{
-		return _xy;
 	}
 
 	int* Skill_Shock_Nova::GetHitbox()
