@@ -15,6 +15,6 @@ const int DASH_COOLDOWN_TIME = 15;
 const int DASH_MOVE_TIME = 9;
 const int CHARACTER_HIT_RECOVER_TIME = 5;
 
-const int NORMAL_STR_PIXEL = 6;
-const int RUN_STR_PIXEL = 10;
-const int DASH_STR_PIXEL = 20;
+const int MOVE_STEP = 6;
+const int RUN_STEP = 10;
+const int DASH_STEP = 17;

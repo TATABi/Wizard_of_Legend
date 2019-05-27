@@ -10,7 +10,8 @@
 #include "math.h"
 #include "GameData.h"
 
-const float M_PI = atan(1.0) * 4;
+#define M_PI atan(1.0) * 4;
+#define SLASH_COEFFICIENT 1 / sqrt(2) 
 
 namespace game_framework {
 
@@ -49,11 +50,10 @@ namespace game_framework {
 		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
 		_dx = 0;
 		_dy = 0;
-		_directionFlag = DOWN; //面向下
+		_direction = DOWN; //面向下
 		_run_counter = 45;
 		_isDashLock = false;
-		_isSlash = false;
-		_dash_delay_counter = DASH_DELAY;
+		_dash_delay_counter = DASH_COOLDOWN_TIME;
 		_dash_counter = 9;
 		_isUsingSkill = false;
 		_isHurt = false;
@@ -207,145 +207,126 @@ namespace game_framework {
 
 		if (_isHurt)
 		{
-			_dash_delay_counter = DASH_DELAY;
-			_isDashLock = false;
-			_isDash = false;
-			_run_counter = 45;
+			_dash_delay_counter = DASH_COOLDOWN_TIME;
+			ResetDash();
+			ResetRun();
 		}
 		else if (_isUsingSkill)
 		{
-			_run_counter = 45;
+			ResetRun();
 			_ani_useSkill->OnMove();
 		}
-		else {
+		else
+		{
 			if (!_isDashLock)
 			{
 				_dx = 0;
 				_dy = 0;
-			}
-			//初始移動系數
-			if (_isDash)
-			{
-				_SLASH_PIXEL = (int)(DASH_SLASH_PIXEL * CharacterData::Move_Coefficient) * _dash_resistance;
-				_STR_PIXEL = (int)(DASH_STR_PIXEL * CharacterData::Move_Coefficient) * _dash_resistance;
-			}
-			else if (_isRunning)
-			{
-				_SLASH_PIXEL = (int)(RUN_SLASH_PIXEL * CharacterData::Move_Coefficient);
-				_STR_PIXEL = (int)(RUN_STR_PIXEL * CharacterData::Move_Coefficient);
-			}
-			else
-			{
-				_SLASH_PIXEL = (int)(NORMAL_SLASH_PIXEL * CharacterData::Move_Coefficient);
-				_STR_PIXEL = (int)(NORMAL_STR_PIXEL * CharacterData::Move_Coefficient);
-			}
-			//計算移動距離
-			if (IsSlash() && !_isDashLock) //如果斜走
-			{
-				if (_isMovingDown)
-					_dy += _SLASH_PIXEL;
-				
-				if (_isMovingUp)
-					_dy -= _SLASH_PIXEL;
-		
-				if (_isMovingRight)
-					_dx += _SLASH_PIXEL;
 
-				if (_isMovingLeft)
-					_dx -= _SLASH_PIXEL;
-			}
-			else if (!_isDashLock)
-			{
-				if (_isMovingDown)
-					_dy += _STR_PIXEL;
+				//初始移動系數
+				if (_isDash)
+					_step = DASH_STEP * CharacterData::Move_Coefficient * _dash_resistance;
+				else if (_isRunning)
+					_step = RUN_STEP * CharacterData::Move_Coefficient;
+				else
+					_step = MOVE_STEP * CharacterData::Move_Coefficient;
 
-				if (_isMovingUp)
-					_dy -= _STR_PIXEL;
-				
-				if (_isMovingRight)
-					_dx += _STR_PIXEL;
+				//計算移動距離		
+				if (IsSlash()) //如果斜走
+				{
+					if (_isMovingDown)
+						_dy += _step * SLASH_COEFFICIENT;
 
-				if (_isMovingLeft)
-					_dx -= _STR_PIXEL;
+					if (_isMovingUp)
+						_dy -= _step * SLASH_COEFFICIENT;
 
+					if (_isMovingRight)
+						_dx += _step * SLASH_COEFFICIENT;
+
+					if (_isMovingLeft)
+						_dx -= _step * SLASH_COEFFICIENT;
+				}
+				else
+				{
+					if (_isMovingDown)
+						_dy += _step;
+
+					if (_isMovingUp)
+						_dy -= _step;
+
+					if (_isMovingRight)
+						_dx += _step;
+
+					if (_isMovingLeft)
+						_dx -= _step;
+				}
+
+				if (_isDash && !IsMoving())	
+				{
+					switch (_direction)
+					{
+					case RIGHT:
+						_dx = _step;
+						break;
+					case LEFT:
+						_dx = -_step;
+						break;
+					case DOWN:
+						_dy = _step;
+						break;
+					case UP:
+						_dy = -_step;
+						break;
+					}
+				}
 			}
 
 			//判斷方向
-			if (_dx != 0 && !_isDashLock)
+			if (_isDash && IsMoving() && IsSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
+			{
+				if (_isMovingDown)
+					_isDashLock ? NULL : _direction = DOWN;		//Dash中不能改方向
+				else
+					_isDashLock ? NULL : _direction = UP;
+			}
+			else if (_dx != 0 && !_isDashLock)
 			{
 				if (_dx < 0)
-					_directionFlag = LEFT;	//左
+					_direction = LEFT;	//左
 				else
-					_directionFlag = RIGHT;	//右
+					_direction = RIGHT;	//右
 			}
 			else if (!_isDashLock)
 			{
 				if (_dy < 0)
-					_directionFlag = UP;	//上
+					_direction = UP;	//上
 				else if (_dy > 0)
-					_directionFlag = DOWN;	//下
+					_direction = DOWN;	//下
 			}
 
 			//維持上一格狀態的方向
-			if (_dash_delay_counter < DASH_DELAY && _dash_delay_counter > 0)
+			if (_dash_delay_counter < DASH_COOLDOWN_TIME && _dash_delay_counter > 0)
 				_dash_delay_counter--;
 			else
-				_dash_delay_counter = DASH_DELAY;
+				_dash_delay_counter = DASH_COOLDOWN_TIME;
 
 			//動畫
 			if (_isDash)
 			{
-				_run_counter = 45;
-				if (IsMoving() && IsSlash()) //在斜向移動時按空白鍵，朝移動方向滑動
-				{
-					if (_isMovingDown)
-					{
-						_isDashLock ? NULL : _directionFlag = DOWN;		//Dash中不能改方向
-					}
-					else
-					{
-						_isDashLock ? NULL : _directionFlag = UP;
-					}
-				}
-				else		//停止移動時按空白鍵，朝面相方向滑動(沒有斜向)；或是非斜向移動時		
-				{
-					switch (_directionFlag)
-					{
-					case RIGHT:
-						_dx = _STR_PIXEL;
-						break;
-					case LEFT:
-						_dx = -_STR_PIXEL;
-						break;
-					case DOWN:
-						_dy = _STR_PIXEL;
-						break;
-					case UP:
-						_dy = -_STR_PIXEL;
-						break;
-					}
-				}
+				ResetRun();
 				_ani_dash_right.OnMove();
 				_ani_dash_left.OnMove();
 				_ani_dash_down.OnMove();
 				_ani_dash_up.OnMove();
 				_dash_counter--;
 				_isDashLock = true;
+
 				if (_dash_counter < 3)
-				{
 					_dash_resistance *= 0.1;
-				}
+
 				if (_dash_counter == 0)
-				{
-					_isDashLock = false;
-					_isDash = false;
-					_ani_dash_right.Reset();
-					_ani_dash_left.Reset();
-					_ani_dash_down.Reset();
-					_ani_dash_up.Reset();
-					_dash_counter = 9;
-					_dash_resistance = 1;
-				}
+					ResetDash();
+
 			}
 			else if (IsMoving())   //走動
 			{
@@ -353,7 +334,8 @@ namespace game_framework {
 					_run_counter--;
 				if (_run_counter < 0)
 					_isRunning = true;
-				switch (_directionFlag)
+
+				switch (_direction)
 				{
 				case RIGHT:
 					_ani_right.OnMove();
@@ -369,19 +351,13 @@ namespace game_framework {
 					break;
 				}
 			}
-			else    //站著不動
-			{
-				_isRunning = false;
-				_run_counter = 45;
-				_ani_run_right.Reset();
-				_ani_run_left.Reset();
-				_ani_run_down.Reset();
-				_ani_run_up.Reset();
-			}
+			else    //站著不動		
+				ResetRun();
+
 
 			if (_isRunning)			//跑步氣流動畫
 			{
-				switch (_directionFlag)
+				switch (_direction)
 				{
 				case RIGHT:
 					if (!_ani_run_right.IsFinalBitmap())
@@ -408,21 +384,11 @@ namespace game_framework {
 				_ani_run_down.Reset();
 				_ani_run_up.Reset();
 			}
+			
 			int *temp_xy = map->SetCharacterXY(_dx, _dy, CHARACTER_MOVE_HITBOX);	//更新角色在map的位置
 
 			_xy[0] = temp_xy[0];
 			_xy[1] = temp_xy[1];
-		}
-	}
-
-	void Character::Dash()
-	{
-		if (CanDash())
-		{
-			_isDash = true;
-			_isRunning = false;
-			_dash_delay_counter--;
-			CAudio::Instance()->Play(AUDIO_DASH, false);
 		}
 	}
 
@@ -431,7 +397,7 @@ namespace game_framework {
 		/////////////////////////////////  受傷圖片待加上下 /////////////////////////////
 		if (_isHurt)
 		{
-			switch (_directionFlag)
+			switch (_direction)
 			{
 			case RIGHT:
 				_bm_hurt_right.ShowBitmap();
@@ -460,7 +426,7 @@ namespace game_framework {
 		}
 		else if (_isDash)
 		{
-			switch (_directionFlag)
+			switch (_direction)
 			{
 			case RIGHT:
 				_ani_dash_right.OnShow();
@@ -482,7 +448,7 @@ namespace game_framework {
 			if (_isRunning && !_ani_run_right.IsFinalBitmap() && !_ani_run_left.IsFinalBitmap()
 				&& !_ani_run_down.IsFinalBitmap() && !_ani_run_up.IsFinalBitmap())
 			{
-				switch (_directionFlag)
+				switch (_direction)
 				{
 				case RIGHT:
 					_ani_run_right.OnShow();
@@ -500,7 +466,7 @@ namespace game_framework {
 			}
 
 			if (_dx != 0 || _dy != 0) {
-				switch (_directionFlag)
+				switch (_direction)
 				{
 				case RIGHT:
 					_ani_right.OnShow();
@@ -520,7 +486,7 @@ namespace game_framework {
 			}
 			else
 			{
-				switch (_directionFlag)
+				switch (_direction)
 				{
 				case RIGHT:
 					_bm_stand_right.ShowBitmap();
@@ -580,9 +546,21 @@ namespace game_framework {
 		return false;
 	}
 
+	void Character::Dash()
+	{
+		if (CanDash())
+		{
+			CharacterData::INVINCIBLE = true;
+			_isDash = true;
+			_isRunning = false;
+			_dash_delay_counter--;
+			CAudio::Instance()->Play(AUDIO_DASH, false);
+		}
+	}
+
 	bool Character::CanDash()
 	{
-		if (_dash_delay_counter == DASH_DELAY)
+		if (_dash_delay_counter == DASH_COOLDOWN_TIME && !_isHurt)
 			return true;
 		return false;
 	}
@@ -658,22 +636,22 @@ namespace game_framework {
 
 		if (angle <= 45 && angle >= -45)	//右  因為螢幕 Y 軸是往下的
 		{
-			_directionFlag = RIGHT;
+			_direction = RIGHT;
 			return RIGHT;
 		}
 		else if (angle > 45 && angle < 135)
 		{
-			_directionFlag = DOWN;
+			_direction = DOWN;
 			return DOWN;
 		}
 		else if (angle < -45 && angle > -135)
 		{
-			_directionFlag = UP;
+			_direction = UP;
 			return UP;
 		}
 		else
 		{
-			_directionFlag = LEFT;
+			_direction = LEFT;
 			return LEFT;
 		}
 	}
@@ -702,4 +680,25 @@ namespace game_framework {
 
 		return _isHurt;
 	}
+
+	void Character::ResetRun()
+	{
+		_isRunning = false;
+		_run_counter = WALK_TO_RUN_TIME;
+	}
+
+	void Character::ResetDash()
+	{
+		CharacterData::INVINCIBLE = false;
+
+		_isDashLock = false;
+		_isDash = false;
+		_ani_dash_right.Reset();
+		_ani_dash_left.Reset();
+		_ani_dash_down.Reset();
+		_ani_dash_up.Reset();
+		_dash_counter = 9;
+		_dash_resistance = 1;
+	}
+
 }

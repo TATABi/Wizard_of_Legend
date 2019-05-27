@@ -13,15 +13,6 @@ namespace game_framework {
 		RIGHT
 	};
 
-	enum STATE {
-		RUN,
-		MOVE,
-		STAND,
-		DASH,
-		HURT,
-		ATTACK
-	};
-
 	class Character : public Layer {
 	public:
 		Character();
@@ -43,6 +34,8 @@ namespace game_framework {
 		bool CanDash();									//是否可以Dash
 		bool IsMoving();								//是否有輸入任何(上下左右)移動指令
 		int CaculateVector(int, int);					//計算滑鼠的 Vector，用來判定技能施放時，角色該面對的方向
+		void ResetRun();
+		void ResetDash();
 
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;												//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right;								//跑步時的氣流
@@ -56,25 +49,16 @@ namespace game_framework {
 		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;						//站立圖
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;														//被毆圖
 
+		DIRECTION _direction;												// 紀錄角色面向方向
 		int _dx, _dy;														//移動距離
-		DIRECTION _direction;											// 紀錄角色面向哪面
 		bool _isMovingDown, _isMovingLeft, _isMovingRight, _isMovingUp;		//移動方向
-		bool _isDash;
-		bool _isRunning;				//跑步
-		bool _isDashLock;
-		bool _isSlash;
-		bool _isUsingSkill;
-		bool _isHurt;
+		bool _isDash;														//Dash
+		bool _isRunning;													//跑步
+		bool _isDashLock;													//Dash中不能改變移動方向，必須等Dash結束
+		bool _isUsingSkill;													//是否正在使用技能
+		bool _isHurt;														//被毆
 		int _useSkillNum;
-		int _SLASH_PIXEL;			//斜線移動速度
-		int _STR_PIXEL;				//直線移動速度
-		const int DASH_DELAY = 15;
-		const int NORMAL_SLASH_PIXEL = 4;
-		const int NORMAL_STR_PIXEL = 6;
-		const int RUN_SLASH_PIXEL = 7;
-		const int RUN_STR_PIXEL = 10;
-		const int DASH_SLASH_PIXEL = 13;
-		const int DASH_STR_PIXEL = 20;
+		float _step;
 		int _run_counter;			// 計算角色是否要奔跑
 		int _dash_delay_counter;  //讓玩家無法一直dash (dash和dash之間有間隔)
 		int _dash_counter;	//用來reset dash 動畫

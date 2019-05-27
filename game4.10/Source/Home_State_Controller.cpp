@@ -96,7 +96,6 @@ namespace game_framework {
 					_character->SetMovingRight(true);
 				if (nChar == KEY_SPACE)
 					_character->Dash();
-				
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 				{
