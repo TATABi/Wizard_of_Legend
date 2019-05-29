@@ -5,7 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Item.h"
-
+#include "CharacterData.h"
 
 namespace game_framework {
 	
@@ -75,10 +75,12 @@ namespace game_framework {
 
 	bool Item::BuyItem()
 	{
-		if (CharacterData::Diamond >= _diamond && !_isOwned)
+		CharacterData *data = CharacterData::Instance();
+
+		if (data->DIAMOND() >= _diamond && !_isOwned)
 		{
 			_isOwned = true;
-			CharacterData::Diamond -= _diamond;
+			data->AddDiamond(-_diamond);
 			return true;
 		}
 		else

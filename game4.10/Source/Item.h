@@ -1,6 +1,6 @@
 #ifndef ITEM_H
 #define ITEM_H
-#include "CharacterData.h"
+
 
 namespace game_framework {
 	class Item {
