@@ -29,13 +29,14 @@ namespace game_framework {
 		Skill* GenerateSkill(int, float, float);		//生成技能 (skill number, 生成座標)
 		bool IsUsingSkill();							//是否正在使用技能(播放角色使用技能的動畫)
 		bool IsHurt();									//是否被毆，被毆時不能用技能
+		void MagicBuff();								//判斷Magic Buff 並進行強化
 	private:
 		bool IsSlash();									//是否斜走
 		bool CanDash();									//是否可以Dash
 		bool IsMoving();								//是否有輸入任何(上下左右)移動指令
 		int CaculateVector(int, int);					//計算滑鼠的 Vector，用來判定技能施放時，角色該面對的方向
-		void ResetRun();
-		void ResetDash();
+		void ResetRun();								//重製Run判斷的數據
+		void ResetDash();								//重製Dash判斷的數據
 
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;												//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right;								//跑步時的氣流
@@ -48,6 +49,7 @@ namespace game_framework {
 		CAnimation* _ani_useSkill;																			//暫存現在使用的技能
 		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;						//站立圖
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;														//被毆圖
+		CMovingBitmap _bm_magic_buff;
 
 		DIRECTION _direction;												// 紀錄角色面向方向
 		int _dx, _dy;														//移動距離
@@ -64,6 +66,9 @@ namespace game_framework {
 		double _dash_resistance;											//Dash時的阻力，並非是等速移動
 		int _hit_recover_counter;											//被爆打的硬直時間
 		int _hp;															//暫存HP，用來檢查是否扣血
+		int _magic_buff_counter;											//計算Magic Buff時間
+		int _mp_decrease_counter;									//計算MP未累積滿前隨時間減少的量
+		bool _is_magic_buff_init;											//紀錄是否加成過數值
 	};
 }
 

@@ -723,6 +723,7 @@
     <Image Include="RES\InGame\Skill\Icon\Rebounding_Icicles_Icon.bmp" />
     <Image Include="RES\InGame\Skill\Icon\Shock_Nova_Icon.bmp" />
     <Image Include="RES\InGame\Skill\Icon\windDash.bmp" />
+    <Image Include="RES\InGame\Skill\LoveIcon.bmp" />
     <Image Include="RES\InGame\Skill\Rebounding_Icicles\1.bmp" />
     <Image Include="RES\InGame\Skill\Rebounding_Icicles\2.bmp" />
     <Image Include="RES\InGame\Skill\Rebounding_Icicles\3.bmp" />

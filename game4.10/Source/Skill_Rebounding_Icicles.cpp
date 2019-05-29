@@ -24,7 +24,7 @@ namespace game_framework
 
 	void Skill_Rebounding_Icicles::Initialize(int mouseX, int mouseY, float* cxy)
 	{
-		_damage = 1;
+		_damage = 20;
 		_backDistance = 10;
 		_hitbox[0] = 32;
 		_hitbox[1] = 10;

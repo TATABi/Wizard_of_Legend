@@ -59,6 +59,9 @@ namespace game_framework {
 		_isHurt = false;
 		_dash_resistance = 1;
 		_hit_recover_counter = 0;
+		_magic_buff_counter = 0;
+		_is_magic_buff_init = true;
+		_mp_decrease_counter = MP_DECREASE_TIME;;
 	}
 
 	void Character::LoadBitmap()
@@ -170,6 +173,7 @@ namespace game_framework {
 		_bm_stand_right.LoadBitmap(CHARACTER_STAND_RIGHT, RGB(50, 255, 0));
 		_bm_hurt_left.LoadBitmap(CHARACTER_HURT_LEFT, RGB(50, 255, 0));
 		_bm_hurt_right.LoadBitmap(CHARACTER_HURT_RIGHT, RGB(50, 255, 0));
+		_bm_magic_buff.LoadBitmap(MAGIC_BUFF, RGB(50, 255, 0));
 
 		_ani_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
@@ -196,11 +200,13 @@ namespace game_framework {
 		_ani_useSkill_3_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_bm_hurt_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_bm_hurt_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		_bm_magic_buff.SetTopLeft(CHARACTER_SCREEN_X + 35, CHARACTER_SCREEN_Y);
 	}
 
 	void Character::OnMove(GameMap *map)
 	{
 		IsHurt();
+		MagicBuff();
 
 		if (_isHurt)
 		{
@@ -226,7 +232,7 @@ namespace game_framework {
 				else if (_isRunning)
 					_step = RUN_STEP * CharacterData::Instance()->MOVE_COEFFICIENT();
 				else
-					_step = MOVE_STEP * CharacterData::Instance()->MOVE_COEFFICIENT();
+					_step = WALK_STEP * CharacterData::Instance()->MOVE_COEFFICIENT();
 
 				//計算移動距離		
 				if (IsSlash()) //如果斜走
@@ -386,6 +392,7 @@ namespace game_framework {
 			_xy[0] = temp_xy[0];
 			_xy[1] = temp_xy[1];
 		}
+
 	}
 
 	void Character::OnShow()
@@ -498,6 +505,11 @@ namespace game_framework {
 					break;
 				}
 			}
+		}
+
+		if (CharacterData::Instance()->ISMAGICBUFF())
+		{
+			_bm_magic_buff.ShowBitmap();
 		}
 	}
 
@@ -688,6 +700,38 @@ namespace game_framework {
 		_ani_dash_up.Reset();
 		_dash_counter = 9;
 		_dash_resistance = 1;
+	}
+
+	void Character::MagicBuff()
+	{
+		CharacterData* _data = CharacterData::Instance();
+		if (_data->ISMAGICBUFF() == true)
+		{
+			_is_magic_buff_init ? _data->SetAttackCoefficient(2.0) : NULL;
+			_is_magic_buff_init = false;
+
+			if (_magic_buff_counter == 0)
+			{
+				_data->AddMP(-1);
+				_magic_buff_counter = MAGIC_BUFF_TIME;
+			}
+
+			_data->MP() == 0 ? _data->SetAttackCoefficient(-2.0) : NULL;
+
+			_magic_buff_counter--;
+		}
+		else
+		{
+			_is_magic_buff_init = true;
+
+			if (_mp_decrease_counter == 0)
+			{
+				_data->AddMP(-1);
+				_mp_decrease_counter = MP_DECREASE_TIME;
+			}
+
+			_mp_decrease_counter--;
+		}
 	}
 
 }

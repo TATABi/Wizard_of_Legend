@@ -545,7 +545,11 @@
     <Image Include="RES\Menu\Options\pizza\08.bmp" />
     <Image Include="RES\Menu\Options\pizza\09.bmp" />
     <Image Include="RES\Menu\Options\pizza\10.bmp" />
+<<<<<<< HEAD
 >>>>>>> 612d3a38d6dedf1f9817cf2844d301426845c4b1
+=======
+    <Image Include="RES\InGame\Skill\LoveIcon.bmp" />
+>>>>>>> ec80af9b94bafb66b17a9b92987c80fa0fcc57fb
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

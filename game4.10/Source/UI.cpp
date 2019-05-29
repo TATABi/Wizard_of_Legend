@@ -77,16 +77,16 @@ namespace game_framework {
 		CalculateMP();
 
 		_integer.SetTopLeft(320, 453);
-		//_integer.SetInteger(CharacterData::Instance()->MONEY());
+		_integer.SetInteger(CharacterData::Instance()->MONEY());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(320, 433);
-		//_integer.SetInteger(CharacterData::Instance()->DIAMOND());
+		_integer.SetInteger(CharacterData::Instance()->DIAMOND());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(112, 25);
-		//_integer.SetInteger(CharacterData::Instance()->MAX_HP());
+		_integer.SetInteger(CharacterData::Instance()->MAX_HP());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(83, 25);
-		//_integer.SetInteger(CharacterData::Instance()->HP());
+		_integer.SetInteger(CharacterData::Instance()->HP());
 		_integer.ShowBitmap();
 		_bm_slash.ShowBitmap();		
 	}

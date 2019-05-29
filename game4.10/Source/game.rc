@@ -784,6 +784,7 @@ MENU_EAT_PIZZA_07       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\
 MENU_EAT_PIZZA_08       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\08.bmp"
 MENU_EAT_PIZZA_09       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\09.bmp"
 MENU_EAT_PIZZA_10       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\10.bmp"
+MAGIC_BUFF              BITMAP                  "..\\RES\\InGame\\Skill\\LoveIcon.bmp"
 
 BLOODBALL               BITMAP                  "..\\RES\\InGame\\Enemy\\BloodBall.bmp"
 

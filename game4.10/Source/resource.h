@@ -397,6 +397,8 @@
 #define MENU_EAT_PIZZA_09               666
 #define MENU_EAT_PIZZA_10               667
 #define BLOODBALL                       669
+#define IDB_BITMAP9                     670
+#define MAGIC_BUFF                      668
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -409,8 +411,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        655
-#define _APS_NEXT_RESOURCE_VALUE        668
+#define _APS_NEXT_RESOURCE_VALUE        671
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101
