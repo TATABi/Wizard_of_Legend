@@ -23,7 +23,8 @@ namespace game_framework {
 		void SetCDCoefficient(float);			//эCD_Coefficient肚タ计: *玒计璽计: /玒计
 		void SetMPChargeCoefficient(float);		//эMP_Charge_Coefficient肚タ计: *玒计璽计: /玒计
 		void SetInvincible(bool);				//э礚寄篈
-		void ResetStatus();						//籹HP,MP,Money
+		void ResetStatus();						//籹HP,MP,Money,MagicBuff
+		void SetMagicBuff(bool);				//砞﹚Magic Buff 篈
 		
 		//
 		int MONEY();
@@ -39,6 +40,7 @@ namespace game_framework {
 		float CD_COEFFICIENT();
 		float MP_CHARGE_COEFFICIENT();
 		bool ISVINCIBLE();
+		bool ISMAGICBUFF();
 
 	protected:
 		CharacterData();
@@ -60,6 +62,7 @@ namespace game_framework {
 		float _cd_coefficient;					//м玱玒计
 		int _mp_charge_coefficient;				//MP仓縩玒计
 		bool _isInvincible;						//礚寄篈
+		bool _isMagicBuff;						//Magic Buff 篈
 								
 	};
 

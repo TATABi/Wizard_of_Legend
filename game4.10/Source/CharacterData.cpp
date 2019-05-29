@@ -41,7 +41,7 @@ namespace game_framework {
 		_blood_suck_coefficient = 0;
 		_move_coefficient = 1;
 		_cd_coefficient = 1;
-		_mp_charge_coefficient = 0.1;
+		_mp_charge_coefficient = 1;
 		_isInvincible = false;
 	}
 
@@ -95,10 +95,14 @@ namespace game_framework {
 
 	void CharacterData::AddMP(int d_mp)
 	{
-		_mp += d_mp;
+		
+		if (!_isMagicBuff)
+			_mp += d_mp;
+		else
+			d_mp < 0 ? _mp += d_mp : NULL;
 
-		_mp > _max_mp ? _mp = _max_mp : NULL;
-		_mp < 0 ? _mp = 0 : NULL;
+		_mp > _max_mp ? _mp = _max_mp, _isMagicBuff = true : NULL;
+		_mp <= 0 ? _mp = 0, _isMagicBuff = false : NULL;
 	}
 
 	void CharacterData::SetAttackCoefficient(float coefficient)
@@ -141,6 +145,12 @@ namespace game_framework {
 		_hp = _max_hp;
 		_mp = 0;
 		_money = 0;
+		_isMagicBuff = false;
+	}
+
+	void CharacterData::SetMagicBuff(bool isBuff)
+	{
+		_isMagicBuff = isBuff;
 	}
 
 	//--------------------¨ú­È--------------------//
@@ -171,7 +181,7 @@ namespace game_framework {
 
 	bool CharacterData::ISVINCIBLE() { return _isInvincible; }
 
-
+	bool CharacterData::ISMAGICBUFF() { return _isMagicBuff; }
 
 
 

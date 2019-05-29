@@ -77,22 +77,22 @@ namespace game_framework {
 		CalculateMP();
 
 		_integer.SetTopLeft(320, 453);
-		//_integer.SetInteger(CharacterData::Instance()->MONEY());
+		_integer.SetInteger(CharacterData::Instance()->MONEY());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(320, 433);
-		//_integer.SetInteger(CharacterData::Instance()->DIAMOND());
+		_integer.SetInteger(CharacterData::Instance()->DIAMOND());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(112, 25);
-		//_integer.SetInteger(CharacterData::Instance()->MAX_HP());
+		_integer.SetInteger(CharacterData::Instance()->MAX_HP());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(83, 25);
-		//_integer.SetInteger(CharacterData::Instance()->HP());
+		_integer.SetInteger(CharacterData::Instance()->HP());
 		_integer.ShowBitmap();
 		_bm_slash.ShowBitmap();		
 	}
 
 	void UI::CalculateHP()
-	{/*
+	{
 		const int MAX_HP_X2 = 132;
 		const int MAX_HP_Y1 = 34;
 		const int MAX_HP_Y2 = 46;
@@ -105,12 +105,11 @@ namespace game_framework {
 		pb = pDC->SelectObject(&b);
 		pDC->Rectangle(MAX_HP_X2-x1, MAX_HP_Y1, MAX_HP_X2, MAX_HP_Y2);
 		pDC->SelectObject(pb);						// 釋放 brush
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC*/
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void UI::CalculateMP()
 	{
-		/*
 		const int Max_MP_X2 = 116;
 		const int MAX_MP_Y1 = 47;
 		const int MAX_MP_Y2 = 54;
@@ -123,6 +122,6 @@ namespace game_framework {
 		pb = pDC->SelectObject(&b);
 		pDC->Rectangle(Max_MP_X2 - x1, MAX_MP_Y1, Max_MP_X2, MAX_MP_Y2);
 		pDC->SelectObject(pb);						// 釋放 brush
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC*/
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 }
