@@ -11,6 +11,13 @@ namespace game_framework {
 
 	CharacterData* CharacterData::_instance;
 
+	void CharacterData::DeleteData()
+	{
+		temp = _instance;
+		_instance = nullptr;
+		delete temp;
+	}
+
 	CharacterData* CharacterData::Instance()
 	{
 		if (_instance == nullptr)

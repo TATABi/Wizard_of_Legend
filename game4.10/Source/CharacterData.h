@@ -7,7 +7,7 @@ namespace game_framework {
 	{
 	public:
 		static CharacterData* Instance();
-		
+		void DeleteData();
 		//砞﹚
 		void AddMoney(int);						//эMoney肚タ计: 寥璽计: Ι
 		void AddDiamond(int);					//эDiamond肚タ计: 寥璽计: Ι
@@ -45,7 +45,7 @@ namespace game_framework {
 
 	private:
 		static CharacterData* _instance;
-		
+		CharacterData* temp;
 
 		int _money;
 		int _diamond;

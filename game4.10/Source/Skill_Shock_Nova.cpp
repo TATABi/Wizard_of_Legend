@@ -130,11 +130,15 @@ namespace game_framework
 				{
 					if (AttackedThisEnemy(enemy))
 					{
-						CharacterData* data = CharacterData::Instance();
+						auto* data = CharacterData::Instance();
+						
 						int damage = _damage * data->ATTACK_COEFFICIENT();
 
 						data->AddMP((int)((damage) * data->MP_CHARGE_COEFFICIENT()));
+						
 						return damage;
+						
+						//return 0;
 					}
 				}
 			}
