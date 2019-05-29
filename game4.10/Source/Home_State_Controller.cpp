@@ -39,7 +39,6 @@ namespace game_framework {
 		_items = &Global_Class::g_items;
 		_ui = &Global_Class::g_ui;
 		
-
 		CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
 		CAudio::Instance()->Load(AUDIO_PUTTING, "sounds\\putting.mp3");
 		CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");
@@ -77,7 +76,6 @@ namespace game_framework {
 
 	void Home_State_Controller::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-
 		if (_delayCounter < 0)
 		{
 			Cheater(nChar);

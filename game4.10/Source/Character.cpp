@@ -59,7 +59,6 @@ namespace game_framework {
 		_isHurt = false;
 		_dash_resistance = 1;
 		_hit_recover_counter = 0;
-
 	}
 
 	void Character::LoadBitmap()
@@ -109,7 +108,6 @@ namespace game_framework {
 			CHARACTER_DASH_DOWN_03,CHARACTER_DASH_DOWN_03,CHARACTER_DASH_DOWN_04,CHARACTER_DASH_DOWN_04 };
 		for (int i = 0; i < 9; i++)
 			_ani_dash_down.AddBitmap(m6[i], RGB(50, 255, 0));
-
 
 		int m7[9] = { CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_01,CHARACTER_DASH_LEFT_02,
 			CHARACTER_DASH_LEFT_02,CHARACTER_DASH_LEFT_03,CHARACTER_DASH_LEFT_04,CHARACTER_DASH_LEFT_05 };
@@ -165,7 +163,6 @@ namespace game_framework {
 			CHARACTER_SKILL_SHOCK_NOVA_UP_11, CHARACTER_SKILL_SHOCK_NOVA_UP_12, CHARACTER_SKILL_SHOCK_NOVA_UP_13, CHARACTER_SKILL_SHOCK_NOVA_UP_14 };
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_3_up.AddBitmap(m16[i], RGB(50, 255, 0));
-
 
 		_bm_stand_down.LoadBitmap(CHARACTER_STAND_DOWN, RGB(50, 255, 0));
 		_bm_stand_up.LoadBitmap(CHARACTER_STAND_UP, RGB(50, 255, 0));
@@ -354,7 +351,6 @@ namespace game_framework {
 			else    //站著不動		
 				ResetRun();
 
-
 			if (_isRunning)			//跑步氣流動畫
 			{
 				switch (_direction)
@@ -422,7 +418,6 @@ namespace game_framework {
 				_isUsingSkill = false;
 				_ani_useSkill->Reset();
 			}
-
 		}
 		else if (_isDash)
 		{
@@ -441,7 +436,6 @@ namespace game_framework {
 				_ani_dash_up.OnShow();
 				break;
 			}
-
 		}
 		else
 		{
@@ -505,8 +499,6 @@ namespace game_framework {
 				}
 			}
 		}
-
-
 	}
 
 	void Character::SetMovingDown(bool flag)

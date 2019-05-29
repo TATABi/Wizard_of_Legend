@@ -34,13 +34,11 @@ namespace game_framework {
 	{
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
-
 		_hp = HP;
 		_step = STEP;
 		_zone = ZONE;
 		_damage = DAMAGE;
 		_state = NOTHING;
-
 		_xy[0] = _ori_x;
 		_xy[1] = _ori_y;
 
@@ -97,7 +95,7 @@ namespace game_framework {
 		case ATTACKING:				//§ðÀ»
 			_ani_attack_right.SetTopLeft(x, y);
 			_ani_attack_left.SetTopLeft(x, y);
-			_isAttack ? NULL  : Attack(cx, cy);
+			_isAttack ? NULL : Attack(cx, cy);
 			break;
 		case CHARGING:				//²¾°Ê
 		case RESET:
@@ -141,7 +139,6 @@ namespace game_framework {
 					_ani_attack_left.Reset();
 					_state = CHARGING;
 				}
-
 			}
 			else
 			{
@@ -155,7 +152,6 @@ namespace game_framework {
 					_ani_attack_right.Reset();
 					_state = CHARGING;
 				}
-
 			}
 			break;
 
@@ -184,7 +180,6 @@ namespace game_framework {
 			}
 			break;
 		}
-
 		CalculateHP();
 	}
 
@@ -195,12 +190,10 @@ namespace game_framework {
 		float x1 = _xy[0] + 35;
 		float y1 = _xy[1] + 35;
 		float r = 50;
-
 		float x2 = cx + c_hitbox[0];
 		float y2 = cy + c_hitbox[1];
 		float l2 = c_hitbox[2];
 		float w2 = c_hitbox[3];
-
 
 		for (int i = 0; i < l2; i++)
 		{
@@ -224,7 +217,6 @@ namespace game_framework {
 
 			if (_isAttack)
 				break;
-			
 		}
 	}
 

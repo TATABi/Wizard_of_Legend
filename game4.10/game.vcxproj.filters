@@ -37,6 +37,8 @@
     <ClCompile Include="Source\Store.cpp" />
     <ClCompile Include="Source\Town_State_Controller.cpp" />
     <ClCompile Include="Source\UI.cpp" />
+    <ClCompile Include="Source\Blood_Ball.cpp" />
+    <ClCompile Include="Source\Reward.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -80,6 +82,8 @@
     <ClInclude Include="Source\Store.h" />
     <ClInclude Include="Source\Town_State_Controller.h" />
     <ClInclude Include="Source\UI.h" />
+    <ClInclude Include="Source\Blood_Ball.h" />
+    <ClInclude Include="Source\Reward.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
@@ -521,6 +525,9 @@
     <Image Include="RES\Start_Ani\start_temp.png" />
     <Image Include="RES\InGame\Enemy\Dark_man\HP\HP_Bar.bmp" />
     <Image Include="RES\InGame\Enemy\HP_bar\M.bmp" />
+    <Image Include="..\..\素材\BloodBall.bmp" />
+    <Image Include="res\menu\init\bitmap11.bmp" />
+    <Image Include="RES\InGame\Enemy\BloodBall.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

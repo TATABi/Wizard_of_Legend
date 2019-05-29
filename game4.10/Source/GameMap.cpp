@@ -32,10 +32,8 @@ namespace game_framework {
 		_isPressF = false;
 		_character_status = 0;
 		
-		
 		for (int i = 0; i < _enemies.size(); i++)
 			_enemies[i]->Reset();	
-		
 	}
 
 	void GameMap::LoadBitmapPressF()
@@ -43,7 +41,6 @@ namespace game_framework {
 		int m[6] = { PRESS_F_01, PRESS_F_02, PRESS_F_03 , PRESS_F_04, PRESS_F_05, PRESS_F_06 };
 		for (int i = 0; i < 6;i++)
 			_ani_press_f.AddBitmap(m[i], RGB(50, 255, 0));
-
 	}
 	
 	void GameMap::OnMoveBackgroundAndWall()
@@ -96,16 +93,19 @@ namespace game_framework {
 			enemy->OnMove(_cxy[0], _cxy[1], _skillList);
 	}
 	
+	void GameMap::RewardsOnMove()
+	{
+		for each (Reward* reward in _rewards)
+			reward->OnMove();
+	}
 	void GameMap::OnShow()
 	{
 		//¹Ï¼h®ÄªG
-
 		vector<Layer*> layer;
-
+		layer.insert(layer.end(), _rewards.begin(), _rewards.end());
 		layer.insert(layer.end(), _enemies.begin(), _enemies.end());
 		layer.insert(layer.end(), _skillList.begin(), _skillList.end());
 		layer.push_back(_character);
-
 		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });
 
 		vector<Layer*>::iterator l_it;
@@ -117,7 +117,6 @@ namespace game_framework {
 
 	void GameMap::CleanMemory()
 	{
-
 		vector<Skill*>::iterator s_it;
 		for (s_it = _skillList.begin(); s_it != _skillList.end(); s_it++)
 		{
@@ -135,6 +134,8 @@ namespace game_framework {
 		{
 			if (!(*e_it)->IsLive())
 			{
+				vector<Reward*> temp = (*e_it)->CreateReward();
+				_rewards.insert(_rewards.end(), temp.begin(), temp.end());
 				delete *e_it;
 				e_it = _enemies.erase(e_it);
 			}

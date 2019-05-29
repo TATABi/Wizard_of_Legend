@@ -5,7 +5,7 @@
 
 namespace game_framework {
 	class GameMap;
-
+	class Reward;
 	class Enemy : public Layer {
 	public:
 		Enemy(int, int, int, GameMap*);
@@ -20,8 +20,8 @@ namespace game_framework {
 		int* GetCollisionMove();
 		int* GetHitbox();
 		void LoadBitmap();
+		virtual vector<Reward*> CreateReward();	//血球、錢、鑽石的數量
 		bool IsInAttackZone(int, int);
-
 		virtual void Init() = 0;
 		virtual void LoadBitmap_2() = 0;
 		virtual void Move(int, int) = 0;

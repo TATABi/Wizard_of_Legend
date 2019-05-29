@@ -81,11 +81,9 @@ namespace game_framework {
 		}
 
 		OnMoveBackgroundAndWall();
-
 		SkillOnMove();
-		
 		EnemyOnMove();
-	  
+		RewardsOnMove();
 	}
 	
 	int* Map_Home::SetCharacterXY(int dx, int dy, const int* collision_move)
@@ -148,7 +146,6 @@ namespace game_framework {
 		return _cxy;
 	}
 
-	
 	bool Map_Home::SetEnemyXY(int x, int y, int* collision_move)
 	{
 		int ex = x + collision_move[0];
@@ -168,7 +165,6 @@ namespace game_framework {
 		return false;
 	}
 	
-
 	int Map_Home::GetMapStatus(int x, int y)
 	{
 		return HOME_LOGIC[int(x/10)][int(y/10)];

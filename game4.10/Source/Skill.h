@@ -39,8 +39,6 @@ namespace game_framework {
 		CAnimation _ani_skill[8];					//技能動畫
 		vector<Layer *> _enemyList;					//存放已經攻擊過的怪物
 	};
-
-
 }
 
 #endif

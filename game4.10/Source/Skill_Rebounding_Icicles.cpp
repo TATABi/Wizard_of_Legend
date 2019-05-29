@@ -104,7 +104,6 @@ namespace game_framework
 			if (AttackedThisEnemy(enemy))
 				return _damage * CharacterData::Attack_Coefficient;
 		}
-
 		return 0;
 	}
 
@@ -195,11 +194,8 @@ namespace game_framework
 			{
 				_ani_skill[3].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[3].Width() / 2 + _ani_4[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[3].Height() / 2 + _ani_4[1] - cxy[1]);
 				_ani_skill[3].OnMove();
-
 			}
-
 		}
-		
 	}
 
 	void Skill_Rebounding_Icicles::OnShow()
@@ -220,7 +216,6 @@ namespace game_framework
 			
 			if (_ani_skill[3].IsFinalBitmap())
 				_isDelete = true;
-
 		}
 	}
 

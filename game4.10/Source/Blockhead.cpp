@@ -49,7 +49,6 @@ namespace game_framework {
 
 	void Blockhead::Move(int cx, int cy)
 	{
-
 		int x = CHARACTER_SCREEN_X + _xy[0] - cx;
 		int y = CHARACTER_SCREEN_Y + _xy[1] - cy;
 
@@ -70,7 +69,6 @@ namespace game_framework {
 
 	void Blockhead::OnShow()
 	{
-
 		switch (_state)
 		{
 		case ATTACKING:
@@ -93,7 +91,6 @@ namespace game_framework {
 			}
 			break;
 		}
-
 	}
 
 	/*
@@ -102,6 +99,4 @@ namespace game_framework {
 		return 0;
 	}
 	*/
-
-
 }

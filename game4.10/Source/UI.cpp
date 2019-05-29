@@ -98,8 +98,15 @@ namespace game_framework {
 		const int MAX_HP_Y2 = 46;
 		float temp_hp;
 		int x1;
+		if (CharacterData::HP <= 0)
+		{
+			CharacterData::HP = 500;
+			//回到home，重置各項數值
+			
+		}
 		temp_hp = (float)(CharacterData::Max_HP - CharacterData::HP) / CharacterData::Max_HP;		//計算血量差值
 		x1 = (int)(temp_hp * 81);
+
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣血)
 		pb = pDC->SelectObject(&b);

@@ -6,9 +6,9 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Enemy.h"
-#include "Map_Home_Logic.h"
 #include "GameMap.h"
-
+#include "Reward.h"
+#include "Blood_Ball.h"
 #define CHARGING_ZONE 300
 
 namespace game_framework {
@@ -45,16 +45,12 @@ namespace game_framework {
 		int ani[7] = { GET_HURT_01, GET_HURT_02, GET_HURT_03, GET_HURT_04, GET_HURT_05, GET_HURT_06, GET_HURT_07 };
 		for (int i = 0; i < 7; i++)
 			_ani_hurt.AddBitmap(ani[i], RGB(50, 255, 0));
-
 		_ani_hurt.SetDelayCount(1);
-
-		
 	}
 
 	void Enemy::OnMove(int cx, int cy, vector<Skill*> &skills)
 	{
-		
-		if (_hp > 0)
+		if (IsLive())
 		{
 			int currentX = _xy[0];
 			int currentY = _xy[1];
@@ -72,7 +68,6 @@ namespace game_framework {
 					_hit_recover_flag = false;
 				}
 			}
-			
 			switch (_state)
 			{
 			case CHARGING:
@@ -117,7 +112,6 @@ namespace game_framework {
 		_xy[0] += dx;
 		_xy[1] += dy;
 	}
-	
 
 	int* Enemy::GetCollisionMove() 
 	{
@@ -145,7 +139,6 @@ namespace game_framework {
 	bool Enemy::CanAchieved(int dx, int dy)
 	{
 		return _map->SetEnemyXY(_xy[0] + dx, _xy[1] + dy, _collision_move);
-
 		/*
 		int x1 = _xy[0] + _collision_move[0];
 		int y1 = _xy[1] + _collision_move[1];
@@ -176,6 +169,15 @@ namespace game_framework {
 	int Enemy::Area()
 	{
 		return _area;
+	}
+
+	vector<Reward*> Enemy::CreateReward()
+	{
+		vector<Reward*> rewards;
+		int midX = _xy[0] + _hitbox[0] + _hitbox[2] / 2;
+		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;	//敵人中心位置
+		rewards.push_back(new BloodBall(midX, midY, _map));
+		return rewards;
 	}
 
 	void Enemy::MoveToTarget(int target_x, int target_y)
@@ -228,7 +230,6 @@ namespace game_framework {
 			{
 				_is_x_arrive = true;
 			}
-
 			if ((abs(midY - cMidY) > _zone))
 			{
 				_is_y_arrive = false;
@@ -325,7 +326,6 @@ namespace game_framework {
 			}
 			if (_neighbor[1] == false)	//下卡住
 			{
-				
 				for (int i = 0; i < detourTime; i++)
 				{
 					//向右檢查
@@ -350,7 +350,6 @@ namespace game_framework {
 					}
 				}
 			}
-
 			if (_neighbor[2] == false)	//左卡住
 			{
 				for (int i = 0; i < detourTime; i++)
@@ -377,7 +376,6 @@ namespace game_framework {
 					}
 				}
 			}
-
 			if (_neighbor[3] == false)	//右卡住
 			{		
 				for (int i = 0; i < detourTime; i++)
@@ -405,15 +403,9 @@ namespace game_framework {
 				}
 			}		
 		}
-		
-		
 		if (currentX == _xy[0] && currentY == _xy[1])
 		{
 			_state == RESET ? _xy[0] = _ori_x, _xy[1] = _ori_y : _state = ATTACKING;	//加上動畫
 		}
-		
 	}
-
-	
-
 }

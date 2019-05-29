@@ -4,7 +4,7 @@
 #include "Enemy.h"
 #include "Layer.h"
 #include "Skill.h"
-
+#include "Reward.h"
 
 namespace game_framework {
 	class Character;
@@ -25,6 +25,7 @@ namespace game_framework {
 		void OnShow();
 		void SkillOnMove();
 		void EnemyOnMove();
+		void RewardsOnMove();
 		void CleanMemory();
 		virtual void LoadBitmap()=0;
 		virtual void OnMove() = 0;
@@ -44,9 +45,9 @@ namespace game_framework {
 		const int CHARACTER_SCREEN_X = 285;
 		const int CHARACTER_SCREEN_Y = 205;
 		Character* _character;
-		std::vector<Skill*> _skillList;
+		vector<Skill*> _skillList;
 		vector<Enemy*> _enemies;
+		vector<Reward*> _rewards;
 	};
-
 }
 #endif
