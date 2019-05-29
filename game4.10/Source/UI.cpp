@@ -77,16 +77,16 @@ namespace game_framework {
 		CalculateMP();
 
 		_integer.SetTopLeft(320, 453);
-		_integer.SetInteger(CharacterData::Money);
+		//_integer.SetInteger(CharacterData::Instance()->MONEY());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(320, 433);
-		_integer.SetInteger(CharacterData::Diamond);
+		//_integer.SetInteger(CharacterData::Instance()->DIAMOND());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(112, 25);
-		_integer.SetInteger(CharacterData::Max_HP);
+		//_integer.SetInteger(CharacterData::Instance()->MAX_HP());
 		_integer.ShowBitmap();
 		_integer.SetTopLeft(83, 25);
-		_integer.SetInteger(CharacterData::HP);
+		//_integer.SetInteger(CharacterData::Instance()->HP());
 		_integer.ShowBitmap();
 		_bm_slash.ShowBitmap();		
 	}
@@ -98,15 +98,8 @@ namespace game_framework {
 		const int MAX_HP_Y2 = 46;
 		float temp_hp;
 		int x1;
-		if (CharacterData::HP <= 0)
-		{
-			CharacterData::HP = 500;
-			//回到home，重置各項數值
-			
-		}
-		temp_hp = (float)(CharacterData::Max_HP - CharacterData::HP) / CharacterData::Max_HP;		//計算血量差值
+		temp_hp = (float)(CharacterData::Instance()->MAX_HP() - CharacterData::Instance()->HP()) / CharacterData::Instance()->MAX_HP();		//計算血量差值
 		x1 = (int)(temp_hp * 81);
-
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣血)
 		pb = pDC->SelectObject(&b);
@@ -122,7 +115,7 @@ namespace game_framework {
 		const int MAX_MP_Y2 = 54;
 		float temp_mp;
 		int x1;
-		temp_mp = (float)(CharacterData::Max_MP - CharacterData::MP) / CharacterData::Max_MP;		//計算MP差值
+		temp_mp = (float)(CharacterData::Instance()->MAX_MP() - CharacterData::Instance()->MP()) / CharacterData::Instance()->MAX_MP();		//計算MP差值
 		x1 = (int)(temp_mp * 65);
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣MP)

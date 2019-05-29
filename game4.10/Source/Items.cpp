@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Items.h"
+#include "CharacterData.h"
 
 namespace game_framework {
 
@@ -26,38 +27,38 @@ namespace game_framework {
 	{
 		//分裂的護身符
 		_items.push_back(new Item(ITEM_OFFENSE_01, "OFFENSE", 1, 15, 
-								[]() {CharacterData::Attack_Coefficient += 0.1; return true; },
-								[]() {CharacterData::Attack_Coefficient -= 0.1; }));	
+								[]() {CharacterData::Instance()->SetAttackCoefficient(1.1); return true; },
+								[]() {CharacterData::Instance()->SetAttackCoefficient(-1.1); }));
 
 		//狂怒頭盔
 		_items.push_back(new Item(ITEM_OFFENSE_02, "OFFENSE", 2, 15, 
-								[]() {if (CharacterData::HP < CharacterData::Max_HP * 1 / 3) { CharacterData::Attack_Coefficient += 0.2; return true; } else return false; },
-								[]() {CharacterData::Attack_Coefficient -= 0.2; }));	
+								[]() {if (CharacterData::Instance()->HP() < CharacterData::Instance()->MAX_HP() * 1 / 3) { CharacterData::Instance()->SetAttackCoefficient(1.2); return true; } else return false; },
+								[]() { CharacterData::Instance()->SetAttackCoefficient(-1.2); }));
 
 		//巨人之心
 		_items.push_back(new Item(ITEM_DEFENSE_01, "DEFENSE", 3, 15, 
-								[]() {CharacterData::Max_HP = (int)(CharacterData::Max_HP * 1.5); return true; },
-								[]() { CharacterData::Max_HP = CharacterData::Max_HP / 1.5; if (CharacterData::Max_HP < CharacterData::HP) { CharacterData::HP = CharacterData::Max_HP; } }));	
+								[]() { CharacterData::Instance()->AddMaxHP(200); return true; },
+								[]() { CharacterData::Instance()->AddMaxHP(-200);}));
 
 		//吸血鬼眼鏡
 		_items.push_back(new Item(ITEM_DEFENSE_02, "DEFENSE", 4, 15, 
-								[]() {CharacterData::Blood_Suck_Constant += 1; return true; }, 
-								[]() {CharacterData::Blood_Suck_Constant -= 1; })); 
+								[]() {CharacterData::Instance()->SetBloodSuckCoefficient(2.0); return true; },
+								[]() {CharacterData::Instance()->SetBloodSuckCoefficient(-2.0); }));
 
 		//水銀的便鞋
 		_items.push_back(new Item(ITEM_DEFENSE_03, "DEFENSE", 5, 15, 
-								[]() {CharacterData::Move_Coefficient = 2; return true; }, 
-								[]() {CharacterData::Move_Coefficient = 1; }));	
+								[]() {CharacterData::Instance()->SetNoveCoefficient(2.0); return true; },
+								[]() {CharacterData::Instance()->SetNoveCoefficient(-2.0); }));
 
 		//羅素的鐘擺
 		_items.push_back(new Item(ITEM_MISC_01, "MISC", 6, 15, 
-								[]() {CharacterData::CD_Coefficient -= 0.1; return true; }, 
-								[]() {CharacterData::CD_Coefficient += 0.1; }));	
+								[]() {CharacterData::Instance()->SetCDCoefficient(-2.0); return true; },
+								[]() {CharacterData::Instance()->SetCDCoefficient(2.0); }));
 
 		//托茲的懷表
 		_items.push_back(new Item(ITEM_MISC_02, "MISC", 7, 15, 
-								[]() {CharacterData::CD_Coefficient -= 0.25; CharacterData::MP_Charge_Constant += 2; return true; }, 
-								[]() {CharacterData::CD_Coefficient += 0.25; CharacterData::MP_Charge_Constant -= 2;  }));	
+								[]() {CharacterData::Instance()->SetCDCoefficient(-1.5); CharacterData::Instance()->CharacterData::SetMPChargeCoefficient(2.0); return true; },
+								[]() {CharacterData::Instance()->SetCDCoefficient(1.5); CharacterData::Instance()->CharacterData::SetMPChargeCoefficient(-2.0);  }));
 
 
 	}

@@ -16,6 +16,7 @@ namespace game_framework {
 		_delayCounter = 30 * 1; // 1 seconds
 		_map.Initialize(740, 918);
 		_character->Initialize(_map.GetCharacterPosition());
+		//CharacterData::Instance()->ResetStatus();
 
 		//從其他場景回來不用再次出現加入選單
 		if (_ani_light_beam.IsFinalBitmap())

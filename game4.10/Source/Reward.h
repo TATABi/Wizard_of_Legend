@@ -18,6 +18,7 @@ namespace game_framework {
 		virtual void Effect() = 0;
 		virtual void MoveTarget(float, float) = 0;
 		virtual void SetRandomPosition() = 0;
+		bool IsDelete();
 	protected:
 
 		enum STATE {

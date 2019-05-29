@@ -22,6 +22,9 @@ namespace game_framework {
 
 		for each (Enemy* enemy in _enemies)
 			delete enemy;
+
+		for each (Reward* reward in _rewards)
+			delete reward;
 	}
 
 	void GameMap::Initialize(int x, int y) 
@@ -140,6 +143,18 @@ namespace game_framework {
 				e_it = _enemies.erase(e_it);
 			}
 			if (e_it == _enemies.end())
+				break;
+		}
+		
+		vector<Reward*>::iterator r_it;
+		for (r_it = _rewards.begin(); r_it != _rewards.end(); r_it++)
+		{
+			if ((*r_it)->IsDelete() == true)
+			{
+				delete *r_it;
+				r_it = _rewards.erase(r_it);
+			}
+			if (r_it == _rewards.end())
 				break;
 		}
 	}

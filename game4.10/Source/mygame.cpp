@@ -72,6 +72,8 @@ namespace game_framework {
 
 	CGameStateOver::CGameStateOver(CGame *g) : CGameState(g) {}
 
+	CGameStateOver::~CGameStateOver() { CharacterData::Instance()->DeleteData(); }//¸Ñ¨MSingleton memory leak
+
 	void CGameStateOver::OnMove()
 	{
 		_counter--;

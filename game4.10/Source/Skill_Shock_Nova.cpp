@@ -129,7 +129,17 @@ namespace game_framework
 				if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 				{
 					if (AttackedThisEnemy(enemy))
-						return _damage * CharacterData::Attack_Coefficient;
+					{
+						auto* data = CharacterData::Instance();
+						
+						int damage = _damage * data->ATTACK_COEFFICIENT();
+
+						data->AddMP((int)((damage) * data->MP_CHARGE_COEFFICIENT()));
+						
+						return damage;
+						
+						//return 0;
+					}
 				}
 			}
 		}

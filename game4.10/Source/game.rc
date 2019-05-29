@@ -769,6 +769,21 @@ MAP_LEVEL_01            BITMAP                  "..\\RES\\InGame\\Level_1\\Map\\
 LOADING_CHESS           BITMAP                  "..\\RES\\InGame\\Loading\\chess.bmp"
 
 ENEMY_HP_BAR_M          BITMAP                  "..\\RES\\InGame\\Enemy\\HP_bar\\M.bmp"
+MENU_ABOUT              BITMAP                  "..\\RES\\Menu\\Options\\About.bmp"
+MENU_KEY_CONFIG         BITMAP                  "..\\RES\\Menu\\Options\\Key_Config.bmp"
+MENU_OPTION_1           BITMAP                  "..\\RES\\Menu\\Options\\Options_1.bmp"
+MENU_OPTION_2           BITMAP                  "..\\RES\\Menu\\Options\\Options_2.bmp"
+MENU_OPTION_3           BITMAP                  "..\\RES\\Menu\\Options\\Options_3.bmp"
+MENU_EAT_PIZZA_01       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\01.bmp"
+MENU_EAT_PIZZA_02       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\02.bmp"
+MENU_EAT_PIZZA_03       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\03.bmp"
+MENU_EAT_PIZZA_04       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\04.bmp"
+MENU_EAT_PIZZA_05       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\05.bmp"
+MENU_EAT_PIZZA_06       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\06.bmp"
+MENU_EAT_PIZZA_07       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\07.bmp"
+MENU_EAT_PIZZA_08       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\08.bmp"
+MENU_EAT_PIZZA_09       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\09.bmp"
+MENU_EAT_PIZZA_10       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\10.bmp"
 
 BLOODBALL               BITMAP                  "..\\RES\\InGame\\Enemy\\BloodBall.bmp"
 

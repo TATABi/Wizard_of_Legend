@@ -76,15 +76,16 @@ namespace game_framework {
 			}
 		}
 	}
-	/*
-	void Reward::SetRandomPosition() 
+	
+	bool Reward::IsDelete()
 	{
-		_targetX = rand() % _range_position + _xy[0];
-		_targetY = rand() % _range_position + _xy[1];
-		while (!_map->SetEnemyXY(_targetX, _targetY, _hitbox))
-		{
-			_targetX = rand() % _range_position + _xy[0];
-			_targetY = rand() % _range_position + _xy[1];
-		}
-	}*/
+		float cx = _map->GetCharacterPosition()[0];
+		float cy = _map->GetCharacterPosition()[1];
+		float midCX = cx + CHARACTER_HITBOX[2] / 2;
+		float midCY = cy + CHARACTER_HITBOX[3] / 2;
+		if ((_isShow) && (IsTargetPosition(midCX, midCY)))
+			return true;
+		else
+			return false;
+	}
 }

@@ -9,13 +9,22 @@ namespace game_framework {
 		enum FLAG {
 			FLAG_INIT_INIT,
 			FLAG_INIT_MENU,
-			FLAG_INIT_OPTION
+			FLAG_INIT_OPTION,
+			FLAG_INIT_KEY_CONFIG,
+			FLAG_INIT_RESET_DATA,
+			FLAG_INIT_ABOUT
 		};
 
-		enum INSTRUCTION {
+		enum INSTRUCTION_MENU {
 			SINGLE_PLAYER,
-			OPTION,
+			OPTIONS,
 			QUIT
+		};
+
+		enum INSTRUCTION_OPTIONS {
+			KEY_CONFIG,
+			RESET_DATA,
+			ABOUT
 		};
 
 	public:
@@ -31,13 +40,17 @@ namespace game_framework {
 	private:
 		CAnimation _ani_menu_1;
 		CAnimation _ani_menu_2;
+		CAnimation _ani_reset_data;
 		CMovingBitmap _bm_option;
 		CMovingBitmap _bm_quit;
 		CMovingBitmap _bm_single_player;
 		CMovingBitmap _bm_loading;
-		CMovingBitmap _bm_option_page;
+		CMovingBitmap _bm_options_page_1, _bm_options_page_2, _bm_options_page_3;
+		CMovingBitmap _bm_key_config;
+		CMovingBitmap _bm_about;
 		int _flag;
-		int _instruction;
+		int _instruction_1;
+		int _instruction_2;
 	};
 }
 

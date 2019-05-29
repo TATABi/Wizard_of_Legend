@@ -46,7 +46,7 @@ namespace game_framework {
 		_ani_useSkill_3_down.SetDelayCount(1);
 		_ani_useSkill_3_up.SetDelayCount(1);
 
-		_hp = CharacterData::HP;
+		_hp = CharacterData::Instance()->HP();
 		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
 		_dx = 0;
 		_dy = 0;
@@ -222,11 +222,11 @@ namespace game_framework {
 
 				//初始移動系數
 				if (_isDash)
-					_step = DASH_STEP * CharacterData::Move_Coefficient * _dash_resistance;
+					_step = DASH_STEP * CharacterData::Instance()->MOVE_COEFFICIENT() * _dash_resistance;
 				else if (_isRunning)
-					_step = RUN_STEP * CharacterData::Move_Coefficient;
+					_step = RUN_STEP * CharacterData::Instance()->MOVE_COEFFICIENT();
 				else
-					_step = MOVE_STEP * CharacterData::Move_Coefficient;
+					_step = MOVE_STEP * CharacterData::Instance()->MOVE_COEFFICIENT();
 
 				//計算移動距離		
 				if (IsSlash()) //如果斜走
@@ -542,7 +542,7 @@ namespace game_framework {
 	{
 		if (CanDash())
 		{
-			CharacterData::INVINCIBLE = true;
+			CharacterData::Instance()->SetInvincible(true);
 			_isDash = true;
 			_isRunning = false;
 			_dash_delay_counter--;
@@ -654,7 +654,7 @@ namespace game_framework {
 	{
 		if (_hit_recover_counter == 0)
 		{
-			if (CharacterData::HP < _hp)
+			if (CharacterData::Instance()->HP() < _hp)
 			{
 				_isHurt = true;
 				_hit_recover_counter = 5;
@@ -662,7 +662,7 @@ namespace game_framework {
 			else
 				_isHurt = false;
 
-			_hp = CharacterData::HP;
+			_hp = CharacterData::Instance()->HP();
 		}
 		else
 			_hit_recover_counter > 0 ? _hit_recover_counter-- : NULL;
@@ -678,7 +678,7 @@ namespace game_framework {
 
 	void Character::ResetDash()
 	{
-		CharacterData::INVINCIBLE = false;
+		CharacterData::Instance()->SetInvincible(false);
 
 		_isDashLock = false;
 		_isDash = false;

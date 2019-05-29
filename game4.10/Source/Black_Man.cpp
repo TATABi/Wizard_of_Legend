@@ -209,7 +209,7 @@ namespace game_framework {
 				if (!_isAttack)
 					if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 					{
-						CharacterData::INVINCIBLE == false ? CharacterData::HP -= DAMAGE : NULL;
+						CharacterData::Instance()->ISVINCIBLE() == false ? CharacterData::Instance()->AddHP(-DAMAGE) : NULL;
 						_isAttack = true;
 						break;
 					}
