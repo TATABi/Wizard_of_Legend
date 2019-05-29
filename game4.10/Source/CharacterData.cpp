@@ -16,10 +16,10 @@ namespace game_framework {
 	int CharacterData::Max_MP = 100;
 	double CharacterData::Attack_Coefficient = 1;
 	double CharacterData::Defense_Coefficient = 1;
-	int CharacterData::Blood_Suck_Constant = 0;
+	int CharacterData::Blood_Suck_Coefficient = 0;
 	double CharacterData::Move_Coefficient = 1;
 	double CharacterData::CD_Coefficient = 1;
-	int CharacterData::MP_Charge_Constant = 4;
+	int CharacterData::MP_Charge_Coefficient = 4;
 	bool CharacterData::INVINCIBLE = false;
 	
 

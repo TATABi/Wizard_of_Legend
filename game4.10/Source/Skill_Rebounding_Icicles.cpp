@@ -24,7 +24,7 @@ namespace game_framework
 
 	void Skill_Rebounding_Icicles::Initialize(int mouseX, int mouseY, float* cxy)
 	{
-		_damage = 8;
+		_damage = 1;
 		_backDistance = 10;
 		_hitbox[0] = 32;
 		_hitbox[1] = 10;
@@ -38,7 +38,7 @@ namespace game_framework
 		_isDelete = false;
 		_isStock = false;
 		_speed = 10;
-		_cast_distance = 30;
+		_cast_distance = 50;
 		_isInit[0] = _isInit[1] = _isInit[2] = _isInit[3] = true;
 		_ani_skill[0].SetDelayCount(1);
 		_ani_skill[1].SetDelayCount(1);
@@ -102,7 +102,11 @@ namespace game_framework
 		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //µo¥Í¸I¼²
 		{
 			if (AttackedThisEnemy(enemy))
+			{
+				CharacterData::MP += CharacterData::MP_Charge_Coefficient;
 				return _damage * CharacterData::Attack_Coefficient;
+
+			}
 		}
 
 		return 0;
@@ -155,7 +159,6 @@ namespace game_framework
 			if (_ani_skill[0].GetCurrentBitmapNumber() == 4)
 			{
 				_ani_skill[1].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[1].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[1].Height() / 2 + _xy[1] - cxy[1]);
-				//ani_skill[1].OnMove();
 				_isInit[1] = false;
 				_ani_2[0] = _xy[0];
 				_ani_2[1] = _xy[1];
@@ -165,12 +168,11 @@ namespace game_framework
 				_ani_skill[1].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[1].Width() / 2 + _ani_2[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[1].Height() / 2 + _ani_2[1] - cxy[1]);
 				_ani_skill[1].OnMove();
 			}
-
+			
 			//////////////////////////////////  3
 			if (_ani_skill[1].GetCurrentBitmapNumber() == 4)
 			{
 				_ani_skill[2].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[2].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[2].Height() / 2 + _xy[1] - cxy[1]);
-				//ani_skill[2].OnMove();
 				_isInit[2] = false;
 				_ani_3[0] = _xy[0];
 				_ani_3[1] = _xy[1];
@@ -186,7 +188,6 @@ namespace game_framework
 			if (_ani_skill[2].GetCurrentBitmapNumber() == 4)
 			{
 				_ani_skill[3].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[3].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[3].Height() / 2 + _xy[1] - cxy[1]);
-				//ani_skill[3].OnMove();
 				_isInit[3] = false;
 				_ani_4[0] = _xy[0];
 				_ani_4[1] = _xy[1];
@@ -197,7 +198,7 @@ namespace game_framework
 				_ani_skill[3].OnMove();
 
 			}
-
+			
 		}
 		
 	}

@@ -521,6 +521,21 @@
     <Image Include="RES\Start_Ani\start_temp.png" />
     <Image Include="RES\InGame\Enemy\Dark_man\HP\HP_Bar.bmp" />
     <Image Include="RES\InGame\Enemy\HP_bar\M.bmp" />
+    <Image Include="RES\Menu\Options\About.bmp" />
+    <Image Include="RES\Menu\Options\Key_Config.bmp" />
+    <Image Include="RES\Menu\Options\Options_1.bmp" />
+    <Image Include="RES\Menu\Options\Options_2.bmp" />
+    <Image Include="RES\Menu\Options\Options_3.bmp" />
+    <Image Include="RES\Menu\Options\pizza\01.bmp" />
+    <Image Include="RES\Menu\Options\pizza\02.bmp" />
+    <Image Include="RES\Menu\Options\pizza\03.bmp" />
+    <Image Include="RES\Menu\Options\pizza\04.bmp" />
+    <Image Include="RES\Menu\Options\pizza\05.bmp" />
+    <Image Include="RES\Menu\Options\pizza\06.bmp" />
+    <Image Include="RES\Menu\Options\pizza\07.bmp" />
+    <Image Include="RES\Menu\Options\pizza\08.bmp" />
+    <Image Include="RES\Menu\Options\pizza\09.bmp" />
+    <Image Include="RES\Menu\Options\pizza\10.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

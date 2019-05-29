@@ -76,7 +76,6 @@
 #define LOADING                         315
 #define LOADING_LEVEL                   316
 #define JOIN                            318
-#define MENU_OPTIONS                    320
 #define MAP_HOME                        322
 #define CHARACTER_DOWN_01               323
 #define CHARACTER_DOWN_02               324
@@ -381,8 +380,23 @@
 #define CHARACTER_HURT_RIGHT            648
 #define MAP_LEVEL_01                    650
 #define LOADING_CHESS                   651
-#define ENEMY_HP_BAR_SMALL              652
 #define ENEMY_HP_BAR_M                  652
+#define MENU_ABOUT                      653
+#define MENU_KEY_CONFIG                 654
+#define MENU_OPTION_1                   655
+#define MENU_OPTION_2                   656
+#define MENU_OPTION_3                   657
+#define MENU_EAT_PIZZA_01               658
+#define MENU_EAT_PIZZA_02               659
+#define MENU_EAT_PIZZA_03               660
+#define MENU_EAT_PIZZA_04               661
+#define MENU_EAT_PIZZA_05               662
+#define MENU_EAT_PIZZA_06               663
+#define MENU_EAT_PIZZA_07               664
+#define MENU_EAT_PIZZA_08               665
+#define MENU_EAT_PIZZA_09               666
+#define IDB_BITMAP20                    667
+#define MENU_EAT_PIZZA_10               667
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -395,7 +409,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        653
+#define _APS_NEXT_RESOURCE_VALUE        668
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

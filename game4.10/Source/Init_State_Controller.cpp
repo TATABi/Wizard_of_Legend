@@ -15,7 +15,8 @@ namespace game_framework {
 	void Init_State_Controller::Begin()
 	{
 		_flag = FLAG_INIT_INIT;
-		_instruction = SINGLE_PLAYER;
+		_instruction_1 = SINGLE_PLAYER;
+		_instruction_2 = KEY_CONFIG;
 		_game_state_num = -1;
 		_isSwitch = false;
 	}
@@ -39,15 +40,35 @@ namespace game_framework {
 		for (int i = 0; i < 11; i++)
 			_ani_menu_2.AddBitmap(m2[i]);
 
-	
+		int m3[10] = { MENU_EAT_PIZZA_01, MENU_EAT_PIZZA_02, MENU_EAT_PIZZA_03, MENU_EAT_PIZZA_04, MENU_EAT_PIZZA_05, MENU_EAT_PIZZA_06, MENU_EAT_PIZZA_07, MENU_EAT_PIZZA_08, MENU_EAT_PIZZA_09, MENU_EAT_PIZZA_10 };
+		for (int i = 0; i < 10; i++)
+			_ani_reset_data.AddBitmap(m3[i]);
+
 		_bm_option.LoadBitmap(MENU_ENTERMENU_OPTIONS);
 		_bm_quit.LoadBitmap(MENU_ENTERMENU_QUIT);
 		_bm_single_player.LoadBitmap(MENU_ENTERMENU_SINGLE_PLAYER);
 		_bm_loading.LoadBitmap(LOADING);
-		_bm_option_page.LoadBitmap(MENU_OPTIONS);
+		_bm_options_page_1.LoadBitmap(MENU_OPTION_1);
+		_bm_options_page_2.LoadBitmap(MENU_OPTION_2);
+		_bm_options_page_3.LoadBitmap(MENU_OPTION_3);
+		_bm_key_config.LoadBitmap(MENU_KEY_CONFIG);
+		_bm_about.LoadBitmap(MENU_ABOUT);
+
+		_bm_single_player.SetTopLeft(0, 0);
+		_bm_quit.SetTopLeft(0, 0);
+		_bm_option.SetTopLeft(0, 0);
+		_ani_menu_1.SetTopLeft(0, 0);
+		_ani_menu_2.SetTopLeft(0, 0);
+		_bm_options_page_1.SetTopLeft(0, 0);
+		_bm_options_page_2.SetTopLeft(0, 0);
+		_bm_options_page_3.SetTopLeft(0, 0);
+		_bm_key_config.SetTopLeft(0, 0);
+		_bm_about.SetTopLeft(0, 0);
+		_ani_reset_data.SetTopLeft(0, 0);
 
 		_ani_menu_1.SetDelayCount(2);
 		_ani_menu_2.SetDelayCount(1);
+		_ani_reset_data.SetDelayCount(10);
 
 	}
 
@@ -56,8 +77,10 @@ namespace game_framework {
 	void Init_State_Controller::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		Cheater(nChar);
-		CAudio::Instance()->Stop(AUDIO_BE);
+
 		CAudio::Instance()->Play(AUDIO_BE, false);
+
+
 		switch (_flag)
 		{
 		case FLAG_INIT_INIT:
@@ -68,28 +91,28 @@ namespace game_framework {
 
 			if (nChar == KEY_ESC)
 			{
-				if (_instruction == QUIT)
+				if (_instruction_1 == QUIT)
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// Ãö³¬¹CÀ¸
 				else
-					_instruction = QUIT;
+					_instruction_1 = QUIT;
 			}
 			else if (nChar == KEY_UP || nChar == KEY_W)
 			{
-				_instruction > 0 ? _instruction-- : NULL;
+				_instruction_1 > 0 ? _instruction_1-- : NULL;
 			}
 			else if (nChar == KEY_DOWN || nChar == KEY_S)
 			{
-				_instruction < 2 ? _instruction++ : NULL;
+				_instruction_1 < 2 ? _instruction_1++ : NULL;
 			}
 			else if (nChar == KEY_SPACE || nChar == KEY_ENTER)
 			{
-				switch (_instruction)
+				switch (_instruction_1)
 				{
 				case SINGLE_PLAYER:
 					_isSwitch = true;
 					_game_state_num = GAME_STATE_RUN_HOME;
 					break;
-				case OPTION:
+				case OPTIONS:
 					_flag = FLAG_INIT_OPTION;
 					break;
 				case QUIT:
@@ -101,9 +124,45 @@ namespace game_framework {
 
 		case FLAG_INIT_OPTION:
 			if (nChar == KEY_ESC)
+			{
 				_flag = FLAG_INIT_MENU;
+				_instruction_2 = KEY_CONFIG;
+			}
+			else if (nChar == KEY_SPACE)
+			{
+				switch (_instruction_2)
+				{
+				case KEY_CONFIG:
+					_flag = FLAG_INIT_KEY_CONFIG;
+					break;
+				case RESET_DATA:
+					_flag = FLAG_INIT_RESET_DATA;
+					break;
+				case ABOUT:
+					_flag = FLAG_INIT_ABOUT;
+					break;
+				}
+			}
+			else if (nChar == KEY_UP || nChar == KEY_W)
+			{
+				_instruction_2 > 0 ? _instruction_2-- : NULL;
+			}
+			else if (nChar == KEY_DOWN || nChar == KEY_S)
+			{
+				_instruction_2 < 2 ? _instruction_2++ : NULL;
+			}
 			break;	
+
+		case FLAG_INIT_KEY_CONFIG:
+		case FLAG_INIT_RESET_DATA:
+		case FLAG_INIT_ABOUT:
+			if (nChar == KEY_ESC)
+				_flag = FLAG_INIT_OPTION;
+			break;
 		}
+
+		
+
 	}
 
 	void Init_State_Controller::OnLButtonDown(UINT nFlags, CPoint point)
@@ -125,37 +184,66 @@ namespace game_framework {
 		{
 		case FLAG_INIT_INIT:
 			_ani_menu_1.OnMove();
-			_ani_menu_1.SetTopLeft(0, 0);
+			
 			_ani_menu_1.OnShow();	
 			break;
 
 		case FLAG_INIT_MENU:
 			if (!_ani_menu_2.IsFinalBitmap()) {
 				_ani_menu_2.OnMove();
-				_ani_menu_2.SetTopLeft(0, 0);
+				
 				_ani_menu_2.OnShow();
 			}
 			else {
-				switch (_instruction)
+				switch (_instruction_1)
 				{
 				case SINGLE_PLAYER:
-					_bm_single_player.SetTopLeft(0, 0);
 					_bm_single_player.ShowBitmap();
 					break;
-				case OPTION:
-					_bm_option.SetTopLeft(0, 0);
+				case OPTIONS:
+					
 					_bm_option.ShowBitmap();
 					break;
 				case QUIT:
-					_bm_quit.SetTopLeft(0, 0);
+					
 					_bm_quit.ShowBitmap();
 					break;
 				}
 			}
 			break;
+
 		case FLAG_INIT_OPTION:
-			_bm_option_page.SetTopLeft(0, 0);
-			_bm_option_page.ShowBitmap();
+			switch (_instruction_2)
+			{
+			case KEY_CONFIG:
+				_bm_options_page_1.ShowBitmap();
+				break;
+			case RESET_DATA:
+				_bm_options_page_2.ShowBitmap();
+				break;
+			case ABOUT:
+				_bm_options_page_3.ShowBitmap();
+				break;
+			}
+			break;
+
+		case FLAG_INIT_KEY_CONFIG:
+			_bm_key_config.ShowBitmap();
+			break;
+
+		case FLAG_INIT_RESET_DATA:
+			_ani_reset_data.OnMove();
+			_ani_reset_data.OnShow();
+
+			if (_ani_reset_data.IsFinalBitmap())
+			{
+				_ani_reset_data.Reset();
+				_flag = FLAG_INIT_OPTION;
+			}
+			break;
+
+		case FLAG_INIT_ABOUT:
+			_bm_about.ShowBitmap();
 			break;
 		}
 	}

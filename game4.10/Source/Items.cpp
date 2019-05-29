@@ -41,8 +41,8 @@ namespace game_framework {
 
 		//吸血鬼眼鏡
 		_items.push_back(new Item(ITEM_DEFENSE_02, "DEFENSE", 4, 15, 
-								[]() {CharacterData::Blood_Suck_Constant += 1; return true; }, 
-								[]() {CharacterData::Blood_Suck_Constant -= 1; })); 
+								[]() {CharacterData::Blood_Suck_Coefficient *= 2; return true; }, 
+								[]() {CharacterData::Blood_Suck_Coefficient /= 2; }));
 
 		//水銀的便鞋
 		_items.push_back(new Item(ITEM_DEFENSE_03, "DEFENSE", 5, 15, 
@@ -56,8 +56,8 @@ namespace game_framework {
 
 		//托茲的懷表
 		_items.push_back(new Item(ITEM_MISC_02, "MISC", 7, 15, 
-								[]() {CharacterData::CD_Coefficient -= 0.25; CharacterData::MP_Charge_Constant += 2; return true; }, 
-								[]() {CharacterData::CD_Coefficient += 0.25; CharacterData::MP_Charge_Constant -= 2;  }));	
+								[]() {CharacterData::CD_Coefficient -= 0.25; CharacterData::MP_Charge_Coefficient *= 2; return true; },
+								[]() {CharacterData::CD_Coefficient += 0.25; CharacterData::MP_Charge_Coefficient /= 2;  }));
 
 
 	}
