@@ -98,7 +98,7 @@ namespace game_framework {
 		const int MAX_HP_Y2 = 46;
 		float temp_hp;
 		int x1;
-		temp_hp = (float)(CharacterData::Instance()->MAX_HP() - CharacterData::Instance()->MAX_HP()) / CharacterData::Instance()->MAX_HP();		//計算血量差值
+		temp_hp = (float)(CharacterData::Instance()->MAX_HP() - CharacterData::Instance()->HP()) / CharacterData::Instance()->MAX_HP();		//計算血量差值
 		x1 = (int)(temp_hp * 81);
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣血)
@@ -115,7 +115,7 @@ namespace game_framework {
 		const int MAX_MP_Y2 = 54;
 		float temp_mp;
 		int x1;
-		temp_mp = (float)(CharacterData::Instance()->MAX_MP() - CharacterData::Instance()->MAX_MP()) / CharacterData::Instance()->MAX_MP();		//計算MP差值
+		temp_mp = (float)(CharacterData::Instance()->MAX_MP() - CharacterData::Instance()->MP()) / CharacterData::Instance()->MAX_MP();		//計算MP差值
 		x1 = (int)(temp_mp * 65);
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣MP)
