@@ -9,7 +9,6 @@ namespace game_framework {
 	class Enemy : public Layer {
 	public:
 		Enemy(int, int, int, GameMap*);
-		~Enemy();
 		void Initialize(int, int);	
 		void OnMove(int, int, vector<Skill*>&);		//傳入現在場上所有由主角發出的魔法
 		bool IsLive();
@@ -49,8 +48,9 @@ namespace game_framework {
 		int _area;
 		int _ori_x, _ori_y;
 		int _target_x, _target_y;
-		int _hitbox[4] = { 0 }; // { 0, 0, 34, 57 };
-		int _collision_move[4] = { 0 }; // { 8, 41, 16, 16 };		//只有和地圖物件是使用此碰撞窗
+		int _hitbox[4] = { 0 }; 
+		int _move_hitbox[4] = { 0 }; 	//只有和地圖物件是使用此碰撞窗
+		int _charge_zone;
 		bool _is_x_arrive;
 		bool _is_y_arrive;
 		bool _is_detour, _is_left, _is_right, _is_up, _is_down;

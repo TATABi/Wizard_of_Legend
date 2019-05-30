@@ -31,7 +31,7 @@ namespace game_framework {
 	CharacterData::CharacterData()
 	{
 		_money = 0;
-		_diamond = 500;
+		_diamond = 0;
 		_hp = 500;
 		_max_hp = 500;
 		_mp = 0;
@@ -43,6 +43,7 @@ namespace game_framework {
 		_cd_coefficient = 1;
 		_mp_charge_coefficient = 1;
 		_isInvincible = false;
+		_isLockHP = false;
 	}
 
 	//--------------------³]©w­È--------------------//
@@ -151,6 +152,13 @@ namespace game_framework {
 	void CharacterData::SetMagicBuff(bool isBuff)
 	{
 		_isMagicBuff = isBuff;
+	}
+
+	//-------------------Beater-------------------//
+
+	void CharacterData::LockHP()
+	{
+		_isLockHP ? _isLockHP = false : _isLockHP = true;
 	}
 
 	//--------------------¨ú­È--------------------//

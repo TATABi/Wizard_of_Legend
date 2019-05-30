@@ -1,9 +1,9 @@
 //===========================Screen===========================//
 
-const int CHARACTER_SCREEN_X = 285;				//角色"貼在"螢幕X座標
-const int CHARACTER_SCREEN_Y = 205;				//角色"貼在"螢幕Y座標
-const int CHARACTER_SCREEN_CENTER_X = 320;		//角色螢幕中心X座標
-const int CHARACTER_SCREEN_CENTER_Y = 240;		//角色螢幕中心Y座標
+const int CHARACTER_SCREEN_X = 285;								//角色"貼在"螢幕X座標
+const int CHARACTER_SCREEN_Y = 205;								//角色"貼在"螢幕Y座標
+const int CHARACTER_SCREEN_CENTER_X = 320;						//角色螢幕中心X座標
+const int CHARACTER_SCREEN_CENTER_Y = 240;						//角色螢幕中心Y座標
 
 //=========================Character=========================//
 
@@ -16,8 +16,8 @@ const int CHARACTER_HIT_RECOVER_TIME = 5;						//被毆硬直時間
 const int WALK_STEP = 6;										//Walk的步長
 const int RUN_STEP = 10;										//Run的步長
 const int DASH_STEP = 17;										//Dash的步長
-const int MAGIC_BUFF_TIME = int(0.1 * 30);							//MP集滿時BUFF持續的時間
-const int MP_DECREASE_TIME = int(0.4 * 30);							//MP集滿時BUFF持續的時間
+const int MAGIC_BUFF_TIME = int(0.1 * 30);						//MP集滿時BUFF持續的時間
+const int MP_DECREASE_TIME = int(0.4 * 30);						//MP集滿時BUFF持續的時間
 
 //===========================Skills===========================//
 
@@ -38,6 +38,28 @@ const int REBOUNDING_ICICKES_LIFETIME = 180;					//技能存活時間
 const int REBOUNDING_ICICKES_MAP_HITBOX[4] = { 35, 45, 6, 5 };	// 地圖碰撞
 const int REBOUNDING_ICICKES_SPEED = 10;						//技能移動速度
 const int REBOUNDING_ICICKES_CAST_DISTANCE = 50;				//技能施放與角色距離
+
+//===========================Eenemy===========================//
+
+//Blockhead//
+const int BLOCKHEAD_HP = 10000;									//血量
+const int BLOCKHEAD_STEP = 0;									//移動速度
+const int BLOCKHEAD_ZONE = 0;									//攻擊區域
+const int BLOCKHEAD_DAMAGE = 0;									//傷害
+const int BLOCKHEAD_HITBOX[4] = { 0, 0, 34, 57 };				//承受傷害的Hitbox
+const int BLOCKHEAD_MOVE_HITBOX[4] = { 8, 41, 16, 16 };			//移動的Hitbox
+const int BLOCKHEAD_CHARGING_ZONE = 0;
+
+//BlackMan//
+const int BLACKMAN_HP = 100;									//血量
+const int BLACKMAN_STEP = 5;									//移動速度
+const int BLACKMAN_ZONE = 30;									//攻擊區域
+const int BLACKMAN_DAMAGE = 20;									//傷害
+const int BLACKMAN_ATTACK_DELAY_TIME = 7;						//進入攻擊範圍後延遲的攻擊時間
+const int BLACKMAN_HITBOX[4] = {22, 15, 24, 44 };				//承受傷害的Hitbox
+const int BLACKMAN_MOVE_HITBOX[4] = { 29, 47, 17, 12 };			//移動的Hitbox
+const int BLACKMAN_CHARGING_ZONE = 300;
+
 
 //============================HOME============================//
 

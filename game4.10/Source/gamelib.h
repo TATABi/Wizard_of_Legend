@@ -117,10 +117,10 @@ enum AUDIO_ID {				// 定義各種音效的編號
 	AUDIO_LEVEL_EARTH
 };
 
-const char KEY_LEFT = 0x25; // keyboard左箭頭
-const char KEY_UP = 0x26; // keyboard上箭頭
-const char KEY_RIGHT = 0x27; // keyboard右箭頭
-const char KEY_DOWN = 0x28; // keyboard下箭頭
+const char KEY_LEFT = 0x25;		// keyboard左箭頭
+const char KEY_UP = 0x26;		// keyboard上箭頭
+const char KEY_RIGHT = 0x27;	// keyboard右箭頭
+const char KEY_DOWN = 0x28;		// keyboard下箭頭
 const char KEY_W = 0x57;
 const char KEY_S = 0x53;
 const char KEY_A = 0x41;
@@ -134,6 +134,8 @@ const char KEY_F2 = 0x71;
 const char KEY_F3 = 0x72;
 const char KEY_F4 = 0x73;
 const char KEY_F5 = 0x74;
+const char KEY_F6 = 0x75;
+const char KEY_F7 = 0x76;
 const char KEY_ENTER = 0xD;
 
 /////////////////////////////////////////////////////////////////////////////

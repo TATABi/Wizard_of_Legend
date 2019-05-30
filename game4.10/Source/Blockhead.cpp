@@ -8,38 +8,36 @@
 #include "time.h"
 #include "GameData.h"
 
-namespace game_framework {
+namespace game_framework 
+{
 	Blockhead::Blockhead(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
+		Reset();
 	}
-
-	Blockhead::~Blockhead() {}
 
 	void Blockhead::Init()
 	{
-		_hitbox[0] = 0;
-		_hitbox[1] = 0;
-		_hitbox[2] = 34;
-		_hitbox[3] = 57;
-
-		_collision_move[0] = 8;
-		_collision_move[1] = 41;
-		_collision_move[2] = 16;
-		_collision_move[3] = 16;
+		_hitbox[0] = BLOCKHEAD_HITBOX[0];
+		_hitbox[1] = BLOCKHEAD_HITBOX[1];
+		_hitbox[2] = BLOCKHEAD_HITBOX[2];
+		_hitbox[3] = BLOCKHEAD_HITBOX[3];
+		_move_hitbox[0] = BLOCKHEAD_MOVE_HITBOX[0];
+		_move_hitbox[1] = BLOCKHEAD_MOVE_HITBOX[1];
+		_move_hitbox[2] = BLOCKHEAD_MOVE_HITBOX[2];
+		_move_hitbox[3] = BLOCKHEAD_MOVE_HITBOX[3];
 	}
 
 	void Blockhead::Reset()
 	{
-		_hp = HP;
-		_step = STEP;
-		_zone = ZONE;
-		_damage = DAMAGE;
+		_hp = BLOCKHEAD_HP;
+		_step = BLOCKHEAD_STEP;
+		_zone = BLOCKHEAD_ZONE;
+		_damage = BLOCKHEAD_DAMAGE;
+		_charge_zone = BLOCKHEAD_CHARGING_ZONE;
 		_state = NOTHING;
-
 		_xy[0] = _ori_x;
 		_xy[1] = _ori_y;
-
 	}
 
 	void Blockhead::LoadBitmap_2()
@@ -57,7 +55,7 @@ namespace game_framework {
 		case ATTACKING:
 		case RESET:
 		case CHARGING:
-		case NOTHING:				//站立
+		case NOTHING:
 			_bm_stand.SetTopLeft(x, y);
 			break;
 		case HIT_RECOVER:
@@ -65,6 +63,9 @@ namespace game_framework {
 			_ani_hurt.SetTopLeft(x + (_bm_stand.Width() - _ani_hurt.Width()) / 2, y + (_bm_stand.Height() - _ani_hurt.Height()) / 2);
 			break;
 		}
+
+		//不死
+		_hp <= 0 ? _hp = BLOCKHEAD_HP : NULL;
 	}
 
 	void Blockhead::OnShow()
@@ -92,11 +93,4 @@ namespace game_framework {
 			break;
 		}
 	}
-
-	/*
-	int Blockhead::Attack(int x, int y)
-	{
-		return 0;
-	}
-	*/
 }

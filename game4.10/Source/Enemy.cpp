@@ -13,15 +13,11 @@
 #include "Reward_Diamond.h"
 #include <random>
 
-#define CHARGING_ZONE 300
-
 namespace game_framework {
 	Enemy::Enemy(int x, int y, int area, GameMap* map) : _ori_x(x), _ori_y(y), _area(area), _map(map)
 	{
 		Initialize(x, y);
 	}
-
-	Enemy::~Enemy(){}
 
 	void Enemy::Initialize(int x, int y)
 	{
@@ -31,12 +27,7 @@ namespace game_framework {
 		_detour_time = 0;
 		_is_x_arrive = _is_y_arrive = false;
 		_state = NOTHING;
-		_hit_recover_counter = 0;
 		_hit_recover_flag = false;
-		_hp = 100;
-		_step = 20;
-		_zone = 30;
-		_damage = 10;
 		
 		for (int i = 0; i < 4; i++)
 			_neighbor[i] = true;
@@ -78,7 +69,7 @@ namespace game_framework {
 				MoveToTarget(cx, cy);
 				if (IsInAttackZone(cx, cy))
 					_state = ATTACKING;
-				if (pow(_xy[0] - _ori_x, 2) + pow(_xy[1] - _ori_y, 2) > pow(CHARGING_ZONE, 2) && _state != HIT_RECOVER) //Â÷¶}§ðÀ»½d³ò
+				if (pow(_xy[0] - _ori_x, 2) + pow(_xy[1] - _ori_y, 2) > pow(_charge_zone, 2) && _state != HIT_RECOVER) //Â÷¶}§ðÀ»½d³ò
 					_state = RESET;
 				break;
 
@@ -106,7 +97,7 @@ namespace game_framework {
 				_hit_recover_counter == 0 ? _state = CHARGING : NULL;
 				break;
 			}
-			//Move(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);	
+
 			Move(cx, cy);
 		}	
 	}
@@ -119,7 +110,7 @@ namespace game_framework {
 
 	int* Enemy::GetCollisionMove() 
 	{
-		return _collision_move;
+		return _move_hitbox;
 	}
 
 	int *Enemy::GetHitbox()
@@ -142,7 +133,7 @@ namespace game_framework {
 	
 	bool Enemy::CanAchieved(int dx, int dy)
 	{
-		return _map->SetEnemyXY(_xy[0] + dx, _xy[1] + dy, _collision_move);
+		return _map->SetEnemyXY(_xy[0] + dx, _xy[1] + dy, _move_hitbox);
 	}
 
 	bool Enemy::IsLive()

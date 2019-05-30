@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Controller.h"
+#include "CharacterData.h"
 
 namespace game_framework {
 	Controller::Controller() {}
@@ -39,6 +40,16 @@ namespace game_framework {
 			_isSwitch = true;
 		}
 		*/
+		else if (keycode == KEY_F6)
+		{
+			CharacterData::Instance()->LockHP();
+			CharacterData::Instance()->SetAttackCoefficient(100);
+		}
+		else if (keycode == KEY_F7)
+		{
+			CharacterData::Instance()->AddMoney(999);
+			CharacterData::Instance()->AddDiamond(999);
+		}
 	}
 
 	void Controller::Initialize() {}

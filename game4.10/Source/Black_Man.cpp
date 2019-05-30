@@ -13,35 +13,34 @@ namespace game_framework {
 	Black_Man::Black_Man(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
+		Reset();
 	}
-
-	Black_Man::~Black_Man() {}
 
 	void Black_Man::Init()
 	{
-		_hitbox[0] = 22;
-		_hitbox[1] = 15;
-		_hitbox[2] = 24;
-		_hitbox[3] = 44;
-
-		_collision_move[0] = 29;
-		_collision_move[1] = 47;
-		_collision_move[2] = 17;
-		_collision_move[3] = 12;
+		_hitbox[0] = BLACKMAN_HITBOX[0];
+		_hitbox[1] = BLACKMAN_HITBOX[1];
+		_hitbox[2] = BLACKMAN_HITBOX[2];
+		_hitbox[3] = BLACKMAN_HITBOX[3];
+		_move_hitbox[0] = BLACKMAN_MOVE_HITBOX[0];
+		_move_hitbox[1] = BLACKMAN_MOVE_HITBOX[1];
+		_move_hitbox[2] = BLACKMAN_MOVE_HITBOX[2];
+		_move_hitbox[3] = BLACKMAN_MOVE_HITBOX[3];
 	}
 
 	void Black_Man::Reset()
 	{
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
-		_hp = HP;
-		_step = STEP;
-		_zone = ZONE;
-		_damage = DAMAGE;
+		_hp = BLACKMAN_HP;
+		_step = BLACKMAN_STEP;
+		_zone = BLACKMAN_ZONE;
+		_damage = BLACKMAN_DAMAGE;
+		_charge_zone = BLACKMAN_CHARGING_ZONE;
 		_state = NOTHING;
+		_attack_delay_counter = BLACKMAN_ATTACK_DELAY_TIME;
 		_xy[0] = _ori_x;
 		_xy[1] = _ori_y;
-
 	}
 
 	void Black_Man::LoadBitmap_2()
@@ -83,25 +82,27 @@ namespace game_framework {
 
 	void Black_Man::Move(int cx, int cy)
 	{
-		x = CHARACTER_SCREEN_X + _xy[0] - cx;
-		y = CHARACTER_SCREEN_Y + _xy[1] - cy;
+		_sx = CHARACTER_SCREEN_X + _xy[0] - cx;
+		_sy = CHARACTER_SCREEN_Y + _xy[1] - cy;
 
 		switch (_state)
 		{
 		case NOTHING:				//站立
-			_bm_stand_left.SetTopLeft(x, y);
-			_bm_stand_right.SetTopLeft(x, y);
+			_bm_stand_left.SetTopLeft(_sx, _sy);
+			_bm_stand_right.SetTopLeft(_sx, _sy);
 			break;
+
 		case ATTACKING:				//攻擊
 			_attack_delay_counter > 0 ? _attack_delay_counter-- : NULL;
-			_ani_attack_right.SetTopLeft(x, y);
-			_ani_attack_left.SetTopLeft(x, y);
+			_ani_attack_right.SetTopLeft(_sx, _sy);
+			_ani_attack_left.SetTopLeft(_sx, _sy);
 			_isAttack ? NULL : Attack(cx, cy);
 			break;
+
 		case CHARGING:				//移動
 		case RESET:
-			_ani_left.SetTopLeft(x, y);
-			_ani_right.SetTopLeft(x, y);
+			_ani_left.SetTopLeft(_sx, _sy);
+			_ani_right.SetTopLeft(_sx, _sy);
 			if (_direction == LEFT)
 				_ani_left.OnMove();
 			else if (_direction == RIGHT)
@@ -109,9 +110,9 @@ namespace game_framework {
 			break;
 
 		case HIT_RECOVER:
-			_ani_hurt.SetTopLeft(x + (_bm_stand_left.Width() - _ani_hurt.Width()) / 2, y + (_bm_stand_left.Height() - _ani_hurt.Height()) / 2);
-			_bm_hurt_left.SetTopLeft(x, y);
-			_bm_hurt_right.SetTopLeft(x, y);
+			_ani_hurt.SetTopLeft(_sx + (_bm_stand_left.Width() - _ani_hurt.Width()) / 2, _sy + (_bm_stand_left.Height() - _ani_hurt.Height()) / 2);
+			_bm_hurt_left.SetTopLeft(_sx, _sy);
+			_bm_hurt_right.SetTopLeft(_sx, _sy);
 			break;
 		}
 	}
@@ -213,7 +214,7 @@ namespace game_framework {
 					if (!_isAttack)
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
-							CharacterData::Instance()->ISVINCIBLE() == false ? CharacterData::Instance()->AddHP(-DAMAGE) : NULL;
+							CharacterData::Instance()->ISVINCIBLE() == false ? CharacterData::Instance()->AddHP(-BLACKMAN_DAMAGE) : NULL;
 							_isAttack = true;
 							break;
 						}
@@ -235,8 +236,8 @@ namespace game_framework {
 
 	void Black_Man::CalculateHP()
 	{
-		int sx = x + (_bm_stand_left.Width() - _bm_hp_bar.Width()) / 2;
-		int sy = y;
+		int sx = _sx + (_bm_stand_left.Width() - _bm_hp_bar.Width()) / 2;
+		int sy = _sy;
 		int Max_HP_X2 = sx + 53;
 		int MAX_HP_Y1 = sy + 1;
 		int MAX_HP_Y2 = sy + 5;
@@ -245,7 +246,7 @@ namespace game_framework {
 		
 		_bm_hp_bar.SetTopLeft(sx, sy);
 		_bm_hp_bar.ShowBitmap();
-		temp_hp = (float)(HP - _hp) / HP;			//計算HP差值
+		temp_hp = (float)(BLACKMAN_HP - _hp) / BLACKMAN_HP;			//計算HP差值
 		X1 = (int)(temp_hp * 52);
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣MP)

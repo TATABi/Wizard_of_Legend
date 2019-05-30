@@ -25,6 +25,10 @@ namespace game_framework {
 		void SetInvincible(bool);				//更改無敵狀態
 		void ResetStatus();						//重製HP,MP,Money,MagicBuff
 		void SetMagicBuff(bool);				//設定Magic Buff 狀態
+		
+		//Beater -- 封弊者
+		void LockHP();
+		
 		//取值
 		int MONEY();
 		int DIAMOND();
@@ -58,7 +62,8 @@ namespace game_framework {
 		float _cd_coefficient;					//技能冷卻係數
 		int _mp_charge_coefficient;				//MP累積係數
 		bool _isInvincible;						//無敵狀態
-		bool _isMagicBuff;						//Magic Buff 狀態						
+		bool _isMagicBuff;						//Magic Buff 狀態		
+		bool _isLockHP;
 	};
 }
 
