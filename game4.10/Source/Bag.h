@@ -6,7 +6,7 @@ namespace game_framework {
 	
 	class Bag {
 	public :
-		Bag();
+		static Bag &Instance();
 		void Initialize();
 		void LoadBitmap();
 		void SetTopLeft();
@@ -17,6 +17,8 @@ namespace game_framework {
 		void Down();
 		void Left();
 		void Right();
+	protected:
+		Bag();
 	private:
 		CMovingBitmap _bm_bag;
 		CMovingBitmap _bm_skill1;

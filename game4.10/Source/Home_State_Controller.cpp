@@ -36,8 +36,7 @@ namespace game_framework {
 	void Home_State_Controller::Initialize()
 	{
 		_character =& Global_Class::g_character;
-		_pauseMenu =& Global_Class::g_pauseMenu;
-		_bag = &Global_Class::g_bag;
+		Bag::Instance();
 		
 		CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
 		CAudio::Instance()->Load(AUDIO_PUTTING, "sounds\\putting.mp3");
@@ -115,13 +114,13 @@ namespace game_framework {
 
 				if (nChar == KEY_ESC)	//PAUSED選單
 				{
-					_pauseMenu->Paused(true);
+					PausedMenu::Instance().Paused(true);
 					_flag = FLAG_HOME_PAUSED;
 				}
 
 				if (nChar == KEY_TAB)
 				{
-					_bag->Open(true);
+					Bag::Instance().Open(true);
 					_flag = FLAG_HOME_BAG;
 				}
 				break;
@@ -199,18 +198,18 @@ namespace game_framework {
 
 			case FLAG_HOME_PAUSED:									//暫停選單
 				if (nChar == KEY_DOWN || nChar == KEY_S)
-					_pauseMenu->NextPausedMenu();
+					PausedMenu::Instance().NextPausedMenu();
 				if (nChar == KEY_UP || nChar == KEY_W)
-					_pauseMenu->PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
 				if (nChar == KEY_ESC)
 				{
 					_flag = FLAG_HOME_NORMAL;
-					_pauseMenu->Paused(false);
+					PausedMenu::Instance().Paused(false);
 				}
 				if (nChar == KEY_SPACE)
 				{
 					int temp;
-					temp = _pauseMenu->EnterPauseMenu();
+					temp = PausedMenu::Instance().EnterPauseMenu();
 
 					switch (temp)
 					{
@@ -239,32 +238,32 @@ namespace game_framework {
 			case FLAG_HOME_OPTIONS:		//點進options
 				if (nChar == KEY_ESC || nChar == KEY_SPACE)
 				{
-					_pauseMenu->PrePausedMenu();
-					_pauseMenu->PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
 					_flag = FLAG_HOME_PAUSED;
 				}
 				break;
 			case FLAG_HOME_BAG:
 				if (nChar == KEY_TAB || nChar == KEY_ESC)
 				{
-					_bag->Open(false);
+					Bag::Instance().Open(false);
 					_flag = FLAG_HOME_NORMAL;
 				}
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 				{
-					_bag->Down();
+					Bag::Instance().Down();
 				}
 				if (nChar == KEY_UP || nChar == KEY_W)
 				{
-					_bag->Up();
+					Bag::Instance().Up();
 				}
 				if (nChar == KEY_LEFT || nChar == KEY_A)
 				{
-					_bag->Left();
+					Bag::Instance().Left();
 				}
 				if (nChar == KEY_RIGHT || nChar == KEY_D)
 				{
-					_bag->Right();
+					Bag::Instance().Right();
 				}
 
 				break;
@@ -312,7 +311,7 @@ namespace game_framework {
 		_map.OnMove();
 		_box.OnMove();
 		_book.OnMove();
-		_bag->OnMove(Items::Instance().GetItemInBag());
+		Bag::Instance().OnMove(Items::Instance().GetItemInBag());
 		UI::Instance().OnMove();
 		Items::Instance().Effect();
 	}
@@ -340,8 +339,8 @@ namespace game_framework {
 					_box.OnShow(&Items::Instance());
 					_book.OnShow();
 					UI::Instance().OnShow();
-					_bag->OnShow();
-					_pauseMenu->OnShow();
+					Bag::Instance().OnShow();
+					PausedMenu::Instance().OnShow();
 				}
 			}
 		}

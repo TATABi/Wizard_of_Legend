@@ -31,8 +31,6 @@ namespace game_framework {
 	void Town_State_Controller::Initialize()
 	{
 		_character = &Global_Class::g_character;
-		_pauseMenu = &Global_Class::g_pauseMenu;
-		_bag = &Global_Class::g_bag;
 
 		CAudio::Instance()->Load(AUDIO_TOWN, "sounds\\TownBGM.wav");
 		CAudio::Instance()->Load(AUDIO_BUY, "sounds\\buy.mp3");
@@ -117,31 +115,31 @@ namespace game_framework {
 
 				if (nChar == KEY_ESC)	//PAUSED選單
 				{
-					Global_Class::g_pauseMenu.Paused(true);
+					PausedMenu::Instance().Paused(true);
 					_flag = FLAG_TOWN_PAUSED;
 				}
 
 				if (nChar == KEY_TAB)
 				{
-					Global_Class::g_bag.Open(true);
+					Bag::Instance().Open(true);
 					_flag = FLAG_TOWN_BAG;
 				}
 				break;
 
 			case FLAG_TOWN_PAUSED:									//暫停選單
 				if (nChar == KEY_DOWN || nChar == KEY_S)
-					Global_Class::g_pauseMenu.NextPausedMenu();
+					PausedMenu::Instance().NextPausedMenu();
 				if (nChar == KEY_UP || nChar == KEY_W)
-					Global_Class::g_pauseMenu.PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
 				if (nChar == KEY_ESC)
 				{
 					_flag = FLAG_TOWN_NORMAL;
-					Global_Class::g_pauseMenu.Paused(false);
+					PausedMenu::Instance().Paused(false);
 				}
 				if (nChar == KEY_SPACE)
 				{
 					int temp;
-					temp = Global_Class::g_pauseMenu.EnterPauseMenu();
+					temp = PausedMenu::Instance().EnterPauseMenu();
 
 					switch (temp)
 					{
@@ -167,8 +165,8 @@ namespace game_framework {
 			case FLAG_TOWN_OPTIONS:		//點進options
 				if (nChar == KEY_ESC || nChar == KEY_SPACE)
 				{
-					Global_Class::g_pauseMenu.PrePausedMenu();
-					Global_Class::g_pauseMenu.PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
 					_flag = FLAG_TOWN_PAUSED;
 				}
 				break;
@@ -176,7 +174,7 @@ namespace game_framework {
 			case FLAG_TOWN_BAG:
 				if (nChar == KEY_TAB || nChar == KEY_ESC)
 				{
-					Global_Class::g_bag.Open(false);
+					Bag::Instance().Open(false);
 					_flag = FLAG_TOWN_NORMAL;
 				}
 				break;
@@ -204,7 +202,7 @@ namespace game_framework {
 		_bm_loading.SetTopLeft(0, 0);
 		Global_Class::g_character.OnMove(&_map);
 		_map.OnMove();
-		Global_Class::g_bag.OnMove(Items::Instance().GetItemInBag());
+		Bag::Instance().OnMove(Items::Instance().GetItemInBag());
 		UI::Instance().OnMove();
 		Items::Instance().Effect();
 		_item_store.SetXY(_map.GetCharacterPosition());
@@ -220,8 +218,8 @@ namespace game_framework {
 			_map.OnShowWall();
 			_map.OnShowPressF();
 			UI::Instance().OnShow();
-			Global_Class::g_bag.OnShow();
-			Global_Class::g_pauseMenu.OnShow();
+			Bag::Instance().OnShow();
+			PausedMenu::Instance().OnShow();
 		}
 		else
 			_bm_loading.ShowBitmap();

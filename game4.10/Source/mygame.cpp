@@ -7,6 +7,7 @@
 #include "mygame.h"
 #include "UI.h"
 #include "Items.h"
+#include "PausedMenu.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
@@ -25,10 +26,10 @@ namespace game_framework {
 		//global variable initialize...//
 
 		Items::Instance().LoadBitmap();
-		Global_Class::g_pauseMenu.LoadBitmap();
+		PausedMenu::Instance().LoadBitmap();
 		Global_Class::g_character.LoadBitmap();
 		UI::Instance().LoadBitmap();
-		Global_Class::g_bag.LoadBitmap();
+		Bag::Instance().LoadBitmap();
 
 		/////////////////////////////////
 		ShowInitProgress(65);

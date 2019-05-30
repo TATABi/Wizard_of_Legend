@@ -43,8 +43,6 @@ namespace game_framework {
 		Box _box;
 		Book _book;
 		Character *_character;
-		PausedMenu *_pauseMenu;
-		Bag *_bag;
 	};
 }
 

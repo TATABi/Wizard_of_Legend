@@ -7,6 +7,13 @@
 #include "Bag.h"
 
 namespace game_framework {
+
+	Bag& Bag::Instance()
+	{
+		static Bag instance;
+		return instance;
+	}
+
 	Bag::Bag() {
 		Initialize();
 	}

@@ -13,8 +13,6 @@ namespace game_framework {
 	public:
 
 		static Character g_character;
-		static PausedMenu g_pauseMenu;
-		static Bag g_bag;
 	};
 }
 

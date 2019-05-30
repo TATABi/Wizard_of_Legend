@@ -8,6 +8,13 @@
 
 namespace game_framework {
 
+	PausedMenu& PausedMenu::Instance()
+	{
+		static PausedMenu instance;
+		return instance;
+	}
+
+
 	PausedMenu::PausedMenu()
 	{
 		Initialize();

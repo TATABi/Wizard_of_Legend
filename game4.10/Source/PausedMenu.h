@@ -4,7 +4,7 @@
 namespace game_framework {
 	class PausedMenu {
 	public:
-		PausedMenu();
+		static PausedMenu &Instance();
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
@@ -12,6 +12,8 @@ namespace game_framework {
 		void NextPausedMenu();
 		void PrePausedMenu();
 		int EnterPauseMenu(); //«öspace ¦^¶Çµ¹mygmae flag ¤Á´«ª¬ºA
+	protected:
+		PausedMenu();
 	private:
 		CMovingBitmap _bm_paused_resume;
 		CMovingBitmap _bm_paused_title;

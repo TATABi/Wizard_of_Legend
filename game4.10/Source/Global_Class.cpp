@@ -9,6 +9,4 @@
 
 namespace game_framework {
 	Character Global_Class::g_character;
-	PausedMenu Global_Class::g_pauseMenu;
-	Bag Global_Class::g_bag;
 }

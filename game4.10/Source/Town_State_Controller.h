@@ -35,8 +35,6 @@ namespace game_framework {
 		Map_Town _map;								
 		Store _item_store;								//道具商店
 		Character *_character;
-		PausedMenu *_pauseMenu;
-		Bag *_bag;
 		int _delayCounter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 	};
 
