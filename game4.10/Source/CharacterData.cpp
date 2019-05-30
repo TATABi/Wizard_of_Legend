@@ -56,6 +56,14 @@ namespace game_framework {
 		_money < 0 ? _money = 0 : NULL;
 	}
 
+	void CharacterData::SetMoney(int money)
+	{
+		_money = money;
+
+		_money > 999 ? _money = 999 : NULL;
+		_money < 0 ? _money = 0 : NULL;
+	}
+
 	void CharacterData::AddDiamond(int d_diamond)
 	{
 		_diamond += d_diamond;
@@ -64,12 +72,22 @@ namespace game_framework {
 		_diamond < 0 ? _diamond = 0 : NULL;
 	}
 
+	void CharacterData::SetDiamond(int diamond)
+	{
+		_diamond = diamond;
+
+		_diamond > 999 ? _diamond = 999 : NULL;
+		_diamond < 0 ? _diamond = 0 : NULL;
+	}
+
 	void CharacterData::AddHP(int d_hp)
 	{
-		_hp += d_hp;
-
-		_hp > _max_hp ? _hp = _max_hp : NULL;
-		_hp < 0 ? _hp = 0 : NULL;
+		if (!_isLockHP)
+		{
+			_hp += d_hp;
+			_hp > _max_hp ? _hp = _max_hp : NULL;
+			_hp < 0 ? _hp = 0 : NULL;
+		}
 	}
 
 	void CharacterData::SetHP(int hp)

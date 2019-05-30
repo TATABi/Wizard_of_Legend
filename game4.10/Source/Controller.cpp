@@ -7,6 +7,7 @@
 #include "Controller.h"
 #include "CharacterData.h"
 
+
 namespace game_framework {
 	Controller::Controller() {}
 	Controller::~Controller() {}
@@ -42,8 +43,14 @@ namespace game_framework {
 		*/
 		else if (keycode == KEY_F6)
 		{
+			bool temp[7] = { true, true, true, true, true, true, true };
+			Originator *o = new Originator("Test", 123, 1, temp);
+			o->SetRecord();
+			delete o;
+			/*
 			CharacterData::Instance()->LockHP();
 			CharacterData::Instance()->SetAttackCoefficient(100);
+			*/
 		}
 		else if (keycode == KEY_F7)
 		{

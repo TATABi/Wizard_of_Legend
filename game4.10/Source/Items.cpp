@@ -89,7 +89,6 @@ namespace game_framework {
 			return false;
 	}
 
-
 	void Items::Equip(int Item_number, bool isEquip)
 	{
 		_items[Item_number - 1]->Equip(isEquip);
@@ -107,6 +106,23 @@ namespace game_framework {
 		}
 
 		return _temp_items;
+	}
+
+	Item* Items::GetEquipAndOwnedItem()
+	{
+		Item* item;
+		vector<Item*>::iterator iter;
+
+		for (iter = _items.begin(); iter != _items.end(); iter++)
+		{
+			if ((*iter)->HaveItem() && (*iter)->IsEquiped())
+			{
+				item = *iter;
+				break;
+			}
+		}
+
+		return item;
 	}
 
 	vector<Item*> Items::GetAllItem()
@@ -154,6 +170,14 @@ namespace game_framework {
 		for (iter = _items.begin(); iter != _items.end(); iter++)
 		{
 			(*iter)->Equip(false);
+		}
+	}
+
+	void Items::SetItems(bool items[7])
+	{
+		for (int i = 0; i < 7; i++)
+		{
+			_items[i]->SetItem(items[i]);
 		}
 	}
 }

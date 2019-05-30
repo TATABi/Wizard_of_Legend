@@ -10,7 +10,9 @@ namespace game_framework {
 		void DeleteData();
 		//砞﹚
 		void AddMoney(int);						//эMoney肚タ计: 寥璽计: Ι
+		void SetMoney(int);						//砞﹚Money
 		void AddDiamond(int);					//эDiamond肚タ计: 寥璽计: Ι
+		void SetDiamond(int);					//砞﹚Diamond
 		void AddHP(int);						//эHP肚タ计: 璽计: Ι
 		void SetHP(int);						//砞﹚HP
 		void AddMaxHP(int);						//эMax_HP肚タ计: 璽计: Ι

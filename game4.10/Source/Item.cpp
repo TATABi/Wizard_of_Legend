@@ -97,5 +97,9 @@ namespace game_framework {
 		return _number;
 	}
 
+	void Item::SetItem(bool owned)
+	{
+		_isOwned = owned;
+	}
 
 }
