@@ -202,7 +202,6 @@
 #define PAUSED_04                       458
 #define MENU_OPTIONSS                   459
 #define UI_DIAMOND                      460
-#define UI_HP_BAR                       461
 #define UI_KEY_Q                        462
 #define UI_KEY_SPACE                    463
 #define UI_KEY_LEFT                     464
@@ -383,7 +382,6 @@
 #define ENEMY_HP_BAR_M                  652
 #define MENU_ABOUT                      653
 #define MENU_KEY_CONFIG                 654
-#define MENU_OPTION_1                   670
 #define MENU_OPTION_2                   656
 #define MENU_OPTION_3                   657
 #define MENU_EAT_PIZZA_01               658
@@ -396,9 +394,30 @@
 #define MENU_EAT_PIZZA_08               665
 #define MENU_EAT_PIZZA_09               666
 #define MENU_EAT_PIZZA_10               667
-#define BLOODBALL                       669
-#define IDB_BITMAP9                     670
 #define MAGIC_BUFF                      668
+#define BLOODBALL                       669
+#define MENU_OPTION_1                   670
+#define IDB_BITMAP9                     670
+#define UI_MP_BAR_SHINE_01              671
+#define UI_MP_BAR_SHINE_02              672
+#define UI_MP_BAR_SHINE_03              673
+#define UI_MP_BAR_SHINE_04              674
+#define UI_MP_BAR_SHINE_05              675
+#define UI_MP_BAR_SHINE_06              681
+#define UI_MP_BAR_SHINE_07              682
+#define UI_MP_BAR_SHINE_08              683
+#define UI_MP_BAR_SHINE_09              684
+#define UI_MAGIC_BUFF_01                685
+#define UI_MAGIC_BUFF_02                686
+#define UI_MAGIC_BUFF_03                687
+#define UI_MAGIC_BUFF_04                688
+#define UI_MAGIC_BUFF_05                689
+#define UI_MAGIC_BUFF_06                690
+#define UI_MAGIC_BUFF_07                691
+#define UI_MAGIC_BUFF_08                692
+#define UI_MAGIC_BUFF_09                693
+#define IDB_BITMAP22                    694
+#define UI_MAGIC_BUFF_10                694
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -411,7 +430,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        671
+#define _APS_NEXT_RESOURCE_VALUE        695
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

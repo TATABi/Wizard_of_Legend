@@ -68,6 +68,7 @@ namespace game_framework {
 		CAnimation _ani_left, _ani_right;
 		CAnimation _ani_attack_left, _ani_attack_right;
 		GameMap* _map;
+		bool _isAttack = false;
 	};
 }
 

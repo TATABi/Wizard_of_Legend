@@ -46,6 +46,8 @@ namespace game_framework {
 		_ani_useSkill_3_down.SetDelayCount(1);
 		_ani_useSkill_3_up.SetDelayCount(1);
 
+		_ani_magic_buff.SetDelayCount(3);
+
 		_hp = CharacterData::Instance()->HP();
 		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
 		_dx = 0;
@@ -167,13 +169,17 @@ namespace game_framework {
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_3_up.AddBitmap(m16[i], RGB(50, 255, 0));
 
+		int a2[10] = { UI_MAGIC_BUFF_01, UI_MAGIC_BUFF_02, UI_MAGIC_BUFF_03, UI_MAGIC_BUFF_04, UI_MAGIC_BUFF_05,
+			UI_MAGIC_BUFF_06, UI_MAGIC_BUFF_07, UI_MAGIC_BUFF_08, UI_MAGIC_BUFF_09, UI_MAGIC_BUFF_10 };
+		for (int i = 0; i < 10; i++)
+			_ani_magic_buff.AddBitmap(a2[i], RGB(50, 255, 0));
+
 		_bm_stand_down.LoadBitmap(CHARACTER_STAND_DOWN, RGB(50, 255, 0));
 		_bm_stand_up.LoadBitmap(CHARACTER_STAND_UP, RGB(50, 255, 0));
 		_bm_stand_left.LoadBitmap(CHARACTER_STAND_LEFT, RGB(50, 255, 0));
 		_bm_stand_right.LoadBitmap(CHARACTER_STAND_RIGHT, RGB(50, 255, 0));
 		_bm_hurt_left.LoadBitmap(CHARACTER_HURT_LEFT, RGB(50, 255, 0));
 		_bm_hurt_right.LoadBitmap(CHARACTER_HURT_RIGHT, RGB(50, 255, 0));
-		_bm_magic_buff.LoadBitmap(MAGIC_BUFF, RGB(50, 255, 0));
 
 		_ani_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
@@ -200,7 +206,7 @@ namespace game_framework {
 		_ani_useSkill_3_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_bm_hurt_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_bm_hurt_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
-		_bm_magic_buff.SetTopLeft(CHARACTER_SCREEN_X + 35, CHARACTER_SCREEN_Y);
+		_ani_magic_buff.SetTopLeft(CHARACTER_SCREEN_X + 25, CHARACTER_SCREEN_Y - 15);
 	}
 
 	void Character::OnMove(GameMap *map)
@@ -508,9 +514,8 @@ namespace game_framework {
 		}
 
 		if (CharacterData::Instance()->ISMAGICBUFF())
-		{
-			_bm_magic_buff.ShowBitmap();
-		}
+			_ani_magic_buff.OnShow();
+
 	}
 
 	void Character::SetMovingDown(bool flag)
@@ -709,7 +714,9 @@ namespace game_framework {
 		{
 			_is_magic_buff_init ? _data->SetAttackCoefficient(2.0) : NULL;
 			_is_magic_buff_init = false;
-
+	
+			_ani_magic_buff.OnMove();
+		
 			if (_magic_buff_counter == 0)
 			{
 				_data->AddMP(-1);

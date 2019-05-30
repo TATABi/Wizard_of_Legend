@@ -93,6 +93,7 @@ namespace game_framework {
 			_bm_stand_right.SetTopLeft(x, y);
 			break;
 		case ATTACKING:				//§ðÀ»
+			_attack_delay_counter > 0 ? _attack_delay_counter-- : NULL;
 			_ani_attack_right.SetTopLeft(x, y);
 			_ani_attack_left.SetTopLeft(x, y);
 			_isAttack ? NULL : Attack(cx, cy);
@@ -127,14 +128,16 @@ namespace game_framework {
 			break;
 
 		case ATTACKING:				//§ðÀ»
+
 			if (_direction == LEFT)
 			{
 				_ani_attack_left.OnShow();
 
-				_ani_attack_left.OnMove();
+				_attack_delay_counter == 0 ?_ani_attack_left.OnMove() : NULL;
 
 				if (_ani_attack_left.IsFinalBitmap())
 				{
+					_attack_delay_counter = 10;
 					_isAttack = false;
 					_ani_attack_left.Reset();
 					_state = CHARGING;
@@ -144,10 +147,11 @@ namespace game_framework {
 			{
 				_ani_attack_right.OnShow();	//¼È®É¨Ï¥Î
 
-				_ani_attack_right.OnMove();
+				_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
 
 				if (_ani_attack_right.IsFinalBitmap())
 				{
+					_attack_delay_counter = 10;
 					_isAttack = false;
 					_ani_attack_right.Reset();
 					_state = CHARGING;
@@ -194,32 +198,35 @@ namespace game_framework {
 		float y2 = cy + c_hitbox[1];
 		float l2 = c_hitbox[2];
 		float w2 = c_hitbox[3];
+		
 
-		for (int i = 0; i < l2; i++)
+		if (_attack_delay_counter == 0)
 		{
-			int step = 0;
-
-			if (i == 0 || i == l2 - 1)
-				step = 1;
-			else
-				step = w2 - 1;
-
-			for (int j = 0; j < w2; j = j + step)
+			for (int i = 0; i < l2; i++)
 			{
-				if (!_isAttack)
-					if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
-					{
-						CharacterData::Instance()->ISVINCIBLE() == false ? CharacterData::Instance()->AddHP(-DAMAGE) : NULL;
-						_isAttack = true;
-						break;
-					}
-			}
+				int step = 0;
 
-			if (_isAttack)
-				break;
+				if (i == 0 || i == l2 - 1)
+					step = 1;
+				else
+					step = w2 - 1;
+
+				for (int j = 0; j < w2; j = j + step)
+				{
+					if (!_isAttack)
+						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
+						{
+							CharacterData::Instance()->ISVINCIBLE() == false ? CharacterData::Instance()->AddHP(-DAMAGE) : NULL;
+							_isAttack = true;
+							break;
+						}
+				}
+
+				if (_isAttack)
+					break;
+			}
 		}
 	}
-
 	void Black_Man::ResetAnimation()
 	{
 		_ani_hurt.Reset();

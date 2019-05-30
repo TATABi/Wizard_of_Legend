@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "UI.h"
+#include "GameData.h"
 
 namespace game_framework {
 
@@ -30,11 +31,19 @@ namespace game_framework {
 		_bm_skill_2.LoadBitmap(SKILL_ICON_AIR_BURST, RGB(50, 255, 0));
 		_bm_skill_3.LoadBitmap(SKILL_ICON_REBOUNDING_ICICLES, RGB(50, 255, 0));
 		_bm_skill_4.LoadBitmap(SKILL_ICON_SHOCK_NOVA, RGB(50, 255, 0));
+
+		int a[9] = { UI_MP_BAR_SHINE_01, UI_MP_BAR_SHINE_02, UI_MP_BAR_SHINE_03, UI_MP_BAR_SHINE_04, UI_MP_BAR_SHINE_05,
+					 UI_MP_BAR_SHINE_06, UI_MP_BAR_SHINE_07, UI_MP_BAR_SHINE_08, UI_MP_BAR_SHINE_09 };
+		for (int i = 0; i < 9; i++)
+			_ani_mp_bar.AddBitmap(a[i]);
+
+		_ani_mp_bar.SetDelayCount(3);
+	
 		_bm_skill_1.SetTopLeft(27, 440);
 		_bm_skill_2.SetTopLeft(54, 440);
 		_bm_skill_3.SetTopLeft(81, 440);
 		_bm_skill_4.SetTopLeft(108, 440);
-		
+		_ani_mp_bar.SetTopLeft(51, 47);
 		_bm_status.SetTopLeft(25, 30);
 		_bm_diamond.SetTopLeft(300, 430);
 		_bm_money.SetTopLeft(300, 450);
@@ -47,11 +56,13 @@ namespace game_framework {
 		_bm_right_button.SetTopLeft(81, 414);
 		_bm_key_q.SetTopLeft(108, 416);
 		_bm_slash.SetTopLeft(103, 25);
+		
 	}
 	
 	void UI::OnMove()
 	{
-		//將技能放進UI中
+		if (CharacterData::Instance()->ISMAGICBUFF())
+			_ani_mp_bar.OnMove();
 	}
 	
 	void UI::OnShow()
@@ -73,6 +84,9 @@ namespace game_framework {
 		_bm_skill_3.ShowBitmap();
 		_bm_skill_4.ShowBitmap();
 		
+		if (CharacterData::Instance()->ISMAGICBUFF())
+			_ani_mp_bar.OnShow();
+
 		CalculateHP();
 		CalculateMP();
 
@@ -98,6 +112,7 @@ namespace game_framework {
 		const int MAX_HP_Y2 = 46;
 		float temp_hp;
 		int x1;
+
 		temp_hp = (float)(CharacterData::Instance()->MAX_HP() - CharacterData::Instance()->HP()) / CharacterData::Instance()->MAX_HP();		//計算血量差值
 		x1 = (int)(temp_hp * 81);
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
@@ -115,6 +130,7 @@ namespace game_framework {
 		const int MAX_MP_Y2 = 54;
 		float temp_mp;
 		int x1;
+
 		temp_mp = (float)(CharacterData::Instance()->MAX_MP() - CharacterData::Instance()->MP()) / CharacterData::Instance()->MAX_MP();		//計算MP差值
 		x1 = (int)(temp_mp * 65);
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 

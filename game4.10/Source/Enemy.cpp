@@ -90,9 +90,9 @@ namespace game_framework {
 			
 			case ATTACKING:
 				//攻擊動畫結束後回到 CHARGING 狀態
-				if (cx >= _xy[0])
+				if (cx >= _xy[0] && !_isAttack)
 					_direction = RIGHT;
-				else
+				else if(cx < _xy[0] && !_isAttack)
 					_direction = LEFT;
 				break;
 
@@ -143,20 +143,6 @@ namespace game_framework {
 	bool Enemy::CanAchieved(int dx, int dy)
 	{
 		return _map->SetEnemyXY(_xy[0] + dx, _xy[1] + dy, _collision_move);
-		/*
-		int x1 = _xy[0] + _collision_move[0];
-		int y1 = _xy[1] + _collision_move[1];
-		int x2 = x1 + _collision_move[2];
-		int y2 = y1 + _collision_move[3];
-		if ((HOME_LOGIC[x1 + dx][y1 + dy] != -1) &&
-			(HOME_LOGIC[x2 + dx][y1 + dy] != -1) &&
-			(HOME_LOGIC[x1 + dx][y2 + dy] != -1) &&
-			(HOME_LOGIC[x2 + dx][y2 + dy] != -1))
-		{
-			return true;
-		}
-		return false;
-		*/
 	}
 
 	bool Enemy::IsLive()

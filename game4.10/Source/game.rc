@@ -63,711 +63,357 @@ END
 //
 
 IDB_0                   BITMAP                  "..\\RES\\bmp0.bmp"
-
 IDB_1                   BITMAP                  "..\\RES\\bmp1.bmp"
-
 IDB_2                   BITMAP                  "..\\RES\\bmp2.bmp"
-
 IDB_3                   BITMAP                  "..\\RES\\bmp3.bmp"
-
 IDB_4                   BITMAP                  "..\\RES\\bmp4.bmp"
-
 IDB_5                   BITMAP                  "..\\RES\\bmp5.bmp"
-
 IDB_6                   BITMAP                  "..\\RES\\bmp6.bmp"
-
 IDB_7                   BITMAP                  "..\\RES\\bmp7.bmp"
-
 IDB_8                   BITMAP                  "..\\RES\\bmp8.bmp"
-
 IDB_9                   BITMAP                  "..\\RES\\bmp9.bmp"
-
 IDB_MINUS               BITMAP                  "..\\RES\\bmp10.bmp"
-
 IDB_LOADING             BITMAP                  "..\\RES\\loading.bmp"
-
 IDB_TOOLBAR             BITMAP                  "..\\RES\\Toolbar.bmp"
-
 IDB_CONTINUE            BITMAP                  "..\\RES\\continue.bmp"
-
 MENU_INIT_02            BITMAP                  "..\\RES\\Menu\\Init\\Init (2).bmp"
-
 MENU_INIT_04            BITMAP                  "..\\RES\\Menu\\Init\\Init (4).bmp"
-
 MENU_INIT_06            BITMAP                  "..\\RES\\Menu\\Init\\Init (6).bmp"
-
 MENU_INIT_08            BITMAP                  "..\\RES\\Menu\\Init\\Init (8).bmp"
-
 MENU_INIT_10            BITMAP                  "..\\RES\\Menu\\Init\\Init (10).bmp"
-
 MENU_INIT_12            BITMAP                  "..\\RES\\Menu\\Init\\Init (12).bmp"
-
 MENU_INIT_14            BITMAP                  "..\\RES\\Menu\\Init\\Init (14).bmp"
-
 MENU_INIT_16            BITMAP                  "..\\RES\\Menu\\Init\\Init (16).bmp"
-
 MENU_INIT_18            BITMAP                  "..\\RES\\Menu\\Init\\Init (18).bmp"
-
 MENU_INIT_20            BITMAP                  "..\\RES\\Menu\\Init\\Init (20).bmp"
-
 MENU_INIT_22            BITMAP                  "..\\RES\\Menu\\Init\\Init (22).bmp"
-
 MENU_INIT_24            BITMAP                  "..\\RES\\Menu\\Init\\Init (24).bmp"
-
 MENU_INIT_26            BITMAP                  "..\\RES\\Menu\\Init\\Init (26).bmp"
-
 MENU_INIT_28            BITMAP                  "..\\RES\\Menu\\Init\\Init (28).bmp"
-
 MENU_INIT_30            BITMAP                  "..\\RES\\Menu\\Init\\Init (30).bmp"
-
 MENU_INIT_32            BITMAP                  "..\\RES\\Menu\\Init\\Init (32).bmp"
-
 MENU_INIT_34            BITMAP                  "..\\RES\\Menu\\Init\\Init (34).bmp"
-
 MENU_INIT_36            BITMAP                  "..\\RES\\Menu\\Init\\Init (36).bmp"
-
 MENU_INIT_38            BITMAP                  "..\\RES\\Menu\\Init\\Init (38).bmp"
-
 MENU_INIT_40            BITMAP                  "..\\RES\\Menu\\Init\\Init (40).bmp"
-
 MENU_INIT_42            BITMAP                  "..\\RES\\Menu\\Init\\Init (42).bmp"
-
 MENU_INIT_44            BITMAP                  "..\\RES\\Menu\\Init\\Init (44).bmp"
-
 MENU_INIT_46            BITMAP                  "..\\RES\\Menu\\Init\\Init (46).bmp"
-
 MENU_INIT_48            BITMAP                  "..\\RES\\Menu\\Init\\Init (48).bmp"
-
 MENU_ENTERMENU_01       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (1).bmp"
-
 MENU_ENTERMENU_02       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (2).bmp"
-
 MENU_ENTERMENU_03       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (3).bmp"
-
 MENU_ENTERMENU_04       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (4).bmp"
-
 MENU_ENTERMENU_05       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (5).bmp"
-
 MENU_ENTERMENU_06       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (6).bmp"
-
 MENU_ENTERMENU_07       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (7).bmp"
-
 MENU_ENTERMENU_08       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (8).bmp"
-
 MENU_ENTERMENU_09       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (9).bmp"
-
 MENU_ENTERMENU_10       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (10).bmp"
-
 MENU_ENTERMENU_11       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu (11).bmp"
-
 MENU_ENTERMENU_12       BITMAP                  "..\\RES\\Menu\\EnterMenu\\EnterMenu(12).bmp"
-
 MENU_ENTERMENU_OPTIONS  BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_OPTIONS.bmp"
-
 MENU_ENTERMENU_QUIT     BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_QUIT.bmp"
-
 MENU_ENTERMENU_SINGLE_PLAYER BITMAP                  "..\\RES\\Menu\\EnterMenu\\ENTERMENU_SINGLE_PLAYER.bmp"
-
 LOADING                 BITMAP                  "..\\RES\\InGame\\Loading\\Loading.bmp"
-
 LOADING_LEVEL           BITMAP                  "..\\RES\\InGame\\Loading\\LoadingLevel.bmp"
-
 JOIN                    BITMAP                  "..\\RES\\InGame\\Join\\Join.bmp"
-
 MENU_OPTIONS            BITMAP                  "..\\RES\\Menu\\Options\\Options.bmp"
-
 MAP_HOME                BITMAP                  "..\\RES\\InGame\\Home\\Home.bmp"
-
 CHARACTER_DOWN_01       BITMAP                  "..\\RES\\Character\\Down\\Character_down_01.bmp"
-
 CHARACTER_DOWN_02       BITMAP                  "..\\RES\\Character\\Down\\Character_down_02.bmp"
-
 CHARACTER_DOWN_03       BITMAP                  "..\\RES\\Character\\Down\\Character_down_03.bmp"
-
 CHARACTER_DOWN_04       BITMAP                  "..\\RES\\Character\\Down\\Character_down_04.bmp"
-
 CHARACTER_DOWN_05       BITMAP                  "..\\RES\\Character\\Down\\Character_down_05.bmp"
-
 CHARACTER_DOWN_06       BITMAP                  "..\\RES\\Character\\Down\\Character_down_06.bmp"
-
 CHARACTER_DOWN_07       BITMAP                  "..\\RES\\Character\\Down\\Character_down_07.bmp"
-
 CHARACTER_DOWN_08       BITMAP                  "..\\RES\\Character\\Down\\Character_down_08.bmp"
-
 CHARACTER_DOWN_09       BITMAP                  "..\\RES\\Character\\Down\\Character_down_09.bmp"
-
 CHARACTER_DOWN_10       BITMAP                  "..\\RES\\Character\\Down\\Character_down_10.bmp"
-
 CHARACTER_UP_01         BITMAP                  "..\\RES\\Character\\Up\\up (1).bmp"
-
 CHARACTER_UP_02         BITMAP                  "..\\RES\\Character\\Up\\up (2).bmp"
-
 CHARACTER_UP_03         BITMAP                  "..\\RES\\Character\\Up\\up (3).bmp"
-
 CHARACTER_UP_04         BITMAP                  "..\\RES\\Character\\Up\\up (4).bmp"
-
 CHARACTER_UP_05         BITMAP                  "..\\RES\\Character\\Up\\up (5).bmp"
-
 CHARACTER_UP_06         BITMAP                  "..\\RES\\Character\\Up\\up (6).bmp"
-
 CHARACTER_UP_07         BITMAP                  "..\\RES\\Character\\Up\\up (7).bmp"
-
 CHARACTER_UP_08         BITMAP                  "..\\RES\\Character\\Up\\up (8).bmp"
-
 CHARACTER_UP_09         BITMAP                  "..\\RES\\Character\\Up\\up (9).bmp"
-
 CHARACTER_UP_10         BITMAP                  "..\\RES\\Character\\Up\\up (10).bmp"
-
 CHARACTER_STAND_DOWN    BITMAP                  "..\\RES\\Character\\Stand\\down.bmp"
-
 CHARACTER_STAND_LEFT    BITMAP                  "..\\RES\\Character\\Stand\\left.bmp"
-
 CHARACTER_STAND_RIGHT   BITMAP                  "..\\RES\\Character\\Stand\\right.bmp"
-
 CHARACTER_STAND_UP      BITMAP                  "..\\RES\\Character\\Stand\\up.bmp"
-
 CHARACTER_LEFT_01       BITMAP                  "..\\RES\\Character\\Left\\left (1).bmp"
-
 CHARACTER_LEFT_02       BITMAP                  "..\\RES\\Character\\Left\\left (2).bmp"
-
 CHARACTER_LEFT_03       BITMAP                  "..\\RES\\Character\\Left\\left (3).bmp"
-
 CHARACTER_LEFT_04       BITMAP                  "..\\RES\\Character\\Left\\left (4).bmp"
-
 CHARACTER_LEFT_05       BITMAP                  "..\\RES\\Character\\Left\\left (5).bmp"
-
 CHARACTER_LEFT_06       BITMAP                  "..\\RES\\Character\\Left\\left (6).bmp"
-
 CHARACTER_LEFT_07       BITMAP                  "..\\RES\\Character\\Left\\left (7).bmp"
-
 CHARACTER_LEFT_08       BITMAP                  "..\\RES\\Character\\Left\\left (8).bmp"
-
 CHARACTER_LEFT_09       BITMAP                  "..\\RES\\Character\\Left\\left (9).bmp"
-
 CHARACTER_RIGHT_01      BITMAP                  "..\\RES\\Character\\Right\\right (1).bmp"
-
 CHARACTER_RIGHT_02      BITMAP                  "..\\RES\\Character\\Right\\right (2).bmp"
-
 CHARACTER_RIGHT_03      BITMAP                  "..\\RES\\Character\\Right\\right (3).bmp"
-
 CHARACTER_RIGHT_04      BITMAP                  "..\\RES\\Character\\Right\\right (4).bmp"
-
 CHARACTER_RIGHT_05      BITMAP                  "..\\RES\\Character\\Right\\right (5).bmp"
-
 CHARACTER_RIGHT_06      BITMAP                  "..\\RES\\Character\\Right\\right (6).bmp"
-
 CHARACTER_RIGHT_07      BITMAP                  "..\\RES\\Character\\Right\\right (7).bmp"
-
 CHARACTER_RIGHT_08      BITMAP                  "..\\RES\\Character\\Right\\right (8).bmp"
-
 CHARACTER_RIGHT_09      BITMAP                  "..\\RES\\Character\\Right\\right (9).bmp"
-
 LIGHT_BEAM01            BITMAP                  "..\\RES\\InGame\\LightBeam\\01.bmp"
-
 LIGHT_BEAM02            BITMAP                  "..\\RES\\InGame\\LightBeam\\02.bmp"
-
 LIGHT_BEAM03            BITMAP                  "..\\RES\\InGame\\LightBeam\\03.bmp"
-
 LIGHT_BEAM04            BITMAP                  "..\\RES\\InGame\\LightBeam\\04.bmp"
-
 LIGHT_BEAM05            BITMAP                  "..\\RES\\InGame\\LightBeam\\05.bmp"
-
 MAP_HOME_WALL           BITMAP                  "..\\RES\\InGame\\Home\\wall.bmp"
-
 CHARACTER_RUN_DOWN_02   BITMAP                  "..\\RES\\Character\\Run\\Run_down (2).bmp"
-
 CHARACTER_RUN_DOWN_03   BITMAP                  "..\\RES\\Character\\Run\\Run_down (3).bmp"
-
 CHARACTER_RUN_DOWN_04   BITMAP                  "..\\RES\\Character\\Run\\Run_down (4).bmp"
-
 CHARACTER_RUN_LEFT_01   BITMAP                  "..\\RES\\Character\\Run\\Run_left (1).bmp"
-
 CHARACTER_RUN_LEFT_02   BITMAP                  "..\\RES\\Character\\Run\\Run_left (2).bmp"
-
 CHARACTER_RUN_LEFT_03   BITMAP                  "..\\RES\\Character\\Run\\Run_left (3).bmp"
-
 CHARACTER_RUN_RIGHT_01  BITMAP                  "..\\RES\\Character\\Run\\Run_right (1).bmp"
-
 CHARACTER_RUN_RIGHT_02  BITMAP                  "..\\RES\\Character\\Run\\Run_right (2).bmp"
-
 CHARACTER_RUN_RIGHT_03  BITMAP                  "..\\RES\\Character\\Run\\Run_right (3).bmp"
-
 CHARACTER_RUN_UP_01     BITMAP                  "..\\RES\\Character\\Run\\Run_up (1).bmp"
-
 CHARACTER_RUN_UP_02     BITMAP                  "..\\RES\\Character\\Run\\Run_up (2).bmp"
-
 CHARACTER_RUN_UP_03     BITMAP                  "..\\RES\\Character\\Run\\Run_up (3).bmp"
-
 CHARACTER_RUN_UP_04     BITMAP                  "..\\RES\\Character\\Run\\Run_up (4).bmp"
-
 CHARACTER_RUN_UP_05     BITMAP                  "..\\RES\\Character\\Run\\Run_up (5).bmp"
-
 CHARACTER_RUN_DOWN_01   BITMAP                  "..\\RES\\Character\\Run\\Run_down (1).bmp"
-
 CHARACTER_DASH_DOWN_01  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown01.bmp"
-
 CHARACTER_DASH_DOWN_02  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown02.bmp"
-
 CHARACTER_DASH_DOWN_03  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown03.bmp"
-
 CHARACTER_DASH_DOWN_04  BITMAP                  "..\\RES\\Character\\Dash\\Down\\DashDown04.bmp"
-
 CHARACTER_DASH_UP_01    BITMAP                  "..\\RES\\Character\\Dash\\Up\\DashUp01.bmp"
-
 CHARACTER_DASH_UP_02    BITMAP                  "..\\RES\\Character\\Dash\\Up\\DashUp02.bmp"
-
 CHARACTER_DASH_UP_03    BITMAP                  "..\\RES\\Character\\Dash\\Up\\DashUp03.bmp"
-
 CHARACTER_DASH_UP_04    BITMAP                  "..\\RES\\Character\\Dash\\Up\\DashUp04.bmp"
-
 CHARACTER_DASH_LEFT_01  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft01.bmp"
-
 CHARACTER_DASH_LEFT_02  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft02.bmp"
-
 CHARACTER_DASH_LEFT_03  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft03.bmp"
-
 CHARACTER_DASH_LEFT_04  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft04.bmp"
-
 CHARACTER_DASH_LEFT_05  BITMAP                  "..\\RES\\Character\\Dash\\Left\\DashLeft05.bmp"
-
 CHARACTER_DASH_RIGHT_01 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (1).bmp"
-
 CHARACTER_DASH_RIGHT_02 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (2).bmp"
-
 CHARACTER_DASH_RIGHT_03 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (3).bmp"
-
 CHARACTER_DASH_RIGHT_04 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (4).bmp"
-
 CHARACTER_DASH_RIGHT_05 BITMAP                  "..\\RES\\Character\\Dash\\Right\\DashRight (5).bmp"
-
 PRESS_F_01              BITMAP                  "..\\RES\\InGame\\Press_F\\01.bmp"
-
 PRESS_F_02              BITMAP                  "..\\RES\\InGame\\Press_F\\02.bmp"
-
 PRESS_F_03              BITMAP                  "..\\RES\\InGame\\Press_F\\03.bmp"
-
 PRESS_F_04              BITMAP                  "..\\RES\\InGame\\Press_F\\04.bmp"
-
 PRESS_F_05              BITMAP                  "..\\RES\\InGame\\Press_F\\05.bmp"
-
 PRESS_F_06              BITMAP                  "..\\RES\\InGame\\Press_F\\06.bmp"
-
 BOX_BOARD               BITMAP                  "..\\RES\\InGame\\Box\\board.bmp"
-
 BOX_OFFENSE_01          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\00.bmp"
-
 BOX_OFFENSE_02          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\01.bmp"
-
 BOX_OFFENSE_03          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\02.bmp"
-
 BOX_OFFENSE_04          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\03.bmp"
-
 BOX_OFFENSE_05          BITMAP                  "..\\RES\\InGame\\Box\\OFFENSE\\04.bmp"
-
 BOX_DEFENSE_01          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\00.bmp"
-
 BOX_DEFENSE_02          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\01.bmp"
-
 BOX_DEFENSE_03          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\02.bmp"
-
 BOX_DEFENSE_04          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\03.bmp"
-
 BOX_DEFENSE_05          BITMAP                  "..\\RES\\InGame\\Box\\DEFENSE\\04.bmp"
-
 BOX_MISC_01             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\00.bmp"
-
 BOX_MISC_02             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\01.bmp"
-
 BOX_MISC_03             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\02.bmp"
-
 BOX_MISC_04             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\03.bmp"
-
 BOX_MISC_05             BITMAP                  "..\\RES\\InGame\\Box\\MISC\\04.bmp"
-
 MAP_TOWN                BITMAP                  "..\\RES\\InGame\\Town\\Town.bmp"
-
 MAP_TOWN_WALL           BITMAP                  "..\\RES\\InGame\\Town\\Town_Wall.bmp"
-
 CHARACTER_ARRIVAL_01    BITMAP                  "..\\RES\\Character\\Arrival\\01.bmp"
-
 CHARACTER_ARRIVAL_02    BITMAP                  "..\\RES\\Character\\Arrival\\02.bmp"
-
 CHARACTER_ARRIVAL_03    BITMAP                  "..\\RES\\Character\\Arrival\\03.bmp"
-
 CHARACTER_ARRIVAL_04    BITMAP                  "..\\RES\\Character\\Arrival\\04.bmp"
-
 CHARACTER_ARRIVAL_05    BITMAP                  "..\\RES\\Character\\Arrival\\05.bmp"
-
 CHARACTER_ARRIVAL_06    BITMAP                  "..\\RES\\Character\\Arrival\\06.bmp"
-
 CHARACTER_ARRIVAL_07    BITMAP                  "..\\RES\\Character\\Arrival\\07.bmp"
-
 CHARACTER_ARRIVAL_08    BITMAP                  "..\\RES\\Character\\Arrival\\08.bmp"
-
 CHARACTER_ARRIVAL_09    BITMAP                  "..\\RES\\Character\\Arrival\\09.bmp"
-
 PAUSED_01               BITMAP                  "..\\RES\\InGame\\PAUSED\\01.bmp"
-
 PAUSED_02               BITMAP                  "..\\RES\\InGame\\PAUSED\\02.bmp"
-
 PAUSED_03               BITMAP                  "..\\RES\\InGame\\PAUSED\\03.bmp"
-
 PAUSED_04               BITMAP                  "..\\RES\\InGame\\PAUSED\\04.bmp"
-
 MENU_OPTIONSS           BITMAP                  "..\\RES\\Menu\\Options\\Optionss.bmp"
-
 UI_DIAMOND              BITMAP                  "..\\RES\\InGame\\UI\\Diamond.bmp"
-
-UI_HP_BAR               BITMAP                  "..\\RES\\InGame\\UI\\HP_Bar.bmp"
-
 UI_KEY_Q                BITMAP                  "..\\RES\\InGame\\UI\\Key_Q.bmp"
-
 UI_KEY_SPACE            BITMAP                  "..\\RES\\InGame\\UI\\Key_Space.bmp"
-
 UI_KEY_LEFT             BITMAP                  "..\\RES\\InGame\\UI\\Left_Click.bmp"
-
 UI_MONEY                BITMAP                  "..\\RES\\InGame\\UI\\Money.bmp"
-
 UI_KEY_RIGHT            BITMAP                  "..\\RES\\InGame\\UI\\Right_Click.bmp"
-
 UI_SKILL_BACKGROUND     BITMAP                  "..\\RES\\InGame\\UI\\Skill_background.bmp"
-
 UI_STATUS               BITMAP                  "..\\RES\\InGame\\UI\\Status.bmp"
-
 IDB_SLASH               BITMAP                  "..\\RES\\bmp_slash.bmp"
-
 BOX_ITEM_BOARD          BITMAP                  "..\\RES\\InGame\\Box\\item_board.bmp"
-
 BOX_CURSOR              BITMAP                  "..\\RES\\InGame\\Box\\item_cursor.bmp"
-
 BOX_TEXT_DEFENSE        BITMAP                  "..\\RES\\InGame\\Box\\TEXT_Defense.bmp"
-
 BOX_TEXT_MISC           BITMAP                  "..\\RES\\InGame\\Box\\TEXT_Misc.bmp"
-
 BOX_TEXT_OFFENSE        BITMAP                  "..\\RES\\InGame\\Box\\TEXT_Offense.bmp"
-
 ITEM_UNKNOWN            BITMAP                  "..\\RES\\InGame\\Box\\unknown_item.bmp"
-
 BAG_BOARD               BITMAP                  "..\\RES\\InGame\\Bag\\Board.bmp"
-
 ITEM_OFFENSE_01         BITMAP                  "..\\RES\\InGame\\Item\\Offense\\01.bmp"
-
 ITEM_OFFENSE_02         BITMAP                  "..\\RES\\InGame\\Item\\Offense\\02.bmp"
-
 ITEM_MISC_01            BITMAP                  "..\\RES\\InGame\\Item\\Misc\\01.bmp"
-
 ITEM_MISC_02            BITMAP                  "..\\RES\\InGame\\Item\\Misc\\02.bmp"
-
 ITEM_DEFENSE_01         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\01.bmp"
-
 ITEM_DEFENSE_02         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\02.bmp"
-
 ITEM_DEFENSE_03         BITMAP                  "..\\RES\\InGame\\Item\\Defense\\03.bmp"
-
 ENEMY_BLOCKHEAD         BITMAP                  "..\\RES\\InGame\\Enemy\\Blockhead.bmp"
-
 BOOK_BOARD              BITMAP                  "..\\RES\\InGame\\Book\\Book_board.bmp"
-
 BOOK_CURSOR             BITMAP                  "..\\RES\\InGame\\Book\\cursor.bmp"
-
 SKILL_ICON_AIR_BURST    BITMAP                  "..\\RES\\InGame\\Skill\\Icon\\Air_Burst_Icon.bmp"
-
 ITEM_SOLD_OUT           BITMAP                  "..\\RES\\InGame\\Town\\sold_out.bmp"
-
 BOX_EQUIP_BOARD         BITMAP                  "..\\RES\\InGame\\Box\\Equip_board.bmp"
-
 SKILL_REBOUNDING_ICICLES_01 BITMAP                  "..\\RES\\InGame\\Skill\\Rebounding_Icicles\\1.bmp"
-
 SKILL_REBOUNDING_ICICLES_02 BITMAP                  "..\\RES\\InGame\\Skill\\Rebounding_Icicles\\2.bmp"
-
 SKILL_REBOUNDING_ICICLES_03 BITMAP                  "..\\RES\\InGame\\Skill\\Rebounding_Icicles\\3.bmp"
-
 SKILL_REBOUNDING_ICICLES_04 BITMAP                  "..\\RES\\InGame\\Skill\\Rebounding_Icicles\\4.bmp"
-
 SKILL_ICON_REBOUNDING_ICICLES BITMAP                  "..\\RES\\InGame\\Skill\\Icon\\Rebounding_Icicles_Icon.bmp"
-
 SKILL_ICON_AIR_SPINNER  BITMAP                  "..\\RES\\InGame\\Skill\\Icon\\Air_Spinner_Icon.bmp"
-
 SKILL_ICON_SHOCK_NOVA   BITMAP                  "..\\RES\\InGame\\Skill\\Icon\\Shock_Nova_Icon.bmp"
-
 BAG_ITEM_CURSOR         BITMAP                  "..\\RES\\InGame\\Bag\\Bag_Item_Cursor.bmp"
-
 SKILL_SHOCK_NOVA_01     BITMAP                  "..\\RES\\InGame\\Skill\\Shock_Nova\\1.bmp"
-
 SKILL_SHOCK_NOVA_02     BITMAP                  "..\\RES\\InGame\\Skill\\Shock_Nova\\2.bmp"
-
 SKILL_SHOCK_NOVA_03     BITMAP                  "..\\RES\\InGame\\Skill\\Shock_Nova\\3.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_01 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\01.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_02 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\02.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_03 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\03.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_04 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\04.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_05 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\05.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_06 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\06.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_07 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\07.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_08 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\08.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_09 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\09.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_10 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\10.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_11 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\11.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_12 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\12.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_13 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\13.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_DOWN_14 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\Down\\14.bmp"
-
 BOOK_SKILL_DES_02       BITMAP                  "..\\RES\\InGame\\Book\\Skill_Des\\Air_Brust_Des.bmp"
-
 BOOK_SKILL_DES_01       BITMAP                  "..\\RES\\InGame\\Book\\Skill_Des\\Air_Spinner_Des.bmp"
-
 BOOK_SKILL_DES_03       BITMAP                  "..\\RES\\InGame\\Book\\Skill_Des\\Rebounding_Icicles_Des.bmp"
-
 BOOK_SKILL_DES_04       BITMAP                  "..\\RES\\InGame\\Book\\Skill_Des\\Shock_Nova_Des.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_01 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\1.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_02 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\2.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_03 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\3.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_04 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\4.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_05 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\5.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_06 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\6.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_07 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\7.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_08 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\8.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_09 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\9.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_10 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\10.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_11 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Down\\11.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_01 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\1.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_02 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\2.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_03 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\3.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_04 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\4.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_05 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\5.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_06 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\6.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_07 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\7.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_08 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\8.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_09 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\9.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_10 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\10.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_UP_11 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Up\\11.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_01 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\1.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_02 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\2.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_03 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\3.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_04 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\4.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_05 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\5.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_06 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\6.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_07 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\7.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_08 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\8.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_09 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\9.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_10 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\10.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_LEFT_11 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Left\\11.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_01 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\1.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_02 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\2.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_03 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\3.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_04 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\4.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_05 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\5.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_06 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\6.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_07 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\7.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_08 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\8.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_09 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\9.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_10 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\10.bmp"
-
 CHARACTER_SKILL_REBOUNDING_ICICLES_RIGHT_11 BITMAP                  "..\\RES\\Character\\Use_Rebounding_Icicles\\Right\\11.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_01 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\01.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_02 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\02.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_03 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\03.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_04 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\04.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_05 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\05.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_06 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\06.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_07 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\07.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_08 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\08.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_09 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\09.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_10 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\10.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_11 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\11.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_12 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\12.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_14 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\14.bmp"
-
 CHARACTER_SKILL_SHOCK_NOVA_UP_13 BITMAP                  "..\\RES\\Character\\Use_Shock_Nova\\UP\\13.bmp"
-
 ENEMY_BLACK_MAN_STAND_LEFT BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Stand\\left.bmp"
-
 ENEMY_BLACK_MAN_STAND_RIGHT BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Stand\\right.bmp"
-
 ENEMY_BLACK_MAN_MOVE_LEFT_01 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Left\\01.bmp"
-
 ENEMY_BLACK_MAN_MOVE_LEFT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Left\\02.bmp"
-
 ENEMY_BLACK_MAN_MOVE_LEFT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Left\\03.bmp"
-
 ENEMY_BLACK_MAN_MOVE_LEFT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Left\\04.bmp"
-
 ENEMY_BLACK_MAN_MOVE_RIGHT_01 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Right\\01.bmp"
-
 ENEMY_BLACK_MAN_MOVE_RIGHT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Right\\02.bmp"
-
 ENEMY_BLACK_MAN_MOVE_RIGHT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Right\\03.bmp"
-
 ENEMY_BLACK_MAN_MOVE_RIGHT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Move\\Right\\04.bmp"
-
 GET_HURT_01             BITMAP                  "..\\RES\\InGame\\GetHurt\\01.bmp"
-
 GET_HURT_02             BITMAP                  "..\\RES\\InGame\\GetHurt\\02.bmp"
-
 GET_HURT_03             BITMAP                  "..\\RES\\InGame\\GetHurt\\03.bmp"
-
 GET_HURT_04             BITMAP                  "..\\RES\\InGame\\GetHurt\\04.bmp"
-
 GET_HURT_05             BITMAP                  "..\\RES\\InGame\\GetHurt\\05.bmp"
-
 GET_HURT_06             BITMAP                  "..\\RES\\InGame\\GetHurt\\06.bmp"
-
 GET_HURT_07             BITMAP                  "..\\RES\\InGame\\GetHurt\\07.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_01 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\01.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\02.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\03.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\04.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_05 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\05.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_01 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\01.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\02.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\03.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\04.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_05 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\05.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_06 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\6.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_07 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\7.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_08 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\8.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_09 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\9.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_10 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\10.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_11 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\11.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_12 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\12.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_13 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\13.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_14 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\14.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_15 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\15.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_16 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\16.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_17 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\17.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_LEFT_18 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Left\\18.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_06 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\6.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_07 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\7.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_08 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\8.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_09 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\9.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_10 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\10.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_11 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\11.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_12 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\12.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_13 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\13.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_14 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\14.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_15 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\15.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_16 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\16.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_17 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\17.bmp"
-
 ENEMY_BLACK_MAN_ATTACK_RIGHT_18 BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Attack\\Right\\18.bmp"
-
 ENEMY_BLACK_MAN_HURT_LEFT BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Get_Hurt\\left.bmp"
-
 ENEMY_BLACK_MAN_HURT_RIGHT BITMAP                  "..\\RES\\InGame\\Enemy\\Dark_man\\Get_Hurt\\right.bmp"
-
 CHARACTER_HURT_LEFT     BITMAP                  "..\\RES\\Character\\Hurt\\left.bmp"
-
 CHARACTER_HURT_RIGHT    BITMAP                  "..\\RES\\Character\\Hurt\\right.bmp"
-
 MAP_LEVEL_01            BITMAP                  "..\\RES\\InGame\\Level_1\\Map\\FireMap.bmp"
-
 LOADING_CHESS           BITMAP                  "..\\RES\\InGame\\Loading\\chess.bmp"
-
 ENEMY_HP_BAR_M          BITMAP                  "..\\RES\\InGame\\Enemy\\HP_bar\\M.bmp"
 MENU_ABOUT              BITMAP                  "..\\RES\\Menu\\Options\\About.bmp"
 MENU_KEY_CONFIG         BITMAP                  "..\\RES\\Menu\\Options\\Key_Config.bmp"
@@ -785,9 +431,26 @@ MENU_EAT_PIZZA_08       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\
 MENU_EAT_PIZZA_09       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\09.bmp"
 MENU_EAT_PIZZA_10       BITMAP                  "..\\RES\\Menu\\Options\\pizza\\10.bmp"
 MAGIC_BUFF              BITMAP                  "..\\RES\\InGame\\Skill\\LoveIcon.bmp"
-
 BLOODBALL               BITMAP                  "..\\RES\\InGame\\Enemy\\BloodBall.bmp"
-
+UI_MP_BAR_SHINE_01      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\01.bmp"
+UI_MP_BAR_SHINE_02      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\02.bmp"
+UI_MP_BAR_SHINE_03      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\03.bmp"
+UI_MP_BAR_SHINE_04      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\04.bmp"
+UI_MP_BAR_SHINE_05      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\05.bmp"
+UI_MP_BAR_SHINE_06      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\06.bmp"
+UI_MP_BAR_SHINE_07      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\07.bmp"
+UI_MP_BAR_SHINE_08      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\08.bmp"
+UI_MP_BAR_SHINE_09      BITMAP                  "..\\RES\\InGame\\UI\\Mp_Bar_Animation\\09.bmp"
+UI_MAGIC_BUFF_01        BITMAP                  "..\\RES\\InGame\\Magic Buff\\01.bmp"
+UI_MAGIC_BUFF_02        BITMAP                  "..\\RES\\InGame\\Magic Buff\\02.bmp"
+UI_MAGIC_BUFF_03        BITMAP                  "..\\RES\\InGame\\Magic Buff\\03.bmp"
+UI_MAGIC_BUFF_04        BITMAP                  "..\\RES\\InGame\\Magic Buff\\04.bmp"
+UI_MAGIC_BUFF_05        BITMAP                  "..\\RES\\InGame\\Magic Buff\\05.bmp"
+UI_MAGIC_BUFF_06        BITMAP                  "..\\RES\\InGame\\Magic Buff\\06.bmp"
+UI_MAGIC_BUFF_07        BITMAP                  "..\\RES\\InGame\\Magic Buff\\07.bmp"
+UI_MAGIC_BUFF_08        BITMAP                  "..\\RES\\InGame\\Magic Buff\\08.bmp"
+UI_MAGIC_BUFF_09        BITMAP                  "..\\RES\\InGame\\Magic Buff\\09.bmp"
+UI_MAGIC_BUFF_10        BITMAP                  "..\\RES\\InGame\\Magic Buff\\10.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -795,7 +458,6 @@ BLOODBALL               BITMAP                  "..\\RES\\InGame\\Enemy\\BloodBa
 //
 
 IDC_CURSOR              CURSOR                  "..\\RES\\cursor1.cur"
-
 #endif    // 中文 (繁體，台灣) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -814,7 +476,6 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 IDR_MAINFRAME           BITMAP                  "..\\RES\\Toolbar.bmp"
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // Icon
@@ -823,9 +484,7 @@ IDR_MAINFRAME           BITMAP                  "..\\RES\\Toolbar.bmp"
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "..\\RES\\GAME.ico"
-
 IDR_GAMETYPE            ICON                    "..\\RES\\gameDoc.ico"
-
 
 /////////////////////////////////////////////////////////////////////////////
 //

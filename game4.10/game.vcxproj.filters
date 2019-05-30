@@ -548,6 +548,25 @@
     <Image Include="RES\ShootCut\Menu\Menu_01.bmp" />
     <Image Include="RES\ShootCut\Menu\Menu_02.bmp" />
     <Image Include="RES\Start_Ani\start_temp.png" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\01.bmp" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\02.bmp" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\03.bmp" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\04.bmp" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\05.bmp" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\06.bmp" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\07.bmp" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\08.bmp" />
+    <Image Include="RES\InGame\UI\Mp_Bar_Animation\09.bmp" />
+    <Image Include="RES\InGame\Magic Buff\01.bmp" />
+    <Image Include="RES\InGame\Magic Buff\02.bmp" />
+    <Image Include="RES\InGame\Magic Buff\03.bmp" />
+    <Image Include="RES\InGame\Magic Buff\04.bmp" />
+    <Image Include="RES\InGame\Magic Buff\05.bmp" />
+    <Image Include="RES\InGame\Magic Buff\06.bmp" />
+    <Image Include="RES\InGame\Magic Buff\07.bmp" />
+    <Image Include="RES\InGame\Magic Buff\08.bmp" />
+    <Image Include="RES\InGame\Magic Buff\09.bmp" />
+    <Image Include="RES\InGame\Magic Buff\10.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

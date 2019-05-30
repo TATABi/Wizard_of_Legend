@@ -22,8 +22,8 @@ namespace game_framework {
 		const int STEP = 5;
 		const int ZONE = 30;
 		const int DAMAGE = 20;
-		int _attackCounter = 4 * 1;
-		bool _isAttack = false;
+		int _attack_delay_counter = 10; //角色經過怪物身邊時怪物需要反映時間才能做攻擊動作
+		
 		int x, y;
 	};
 
