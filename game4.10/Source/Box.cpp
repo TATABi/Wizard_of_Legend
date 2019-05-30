@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Box.h"
+#include "Global_Class.h"
 
 namespace game_framework {
 	Box::Box()
@@ -69,6 +70,8 @@ namespace game_framework {
 		}
 		else if (_isOpened)											//¶}²Ä¤@¼h
 		{
+			_temp_item = Global_Class::g_items.GetEquipAndOwnedItem();
+
 			switch (_category_flag)
 			{
 			case 0:
@@ -303,7 +306,6 @@ namespace game_framework {
 		_NUMBER_OF_OFFENSE = gitem->GetNumberOfItem("OFFENSE");
 		_NUMBER_OF_DEFENSE = gitem->GetNumberOfItem("DEFENSE");
 		_NUMBER_OF_MISC = gitem->GetNumberOfItem("MISC");
-		
 
 		if (_isOpendOffense) {
 			item_num = _item_flag_x + _item_flag_y * 6;

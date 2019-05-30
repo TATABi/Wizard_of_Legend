@@ -8,7 +8,7 @@ namespace game_framework {
 		Store(int ,int);  // 設定初始中心點
 		void Initialize(int, int);
 		void LoadBitmap();
-		void SetXY(float *);
+		void OnMove(float *);
 		bool Buy(int, Items *);
 		void Shelf(Items *);
 		void OnShow();

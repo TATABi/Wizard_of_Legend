@@ -1,8 +1,8 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
-
+#include "Memento.h"
 namespace game_framework {
-
+	
 	class Controller {
 	public:
 		Controller();

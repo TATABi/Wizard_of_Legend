@@ -91,17 +91,14 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//買道具1
 				{
-
 					if (_item_store.Buy(0, &Global_Class::g_items))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
-
 				}
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 4)	//買道具2
-				{
-
+				{	
 					if (_item_store.Buy(1, &Global_Class::g_items))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
@@ -209,7 +206,7 @@ namespace game_framework {
 		Global_Class::g_bag.OnMove(Global_Class::g_items.GetItemInBag());
 		Global_Class::g_ui.OnMove();
 		Global_Class::g_items.Effect();
-		_item_store.SetXY(_map.GetCharacterPosition());
+		_item_store.OnMove(_map.GetCharacterPosition());
 	}
 
 	void Town_State_Controller::OnShow()

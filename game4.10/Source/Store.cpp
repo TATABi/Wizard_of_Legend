@@ -16,9 +16,9 @@ namespace game_framework
 
 	void Store::Initialize(int x, int y)
 	{
-		_isItemSoldOut[0] = false;
-		_isItemSoldOut[1] = false;
-		_isItemSoldOut[2] = false;
+		_isItemSoldOut[0] = true;
+		_isItemSoldOut[1] = true;
+		_isItemSoldOut[2] = true;
 		_x = x;
 		_y = y;
 	}
@@ -49,82 +49,95 @@ namespace game_framework
 			break;
 		}
 
-		if (_store_item[num]->BuyItem()) 
+		if (!_isItemSoldOut[num])
 		{
-			int r;
+			if (_store_item[num]->BuyItem())
+			{
+				int r;
 
-			if (gitem->GetItemInStore().size() > 2) {
-				r = rand() % gitem->GetItemInStore().size();
-
-				while (_store_item[item_1]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber() || _store_item[item_2]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber())
+				if (gitem->GetItemInStore().size() > 2) {
 					r = rand() % gitem->GetItemInStore().size();
 
-				_store_item.erase(_store_item.begin() + num);
-				_store_item.insert(_store_item.begin() + num, gitem->GetItemInStore()[r]);
+					while (_store_item[item_1]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber() || _store_item[item_2]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber())
+						r = rand() % gitem->GetItemInStore().size();
+
+					_store_item.erase(_store_item.begin() + num);
+					_store_item.insert(_store_item.begin() + num, gitem->GetItemInStore()[r]);
+				}
+				else
+					_isItemSoldOut[num] = true;
+
+				return true;
 			}
 			else
-				_isItemSoldOut[num] = true;
-
-			return true;
+				return false;
 		}
-		else
-			return false;
+
+		return false;
 	}
 
 	void Store::Shelf(Items *gitem)
 	{
-		if (gitem->GetItemInStore().size() > 0)
+		vector<Item*> unwoned_items = gitem->GetItemInStore();
+		int num_of_item = unwoned_items.size();
+		_store_item.clear();
+		_isItemSoldOut[0] = true;
+		_isItemSoldOut[1] = true;
+		_isItemSoldOut[2] = true;
+
+		for (int i = 0; i < 3 && i < num_of_item; i++)
 		{
 			srand((unsigned int)time(NULL));	//�üƺؤl
-			_store_item.clear();
-			int r;
-			for (int i = 0; i < 3; i++) 
-			{
-				r = rand() % gitem->GetItemInStore().size();
+			int r = rand() % num_of_item;
 
-				for (int j = 0; j < i; j++) 
+			for (int j = 0; j < i; j++)
+			{
+				if (_store_item[j]->GetNumber() == unwoned_items[r]->GetNumber())
 				{
-					if (_store_item[j]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber())
-					{
-						r = rand() % gitem->GetItemInStore().size();
-						j = 0;
-					}
+					r = rand() % num_of_item;
+					j = 0;
 				}
-				_store_item.push_back(gitem->GetItemInStore()[r]);
 			}
+
+			_store_item.push_back(unwoned_items[r]);
+ 			_isItemSoldOut[i] = false;
 		}
 	}
 
-	void Store::SetXY(float *cxy)
+	void Store::OnMove(float *cxy)
 	{
-		_store_item[0]->SetXY(285 + 525 - cxy[0], 205 + 990 - cxy[1]);
-		_store_item[1]->SetXY(285 + 575 - cxy[0], 205 + 990 - cxy[1]);
-		_store_item[2]->SetXY(285 + 620 - cxy[0], 205 + 990 - cxy[1]);
+		_isItemSoldOut[0] ? NULL : _store_item[0]->SetXY(CHARACTER_SCREEN_X + TOWN_STORE_ITEM[0] - cxy[0], CHARACTER_SCREEN_Y + TOWN_STORE_ITEM[1] - cxy[1]);
+		_isItemSoldOut[1] ? NULL : _store_item[1]->SetXY(CHARACTER_SCREEN_X + TOWN_STORE_ITEM[0] + DX - cxy[0], CHARACTER_SCREEN_Y + TOWN_STORE_ITEM[1] - cxy[1]);
+		_isItemSoldOut[2] ? NULL : _store_item[2]->SetXY(CHARACTER_SCREEN_X + TOWN_STORE_ITEM[0]  + 2 * DX - cxy[0], CHARACTER_SCREEN_Y + TOWN_STORE_ITEM[1] - cxy[1]);
 		_cx = int(cxy[0]);
 		_cy = int(cxy[1]);
 	}
 
 	void Store::OnShow()
 	{
-		_isItemSoldOut[0] ? NULL : _store_item[0]->OnShow();
-		_isItemSoldOut[1] ? NULL : _store_item[1]->OnShow();
-		_isItemSoldOut[2] ? NULL : _store_item[2]->OnShow();
-		
-		if (_store_item[0]->HaveItem()) 
+		if (_isItemSoldOut[0])
 		{
 			_bm_sold_out.SetTopLeft(CHARACTER_SCREEN_X + _x - _cx, CHARACTER_SCREEN_Y + _y - _cy);
 			_bm_sold_out.ShowBitmap();
 		}
-		if (_store_item[1]->HaveItem())
+		else
+			_store_item[0]->OnShow();
+
+		if (_isItemSoldOut[1])
 		{
 			_bm_sold_out.SetTopLeft(CHARACTER_SCREEN_X + _x + DX - _cx, CHARACTER_SCREEN_Y + _y - _cy);
 			_bm_sold_out.ShowBitmap();
 		}
-		if (_store_item[2]->HaveItem())
+		else
+			_store_item[1]->OnShow();
+
+		if (_isItemSoldOut[2])
 		{
-			_bm_sold_out.SetTopLeft(CHARACTER_SCREEN_X + _x + 2 * DX - _cx, CHARACTER_SCREEN_Y + _y - _cy);
+			_bm_sold_out.SetTopLeft(CHARACTER_SCREEN_X + _x + DX * 2 - _cx, CHARACTER_SCREEN_Y + _y - _cy);
 			_bm_sold_out.ShowBitmap();
 		}
+		else
+			_store_item[2]->OnShow();
 	}
 }
 

@@ -40,6 +40,7 @@
     <ClCompile Include="Source\Reward_Money.cpp" />
     <ClCompile Include="Source\Reward_Diamond.cpp" />
     <ClCompile Include="Source\Reward_Blood_Ball.cpp" />
+    <ClCompile Include="Source\Memento.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="Source\Reward_Money.h" />
     <ClInclude Include="Source\Reward_Blood_Ball.h" />
     <ClInclude Include="Source\Reward_Diamond.h" />
+    <ClInclude Include="Source\Memento.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
