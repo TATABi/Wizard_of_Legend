@@ -275,7 +275,6 @@
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\CharacterData.cpp" />
-    <ClCompile Include="Source\Counter.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -349,7 +348,6 @@
     <ClInclude Include="Source\Book.h" />
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Character.h" />
-    <ClInclude Include="Source\Counter.h" />
     <ClInclude Include="Source\Controller.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\game.h" />

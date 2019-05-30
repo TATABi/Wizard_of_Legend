@@ -1,5 +1,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+
 namespace game_framework {
 
 	class Controller {

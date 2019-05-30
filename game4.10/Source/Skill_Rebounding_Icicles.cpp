@@ -7,7 +7,7 @@
 #include <math.h>
 #include "Skill_Rebounding_Icicles.h"
 #include "CharacterData.h"
-
+#include "GameData.h"
 
 namespace game_framework
 {
@@ -17,55 +17,45 @@ namespace game_framework
 		LoadBitmap();
 	}
 
-	Skill_Rebounding_Icicles::~Skill_Rebounding_Icicles()
-	{
-
-	}
-
 	void Skill_Rebounding_Icicles::Initialize(int mouseX, int mouseY, float* cxy)
 	{
-		_damage = 10;
-		_backDistance = 10;
-		_hitbox[0] = 32;
-		_hitbox[1] = 10;
-		_hitbox[2] = 36;
-		_hitbox[3] = 77;
-		_lifeTimer = 180;
-		_map_collision[0] = 35;
-		_map_collision[1] = 45;
-		_map_collision[2] = 6;
-		_map_collision[3] = 5;
+		_damage = REBOUNDING_ICICKES_DAMAGE;
+		_hitbox[0] = REBOUNDING_ICICKES_HITBOX[0];
+		_hitbox[1] = REBOUNDING_ICICKES_HITBOX[1];
+		_hitbox[2] = REBOUNDING_ICICKES_HITBOX[2];
+		_hitbox[3] = REBOUNDING_ICICKES_HITBOX[3];
+		_lifeTime = REBOUNDING_ICICKES_LIFETIME;
+		_map_collision[0] = REBOUNDING_ICICKES_MAP_HITBOX[0];
+		_map_collision[1] = REBOUNDING_ICICKES_MAP_HITBOX[1];
+		_map_collision[2] = REBOUNDING_ICICKES_MAP_HITBOX[2];
+		_map_collision[3] = REBOUNDING_ICICKES_MAP_HITBOX[3];
+		_speed = REBOUNDING_ICICKES_SPEED;
+		_cast_distance = REBOUNDING_ICICKES_CAST_DISTANCE;
 		_isDelete = false;
 		_isStock = false;
-		_speed = 10;
-		_cast_distance = 50;
 		_isInit[0] = _isInit[1] = _isInit[2] = _isInit[3] = true;
+
+		//螢幕中心到滑鼠向量
+		int tempX = mouseX - CHARACTER_SCREEN_CENTER_X;					
+		int tempY = mouseY - CHARACTER_SCREEN_CENTER_Y;
+		float unitVec = (float)(sqrt(pow(tempX, 2) + pow(tempY, 2)));
+
+		//設定移動向量
+		_dx = (mouseX - CHARACTER_SCREEN_CENTER_X) * _speed / unitVec;
+		_dy = (mouseY - CHARACTER_SCREEN_CENTER_Y) * _speed / unitVec;
+		_xy[0] = cxy[0] + (mouseX - CHARACTER_SCREEN_CENTER_X) * _cast_distance / unitVec;
+		_xy[1] = cxy[1] + (mouseY - CHARACTER_SCREEN_CENTER_Y) * _cast_distance / unitVec;
+		_rx = cxy[0] + (mouseX - CHARACTER_SCREEN_CENTER_X) * _cast_distance / unitVec;
+		_ry = cxy[1] + (mouseY - CHARACTER_SCREEN_CENTER_Y) * _cast_distance / unitVec;
+
 		_ani_skill[0].SetDelayCount(1);
 		_ani_skill[1].SetDelayCount(1);
 		_ani_skill[2].SetDelayCount(1);
 		_ani_skill[3].SetDelayCount(1);
-
-		int tempX = mouseX - CHARACTER_SCREEN_CENTER_X;		//螢幕中心到滑鼠向量
-		int tempY = mouseY - CHARACTER_SCREEN_CENTER_Y;
-
-		float unitVec = (float)(sqrt(pow(tempX, 2) + pow(tempY, 2)));
-
-		_dx = (mouseX - CHARACTER_SCREEN_CENTER_X) * _speed / unitVec;
-		_dy = (mouseY - CHARACTER_SCREEN_CENTER_Y) * _speed / unitVec;
-
-		_xy[0] = cxy[0] + (mouseX - CHARACTER_SCREEN_CENTER_X) * _cast_distance / unitVec;
-		_xy[1] = cxy[1] + (mouseY - CHARACTER_SCREEN_CENTER_Y) * _cast_distance / unitVec;
-
-		_rx = cxy[0] + (mouseX - CHARACTER_SCREEN_CENTER_X) * _cast_distance / unitVec;
-		_ry = cxy[1] + (mouseY - CHARACTER_SCREEN_CENTER_Y) * _cast_distance / unitVec;
-
 	}
 
 	void Skill_Rebounding_Icicles::LoadBitmap()
 	{
-		_bm_skill_icon.LoadBitmap(SKILL_ICON_REBOUNDING_ICICLES, RGB(50, 255, 0));
-
-		
 		int ani[10] = { SKILL_REBOUNDING_ICICLES_01,SKILL_REBOUNDING_ICICLES_02,SKILL_REBOUNDING_ICICLES_02,SKILL_REBOUNDING_ICICLES_02,SKILL_REBOUNDING_ICICLES_03,
 					   SKILL_REBOUNDING_ICICLES_03,SKILL_REBOUNDING_ICICLES_03,SKILL_REBOUNDING_ICICLES_04, SKILL_REBOUNDING_ICICLES_04, SKILL_REBOUNDING_ICICLES_04 };
 		
@@ -80,35 +70,30 @@ namespace game_framework
 
 		for (int i = 0; i < 10; i++)
 			_ani_skill[3].AddBitmap(ani[i], RGB(50, 255, 0));
-
-		
 	}
 
 	int Skill_Rebounding_Icicles::GetDamage(Enemy *enemy)
 	{
 		int *enemy_hitbox = enemy->GetHitbox();
 		float *enemy_position = enemy->GetPosition();
-
 		float x1 = _xy[0] + _hitbox[0];
 		float y1 = _xy[1] + _hitbox[1];
 		float l1 = _hitbox[2];
 		float w1 = _hitbox[3];
-
 		float x2 = enemy_position[0] + enemy_hitbox[0];
 		float y2 = enemy_position[1] + enemy_hitbox[1];
 		float l2 = enemy_hitbox[2];
 		float w2 = enemy_hitbox[3];
 
-		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) //發生碰撞
+		//偵測與Enemy碰撞
+		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) 
 		{
 			if (AttackedThisEnemy(enemy))
 			{
 				CharacterData* data = CharacterData::Instance();
-				int damage = _damage * data->ATTACK_COEFFICIENT();
-				
+				int damage = _damage * data->ATTACK_COEFFICIENT();	
 				data->AddMP((int)(damage * data->MP_CHARGE_COEFFICIENT()));
 				return damage;
-
 			}
 		}
 		return 0;
@@ -116,7 +101,7 @@ namespace game_framework
 
 	void Skill_Rebounding_Icicles::OnMove(int *cxy, GameMap *map)
 	{
-		
+		//偵測與地圖碰撞
 		if (map->GetMapStatus(_xy[0] + _map_collision[0], _xy[1] + _map_collision[1]) == -1 ||
 			map->GetMapStatus(_xy[0] + _map_collision[0] + _map_collision[2], _xy[1] + _map_collision[1]) == -1 ||
 			map->GetMapStatus(_xy[0] + _map_collision[0], _xy[1] + _map_collision[1] + _map_collision[3]) == -1 ||
@@ -125,14 +110,12 @@ namespace game_framework
 			_isStock = true;
 		}
 
-
-		if (_lifeTimer == 0 ) //時間到 or 碰到牆
-		{
+		//技能位置設定
+		if (_lifeTime == 0 )		//時間到 or 碰到牆
 			_isDelete = true;
-		}
 		else
 		{
-			_lifeTimer--;
+			_lifeTime--;
 
 			if (_ani_skill[3].GetCurrentBitmapNumber() < 2 && !_isStock)
 			{
@@ -142,7 +125,7 @@ namespace game_framework
 				_xy[1] = (int)_ry;
 			}
 
-			///////////////////////////////////  1
+			//  1 Icicles
 			if (_isInit[0])
 			{
 				_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[0].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[0].Height() / 2 + _xy[1] - cxy[1]);
@@ -156,8 +139,7 @@ namespace game_framework
 				_ani_skill[0].OnMove();
 			}
 
-			/////////////////////////////////   2
-
+			//  2 Icicles
 			if (_ani_skill[0].GetCurrentBitmapNumber() == 4)
 			{
 				_ani_skill[1].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[1].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[1].Height() / 2 + _xy[1] - cxy[1]);
@@ -171,7 +153,7 @@ namespace game_framework
 				_ani_skill[1].OnMove();
 			}
 			
-			//////////////////////////////////  3
+			//  3 Icicles
 			if (_ani_skill[1].GetCurrentBitmapNumber() == 4)
 			{
 				_ani_skill[2].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[2].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[2].Height() / 2 + _xy[1] - cxy[1]);
@@ -185,8 +167,7 @@ namespace game_framework
 				_ani_skill[2].OnMove();
 			}
 
-			/////////////////////////////////  4
-
+			//  4 Icicles
 			if (_ani_skill[2].GetCurrentBitmapNumber() == 4)
 			{
 				_ani_skill[3].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[3].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[3].Height() / 2 + _xy[1] - cxy[1]);
@@ -223,5 +204,4 @@ namespace game_framework
 		}
 	}
 
-	
 }

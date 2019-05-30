@@ -9,29 +9,23 @@
 
 namespace game_framework
 {
-	Skill::Skill(){}
-
-	Skill::~Skill(){}
-
-	bool Skill::IsDelete()
-	{
-		return _isDelete;
-	}
+	Skill::Skill() { Init(); }
 
 	void Skill::Init()
 	{
 		_isDelete = false;
 	}
 
-	int* Skill::GetHitbox()
+	bool Skill::IsDelete()
 	{
-		return _hitbox;
+		return _isDelete;
 	}
 
 	bool Skill::AttackedThisEnemy(Enemy* enemy)
 	{
 		bool isExist = false;
 
+		//將怪物加入已攻擊列表
 		for (int i = 0; i < _enemyList.size(); i++)
 		{
 			if (_enemyList[i] == enemy)
@@ -42,9 +36,7 @@ namespace game_framework
 		}
 		
 		if (isExist)
-		{
 			return false;
-		}
 		else
 		{
 			_enemyList.push_back(enemy);
