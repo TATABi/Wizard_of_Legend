@@ -5,7 +5,8 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
-
+#include "UI.h"
+#include "Items.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
@@ -23,10 +24,10 @@ namespace game_framework {
 
 		//global variable initialize...//
 
-		Global_Class::g_items.LoadBitmap();
+		Items::Instance().LoadBitmap();
 		Global_Class::g_pauseMenu.LoadBitmap();
 		Global_Class::g_character.LoadBitmap();
-		Global_Class::g_ui.LoadBitmap();
+		UI::Instance().LoadBitmap();
 		Global_Class::g_bag.LoadBitmap();
 
 		/////////////////////////////////

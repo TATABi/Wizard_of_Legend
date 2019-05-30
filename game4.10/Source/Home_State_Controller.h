@@ -45,8 +45,6 @@ namespace game_framework {
 		Character *_character;
 		PausedMenu *_pauseMenu;
 		Bag *_bag;
-		Items *_items;
-		UI *_ui;
 	};
 }
 

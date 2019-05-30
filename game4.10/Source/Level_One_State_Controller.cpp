@@ -30,8 +30,6 @@ namespace game_framework {
 		_character = &Global_Class::g_character;
 		_pauseMenu = &Global_Class::g_pauseMenu;
 		_bag = &Global_Class::g_bag;
-		_items = &Global_Class::g_items;
-		_ui = &Global_Class::g_ui;
 
 		CAudio::Instance()->Load(AUDIO_LEVEL_FIRE, "sounds\\FireBGM.wav");
 
@@ -182,9 +180,9 @@ namespace game_framework {
 
 		Global_Class::g_character.OnMove(&_map);
 		_map.OnMove();
-		Global_Class::g_bag.OnMove(Global_Class::g_items.GetItemInBag());
-		Global_Class::g_ui.OnMove();
-		Global_Class::g_items.Effect();
+		Global_Class::g_bag.OnMove(Items::Instance().GetItemInBag());
+		UI::Instance().OnMove();
+		Items::Instance().Effect();
 	}
 
 	void Level_One_State_Controller::OnShow()
@@ -193,7 +191,7 @@ namespace game_framework {
 		{
 			_map.OnShowBackground();
 			_map.OnShow();
-			Global_Class::g_ui.OnShow();
+			UI::Instance().OnShow();
 			Global_Class::g_bag.OnShow();
 			Global_Class::g_pauseMenu.OnShow();
 		}

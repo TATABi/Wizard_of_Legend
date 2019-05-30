@@ -25,7 +25,7 @@ namespace game_framework {
 		CAudio::Instance()->Play(AUDIO_TOWN, true);
 
 		//////產生隨機道具/////
-		_item_store.Shelf(&Global_Class::g_items);
+		_item_store.Shelf(&Items::Instance());
 	}
 
 	void Town_State_Controller::Initialize()
@@ -33,8 +33,6 @@ namespace game_framework {
 		_character = &Global_Class::g_character;
 		_pauseMenu = &Global_Class::g_pauseMenu;
 		_bag = &Global_Class::g_bag;
-		_items = &Global_Class::g_items;
-		_ui = &Global_Class::g_ui;
 
 		CAudio::Instance()->Load(AUDIO_TOWN, "sounds\\TownBGM.wav");
 		CAudio::Instance()->Load(AUDIO_BUY, "sounds\\buy.mp3");
@@ -92,7 +90,7 @@ namespace game_framework {
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//買道具1
 				{
 
-					if (_item_store.Buy(0, &Global_Class::g_items))
+					if (_item_store.Buy(0, &Items::Instance()))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
@@ -102,7 +100,7 @@ namespace game_framework {
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 4)	//買道具2
 				{
 
-					if (_item_store.Buy(1, &Global_Class::g_items))
+					if (_item_store.Buy(1, &Items::Instance()))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
@@ -111,7 +109,7 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 5)	//買道具3
 				{
-					if (_item_store.Buy(2, &Global_Class::g_items))
+					if (_item_store.Buy(2, &Items::Instance()))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
@@ -206,9 +204,9 @@ namespace game_framework {
 		_bm_loading.SetTopLeft(0, 0);
 		Global_Class::g_character.OnMove(&_map);
 		_map.OnMove();
-		Global_Class::g_bag.OnMove(Global_Class::g_items.GetItemInBag());
-		Global_Class::g_ui.OnMove();
-		Global_Class::g_items.Effect();
+		Global_Class::g_bag.OnMove(Items::Instance().GetItemInBag());
+		UI::Instance().OnMove();
+		Items::Instance().Effect();
 		_item_store.SetXY(_map.GetCharacterPosition());
 	}
 
@@ -221,7 +219,7 @@ namespace game_framework {
 			_map.OnShow();
 			_map.OnShowWall();
 			_map.OnShowPressF();
-			Global_Class::g_ui.OnShow();
+			UI::Instance().OnShow();
 			Global_Class::g_bag.OnShow();
 			Global_Class::g_pauseMenu.OnShow();
 		}

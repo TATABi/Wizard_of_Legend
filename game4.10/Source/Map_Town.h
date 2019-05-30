@@ -14,6 +14,5 @@ namespace game_framework {
 		bool SetEnemyXY(int, int, int*);
 		int GetMapStatus(float, float);
 	};
-
 }
 #endif

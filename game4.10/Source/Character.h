@@ -16,7 +16,7 @@ namespace game_framework {
 	class Character : public Layer {
 	public:
 		Character();
-		void Initialize(float*);							//重製角色座標、數據
+		void Initialize(float*);						//重置角色座標、數據
 		void LoadBitmap();								//載入動畫、圖片
 		void OnMove(GameMap *);							//傳入地圖用以判斷所處位置
 		void OnShow();									//顯示
@@ -67,7 +67,7 @@ namespace game_framework {
 		int _hit_recover_counter;											//被爆打的硬直時間
 		int _hp;															//暫存HP，用來檢查是否扣血
 		int _magic_buff_counter;											//計算Magic Buff時間
-		int _mp_decrease_counter;									//計算MP未累積滿前隨時間減少的量
+		int _mp_decrease_counter;											//計算MP未累積滿前隨時間減少的量
 		bool _is_magic_buff_init;											//紀錄是否加成過數值
 	};
 }

@@ -26,7 +26,7 @@ namespace game_framework {
 		void ResetStatus();						//重製HP,MP,Money,MagicBuff
 		void SetMagicBuff(bool);				//設定Magic Buff 狀態
 		
-		//Beater -- 封弊者
+		//Beater -- 封弊者 ???????
 		void LockHP();
 		
 		//取值

@@ -9,6 +9,12 @@
 
 namespace game_framework {
 
+	UI& UI::Instance()
+	{
+		static UI instance;
+		return instance;
+	}
+
 	UI::UI(){}
 
 	void UI::LoadBitmap()

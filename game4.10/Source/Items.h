@@ -6,8 +6,7 @@
 namespace game_framework {
 	class Items {
 	public:
-		Items();
-		~Items();
+		static Items& Instance();
 		void Initialize();		//匯入所有道具
 		void LoadBitmap();
 		bool Buy(int);	//回傳購買失敗/成功
@@ -18,15 +17,17 @@ namespace game_framework {
 		vector<Item*> GetItemInBag();	//裝備中的道具
 		vector<Item*> GetAllItem();	//擁有的道具
 		vector<Item*> GetItemInStore();	//還未購買的道具
+	protected:
+		Items();
+		~Items();
 	private:
 		vector<Item*> _items;			//所有道具
 		vector<Item*> _temp_items;		//用來篩選
-		const int NUMBER_OF_OFFENSE = 2;
-		const int NUMBER_OF_DEFENSE = 3;
-		const int NUMBER_OF_MISC = 2;
+		int NUMBER_OF_OFFENSE = 2;
+		int NUMBER_OF_DEFENSE = 3;
+		int NUMBER_OF_MISC = 2;
 	};
 
 }
-
 
 #endif

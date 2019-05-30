@@ -38,8 +38,6 @@ namespace game_framework {
 		_character =& Global_Class::g_character;
 		_pauseMenu =& Global_Class::g_pauseMenu;
 		_bag = &Global_Class::g_bag;
-		_items = &Global_Class::g_items;
-		_ui = &Global_Class::g_ui;
 		
 		CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
 		CAudio::Instance()->Load(AUDIO_PUTTING, "sounds\\putting.mp3");
@@ -184,7 +182,7 @@ namespace game_framework {
 				}
 				if (nChar == KEY_SPACE)
 				{
-					if (_box.Equip(_items)) {
+					if (_box.Equip(&Items::Instance())) {
 						_box.OpenOpen(false);
 						_flag = FLAG_BOX;
 					}
@@ -314,9 +312,9 @@ namespace game_framework {
 		_map.OnMove();
 		_box.OnMove();
 		_book.OnMove();
-		_bag->OnMove(_items->GetItemInBag());
-		_ui->OnMove();
-		_items->Effect();
+		_bag->OnMove(Items::Instance().GetItemInBag());
+		UI::Instance().OnMove();
+		Items::Instance().Effect();
 	}
 
 	void Home_State_Controller::OnShow()
@@ -339,9 +337,9 @@ namespace game_framework {
 					_map.OnShow();
 					_map.OnShowWall();
 					_map.OnShowPressF();
-					_box.OnShow(_items);
+					_box.OnShow(&Items::Instance());
 					_book.OnShow();
-					_ui->OnShow();
+					UI::Instance().OnShow();
 					_bag->OnShow();
 					_pauseMenu->OnShow();
 				}

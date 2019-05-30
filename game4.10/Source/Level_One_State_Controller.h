@@ -36,8 +36,6 @@ namespace game_framework {
 		Character *_character;
 		PausedMenu *_pauseMenu;
 		Bag *_bag;
-		Items *_items;
-		UI *_ui;
 		int _chess_xy[2];
 		bool _isUpDown;
 	};

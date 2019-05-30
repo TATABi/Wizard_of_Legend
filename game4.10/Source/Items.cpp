@@ -9,6 +9,12 @@
 
 namespace game_framework {
 
+	Items& Items::Instance()
+	{
+		static Items instance;
+		return instance;
+	}
+
 	Items::Items()
 	{
 		Initialize();
@@ -59,8 +65,6 @@ namespace game_framework {
 		_items.push_back(new Item(ITEM_MISC_02, "MISC", 7, 15, 
 								[]() {CharacterData::Instance()->SetCDCoefficient(-1.5); CharacterData::Instance()->CharacterData::SetMPChargeCoefficient(2.0); return true; },
 								[]() {CharacterData::Instance()->SetCDCoefficient(1.5); CharacterData::Instance()->CharacterData::SetMPChargeCoefficient(-2.0);  }));
-
-
 	}
 
 	void Items::LoadBitmap()
@@ -68,7 +72,6 @@ namespace game_framework {
 		vector<Item*>::iterator iter;
 		for (iter = _items.begin(); iter != _items.end(); iter++)
 			(*iter)->LoadBitmap();
-
 	}
 
 	void Items::Effect()
@@ -77,7 +80,6 @@ namespace game_framework {
 		for (iter = _items.begin(); iter != _items.end(); iter++)
 			(*iter)->Effect();
 	}
-
 
 	bool Items::Buy(int Item_number)
 	{
