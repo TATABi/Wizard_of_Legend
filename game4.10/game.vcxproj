@@ -270,7 +270,7 @@
     <ClCompile Include="Source\Bag.cpp" />
     <ClCompile Include="Source\Black_Man.cpp" />
     <ClCompile Include="Source\Blockhead.cpp" />
-    <ClCompile Include="Source\Blood_Ball.cpp" />
+    <ClCompile Include="Source\Reward_Blood_Ball.cpp" />
     <ClCompile Include="Source\Book.cpp" />
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
@@ -307,6 +307,8 @@
     <ClCompile Include="Source\Map_Home.cpp" />
     <ClCompile Include="Source\Map_Level_One.cpp" />
     <ClCompile Include="Source\Map_Town.cpp" />
+    <ClCompile Include="Source\Reward_Diamond.cpp" />
+    <ClCompile Include="Source\Reward_Money.cpp" />
     <ClCompile Include="Source\PausedMenu.cpp" />
     <ClCompile Include="Source\Layer.cpp" />
     <ClCompile Include="Source\Reward.cpp" />
@@ -343,7 +345,7 @@
     <ClInclude Include="Source\Bag.h" />
     <ClInclude Include="Source\Black_Man.h" />
     <ClInclude Include="Source\Blockhead.h" />
-    <ClInclude Include="Source\Blood_Ball.h" />
+    <ClInclude Include="Source\Reward_Blood_Ball.h" />
     <ClInclude Include="Source\Book.h" />
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Character.h" />
@@ -369,6 +371,8 @@
     <ClInclude Include="Source\Map_Level_One_Logic.h" />
     <ClInclude Include="Source\Map_Town.h" />
     <ClInclude Include="Source\Map_Town_Logic.h" />
+    <ClInclude Include="Source\Reward_Diamond.h" />
+    <ClInclude Include="Source\Reward_Money.h" />
     <ClInclude Include="Source\PausedMenu.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Layer.h" />

@@ -17,6 +17,7 @@ namespace game_framework {
 	    int* SetCharacterXY(int, int,const int*);
 		bool SetEnemyXY(int, int, int*);
 		int GetMapStatus(int, int);		
+		void AddEnemy();
 	};
 }
 #endif

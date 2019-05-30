@@ -13,11 +13,8 @@
 namespace game_framework {
 
 	Map_Home::Map_Home(int x, int y, Character* c) : GameMap(x, y)
-	{
-		//¥[¤J¼Ä¤H
-		//(632,798), (928,1077)
-		_enemies.push_back(new Black_Man(640, 900, AREA_1, this));
-		_enemies.push_back(new Blockhead(650, 918, AREA_2, this));
+	{	
+		AddEnemy();
 		_character = c;
 	}
 
@@ -170,4 +167,9 @@ namespace game_framework {
 		return HOME_LOGIC[int(x/10)][int(y/10)];
 	}
 	
+	void Map_Home::AddEnemy()
+	{
+		_enemies.push_back(new Black_Man(640, 900, AREA_1, this));
+		_enemies.push_back(new Blockhead(650, 918, AREA_2, this));
+	}
 }

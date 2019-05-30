@@ -8,7 +8,10 @@
 #include "Enemy.h"
 #include "GameMap.h"
 #include "Reward.h"
-#include "Blood_Ball.h"
+#include "Reward_Blood_Ball.h"
+#include "Reward_Money.h"
+#include "Reward_Diamond.h"
+
 #define CHARGING_ZONE 300
 
 namespace game_framework {
@@ -173,10 +176,23 @@ namespace game_framework {
 
 	vector<Reward*> Enemy::CreateReward()
 	{
+		int midX = _xy[0] + _hitbox[0] + _hitbox[2] / 2;	//敵人中心位置
+		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;	
 		vector<Reward*> rewards;
-		int midX = _xy[0] + _hitbox[0] + _hitbox[2] / 2;
-		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;	//敵人中心位置
-		rewards.push_back(new BloodBall(midX, midY, _map));
+		/*srand(time(NULL));
+		int prob = rand() % 100 + 1;						//取1~100
+		if (prob <= 10)										//Default reward: Blood Ball 10%, Diamond 20%, Money 70%
+			rewards.push_back(new Reward_Blood_Ball(midX, midY, _map));
+		else if (prob <= 30)
+			rewards.push_back(new Reward_Diamond(midX, midY, _map));
+		else
+			rewards.push_back(new Reward_Money(midX, midY, _map));*/
+
+		//可重複產生
+		for (int i = 0; i < 5; i++)
+		{
+			rewards.push_back(new Reward_Diamond(midX, midY, _map));
+		}
 		return rewards;
 	}
 

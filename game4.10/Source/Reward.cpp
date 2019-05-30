@@ -7,6 +7,7 @@
 #include "Reward.h"
 #include "GameMap.h"
 #include "GameData.h"
+#include <random>
 
 namespace game_framework {
 	Reward::Reward(float ex, float ey, GameMap* map) : _map(map) { }
@@ -48,9 +49,27 @@ namespace game_framework {
 			_bm_reward.ShowBitmap();
 	}
 
+	void Reward::MoveTarget(float targetX, float targetY)
+	{
+		int temp = _time;
+		if (_move_counter != 0)
+		{
+			_move_counter--;
+		}
+		else
+		{
+			_time = 1;
+		}
+		float dx = (targetX - _xy[0]) / _time;	//單位時間移動距離
+		float dy = (targetY - _xy[1]) / _time;
+		_xy[0] += dx;
+		_xy[1] += dy;
+		_move_counter--;
+	}
+
 	bool Reward::IsTargetPosition(float targetX, float targetY)
 	{
-		float d = 10;
+		float d = 20;
 		if (((abs(_xy[0] - targetX)) < d) && (abs(_xy[1] - targetY) < d))
 			return true;
 		return false;
@@ -87,5 +106,17 @@ namespace game_framework {
 			return true;
 		else
 			return false;
+	}
+
+	void Reward::SetRandomPosition()
+	{
+		std::random_device rd;
+		_targetX = rd() % _range_position + _xy[0];
+		_targetY = rd() % _range_position + _xy[1];
+		while (!_map->SetEnemyXY(_targetX, _targetY, _hitbox))
+		{
+			_targetX = rd() % _range_position + _xy[0];
+			_targetY = rd() % _range_position + _xy[1];
+		}
 	}
 }

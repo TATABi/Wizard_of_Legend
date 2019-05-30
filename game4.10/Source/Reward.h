@@ -14,11 +14,11 @@ namespace game_framework {
 		virtual void LoadBitmap() = 0;
 		void OnMove();
 		void OnShow();
+		void MoveTarget(float, float);
+		bool IsDelete();
 		virtual void Initialize(float, float) = 0;
 		virtual void Effect() = 0;
-		virtual void MoveTarget(float, float) = 0;
-		virtual void SetRandomPosition() = 0;
-		bool IsDelete();
+		void SetRandomPosition();
 	protected:
 
 		enum STATE {
@@ -28,8 +28,9 @@ namespace game_framework {
 			IDLE
 		};
 
-		int _range_eat, _range_position, _speed, _targetX, _targetY;
+		int _range_eat, _range_position, _time, _targetX, _targetY;
 		int _value = 1;
+		int _move_counter = 30;
 		int _hitbox[4] = { 0 };
 		CMovingBitmap _bm_reward;
 		bool _isShow, _isUp;
