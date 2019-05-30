@@ -17,14 +17,14 @@ namespace game_framework {
 
 	Character::Character()
 	{
-		int xy[2] = { 0, 0 };
+		float xy[2] = { 0, 0 };
 		Initialize(xy);
 	}
 
-	void Character::Initialize(int* xy)
+	void Character::Initialize(float* xy)
 	{
-		this->_xy[0] = xy[0];
-		this->_xy[1] = xy[1];
+		_xy[0] = xy[0];
+		_xy[1] = xy[1];
 		_ani_down.SetDelayCount(2);
 		_ani_up.SetDelayCount(2);
 		_ani_left.SetDelayCount(2);
@@ -393,7 +393,7 @@ namespace game_framework {
 				_ani_run_up.Reset();
 			}
 			
-			int *temp_xy = map->SetCharacterXY(_dx, _dy, CHARACTER_MOVE_HITBOX);	//更新角色在map的位置
+			float *temp_xy = map->SetCharacterXY(_dx, _dy, CHARACTER_MOVE_HITBOX);	//更新角色在map的位置
 
 			_xy[0] = temp_xy[0];
 			_xy[1] = temp_xy[1];

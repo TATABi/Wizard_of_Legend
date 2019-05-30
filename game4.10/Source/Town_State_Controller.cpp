@@ -5,18 +5,18 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Town_State_Controller.h"
-
+#include "GameData.h"
 
 namespace game_framework {
 
-	Town_State_Controller::Town_State_Controller() :Controller(), _map(770, 1065, &Global_Class::g_character) {}
+	Town_State_Controller::Town_State_Controller() :Controller(), _map(TOWN_CHARACTER_XY[0], TOWN_CHARACTER_XY[1], &Global_Class::g_character), _item_store(TOWN_STORE_XY[0], TOWN_STORE_XY[1]){}
 
 	void Town_State_Controller::Begin()
 	{
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
-		_map.Initialize(770, 1065);
+		_map.Initialize(TOWN_CHARACTER_XY[0], TOWN_CHARACTER_XY[1]);
 		_character->Initialize(_map.GetCharacterPosition());
 		_flag = FLAG_TOWN_NORMAL;
 		Global_Class::g_character.Initialize(_map.GetCharacterPosition());
@@ -25,7 +25,6 @@ namespace game_framework {
 		CAudio::Instance()->Play(AUDIO_TOWN, true);
 
 		//////產生隨機道具/////
-
 		_item_store.Shelf(&Global_Class::g_items);
 	}
 
@@ -218,7 +217,7 @@ namespace game_framework {
 		if (_delayCounter < 0)
 		{
 			_map.OnShowBackground();
-			_item_store.OnShow(_map.GetCharacterPosition());
+			_item_store.OnShow();
 			_map.OnShow();
 			_map.OnShowWall();
 			_map.OnShowPressF();

@@ -13,7 +13,7 @@ namespace game_framework {
 		void LoadBitmap_2();
 		void Move(int, int);
 		void OnShow();			
-		void Attack(int, int);
+		void Attack(float, float);
 		void ResetAnimation();
 		void CalculateHP();
 	private:

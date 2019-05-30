@@ -5,16 +5,17 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Home_State_Controller.h"
+#include "GameData.h"
 
 namespace game_framework {
-	Home_State_Controller::Home_State_Controller():Controller(), _map(740, 918, &Global_Class::g_character){}
+	Home_State_Controller::Home_State_Controller():Controller(), _map(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1], &Global_Class::g_character){}
 
 	void Home_State_Controller::Begin()
 	{
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
-		_map.Initialize(740, 918);
+		_map.Initialize(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]);
 		_character->Initialize(_map.GetCharacterPosition());
 		CharacterData::Instance()->ResetStatus();
 

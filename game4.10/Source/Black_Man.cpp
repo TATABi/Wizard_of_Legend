@@ -187,19 +187,16 @@ namespace game_framework {
 		CalculateHP();
 	}
 
-	void Black_Man::Attack(int cx, int cy)
+	void Black_Man::Attack(float cx, float cy)
 	{
-		int c_hitbox[4] = { 23, 10, 24, 49 };
-		int damage_range[4];
 		float x1 = _xy[0] + 35;
 		float y1 = _xy[1] + 35;
 		float r = 50;
-		float x2 = cx + c_hitbox[0];
-		float y2 = cy + c_hitbox[1];
-		float l2 = c_hitbox[2];
-		float w2 = c_hitbox[3];
+		float x2 = cx + CHARACTER_HITBOX[0];
+		float y2 = cy + CHARACTER_HITBOX[1];
+		float l2 = CHARACTER_HITBOX[2];
+		float w2 = CHARACTER_HITBOX[3];
 		
-
 		if (_attack_delay_counter == 0)
 		{
 			for (int i = 0; i < l2; i++)
@@ -248,7 +245,6 @@ namespace game_framework {
 		
 		_bm_hp_bar.SetTopLeft(sx, sy);
 		_bm_hp_bar.ShowBitmap();
-
 		temp_hp = (float)(HP - _hp) / HP;			//計算HP差值
 		X1 = (int)(temp_hp * 52);
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 

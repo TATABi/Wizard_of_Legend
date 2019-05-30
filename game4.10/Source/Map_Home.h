@@ -14,9 +14,9 @@ namespace game_framework {
 		~Map_Home();
 		void LoadBitmap();
 		void OnMove();
-	    int* SetCharacterXY(int, int,const int*);
+	    float* SetCharacterXY(int, int,const int*);
 		bool SetEnemyXY(int, int, int*);
-		int GetMapStatus(int, int);		
+		int GetMapStatus(float, float);		
 		void AddEnemy();
 	};
 }

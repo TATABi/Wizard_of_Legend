@@ -15,7 +15,7 @@ namespace game_framework
 		bool AttackedThisEnemy(Enemy*);				//將怪物加入已攻擊列表中
 		void RefreshEnemyList();					//重製怪物表單 (讓怪物可以被重複攻擊)
 		virtual int GetDamage(Enemy *) = 0;
-		virtual void OnMove(int *, GameMap *) = 0;
+		virtual void OnMove(float *, GameMap *) = 0;
 		virtual void OnShow() = 0;
 		virtual void LoadBitmap() = 0;
 		virtual void Initialize(int, int, float*) = 0;	

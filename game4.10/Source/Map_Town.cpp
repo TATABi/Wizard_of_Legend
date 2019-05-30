@@ -87,7 +87,7 @@ namespace game_framework {
 
 	}
 	
-	int* Map_Town::SetCharacterXY(int dx, int dy, const int* collision_move)
+	float* Map_Town::SetCharacterXY(int dx, int dy, const int* collision_move)
 	{
 		int slow_x = (int)dx / 3;
 		int slow_y = (int)dy / 3;
@@ -167,7 +167,7 @@ namespace game_framework {
 	}
 
 	
-	int Map_Town::GetMapStatus(int x, int y)
+	int Map_Town::GetMapStatus(float x, float y)
 	{
 		return TOWN_LOGIC[int(x/10)][int(y/10)];
 	}

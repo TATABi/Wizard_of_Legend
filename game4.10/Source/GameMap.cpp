@@ -73,7 +73,7 @@ namespace game_framework {
 		return _character_status;
 	}
 
-	int* GameMap::GetCharacterPosition()
+	float* GameMap::GetCharacterPosition()
 	{
 		return _cxy;
 	}

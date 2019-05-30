@@ -99,8 +99,11 @@ namespace game_framework
 		return 0;
 	}
 
-	void Skill_Rebounding_Icicles::OnMove(int *cxy, GameMap *map)
+	void Skill_Rebounding_Icicles::OnMove(float *cxy, GameMap *map)
 	{
+		int x = int(cxy[0]);
+		int y = int(cxy[1]);
+
 		//°»´ú»P¦a¹Ï¸I¼²
 		if (map->GetMapStatus(_xy[0] + _map_collision[0], _xy[1] + _map_collision[1]) == -1 ||
 			map->GetMapStatus(_xy[0] + _map_collision[0] + _map_collision[2], _xy[1] + _map_collision[1]) == -1 ||
@@ -128,56 +131,56 @@ namespace game_framework
 			//  1 Icicles
 			if (_isInit[0])
 			{
-				_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[0].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[0].Height() / 2 + _xy[1] - cxy[1]);
+				_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[0].Width() / 2 + _xy[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[0].Height() / 2 + _xy[1] - y);
 				_isInit[0] = false;
 				_ani_1[0] = _xy[0];
 				_ani_1[1] = _xy[1];
 			}
 			else if (_isInit[0] == false && !_ani_skill[0].IsFinalBitmap())
 			{
-				_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[0].Width() / 2 + _ani_1[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[0].Height() / 2 + _ani_1[1] - cxy[1]);
+				_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[0].Width() / 2 + _ani_1[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[0].Height() / 2 + _ani_1[1] - y);
 				_ani_skill[0].OnMove();
 			}
 
 			//  2 Icicles
 			if (_ani_skill[0].GetCurrentBitmapNumber() == 4)
 			{
-				_ani_skill[1].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[1].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[1].Height() / 2 + _xy[1] - cxy[1]);
+				_ani_skill[1].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[1].Width() / 2 + _xy[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[1].Height() / 2 + _xy[1] - y);
 				_isInit[1] = false;
 				_ani_2[0] = _xy[0];
 				_ani_2[1] = _xy[1];
 			}
 			else if (_isInit[1] == false && !_ani_skill[1].IsFinalBitmap())
 			{
-				_ani_skill[1].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[1].Width() / 2 + _ani_2[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[1].Height() / 2 + _ani_2[1] - cxy[1]);
+				_ani_skill[1].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[1].Width() / 2 + _ani_2[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[1].Height() / 2 + _ani_2[1] - y);
 				_ani_skill[1].OnMove();
 			}
 			
 			//  3 Icicles
 			if (_ani_skill[1].GetCurrentBitmapNumber() == 4)
 			{
-				_ani_skill[2].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[2].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[2].Height() / 2 + _xy[1] - cxy[1]);
+				_ani_skill[2].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[2].Width() / 2 + _xy[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[2].Height() / 2 + _xy[1] - y);
 				_isInit[2] = false;
 				_ani_3[0] = _xy[0];
 				_ani_3[1] = _xy[1];
 			}
 			else if (_isInit[2] == false && !_ani_skill[2].IsFinalBitmap())
 			{
-				_ani_skill[2].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[2].Width() / 2 + _ani_3[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[2].Height() / 2 + _ani_3[1] - cxy[1]);
+				_ani_skill[2].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[2].Width() / 2 + _ani_3[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[2].Height() / 2 + _ani_3[1] - y);
 				_ani_skill[2].OnMove();
 			}
 
 			//  4 Icicles
 			if (_ani_skill[2].GetCurrentBitmapNumber() == 4)
 			{
-				_ani_skill[3].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[3].Width() / 2 + _xy[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[3].Height() / 2 + _xy[1] - cxy[1]);
+				_ani_skill[3].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[3].Width() / 2 + _xy[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[3].Height() / 2 + _xy[1] - y);
 				_isInit[3] = false;
 				_ani_4[0] = _xy[0];
 				_ani_4[1] = _xy[1];
 			}
 			else if (_isInit[3] == false && !_ani_skill[3].IsFinalBitmap())
 			{
-				_ani_skill[3].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[3].Width() / 2 + _ani_4[0] - cxy[0], CHARACTER_SCREEN_CENTER_Y - _ani_skill[3].Height() / 2 + _ani_4[1] - cxy[1]);
+				_ani_skill[3].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[3].Width() / 2 + _ani_4[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[3].Height() / 2 + _ani_4[1] - y);
 				_ani_skill[3].OnMove();
 			}
 		}

@@ -47,7 +47,7 @@ namespace game_framework
 			_ani_skill[0].AddBitmap(ani[i], RGB(50, 255, 0));
 	}
 
-	void Skill_Shock_Nova::OnMove(int *cxy, GameMap *map)
+	void Skill_Shock_Nova::OnMove(float *cxy, GameMap *map)
 	{
 		_delay_counter > 0 ? _delay_counter-- : NULL;
 		_re_attack_counter > 0 ? _re_attack_counter-- : NULL;

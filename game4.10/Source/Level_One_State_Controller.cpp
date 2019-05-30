@@ -5,16 +5,17 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Level_One_State_Controller.h"
+#include "GameData.h"
 
 namespace game_framework {
-	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(3000, 2830, &Global_Class::g_character) {}
+	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(LEVEL_One_CHARACTER_XY[0], LEVEL_One_CHARACTER_XY[1], &Global_Class::g_character) {}
 	
 	void Level_One_State_Controller::Begin()
 	{
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 4; // 1 seconds
-		_map.Initialize(3000, 2830);
+		_map.Initialize(LEVEL_One_CHARACTER_XY[0], LEVEL_One_CHARACTER_XY[1]);
 		_character->Initialize(_map.GetCharacterPosition());
 		_flag = FLAG_NORMAL;
 		Global_Class::g_character.Initialize(_map.GetCharacterPosition());

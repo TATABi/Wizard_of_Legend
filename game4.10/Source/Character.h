@@ -16,7 +16,7 @@ namespace game_framework {
 	class Character : public Layer {
 	public:
 		Character();
-		void Initialize(int*);							//重製角色座標、數據
+		void Initialize(float*);							//重製角色座標、數據
 		void LoadBitmap();								//載入動畫、圖片
 		void OnMove(GameMap *);							//傳入地圖用以判斷所處位置
 		void OnShow();									//顯示

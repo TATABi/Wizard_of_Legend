@@ -83,7 +83,7 @@ namespace game_framework {
 		RewardsOnMove();
 	}
 	
-	int* Map_Home::SetCharacterXY(int dx, int dy, const int* collision_move)
+	float* Map_Home::SetCharacterXY(int dx, int dy, const int* collision_move)
 	{
 		int slow_x = (int)dx/3;
 		int slow_y = (int)dy/3;
@@ -162,7 +162,7 @@ namespace game_framework {
 		return false;
 	}
 	
-	int Map_Home::GetMapStatus(int x, int y)
+	int Map_Home::GetMapStatus(float x, float y)
 	{
 		return HOME_LOGIC[int(x/10)][int(y/10)];
 	}

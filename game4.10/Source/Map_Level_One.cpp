@@ -90,7 +90,7 @@ namespace game_framework {
 
 	}
 
-	int* Map_Level_One::SetCharacterXY(int dx, int dy, const int* collision_move)
+	float* Map_Level_One::SetCharacterXY(int dx, int dy, const int* collision_move)
 	{
 		int slow_x = (int)dx / 3;
 		int slow_y = (int)dy / 3;
@@ -156,7 +156,7 @@ namespace game_framework {
 		return true;
 	}
 
-	int Map_Level_One::GetMapStatus(int x, int y)
+	int Map_Level_One::GetMapStatus(float x, float y)
 	{
 		return LEVEL_ONE_LOGIC[int(x/10)][int(y/10)];
 	}
