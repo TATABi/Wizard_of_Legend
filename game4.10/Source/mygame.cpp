@@ -27,7 +27,7 @@ namespace game_framework {
 
 		Items::Instance().LoadBitmap();
 		PausedMenu::Instance().LoadBitmap();
-		Global_Class::g_character.LoadBitmap();
+		Character::Instance().LoadBitmap();
 		UI::Instance().LoadBitmap();
 		Bag::Instance().LoadBitmap();
 

@@ -9,7 +9,7 @@
 
 namespace game_framework {
 
-	Town_State_Controller::Town_State_Controller() :Controller(), _map(TOWN_CHARACTER_XY[0], TOWN_CHARACTER_XY[1], &Global_Class::g_character), _item_store(TOWN_STORE_XY[0], TOWN_STORE_XY[1]){}
+	Town_State_Controller::Town_State_Controller() :Controller(), _map(TOWN_CHARACTER_XY[0], TOWN_CHARACTER_XY[1], &Character::Instance()), _item_store(TOWN_STORE_XY[0], TOWN_STORE_XY[1]){}
 
 	void Town_State_Controller::Begin()
 	{
@@ -17,9 +17,9 @@ namespace game_framework {
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
 		_map.Initialize(TOWN_CHARACTER_XY[0], TOWN_CHARACTER_XY[1]);
-		_character->Initialize(_map.GetCharacterPosition());
+		Character::Instance().Initialize(_map.GetCharacterPosition());
 		_flag = FLAG_TOWN_NORMAL;
-		Global_Class::g_character.Initialize(_map.GetCharacterPosition());
+		Character::Instance().Initialize(_map.GetCharacterPosition());
 
 		CAudio::Instance()->Stop(AUDIO_HOME);
 		CAudio::Instance()->Play(AUDIO_TOWN, true);
@@ -30,8 +30,6 @@ namespace game_framework {
 
 	void Town_State_Controller::Initialize()
 	{
-		_character = &Global_Class::g_character;
-
 		CAudio::Instance()->Load(AUDIO_TOWN, "sounds\\TownBGM.wav");
 		CAudio::Instance()->Load(AUDIO_BUY, "sounds\\buy.mp3");
 		CAudio::Instance()->Load(AUDIO_NOMONEY, "sounds\\nomoney.mp3");
@@ -44,13 +42,13 @@ namespace game_framework {
 	void Town_State_Controller::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		if (nChar == KEY_DOWN || nChar == KEY_S)
-			Global_Class::g_character.SetMovingDown(false);
+			Character::Instance().SetMovingDown(false);
 		if (nChar == KEY_UP || nChar == KEY_W)
-			Global_Class::g_character.SetMovingUp(false);
+			Character::Instance().SetMovingUp(false);
 		if (nChar == KEY_LEFT || nChar == KEY_A)
-			Global_Class::g_character.SetMovingLeft(false);
+			Character::Instance().SetMovingLeft(false);
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
-			Global_Class::g_character.SetMovingRight(false);
+			Character::Instance().SetMovingRight(false);
 	}
 
 	void Town_State_Controller::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -63,15 +61,15 @@ namespace game_framework {
 			case FLAG_TOWN_NORMAL:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
 
 				if (nChar == KEY_DOWN || nChar == KEY_S)
-					Global_Class::g_character.SetMovingDown(true);
+					Character::Instance().SetMovingDown(true);
 				if (nChar == KEY_UP || nChar == KEY_W)
-					Global_Class::g_character.SetMovingUp(true);
+					Character::Instance().SetMovingUp(true);
 				if (nChar == KEY_LEFT || nChar == KEY_A)
-					Global_Class::g_character.SetMovingLeft(true);
+					Character::Instance().SetMovingLeft(true);
 				if (nChar == KEY_RIGHT || nChar == KEY_D)
-					Global_Class::g_character.SetMovingRight(true);
+					Character::Instance().SetMovingRight(true);
 				if (nChar == KEY_SPACE)
-					Global_Class::g_character.Dash();
+					Character::Instance().Dash();
 	
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 				{
@@ -200,7 +198,7 @@ namespace game_framework {
 			_delayCounter--;
 
 		_bm_loading.SetTopLeft(0, 0);
-		Global_Class::g_character.OnMove(&_map);
+		Character::Instance().OnMove(&_map);
 		_map.OnMove();
 		Bag::Instance().OnMove(Items::Instance().GetItemInBag());
 		UI::Instance().OnMove();

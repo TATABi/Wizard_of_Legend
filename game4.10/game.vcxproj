@@ -292,7 +292,6 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="Source\Global_Class.cpp" />
     <ClCompile Include="Source\Home_State_Controller.cpp" />
     <ClCompile Include="Source\Init_State_Controller.cpp" />
     <ClCompile Include="Source\Item.cpp" />

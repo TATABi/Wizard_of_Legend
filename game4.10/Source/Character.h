@@ -15,7 +15,7 @@ namespace game_framework {
 
 	class Character : public Layer {
 	public:
-		Character();
+		static Character& Instance();
 		void Initialize(float*);						//重置角色座標、數據
 		void LoadBitmap();								//載入動畫、圖片
 		void OnMove(GameMap *);							//傳入地圖用以判斷所處位置
@@ -30,6 +30,8 @@ namespace game_framework {
 		bool IsUsingSkill();							//是否正在使用技能(播放角色使用技能的動畫)
 		bool IsHurt();									//是否被毆，被毆時不能用技能
 		void MagicBuff();								//判斷Magic Buff 並進行強化
+	protected:
+		Character();
 	private:
 		bool IsSlash();									//是否斜走
 		bool CanDash();									//是否可以Dash

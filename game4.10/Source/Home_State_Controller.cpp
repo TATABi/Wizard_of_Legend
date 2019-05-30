@@ -8,7 +8,7 @@
 #include "GameData.h"
 
 namespace game_framework {
-	Home_State_Controller::Home_State_Controller():Controller(), _map(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1], &Global_Class::g_character){}
+	Home_State_Controller::Home_State_Controller():Controller(), _map(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1], &Character::Instance()){}
 
 	void Home_State_Controller::Begin()
 	{
@@ -16,7 +16,7 @@ namespace game_framework {
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
 		_map.Initialize(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]);
-		_character->Initialize(_map.GetCharacterPosition());
+		Character::Instance().Initialize(_map.GetCharacterPosition());
 		CharacterData::Instance()->ResetStatus();
 
 		//從其他場景回來不用再次出現加入選單
@@ -35,7 +35,6 @@ namespace game_framework {
 
 	void Home_State_Controller::Initialize()
 	{
-		_character =& Global_Class::g_character;
 		Bag::Instance();
 		
 		CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
@@ -64,13 +63,13 @@ namespace game_framework {
 	void Home_State_Controller::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
 	{
 		if (nChar == KEY_DOWN || nChar == KEY_S)
-			_character->SetMovingDown(false);
+			Character::Instance().SetMovingDown(false);
 		if (nChar == KEY_UP || nChar == KEY_W)
-			_character->SetMovingUp(false);
+			Character::Instance().SetMovingUp(false);
 		if (nChar == KEY_LEFT || nChar == KEY_A)
-			_character->SetMovingLeft(false);
+			Character::Instance().SetMovingLeft(false);
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
-			_character->SetMovingRight(false);
+			Character::Instance().SetMovingRight(false);
 	}
 
 	void Home_State_Controller::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -84,15 +83,15 @@ namespace game_framework {
 				//進入遊戲，沒有開啟任何選單
 			
 				if (nChar == KEY_DOWN || nChar == KEY_S)
-					_character->SetMovingDown(true);
+					Character::Instance().SetMovingDown(true);
 				if (nChar == KEY_UP || nChar == KEY_W)
-					_character->SetMovingUp(true);
+					Character::Instance().SetMovingUp(true);
 				if (nChar == KEY_LEFT || nChar == KEY_A)
-					_character->SetMovingLeft(true);
+					Character::Instance().SetMovingLeft(true);
 				if (nChar == KEY_RIGHT || nChar == KEY_D)
-					_character->SetMovingRight(true);
+					Character::Instance().SetMovingRight(true);
 				if (nChar == KEY_SPACE)
-					_character->Dash();
+					Character::Instance().Dash();
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 				{
@@ -307,7 +306,7 @@ namespace game_framework {
 
 		_bm_join.SetTopLeft(100, 100);
 		_bm_loading.SetTopLeft(0, 0);
-		_character->OnMove(&_map);
+		Character::Instance().OnMove(&_map);
 		_map.OnMove();
 		_box.OnMove();
 		_book.OnMove();

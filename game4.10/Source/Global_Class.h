@@ -5,15 +5,4 @@
 #include "Character.h"
 #include "PausedMenu.h"
 #include "Bag.h"
-
-namespace game_framework {
-
-	class Global_Class
-	{
-	public:
-
-		static Character g_character;
-	};
-}
-
 #endif

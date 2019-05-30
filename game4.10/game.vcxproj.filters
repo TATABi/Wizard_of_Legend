@@ -14,7 +14,6 @@
     <ClCompile Include="Source\gameDoc.cpp" />
     <ClCompile Include="Source\GameMap.cpp" />
     <ClCompile Include="Source\gameView.cpp" />
-    <ClCompile Include="Source\Global_Class.cpp" />
     <ClCompile Include="Source\Home_State_Controller.cpp" />
     <ClCompile Include="Source\Init_State_Controller.cpp" />
     <ClCompile Include="Source\Item.cpp" />

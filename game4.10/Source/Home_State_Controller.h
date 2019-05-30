@@ -42,7 +42,6 @@ namespace game_framework {
 		Map_Home _map;									
 		Box _box;
 		Book _book;
-		Character *_character;
 	};
 }
 

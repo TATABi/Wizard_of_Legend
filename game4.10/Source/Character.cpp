@@ -15,6 +15,12 @@
 
 namespace game_framework {
 
+	Character& Character::Instance()
+	{
+		static Character instance;
+		return instance;
+	}
+
 	Character::Character()
 	{
 		float xy[2] = { 0, 0 };
