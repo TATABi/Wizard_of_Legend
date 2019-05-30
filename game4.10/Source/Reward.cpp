@@ -9,6 +9,7 @@
 #include "GameData.h"
 #include <random>
 
+
 namespace game_framework {
 	Reward::Reward(float ex, float ey, GameMap* map) : _map(map) { }
 

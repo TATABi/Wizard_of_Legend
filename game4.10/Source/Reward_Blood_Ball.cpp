@@ -2,12 +2,13 @@
 #include "Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
+#include <cmath>
 #include "audio.h"
 #include "gamelib.h"
 #include "Reward_Blood_Ball.h"
 #include "GameMap.h"
 #include "GameData.h"
-#include <cmath>
+#include "CharacterData.h"
 
 #define RANGE_EAT 100
 #define RANGE_POSITION 60
@@ -47,6 +48,6 @@ namespace game_framework {
 
 	void Reward_Blood_Ball::Effect() 
 	{
-
+		CharacterData::Instance()->AddHP(VALUE);
 	}
 }

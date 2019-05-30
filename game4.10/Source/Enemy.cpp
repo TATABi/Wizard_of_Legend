@@ -11,6 +11,7 @@
 #include "Reward_Blood_Ball.h"
 #include "Reward_Money.h"
 #include "Reward_Diamond.h"
+#include <random>
 
 #define CHARGING_ZONE 300
 
@@ -174,24 +175,30 @@ namespace game_framework {
 		return _area;
 	}
 
-	vector<Reward*> Enemy::CreateReward()
+	vector<Reward*> Enemy::CreateReward()	//預設
 	{
 		int midX = _xy[0] + _hitbox[0] + _hitbox[2] / 2;	//敵人中心位置
-		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;	
+		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;
 		vector<Reward*> rewards;
-		/*srand(time(NULL));
-		int prob = rand() % 100 + 1;						//取1~100
-		if (prob <= 10)										//Default reward: Blood Ball 10%, Diamond 20%, Money 70%
-			rewards.push_back(new Reward_Blood_Ball(midX, midY, _map));
-		else if (prob <= 30)
-			rewards.push_back(new Reward_Diamond(midX, midY, _map));
-		else
-			rewards.push_back(new Reward_Money(midX, midY, _map));*/
-
-		//可重複產生
+		//Default reward: Blood Ball 10%, Diamond 20%, Money 70%
+		std::random_device rd;
 		for (int i = 0; i < 5; i++)
 		{
-			rewards.push_back(new Reward_Diamond(midX, midY, _map));
+			int prob = rd() % 100 + 1;		//取1~100		
+			if (prob <= 10)
+				rewards.push_back(new Reward_Blood_Ball(midX, midY, _map));
+		}
+		for (int i = 0; i < 5; i++)
+		{
+			int prob = rd() % 100 + 1;
+			if (prob <= 30)
+				rewards.push_back(new Reward_Diamond(midX, midY, _map));
+		}
+		for (int i = 0; i < 5; i++)
+		{
+			int prob = rd() % 100 + 1;				
+			if (prob <= 70)
+				rewards.push_back(new Reward_Money(midX, midY, _map));
 		}
 		return rewards;
 	}

@@ -8,7 +8,7 @@
 #include "GameMap.h"
 #include "GameData.h"
 #include <cmath>
-
+#include "CharacterData.h"
 #define RANGE_EAT 100
 #define RANGE_POSITION 60
 #define TIME  3
@@ -49,7 +49,7 @@ namespace game_framework {
 
 	void Reward_Money::Effect()
 	{
-
+		CharacterData::Instance()->AddMoney(VALUE);
 	}
 
 }
