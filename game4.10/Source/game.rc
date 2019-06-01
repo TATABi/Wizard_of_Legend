@@ -488,6 +488,14 @@ ENEMY_SLIME_LEFT_14     BITMAP                  "..\\RES\\InGame\\Enemy\\Slime\\
 ENEMY_SLIME_LEFT_15     BITMAP                  "..\\RES\\InGame\\Enemy\\Slime\\Move\\Left\\15.bmp"
 ENEMY_SLIME_LEFT_16     BITMAP                  "..\\RES\\InGame\\Enemy\\Slime\\Move\\Left\\16.bmp"
 ENEMY_SLIME_LEFT_17     BITMAP                  "..\\RES\\InGame\\Enemy\\Slime\\Move\\Left\\17.bmp"
+BOX_ITEM_DESCRIPTION_BOARD BITMAP                  "..\\RES\\InGame\\Box\\Box_Item_Descrition.bmp"
+ITEM_OFFENSE_01_INFO    BITMAP                  "..\\RES\\InGame\\Item\\Description\\01.bmp"
+ITEM_OFFENSE_02_INFO    BITMAP                  "..\\RES\\InGame\\Item\\Description\\02.bmp"
+ITEM_DEFENSE_01_INFO    BITMAP                  "..\\RES\\InGame\\Item\\Description\\03.bmp"
+ITEM_DEFENSE_02_INFO    BITMAP                  "..\\RES\\InGame\\Item\\Description\\04.bmp"
+ITEM_DEFENSE_03_INFO    BITMAP                  "..\\RES\\InGame\\Item\\Description\\05.bmp"
+ITEM_MISC_01_INFO       BITMAP                  "..\\RES\\InGame\\Item\\Description\\06.bmp"
+ITEM_MISC_02_INFO       BITMAP                  "..\\RES\\InGame\\Item\\Description\\07.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

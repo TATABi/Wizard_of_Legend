@@ -455,8 +455,16 @@
 #define ENEMY_SLIME_LEFT_14             730
 #define ENEMY_SLIME_LEFT_15             731
 #define ENEMY_SLIME_LEFT_16             732
-#define IDB_BITMAP33                    733
 #define ENEMY_SLIME_LEFT_17             733
+#define BOX_ITEM_DESCRIPTION_BOARD      734
+#define ITEM_OFFENSE_01_INFO            735
+#define ITEM_OFFENSE_02_INFO            736
+#define ITEM_DEFENSE_01_INFO            737
+#define ITEM_DEFENSE_02_INFO            738
+#define ITEM_DEFENSE_03_INFO            739
+#define ITEM_MISC_01_INFO               740
+#define IDB_BITMAP18                    741
+#define ITEM_MISC_02_INFO               741
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -469,7 +477,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        734
+#define _APS_NEXT_RESOURCE_VALUE        742
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

@@ -26,6 +26,7 @@ namespace game_framework {
 		CMovingBitmap _bm_defense_text;
 		CMovingBitmap _bm_misc_text;
 		CMovingBitmap _bm_unknown_item;
+		CMovingBitmap _bm_item_description_board;
 		CAnimation _ani_offense;
 		CAnimation _ani_defense;
 		CAnimation _ani_misc;
@@ -36,13 +37,14 @@ namespace game_framework {
 		bool _isOpendOffense;
 		bool _isOpendDefense;
 		bool _isOpendMisc;
-		Item* _temp_item = nullptr;
+		Item* equiped_item = nullptr;
+		Item* chosed_item = nullptr;
 		int _choose_flag;
 		const int _ITEM_X = 40;
 		const int _ITEM_Y = 40;
-		int _NUMBER_OF_OFFENSE = 1;
-		int _NUMBER_OF_DEFENSE = 1;
-		int _NUMBER_OF_MISC = 1;
+		int _NUMBER_OF_OFFENSE;
+		int _NUMBER_OF_DEFENSE;
+		int _NUMBER_OF_MISC;
 	
 	};
 

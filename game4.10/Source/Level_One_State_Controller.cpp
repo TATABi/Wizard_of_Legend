@@ -176,7 +176,7 @@ namespace game_framework {
 
 		Character::Instance().OnMove(&_map);
 		_map.OnMove();
-		Bag::Instance().OnMove(Items::Instance().GetItemInBag());
+		Bag::Instance().OnMove();
 		UI::Instance().OnMove();
 		Items::Instance().Effect();
 	}

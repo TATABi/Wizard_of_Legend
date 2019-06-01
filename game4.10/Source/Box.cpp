@@ -46,6 +46,7 @@ namespace game_framework {
 		_bm_defense_text.LoadBitmap(BOX_TEXT_DEFENSE, RGB(50, 255, 0));
 		_bm_misc_text.LoadBitmap(BOX_TEXT_MISC, RGB(50, 255, 0));
 		_bm_unknown_item.LoadBitmap(ITEM_UNKNOWN, RGB(50, 255, 0));
+		_bm_item_description_board.LoadBitmap(BOX_ITEM_DESCRIPTION_BOARD, RGB(50, 255, 0));
 
 		_bm_board.SetTopLeft(50, 70);
 		_bm_equip_board.SetTopLeft(45, 300);
@@ -54,6 +55,7 @@ namespace game_framework {
 		_bm_defense_text.SetTopLeft(70, 95);
 		_bm_misc_text.SetTopLeft(70, 95);
 		_bm_cursor.SetTopLeft(75,133);
+		_bm_item_description_board.SetTopLeft(50, 320);
 
 		_ani_offense.SetTopLeft(50, 70);
 		_ani_defense.SetTopLeft(50, 70);
@@ -66,10 +68,41 @@ namespace game_framework {
 		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)		//開第二層
 		{
 			_bm_cursor.SetTopLeft(75 + _item_flag_x * _ITEM_X, 133 + _item_flag_y * _ITEM_Y);
+
+			if (_isOpendOffense)
+			{
+				if ((_item_flag_x == 0 || _item_flag_x == 1) && _item_flag_y == 0)
+				{
+					chosed_item = Items::Instance().GetItem(_item_flag_x + 1);
+					chosed_item->OwnedItem() ? NULL : chosed_item = nullptr;
+				}
+				else
+					chosed_item = nullptr;
+			}
+			else if (_isOpendDefense)
+			{
+				if ((_item_flag_x == 0 || _item_flag_x == 1 || _item_flag_x == 2) && _item_flag_y == 0)
+				{
+					chosed_item = Items::Instance().GetItem(_item_flag_x + 3);
+					chosed_item->OwnedItem() ? NULL : chosed_item = nullptr;
+				}
+				else
+					chosed_item = nullptr;
+			}
+			else if (_isOpendMisc)
+			{
+				if ((_item_flag_x == 0 || _item_flag_x == 1) && _item_flag_y == 0)
+				{
+					chosed_item = Items::Instance().GetItem(_item_flag_x + 6);
+					chosed_item->OwnedItem() ? NULL : chosed_item = nullptr;
+				}
+				else
+					chosed_item = nullptr;
+			}
 		}
 		else if (_isOpened)											//開第一層
 		{
-			_temp_item = Items::Instance().GetEquipAndOwnedItem();
+			equiped_item = Items::Instance().GetEquipAndOwnedItem();
 
 			switch (_category_flag)
 			{
@@ -91,7 +124,7 @@ namespace game_framework {
 		}
 	}
 	
-	void Box::OnShow(Items *gitem)
+	void Box::OnShow(Items *items)
 	{
 		if (_isOpendOffense || _isOpendDefense || _isOpendMisc)
 		{
@@ -99,25 +132,27 @@ namespace game_framework {
 			int row = 0, col = 0;
 			switch (_category_flag)
 			{
-			
 			case 0:
 				_bm_offense_text.ShowBitmap();
 				
-				for (int i = 0; i < gitem->GetAllItem().size(); i++)
+				for (int i = 0; i < items->GetAllItem().size(); i++)
 				{
-					if (gitem->GetAllItem()[i]->GetType() == "OFFENSE")
+					if (items->GetAllItem()[i]->GetType() == "OFFENSE")
 					{
-						if (row == 6) {
+						if (row == 6) 
+						{
 							row = 0;
 							col++;
 						}
 
-						if (gitem->GetAllItem()[i]->OwnedItem()) {
-							gitem->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
-							gitem->GetAllItem()[i]->OnShow();
+						if (items->GetAllItem()[i]->OwnedItem())
+						{
+							items->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
+							items->GetAllItem()[i]->OnShow();
 							row++;
 						}
-						else {
+						else
+						{
 							_bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
 							_bm_unknown_item.ShowBitmap();
 							row++;
@@ -125,24 +160,28 @@ namespace game_framework {
 					}
 				}
 				break;
+
 			case 1:
 				_bm_defense_text.ShowBitmap();
 
-				for (int i = 0; i < gitem->GetAllItem().size(); i++)
+				for (int i = 0; i < items->GetAllItem().size(); i++)
 				{
-					if (gitem->GetAllItem()[i]->GetType() == "DEFENSE")
+					if (items->GetAllItem()[i]->GetType() == "DEFENSE")
 					{
-						if (row == 6) {
+						if (row == 6) 
+						{
 							row = 0;
 							col++;
 						}
 
-						if (gitem->GetAllItem()[i]->OwnedItem()) {
-							gitem->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
-							gitem->GetAllItem()[i]->OnShow();
+						if (items->GetAllItem()[i]->OwnedItem())
+						{
+							items->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
+							items->GetAllItem()[i]->OnShow();
 							row++;
 						}
-						else {
+						else 
+						{
 							_bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
 							_bm_unknown_item.ShowBitmap();
 							row++;
@@ -154,21 +193,24 @@ namespace game_framework {
 			case 2:
 				_bm_misc_text.ShowBitmap();
 
-				for (int i = 0; i < gitem->GetAllItem().size(); i++)
+				for (int i = 0; i < items->GetAllItem().size(); i++)
 				{
-					if (gitem->GetAllItem()[i]->GetType() == "MISC")
+					if (items->GetAllItem()[i]->GetType() == "MISC")
 					{
-						if (row == 6) {
+						if (row == 6) 
+						{
 							row = 0;
 							col++;
 						}
 
-						if (gitem->GetAllItem()[i]->OwnedItem()) {
-							gitem->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
-							gitem->GetAllItem()[i]->OnShow();
+						if (items->GetAllItem()[i]->OwnedItem())
+						{
+							items->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
+							items->GetAllItem()[i]->OnShow();
 							row++;
 						}
-						else {
+						else 
+{
 							_bm_unknown_item.SetTopLeft(76 + 40 * row, 130 + 40 * col);
 							_bm_unknown_item.ShowBitmap();
 							row++;
@@ -177,8 +219,12 @@ namespace game_framework {
 				}
 				break;
 			}
-
+			
+			_bm_item_description_board.ShowBitmap();
 			_bm_cursor.ShowBitmap();
+			
+			if (chosed_item != nullptr)
+				chosed_item->ShowInfo(60, 330);
 		}
 		else if (_isOpened)
 		{
@@ -188,9 +234,9 @@ namespace game_framework {
 			_ani_misc.OnShow();
 			_bm_equip_board.ShowBitmap();
 			
-			if (_temp_item != nullptr) {
-				_temp_item->SetXY(60, 310);
-				_temp_item->OnShow();
+			if (equiped_item != nullptr) {
+				equiped_item->SetXY(60, 310);
+				equiped_item->OnShow();
 			}
 		}
 	}
@@ -299,12 +345,12 @@ namespace game_framework {
 		}
 	}
 
-	bool Box::Equip(Items *gitem)
+	bool Box::Equip(Items *items)
 	{
 		int item_num;
-		_NUMBER_OF_OFFENSE = gitem->GetNumberOfItem("OFFENSE");
-		_NUMBER_OF_DEFENSE = gitem->GetNumberOfItem("DEFENSE");
-		_NUMBER_OF_MISC = gitem->GetNumberOfItem("MISC");
+		_NUMBER_OF_OFFENSE = items->GetNumberOfItem("OFFENSE");
+		_NUMBER_OF_DEFENSE = items->GetNumberOfItem("DEFENSE");
+		_NUMBER_OF_MISC = items->GetNumberOfItem("MISC");
 
 		if (_isOpendOffense) {
 			item_num = _item_flag_x + _item_flag_y * 6;
@@ -313,11 +359,11 @@ namespace game_framework {
 				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
 			}
-			if (gitem->GetAllItem()[item_num]->OwnedItem())
+			if (items->GetAllItem()[item_num]->OwnedItem())
 			{
-				gitem->UnloadAllItem();
-				gitem->GetAllItem()[item_num]->Equip(true);
-				_temp_item = gitem->GetAllItem()[item_num];
+				items->UnloadAllItem();
+				items->GetAllItem()[item_num]->Equip(true);
+				equiped_item = items->GetAllItem()[item_num];
 				return true;
 			}
 		}
@@ -328,11 +374,11 @@ namespace game_framework {
 				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
 			}
-			if (gitem->GetAllItem()[item_num]->OwnedItem())
+			if (items->GetAllItem()[item_num]->OwnedItem())
 			{
-				gitem->UnloadAllItem();
-				gitem->GetAllItem()[item_num]->Equip(true);
-				_temp_item = gitem->GetAllItem()[item_num];
+				items->UnloadAllItem();
+				items->GetAllItem()[item_num]->Equip(true);
+				equiped_item = items->GetAllItem()[item_num];
 				return true;
 			}
 		}
@@ -343,11 +389,11 @@ namespace game_framework {
 				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
 			}
-			if (gitem->GetAllItem()[item_num]->OwnedItem())
+			if (items->GetAllItem()[item_num]->OwnedItem())
 			{
-				gitem->UnloadAllItem();
-				gitem->GetAllItem()[item_num]->Equip(true);
-				_temp_item = gitem->GetAllItem()[item_num];
+				items->UnloadAllItem();
+				items->GetAllItem()[item_num]->Equip(true);
+				equiped_item = items->GetAllItem()[item_num];
 				return true;
 			}
 		}

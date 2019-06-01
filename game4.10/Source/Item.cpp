@@ -9,10 +9,11 @@
 
 namespace game_framework {
 	
-	Item::Item(int bm, string type, int number,int diamond, bool (*effect)(), void (*strip)())
+	Item::Item(int bm, int bm_info, string type, int number,int diamond, bool (*effect)(), void (*strip)())
 	{
 		Initialize();
-		_bm_number = bm;
+		_pic = bm;
+		_info_pic = bm_info;
 		_type = type;
 		_number = number;
 		_diamond = diamond;
@@ -29,8 +30,8 @@ namespace game_framework {
 
 	void Item::LoadBitmap()
 	{
-		_bm_item.LoadBitmap(_bm_number, RGB(50, 255, 0));
-		//_bm_info.LoadBitmap
+		_bm_item.LoadBitmap(_pic, RGB(50, 255, 0));
+		_bm_info.LoadBitmap(_info_pic, RGB(50, 255, 0));
 	}
 
 	void Item::SetXY(int x, int y)
@@ -100,6 +101,12 @@ namespace game_framework {
 	void Item::SetItem(bool owned)
 	{
 		_isOwned = owned;
+	}
+
+	void Item::ShowInfo(int x, int y)
+	{
+		_bm_info.SetTopLeft(x, y);
+		_bm_info.ShowBitmap();
 	}
 
 }

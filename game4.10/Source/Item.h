@@ -5,7 +5,7 @@
 namespace game_framework {
 	class Item {
 	public:
-		Item(int, string, int, int, bool (*) (), void (*) ());		//圖片,種類, 編號, 錢, 效果
+		Item(int, int, string, int, int, bool (*) (), void (*) ());		//item圖片, item說明圖片, 種類, 編號, 錢, 效果
 		void Initialize();
 		void LoadBitmap();
 		void SetXY(int, int);
@@ -18,6 +18,7 @@ namespace game_framework {
 		string GetType();
 		int GetNumber();
 		void SetItem(bool);		//用來回復Item狀態(讀檔、離開關卡)
+		void ShowInfo(int, int);		//顯示Item的效果說明
 	private:
 		bool (*_Launched)();		//檢查是否滿足發動條件，滿足就發動，回傳true；不滿足不做事，回傳false
 		void (*_Stripping)();	//解除裝備時若有發動效果則要執行此函式解除效果
@@ -29,7 +30,8 @@ namespace game_framework {
 		bool _isLuanched;		//發動
 		bool _isOwned;			//擁有該裝備
 		int _diamond;
-		int _bm_number;			//暫存圖片編號，等LoadBitmap時再匯入圖片
+		int _pic;			//暫存圖片編號，等LoadBitmap時再匯入圖片
+		int _info_pic;
 		
 	};
 

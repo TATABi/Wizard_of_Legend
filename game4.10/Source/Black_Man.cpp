@@ -26,6 +26,11 @@ namespace game_framework {
 		_move_hitbox[1] = BLACKMAN_MOVE_HITBOX[1];
 		_move_hitbox[2] = BLACKMAN_MOVE_HITBOX[2];
 		_move_hitbox[3] = BLACKMAN_MOVE_HITBOX[3];
+
+		_ani_left.SetDelayCount(2);
+		_ani_right.SetDelayCount(2);
+		_ani_attack_right.SetDelayCount(2);
+		_ani_attack_left.SetDelayCount(2);
 	}
 
 	void Black_Man::Reset()
@@ -73,11 +78,6 @@ namespace game_framework {
 			ENEMY_BLACK_MAN_ATTACK_LEFT_16, ENEMY_BLACK_MAN_ATTACK_LEFT_17, ENEMY_BLACK_MAN_ATTACK_LEFT_18 };
 		for (int i = 0; i < 15; i++)
 			_ani_attack_left.AddBitmap(ani_4[i], RGB(50, 255, 0));
-
-		_ani_left.SetDelayCount(2);
-		_ani_right.SetDelayCount(2);
-		_ani_attack_right.SetDelayCount(2);
-		_ani_attack_left.SetDelayCount(2);
 	}
 
 	void Black_Man::Move(int cx, int cy)

@@ -199,7 +199,7 @@ namespace game_framework {
 		_bm_loading.SetTopLeft(0, 0);
 		Character::Instance().OnMove(&_map);
 		_map.OnMove();
-		Bag::Instance().OnMove(Items::Instance().GetItemInBag());
+		Bag::Instance().OnMove();
 		UI::Instance().OnMove();
 		Items::Instance().Effect();
 		_item_store.OnMove(_map.GetCharacterPosition());

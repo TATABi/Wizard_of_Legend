@@ -304,7 +304,7 @@ namespace game_framework {
 		_map.OnMove();
 		_box.OnMove();
 		_book.OnMove();
-		Bag::Instance().OnMove(Items::Instance().GetItemInBag());
+		Bag::Instance().OnMove();
 		UI::Instance().OnMove();
 		Items::Instance().Effect();
 	}

@@ -38,6 +38,7 @@ namespace game_framework {
 		bool IsEaten();
 		bool IsTargetPosition(float, float);
 		STATE _state;
+		int delay_counter = 20;					//做延遲，不要讓掉落物一出現就可以吃
 	};
 }
 #endif

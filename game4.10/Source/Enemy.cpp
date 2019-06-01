@@ -28,7 +28,8 @@ namespace game_framework {
 		_is_x_arrive = _is_y_arrive = false;
 		_state = NOTHING;
 		_hit_recover_flag = false;
-		
+		_ani_hurt.SetDelayCount(1);
+
 		for (int i = 0; i < 4; i++)
 			_neighbor[i] = true;
 	}
@@ -40,7 +41,6 @@ namespace game_framework {
 		int ani[7] = { GET_HURT_01, GET_HURT_02, GET_HURT_03, GET_HURT_04, GET_HURT_05, GET_HURT_06, GET_HURT_07 };
 		for (int i = 0; i < 7; i++)
 			_ani_hurt.AddBitmap(ani[i], RGB(50, 255, 0));
-		_ani_hurt.SetDelayCount(1);
 	}
 
 	void Enemy::OnMove(int cx, int cy, vector<Skill*> &skills)

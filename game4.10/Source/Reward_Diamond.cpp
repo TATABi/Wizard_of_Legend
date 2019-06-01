@@ -11,7 +11,7 @@
 #include "CharacterData.h"
 
 #define RANGE_EAT 100
-#define RANGE_POSITION 60
+#define RANGE_POSITION 100
 #define TIME  3
 #define VALUE 1
 

@@ -11,7 +11,7 @@
 #include "CharacterData.h"
 
 #define RANGE_EAT 100
-#define RANGE_POSITION 60
+#define RANGE_POSITION 100
 #define TIME  3
 #define VALUE 50
 
@@ -41,6 +41,7 @@ namespace game_framework {
 		_isUp = true;
 		SetRandomPosition();
 	}
+
 	void Reward_Blood_Ball::LoadBitmap()
 	{
 		_bm_reward.LoadBitmap(BLOODBALL, RGB(0,0,0));

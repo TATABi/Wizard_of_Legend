@@ -9,7 +9,6 @@
 #include "GameData.h"
 #include <random>
 
-
 namespace game_framework {
 	Reward::Reward(float ex, float ey, GameMap* map) : _map(map) { }
 
@@ -20,6 +19,7 @@ namespace game_framework {
 		float midCX = cx + CHARACTER_HITBOX[2] / 2;
 		float midCY = cy + CHARACTER_HITBOX[3] / 2;
 		_bm_reward.SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cx, CHARACTER_SCREEN_Y + _xy[1] - cy);
+		delay_counter > 0 ? delay_counter-- : NULL;
 		if (_isShow) 
 		{
 			switch (_state)
@@ -29,8 +29,15 @@ namespace game_framework {
 				break;
 
 			case EATEN:
-				MoveTarget(midCX, midCY);
-				IsTargetPosition(midCX, midCY) ? Effect(), _isShow =false: NULL;
+				if (delay_counter == 0)
+				{
+					MoveTarget(midCX, midCY);
+					if (IsTargetPosition(midCX, midCY))
+					{
+						Effect();
+						_isShow = false;
+					}
+				}
 				break;
 
 			case MOVE:
@@ -103,7 +110,7 @@ namespace game_framework {
 		float cy = _map->GetCharacterPosition()[1];
 		float midCX = cx + CHARACTER_HITBOX[2] / 2;
 		float midCY = cy + CHARACTER_HITBOX[3] / 2;
-		if ((_isShow) && (IsTargetPosition(midCX, midCY)))
+		if ((_isShow) && (IsTargetPosition(midCX, midCY)) && delay_counter == 0)
 			return true;
 		else
 			return false;

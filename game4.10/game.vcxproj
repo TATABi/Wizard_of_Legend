@@ -599,6 +599,7 @@
     <Image Include="RES\InGame\Book\Skill_Des\Rebounding_Icicles_Des.bmp" />
     <Image Include="RES\InGame\Book\Skill_Des\Shock_Nova_Des.bmp" />
     <Image Include="RES\InGame\Box\board.bmp" />
+    <Image Include="RES\InGame\Box\Box_Item_Descrition.bmp" />
     <Image Include="RES\InGame\Box\DEFENSE\00.bmp" />
     <Image Include="RES\InGame\Box\DEFENSE\01.bmp" />
     <Image Include="RES\InGame\Box\DEFENSE\02.bmp" />
@@ -743,6 +744,13 @@
     <Image Include="RES\InGame\Item\Defense\01.bmp" />
     <Image Include="RES\InGame\Item\Defense\02.bmp" />
     <Image Include="RES\InGame\Item\Defense\03.bmp" />
+    <Image Include="RES\InGame\Item\Description\01.bmp" />
+    <Image Include="RES\InGame\Item\Description\02.bmp" />
+    <Image Include="RES\InGame\Item\Description\03.bmp" />
+    <Image Include="RES\InGame\Item\Description\04.bmp" />
+    <Image Include="RES\InGame\Item\Description\05.bmp" />
+    <Image Include="RES\InGame\Item\Description\06.bmp" />
+    <Image Include="RES\InGame\Item\Description\07.bmp" />
     <Image Include="RES\InGame\Item\Misc\01.bmp" />
     <Image Include="RES\InGame\Item\Misc\02.bmp" />
     <Image Include="RES\InGame\Item\Offense\01.bmp" />

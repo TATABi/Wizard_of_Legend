@@ -5,7 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Bag.h"
-
+#include "Items.h";
 namespace game_framework {
 
 	Bag& Bag::Instance()
@@ -45,11 +45,11 @@ namespace game_framework {
 		_bm_item_cursor.SetTopLeft(67, 170);
 	}
 
-	void Bag::OnMove(vector<Item*> &items)
+	void Bag::OnMove()
 	{
 		if (_isOpened)
 		{
-			_items = items;
+			_items = Items::Instance().GetItemInBag();
 		}
 	}
 
@@ -75,12 +75,18 @@ namespace game_framework {
 				_items[i]->OnShow();
 				row++;						
 			}
+
 			_bm_skill1.ShowBitmap(0.7);
 			_bm_skill2.ShowBitmap(0.7);
 			_bm_skill3.ShowBitmap(0.7);
 			_bm_skill4.ShowBitmap(0.7);
 			_bm_item_cursor.ShowBitmap();
+
+			if (_flags[0] + _flags[1] * 6 < _items.size())
+				_items[_flags[0] + _flags[1] * 6]->ShowInfo(70, 255);
 		}
+
+		
 	}
 
 	void Bag::Open(bool isOpened)

@@ -10,7 +10,7 @@ namespace game_framework {
 		void Initialize();
 		void LoadBitmap();
 		void SetTopLeft();
-		void OnMove(vector<Item*> &);
+		void OnMove();
 		void OnShow();
 		void Open(bool);
 		void Up();

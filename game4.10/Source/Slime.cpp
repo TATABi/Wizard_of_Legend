@@ -26,6 +26,11 @@ namespace game_framework {
 		_move_hitbox[1] = SLIME_MOVE_HITBOX[1];
 		_move_hitbox[2] = SLIME_MOVE_HITBOX[2];
 		_move_hitbox[3] = SLIME_MOVE_HITBOX[3];
+
+		_ani_left.SetDelayCount(1);
+		_ani_right.SetDelayCount(1);
+		_ani_attack_right.SetDelayCount(1);
+		_ani_attack_left.SetDelayCount(1);
 	}
 
 	void Slime::Reset()
@@ -77,11 +82,6 @@ namespace game_framework {
 						  ENEMY_SLIME_LEFT_16, ENEMY_SLIME_LEFT_17 };
 		for (int i = 0; i < 12; i++)
 			_ani_attack_left.AddBitmap(ani_4[i], RGB(50, 255, 0));
-
-		_ani_left.SetDelayCount(1);
-		_ani_right.SetDelayCount(1);
-		_ani_attack_right.SetDelayCount(1);
-		_ani_attack_left.SetDelayCount(1);
 	}
 
 	void Slime::Move(int cx, int cy)
