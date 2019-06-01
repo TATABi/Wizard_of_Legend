@@ -15,14 +15,16 @@ namespace game_framework {
 		int GetNumberOfItem(string);
 		void UnloadAllItem();
 		void SetItems(bool[7]);			//用來回復Item狀態(讀檔、離開關卡)
+		vector<bool> GetSaveData();		//回傳所有item的擁有狀態
 		Item* GetEquipAndOwnedItem();	//回傳裝備且擁有的裝備(因一次只能裝備一件出門)
 		vector<Item*> GetItemInBag();	//裝備中的道具
 		vector<Item*> GetAllItem();		//所有的道具
 		vector<Item*> GetItemInStore();	//還未購買的道具
+		~Items();
 	protected:
 		Items();
-		~Items();
 	private:
+		//static Items* _instance;
 		vector<Item*> _items;			//所有道具
 		vector<Item*> _temp_items;		//用來篩選
 		int NUMBER_OF_OFFENSE = 2;

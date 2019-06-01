@@ -13,7 +13,7 @@ namespace game_framework {
 		void Equip(bool);	// 穿/脫 裝備
 		bool IsEquiped();	// 是否裝備
 		void Effect();		// 啟動能力
-		bool HaveItem();
+		bool OwnedItem();
 		bool BuyItem();
 		string GetType();
 		int GetNumber();

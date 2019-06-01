@@ -22,11 +22,9 @@ namespace game_framework {
 
 	Items::~Items()
 	{
-
 		vector<Item*>::iterator iter;
 		for (iter = _items.begin(); iter != _items.end(); iter++)
 			delete *iter;
-
 	}
 
 	void Items::Initialize()
@@ -110,12 +108,12 @@ namespace game_framework {
 
 	Item* Items::GetEquipAndOwnedItem()
 	{
-		Item* item;
+		Item* item = nullptr;
 		vector<Item*>::iterator iter;
 
 		for (iter = _items.begin(); iter != _items.end(); iter++)
 		{
-			if ((*iter)->HaveItem() && (*iter)->IsEquiped())
+			if ((*iter)->OwnedItem() && (*iter)->IsEquiped())
 			{
 				item = *iter;
 				break;
@@ -145,7 +143,7 @@ namespace game_framework {
 
 		for (iter = _items.begin(); iter != _items.end(); iter++)
 		{
-			if (!((*iter)->HaveItem()))
+			if (!((*iter)->OwnedItem()))
 				_temp_items.push_back((*iter));
 		}
 
@@ -179,6 +177,21 @@ namespace game_framework {
 		{
 			_items[i]->SetItem(items[i]);
 		}
+	}
+
+	vector<bool> Items::GetSaveData()
+	{
+		vector<bool> owned_items;
+
+		for (int i = 0; i < _items.size(); i++)
+		{
+			if (_items[i]->OwnedItem())
+				owned_items.push_back(true);
+			else
+				owned_items.push_back(false);
+		}
+
+		return owned_items;
 	}
 }
 

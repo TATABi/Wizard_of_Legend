@@ -21,9 +21,7 @@ namespace game_framework {
 	CharacterData* CharacterData::Instance()
 	{
 		if (_instance == nullptr)
-		{
 			_instance = new CharacterData();
-		}
 
 		return _instance;
 	}

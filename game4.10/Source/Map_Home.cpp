@@ -9,6 +9,7 @@
 #include "algorithm"
 #include "Black_Man.h"
 #include "Blockhead.h"
+#include "Slime.h"
 
 namespace game_framework {
 
@@ -169,10 +170,11 @@ namespace game_framework {
 	
 	void Map_Home::AddEnemy()
 	{
-		_enemies.push_back(new Black_Man(640, 900, AREA_1, this));
+		//_enemies.push_back(new Black_Man(640, 900, AREA_1, this));
 		_enemies.push_back(new Blockhead(650, 918, AREA_2, this));
 		_enemies.push_back(new Blockhead(850, 830, AREA_2, this));
 		_enemies.push_back(new Blockhead(870, 910, AREA_2, this));
 		_enemies.push_back(new Blockhead(850, 1000, AREA_2, this));
+		_enemies.push_back(new Slime(660, 900, AREA_1, this));
 	}
 }

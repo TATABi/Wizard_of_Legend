@@ -20,8 +20,6 @@ namespace game_framework {
 		int _attack_delay_counter; //角色經過怪物身邊時怪物需要反映時間才能做攻擊動作
 		int _sx, _sy;
 	};
-
 }
-
 
 #endif

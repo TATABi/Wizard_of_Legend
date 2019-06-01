@@ -5,7 +5,6 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Box.h"
-#include "Global_Class.h"
 
 namespace game_framework {
 	Box::Box()
@@ -70,7 +69,7 @@ namespace game_framework {
 		}
 		else if (_isOpened)											//¶}²Ä¤@¼h
 		{
-			Items::Instance().GetEquipAndOwnedItem();
+			_temp_item = Items::Instance().GetEquipAndOwnedItem();
 
 			switch (_category_flag)
 			{
@@ -113,7 +112,7 @@ namespace game_framework {
 							col++;
 						}
 
-						if (gitem->GetAllItem()[i]->HaveItem()) {
+						if (gitem->GetAllItem()[i]->OwnedItem()) {
 							gitem->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
 							gitem->GetAllItem()[i]->OnShow();
 							row++;
@@ -138,7 +137,7 @@ namespace game_framework {
 							col++;
 						}
 
-						if (gitem->GetAllItem()[i]->HaveItem()) {
+						if (gitem->GetAllItem()[i]->OwnedItem()) {
 							gitem->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
 							gitem->GetAllItem()[i]->OnShow();
 							row++;
@@ -164,7 +163,7 @@ namespace game_framework {
 							col++;
 						}
 
-						if (gitem->GetAllItem()[i]->HaveItem()) {
+						if (gitem->GetAllItem()[i]->OwnedItem()) {
 							gitem->GetAllItem()[i]->SetXY(76 + 40 * row, 130 + 40 * col);
 							gitem->GetAllItem()[i]->OnShow();
 							row++;
@@ -314,7 +313,7 @@ namespace game_framework {
 				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
 			}
-			if (gitem->GetAllItem()[item_num]->HaveItem())
+			if (gitem->GetAllItem()[item_num]->OwnedItem())
 			{
 				gitem->UnloadAllItem();
 				gitem->GetAllItem()[item_num]->Equip(true);
@@ -329,7 +328,7 @@ namespace game_framework {
 				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
 			}
-			if (gitem->GetAllItem()[item_num]->HaveItem())
+			if (gitem->GetAllItem()[item_num]->OwnedItem())
 			{
 				gitem->UnloadAllItem();
 				gitem->GetAllItem()[item_num]->Equip(true);
@@ -344,7 +343,7 @@ namespace game_framework {
 				CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				return false;
 			}
-			if (gitem->GetAllItem()[item_num]->HaveItem())
+			if (gitem->GetAllItem()[item_num]->OwnedItem())
 			{
 				gitem->UnloadAllItem();
 				gitem->GetAllItem()[item_num]->Equip(true);

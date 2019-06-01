@@ -146,9 +146,13 @@ namespace game_framework {
 			_cxy[0] += dx;
 			_cxy[1] += dy;
 		}
+		else if (CharacterData::Instance()->ISVINCIBLE())		//如果再滑行時
+		{
+			_cxy[0] += dx;
+			_cxy[1] += dy;
+		}
 
 		return _cxy;
-		
 	}
 
 	bool Map_Level_One::SetEnemyXY(int, int, int*)

@@ -1,4 +1,7 @@
 //===========================Screen===========================//
+const string SAVE_DATA_PATH = "Data/save_data";
+
+//===========================Screen===========================//
 
 const int CHARACTER_SCREEN_X = 285;								//角色"貼在"螢幕X座標
 const int CHARACTER_SCREEN_Y = 205;								//角色"貼在"螢幕Y座標
@@ -58,7 +61,17 @@ const int BLACKMAN_DAMAGE = 20;									//傷害
 const int BLACKMAN_ATTACK_DELAY_TIME = 7;						//進入攻擊範圍後延遲的攻擊時間
 const int BLACKMAN_HITBOX[4] = {22, 15, 24, 44 };				//承受傷害的Hitbox
 const int BLACKMAN_MOVE_HITBOX[4] = { 29, 47, 17, 12 };			//移動的Hitbox
-const int BLACKMAN_CHARGING_ZONE = 300;
+const int BLACKMAN_CHARGING_ZONE = 300;							//追擊範圍
+
+//Skime//
+const int SLIME_HP = 50;										//血量
+const int SLIME_STEP = 3;										//移動速度
+const int SLIME_ZONE = 30;										//攻擊區域
+const int SLIME_DAMAGE = 10;									//傷害
+const int SLIME_ATTACK_DELAY_TIME = 7;							//進入攻擊範圍後延遲的攻擊時間
+const int SLIME_HITBOX[4] = { 4, 10, 25, 24 };					//承受傷害的Hitbox
+const int SLIME_MOVE_HITBOX[4] = { 5, 31, 25, 5 };			//移動的Hitbox
+const int SLIME_CHARGING_ZONE = 300;							//追擊範圍
 
 
 //============================Home============================//

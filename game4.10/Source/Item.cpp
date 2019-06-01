@@ -68,7 +68,7 @@ namespace game_framework {
 			_isLuanched = _Launched();
 	}
 	
-	bool Item::HaveItem()	//是否擁有Item
+	bool Item::OwnedItem()	//是否擁有Item
 	{
 		return _isOwned;
 	}

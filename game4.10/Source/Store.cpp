@@ -28,8 +28,9 @@ namespace game_framework
 		_bm_sold_out.LoadBitmap(ITEM_SOLD_OUT, RGB(50, 255, 0));
 	}
 
-	bool Store::Buy(int number, Items *gitem)
+	bool Store::Buy(int number)
 	{
+		Items* gitem = &Items::Instance();
 		srand((unsigned int)time(NULL));
 		int item_1, item_2, num = number;
 
@@ -76,8 +77,9 @@ namespace game_framework
 		return false;
 	}
 
-	void Store::Shelf(Items *gitem)
+	void Store::Shelf()
 	{
+		Items* gitem = &Items::Instance();
 		vector<Item*> unwoned_items = gitem->GetItemInStore();
 		int num_of_item = unwoned_items.size();
 		_store_item.clear();

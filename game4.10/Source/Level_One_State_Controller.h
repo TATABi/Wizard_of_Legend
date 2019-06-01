@@ -2,8 +2,11 @@
 #define LEVEL_ONE_STATE_CONTROLLER_H
 
 #include "Map_Level_One.h"
-#include "Global_Class.h"
 #include "Controller.h"
+#include "Bag.h"
+#include "UI.h"
+#include "PausedMenu.h"
+#include "Items.h"
 
 namespace game_framework {
 

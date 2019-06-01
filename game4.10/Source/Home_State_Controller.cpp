@@ -35,8 +35,6 @@ namespace game_framework {
 
 	void Home_State_Controller::Initialize()
 	{
-		Bag::Instance();
-		
 		CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
 		CAudio::Instance()->Load(AUDIO_PUTTING, "sounds\\putting.mp3");
 		CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");
@@ -125,11 +123,9 @@ namespace game_framework {
 				break;
 
 			case FLAG_JOIN:
-
 				if (nChar == KEY_SPACE)		// 加入遊戲提示選單
-				{
 					_flag = FLAG_HOME_NORMAL;				// 角色進入遊戲
-				}
+
 				break;
 
 			case FLAG_BOX:							//道具箱選單
@@ -157,7 +153,6 @@ namespace game_framework {
 				break;
 
 			case FLAG_BOX_ITEM:
-
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 				{
 					CAudio::Instance()->Play(AUDIO_PUTTING, false);
@@ -242,6 +237,7 @@ namespace game_framework {
 					_flag = FLAG_HOME_PAUSED;
 				}
 				break;
+
 			case FLAG_HOME_BAG:
 				if (nChar == KEY_TAB || nChar == KEY_ESC)
 				{
@@ -264,11 +260,9 @@ namespace game_framework {
 				{
 					Bag::Instance().Right();
 				}
-
 				break;
 
 			case FLAG_BOOK:
-
 				if (nChar == KEY_ESC)
 				{
 					_book.Open(false);
@@ -320,6 +314,7 @@ namespace game_framework {
 		if (_delayCounter < 0)
 		{
 			_map.OnShowBackground();
+
 			if (_flag == 1)
 				_bm_join.ShowBitmap();
 			else

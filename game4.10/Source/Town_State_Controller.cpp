@@ -25,7 +25,7 @@ namespace game_framework {
 		CAudio::Instance()->Play(AUDIO_TOWN, true);
 
 		//////產生隨機道具/////
-		_item_store.Shelf(&Items::Instance());
+		_item_store.Shelf();
 	}
 
 	void Town_State_Controller::Initialize()
@@ -87,7 +87,7 @@ namespace game_framework {
 				{
 
 
-					if (_item_store.Buy(0, &Items::Instance()))
+					if (_item_store.Buy(0))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
@@ -95,7 +95,7 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 4)	//買道具2
 				{
-					if (_item_store.Buy(1, &Items::Instance()))
+					if (_item_store.Buy(1))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
@@ -104,7 +104,7 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 5)	//買道具3
 				{
-					if (_item_store.Buy(2, &Items::Instance()))
+					if (_item_store.Buy(2))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);

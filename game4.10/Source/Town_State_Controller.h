@@ -3,8 +3,10 @@
 
 #include "Map_Town.h"
 #include "Store.h"
-#include "Global_Class.h"
 #include "Controller.h"
+#include "Bag.h"
+#include "UI.h"
+#include "PausedMenu.h"
 
 namespace game_framework {
 

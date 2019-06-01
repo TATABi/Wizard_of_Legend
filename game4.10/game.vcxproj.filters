@@ -40,6 +40,7 @@
     <ClCompile Include="Source\Reward_Diamond.cpp" />
     <ClCompile Include="Source\Reward_Blood_Ball.cpp" />
     <ClCompile Include="Source\Memento.cpp" />
+    <ClCompile Include="Source\Slime.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -57,7 +58,6 @@
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\GameMap.h" />
     <ClInclude Include="Source\gameView.h" />
-    <ClInclude Include="Source\Global_Class.h" />
     <ClInclude Include="Source\Home_State_Controller.h" />
     <ClInclude Include="Source\Init_State_Controller.h" />
     <ClInclude Include="Source\Item.h" />
@@ -87,6 +87,7 @@
     <ClInclude Include="Source\Reward_Blood_Ball.h" />
     <ClInclude Include="Source\Reward_Diamond.h" />
     <ClInclude Include="Source\Memento.h" />
+    <ClInclude Include="Source\Slime.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
@@ -566,6 +567,61 @@
     <Image Include="RES\InGame\Magic Buff\08.bmp" />
     <Image Include="RES\InGame\Magic Buff\09.bmp" />
     <Image Include="RES\InGame\Magic Buff\10.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\05.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\06.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\07.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\08.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\09.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\10.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\11.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\12.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\13.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\14.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\15.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\16.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\17.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Hurt\hurt_left.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Hurt\hurt_right.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Stand\stand_left.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Stand\stand_right.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\05.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\06.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\07.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\08.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\09.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\10.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\11.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\12.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\13.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\14.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\15.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\16.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Right\17.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\01.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\02.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\03.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\05.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\06.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\07.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\08.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\09.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\10.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\11.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\12.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\13.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\14.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\15.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\16.bmp" />
+    <Image Include="RES\InGame\Enemy\Slime\Move\Left\17.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

@@ -6,7 +6,7 @@
 #include "gamelib.h"
 #include "Controller.h"
 #include "CharacterData.h"
-
+#include "Items.h";
 
 namespace game_framework {
 	Controller::Controller() {}
@@ -43,19 +43,34 @@ namespace game_framework {
 		*/
 		else if (keycode == KEY_F6)
 		{
-			bool temp[7] = { true, true, true, true, true, true, true };
-			Originator *o = new Originator("Test", 123, 1, temp);
+			//¦sÀÉ
+			//GetEquipAndOwnedItem()->GetNumber();
+
+			Items *items = &Items::Instance();
+
+	
+
+			
+			bool temp[7] = { true, true, true, true, true, false, false };
+			Originator *o = new Originator("Origin", 300, 2, temp);
 			o->SetRecord();
+			Caretaker care;
+			care.Save(o->CreateMemento());
 			delete o;
-			/*
+			
 			CharacterData::Instance()->LockHP();
 			CharacterData::Instance()->SetAttackCoefficient(100);
-			*/
+			
 		}
 		else if (keycode == KEY_F7)
 		{
+			//ÅªÀÉ
+
+
+			
 			CharacterData::Instance()->AddMoney(999);
 			CharacterData::Instance()->AddDiamond(999);
+			
 		}
 	}
 

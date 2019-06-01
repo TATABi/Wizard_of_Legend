@@ -1,11 +1,15 @@
 #ifndef MEMENTO_H
 #define MEMEMTO_H
+#include <sstream>
 
 namespace game_framework
 {
 	class Memento 
 	{
 		friend class Originator;
+	public:
+		vector<string> ToString();
+		string State();
 	private:
 		Memento(const string, int, int, bool[7]);			//紀錄點、Diamond、擁有道具、裝備道具
 		string _state;
@@ -22,6 +26,7 @@ namespace game_framework
 		void RestoreToMemento(Memento*);
 		Memento* CreateMemento();
 		void SetRecord();
+		string State();
 	private:
 		Memento* _memento;
 	};
@@ -31,9 +36,9 @@ namespace game_framework
 	public:
 		Caretaker();
 		void Save(Memento*);
-		Memento* Load();
+		Memento* Load(string);
 	private:
-		Memento* _memento;
+		map<string, Memento*> _mementos;
 	};
 }
 

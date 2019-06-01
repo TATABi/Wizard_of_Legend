@@ -4,8 +4,11 @@
 #include "Map_Home.h"
 #include "Box.h"
 #include "Book.h"
-#include "Global_Class.h"
+#include "Bag.h"
+#include "UI.h"
 #include "Controller.h"
+#include "PausedMenu.h"
+
 
 namespace game_framework {
 

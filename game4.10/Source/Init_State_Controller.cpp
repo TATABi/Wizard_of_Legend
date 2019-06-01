@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Init_State_Controller.h"
+#include "GameData.h"
 
 namespace game_framework {
 	Init_State_Controller::Init_State_Controller() : Controller()
@@ -27,7 +28,6 @@ namespace game_framework {
 			CAudio::Instance()->Play(AUDIO_TITLE, true);
 
 		CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
-
 		
 		int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,
 			MENU_INIT_26, MENU_INIT_28, MENU_INIT_30, MENU_INIT_32, MENU_INIT_34, MENU_INIT_36, MENU_INIT_38, MENU_INIT_40, MENU_INIT_42, MENU_INIT_44,
@@ -79,7 +79,6 @@ namespace game_framework {
 		Cheater(nChar);
 
 		CAudio::Instance()->Play(AUDIO_BE, false);
-
 
 		switch (_flag)
 		{
@@ -136,6 +135,7 @@ namespace game_framework {
 					_flag = FLAG_INIT_KEY_CONFIG;
 					break;
 				case RESET_DATA:
+					remove(SAVE_DATA_PATH.c_str());
 					_flag = FLAG_INIT_RESET_DATA;
 					break;
 				case ABOUT:

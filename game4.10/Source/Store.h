@@ -9,8 +9,8 @@ namespace game_framework {
 		void Initialize(int, int);
 		void LoadBitmap();
 		void OnMove(float *);
-		bool Buy(int, Items *);
-		void Shelf(Items *);
+		bool Buy(int);
+		void Shelf();
 		void OnShow();
 	private:
 		CMovingBitmap _bm_sold_out;

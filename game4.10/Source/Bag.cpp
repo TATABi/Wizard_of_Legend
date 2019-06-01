@@ -14,7 +14,8 @@ namespace game_framework {
 		return instance;
 	}
 
-	Bag::Bag() {
+	Bag::Bag()
+	{
 		Initialize();
 	}
 
