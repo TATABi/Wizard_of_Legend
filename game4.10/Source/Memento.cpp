@@ -11,9 +11,10 @@
 
 namespace game_framework
 {
-	Memento::Memento(const string state, int diamond, int equip_item, bool owned_items[7])
+	//State
+	State::State(const string stage, int diamond, int equip_item, bool owned_items[7])
 	{
-		_state = state;
+		_stage = stage;
 		_diamond = diamond;
 		_equip_item = equip_item;
 
@@ -21,85 +22,81 @@ namespace game_framework
 			_owned_items[i] = owned_items[i];
 	}
 
-	vector<string> Memento::ToString()
+	string State::Stage()
 	{
-		vector<string> data;
-		stringstream ss;
-		string diamond, equip, owned;
-
-		for (int i = 0; i < sizeof(_owned_items) / sizeof(_owned_items[0]); i++)
-			_owned_items[i] ? owned += "1" : owned += "0";
-
-		ss << _diamond;
-		ss >> diamond;
-		ss.str("");
-		ss.clear();
-		
-		ss << _equip_item;
-		ss >> equip;
-
-		data.push_back(_state);
-		data.push_back(diamond);
-		data.push_back(equip);
-		data.push_back(owned);
-
-		return data;
+		return _stage;
 	}
 
-	string Memento::State()
+	int State::Diamond()
 	{
-		return _state;
+		return _diamond;
 	}
 
-	Originator::Originator(const string state, int diamond, int equip_item, bool owned_items[7])
+	int State::EquipItem()
 	{
-		_memento = new Memento(state, diamond, equip_item, owned_items);
+		return	_equip_item;
 	}
 
-	Originator::~Originator()
+	bool* State::OwnedItem()
 	{
-		delete _memento;
+		return _owned_items;
+	}
+
+
+	//Memento
+	Memento::Memento(State* state)
+	{
+		_state = state;
+	}
+
+	string Memento::Stage()
+	{
+		return _state->Stage();
+	}
+
+	void Memento::SetState(State* state)
+	{
+		_state = state;
+	}
+
+
+	//Originator
+	Originator::Originator(){}
+
+	void Originator::SetState(State* state)
+	{
+		_state = state;
 	}
 
 	void Originator::RestoreToMemento(Memento *memento)
 	{
-		_memento = memento;
+		_state = memento->_state;
 	}
 
 	Memento* Originator::CreateMemento()
 	{
-		return _memento;
+		return new Memento(this->_state);
 	}
 
 	void Originator::SetRecord()
 	{
-		Items::Instance().SetItems(_memento->_owned_items);
-		Items::Instance().Equip(_memento->_equip_item, true);
-		CharacterData::Instance()->SetDiamond(_memento->_diamond);
+		Memento* memento = CreateMemento();
+		Items::Instance().SetItems(memento->_state->OwnedItem());
+		Items::Instance().Equip(memento->_state->EquipItem(), true);
+		CharacterData::Instance()->SetDiamond(memento ->_state->Diamond());
+		delete memento;
 	}
 
-	string Originator::State()
-	{
-		return _memento->_state;
-	}
 
+	//Caretaker
 	Caretaker::Caretaker() {}
 
-	void Caretaker::Save(Memento* memento)
+	void Caretaker::SetMemento(Memento* memento)
 	{
-		_mementos[memento->State()] = memento;
-	
-		fstream file;
-		file.open("Data/save_data", ios::out);
-		vector<string> data = memento->ToString();
-		
-		for (int i = 0; i < data.size(); i++)
-			file << data[i] << " ";
-
-		file.close();
+		_mementos[memento->Stage()] = memento;
 	}
 
-	Memento* Caretaker::Load(string state)
+	Memento* Caretaker::GetMemento(string state)
 	{
 		return _mementos[state];
 	}

@@ -6,10 +6,12 @@
 #include "gamelib.h"
 #include "Controller.h"
 #include "CharacterData.h"
-#include "Items.h";
+#include "Items.h"
 
 namespace game_framework {
+
 	Controller::Controller() {}
+
 	Controller::~Controller() {}
 
 	void Controller::Cheater(UINT keycode)
@@ -43,34 +45,23 @@ namespace game_framework {
 		*/
 		else if (keycode == KEY_F6)
 		{
-			//¦sÀÉ
-			//GetEquipAndOwnedItem()->GetNumber();
+			bool _owned_items[7] = { true, true, true, true, true, true, true };
+			State* state = new State("Stage 1", 20, 1, _owned_items);
+			Originator o;
+			o.SetState(state);
+			o.SetRecord();
+			Caretaker caretaker;
+			caretaker.SetMemento(o.CreateMemento());
 
-			Items *items = &Items::Instance();
-
-	
-
-			
-			bool temp[7] = { true, true, true, true, true, true, true };
-			Originator *o = new Originator("Origin", 300, 2, temp);
-			o->SetRecord();
-			Caretaker care;
-			care.Save(o->CreateMemento());
-			delete o;
-			
-			CharacterData::Instance()->LockHP();
-			CharacterData::Instance()->SetAttackCoefficient(100);
+			delete state;
 			
 		}
 		else if (keycode == KEY_F7)
 		{
-			//ÅªÀÉ
-
-
-			
+			CharacterData::Instance()->LockHP();
+			CharacterData::Instance()->SetAttackCoefficient(100);
 			CharacterData::Instance()->AddMoney(999);
 			CharacterData::Instance()->AddDiamond(999);
-			
 		}
 	}
 

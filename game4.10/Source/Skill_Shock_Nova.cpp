@@ -110,7 +110,6 @@ namespace game_framework
 						int damage = _damage * data->ATTACK_COEFFICIENT();
 						data->AddMP((int)((damage) * data->MP_CHARGE_COEFFICIENT()));
 						return damage;
-	
 					}
 				}
 			}

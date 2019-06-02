@@ -23,15 +23,12 @@ namespace game_framework {
 
 		ShowInitProgress(30);
 
-		//global variable initialize...//
-
 		Items::Instance().LoadBitmap();
-		PausedMenu::Instance().LoadBitmap();
 		Character::Instance().LoadBitmap();
+		PausedMenu::Instance().LoadBitmap();
 		UI::Instance().LoadBitmap();
 		Bag::Instance().LoadBitmap();
 
-		/////////////////////////////////
 		ShowInitProgress(65);
 	}
 
@@ -74,17 +71,10 @@ namespace game_framework {
 
 	CGameStateOver::CGameStateOver(CGame *g) : CGameState(g) {}
 
-	CGameStateOver::~CGameStateOver() {
-			//CharacterData::Instance()->DeleteData(); }//解決Singleton memory leak
-	}
+	CGameStateOver::~CGameStateOver() {}
 	void CGameStateOver::OnMove()
 	{
 		_controller.OnMove();
-		/*
-		_counter--;
-		if (_counter < 0)
-			GotoGameState(GAME_STATE_INIT);
-			*/
 	}
 
 	void CGameStateOver::OnBeginState()
@@ -102,22 +92,7 @@ namespace game_framework {
 		_controller.OnShow();
 		
 		if (_controller.IsSwitchGameState())
-		{
 			GotoGameState(_controller.GameState());
-		}
-		/*
-		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, *fp;
-		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(0, 0, 0));
-		pDC->SetTextColor(RGB(255, 255, 0));
-		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str, "Game Over ! (%d)", _counter / 30);
-		pDC->TextOut(240, 210, str);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-		*/
 	}
 
 	void CGameStateOver::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -173,9 +148,7 @@ namespace game_framework {
 		_controller.OnShow();
 
 		if (_controller.IsSwitchGameState())
-		{
 			GotoGameState(_controller.GameState());
-		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -226,9 +199,7 @@ namespace game_framework {
 		_controller.OnShow();
 
 		if (_controller.IsSwitchGameState())
-		{
 			GotoGameState(_controller.GameState());
-		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -279,8 +250,6 @@ namespace game_framework {
 		_controller.OnShow();
 
 		if (_controller.IsSwitchGameState())
-		{
 			GotoGameState(_controller.GameState());
-		}
 	}
 }
