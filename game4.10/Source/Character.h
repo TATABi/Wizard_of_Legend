@@ -30,6 +30,7 @@ namespace game_framework {
 		bool IsUsingSkill();							//是否正在使用技能(播放角色使用技能的動畫)
 		bool IsHurt();									//是否被毆，被毆時不能用技能
 		void MagicBuff();								//判斷Magic Buff 並進行強化
+		bool Dead();
 	protected:
 		Character();
 	private:
@@ -52,7 +53,7 @@ namespace game_framework {
 		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;						//站立圖
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;														//被毆圖
 		CAnimation _ani_magic_buff;
-
+		CAnimation _ani_die;
 		DIRECTION _direction;												// 紀錄角色面向方向
 		int _dx, _dy;														//移動距離
 		bool _isMovingDown, _isMovingLeft, _isMovingRight, _isMovingUp;		//移動方向
@@ -60,7 +61,8 @@ namespace game_framework {
 		bool _isRunning;													//跑步
 		bool _isDashLock;													//Dash中不能改變移動方向，必須等Dash結束
 		bool _isUsingSkill;													//是否正在使用技能
-		bool _isHurt;														//被毆											
+		bool _isHurt;														//被毆			
+		bool _isDead;														//死了沒?
 		float _step;														//紀錄移動距離
 		int _run_counter;													// 計算角色是否要奔跑
 		int _dash_delay_counter;											//讓玩家無法一直dash (dash和dash之間有間隔)

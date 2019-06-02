@@ -114,7 +114,8 @@ enum AUDIO_ID {				// 定義各種音效的編號
 	AUDIO_NOMONEY,
 	AUDIO_LEVEL_FIRE,
 	AUDIO_LEVEL_ICE,
-	AUDIO_LEVEL_EARTH
+	AUDIO_LEVEL_EARTH,
+	ADUIO_BAD_END
 };
 
 const char KEY_LEFT = 0x25;		// keyboard左箭頭

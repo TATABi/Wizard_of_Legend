@@ -42,6 +42,8 @@ namespace game_framework {
 		_mp_charge_coefficient = 1;
 		_isInvincible = false;
 		_isLockHP = false;
+		_stage = _gold_found = _diamond_collected = _enemies_defeated = 0;
+
 	}
 
 	//--------------------³]©w­È--------------------//
@@ -160,14 +162,44 @@ namespace game_framework {
 	void CharacterData::ResetStatus()
 	{
 		_hp = _max_hp;
-		_mp = 0;
-		_money = 0;
 		_isMagicBuff = false;
+		_mp = _money = _stage = _gold_found = _diamond_collected = _enemies_defeated = 0;
 	}
 
 	void CharacterData::SetMagicBuff(bool isBuff)
 	{
 		_isMagicBuff = isBuff;
+	}
+
+	int* CharacterData::GetStageResult()
+	{
+		int result[4];
+		result[0] = _stage;
+		result[1] = _gold_found;
+		result[2] = _diamond_collected;
+		result[3] = _enemies_defeated;
+		
+		return result;
+	}
+
+	void CharacterData::SetStage(int stage)
+	{
+		_stage = stage;
+	}
+
+	void CharacterData::AddGoldFound(int gold)
+	{
+		_gold_found += gold;
+	}
+
+	void CharacterData::AddDiamondCollected(int diamond)
+	{
+		_diamond_collected += diamond;
+	}
+	
+	void CharacterData::AddEnemiesDefeated(int num)
+	{
+		_enemies_defeated += num;
 	}
 
 	//-------------------Beater-------------------//
@@ -204,5 +236,6 @@ namespace game_framework {
 	float CharacterData::MP_CHARGE_COEFFICIENT() { return _mp_charge_coefficient; }
 
 	bool CharacterData::ISVINCIBLE() { return _isInvincible; }
+
 	bool CharacterData::ISMAGICBUFF() { return _isMagicBuff; }
 }

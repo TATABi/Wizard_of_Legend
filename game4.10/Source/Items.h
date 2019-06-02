@@ -25,7 +25,6 @@ namespace game_framework {
 	protected:
 		Items();
 	private:
-		//static Items* _instance;
 		vector<Item*> _items;			//所有道具
 		vector<Item*> _temp_items;		//用來篩選
 		int NUMBER_OF_OFFENSE = 2;

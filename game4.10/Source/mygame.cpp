@@ -74,24 +74,38 @@ namespace game_framework {
 
 	CGameStateOver::CGameStateOver(CGame *g) : CGameState(g) {}
 
-	CGameStateOver::~CGameStateOver() { CharacterData::Instance()->DeleteData(); }//解決Singleton memory leak
-
+	CGameStateOver::~CGameStateOver() {
+			//CharacterData::Instance()->DeleteData(); }//解決Singleton memory leak
+	}
 	void CGameStateOver::OnMove()
 	{
+		_controller.OnMove();
+		/*
 		_counter--;
 		if (_counter < 0)
 			GotoGameState(GAME_STATE_INIT);
+			*/
 	}
 
 	void CGameStateOver::OnBeginState()
 	{
-		_counter = 30 * 5; // 5 seconds
+		_controller.Begin();
 	}
 
-	void CGameStateOver::OnInit() {}
+	void CGameStateOver::OnInit() 
+	{
+		_controller.Initialize();
+	}
 
 	void CGameStateOver::OnShow()
 	{
+		_controller.OnShow();
+		
+		if (_controller.IsSwitchGameState())
+		{
+			GotoGameState(_controller.GameState());
+		}
+		/*
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, *fp;
 		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -103,8 +117,13 @@ namespace game_framework {
 		pDC->TextOut(240, 210, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+		*/
 	}
 
+	void CGameStateOver::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+	{
+		_controller.OnKeyDown(nChar, nRepCnt, nFlags);
+	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// Home
@@ -159,7 +178,6 @@ namespace game_framework {
 		}
 	}
 
-
 	/////////////////////////////////////////////////////////////////////////////
 	////Town
 	/////////////////////////////////////////////////////////////////////////////
@@ -212,8 +230,6 @@ namespace game_framework {
 			GotoGameState(_controller.GameState());
 		}
 	}
-
-
 
 	/////////////////////////////////////////////////////////////////////////////
 	////Level 1

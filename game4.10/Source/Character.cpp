@@ -43,7 +43,6 @@ namespace game_framework {
 		_ani_run_up.SetDelayCount(2);
 		_ani_run_right.SetDelayCount(2);
 		_ani_run_left.SetDelayCount(2);
-
 		_ani_useSkill_1.SetDelayCount(1);
 		_ani_useSkill_2_down.SetDelayCount(1);
 		_ani_useSkill_2_up.SetDelayCount(1);
@@ -51,8 +50,8 @@ namespace game_framework {
 		_ani_useSkill_2_right.SetDelayCount(1);
 		_ani_useSkill_3_down.SetDelayCount(1);
 		_ani_useSkill_3_up.SetDelayCount(1);
-
 		_ani_magic_buff.SetDelayCount(3);
+		_ani_die.SetDelayCount(2);
 
 		_hp = CharacterData::Instance()->HP();
 		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
@@ -69,6 +68,7 @@ namespace game_framework {
 		_hit_recover_counter = 0;
 		_magic_buff_counter = 0;
 		_is_magic_buff_init = true;
+		_isDead = false;
 		_mp_decrease_counter = MP_DECREASE_TIME;;
 	}
 
@@ -175,10 +175,16 @@ namespace game_framework {
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_3_up.AddBitmap(m16[i], RGB(50, 255, 0));
 
-		int a2[10] = { UI_MAGIC_BUFF_01, UI_MAGIC_BUFF_02, UI_MAGIC_BUFF_03, UI_MAGIC_BUFF_04, UI_MAGIC_BUFF_05,
+		int m17[10] = { UI_MAGIC_BUFF_01, UI_MAGIC_BUFF_02, UI_MAGIC_BUFF_03, UI_MAGIC_BUFF_04, UI_MAGIC_BUFF_05,
 			UI_MAGIC_BUFF_06, UI_MAGIC_BUFF_07, UI_MAGIC_BUFF_08, UI_MAGIC_BUFF_09, UI_MAGIC_BUFF_10 };
 		for (int i = 0; i < 10; i++)
-			_ani_magic_buff.AddBitmap(a2[i], RGB(50, 255, 0));
+			_ani_magic_buff.AddBitmap(m17[i], RGB(50, 255, 0));
+
+		int m18[22] = { CHARACTER_DIE_01, CHARACTER_DIE_02, CHARACTER_DIE_03, CHARACTER_DIE_04, CHARACTER_DIE_05, CHARACTER_DIE_06, CHARACTER_DIE_07, CHARACTER_DIE_08,
+						CHARACTER_DIE_09, CHARACTER_DIE_10, CHARACTER_DIE_11, CHARACTER_DIE_12, CHARACTER_DIE_13, CHARACTER_DIE_14, CHARACTER_DIE_15, CHARACTER_DIE_16,
+						CHARACTER_DIE_17, CHARACTER_DIE_18, CHARACTER_DIE_19, CHARACTER_DIE_20, CHARACTER_DIE_21, CHARACTER_DIE_22 };
+		for (int i = 0; i < 22; i++)
+			_ani_die.AddBitmap(m18[i], RGB(50, 255, 0));
 
 		_bm_stand_down.LoadBitmap(CHARACTER_STAND_DOWN, RGB(50, 255, 0));
 		_bm_stand_up.LoadBitmap(CHARACTER_STAND_UP, RGB(50, 255, 0));
@@ -213,6 +219,7 @@ namespace game_framework {
 		_bm_hurt_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_bm_hurt_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_magic_buff.SetTopLeft(CHARACTER_SCREEN_X + 25, CHARACTER_SCREEN_Y - 15);
+		_ani_die.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 	}
 
 	void Character::OnMove(GameMap *map)
@@ -220,7 +227,11 @@ namespace game_framework {
 		IsHurt();
 		MagicBuff();
 
-		if (_isHurt)
+		if (_isDead)
+		{
+			_ani_die.OnMove();
+		}
+		else if (_isHurt)
 		{
 			_dash_delay_counter = DASH_COOLDOWN_TIME;
 			ResetDash();
@@ -409,8 +420,11 @@ namespace game_framework {
 
 	void Character::OnShow()
 	{
-		/////////////////////////////////  受傷圖片待加上下 /////////////////////////////
-		if (_isHurt)
+		if (_isDead)
+		{
+			_ani_die.OnShow();
+		}
+		else if (_isHurt)
 		{
 			switch (_direction)
 			{
@@ -745,6 +759,19 @@ namespace game_framework {
 
 			_mp_decrease_counter--;
 		}
+	}
+
+	bool Character::Dead()
+	{
+		_isDead = true;
+
+		if (_ani_die.IsFinalBitmap())
+		{
+			_ani_die.Reset();
+			return true;
+		}
+		else
+			return false;
 	}
 
 }

@@ -51,8 +51,8 @@ namespace game_framework {
 
 		//水銀的便鞋
 		_items.push_back(new Item(ITEM_DEFENSE_03, ITEM_DEFENSE_03_INFO,"DEFENSE", 5, 15,
-								[]() {CharacterData::Instance()->SetNoveCoefficient(2.0); return true; },
-								[]() {CharacterData::Instance()->SetNoveCoefficient(-2.0); }));
+								[]() {CharacterData::Instance()->SetNoveCoefficient(1.5); return true; },
+								[]() {CharacterData::Instance()->SetNoveCoefficient(-1.5); }));
 
 		//羅素的鐘擺
 		_items.push_back(new Item(ITEM_MISC_01, ITEM_MISC_01_INFO, "MISC", 6, 15,

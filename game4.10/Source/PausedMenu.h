@@ -12,6 +12,7 @@ namespace game_framework {
 		void NextPausedMenu();
 		void PrePausedMenu();
 		int EnterPauseMenu(); //«öspace ¦^¶Çµ¹mygmae flag ¤Á´«ª¬ºA
+		void SaveData();
 	protected:
 		PausedMenu();
 	private:

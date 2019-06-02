@@ -25,9 +25,15 @@ namespace game_framework {
 		void SetCDCoefficient(float);			//更改CD_Coefficient，傳入正數: *係數，負數: /係數
 		void SetMPChargeCoefficient(float);		//更改MP_Charge_Coefficient，傳入正數: *係數，負數: /係數
 		void SetInvincible(bool);				//更改無敵狀態
-		void ResetStatus();						//重製HP,MP,Money,MagicBuff
+		void ResetStatus();						//結束關卡，重製HP, MP, Money, MagicBuff, _stage, _gold_found, _diamond_collected, _enemies_defeated
 		void SetMagicBuff(bool);				//設定Magic Buff 狀態
-		
+		int* GetStageResult();					//取得關卡結算
+		void SetStage(int);
+		void AddGoldFound(int);
+		void AddDiamondCollected(int);
+		void AddEnemiesDefeated(int);
+
+
 		//Beater -- 封弊者 ???????
 		void LockHP();
 		
@@ -66,6 +72,10 @@ namespace game_framework {
 		bool _isInvincible;						//無敵狀態
 		bool _isMagicBuff;						//Magic Buff 狀態		
 		bool _isLockHP;
+		int _stage;								//角色目前所在關卡
+		int _gold_found;						//關卡中所獲得的金錢
+		int _diamond_collected;					//關卡中所獲得的寶石
+		int _enemies_defeated;					//關卡中擊殺的敵人數量
 	};
 }
 

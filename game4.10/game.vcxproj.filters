@@ -41,6 +41,7 @@
     <ClCompile Include="Source\Reward_Blood_Ball.cpp" />
     <ClCompile Include="Source\Memento.cpp" />
     <ClCompile Include="Source\Slime.cpp" />
+    <ClCompile Include="Source\Over_State_Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="Source\Reward_Diamond.h" />
     <ClInclude Include="Source\Memento.h" />
     <ClInclude Include="Source\Slime.h" />
+    <ClInclude Include="Source\Over_State_Controller.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
@@ -630,6 +632,36 @@
     <Image Include="RES\InGame\Item\Description\05.bmp" />
     <Image Include="RES\InGame\Item\Description\06.bmp" />
     <Image Include="RES\InGame\Item\Description\07.bmp" />
+    <Image Include="RES\InGame\End\End_board.bmp" />
+    <Image Include="RES\InGame\End\Mask.bmp" />
+    <Image Include="RES\InGame\End\Play_Keyboard\01.bmp" />
+    <Image Include="RES\InGame\End\Play_Keyboard\02.bmp" />
+    <Image Include="RES\InGame\End\Play_Keyboard\03.bmp" />
+    <Image Include="RES\InGame\End\Play_Keyboard\04.bmp" />
+    <Image Include="RES\InGame\End\Play_Keyboard\05.bmp" />
+    <Image Include="RES\InGame\End\Play_Keyboard\06.bmp" />
+    <Image Include="RES\Character\Die\01.bmp" />
+    <Image Include="RES\Character\Die\02.bmp" />
+    <Image Include="RES\Character\Die\03.bmp" />
+    <Image Include="RES\Character\Die\04.bmp" />
+    <Image Include="RES\Character\Die\05.bmp" />
+    <Image Include="RES\Character\Die\06.bmp" />
+    <Image Include="RES\Character\Die\07.bmp" />
+    <Image Include="RES\Character\Die\08.bmp" />
+    <Image Include="RES\Character\Die\09.bmp" />
+    <Image Include="RES\Character\Die\10.bmp" />
+    <Image Include="RES\Character\Die\11.bmp" />
+    <Image Include="RES\Character\Die\12.bmp" />
+    <Image Include="RES\Character\Die\13.bmp" />
+    <Image Include="RES\Character\Die\14.bmp" />
+    <Image Include="RES\Character\Die\15.bmp" />
+    <Image Include="RES\Character\Die\16.bmp" />
+    <Image Include="RES\Character\Die\17.bmp" />
+    <Image Include="RES\Character\Die\18.bmp" />
+    <Image Include="RES\Character\Die\19.bmp" />
+    <Image Include="RES\Character\Die\20.bmp" />
+    <Image Include="RES\Character\Die\21.bmp" />
+    <Image Include="RES\Character\Die\22.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

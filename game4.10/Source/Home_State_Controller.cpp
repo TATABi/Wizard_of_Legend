@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include "Home_State_Controller.h"
 #include "GameData.h"
+#include "CharacterData.h"
 
 namespace game_framework {
 	Home_State_Controller::Home_State_Controller():Controller(), _map(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1], &Character::Instance()){}
@@ -230,11 +231,15 @@ namespace game_framework {
 				break;
 
 			case FLAG_HOME_OPTIONS:		//點進options
-				if (nChar == KEY_ESC || nChar == KEY_SPACE)
+				if (nChar == KEY_ESC)
 				{
 					PausedMenu::Instance().PrePausedMenu();
 					PausedMenu::Instance().PrePausedMenu();
 					_flag = FLAG_HOME_PAUSED;
+				}
+				if (nChar == KEY_SPACE)
+				{
+					PausedMenu::Instance().SaveData();
 				}
 				break;
 
@@ -293,6 +298,15 @@ namespace game_framework {
 
 	void Home_State_Controller::OnMove() 
 	{
+		
+		if (CharacterData::Instance()->HP() == 0)
+		{
+			bool isDead;
+			isDead = Character::Instance().Dead();	//角色死亡
+			isDead ? _isSwitch = true, _game_state_num = GAME_STATE_OVER : NULL;
+		}
+		
+
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
 		if (_delayCounter > -1)

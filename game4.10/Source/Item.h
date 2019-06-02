@@ -31,10 +31,8 @@ namespace game_framework {
 		bool _isOwned;			//擁有該裝備
 		int _diamond;
 		int _pic;			//暫存圖片編號，等LoadBitmap時再匯入圖片
-		int _info_pic;
-		
+		int _info_pic;	
 	};
-
 }
 
 

@@ -51,7 +51,7 @@ namespace game_framework {
 	
 
 			
-			bool temp[7] = { true, true, true, true, true, false, false };
+			bool temp[7] = { true, true, true, true, true, true, true };
 			Originator *o = new Originator("Origin", 300, 2, temp);
 			o->SetRecord();
 			Caretaker care;

@@ -8,10 +8,7 @@
 #include "GameData.h"
 
 namespace game_framework {
-	Init_State_Controller::Init_State_Controller() : Controller()
-	{
-
-	} 
+	Init_State_Controller::Init_State_Controller() : Controller(){} 
 
 	void Init_State_Controller::Begin()
 	{
@@ -24,9 +21,8 @@ namespace game_framework {
 
 	void Init_State_Controller::Initialize()
 	{	
-		if (CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav"))
+		if(CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav"))
 			CAudio::Instance()->Play(AUDIO_TITLE, true);
-
 		CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
 		
 		int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,
@@ -160,9 +156,6 @@ namespace game_framework {
 				_flag = FLAG_INIT_OPTION;
 			break;
 		}
-
-		
-
 	}
 
 	void Init_State_Controller::OnLButtonDown(UINT nFlags, CPoint point)
