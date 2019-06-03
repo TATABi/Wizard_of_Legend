@@ -16,6 +16,7 @@ namespace game_framework {
 		virtual void OnShow();
 		virtual bool IsSwitchGameState();
 		virtual int GameState();
+		void CharacterDead();
 	protected:
 		void Cheater(UINT);		//§@¹ú
 		int _game_state_num;

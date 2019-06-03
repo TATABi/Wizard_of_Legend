@@ -171,6 +171,4 @@ namespace game_framework {
 	{
 		return TOWN_LOGIC[int(x/10)][int(y/10)];
 	}
-	
-
 }

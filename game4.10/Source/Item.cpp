@@ -9,7 +9,7 @@
 
 namespace game_framework {
 	
-	Item::Item(int bm, int bm_info, string type, int number,int diamond, bool (*effect)(), void (*strip)())
+	Item::Item(int bm, int bm_info, string type, enum ITEM_NUMBER number,int diamond, bool (*effect)(), void (*strip)())
 	{
 		Initialize();
 		_pic = bm;

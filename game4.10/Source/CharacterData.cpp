@@ -42,7 +42,7 @@ namespace game_framework {
 		_mp_charge_coefficient = 1;
 		_isInvincible = false;
 		_isLockHP = false;
-		_stage = _gold_found = _diamond_collected = _enemies_defeated = 0;
+		_stage = _money_found = _diamond_collected = _enemies_defeated = 0;
 
 	}
 
@@ -163,7 +163,7 @@ namespace game_framework {
 	{
 		_hp = _max_hp;
 		_isMagicBuff = false;
-		_mp = _money = _stage = _gold_found = _diamond_collected = _enemies_defeated = 0;
+		_mp = _money = _stage = _money_found = _diamond_collected = _enemies_defeated = 0;
 	}
 
 	void CharacterData::SetMagicBuff(bool isBuff)
@@ -175,7 +175,7 @@ namespace game_framework {
 	{
 		int result[4];
 		result[0] = _stage;
-		result[1] = _gold_found;
+		result[1] = _money_found;
 		result[2] = _diamond_collected;
 		result[3] = _enemies_defeated;
 		
@@ -187,9 +187,9 @@ namespace game_framework {
 		_stage = stage;
 	}
 
-	void CharacterData::AddGoldFound(int gold)
+	void CharacterData::AddMoneyCollected(int gold)
 	{
-		_gold_found += gold;
+		_money_found += gold;
 	}
 
 	void CharacterData::AddDiamondCollected(int diamond)

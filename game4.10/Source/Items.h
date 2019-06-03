@@ -29,7 +29,7 @@ namespace game_framework {
 		vector<Item*> _temp_items;		//¥Î¨Ó¿z¿ï
 		int NUMBER_OF_OFFENSE = 2;
 		int NUMBER_OF_DEFENSE = 3;
-		int NUMBER_OF_MISC = 2;
+		int NUMBER_OF_MISC = 1;
 	};
 
 }

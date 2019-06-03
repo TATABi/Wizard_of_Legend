@@ -34,11 +34,13 @@ namespace game_framework
 	class Originator
 	{
 	public:
-		Originator();
+		static Originator &Instance();
 		void SetState(State*);
 		void RestoreToMemento(Memento*);
 		Memento* CreateMemento();
 		void SetRecord();
+	protected:
+		Originator();
 	private:
 		State* _state;
 	};
@@ -46,15 +48,15 @@ namespace game_framework
 	class Caretaker
 	{
 	public:
-		Caretaker();
+		static Caretaker &Instance();
 		~Caretaker();
 		void SetMemento(Memento*);
 		Memento* GetMemento(string);
+	protected:
+		Caretaker();
 	private:
 		map<string, Memento*> _mementos;
 	};
 }
-
-
 
 #endif

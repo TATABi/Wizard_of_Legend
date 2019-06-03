@@ -85,9 +85,9 @@ enum GAME_STATES {
 	GAME_STATE_RUN_HOME,
 	GAME_STATE_RUN_TOWN,
 	GAME_STATE_RUN_LEVEL_1,
+	GAME_STATE_OVER
 	/*
 	GAME_STATE_RUN_LOADING,
-	
 	GAME_STATE_RUN_LEVEL_2,
 	GAME_STATE_RUN_LEVEL_3,
 	GAME_STATE_RUN_LEVEL_4,
@@ -97,7 +97,6 @@ enum GAME_STATES {
 	GAME_STATE_RUN_LEVEL_8,
 	GAME_STATE_RUN_LEVEL_9,
 	*/
-	GAME_STATE_OVER
 };
 
 enum AUDIO_ID {				// 定義各種音效的編號
@@ -137,6 +136,8 @@ const char KEY_F4 = 0x73;
 const char KEY_F5 = 0x74;
 const char KEY_F6 = 0x75;
 const char KEY_F7 = 0x76;
+const char KEY_F8 = 0x77;
+const char KEY_F9 = 0x78;
 const char KEY_ENTER = 0xD;
 
 /////////////////////////////////////////////////////////////////////////////

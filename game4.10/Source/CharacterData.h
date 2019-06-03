@@ -29,10 +29,9 @@ namespace game_framework {
 		void SetMagicBuff(bool);				//設定Magic Buff 狀態
 		int* GetStageResult();					//取得關卡結算
 		void SetStage(int);
-		void AddGoldFound(int);
+		void AddMoneyCollected(int);
 		void AddDiamondCollected(int);
 		void AddEnemiesDefeated(int);
-
 
 		//Beater -- 封弊者 ???????
 		void LockHP();
@@ -73,7 +72,7 @@ namespace game_framework {
 		bool _isMagicBuff;						//Magic Buff 狀態		
 		bool _isLockHP;
 		int _stage;								//角色目前所在關卡
-		int _gold_found;						//關卡中所獲得的金錢
+		int _money_found;						//關卡中所獲得的金錢
 		int _diamond_collected;					//關卡中所獲得的寶石
 		int _enemies_defeated;					//關卡中擊殺的敵人數量
 	};

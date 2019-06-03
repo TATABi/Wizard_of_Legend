@@ -12,10 +12,10 @@ namespace game_framework {
 
 	void Init_State_Controller::Begin()
 	{
+		_game_state_num = GAME_STATE_INIT;
 		_flag = FLAG_INIT_INIT;
 		_instruction_1 = SINGLE_PLAYER;
 		_instruction_2 = KEY_CONFIG;
-		_game_state_num = -1;
 		_isSwitch = false;
 	}
 
