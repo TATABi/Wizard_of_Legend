@@ -47,6 +47,7 @@ namespace game_framework
 	{
 	public:
 		Caretaker();
+		~Caretaker();
 		void SetMemento(Memento*);
 		Memento* GetMemento(string);
 	private:

@@ -70,6 +70,7 @@ namespace game_framework {
 		_is_magic_buff_init = true;
 		_isDead = false;
 		_mp_decrease_counter = MP_DECREASE_TIME;;
+		_skill_cooldown_counter[0] = _skill_cooldown_counter[1] = _skill_cooldown_counter[2] = 0;
 	}
 
 	void Character::LoadBitmap()
@@ -226,6 +227,9 @@ namespace game_framework {
 	{
 		IsHurt();
 		MagicBuff();
+
+		for (int i = 0; i < 3; i++)
+			_skill_cooldown_counter[i] > 0 ? _skill_cooldown_counter[i]-- : NULL;
 
 		if (_isDead)
 		{
@@ -600,15 +604,16 @@ namespace game_framework {
 
 		if (skillNum == 1)
 		{
-			if (!_isUsingSkill)
+			if (!_isUsingSkill && _skill_cooldown_counter[0] == 0 )
 			{
 				_isUsingSkill = true;
 				_ani_useSkill = &_ani_useSkill_1;
+				_skill_cooldown_counter[0] = 0;
 			}
 		}
 		else if (skillNum == 2)
 		{
-			if (!_isUsingSkill)
+			if (!_isUsingSkill && _skill_cooldown_counter[1] == 0)
 			{
 				_isUsingSkill = true;
 
@@ -628,10 +633,12 @@ namespace game_framework {
 					break;
 				}
 
+				_skill_cooldown_counter[1] = REBOUNDING_ICICKES_COOLDOWN;
+
 				return new Skill_Rebounding_Icicles(x, y, _xy);
 			}
 		}
-		else if (skillNum == 3)
+		else if (skillNum == 3 && _skill_cooldown_counter[2] == 0)
 		{
 			if (!_isUsingSkill)
 			{
@@ -641,6 +648,8 @@ namespace game_framework {
 					_ani_useSkill = &_ani_useSkill_3_down;
 				else
 					_ani_useSkill = &_ani_useSkill_3_up;
+
+				_skill_cooldown_counter[2] = SHOCK_NOVA_COOLDOWN;
 
 				return new Skill_Shock_Nova(x, y, _xy);
 			}
@@ -772,6 +781,16 @@ namespace game_framework {
 		}
 		else
 			return false;
+	}
+
+	bool Character::IsSkillCooldown(int skill_num)
+	{
+		return _skill_cooldown_counter[skill_num - 1] != 0;
+	}
+
+	int Character::GetSkillCooldown(int skill_num)
+	{
+		return _skill_cooldown_counter[skill_num - 1];
 	}
 
 }

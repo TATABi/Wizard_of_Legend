@@ -31,6 +31,8 @@ namespace game_framework {
 		bool IsHurt();									//是否被毆，被毆時不能用技能
 		void MagicBuff();								//判斷Magic Buff 並進行強化
 		bool Dead();
+		bool IsSkillCooldown(int);						//技能是否在冷卻
+		int GetSkillCooldown(int);						//回傳目前技能的冷卻時間
 	protected:
 		Character();
 	private:
@@ -45,7 +47,7 @@ namespace game_framework {
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right;								//跑步時的氣流
 		CAnimation _ani_dash_up, _ani_dash_down, _ani_dash_left, _ani_dash_right;							//dash動畫
 		//CAnimation _ani_arrival;																			//出場動畫
-		//CAnimation _ani_dead;																				//死亡動畫
+		CAnimation _ani_die;																				//死亡動畫
 		CAnimation _ani_useSkill_1;																			//使用Skill 1 動畫
 		CAnimation _ani_useSkill_2_up, _ani_useSkill_2_down, _ani_useSkill_2_left, _ani_useSkill_2_right;	//使用Skill 2 動畫
 		CAnimation _ani_useSkill_3_down, _ani_useSkill_3_up;												//使用Skill 3 動畫
@@ -53,7 +55,6 @@ namespace game_framework {
 		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;						//站立圖
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;														//被毆圖
 		CAnimation _ani_magic_buff;
-		CAnimation _ani_die;
 		DIRECTION _direction;												// 紀錄角色面向方向
 		int _dx, _dy;														//移動距離
 		bool _isMovingDown, _isMovingLeft, _isMovingRight, _isMovingUp;		//移動方向
@@ -73,6 +74,7 @@ namespace game_framework {
 		int _magic_buff_counter;											//計算Magic Buff時間
 		int _mp_decrease_counter;											//計算MP未累積滿前隨時間減少的量
 		bool _is_magic_buff_init;											//紀錄是否加成過數值
+		int _skill_cooldown_counter[3];
 	};
 }
 

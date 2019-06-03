@@ -33,6 +33,7 @@ const int SHOCK_NOVA_SPEED = 0;									//技能移動速度
 const int SHOCK_NOVA_CAST_DISTANCE = 0;							//技能施放與角色距離
 const int SHOCK_NOVA_RE_ATTACK_COUNTER = 6;						//造成傷害次數
 const int SHOCK_NOVA_DELAY_COUNTER = 5;							//使用技能後延遲時間
+const int SHOCK_NOVA_COOLDOWN = 3 * 30;							//冷卻時間
 
 //Rebounding Icicles//
 const int REBOUNDING_ICICKES_DAMAGE = 10;						//傷害
@@ -41,6 +42,7 @@ const int REBOUNDING_ICICKES_LIFETIME = 180;					//技能存活時間
 const int REBOUNDING_ICICKES_MAP_HITBOX[4] = { 35, 45, 6, 5 };	// 地圖碰撞
 const int REBOUNDING_ICICKES_SPEED = 10;						//技能移動速度
 const int REBOUNDING_ICICKES_CAST_DISTANCE = 50;				//技能施放與角色距離
+const int REBOUNDING_ICICKES_COOLDOWN = 1 * 30;					//冷卻時間
 
 //===========================Eenemy===========================//
 

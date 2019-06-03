@@ -91,6 +91,13 @@ namespace game_framework
 	//Caretaker
 	Caretaker::Caretaker() {}
 
+	Caretaker::~Caretaker()
+	{
+		map<string, Memento*>::iterator it;
+		for (it = _mementos.begin(); it != _mementos.end(); it++)
+			delete it->second;
+	}
+
 	void Caretaker::SetMemento(Memento* memento)
 	{
 		_mementos[memento->Stage()] = memento;
