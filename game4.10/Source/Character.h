@@ -48,7 +48,7 @@ namespace game_framework {
 		CAnimation _ani_dash_up, _ani_dash_down, _ani_dash_left, _ani_dash_right;							//dash動畫
 		//CAnimation _ani_arrival;																			//出場動畫
 		CAnimation _ani_die;																				//死亡動畫
-		CAnimation _ani_useSkill_1;																			//使用Skill 1 動畫
+		CAnimation _ani_useSkill_1_up, _ani_useSkill_1_down, _ani_useSkill_1_left, _ani_useSkill_1_right;	//使用Skill 1 動畫
 		CAnimation _ani_useSkill_2_up, _ani_useSkill_2_down, _ani_useSkill_2_left, _ani_useSkill_2_right;	//使用Skill 2 動畫
 		CAnimation _ani_useSkill_3_down, _ani_useSkill_3_up;												//使用Skill 3 動畫
 		CAnimation* _ani_useSkill;																			//暫存現在使用的技能

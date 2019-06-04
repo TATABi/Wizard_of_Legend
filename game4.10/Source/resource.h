@@ -482,7 +482,6 @@
 #define CHARACTER_DIE_08                757
 #define CHARACTER_DIE_09                758
 #define CHARACTER_DIE_10                759
-#define CHARACTER_DIE_1                 760
 #define CHARACTER_DIE_11                760
 #define CHARACTER_DIE_12                761
 #define CHARACTER_DIE_13                762
@@ -495,6 +494,21 @@
 #define CHARACTER_DIE_20                769
 #define CHARACTER_DIE_21                770
 #define CHARACTER_DIE_22                771
+#define CHARACTER_AIR_SPINNER_UP_01     772
+#define CHARACTER_AIR_SPINNER_UP_02     773
+#define CHARACTER_AIR_SPINNER_UP_03     774
+#define CHARACTER_AIR_SPINNER_UP_04     775
+#define CHARACTER_AIR_SPINNER_UP_05     776
+#define CHARACTER_AIR_SPINNER_UP_06     777
+#define CHARACTER_AIR_SPINNER_UP_07     778
+#define CHARACTER_AIR_SPINNER_UP_08     779
+#define CHARACTER_AIR_SPINNER_UP_09     780
+#define CHARACTER_AIR_SPINNER_UP_10     781
+#define CHARACTER_AIR_SPINNER_UP_11     782
+#define CHARACTER_AIR_SPINNER_UP_12     783
+#define CHARACTER_AIR_SPINNER_UP_13     784
+#define IDB_BITMAP28                    785
+#define CHARACTER_AIR_SPINNER_UP_14     785
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -507,7 +521,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        772
+#define _APS_NEXT_RESOURCE_VALUE        786
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

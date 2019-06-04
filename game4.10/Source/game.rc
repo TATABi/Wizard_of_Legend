@@ -526,6 +526,20 @@ CHARACTER_DIE_19        BITMAP                  "..\\RES\\Character\\Die\\19.bmp
 CHARACTER_DIE_20        BITMAP                  "..\\RES\\Character\\Die\\20.bmp"
 CHARACTER_DIE_21        BITMAP                  "..\\RES\\Character\\Die\\21.bmp"
 CHARACTER_DIE_22        BITMAP                  "..\\RES\\Character\\Die\\22.bmp"
+CHARACTER_AIR_SPINNER_UP_01 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\01.bmp"
+CHARACTER_AIR_SPINNER_UP_02 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\02.bmp"
+CHARACTER_AIR_SPINNER_UP_03 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\03.bmp"
+CHARACTER_AIR_SPINNER_UP_04 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\04.bmp"
+CHARACTER_AIR_SPINNER_UP_05 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\05.bmp"
+CHARACTER_AIR_SPINNER_UP_06 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\06.bmp"
+CHARACTER_AIR_SPINNER_UP_07 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\07.bmp"
+CHARACTER_AIR_SPINNER_UP_08 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\08.bmp"
+CHARACTER_AIR_SPINNER_UP_09 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\09.bmp"
+CHARACTER_AIR_SPINNER_UP_10 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\10.bmp"
+CHARACTER_AIR_SPINNER_UP_11 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\11.bmp"
+CHARACTER_AIR_SPINNER_UP_12 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\12.bmp"
+CHARACTER_AIR_SPINNER_UP_13 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\13.bmp"
+CHARACTER_AIR_SPINNER_UP_14 BITMAP                  "..\\RES\\Character\\Use_Air_Spinner\\Up\\14.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -662,6 +662,34 @@
     <Image Include="RES\Character\Die\20.bmp" />
     <Image Include="RES\Character\Die\21.bmp" />
     <Image Include="RES\Character\Die\22.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\01.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\02.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\03.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\04.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\05.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\06.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\07.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\08.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\09.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\10.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\11.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\12.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\13.bmp" />
+    <Image Include="..\..\..\Downloads\game4.10\RES\Character\Use_Air_Spinner\Up\14.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\01.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\02.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\03.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\04.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\05.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\06.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\07.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\08.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\09.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\10.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\11.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\12.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\13.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\14.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />
