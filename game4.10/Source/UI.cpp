@@ -115,21 +115,21 @@ namespace game_framework {
 		_bm_skill_2.ShowBitmap();
 		_int_money.ShowBitmap();
 		_int_diamond.ShowBitmap();
-		_int_maxhp.ShowBitmap();
-		_int_hp.ShowBitmap();
-		_bm_slash.ShowBitmap();
-
+		
 		//判斷技能是否處於冷卻狀態，若正在冷卻，則倒數冷卻時間
 		Character::Instance().GetSkillCooldown(2) != 0 ? _skiil_2_cooldown.ShowBitmap() : _bm_skill_3.ShowBitmap();;
 		Character::Instance().GetSkillCooldown(3) != 0 ? _skiil_3_cooldown.ShowBitmap() : _bm_skill_4.ShowBitmap();;
 		
 		//判斷MP集滿動畫
 		if (CharacterData::Instance()->ISMAGICBUFF())
-			_ani_mp_bar.OnShow();
+			_ani_mp_bar.OnShow();	
 
 		//計算HP, MP
 		CalculateHP();
-		CalculateMP();		
+		CalculateMP();
+		_int_maxhp.ShowBitmap();
+		_int_hp.ShowBitmap();
+		_bm_slash.ShowBitmap();
 	}
 
 	void UI::CalculateHP()
