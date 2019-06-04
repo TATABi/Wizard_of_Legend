@@ -61,7 +61,13 @@ namespace game_framework
 
 
 	//Originator
-	Originator::Originator(){}
+	Originator& Originator::Instance()
+	{
+		static Originator instance;
+		return instance;
+	}
+
+	Originator::Originator() {}
 
 	void Originator::SetState(State* state)
 	{
@@ -83,11 +89,10 @@ namespace game_framework
 		Memento* memento = CreateMemento();
 		Items::Instance().SetItems(memento->_state->OwnedItem());
 		Items::Instance().Equip(memento->_state->EquipItem(), true);
-		CharacterData::Instance()->SetDiamond(memento ->_state->Diamond());
+		CharacterData::Instance()->SetDiamond(memento->_state->Diamond());
 		delete memento;
 	}
-
-
+	
 	//Caretaker
 	Caretaker::Caretaker() {}
 
@@ -108,4 +113,9 @@ namespace game_framework
 		return _mementos[state];
 	}
 
+	Caretaker& Caretaker::Instance()
+	{
+		static Caretaker instance;
+		return instance;
+	}
 }

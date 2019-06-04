@@ -43,7 +43,7 @@ namespace game_framework {
 		_ani_run_up.SetDelayCount(2);
 		_ani_run_right.SetDelayCount(2);
 		_ani_run_left.SetDelayCount(2);
-		_ani_useSkill_1.SetDelayCount(1);
+		_ani_useSkill_1_up.SetDelayCount(1);
 		_ani_useSkill_2_down.SetDelayCount(1);
 		_ani_useSkill_2_up.SetDelayCount(1);
 		_ani_useSkill_2_left.SetDelayCount(1);
@@ -210,7 +210,7 @@ namespace game_framework {
 		_bm_stand_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_bm_stand_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_bm_stand_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
-		_ani_useSkill_1.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		_ani_useSkill_1_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_useSkill_2_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_useSkill_2_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_ani_useSkill_2_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
@@ -607,7 +607,7 @@ namespace game_framework {
 			if (!_isUsingSkill && _skill_cooldown_counter[0] == 0 )
 			{
 				_isUsingSkill = true;
-				_ani_useSkill = &_ani_useSkill_1;
+				_ani_useSkill = &_ani_useSkill_1_up;
 				_skill_cooldown_counter[0] = 0;
 			}
 		}

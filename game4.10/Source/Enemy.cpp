@@ -12,7 +12,8 @@
 #include "Reward_Money.h"
 #include "Reward_Diamond.h"
 #include <random>
-
+#include "CharacterData.h"
+#define DEFEATED_COUNT 1
 namespace game_framework {
 	Enemy::Enemy(int x, int y, int area, GameMap* map) : _ori_x(x), _ori_y(y), _area(area), _map(map)
 	{
@@ -97,7 +98,6 @@ namespace game_framework {
 				_hit_recover_counter == 0 ? _state = CHARGING : NULL;
 				break;
 			}
-
 			Move(cx, cy);
 		}	
 	}
@@ -177,6 +177,9 @@ namespace game_framework {
 			if (prob <= 70)
 				rewards.push_back(new Reward_Money(midX, midY, _map));
 		}
+
+		//¼W¥[±þ¼Ä¼Æ
+		CharacterData::Instance()->AddEnemiesDefeated(DEFEATED_COUNT);
 		return rewards;
 	}
 

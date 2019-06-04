@@ -13,7 +13,7 @@ namespace game_framework {
 
 	void Home_State_Controller::Begin()
 	{
-		_game_state_num = -1;
+		_game_state_num = GAME_STATE_RUN_HOME;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
 		_map.Initialize(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]);
@@ -298,15 +298,7 @@ namespace game_framework {
 
 	void Home_State_Controller::OnMove() 
 	{
-		
-		if (CharacterData::Instance()->HP() == 0)
-		{
-			bool isDead;
-			isDead = Character::Instance().Dead();	//角色死亡
-			isDead ? _isSwitch = true, _game_state_num = GAME_STATE_OVER : NULL;
-		}
-		
-
+		CharacterDead();		//判斷腳色死亡、執行相關動作
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
 		if (_delayCounter > -1)

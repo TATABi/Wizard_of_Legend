@@ -7,15 +7,16 @@
 #include "Level_One_State_Controller.h"
 #include "GameData.h"
 
+#define LEVEL_ONE 1
 namespace game_framework {
-	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(LEVEL_One_CHARACTER_XY[0], LEVEL_One_CHARACTER_XY[1], &Character::Instance()) {}
+	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1], &Character::Instance()) {}
 	
 	void Level_One_State_Controller::Begin()
 	{
-		_game_state_num = -1;
+		_game_state_num = GAME_STATE_RUN_LEVEL_1;
 		_isSwitch = false;
 		_delayCounter = 30 * 4; // 1 seconds
-		_map.Initialize(LEVEL_One_CHARACTER_XY[0], LEVEL_One_CHARACTER_XY[1]);
+		_map.Initialize(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]);
 		Character::Instance().Initialize(_map.GetCharacterPosition());
 		_flag = FLAG_NORMAL;
 		Character::Instance().Initialize(_map.GetCharacterPosition());
@@ -152,7 +153,10 @@ namespace game_framework {
 
 	void Level_One_State_Controller::OnMove()
 	{
+		CharacterData::Instance()->SetStage(LEVEL_ONE);
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
+
+		CharacterDead();		//判斷腳色死亡、執行相關動作
 
 		if (_delayCounter > -1)
 			_delayCounter--;

@@ -1,3 +1,6 @@
+#ifndef GAME_DATA_H
+#define GAME_GATA_H
+
 //===========================Screen===========================//
 const string SAVE_DATA_PATH = "Data/save_data";
 
@@ -72,7 +75,7 @@ const int SLIME_ZONE = 30;										//攻擊區域
 const int SLIME_DAMAGE = 10;									//傷害
 const int SLIME_ATTACK_DELAY_TIME = 7;							//進入攻擊範圍後延遲的攻擊時間
 const int SLIME_HITBOX[4] = { 4, 10, 25, 24 };					//承受傷害的Hitbox
-const int SLIME_MOVE_HITBOX[4] = { 5, 31, 25, 5 };			//移動的Hitbox
+const int SLIME_MOVE_HITBOX[4] = { 5, 31, 25, 5 };				//移動的Hitbox
 const int SLIME_CHARGING_ZONE = 300;							//追擊範圍
 
 
@@ -88,7 +91,9 @@ const int TOWN_STORE_ITEM[2] = { 525 , 990};					//物品擺放位置
 
 //==========================Level_One==========================//
 
-const int LEVEL_One_CHARACTER_XY[2] = {3000, 2830};
+const int LEVEL_ONE_CHARACTER_XY[2] = {3000, 2830};
 
 //============================Items============================//
 
+
+#endif

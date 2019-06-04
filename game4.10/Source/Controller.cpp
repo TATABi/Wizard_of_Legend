@@ -7,6 +7,7 @@
 #include "Controller.h"
 #include "CharacterData.h"
 #include "Items.h"
+#include "Character.h"
 
 namespace game_framework {
 
@@ -44,17 +45,14 @@ namespace game_framework {
 		}
 		*/
 		else if (keycode == KEY_F6)
-		{
+		{/*
 			bool _owned_items[7] = { true, true, true, true, true, true, true };
 			State* state = new State("Stage 1", 20, 1, _owned_items);
-			Originator o;
-			o.SetState(state);
-			o.SetRecord();
-			Caretaker caretaker;
-			caretaker.SetMemento(o.CreateMemento());
-
-			delete state;
-			
+			Originator::Instance().SetState(state);
+			Originator::Instance().SetRecord();
+			Caretaker::Instance().SetMemento(Originator::Instance().CreateMemento());
+			delete state; 
+		*/
 		}
 		else if (keycode == KEY_F7)
 		{
@@ -62,6 +60,10 @@ namespace game_framework {
 			CharacterData::Instance()->SetAttackCoefficient(100);
 			CharacterData::Instance()->AddMoney(999);
 			CharacterData::Instance()->AddDiamond(999);
+		}
+		else if (keycode == KEY_F8)
+		{
+			CharacterData::Instance()->AddHP(-CharacterData::Instance()->HP());
 		}
 	}
 
@@ -80,5 +82,16 @@ namespace game_framework {
 	int Controller::GameState()
 	{
 		return _game_state_num;
+	}
+
+	void Controller::CharacterDead()
+	{
+		if (CharacterData::Instance()->HP() == 0)
+		{
+			bool isDead;
+			isDead = Character::Instance().Dead();	//¨¤¦â¦º¤`
+			isDead ? _isSwitch = true, _game_state_num = GAME_STATE_OVER : NULL;
+		
+		}
 	}
 }
