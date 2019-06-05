@@ -30,7 +30,7 @@ namespace game_framework {
 
 		int _range_eat, _range_position, _time, _targetX, _targetY;
 		int _value = 1;
-		int _move_counter = 30;
+		int _move_counter = 30;					//避免因為角色移動，造成reward一直沒辦法移動到角色身上
 		int _hitbox[4] = { 0 };
 		CMovingBitmap _bm_reward;
 		bool _isShow, _isUp;
