@@ -13,6 +13,7 @@ namespace game_framework {
 
 	void Home_State_Controller::Begin()
 	{
+		LoadMemento(Town_Or_Home);
 		_game_state_num = GAME_STATE_RUN_HOME;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds

@@ -108,5 +108,4 @@ namespace game_framework {
 		_bm_info.SetTopLeft(x, y);
 		_bm_info.ShowBitmap();
 	}
-
 }

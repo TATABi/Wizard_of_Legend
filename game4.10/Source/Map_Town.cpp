@@ -165,7 +165,6 @@ namespace game_framework {
 
 		return false;
 	}
-
 	
 	int Map_Town::GetMapStatus(float x, float y)
 	{

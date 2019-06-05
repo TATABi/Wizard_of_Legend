@@ -133,7 +133,7 @@ namespace game_framework {
 				if (nChar == KEY_TAB || nChar == KEY_ESC)
 				{
 					Bag::Instance().Open(false);
-					_flag = FLAG_BAG;
+					_flag = FLAG_NORMAL;
 				}
 				break;
 			}

@@ -1,5 +1,5 @@
 #ifndef GAME_DATA_H
-#define GAME_GATA_H
+#define GAME_DATA_H
 
 //===========================Screen===========================//
 const string SAVE_DATA_PATH = "Data/save_data";
@@ -47,7 +47,7 @@ const int REBOUNDING_ICICKES_SPEED = 10;						//技能移動速度
 const int REBOUNDING_ICICKES_CAST_DISTANCE = 50;				//技能施放與角色距離
 const int REBOUNDING_ICICKES_COOLDOWN = 1 * 30;					//冷卻時間
 
-//===========================Eenemy===========================//
+//===========================Enemy===========================//
 
 //Blockhead//
 const int BLOCKHEAD_HP = 10000;									//血量
@@ -88,6 +88,7 @@ const int HOME_CHARACTER_XY[2] = { 740 , 918 };					//角色初始位置
 const int TOWN_CHARACTER_XY[2] = { 770, 1065 };					//角色初始位置
 const int TOWN_STORE_XY[2] = { 520, 1018 };						//商店所在位置
 const int TOWN_STORE_ITEM[2] = { 525 , 990};					//物品擺放位置
+const string Town_Or_Home = "Town or Home";
 
 //==========================Level_One==========================//
 
@@ -95,5 +96,6 @@ const int LEVEL_ONE_CHARACTER_XY[2] = {3000, 2830};
 
 //============================Items============================//
 
+const int NUM_ITEMS = 7;
 
 #endif

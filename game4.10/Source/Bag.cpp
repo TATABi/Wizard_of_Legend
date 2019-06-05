@@ -70,7 +70,6 @@ namespace game_framework {
 					row = 0;
 					col++;
 				}
-
 				_items[i]->SetXY(67 + 25 * row, 170 + 25 * col);
 				_items[i]->OnShow();
 				row++;						
@@ -84,9 +83,7 @@ namespace game_framework {
 
 			if (_flags[0] + _flags[1] * 6 < _items.size())
 				_items[_flags[0] + _flags[1] * 6]->ShowInfo(70, 255);
-		}
-
-		
+		}		
 	}
 
 	void Bag::Open(bool isOpened)
@@ -119,5 +116,4 @@ namespace game_framework {
 		if (_flags[1] < 1 )
 			_flags[1]++;
 	}
-
 }

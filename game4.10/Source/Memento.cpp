@@ -11,16 +11,19 @@
 
 namespace game_framework
 {
+/////////////////////////////////////////////////
 	//State
-	State::State(const string stage, int diamond, int equip_item, bool owned_items[7])
+	State::State(const string stage, int diamond, int equip_item, bool owned_items[NUM_ITEMS])
 	{
 		_stage = stage;
 		_diamond = diamond;
 		_equip_item = equip_item;
 
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < NUM_ITEMS; i++)
 			_owned_items[i] = owned_items[i];
 	}
+
+	State::~State() {}
 
 	string State::Stage()
 	{
@@ -41,14 +44,19 @@ namespace game_framework
 	{
 		return _owned_items;
 	}
+/////////////////////////////////////////////////
 
-
+/////////////////////////////////////////////////
 	//Memento
 	Memento::Memento(State* state)
 	{
 		_state = state;
 	}
-
+	
+	Memento::~Memento()
+	{
+		delete _state;
+	}
 	string Memento::Stage()
 	{
 		return _state->Stage();
@@ -58,8 +66,9 @@ namespace game_framework
 	{
 		_state = state;
 	}
+/////////////////////////////////////////////////
 
-
+/////////////////////////////////////////////////
 	//Originator
 	Originator& Originator::Instance()
 	{
@@ -77,6 +86,10 @@ namespace game_framework
 	void Originator::RestoreToMemento(Memento *memento)
 	{
 		_state = memento->_state;
+		Items::Instance().SetItems(_state->OwnedItem());
+		Items::Instance().UnloadAllItem();
+		Items::Instance().Equip(_state->EquipItem(), true);
+		CharacterData::Instance()->SetDiamond(_state->Diamond());
 	}
 
 	Memento* Originator::CreateMemento()
@@ -84,15 +97,9 @@ namespace game_framework
 		return new Memento(this->_state);
 	}
 
-	void Originator::SetRecord()
-	{
-		Memento* memento = CreateMemento();
-		Items::Instance().SetItems(memento->_state->OwnedItem());
-		Items::Instance().Equip(memento->_state->EquipItem(), true);
-		CharacterData::Instance()->SetDiamond(memento->_state->Diamond());
-		delete memento;
-	}
-	
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
 	//Caretaker
 	Caretaker::Caretaker() {}
 
@@ -100,16 +107,32 @@ namespace game_framework
 	{
 		map<string, Memento*>::iterator it;
 		for (it = _mementos.begin(); it != _mementos.end(); it++)
+		{
 			delete it->second;
+		}
 	}
 
 	void Caretaker::SetMemento(Memento* memento)
 	{
+		//解決memory leak
+		//如果key已經存在map之中，刪除舊的
+		std::map<string, Memento*>::iterator it = _mementos.find(memento->Stage());
+		if (it != _mementos.end())
+		{
+			delete it->second;
+			_mementos.erase(memento->Stage());
+		}
 		_mementos[memento->Stage()] = memento;
 	}
 
 	Memento* Caretaker::GetMemento(string state)
-	{
+	{	
+		//避免沒有對應的memento
+		std::map<string, Memento*>::iterator it = _mementos.find(state);
+		if (it == _mementos.end())
+		{
+			return nullptr;
+		}
 		return _mementos[state];
 	}
 
@@ -119,3 +142,5 @@ namespace game_framework
 		return instance;
 	}
 }
+
+/////////////////////////////////////////////////
