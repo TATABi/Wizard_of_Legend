@@ -3,6 +3,9 @@
 
 //===========================Screen===========================//
 const string SAVE_DATA_PATH = "Data/save_data";
+const char CHAR_TAB = '\t';
+const string STRING_TURE = "true";
+const string STRING_FALSE = "false";
 
 //===========================Screen===========================//
 

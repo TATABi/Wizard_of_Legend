@@ -21,6 +21,7 @@ namespace game_framework {
 
 	void Init_State_Controller::Initialize()
 	{	
+		LoadData();
 		if(CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav"))
 			CAudio::Instance()->Play(AUDIO_TITLE, true);
 		CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
@@ -87,7 +88,10 @@ namespace game_framework {
 			if (nChar == KEY_ESC)
 			{
 				if (_instruction_1 == QUIT)
+				{
+					SaveData();	//存檔
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
+				}
 				else
 					_instruction_1 = QUIT;
 			}
@@ -111,6 +115,7 @@ namespace game_framework {
 					_flag = FLAG_INIT_OPTION;
 					break;
 				case QUIT:
+					SaveData();	//存檔
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 					break;
 				}
@@ -151,6 +156,7 @@ namespace game_framework {
 
 		case FLAG_INIT_KEY_CONFIG:
 		case FLAG_INIT_RESET_DATA:
+			ResetData();
 		case FLAG_INIT_ABOUT:
 			if (nChar == KEY_ESC)
 				_flag = FLAG_INIT_OPTION;

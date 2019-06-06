@@ -20,6 +20,9 @@ namespace game_framework {
 		void CharacterDead();
 		void UpdateMemento(std::string);	//¦smemento
 		void LoadMemento(std::string);		//Åª¨úmemento
+		void SaveData();
+		void LoadData();
+		void ResetData();
 	protected:
 		void Cheater(UINT);		//§@¹ú
 		int _game_state_num;

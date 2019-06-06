@@ -100,7 +100,7 @@ namespace game_framework {
 
 	void Item::SetItem(bool owned)
 	{
-		_isOwned = owned;
+ 		_isOwned = owned;
 	}
 
 	void Item::ShowInfo(int x, int y)

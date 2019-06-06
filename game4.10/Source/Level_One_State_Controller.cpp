@@ -114,6 +114,7 @@ namespace game_framework {
 						_flag = FLAG_OPTIONS;
 						break;
 					case 3:
+						SaveData();	//¦sÀÉ
 						PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// Ãö³¬¹CÀ¸
 						break;
 					}
