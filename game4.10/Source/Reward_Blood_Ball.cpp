@@ -20,7 +20,6 @@ namespace game_framework {
 	{
 		LoadBitmap();
 		Initialize(ex, ey);
-		SetRandomPosition();
 	}
 
 	void Reward_Blood_Ball::Initialize(float ex, float ey)

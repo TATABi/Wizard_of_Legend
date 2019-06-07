@@ -34,7 +34,7 @@ namespace game_framework {
 		_ani_press_f.SetDelayCount(2);
 		_isPressF = false;
 		_character_status = 0;
-		
+
 		for (int i = 0; i < _enemies.size(); i++)
 			_enemies[i]->Reset();	
 	}
@@ -159,6 +159,122 @@ namespace game_framework {
 			if (r_it == _rewards.end())
 				break;
 		}
+	}
+
+	void GameMap::SetCharacterXY(int dx, int dy)
+	{
+		int slow_x = (int)dx / 3;
+		int slow_y = (int)dy / 3;
+
+		////////角色移動與怪物碰撞//////
+		vector<Enemy*>::iterator iter;
+		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
+		{
+			float *e_xy = (*iter)->GetPosition();
+			int *e_collision_move = (*iter)->GetCollisionMove();
+
+			int x1 = _cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx;
+			int y1 = _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy;
+			int x2 = e_xy[0] + e_collision_move[0];
+			int y2 = e_xy[1] + e_collision_move[1];
+			int l1 = CHARACTER_MOVE_HITBOX[2];
+			int w1 = CHARACTER_MOVE_HITBOX[3];
+			int l2 = e_collision_move[2];
+			int w2 = e_collision_move[3];
+
+			int e_dx = 0, e_dy = 0;
+
+			if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2))	//發生碰撞
+			{
+				e_dx = (int)(dx / 3);
+				e_dy = (int)(dy / 3);
+
+				bool canMove = GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) != -1											//左上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) != -1								//右上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) != -1								//左下
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) != -1;		//右下
+
+				bool isDrop = GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) == -2											//左上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) == -2								//右上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) == -2								//左下
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) == -2;		//右下
+
+				if (canMove && !isDrop)
+				{
+					e_xy[0] += e_dx;
+					e_xy[1] += e_dy;
+					//被推到撞牆
+					dx = slow_x;
+					dy = slow_y;
+					break;
+				}
+				//被推
+				dx = dy = 0;
+			}
+			//沒撞到
+		}
+
+		//////////與地圖碰撞////////////
+		//可以dash到
+		bool canMove =
+			GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy) != -1															//左上
+			&& GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy) != -1								//右上
+			&& GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) != -1								//左下
+			&& GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) != -1;	//右下																																									
+
+																																											//下一步會掉落
+		bool isDrop =
+			GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy) == -2															//左上
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy) == -2								//右上
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) == -2								//左下
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) == -2;	//右下			
+
+		if (canMove)//地圖不是-1
+		{
+			if (Character::Instance().IsDash())//dash
+			{
+				_cxy[0] += dx;
+				_cxy[1] += dy;
+			}
+			else  if (Character::Instance().IsMoving())  //普通走路
+			{
+				if (!isDrop)
+				{
+					_cxy[0] += dx;
+					_cxy[1] += dy;
+				}
+			}
+			else    //觸發掉落
+			{
+				if (isDrop)
+				{
+					Character::Instance().SetDrop();
+				}
+				else
+				{
+					_cxy[0] += dx;
+					_cxy[1] += dy;
+				}
+			}
+		}
+	}
+
+	bool GameMap::CheckEnemyPosition(int x, int y, int* collision_move)
+	{
+		int ex = x + collision_move[0];
+		int ey = y + collision_move[1];
+		int l = collision_move[2];
+		int w = collision_move[3];
+
+		//////////與地圖碰撞////////////
+		if (GetMapStatus(ex, ey) != -1
+			&& GetMapStatus(ex + l, ey) != -1
+			&& GetMapStatus(ex + l, ey + w) != -1
+			&& GetMapStatus(ex, ey + w) != -1)
+		{
+			return true;
+		}
+		return false;
 	}
 }
 

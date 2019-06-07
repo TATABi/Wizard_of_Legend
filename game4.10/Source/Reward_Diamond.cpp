@@ -21,7 +21,6 @@ namespace game_framework {
 	{
 		LoadBitmap();
 		Initialize(ex, ey);
-		SetRandomPosition();
 	}
 
 	void Reward_Diamond::Initialize(float ex, float ey)

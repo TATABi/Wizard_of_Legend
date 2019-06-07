@@ -27,7 +27,7 @@ const int RUN_STEP = 10;										//Run的步長
 const int DASH_STEP = 17;										//Dash的步長
 const int MAGIC_BUFF_TIME = int(0.1 * 30);						//MP集滿時BUFF持續的時間
 const int MP_DECREASE_TIME = int(0.4 * 30);						//MP集滿時BUFF持續的時間
-
+const int DROP_COUNTER_TIME = 90;								//墜落多久後復原位置
 //===========================Skills===========================//
 
 //Shock Nova//
@@ -96,6 +96,7 @@ const string Town_Or_Home = "Town or Home";
 //==========================Level_One==========================//
 
 const int LEVEL_ONE_CHARACTER_XY[2] = {3000, 2830};
+const int DROP_DAMAGE = 30;										//墜落傷害
 
 //============================Items============================//
 

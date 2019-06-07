@@ -33,15 +33,18 @@ namespace game_framework {
 		bool Dead();
 		bool IsSkillCooldown(int);						//技能是否在冷卻
 		int GetSkillCooldown(int);						//回傳目前技能的冷卻時間
+		void SetDrop();									//set _isdrop to true
+		bool IsDash();									//return _isDash
+		bool IsMoving();								//是否有輸入任何(上下左右)移動指令
 	protected:
 		Character();
 	private:
 		bool IsSlash();									//是否斜走
 		bool CanDash();									//是否可以Dash
-		bool IsMoving();								//是否有輸入任何(上下左右)移動指令
 		int CaculateVector(int, int);					//計算滑鼠的 Vector，用來判定技能施放時，角色該面對的方向
 		void ResetRun();								//重製Run判斷的數據
 		void ResetDash();								//重製Dash判斷的數據
+		void DropDown(GameMap*);						//播動畫、復原位置，當判斷為isDrop時要鎖住其他動作
 
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;												//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right;								//跑步時的氣流
@@ -75,6 +78,9 @@ namespace game_framework {
 		int _mp_decrease_counter;											//計算MP未累積滿前隨時間減少的量
 		bool _is_magic_buff_init;											//紀錄是否加成過數值
 		int _skill_cooldown_counter[3];
+		bool _isDrop;														//紀錄是否掉落
+		int _drop_counter;													//掉落多久後復原
+		float _safePosition[2];												//復原的位置
 	};
 }
 

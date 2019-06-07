@@ -5,6 +5,7 @@
 #include "Layer.h"
 #include "Skill.h"
 #include "Reward.h"
+#include "GameData.h"
 
 namespace game_framework {
 	class Character;
@@ -27,12 +28,11 @@ namespace game_framework {
 		void EnemyOnMove();
 		void RewardsOnMove();
 		void CleanMemory();
+		void SetCharacterXY(int, int);
+		bool CheckEnemyPosition(int, int, int*);
 		virtual void LoadBitmap()=0;
 		virtual void OnMove() = 0;
-		virtual float* SetCharacterXY(int, int, const int*) = 0;
-		virtual bool SetEnemyXY(int, int, int*) = 0;
 		virtual int GetMapStatus(float, float) = 0;
-		
 	protected:
 		CMovingBitmap _background; //­I´º¹Ï
 		CMovingBitmap _wall; //Àð	
@@ -48,6 +48,9 @@ namespace game_framework {
 		vector<Skill*> _skillList;
 		vector<Enemy*> _enemies;
 		vector<Reward*> _rewards;
+		float _dx = 0;
+		float _dy = 0;
+		int _drop_counter = DROP_COUNTER_TIME;
 	};
 }
 #endif

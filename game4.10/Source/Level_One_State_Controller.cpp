@@ -139,7 +139,6 @@ namespace game_framework {
 				break;
 			}
 		}
-
 	}
 
 	void Level_One_State_Controller::OnLButtonDown(UINT nFlags, CPoint point)
@@ -156,7 +155,6 @@ namespace game_framework {
 	{
 		CharacterData::Instance()->SetStage(LEVEL_ONE);
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
-
 		CharacterDead();		//判斷腳色死亡、執行相關動作
 
 		if (_delayCounter > -1)
@@ -164,7 +162,6 @@ namespace game_framework {
 
 		_bm_loading_level.SetTopLeft(0, 0);
 		_bm_loading_chess.SetTopLeft(_chess_xy[0], _chess_xy[1]);
-
 
 		if (_delayCounter < 110)
 		{
@@ -179,8 +176,8 @@ namespace game_framework {
 			}
 		}
 
-		Character::Instance().OnMove(&_map);
 		_map.OnMove();
+		Character::Instance().OnMove(&_map);
 		Bag::Instance().OnMove();
 		UI::Instance().OnMove();
 		Items::Instance().Effect();

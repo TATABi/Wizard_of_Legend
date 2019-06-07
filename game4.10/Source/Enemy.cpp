@@ -133,7 +133,7 @@ namespace game_framework {
 	
 	bool Enemy::CanAchieved(int dx, int dy)
 	{
-		return _map->SetEnemyXY(_xy[0] + dx, _xy[1] + dy, _move_hitbox);
+		return _map->CheckEnemyPosition(_xy[0] + dx, _xy[1] + dy, _move_hitbox);
 	}
 
 	bool Enemy::IsLive()

@@ -128,7 +128,7 @@ namespace game_framework {
 			Originator::Instance().RestoreToMemento(Caretaker::Instance().GetMemento(stateName));
 		}
 	}
-
+	
 	void Controller::SaveData()
 	{
 		fstream file;

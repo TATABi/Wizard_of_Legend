@@ -127,7 +127,7 @@ namespace game_framework {
 		std::random_device rd;
 		_targetX = rd() % _range_position + _xy[0];
 		_targetY = rd() % _range_position + _xy[1];
-		while (!_map->SetEnemyXY(_targetX, _targetY, _hitbox))
+		while (!_map->CheckEnemyPosition(_targetX, _targetY, _hitbox))
 		{
 			_targetX = rd() % _range_position + _xy[0];
 			_targetY = rd() % _range_position + _xy[1];

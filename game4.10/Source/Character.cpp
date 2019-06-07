@@ -71,6 +71,8 @@ namespace game_framework {
 		_isDead = false;
 		_mp_decrease_counter = MP_DECREASE_TIME;;
 		_skill_cooldown_counter[0] = _skill_cooldown_counter[1] = _skill_cooldown_counter[2] = 0;
+		_isDrop = false;
+		_drop_counter = DROP_COUNTER_TIME;
 	}
 
 	void Character::LoadBitmap()
@@ -137,7 +139,7 @@ namespace game_framework {
 			CHARACTER_AIR_SPINNER_UP_11, CHARACTER_AIR_SPINNER_UP_12, CHARACTER_AIR_SPINNER_UP_13, CHARACTER_AIR_SPINNER_UP_14 };
 		for (int i = 0; i < 14; i++)
 			_ani_useSkill_1_up.AddBitmap(m13[i], RGB(50, 255, 0));
-	
+
 		//-------------------skill 2-------------------//
 		int m14_1[11] = { CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_01, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_02, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_03, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_04, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_05,
 			CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_06, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_07, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_08, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_09, CHARACTER_SKILL_REBOUNDING_ICICLES_DOWN_10,
@@ -291,7 +293,7 @@ namespace game_framework {
 						_dx -= _step;
 				}
 
-				if (_isDash && !IsMoving())	
+				if (_isDash && !IsMoving())
 				{
 					switch (_direction)
 					{
@@ -413,13 +415,14 @@ namespace game_framework {
 				_ani_run_down.Reset();
 				_ani_run_up.Reset();
 			}
-			
-			float *temp_xy = map->SetCharacterXY(_dx, _dy, CHARACTER_MOVE_HITBOX);	//更新角色在map的位置
+			//更新角色在map的位置
+			map->SetCharacterXY(_dx, _dy);
+			_xy[0] = map->GetCharacterPosition()[0];
+			_xy[1] = map->GetCharacterPosition()[1];
 
-			_xy[0] = temp_xy[0];
-			_xy[1] = temp_xy[1];
+			//掉落
+			DropDown(map);
 		}
-
 	}
 
 	void Character::OnShow()
@@ -536,10 +539,8 @@ namespace game_framework {
 				}
 			}
 		}
-
 		if (CharacterData::Instance()->ISMAGICBUFF())
 			_ani_magic_buff.OnShow();
-
 	}
 
 	void Character::SetMovingDown(bool flag)
@@ -583,6 +584,8 @@ namespace game_framework {
 	{
 		if (CanDash())
 		{
+			_safePosition[0] = _xy[0];
+			_safePosition[1] = _xy[1];
 			CharacterData::Instance()->SetInvincible(true);
 			_isDash = true;
 			_isRunning = false;
@@ -604,7 +607,7 @@ namespace game_framework {
 
 		if (skillNum == 1)
 		{
-			if (!_isUsingSkill && _skill_cooldown_counter[0] == 0 )
+			if (!_isUsingSkill && _skill_cooldown_counter[0] == 0)
 			{
 				_isUsingSkill = true;
 				_ani_useSkill = &_ani_useSkill_1_up;
@@ -725,7 +728,6 @@ namespace game_framework {
 	void Character::ResetDash()
 	{
 		CharacterData::Instance()->SetInvincible(false);
-
 		_isDashLock = false;
 		_isDash = false;
 		_ani_dash_right.Reset();
@@ -743,9 +745,9 @@ namespace game_framework {
 		{
 			_is_magic_buff_init ? _data->SetAttackCoefficient(2.0) : NULL;
 			_is_magic_buff_init = false;
-	
+
 			_ani_magic_buff.OnMove();
-		
+
 			if (_magic_buff_counter == 0)
 			{
 				_data->AddMP(-1);
@@ -793,4 +795,39 @@ namespace game_framework {
 		return _skill_cooldown_counter[skill_num - 1];
 	}
 
+	void Character::SetDrop()
+	{
+		_isDrop = true;
+	}
+
+	bool Character::IsDash()
+	{
+		return _isDash;
+	}
+
+	void Character::DropDown(GameMap* map)
+	{
+		//判斷是否掉落中reset position
+		if (_isDrop)
+		{
+			if (_drop_counter > 0)
+				_drop_counter--;
+			else
+			{
+				//受傷害
+				CharacterData::Instance()->AddHP(-DROP_DAMAGE);
+				_hp -= DROP_DAMAGE;
+
+				//復原位置
+				map->SetCharacterXY(_safePosition[0] - _xy[0], _safePosition[1] - _xy[1]);
+				_xy[0] = map->GetCharacterPosition()[0];
+				_xy[1] = map->GetCharacterPosition()[1];
+				_safePosition[0] = _xy[0];
+				_safePosition[1] = _xy[1];
+				//reset counter
+				_drop_counter = DROP_COUNTER_TIME;
+				_isDrop = false;
+			}
+		}
+	}
 }
