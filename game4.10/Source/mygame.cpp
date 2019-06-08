@@ -19,17 +19,31 @@ namespace game_framework {
 	{
 		ShowInitProgress(0);	// 秨﹍loading秈0%
 
-		_controller.Initialize();
+		//更
+		CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav");
+		CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
+		CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
+		CAudio::Instance()->Load(AUDIO_PUTTING, "sounds\\putting.mp3");
+		CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");
+		CAudio::Instance()->Load(AUDIO_DASH, "sounds\\dash.mp3");
+		CAudio::Instance()->Load(AUDIO_ARRIVAL, "sounds\\arrival.mp3");
+		CAudio::Instance()->Load(AUDIO_PULL2, "sounds\\pull2.mp3");
+		CAudio::Instance()->Load(AUDIO_LEVEL_FIRE, "sounds\\FireBGM.wav");
+		CAudio::Instance()->Load(AUDIO_TOWN, "sounds\\TownBGM.wav");
+		CAudio::Instance()->Load(AUDIO_BUY, "sounds\\buy.mp3");
+		CAudio::Instance()->Load(AUDIO_NOMONEY, "sounds\\nomoney.mp3");
 
 		ShowInitProgress(30);
-
+		
+		//controller﹍て
+		_controller.Initialize();
 		Items::Instance().LoadBitmap();
 		Character::Instance().LoadBitmap();
 		PausedMenu::Instance().LoadBitmap();
-		//UI::Instance().LoadBitmap();
 		Bag::Instance().LoadBitmap();
+		UI::Instance().LoadBitmap();
 
-		ShowInitProgress(65);
+		ShowInitProgress(80);
 	}
 
 	void CGameStateInit::OnBeginState()
@@ -61,6 +75,7 @@ namespace game_framework {
 	{
 		_controller.OnShow();
 
+		//ち传State
 		if (_controller.IsSwitchGameState())
 			GotoGameState(_controller.GameState());
 	}
@@ -91,6 +106,7 @@ namespace game_framework {
 	{
 		_controller.OnShow();
 		
+		//ち传State
 		if (_controller.IsSwitchGameState())
 			GotoGameState(_controller.GameState());
 	}
@@ -147,6 +163,7 @@ namespace game_framework {
 	{
 		_controller.OnShow();
 
+		//ち传State
 		if (_controller.IsSwitchGameState())
 			GotoGameState(_controller.GameState());
 	}
@@ -198,6 +215,7 @@ namespace game_framework {
 	{
 		_controller.OnShow();
 
+		//ち传State
 		if (_controller.IsSwitchGameState())
 			GotoGameState(_controller.GameState());
 	}
@@ -249,6 +267,7 @@ namespace game_framework {
 	{
 		_controller.OnShow();
 
+		//ち传State
 		if (_controller.IsSwitchGameState())
 			GotoGameState(_controller.GameState());
 	}

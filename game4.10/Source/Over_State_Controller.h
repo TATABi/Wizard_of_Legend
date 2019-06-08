@@ -19,7 +19,6 @@ namespace game_framework {
 		void OnKeyDown(UINT, UINT, UINT);
 		void OnMove();
 		void OnShow();
-
 	private:
 		CMovingBitmap _bm_result;							
 		CMovingBitmap _bm_black_mask;	//¾B¸n

@@ -56,14 +56,14 @@ namespace game_framework {
 		}
 		else if (keycode == KEY_F7)
 		{
-			CharacterData::Instance()->LockHP();
-			CharacterData::Instance()->SetAttackCoefficient(100);
-			CharacterData::Instance()->AddMoney(999);
-			CharacterData::Instance()->AddDiamond(999);
+			CharacterData::Instance().LockHP();
+			CharacterData::Instance().SetAttackCoefficient(100);
+			CharacterData::Instance().AddMoney(999);
+			CharacterData::Instance().AddDiamond(999);
 		}
 		else if (keycode == KEY_F8)
 		{
-			CharacterData::Instance()->AddHP(-CharacterData::Instance()->HP());
+			CharacterData::Instance().AddHP(-CharacterData::Instance().HP());
 		}
 	}
 
@@ -86,7 +86,7 @@ namespace game_framework {
 
 	void Controller::CharacterDead()
 	{
-		if (CharacterData::Instance()->HP() == 0)
+		if (CharacterData::Instance().HP() == 0)
 		{
 			bool isDead;
 			isDead = Character::Instance().Dead();	//¨¤¦â¦º¤`

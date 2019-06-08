@@ -49,6 +49,6 @@ namespace game_framework {
 
 	void Reward_Blood_Ball::Effect() 
 	{
-		CharacterData::Instance()->AddHP(VALUE);
+		CharacterData::Instance().AddHP(VALUE);
 	}
 }

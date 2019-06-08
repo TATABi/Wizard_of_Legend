@@ -16,7 +16,8 @@ namespace game_framework {
 			FLAG_NORMAL,
 			FLAG_PAUSED,
 			FLAG_OPTIONS,
-			FLAG_BAG
+			FLAG_BAG,
+			FLAG_MAP
 		};
 
 	public:

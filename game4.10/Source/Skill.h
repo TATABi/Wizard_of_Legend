@@ -20,7 +20,7 @@ namespace game_framework
 		virtual void LoadBitmap() = 0;
 		virtual void Initialize(int, int, float*) = 0;	
 	protected:
-		CAnimation _ani_skill[8];					//技能動畫
+		CAnimation _ani_skill[4];					//技能動畫
 		float _dx, _dy;								//技能的移動向量
 		int _cast_distance;							//技能施放時與角色的距離
 		float _rx, _ry;								//技能實際飛行位置(用來修正float int 轉換出現的抖動)

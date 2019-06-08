@@ -9,31 +9,26 @@
 
 namespace game_framework {
 
-	Town_State_Controller::Town_State_Controller() :Controller(), _map(TOWN_CHARACTER_XY[0], TOWN_CHARACTER_XY[1], &Character::Instance()), _item_store(TOWN_STORE_XY[0], TOWN_STORE_XY[1]){}
+	Town_State_Controller::Town_State_Controller() :Controller(), _map(TOWN_CHARACTER_XY[0], TOWN_CHARACTER_XY[1]), _item_store(TOWN_STORE_XY[0], TOWN_STORE_XY[1]){}
 
 	void Town_State_Controller::Begin()
 	{
-		_game_state_num = GAME_STATE_RUN_TOWN;
+		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
 		_map.Initialize(TOWN_CHARACTER_XY[0], TOWN_CHARACTER_XY[1]);
-		Character::Instance().Initialize(_map.GetCharacterPosition());
 		_flag = FLAG_TOWN_NORMAL;
 		Character::Instance().Initialize(_map.GetCharacterPosition());
-
-		CAudio::Instance()->Stop(AUDIO_HOME);
+		Character::Instance().Initialize(_map.GetCharacterPosition());
+		CAudio::Instance()->Pause();
 		CAudio::Instance()->Play(AUDIO_TOWN, true);
 
-		//////產生隨機道具/////
+		//////商店產生隨機道具/////
 		_item_store.Shelf();
 	}
 
 	void Town_State_Controller::Initialize()
 	{
-		CAudio::Instance()->Load(AUDIO_TOWN, "sounds\\TownBGM.wav");
-		CAudio::Instance()->Load(AUDIO_BUY, "sounds\\buy.mp3");
-		CAudio::Instance()->Load(AUDIO_NOMONEY, "sounds\\nomoney.mp3");
-
 		_bm_loading.LoadBitmap(LOADING);
 		_map.LoadBitmap();
 		_item_store.LoadBitmap();

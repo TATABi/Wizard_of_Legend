@@ -13,7 +13,9 @@
 #include "Reward_Diamond.h"
 #include <random>
 #include "CharacterData.h"
+
 #define DEFEATED_COUNT 1
+
 namespace game_framework {
 	Enemy::Enemy(int x, int y, int area, GameMap* map) : _ori_x(x), _ori_y(y), _area(area), _map(map)
 	{
@@ -29,7 +31,9 @@ namespace game_framework {
 		_is_x_arrive = _is_y_arrive = false;
 		_state = NOTHING;
 		_hit_recover_flag = false;
+		_is_transfer = false;
 		_ani_hurt.SetDelayCount(1);
+		_ani_transfer.SetDelayCount(1);
 
 		for (int i = 0; i < 4; i++)
 			_neighbor[i] = true;
@@ -37,11 +41,16 @@ namespace game_framework {
 
 	void Enemy::LoadBitmap()
 	{
-		LoadBitmap_2();
+		LoadEnemyBitmap();
 
-		int ani[7] = { GET_HURT_01, GET_HURT_02, GET_HURT_03, GET_HURT_04, GET_HURT_05, GET_HURT_06, GET_HURT_07 };
+		int ani_hurt[7] = { GET_HURT_01, GET_HURT_02, GET_HURT_03, GET_HURT_04, GET_HURT_05, GET_HURT_06, GET_HURT_07 };
 		for (int i = 0; i < 7; i++)
-			_ani_hurt.AddBitmap(ani[i], RGB(50, 255, 0));
+			_ani_hurt.AddBitmap(ani_hurt[i], RGB(50, 255, 0));
+
+		int ani_transfer[8] = { TRANSFER_01, TRANSFER_02, TRANSFER_03, TRANSFER_04, TRANSFER_05, TRANSFER_06, TRANSFER_07, TRANSFER_08 };
+		for (int i = 0; i < 8; i++)
+			_ani_transfer.AddBitmap(ani_transfer[i], RGB(50, 255, 0));
+
 	}
 
 	void Enemy::OnMove(int cx, int cy, vector<Skill*> &skills)
@@ -179,7 +188,7 @@ namespace game_framework {
 		}
 
 		//增加殺敵數
-		CharacterData::Instance()->AddEnemiesDefeated(DEFEATED_COUNT);
+		CharacterData::Instance().AddEnemiesDefeated(DEFEATED_COUNT);
 		return rewards;
 	}
 
@@ -298,6 +307,7 @@ namespace game_framework {
 				_is_down = false;
 			}
 		}
+
 		if ((currentX == _xy[0]) && (currentY == _xy[1]) && ((!_is_x_arrive) || (!_is_y_arrive)))
 		{
 			_is_detour = true;
@@ -406,9 +416,6 @@ namespace game_framework {
 				}
 			}		
 		}
-		if (currentX == _xy[0] && currentY == _xy[1])
-		{
-			_state == RESET ? _xy[0] = _ori_x, _xy[1] = _ori_y : _state = ATTACKING;	//加上動畫
-		}
+
 	}
 }

@@ -6,14 +6,13 @@
 #include "gamelib.h"
 #include "GameMap.h"
 #include "Character.h"
+#include "UI.h"
+#include "CharacterData.h"
 #include <algorithm>
 
 namespace game_framework {
 	
-	GameMap::GameMap(int x, int y)
-	{
-		Initialize(x, y);
-	}
+	GameMap::GameMap(int x, int y){}
 	
 	GameMap::~GameMap() 
 	{
@@ -34,7 +33,7 @@ namespace game_framework {
 		_ani_press_f.SetDelayCount(2);
 		_isPressF = false;
 		_character_status = 0;
-		
+
 		for (int i = 0; i < _enemies.size(); i++)
 			_enemies[i]->Reset();	
 	}
@@ -80,8 +79,8 @@ namespace game_framework {
 
 	void GameMap::CharacterUseSkill(int skillNum, int x, int y)
 	{
-		if(!_character->IsUsingSkill() && !_character->IsHurt() && !_character->IsSkillCooldown(skillNum))
-			_skillList.push_back(_character->GenerateSkill(skillNum, x, y));
+		if(!Character::Instance().IsUsingSkill() && !Character::Instance().IsHurt() && !Character::Instance().IsSkillCooldown(skillNum))
+			_skillList.push_back(Character::Instance().GenerateSkill(skillNum, x, y));
 	}
 	
 	void GameMap::SkillOnMove()
@@ -108,7 +107,7 @@ namespace game_framework {
 		layer.insert(layer.end(), _rewards.begin(), _rewards.end());
 		layer.insert(layer.end(), _enemies.begin(), _enemies.end());
 		layer.insert(layer.end(), _skillList.begin(), _skillList.end());
-		layer.push_back(_character);
+		layer.push_back(&Character::Instance());
 		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });
 
 		vector<Layer*>::iterator l_it;
@@ -158,6 +157,89 @@ namespace game_framework {
 			if (r_it == _rewards.end())
 				break;
 		}
+	}
+
+	float* GameMap::SetCharacterXY(int dx, int dy, const int* collision_move)
+	{
+		int slow_x = (int)dx / 3;
+		int slow_y = (int)dy / 3;
+
+		////////角色移動與怪物碰撞//////
+		vector<Enemy*>::iterator iter;
+		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
+		{
+			float *e_xy = (*iter)->GetPosition();
+			int *e_collision_move = (*iter)->GetCollisionMove();
+
+			int x1 = _cxy[0] + collision_move[0] + dx;
+			int y1 = _cxy[1] + collision_move[1] + dy;
+			int x2 = e_xy[0] + e_collision_move[0];
+			int y2 = e_xy[1] + e_collision_move[1];
+			int l1 = collision_move[2];
+			int w1 = collision_move[3];
+			int l2 = e_collision_move[2];
+			int w2 = e_collision_move[3];
+
+			int e_dx = 0, e_dy = 0;
+
+			if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2))	//發生碰撞
+			{
+				e_dx = (int)(dx / 3);
+				e_dy = (int)(dy / 3);
+
+				if (GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) != -1							//左上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_dy) != -1				//右上
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) != -1				//左下
+					&& GetMapStatus(e_xy[0] + e_collision_move[0] + e_collision_move[2] + e_dx, e_xy[1] + e_collision_move[1] + e_collision_move[3] + e_dy) != -1)		//右下
+				{
+					e_xy[0] += e_dx;
+					e_xy[1] += e_dy;
+					//被推到撞牆
+					dx = slow_x;
+					dy = slow_y;
+					break;
+				}
+				//被推
+				dx = dy = 0;
+			}
+			//沒撞到
+		}
+
+		//////////與地圖碰撞////////////
+		if (GetMapStatus(_cxy[0] + collision_move[0] + dx, _cxy[1] + collision_move[1] + dy) != -1							//左上
+			&& GetMapStatus(_cxy[0] + collision_move[0] + collision_move[2] + dx, _cxy[1] + collision_move[1] + dy) != -1				//右上
+			&& GetMapStatus(_cxy[0] + collision_move[0] + dx, _cxy[1] + collision_move[1] + collision_move[3] + dy) != -1				//左下
+			&& GetMapStatus(_cxy[0] + collision_move[0] + collision_move[2] + dx, _cxy[1] + collision_move[1] + collision_move[3] + dy) != -1)		//右下
+		{
+			_cxy[0] += dx;
+			_cxy[1] += dy;
+		}
+		else if (CharacterData::Instance().ISVINCIBLE())		//如果再滑行時
+		{
+			_cxy[0] += dx;
+			_cxy[1] += dy;
+		}
+
+		return _cxy;
+	}
+
+	bool GameMap::SetEnemyXY(int x, int y, int* collision_move)
+	{
+		int ex = x + collision_move[0];
+		int ey = y + collision_move[1];
+		int l = collision_move[2];
+		int w = collision_move[3];
+
+		//////////與地圖碰撞////////////
+		if (GetMapStatus(ex, ey) != -1
+			&& GetMapStatus(ex + l, ey) != -1
+			&& GetMapStatus(ex + l, ey + w) != -1
+			&& GetMapStatus(ex, ey + w) != -1)
+		{
+			return true;
+		}
+
+		return false;
 	}
 }
 

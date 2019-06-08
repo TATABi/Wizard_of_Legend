@@ -22,6 +22,7 @@ namespace game_framework {
 		_hitbox[1] = BLACKMAN_HITBOX[1];
 		_hitbox[2] = BLACKMAN_HITBOX[2];
 		_hitbox[3] = BLACKMAN_HITBOX[3];
+
 		_move_hitbox[0] = BLACKMAN_MOVE_HITBOX[0];
 		_move_hitbox[1] = BLACKMAN_MOVE_HITBOX[1];
 		_move_hitbox[2] = BLACKMAN_MOVE_HITBOX[2];
@@ -48,7 +49,7 @@ namespace game_framework {
 		_xy[1] = _ori_y;
 	}
 
-	void Black_Man::LoadBitmap_2()
+	void Black_Man::LoadEnemyBitmap()
 	{
 		_bm_hp_bar.LoadBitmap(ENEMY_HP_BAR_M);
 
@@ -101,6 +102,7 @@ namespace game_framework {
 
 		case CHARGING:				//移動
 		case RESET:
+			_ani_transfer.SetTopLeft(_sx, _sy);
 			_ani_left.SetTopLeft(_sx, _sy);
 			_ani_right.SetTopLeft(_sx, _sy);
 			if (_direction == LEFT)
@@ -119,71 +121,79 @@ namespace game_framework {
 
 	void Black_Man::OnShow()
 	{
-		switch (_state)
+		if (_is_transfer)
 		{
-		case NOTHING:				//站立
-			if (_direction == LEFT)
-				_bm_stand_left.ShowBitmap();
-			else
-				_bm_stand_right.ShowBitmap();
-			break;
-
-		case ATTACKING:				//攻擊
-
-			if (_direction == LEFT)
+			_ani_transfer.OnShow();
+			_ani_transfer.IsFinalBitmap() ? _ani_transfer.Reset(), _is_transfer = false : _ani_transfer.OnMove();
+		}
+		else
+		{
+			switch (_state)
 			{
-				_ani_attack_left.OnShow();
+			case NOTHING:				//站立
+				if (_direction == LEFT)
+					_bm_stand_left.ShowBitmap();
+				else
+					_bm_stand_right.ShowBitmap();
+				break;
 
-				_attack_delay_counter == 0 ?_ani_attack_left.OnMove() : NULL;
+			case ATTACKING:				//攻擊
 
-				if (_ani_attack_left.IsFinalBitmap())
+				if (_direction == LEFT)
 				{
-					_attack_delay_counter = 10;
-					_isAttack = false;
-					_ani_attack_left.Reset();
-					_state = CHARGING;
+					_ani_attack_left.OnShow();
+
+					_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
+
+					if (_ani_attack_left.IsFinalBitmap())
+					{
+						_attack_delay_counter = 10;
+						_isAttack = false;
+						_ani_attack_left.Reset();
+						_state = CHARGING;
+					}
 				}
-			}
-			else
-			{
-				_ani_attack_right.OnShow();	//暫時使用
-
-				_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
-
-				if (_ani_attack_right.IsFinalBitmap())
+				else
 				{
-					_attack_delay_counter = 10;
-					_isAttack = false;
-					_ani_attack_right.Reset();
-					_state = CHARGING;
+					_ani_attack_right.OnShow();	//暫時使用
+
+					_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
+
+					if (_ani_attack_right.IsFinalBitmap())
+					{
+						_attack_delay_counter = 10;
+						_isAttack = false;
+						_ani_attack_right.Reset();
+						_state = CHARGING;
+					}
 				}
-			}
-			break;
+				break;
 
-		case CHARGING:				//移動
-		case RESET:
-			if (_direction == LEFT)
-				_ani_left.OnShow();
-			else if (_direction == RIGHT)
-				_ani_right.OnShow();
-			break;
-		case HIT_RECOVER:
-			if (_direction == LEFT)
-				_bm_hurt_left.ShowBitmap();
-			else
-				_bm_hurt_right.ShowBitmap();
+			case CHARGING:				//移動
+			case RESET:
+				if (_direction == LEFT)
+					_ani_left.OnShow();
+				else if (_direction == RIGHT)
+					_ani_right.OnShow();
+				break;
+			case HIT_RECOVER:
+				if (_direction == LEFT)
+					_bm_hurt_left.ShowBitmap();
+				else
+					_bm_hurt_right.ShowBitmap();
 
-			if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
-			{
-				_ani_hurt.OnMove();
-				_ani_hurt.OnShow();
+				if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
+				{
+					_ani_hurt.OnMove();
+					_ani_hurt.OnShow();
+				}
+				else
+				{
+					ResetAnimation();
+					_hit_recover_flag = true;
+				}
+				break;
 			}
-			else
-			{
-				ResetAnimation();
-				_hit_recover_flag = true;
-			}
-			break;
 		}
 		CalculateHP();
 	}
@@ -214,7 +224,7 @@ namespace game_framework {
 					if (!_isAttack)
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
-							CharacterData::Instance()->ISVINCIBLE() == false ? CharacterData::Instance()->AddHP(-BLACKMAN_DAMAGE) : NULL;
+							CharacterData::Instance().ISVINCIBLE() == false ? CharacterData::Instance().AddHP(-BLACKMAN_DAMAGE) : NULL;
 							_isAttack = true;
 							break;
 						}

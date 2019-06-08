@@ -42,6 +42,7 @@
     <ClCompile Include="Source\Memento.cpp" />
     <ClCompile Include="Source\Slime.cpp" />
     <ClCompile Include="Source\Over_State_Controller.cpp" />
+    <ClCompile Include="Source\Skill_Air_Spinner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="Source\Memento.h" />
     <ClInclude Include="Source\Slime.h" />
     <ClInclude Include="Source\Over_State_Controller.h" />
+    <ClInclude Include="Source\Skill_Air_Spinner.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />
@@ -110,9 +112,7 @@
     <Image Include="..\..\..\Desktop\game4.10\RES\loading.bmp" />
     <Image Include="..\..\..\Desktop\game4.10\RES\Toolbar.bmp" />
     <Image Include="..\..\..\Downloads\Home.bmp" />
-    <Image Include="..\..\素材\BloodBall.bmp" />
     <Image Include="res\bitmap3.bmp" />
-    <Image Include="res\bmp00001.bmp" />
     <Image Include="RES\bmp_slash.bmp" />
     <Image Include="RES\Character\Arrival\01.bmp" />
     <Image Include="RES\Character\Arrival\02.bmp" />
@@ -690,6 +690,46 @@
     <Image Include="RES\Character\Use_Air_Spinner\Up\12.bmp" />
     <Image Include="RES\Character\Use_Air_Spinner\Up\13.bmp" />
     <Image Include="RES\Character\Use_Air_Spinner\Up\14.bmp" />
+    <Image Include="RES\InGame\Map\map_mask.bmp" />
+    <Image Include="RES\InGame\Level_1\Map\FireMapSimple.png" />
+    <Image Include="RES\InGame\Level_1\Map\FireMapSimple.bmp" />
+    <Image Include="RES\Character\Transfer\01.bmp" />
+    <Image Include="RES\Character\Transfer\02.bmp" />
+    <Image Include="RES\Character\Transfer\03.bmp" />
+    <Image Include="RES\Character\Transfer\04.bmp" />
+    <Image Include="RES\Character\Transfer\05.bmp" />
+    <Image Include="RES\Character\Transfer\06.bmp" />
+    <Image Include="RES\Character\Transfer\07.bmp" />
+    <Image Include="RES\Character\Transfer\08.bmp" />
+    <Image Include="RES\InGame\UI\Character_head.bmp" />
+    <Image Include="RES\InGame\UI\UI_map_board.bmp" />
+    <Image Include="RES\InGame\UI\info.bmp" />
+    <Image Include="RES\InGame\UI\m.bmp" />
+    <Image Include="RES\InGame\UI\map.bmp" />
+    <Image Include="RES\InGame\UI\tab.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Up\15.bmp" />
+    <Image Include="RES\InGame\Skill\Air_Spinner\01.bmp" />
+    <Image Include="RES\InGame\Skill\Air_Spinner\02.bmp" />
+    <Image Include="RES\InGame\Skill\Air_Spinner\03.bmp" />
+    <Image Include="RES\InGame\Skill\Air_Spinner\04.bmp" />
+    <Image Include="RES\InGame\Skill\Air_Spinner\05.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Down\01.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Down\02.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Down\03.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Down\04.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Down\05.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Left\01.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Left\02.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Left\03.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Left\04.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Left\05.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Right\01.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Right\02.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Right\03.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Right\04.bmp" />
+    <Image Include="RES\Character\Use_Air_Spinner\Right\05.bmp" />
+    <Image Include="RES\Character\Fall\Fall_Down.bmp" />
+    <Image Include="RES\Character\Fall\Fall_Up.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

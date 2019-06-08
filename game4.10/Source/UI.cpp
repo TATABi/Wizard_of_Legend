@@ -16,11 +16,7 @@ namespace game_framework {
 		return instance;
 	}
 
-	UI::UI():_skiil_2_cooldown(1), _skiil_3_cooldown(1) 
-	{
-		LoadBitmap();
-		SetXY();
-	}
+	UI::UI():_skiil_2_cooldown(1), _skiil_3_cooldown(1) {}
 
 	void UI::LoadBitmap()
 	{
@@ -46,13 +42,23 @@ namespace game_framework {
 		_bm_skill_2.LoadBitmap(SKILL_ICON_AIR_BURST, RGB(50, 255, 0));
 		_bm_skill_3.LoadBitmap(SKILL_ICON_REBOUNDING_ICICLES, RGB(50, 255, 0));
 		_bm_skill_4.LoadBitmap(SKILL_ICON_SHOCK_NOVA, RGB(50, 255, 0));	
-		
+		_bm_map_1.LoadBitmap(MAP_LEVEL_01_SIMPLE);
+		_bm_map_mask.LoadBitmap(MAP_MASK);
+		_bm_character_head.LoadBitmap(UI_CHARACTER_HEAD, RGB(50, 255, 0));
+		_bm_map_board.LoadBitmap(UI_MAP_BOARD);
+		_bm_key_m.LoadBitmap(UI_KEY_M, RGB(50, 255, 0));
+		_bm_key_tab.LoadBitmap(UI_KEY_TAB, RGB(50, 255, 0));
+		_bm_map.LoadBitmap(UI_MAP, RGB(50, 255, 0));
+		_bm_info.LoadBitmap(UI_INFO, RGB(50, 255, 0));
+
 		int a[9] = { UI_MP_BAR_SHINE_01, UI_MP_BAR_SHINE_02, UI_MP_BAR_SHINE_03, UI_MP_BAR_SHINE_04, UI_MP_BAR_SHINE_05,
 					 UI_MP_BAR_SHINE_06, UI_MP_BAR_SHINE_07, UI_MP_BAR_SHINE_08, UI_MP_BAR_SHINE_09 };
 		
 		for (int i = 0; i < 9; i++)
 			_ani_mp_bar.AddBitmap(a[i]);
 		_ani_mp_bar.SetDelayCount(3);
+
+		SetXY();
 	}
 	
 	void UI::SetXY()
@@ -69,10 +75,14 @@ namespace game_framework {
 		_bm_skill2_background.SetTopLeft(54, 440);
 		_bm_skill3_background.SetTopLeft(81, 440);
 		_bm_skill4_background.SetTopLeft(108, 440);
+		_bm_info.SetTopLeft(155, 440);
+		_bm_map.SetTopLeft(182, 440);
 		_bm_left_button.SetTopLeft(27, 414);
 		_bm_key_space.SetTopLeft(54, 415);
 		_bm_right_button.SetTopLeft(81, 414);
 		_bm_key_q.SetTopLeft(108, 416);
+		_bm_key_tab.SetTopLeft(155, 416);
+		_bm_key_m.SetTopLeft(182, 416);
 		_bm_slash.SetTopLeft(103, 25);
 		_int_money.SetTopLeft(320, 453);
 		_int_diamond.SetTopLeft(320, 433);
@@ -80,21 +90,26 @@ namespace game_framework {
 		_int_hp.SetTopLeft(83, 25);
 		_skiil_2_cooldown.SetTopLeft(90, 445);
 		_skiil_3_cooldown.SetTopLeft(117, 445);
+		_bm_map_1.SetTopLeft(120, 40);
+		_bm_map_board.SetTopLeft(107, 27);
 	}
 
 	void UI::OnMove()
 	{
 		//集滿MP時發光效果
-		if (CharacterData::Instance()->ISMAGICBUFF())		
+		if (CharacterData::Instance().ISMAGICBUFF())		
 			_ani_mp_bar.OnMove();
 
 		//設定UI顯示
-		_int_hp.SetInteger(CharacterData::Instance()->HP());
-		_int_maxhp.SetInteger(CharacterData::Instance()->MAX_HP());
-		_int_diamond.SetInteger(CharacterData::Instance()->DIAMOND());
-		_int_money.SetInteger(CharacterData::Instance()->MONEY());
+		_int_hp.SetInteger(CharacterData::Instance().HP());
+		_int_maxhp.SetInteger(CharacterData::Instance().MAX_HP());
+		_int_diamond.SetInteger(CharacterData::Instance().DIAMOND());
+		_int_money.SetInteger(CharacterData::Instance().MONEY());
 		_skiil_2_cooldown.SetInteger(Character::Instance().GetSkillCooldown(2) / 30);
 		_skiil_3_cooldown.SetInteger(Character::Instance().GetSkillCooldown(3) / 30);
+
+		_bm_character_head.SetTopLeft(int(Character::Instance().GetPosition()[0] / 10) + 120, int(Character::Instance().GetPosition()[1] / 10) + 40);
+		_map_mask[int(Character::Instance().GetPosition()[0] / 400)][int(Character::Instance().GetPosition()[1] / 400)] = true;
 	}
 	
 	void UI::OnShow()
@@ -108,11 +123,15 @@ namespace game_framework {
 		_bm_skill3_background.ShowBitmap();
 		_bm_skill4_background.ShowBitmap();
 		_bm_key_q.ShowBitmap();
+		_bm_key_tab.ShowBitmap();
+		_bm_key_m.ShowBitmap();
 		_bm_key_space.ShowBitmap();
 		_bm_right_button.ShowBitmap();
 		_bm_left_button.ShowBitmap();
 		_bm_skill_1.ShowBitmap();
 		_bm_skill_2.ShowBitmap();
+		_bm_map.ShowBitmap();
+		_bm_info.ShowBitmap();
 		_int_money.ShowBitmap();
 		_int_diamond.ShowBitmap();
 		
@@ -121,7 +140,7 @@ namespace game_framework {
 		Character::Instance().GetSkillCooldown(3) != 0 ? _skiil_3_cooldown.ShowBitmap() : _bm_skill_4.ShowBitmap();;
 		
 		//判斷MP集滿動畫
-		if (CharacterData::Instance()->ISMAGICBUFF())
+		if (CharacterData::Instance().ISMAGICBUFF())
 			_ani_mp_bar.OnShow();	
 
 		//計算HP, MP
@@ -130,6 +149,36 @@ namespace game_framework {
 		_int_maxhp.ShowBitmap();
 		_int_hp.ShowBitmap();
 		_bm_slash.ShowBitmap();
+
+		if (_isOpenMap)
+		{
+			_bm_map_board.ShowBitmap();
+
+			switch (_map_num)
+			{
+			case 1:
+				_bm_map_1.ShowBitmap();
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+				
+			for (int i = 0; i < 10; i++)
+			{
+				for (int j = 0; j < 10; j++)
+				{
+					if (_map_mask[i][j] == false)
+					{
+						_bm_map_mask.SetTopLeft(120 + 40 * i, 40 + 40 * j);
+						_bm_map_mask.ShowBitmap();
+					}
+				}
+			}
+			_bm_character_head.ShowBitmap();
+		}
+
 	}
 
 	void UI::CalculateHP()
@@ -141,7 +190,7 @@ namespace game_framework {
 		int x1;
 
 		//繪製HP
-		temp_hp = (float)(CharacterData::Instance()->MAX_HP() - CharacterData::Instance()->HP()) / CharacterData::Instance()->MAX_HP();		//計算血量差值
+		temp_hp = (float)(CharacterData::Instance().MAX_HP() - CharacterData::Instance().HP()) / CharacterData::Instance().MAX_HP();		//計算血量差值
 		x1 = (int)(temp_hp * 81);
 		CDC *pDC = CDDraw::GetBackCDC();								// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));									// 畫灰色 (扣血)
@@ -160,7 +209,7 @@ namespace game_framework {
 		int x1;
 
 		//繪製MP
-		temp_mp = (float)(CharacterData::Instance()->MAX_MP() - CharacterData::Instance()->MP()) / CharacterData::Instance()->MAX_MP();		//計算MP差值
+		temp_mp = (float)(CharacterData::Instance().MAX_MP() - CharacterData::Instance().MP()) / CharacterData::Instance().MAX_MP();		//計算MP差值
 		x1 = (int)(temp_mp * 65);
 		CDC *pDC = CDDraw::GetBackCDC();							// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));								// 畫灰色 (扣MP)
@@ -168,5 +217,19 @@ namespace game_framework {
 		pDC->Rectangle(MAX_MP_X2 - x1, MAX_MP_Y1, MAX_MP_X2, MAX_MP_Y2);
 		pDC->SelectObject(pb);										// 釋放 brush
 		CDDraw::ReleaseBackCDC();									// 放掉 Back Plain 的 CDC
+	}
+
+	void UI::OpenMap(bool Opened, int i)
+	{
+		_map_num = i;
+		_isOpenMap = Opened;
+		//_isOpenMap ? _isOpenMap = false : _isOpenMap = true;
+	}
+
+	void UI::ResetMapMask()
+	{
+		for (int i = 0; i < 10; i++)
+			for (int j = 0; j < 10; j++)
+				_map_mask[i][j] = false;
 	}
 }

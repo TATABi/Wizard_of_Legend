@@ -5,7 +5,8 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Bag.h"
-#include "Items.h";
+#include "Items.h"
+
 namespace game_framework {
 
 	Bag& Bag::Instance()
@@ -22,8 +23,8 @@ namespace game_framework {
 	void Bag::Initialize()
 	{
 		_isOpened =  false;
-		_itemAmount = 0;
 	}
+
 	void Bag::LoadBitmap()
 	{
 		_bm_bag.LoadBitmap(BAG_BOARD, RGB(50, 255, 0));
@@ -32,6 +33,7 @@ namespace game_framework {
 		_bm_skill3.LoadBitmap(SKILL_ICON_REBOUNDING_ICICLES, RGB(50, 255, 0));
 		_bm_skill4.LoadBitmap(SKILL_ICON_SHOCK_NOVA, RGB(50, 255, 0));
 		_bm_item_cursor.LoadBitmap(BAG_ITEM_CURSOR, RGB(50, 255, 0));
+
 		SetTopLeft();
 	}
 
@@ -47,10 +49,9 @@ namespace game_framework {
 
 	void Bag::OnMove()
 	{
+		//背包開啟，匯入持有道具
 		if (_isOpened)
-		{
 			_items = Items::Instance().GetItemInBag();
-		}
 	}
 
 	void Bag::OnShow()
@@ -60,13 +61,15 @@ namespace game_framework {
 		int row = 0;
 		int col = 0;
 
+		//排列並顯示道具
 		if (_isOpened)
 		{
 			_bm_bag.ShowBitmap();
 
 			for (int i = 0; i < _items.size(); i++)
 			{
-				if (row == 6) {
+				if (row == 6) 
+				{
 					row = 0;
 					col++;
 				}
@@ -82,11 +85,10 @@ namespace game_framework {
 			_bm_skill4.ShowBitmap(0.7);
 			_bm_item_cursor.ShowBitmap();
 
+			//顯示道具資訊
 			if (_flags[0] + _flags[1] * 6 < _items.size())
 				_items[_flags[0] + _flags[1] * 6]->ShowInfo(70, 255);
 		}
-
-		
 	}
 
 	void Bag::Open(bool isOpened)
@@ -119,5 +121,4 @@ namespace game_framework {
 		if (_flags[1] < 1 )
 			_flags[1]++;
 	}
-
 }

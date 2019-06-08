@@ -6,18 +6,15 @@
 namespace game_framework {
 	class Map_Home : public GameMap {
 		enum AREA {
-			AREA_1,
-			AREA_2
+			AREA_1
 		};
 	public:
-		Map_Home(int, int, Character*);  // 設定初始中心點
+		Map_Home(int, int);  // 設定初始中心點
 		~Map_Home();
+		void AddEnemy() override;
 		void LoadBitmap();
 		void OnMove();
-	    float* SetCharacterXY(int, int,const int*);
-		bool SetEnemyXY(int, int, int*);
-		int GetMapStatus(float, float);		
-		void AddEnemy();
+		int GetMapStatus(float, float);	
 	};
 }
 #endif

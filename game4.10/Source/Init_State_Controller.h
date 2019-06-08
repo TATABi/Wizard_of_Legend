@@ -35,6 +35,7 @@ namespace game_framework {
 		void OnKeyDown(UINT, UINT, UINT);
 		void OnLButtonDown(UINT, CPoint);
 		void OnRButtonDown(UINT, CPoint);
+		void OnMove();
 		void OnShow();
 
 	private:
@@ -51,6 +52,7 @@ namespace game_framework {
 		int _flag;
 		int _instruction_1;
 		int _instruction_2;
+		int _audio_delay_counter;
 	};
 }
 

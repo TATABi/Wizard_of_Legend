@@ -3,11 +3,9 @@
 
 namespace game_framework {
 
-	class CharacterData
-	{
+	class CharacterData{
 	public:
-		static CharacterData* Instance();
-		void DeleteData();
+		static CharacterData& Instance();		//Singleton
 		//設定
 		void AddMoney(int);						//更改Money，傳入正數: 賺，負數: 扣
 		void SetMoney(int);						//設定Money
@@ -28,10 +26,10 @@ namespace game_framework {
 		void ResetStatus();						//結束關卡，重製HP, MP, Money, MagicBuff, _stage, _gold_found, _diamond_collected, _enemies_defeated
 		void SetMagicBuff(bool);				//設定Magic Buff 狀態
 		int* GetStageResult();					//取得關卡結算
-		void SetStage(int);
-		void AddMoneyCollected(int);
-		void AddDiamondCollected(int);
-		void AddEnemiesDefeated(int);
+		void SetStage(int);						//設定現在關卡
+		void AddMoneyCollected(int);			//更改關卡內收集的Money
+		void AddDiamondCollected(int);			//更改關卡內收集的Diamond
+		void AddEnemiesDefeated(int);			//更改關卡內擊敗的Enemy
 
 		//Beater -- 封弊者 ???????
 		void LockHP();
@@ -54,8 +52,6 @@ namespace game_framework {
 	protected:
 		CharacterData();
 	private:
-		static CharacterData* _instance;
-		CharacterData* temp;
 		int _money;
 		int _diamond;
 		int _hp;
@@ -67,7 +63,7 @@ namespace game_framework {
 		float _blood_suck_coefficient;			//吸血係數
 		float _move_coefficient;				//移動速度係數
 		float _cd_coefficient;					//技能冷卻係數
-		int _mp_charge_coefficient;				//MP累積係數
+		float _mp_charge_coefficient;				//MP累積係數
 		bool _isInvincible;						//無敵狀態
 		bool _isMagicBuff;						//Magic Buff 狀態		
 		bool _isLockHP;

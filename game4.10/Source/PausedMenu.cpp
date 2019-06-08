@@ -17,7 +17,6 @@ namespace game_framework {
 		return instance;
 	}
 
-
 	PausedMenu::PausedMenu()
 	{
 		Initialize();

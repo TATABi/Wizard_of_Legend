@@ -9,7 +9,7 @@ namespace game_framework{
 		Slime(int, int, int, GameMap*);
 		void Init();
 		void Reset();
-		void LoadBitmap_2();
+		void LoadEnemyBitmap();
 		void Move(int, int);
 		void OnShow();
 		void Attack(float, float);

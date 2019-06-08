@@ -31,38 +31,38 @@ namespace game_framework {
 	{
 		//分裂的護身符
 		_items.push_back(new Item(ITEM_OFFENSE_01, ITEM_OFFENSE_01_INFO, "OFFENSE", Amulet, 15,
-								[]() {CharacterData::Instance()->SetAttackCoefficient(1.1); return true; },
-								[]() {CharacterData::Instance()->SetAttackCoefficient(-1.1); }));
+								[]() {CharacterData::Instance().SetAttackCoefficient(1.1); return true; },
+								[]() {CharacterData::Instance().SetAttackCoefficient(-1.1); }));
 
 		//狂怒頭盔
 		_items.push_back(new Item(ITEM_OFFENSE_02, ITEM_OFFENSE_02_INFO, "OFFENSE", Helmet, 15,
-								[]() {if (CharacterData::Instance()->HP() < CharacterData::Instance()->MAX_HP() * 1 / 3) { CharacterData::Instance()->SetAttackCoefficient(1.2); return true; } else return false; },
-								[]() { CharacterData::Instance()->SetAttackCoefficient(-1.2); }));
+								[]() {if (CharacterData::Instance().HP() < CharacterData::Instance().MAX_HP() * 1 / 3) { CharacterData::Instance().SetAttackCoefficient(1.2); return true; } else return false; },
+								[]() { CharacterData::Instance().SetAttackCoefficient(-1.2); }));
 
 		//巨人之心
 		_items.push_back(new Item(ITEM_DEFENSE_01, ITEM_DEFENSE_01_INFO, "DEFENSE", Heart, 15,
-								[]() { CharacterData::Instance()->AddMaxHP(200); return true; },
-								[]() { CharacterData::Instance()->AddMaxHP(-200);}));
+								[]() { CharacterData::Instance().AddMaxHP(200); return true; },
+								[]() { CharacterData::Instance().AddMaxHP(-200);}));
 
 		//吸血鬼眼鏡
 		_items.push_back(new Item(ITEM_DEFENSE_02, ITEM_DEFENSE_02_INFO, "DEFENSE", Glasses, 15,
-								[]() {CharacterData::Instance()->SetBloodSuckCoefficient(2.0); return true; },
-								[]() {CharacterData::Instance()->SetBloodSuckCoefficient(-2.0); }));
+								[]() {CharacterData::Instance().SetBloodSuckCoefficient(2.0); return true; },
+								[]() {CharacterData::Instance().SetBloodSuckCoefficient(-2.0); }));
 
 		//水銀的便鞋
 		_items.push_back(new Item(ITEM_DEFENSE_03, ITEM_DEFENSE_03_INFO,"DEFENSE", Shoes, 15,
-								[]() {CharacterData::Instance()->SetNoveCoefficient(1.5); return true; },
-								[]() {CharacterData::Instance()->SetNoveCoefficient(-1.5); }));
+								[]() {CharacterData::Instance().SetNoveCoefficient(1.5); return true; },
+								[]() {CharacterData::Instance().SetNoveCoefficient(-1.5); }));
 
 		//羅素的鐘擺
 		_items.push_back(new Item(ITEM_MISC_01, ITEM_MISC_01_INFO, "MISC", Pendulum, 15,
-								[]() {CharacterData::Instance()->SetCDCoefficient(-2.0); return true; },
-								[]() {CharacterData::Instance()->SetCDCoefficient(2.0); }));
+								[]() {CharacterData::Instance().SetCDCoefficient(-2.0); return true; },
+								[]() {CharacterData::Instance().SetCDCoefficient(2.0); }));
 
 		//托茲的懷表
 		_items.push_back(new Item(ITEM_MISC_02, ITEM_MISC_02_INFO, "MISC", Pocket_Watch, 15,
-								[]() {CharacterData::Instance()->SetCDCoefficient(-1.5); CharacterData::Instance()->CharacterData::SetMPChargeCoefficient(2.0); return true; },
-								[]() {CharacterData::Instance()->SetCDCoefficient(1.5); CharacterData::Instance()->CharacterData::SetMPChargeCoefficient(-2.0);  }));
+								[]() {CharacterData::Instance().SetCDCoefficient(-1.5); CharacterData::Instance().CharacterData::SetMPChargeCoefficient(2.0); return true; },
+								[]() {CharacterData::Instance().SetCDCoefficient(1.5); CharacterData::Instance().CharacterData::SetMPChargeCoefficient(-2.0);  }));
 	}
 
 	void Items::LoadBitmap()

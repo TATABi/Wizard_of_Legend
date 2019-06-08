@@ -22,7 +22,7 @@ namespace game_framework {
 		bool IsInAttackZone(int, int);
 		virtual vector<Reward*> CreateReward();	//血球、錢、鑽石的數量
 		virtual void Init() = 0;
-		virtual void LoadBitmap_2() = 0;
+		virtual void LoadEnemyBitmap() = 0;
 		virtual void Move(int, int) = 0;
 		virtual void OnShow() = 0;
 		virtual void Reset() = 0;
@@ -60,11 +60,13 @@ namespace game_framework {
 		int _attack_counter;
 		int _hit_recover_counter;
 		bool _hit_recover_flag;
+		bool _is_transfer;
 		CMovingBitmap _bm_stand_left, _bm_stand_right, _bm_stand;
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;
 		CAnimation _ani_hurt;
 		CAnimation _ani_left, _ani_right;
 		CAnimation _ani_attack_left, _ani_attack_right;
+		CAnimation _ani_transfer;			//卡住時的轉移動畫
 		GameMap* _map;
 		bool _isAttack = false;
 	};

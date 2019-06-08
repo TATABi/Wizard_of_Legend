@@ -9,16 +9,17 @@
 #include "CharacterData.h"
 
 namespace game_framework {
-	Home_State_Controller::Home_State_Controller():Controller(), _map(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1], &Character::Instance()){}
+	Home_State_Controller::Home_State_Controller():Controller(), _map(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]){}
 
 	void Home_State_Controller::Begin()
 	{
-		_game_state_num = GAME_STATE_RUN_HOME;
+		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
 		_map.Initialize(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]);
+		
 		Character::Instance().Initialize(_map.GetCharacterPosition());
-		CharacterData::Instance()->ResetStatus();
+		CharacterData::Instance().ResetStatus();
 
 		//從其他場景回來不用再次出現加入選單
 		if (_ani_light_beam.IsFinalBitmap())
@@ -29,20 +30,12 @@ namespace game_framework {
 		else
 			_flag = FLAG_JOIN;
 
-		CAudio::Instance()->Stop(AUDIO_TITLE);
+		CAudio::Instance()->Pause();
 		CAudio::Instance()->Play(AUDIO_HOME, true);
-		CAudio::Instance()->Stop(AUDIO_TOWN);
 	}
 
 	void Home_State_Controller::Initialize()
 	{
-		CAudio::Instance()->Load(AUDIO_PULL, "sounds\\pull.mp3");
-		CAudio::Instance()->Load(AUDIO_PUTTING, "sounds\\putting.mp3");
-		CAudio::Instance()->Load(AUDIO_HOME, "sounds\\HomeBGM.wav");
-		CAudio::Instance()->Load(AUDIO_DASH, "sounds\\dash.mp3");
-		CAudio::Instance()->Load(AUDIO_ARRIVAL, "sounds\\arrival.mp3");
-		CAudio::Instance()->Load(AUDIO_PULL2, "sounds\\pull2.mp3");
-		
 		_bm_join.LoadBitmap(JOIN);
 		_bm_loading.LoadBitmap(LOADING);
 		_box.LoadBitmap();
@@ -91,6 +84,8 @@ namespace game_framework {
 					Character::Instance().SetMovingRight(true);
 				if (nChar == KEY_SPACE)
 					Character::Instance().Dash();
+				if (nChar == KEY_Q)
+					_map.CharacterUseSkill(3, 0, 0);
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 				{
@@ -216,7 +211,6 @@ namespace game_framework {
 						_ani_light_beam.Reset();
 						_map.Initialize(740, 918);
 						CAudio::Instance()->Play(AUDIO_TITLE, true);
-						CAudio::Instance()->Stop(AUDIO_HOME);
 						_isSwitch = true;
 						_game_state_num = GAME_STATE_INIT;
 						break;
@@ -288,12 +282,12 @@ namespace game_framework {
 
 	void Home_State_Controller::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		_map.CharacterUseSkill(2, point.x, point.y);
+		_map.CharacterUseSkill(1, point.x, point.y);
 	}
 
 	void Home_State_Controller::OnRButtonDown(UINT nFlags, CPoint point)
 	{
-		_map.CharacterUseSkill(3, point.x, point.y);
+		_map.CharacterUseSkill(2, point.x, point.y);
 	}
 
 	void Home_State_Controller::OnMove() 

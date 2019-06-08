@@ -89,7 +89,7 @@ namespace game_framework
 		Memento* memento = CreateMemento();
 		Items::Instance().SetItems(memento->_state->OwnedItem());
 		Items::Instance().Equip(memento->_state->EquipItem(), true);
-		CharacterData::Instance()->SetDiamond(memento->_state->Diamond());
+		CharacterData::Instance().SetDiamond(memento->_state->Diamond());
 		delete memento;
 	}
 	
