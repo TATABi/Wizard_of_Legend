@@ -168,18 +168,24 @@ namespace game_framework {
 		vector<Reward*> rewards;
 		//Default reward: Blood Ball 10%, Diamond 20%, Money 70%
 		std::random_device rd;
+
+		//產生血球
 		for (int i = 0; i < 5; i++)
 		{
 			int prob = rd() % 100 + 1;		//取1~100		
 			if (prob <= 10)
 				rewards.push_back(new Reward_Blood_Ball(midX, midY, _map));
 		}
+
+		//產生鑽石
 		for (int i = 0; i < 5; i++)
 		{
 			int prob = rd() % 100 + 1;
 			if (prob <= 30)
 				rewards.push_back(new Reward_Diamond(midX, midY, _map));
 		}
+
+		//產生金錢
 		for (int i = 0; i < 5; i++)
 		{
 			int prob = rd() % 100 + 1;				
@@ -416,6 +422,5 @@ namespace game_framework {
 				}
 			}		
 		}
-
 	}
 }

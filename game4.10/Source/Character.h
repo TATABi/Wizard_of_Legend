@@ -47,7 +47,6 @@ namespace game_framework {
 		void ResetRun();								//重製Run判斷的數據
 		void ResetDash();								//重製Dash判斷的數據
 		void DropDown(GameMap*);						//播動畫、復原位置
-
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;												//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right;								//跑步時的氣流
 		CAnimation _ani_dash_up, _ani_dash_down, _ani_dash_left, _ani_dash_right;							//dash動畫
@@ -85,6 +84,7 @@ namespace game_framework {
 		int _drop_counter;													//掉落多久後復原
 		float _safePosition[2];												//復原的位置
 		int _trap_counter;													//持續多久會觸發陷阱
+		bool _isTransfer;											//判斷是否要撥復原動畫
 	};
 }
 

@@ -222,55 +222,69 @@ namespace game_framework {
 			&& GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) != -1;	//右下																																									
 
 		//下一步是掉落																																						//下一步會掉落
-		bool isDrop =
+		bool nextIsDrop =
 			GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy) == -2															//左上
 			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy) == -2								//右上
 			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) == -2								//左下
 			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) == -2;	//右下			
+				
+		//目前是掉落																																						//下一步會掉落
+		bool currentIsDrop =
+			GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0], _cxy[1] + CHARACTER_MOVE_HITBOX[1]) == -2															//左上
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2], _cxy[1] + CHARACTER_MOVE_HITBOX[1]) == -2								//右上
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0], _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3]) == -2								//左下
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2], _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3]) == -2;	//右下			
+
 
 		//下一步是陷阱
-		bool isTrap =
+		bool nextIsTrap =
 			GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy) == -3															//左上
 			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy) == -3								//右上
 			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) == -3								//左下
 			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2] + dx, _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3] + dy) == -3;	//右下			
 
+		//目前是陷阱
+		bool currentIsTrap =
+			GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0], _cxy[1] + CHARACTER_MOVE_HITBOX[1]) == -3																//左上
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2], _cxy[1] + CHARACTER_MOVE_HITBOX[1]) == -3								//右上
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0], _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3]) == -3								//左下
+			|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2], _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3]) == -3;	//右下			
+
 		if (canMove)
 		{
-			if (isTrap)	//觸發陷阱
+			if (nextIsTrap)	//觸發陷阱
 			{
 				Character::Instance().Trap(this);//觸發陷阱動作
 			}
-			if (Character::Instance().IsDash())//dash
+
+			if (CharacterData::Instance().ISVINCIBLE())	//dash
 			{
 				_cxy[0] += dx;
 				_cxy[1] += dy;
 			}
-			else if (Character::Instance().IsMoving())  //普通走路
+			else if (Character::Instance().IsMoving())  //走路
 			{
-				if (!isDrop)
+				if (!nextIsDrop)	//正常移動
 				{
 					_cxy[0] += dx;
 					_cxy[1] += dy;
 				}
-				bool currentIsTrap =
-					GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0], _cxy[1] + CHARACTER_MOVE_HITBOX[1]) == -3																//左上
-					|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2], _cxy[1] + CHARACTER_MOVE_HITBOX[1]) == -3								//右上
-					|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0], _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3]) == -3								//左下
-					|| GetMapStatus(_cxy[0] + CHARACTER_MOVE_HITBOX[0] + CHARACTER_MOVE_HITBOX[2], _cxy[1] + CHARACTER_MOVE_HITBOX[1] + CHARACTER_MOVE_HITBOX[3]) == -3;	//右下			
-
-				if (currentIsTrap)
+				else if (currentIsDrop)	//防止懸空亂動
 				{
 					Character::Instance().SetDrop();
+				}
+				else if (currentIsTrap)	//觸發陷阱
+				{
+					Character::Instance().Trap(this);//觸發陷阱動作
 				}
 			}
 			else    //並非dash、走路狀態
 			{
-				if (isDrop)	//觸發掉落
+				if (nextIsDrop)	
 				{
-					Character::Instance().SetDrop();
+					Character::Instance().SetDrop();	//觸發掉落
 				}
-				else	//復原位置
+				else	
 				{
 					_cxy[0] += dx;
 					_cxy[1] += dy;
