@@ -83,7 +83,7 @@ namespace game_framework {
 		SkillOnMove();
 		EnemyOnMove();
 	}
-	
+
 	int Map_Town::GetMapStatus(float x, float y)
 	{
 		return TOWN_LOGIC[int(x/10)][int(y/10)];

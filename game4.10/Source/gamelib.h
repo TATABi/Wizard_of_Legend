@@ -122,6 +122,8 @@ const char KEY_F6 = 0x75;
 const char KEY_F7 = 0x76;
 const char KEY_F8 = 0x77;
 const char KEY_F9 = 0x78;
+const char KEY_F10 = 0x79;
+const char KEY_F11 = 0x7A;
 const char KEY_ENTER = 0xD;
 
 /////////////////////////////////////////////////////////////////////////////

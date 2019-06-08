@@ -41,8 +41,6 @@ namespace game_framework {
 		_bm_paused_options.SetTopLeft(260, 170);
 		_bm_paused_quit.SetTopLeft(260, 170);
 		_bm_pause_optionss.SetTopLeft(216, 80);
-		
-
 	}
 
 	void PausedMenu::OnShow()
@@ -67,7 +65,6 @@ namespace game_framework {
 				_bm_pause_optionss.ShowBitmap();
 			}
 		}
-
 	}
 
 	void PausedMenu::Paused(bool flag)
@@ -112,22 +109,5 @@ namespace game_framework {
 		default:
 			return 3;
 		}
-	}
-
-	void PausedMenu::SaveData()
-	{
-		/*
-		bool temp[7];
-		Items *items = &Items::Instance();
-		Originator *o = new Originator("Origin", 300, 2, temp);
-
-		o->SetRecord();
-		Caretaker care;
-		care.Save(o->CreateMemento());
-		delete o;
-
-		CharacterData::Instance()->LockHP();
-		CharacterData::Instance()->SetAttackCoefficient(100);
-		*/
 	}
 }

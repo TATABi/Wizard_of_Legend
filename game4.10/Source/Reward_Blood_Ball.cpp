@@ -20,7 +20,6 @@ namespace game_framework {
 	{
 		LoadBitmap();
 		Initialize(ex, ey);
-		SetRandomPosition();
 	}
 
 	void Reward_Blood_Ball::Initialize(float ex, float ey)
@@ -31,7 +30,6 @@ namespace game_framework {
 		_hitbox[3] = 13;
 		_xy[0] = ex;
 		_xy[1] = ey;
-		srand(time(NULL));
 		_value = VALUE;
 		_range_eat = RANGE_EAT;
 		_range_position = RANGE_POSITION;

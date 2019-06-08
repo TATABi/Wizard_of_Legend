@@ -1,8 +1,11 @@
 #ifndef GAME_DATA_H
-#define GAME_GATA_H
+#define GAME_DATA_H
 
 //===========================Screen===========================//
 const string SAVE_DATA_PATH = "Data/save_data";
+const char CHAR_TAB = '\t';
+const string STRING_TURE = "true";
+const string STRING_FALSE = "false";
 
 //===========================Screen===========================//
 
@@ -24,7 +27,7 @@ const int RUN_STEP = 10;										//Run的步長
 const int DASH_STEP = 17;										//Dash的步長
 const int MAGIC_BUFF_TIME = int(0.1 * 30);						//MP集滿時BUFF持續的時間
 const int MP_DECREASE_TIME = int(0.4 * 30);						//MP集滿時BUFF持續的時間
-
+const int DROP_COUNTER_TIME = 90;								//墜落多久後復原位置
 //===========================Skills===========================//
 
 //Air Spinner//
@@ -56,7 +59,7 @@ const int REBOUNDING_ICICKES_SPEED = 10;						//技能移動速度
 const int REBOUNDING_ICICKES_CAST_DISTANCE = 50;				//技能施放與角色距離
 const int REBOUNDING_ICICKES_COOLDOWN = 1 * 30;					//冷卻時間
 
-//===========================Eenemy===========================//
+//===========================Enemy===========================//
 
 //Blockhead//
 const int BLOCKHEAD_HP = 10000;									//血量
@@ -97,12 +100,15 @@ const int HOME_CHARACTER_XY[2] = { 740 , 918 };					//角色初始位置
 const int TOWN_CHARACTER_XY[2] = { 770, 1065 };					//角色初始位置
 const int TOWN_STORE_XY[2] = { 520, 1018 };						//商店所在位置
 const int TOWN_STORE_ITEM[2] = { 525 , 990};					//物品擺放位置
+const string Town_Or_Home = "Town or Home";
 
 //==========================Level_One==========================//
 
 const int LEVEL_ONE_CHARACTER_XY[2] = {3000, 2830};
+const int DROP_DAMAGE = 30;										//墜落傷害
 
 //============================Items============================//
 
+const int NUM_ITEMS = 7;
 
 #endif

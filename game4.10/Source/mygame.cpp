@@ -87,6 +87,7 @@ namespace game_framework {
 	CGameStateOver::CGameStateOver(CGame *g) : CGameState(g) {}
 
 	CGameStateOver::~CGameStateOver() {}
+
 	void CGameStateOver::OnMove()
 	{
 		_controller.OnMove();

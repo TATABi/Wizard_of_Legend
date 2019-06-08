@@ -31,7 +31,6 @@ namespace game_framework {
 		_hitbox[3] = 9;
 		_xy[0] = ex;
 		_xy[1] = ey;
-		srand(time(NULL));
 		_value = VALUE;
 		_range_eat = RANGE_EAT;
 		_range_position = RANGE_POSITION;

@@ -5,7 +5,7 @@ namespace game_framework {
 	 
 	enum ITEM_NUMBER
 	{
-		Amulet,			//分裂的護身符
+		Amulet = 1,		//分裂的護身符
 		Helmet,			//狂怒頭盔
 		Heart,			//巨人之心
 		Glasses,		//吸血鬼眼鏡
@@ -45,6 +45,4 @@ namespace game_framework {
 		int _info_pic;	
 	};
 }
-
-
 #endif

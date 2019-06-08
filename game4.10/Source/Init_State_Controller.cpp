@@ -23,6 +23,7 @@ namespace game_framework {
 	void Init_State_Controller::Initialize()
 	{			
 		_audio_delay_counter = 1;
+		LoadData();
 
 		int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,
 			MENU_INIT_26, MENU_INIT_28, MENU_INIT_30, MENU_INIT_32, MENU_INIT_34, MENU_INIT_36, MENU_INIT_38, MENU_INIT_40, MENU_INIT_42, MENU_INIT_44,
@@ -86,7 +87,10 @@ namespace game_framework {
 			if (nChar == KEY_ESC)
 			{
 				if (_instruction_1 == QUIT)
+				{
+					SaveData();	//存檔
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
+				}
 				else
 					_instruction_1 = QUIT;
 			}
@@ -110,6 +114,7 @@ namespace game_framework {
 					_flag = FLAG_INIT_OPTION;
 					break;
 				case QUIT:
+					SaveData();	//存檔
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 					break;
 				}
@@ -150,6 +155,7 @@ namespace game_framework {
 
 		case FLAG_INIT_KEY_CONFIG:
 		case FLAG_INIT_RESET_DATA:
+			ResetData();
 		case FLAG_INIT_ABOUT:
 			if (nChar == KEY_ESC)
 				_flag = FLAG_INIT_OPTION;

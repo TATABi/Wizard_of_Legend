@@ -79,17 +79,20 @@ namespace game_framework {
 			(*iter)->Effect();
 	}
 
-	bool Items::Buy(int Item_number)
+	bool Items::Buy(int item_number)
 	{
-		if (_items[Item_number - 1]->BuyItem())
+		if (_items[item_number - 1]->BuyItem())
 			return true;
 		else
 			return false;
 	}
 
-	void Items::Equip(int Item_number, bool isEquip)
+	void Items::Equip(int item_number, bool isEquip)
 	{
-		_items[Item_number - 1]->Equip(isEquip);
+		if ((item_number > 0) && (item_number < NUM_ITEMS + 1))
+		{
+			_items[item_number - 1]->Equip(isEquip);
+		}
 	}
 
 	vector<Item*> Items::GetItemInBag()
@@ -167,9 +170,9 @@ namespace game_framework {
 		}
 	}
 
-	void Items::SetItems(bool items[7])
+	void Items::SetItems(bool items[NUM_ITEMS])
 	{
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < NUM_ITEMS; i++)
 		{
 			_items[i]->SetItem(items[i]);
 		}
@@ -178,7 +181,6 @@ namespace game_framework {
 	vector<bool> Items::GetSaveData()
 	{
 		vector<bool> owned_items;
-
 		for (int i = 0; i < _items.size(); i++)
 		{
 			if (_items[i]->OwnedItem())

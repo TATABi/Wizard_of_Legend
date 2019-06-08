@@ -2,6 +2,7 @@
 #define ITEMS_H
 #include "Item.h"
 #include "vector"
+#include "GameData.h"
 
 namespace game_framework {
 	class Items {
@@ -14,7 +15,7 @@ namespace game_framework {
 		void Effect();					//OnMove()中用
 		int GetNumberOfItem(string);
 		void UnloadAllItem();
-		void SetItems(bool[7]);			//用來回復Item狀態(讀檔、離開關卡)
+		void SetItems(bool[NUM_ITEMS]);	//用來回復Item狀態(讀檔、離開關卡)
 		vector<bool> GetSaveData();		//回傳所有item的擁有狀態
 		Item* GetItem(int);				//取得編號的道具
 		Item* GetEquipAndOwnedItem();	//回傳裝備且擁有的裝備(因一次只能裝備一件出門)
@@ -31,7 +32,6 @@ namespace game_framework {
 		int NUMBER_OF_DEFENSE = 3;
 		int NUMBER_OF_MISC = 1;
 	};
-
 }
 
 #endif

@@ -73,7 +73,6 @@ namespace game_framework {
 					row = 0;
 					col++;
 				}
-
 				_items[i]->SetXY(67 + 25 * row, 170 + 25 * col);
 				_items[i]->OnShow();
 				row++;						

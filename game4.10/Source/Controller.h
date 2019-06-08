@@ -1,6 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
-#include "Memento.h"
+#include "GameData.h"
+
 namespace game_framework {
 	
 	class Controller {
@@ -17,6 +18,11 @@ namespace game_framework {
 		virtual bool IsSwitchGameState();
 		virtual int GameState();
 		void CharacterDead();
+		void UpdateMemento(std::string);	//¦smemento
+		void LoadMemento(std::string);		//Åª¨úmemento
+		void SaveData();
+		void LoadData();
+		void ResetData();
 	protected:
 		void Cheater(UINT);		//§@¹ú
 		int _game_state_num;

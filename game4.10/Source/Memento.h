@@ -1,14 +1,18 @@
 #ifndef MEMENTO_H
 #define MEMEMTO_H
 #include <sstream>
+#include "GameData.h"
 
 namespace game_framework
 {
+
+/////////////////////////////////////////////////
 	class State 
 	{
 		friend class Memento;
 	public:
-		State(const string, int, int, bool[7]);
+		State(const string, int, int, bool[NUM_ITEMS]);
+		~State();
 		string Stage();
 		int Diamond();
 		int EquipItem();
@@ -17,20 +21,25 @@ namespace game_framework
 		string _stage;					//紀錄點
 		int _diamond;					//Diamond
 		int _equip_item;				//裝備道具
-		bool _owned_items[7];			//擁有道具
+		bool _owned_items[NUM_ITEMS];			//擁有道具
 	};
+/////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
 	class Memento 
 	{
 		friend class Originator;
 	public:
+		~Memento();
 		string Stage();
 	private:
 		Memento(State* state);			
 		void SetState(State*);
 		State* _state;
 	};
+/////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
 	class Originator
 	{
 	public:
@@ -38,13 +47,14 @@ namespace game_framework
 		void SetState(State*);
 		void RestoreToMemento(Memento*);
 		Memento* CreateMemento();
-		void SetRecord();
 	protected:
 		Originator();
 	private:
 		State* _state;
 	};
+/////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
 	class Caretaker
 	{
 	public:
@@ -58,5 +68,6 @@ namespace game_framework
 		map<string, Memento*> _mementos;
 	};
 }
+/////////////////////////////////////////////////
 
 #endif

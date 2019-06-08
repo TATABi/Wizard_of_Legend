@@ -89,6 +89,10 @@ int main(int argc, char const *argv[]) {
       ofs << "9";
     else if (gimp_image.pixel_data[i] == 52)// 道具3
       ofs << "10";
+  	else if (gimp_image.pixel_data[i] == 200)
+  	{
+  		ofs << "-2";
+  	}
     else          //黑色
       ofs << "-1";
 

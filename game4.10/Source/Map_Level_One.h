@@ -13,6 +13,5 @@ namespace game_framework {
 		void OnMove();
 		int GetMapStatus(float, float);
 	};
-
 }
 #endif

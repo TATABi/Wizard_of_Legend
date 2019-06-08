@@ -13,11 +13,11 @@ namespace game_framework {
 
 	void Home_State_Controller::Begin()
 	{
+		LoadMemento(Town_Or_Home);
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
-		_map.Initialize(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]);
-		
+		_map.Initialize(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]);	
 		Character::Instance().Initialize(_map.GetCharacterPosition());
 		CharacterData::Instance().ResetStatus();
 
@@ -218,6 +218,7 @@ namespace game_framework {
 						_flag = FLAG_HOME_OPTIONS;
 						break;
 					case 3:
+						SaveData();	//¦sÀÉ
 						PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// Ãö³¬¹CÀ¸
 						break;
 					}
@@ -233,7 +234,8 @@ namespace game_framework {
 				}
 				if (nChar == KEY_SPACE)
 				{
-					PausedMenu::Instance().SaveData();
+					SaveData();
+					PausedMenu::Instance().PrePausedMenu();
 				}
 				break;
 

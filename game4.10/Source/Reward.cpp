@@ -24,11 +24,11 @@ namespace game_framework {
 		{
 			switch (_state)
 			{
-			case BORN:
+			case BORN:			//剛生成時的狀態
 				_state = MOVE;
 				break;
 
-			case EATEN:
+			case EATEN:			//被吃掉的狀態
 				if (delay_counter == 0)
 				{
 					MoveTarget(midCX, midCY);
@@ -40,11 +40,11 @@ namespace game_framework {
 				}
 				break;
 
-			case MOVE:
+			case MOVE:			//如果沒有進入被吃掉的範圍，隨機掉落到怪物死亡位置附近
 				IsEaten() ? _state = EATEN : MoveTarget(_targetX, _targetY), _state = IDLE;
 				break;
 
-			case IDLE:
+			case IDLE:			//判斷是不是被吃掉
 				IsEaten() ? _state = EATEN : NULL;
 				break;
 			}
@@ -57,6 +57,7 @@ namespace game_framework {
 			_bm_reward.ShowBitmap();
 	}
 
+	//移動到目標位置，如果移動時間超過_move_counter則直接移動到目標地
 	void Reward::MoveTarget(float targetX, float targetY)
 	{
 		int temp = _time;
@@ -75,6 +76,7 @@ namespace game_framework {
 		_move_counter--;
 	}
 
+	//判斷是否到達目標點 附近
 	bool Reward::IsTargetPosition(float targetX, float targetY)
 	{
 		float d = 20;
@@ -83,6 +85,7 @@ namespace game_framework {
 		return false;
 	}
 
+	//判斷是否要被吃
 	bool Reward::IsEaten()
 	{
 		//角色中心位置
@@ -110,18 +113,21 @@ namespace game_framework {
 		float cy = _map->GetCharacterPosition()[1];
 		float midCX = cx + CHARACTER_HITBOX[2] / 2;
 		float midCY = cy + CHARACTER_HITBOX[3] / 2;
+
+		//確保reward不會因為太生成時太靠近character而太快被吃掉
 		if ((_isShow) && (IsTargetPosition(midCX, midCY)) && delay_counter == 0)
 			return true;
 		else
 			return false;
 	}
 
+	//reward生成時掉落在周圍
 	void Reward::SetRandomPosition()
 	{
 		std::random_device rd;
 		_targetX = rd() % _range_position + _xy[0];
 		_targetY = rd() % _range_position + _xy[1];
-		while (!_map->SetEnemyXY(_targetX, _targetY, _hitbox))
+		while (!_map->CheckEnemyPosition(_targetX, _targetY, _hitbox))
 		{
 			_targetX = rd() % _range_position + _xy[0];
 			_targetY = rd() % _range_position + _xy[1];

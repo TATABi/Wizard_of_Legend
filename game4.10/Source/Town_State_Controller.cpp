@@ -74,14 +74,13 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 2)
 				{
+					UpdateMemento(Town_Or_Home);
 					_isSwitch = true;
 					_game_state_num = GAME_STATE_RUN_LEVEL_1;
 				}
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//買道具1
 				{
-
-
 					if (_item_store.Buy(0))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
@@ -95,7 +94,6 @@ namespace game_framework {
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				}
-
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 5)	//買道具3
 				{
@@ -148,6 +146,7 @@ namespace game_framework {
 						_flag = FLAG_TOWN_OPTIONS;
 						break;
 					case 3:
+						SaveData();	//存檔
 						PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 						break;
 					}

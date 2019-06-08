@@ -1,0 +1,10 @@
+diff a/game4.10/Source/gamelib.h b/game4.10/Source/gamelib.h	(rejected hunks)
+@@ -74,7 +74,7 @@
+ #define GAME_CYCLE_TIME		 33		    // �C33ms�]�@��Move��Show(�C��30��)
+ #define SHOW_GAME_CYCLE_TIME false		// �O�_�bdebug mode���cycle time
+ #define ENABLE_GAME_PAUSE	 true		// �O�_���\�H Ctrl-Q �Ȱ��C��
+-#define ENABLE_AUDIO		 true		// �Ұʭ��Ĥ���
++#define ENABLE_AUDIO		 false		// �Ұʭ��Ĥ���
+ 
+ /////////////////////////////////////////////////////////////////////////////
+ // �w�qCGame��CGameState�ҨϥΪ��T�Ӫ��A�`��

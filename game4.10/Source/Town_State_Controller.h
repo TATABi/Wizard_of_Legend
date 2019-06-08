@@ -38,7 +38,6 @@ namespace game_framework {
 		Store _item_store;								//道具商店
 		int _delayCounter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 	};
-
 }
 
 #endif
