@@ -73,6 +73,7 @@ namespace game_framework {
 		_skill_cooldown_counter[0] = _skill_cooldown_counter[1] = _skill_cooldown_counter[2] = 0;
 		_isDrop = false;
 		_drop_counter = DROP_COUNTER_TIME;
+		_trap_counter = TRAP_COUNTER_TIME;
 	}
 
 	void Character::LoadBitmap()
@@ -229,6 +230,8 @@ namespace game_framework {
 	{
 		IsHurt();
 		MagicBuff();
+		//掉落
+		DropDown(map);
 
 		for (int i = 0; i < 3; i++)
 			_skill_cooldown_counter[i] > 0 ? _skill_cooldown_counter[i]-- : NULL;
@@ -383,9 +386,10 @@ namespace game_framework {
 					break;
 				}
 			}
-			else    //站著不動		
+			else    //站著不動
+			{
 				ResetRun();
-
+			}
 			if (_isRunning)			//跑步氣流動畫
 			{
 				switch (_direction)
@@ -419,9 +423,6 @@ namespace game_framework {
 			map->SetCharacterXY(_dx, _dy);
 			_xy[0] = map->GetCharacterPosition()[0];
 			_xy[1] = map->GetCharacterPosition()[1];
-
-			//掉落
-			DropDown(map);
 		}
 	}
 
@@ -596,7 +597,7 @@ namespace game_framework {
 
 	bool Character::CanDash()
 	{
-		if (_dash_delay_counter == DASH_COOLDOWN_TIME && !_isHurt)
+		if (_dash_delay_counter == DASH_COOLDOWN_TIME && !_isHurt && !_isDrop)
 			return true;
 		return false;
 	}
@@ -810,8 +811,15 @@ namespace game_framework {
 		//判斷是否掉落中reset position
 		if (_isDrop)
 		{
+			SetMovingDown(false);
+			SetMovingLeft(false);
+			SetMovingRight(false);
+			SetMovingUp(false);
 			if (_drop_counter > 0)
+			{
+				//播放動畫 
 				_drop_counter--;
+			}
 			else
 			{
 				//受傷害
@@ -824,10 +832,24 @@ namespace game_framework {
 				_xy[1] = map->GetCharacterPosition()[1];
 				_safePosition[0] = _xy[0];
 				_safePosition[1] = _xy[1];
+
 				//reset counter
 				_drop_counter = DROP_COUNTER_TIME;
 				_isDrop = false;
 			}
+		}
+	}
+
+	void Character::Trap(GameMap* map)
+	{
+		if (_trap_counter > 0)
+		{
+			_trap_counter--;
+		}
+		else
+		{
+			CharacterData::Instance()->AddHP(-TRAP_DAMAGE);
+			_trap_counter = TRAP_COUNTER_TIME;
 		}
 	}
 }
