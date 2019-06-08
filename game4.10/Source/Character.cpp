@@ -79,6 +79,7 @@ namespace game_framework {
 		_isDrop = false;
 		_drop_counter = DROP_COUNTER_TIME;
 		_trap_counter = TRAP_COUNTER_TIME;
+		_isTransfer = false;
 	}
 
 	void Character::LoadBitmap()
@@ -262,8 +263,6 @@ namespace game_framework {
 	{
 		IsHurt();
 		MagicBuff();
-		//掉落
-		DropDown(map);
 
 		for (int i = 0; i < 3; i++)
 			_skill_cooldown_counter[i] > 0 ? _skill_cooldown_counter[i]-- : NULL;
@@ -456,6 +455,8 @@ namespace game_framework {
 			_xy[0] = map->GetCharacterPosition()[0];
 			_xy[1] = map->GetCharacterPosition()[1];
 		}
+		//掉落
+		DropDown(map);
 	}
 
 	void Character::OnShow()
@@ -512,11 +513,25 @@ namespace game_framework {
 		}
 		else if (_isDrop)
 		{
-			if (_drop_counter > 60)
-				_bm_fall_up.ShowBitmap();
-			else if (_drop_counter > 30)
-				_bm_fall_down.ShowBitmap();
-			else if (_drop_counter > 0)
+			if (!_isTransfer)
+			{
+				switch (_direction)
+				{
+				case UP:
+					_bm_fall_up.ShowBitmap(0.8);
+					break;
+				case LEFT:
+					_bm_fall_down.ShowBitmap(0.8);
+					break;
+				case DOWN:
+					_bm_fall_down.ShowBitmap(0.8);
+					break;
+				case RIGHT:
+					_bm_fall_down.ShowBitmap(0.8);
+					break;
+				}
+			}	
+			else
 			{
 				_ani_transfer.OnShow();
 			}
@@ -621,7 +636,6 @@ namespace game_framework {
 	{
 		if (_isMovingDown || _isMovingLeft || _isMovingRight || _isMovingUp)
 			return true;
-
 		return false;
 	}
 
@@ -675,7 +689,6 @@ namespace game_framework {
 
 				return new Skill_Air_Spinner(x, y, _xy);
 			}
-			
 		}
 		else if (skillNum == 2)
 		{
@@ -828,7 +841,6 @@ namespace game_framework {
 				_data->AddMP(-1);
 				_mp_decrease_counter = MP_DECREASE_TIME;
 			}
-
 			_mp_decrease_counter--;
 		}
 	}
@@ -871,31 +883,39 @@ namespace game_framework {
 		//判斷是否掉落中reset position
 		if (_isDrop)
 		{
+			//掉落期間鎖住移動
 			SetMovingDown(false);
 			SetMovingLeft(false);
 			SetMovingRight(false);
 			SetMovingUp(false);
-			if (_drop_counter > 0)
+			_drop_counter--;
+			if (_drop_counter > DROP_RESET_ANI_TIME)
 			{
-				_drop_counter--;
+				_isTransfer = false;
 			}
 			else
 			{
-				//受傷害
-				CharacterData::Instance().AddHP(-DROP_DAMAGE);
-				_hp -= DROP_DAMAGE;
+				_isTransfer = true;
+				if (_drop_counter == DROP_RESET_ANI_TIME)
+				{
+					//復原位置
+					map->SetCharacterXY(_safePosition[0] - _xy[0], _safePosition[1] - _xy[1]);
+					_xy[0] = map->GetCharacterPosition()[0];
+					_xy[1] = map->GetCharacterPosition()[1];
+					_safePosition[0] = _xy[0];
+					_safePosition[1] = _xy[1];
 
-				//播放動畫、復原位置
-				_ani_transfer.OnMove();
-				map->SetCharacterXY(_safePosition[0] - _xy[0], _safePosition[1] - _xy[1]);
-				_xy[0] = map->GetCharacterPosition()[0];
-				_xy[1] = map->GetCharacterPosition()[1];
-				_safePosition[0] = _xy[0];
-				_safePosition[1] = _xy[1];
-
-				//reset counter
-				_drop_counter = DROP_COUNTER_TIME;
-				_isDrop = false;
+					//受傷害
+					CharacterData::Instance().AddHP(-DROP_DAMAGE);
+					_hp -= DROP_DAMAGE;
+				}
+				else if (_drop_counter < 0)	
+				{
+					_drop_counter = DROP_COUNTER_TIME;
+					_isDrop = false;
+				}
+				else
+					_ani_transfer.OnMove();	//播動畫
 			}
 		}
 	}
