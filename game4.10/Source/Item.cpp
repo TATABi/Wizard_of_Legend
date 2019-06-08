@@ -76,7 +76,7 @@ namespace game_framework {
 
 	bool Item::BuyItem()
 	{
-		CharacterData *data = CharacterData::Instance();
+		CharacterData *data = &CharacterData::Instance();
 
 		if (data->DIAMOND() >= _diamond && !_isOwned)
 		{

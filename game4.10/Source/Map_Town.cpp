@@ -10,9 +10,8 @@
 
 namespace game_framework {
 
-	Map_Town::Map_Town(int x, int y, Character* c) : GameMap(x, y)
+	Map_Town::Map_Town(int x, int y) : GameMap(x, y)
 	{
-		_character = c;
 	}
 
 	Map_Town::~Map_Town() {
@@ -20,6 +19,8 @@ namespace game_framework {
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 			delete *iter;
 	}
+
+	void Map_Town::AddEnemy() {}	//Town¨S¦³Enemy
 
 	void Map_Town::LoadBitmap()
 	{
@@ -82,7 +83,7 @@ namespace game_framework {
 		SkillOnMove();
 		EnemyOnMove();
 	}
-		
+
 	int Map_Town::GetMapStatus(float x, float y)
 	{
 		return TOWN_LOGIC[int(x/10)][int(y/10)];

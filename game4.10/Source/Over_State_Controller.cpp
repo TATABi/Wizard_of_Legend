@@ -10,15 +10,14 @@
 
 namespace game_framework {
 	
-	Over_State_Controller::Over_State_Controller():Controller()	{}
+	Over_State_Controller::Over_State_Controller():Controller(), _int_stage(1), _int_gold_found(3), _int_gems_collected(3), _int_enemy_defeated(3) {}
 
-	Over_State_Controller::~Over_State_Controller()
-	{
-		CharacterData::Instance()->DeleteData();	//¸Ñ¨MSingleton memory leak
-	}
+	Over_State_Controller::~Over_State_Controller(){}
+
 	void Over_State_Controller::Begin()
 	{
 		_isSwitch = false;
+		_game_state_num = -1;
 		_delay_counter = 15 * 1;		// 0.5 seconds
 		_flag = FLAG_NORMAL;
 		_mask_counter = 0;
@@ -44,8 +43,7 @@ namespace game_framework {
 
 		_ani_play_keyboard.SetTopLeft(370, 132);
 		_bm_result.SetTopLeft(0, 0);
-
-		_int_stage.SetTopLeft(285, 162);
+		_int_stage.SetTopLeft(298, 162);
 		_int_gold_found.SetTopLeft(285, 190);
 		_int_gems_collected.SetTopLeft(285, 220);
 		_int_enemy_defeated.SetTopLeft(285, 249);
@@ -81,13 +79,15 @@ namespace game_framework {
 
 	void Over_State_Controller::OnMove()
 	{
-		int* game_result = CharacterData::Instance()->GetStageResult();
+		int* game_result = CharacterData::Instance().GetStageResult();
 		_int_stage.SetInteger(game_result[0]);
 		_int_gold_found.SetInteger(game_result[1]);
 		_int_gems_collected.SetInteger(game_result[2]);
 		_int_enemy_defeated.SetInteger(game_result[3]);
-		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
+		
 		_delay_counter > 0 ? _delay_counter-- : NULL;
+
+		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
 		if (_delay_counter == 0)
 		{

@@ -40,7 +40,7 @@ namespace game_framework
 		_xy[1] = _ori_y;
 	}
 
-	void Blockhead::LoadBitmap_2()
+	void Blockhead::LoadEnemyBitmap()
 	{
 		_bm_stand.LoadBitmap(ENEMY_BLOCKHEAD, RGB(50, 255, 0));
 	}

@@ -6,14 +6,13 @@
 #include "gamelib.h"
 #include "GameMap.h"
 #include "Character.h"
+#include "UI.h"
+#include "CharacterData.h"
 #include <algorithm>
 
 namespace game_framework {
 	
-	GameMap::GameMap(int x, int y)
-	{
-		Initialize(x, y);
-	}
+	GameMap::GameMap(int x, int y){}
 	
 	GameMap::~GameMap() 
 	{
@@ -80,8 +79,8 @@ namespace game_framework {
 
 	void GameMap::CharacterUseSkill(int skillNum, int x, int y)
 	{
-		if(!_character->IsUsingSkill() && !_character->IsHurt() && !_character->IsSkillCooldown(skillNum))
-			_skillList.push_back(_character->GenerateSkill(skillNum, x, y));
+		if(!Character::Instance().IsUsingSkill() && !Character::Instance().IsHurt() && !Character::Instance().IsSkillCooldown(skillNum))
+			_skillList.push_back(Character::Instance().GenerateSkill(skillNum, x, y));
 	}
 	
 	void GameMap::SkillOnMove()
@@ -108,7 +107,7 @@ namespace game_framework {
 		layer.insert(layer.end(), _rewards.begin(), _rewards.end());
 		layer.insert(layer.end(), _enemies.begin(), _enemies.end());
 		layer.insert(layer.end(), _skillList.begin(), _skillList.end());
-		layer.push_back(_character);
+		layer.push_back(&Character::Instance());
 		sort(layer.begin(), layer.end(), [](Layer* a, Layer* b) {return a->GetY() < b->GetY(); });
 
 		vector<Layer*>::iterator l_it;

@@ -12,20 +12,19 @@ namespace game_framework {
 
 	void Init_State_Controller::Begin()
 	{
-		_game_state_num = GAME_STATE_INIT;
+		_game_state_num = -1;
 		_flag = FLAG_INIT_INIT;
 		_instruction_1 = SINGLE_PLAYER;
 		_instruction_2 = KEY_CONFIG;
 		_isSwitch = false;
+		CAudio::Instance()->Pause();
 	}
 
 	void Init_State_Controller::Initialize()
-	{	
+	{			
+		_audio_delay_counter = 1;
 		LoadData();
-		if(CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav"))
-			CAudio::Instance()->Play(AUDIO_TITLE, true);
-		CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
-		
+
 		int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,
 			MENU_INIT_26, MENU_INIT_28, MENU_INIT_30, MENU_INIT_32, MENU_INIT_34, MENU_INIT_36, MENU_INIT_38, MENU_INIT_40, MENU_INIT_42, MENU_INIT_44,
 			MENU_INIT_46, MENU_INIT_48 };
@@ -176,8 +175,11 @@ namespace game_framework {
 			_flag = FLAG_INIT_MENU;
 	}
 
+
 	void Init_State_Controller::OnShow()
 	{
+		_audio_delay_counter >= 0 ? _audio_delay_counter-- : NULL;
+		_audio_delay_counter == 0 ? CAudio::Instance()->Play(AUDIO_TITLE) : NULL;
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 		switch (_flag) 
 		{

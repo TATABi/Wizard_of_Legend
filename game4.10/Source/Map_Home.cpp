@@ -13,13 +13,18 @@
 
 namespace game_framework {
 
-	Map_Home::Map_Home(int x, int y, Character* c) : GameMap(x, y)
-	{	
-		AddEnemy();
-		_character = c;
-	}
+	Map_Home::Map_Home(int x, int y) : GameMap(x, y) { AddEnemy(); }
 
 	Map_Home::~Map_Home(){}
+
+	void Map_Home::AddEnemy() 
+	{
+		_enemies.push_back(new Blockhead(650, 918, AREA_1, this));
+		_enemies.push_back(new Blockhead(850, 830, AREA_1, this));
+		_enemies.push_back(new Blockhead(870, 910, AREA_1, this));
+		_enemies.push_back(new Blockhead(850, 1000, AREA_1, this));
+		_enemies.push_back(new Slime(660, 900, AREA_1, this));
+	}
 
 	void Map_Home::LoadBitmap()
 	{
@@ -87,17 +92,5 @@ namespace game_framework {
 	int Map_Home::GetMapStatus(float x, float y)
 	{
 		return HOME_LOGIC[int(x/10)][int(y/10)];
-	}
-	
-	void Map_Home::AddEnemy()
-	{
-		_enemies.push_back(new Black_Man(640, 900, AREA_1, this));
-		_enemies.push_back(new Blockhead(650, 918, AREA_2, this));
-		_enemies.push_back(new Blockhead(850, 830, AREA_2, this));
-		_enemies.push_back(new Blockhead(870, 910, AREA_2, this));
-		_enemies.push_back(new Blockhead(850, 1000, AREA_2, this));
-		_enemies.push_back(new Slime(660, 900, AREA_1, this));
-		_enemies.push_back(new Black_Man(640, 920, AREA_1, this));
-		_enemies.push_back(new Black_Man(640, 930, AREA_1, this));
 	}
 }

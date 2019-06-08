@@ -74,7 +74,7 @@
 #define GAME_CYCLE_TIME		 33		    // 每33ms跑一次Move及Show(每秒30次)
 #define SHOW_GAME_CYCLE_TIME false		// 是否在debug mode顯示cycle time
 #define ENABLE_GAME_PAUSE	 true		// 是否允許以 Ctrl-Q 暫停遊戲
-#define ENABLE_AUDIO		 false		// 啟動音效介面
+#define ENABLE_AUDIO		 true		// 啟動音效介面
 
 /////////////////////////////////////////////////////////////////////////////
 // 定義CGame及CGameState所使用的三個狀態常數
@@ -99,24 +99,6 @@ enum GAME_STATES {
 	*/
 };
 
-enum AUDIO_ID {				// 定義各種音效的編號
-	AUDIO_BE,
-	AUDIO_TITLE,
-	AUDIO_HOME,
-	AUDIO_DASH,
-	AUDIO_TOWN,
-	AUDIO_ARRIVAL,
-	AUDIO_PULL,
-	AUDIO_PUTTING,
-	AUDIO_PULL2,
-	AUDIO_BUY,
-	AUDIO_NOMONEY,
-	AUDIO_LEVEL_FIRE,
-	AUDIO_LEVEL_ICE,
-	AUDIO_LEVEL_EARTH,
-	ADUIO_BAD_END
-};
-
 const char KEY_LEFT = 0x25;		// keyboard左箭頭
 const char KEY_UP = 0x26;		// keyboard上箭頭
 const char KEY_RIGHT = 0x27;	// keyboard右箭頭
@@ -126,6 +108,8 @@ const char KEY_S = 0x53;
 const char KEY_A = 0x41;
 const char KEY_D = 0x44;
 const char KEY_F = 0x46;
+const char KEY_M = 0x4D;
+const char KEY_Q = 0x51;
 const char KEY_ESC = 27;
 const char KEY_SPACE = 0x20;
 const char KEY_TAB = 0x09;

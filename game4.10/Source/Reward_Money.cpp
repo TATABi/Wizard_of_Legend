@@ -48,8 +48,8 @@ namespace game_framework {
 
 	void Reward_Money::Effect()
 	{
-		CharacterData::Instance()->AddMoney(VALUE);
-		CharacterData::Instance()->AddMoneyCollected(VALUE);
+		CharacterData::Instance().AddMoney(VALUE);
+		CharacterData::Instance().AddMoneyCollected(VALUE);
 	}
 
 }

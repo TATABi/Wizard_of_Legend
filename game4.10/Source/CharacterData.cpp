@@ -9,21 +9,10 @@
 
 namespace game_framework {
 
-	CharacterData* CharacterData::_instance;
-
-	void CharacterData::DeleteData()
+	CharacterData& CharacterData::Instance()
 	{
-		temp = _instance;
-		_instance = nullptr;
-		delete temp;
-	}
-
-	CharacterData* CharacterData::Instance()
-	{
-		if (_instance == nullptr)
-			_instance = new CharacterData();
-
-		return _instance;
+		static CharacterData instance;
+		return instance;
 	}
 
 	CharacterData::CharacterData()
@@ -39,11 +28,10 @@ namespace game_framework {
 		_blood_suck_coefficient = 0;
 		_move_coefficient = 1;
 		_cd_coefficient = 1;
-		_mp_charge_coefficient = 1;
+		_mp_charge_coefficient = 0.7;
 		_isInvincible = false;
 		_isLockHP = false;
 		_stage = _money_found = _diamond_collected = _enemies_defeated = 0;
-
 	}
 
 	//--------------------³]©w­È--------------------//
@@ -114,7 +102,6 @@ namespace game_framework {
 
 	void CharacterData::AddMP(int d_mp)
 	{
-		
 		if (!_isMagicBuff)
 			_mp += d_mp;
 		else

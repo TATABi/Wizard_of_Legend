@@ -31,6 +31,15 @@ const int DROP_COUNTER_TIME = 90;								//墜落多久後復原位置
 const int TRAP_COUNTER_TIME = 10;
 //===========================Skills===========================//
 
+//Air Spinner//
+const int AIR_SPINNER_DAMAGE = 3;
+const int AIR_SPINNER_HITBOX[3] = { 23, 23, 20 };
+const int AIR_SPINNER_LIFETIME = 100;
+const int AIR_SPINNER_MAP_HITBOX[4] = { 0, 0, 0, 0 };
+const int AIR_SPINNER_SPEED = 0;
+const int AIR_SPINNER_CAST_DISTANCE = 40;
+const int AIR_SPINNER_COOLDOWN = 0;
+
 //Shock Nova//
 const int SHOCK_NOVA_DAMAGE = 2;								//傷害
 const int SHOCK_NOVA_HITBOX[3] = { 103, 105, 95 };				//圓心 X, Y 座標、半徑
@@ -43,7 +52,7 @@ const int SHOCK_NOVA_DELAY_COUNTER = 5;							//使用技能後延遲時間
 const int SHOCK_NOVA_COOLDOWN = 3 * 30;							//冷卻時間
 
 //Rebounding Icicles//
-const int REBOUNDING_ICICKES_DAMAGE = 10;						//傷害
+const int REBOUNDING_ICICKES_DAMAGE = 20;						//傷害
 const int REBOUNDING_ICICKES_HITBOX[4] = { 32, 10, 36, 77 };	//左上 X, Y 座標、Length、Width
 const int REBOUNDING_ICICKES_LIFETIME = 180;					//技能存活時間
 const int REBOUNDING_ICICKES_MAP_HITBOX[4] = { 35, 45, 6, 5 };	// 地圖碰撞

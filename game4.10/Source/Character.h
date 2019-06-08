@@ -18,6 +18,7 @@ namespace game_framework {
 		static Character& Instance();
 		void Initialize(float*);						//重置角色座標、數據
 		void LoadBitmap();								//載入動畫、圖片
+		void SetXY();									//設定動畫圖片位置
 		void OnMove(GameMap *);							//傳入地圖用以判斷所處位置
 		void OnShow();									//顯示
 		void SetMovingDown(bool flag);					//往下移動
@@ -50,7 +51,7 @@ namespace game_framework {
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;												//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right;								//跑步時的氣流
 		CAnimation _ani_dash_up, _ani_dash_down, _ani_dash_left, _ani_dash_right;							//dash動畫
-		//CAnimation _ani_arrival;																			//出場動畫
+		CAnimation _ani_transfer;																			//轉移位置動畫
 		CAnimation _ani_die;																				//死亡動畫
 		CAnimation _ani_useSkill_1_up, _ani_useSkill_1_down, _ani_useSkill_1_left, _ani_useSkill_1_right;	//使用Skill 1 動畫
 		CAnimation _ani_useSkill_2_up, _ani_useSkill_2_down, _ani_useSkill_2_left, _ani_useSkill_2_right;	//使用Skill 2 動畫
@@ -58,6 +59,7 @@ namespace game_framework {
 		CAnimation* _ani_useSkill;																			//暫存現在使用的技能
 		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;						//站立圖
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;														//被毆圖
+		CMovingBitmap _bm_fall_up, _bm_fall_down;
 		CAnimation _ani_magic_buff;
 		DIRECTION _direction;												// 紀錄角色面向方向
 		int _dx, _dy;														//移動距離

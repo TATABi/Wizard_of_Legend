@@ -59,14 +59,14 @@ namespace game_framework {
 		}
 		else if (keycode == KEY_F6)	//無敵、錢、鑽石999、傷害係數100
 		{
-			CharacterData::Instance()->LockHP();
-			CharacterData::Instance()->SetAttackCoefficient(100);
-			CharacterData::Instance()->AddMoney(999);
-			CharacterData::Instance()->AddDiamond(999);
+			CharacterData::Instance().LockHP();
+			CharacterData::Instance().SetAttackCoefficient(100);
+			CharacterData::Instance().AddMoney(999);
+			CharacterData::Instance().AddDiamond(999);
 		}
 		else if (keycode == KEY_F7)	//自殺
 		{
-			CharacterData::Instance()->AddHP(-CharacterData::Instance()->HP());
+			CharacterData::Instance().AddHP(-CharacterData::Instance().HP());
 		}
 		else if (keycode == KEY_F8)	//建立memento，stateName = home
 		{
@@ -89,7 +89,7 @@ namespace game_framework {
 
 	void Controller::CharacterDead()
 	{
-		if (CharacterData::Instance()->HP() == 0)
+		if (CharacterData::Instance().HP() == 0)
 		{
 			bool isDead;
 			isDead = Character::Instance().Dead();	//角色死亡
@@ -109,11 +109,11 @@ namespace game_framework {
 		//沒有裝備在身上，GetEquipAndOwnedItem回傳nullptr
 		if (Items::Instance().GetEquipAndOwnedItem() == nullptr)
 		{
-			state = new State(stateName, CharacterData::Instance()->DIAMOND(), 0, own_Items);
+			state = new State(stateName, CharacterData::Instance().DIAMOND(), 0, own_Items);
 		}
 		else 
 		{
-			state = new State(stateName, CharacterData::Instance()->DIAMOND(), Items::Instance().GetEquipAndOwnedItem()->GetNumber(), own_Items);
+			state = new State(stateName, CharacterData::Instance().DIAMOND(), Items::Instance().GetEquipAndOwnedItem()->GetNumber(), own_Items);
 		}
 		Originator::Instance().SetState(state);
 		Caretaker::Instance().SetMemento(Originator::Instance().CreateMemento());
@@ -136,7 +136,7 @@ namespace game_framework {
 		if (file)
 		{
 			//寫入鑽石
-			file << CharacterData::Instance()->DIAMOND() << CHAR_TAB;
+			file << CharacterData::Instance().DIAMOND() << CHAR_TAB;
 
 			//寫入使用且擁有的裝備
 			if (Items::Instance().GetEquipAndOwnedItem() == nullptr)
@@ -172,7 +172,7 @@ namespace game_framework {
 
 			//讀取、設定鑽石數量
 			getline(file, s, CHAR_TAB);
-			CharacterData::Instance()->SetDiamond(atoi(s.c_str()));
+			CharacterData::Instance().SetDiamond(atoi(s.c_str()));
 
 			//讀取、設定擁有且使用中的裝備
 			getline(file, s, CHAR_TAB);

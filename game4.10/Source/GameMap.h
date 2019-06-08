@@ -30,7 +30,7 @@ namespace game_framework {
 		void CleanMemory();
 		void SetCharacterXY(int, int);
 		bool CheckEnemyPosition(int, int, int*);
-		virtual void LoadBitmap()=0;
+		virtual void LoadBitmap() = 0;
 		virtual void OnMove() = 0;
 		virtual int GetMapStatus(float, float) = 0;
 	protected:
@@ -40,11 +40,6 @@ namespace game_framework {
 		float _cxy[2] = { 0,0 };	//角色所在Map的座標
 		bool _isPressF;
 		int _character_status;
-		//const int _collision_move[4] = { 24, 53, 20 , 7};   //(x,y,l,w) collision_move	碰撞判定範圍
-		//const int _collision_damage[4] = {23, 10, 24, 49};	//受到傷害判定範圍
-		const int CHARACTER_SCREEN_X = 285;
-		const int CHARACTER_SCREEN_Y = 205;
-		Character* _character;
 		vector<Skill*> _skillList;
 		vector<Enemy*> _enemies;
 		vector<Reward*> _rewards;

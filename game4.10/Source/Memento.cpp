@@ -89,7 +89,7 @@ namespace game_framework
 		Items::Instance().SetItems(_state->OwnedItem());
 		Items::Instance().UnloadAllItem();
 		Items::Instance().Equip(_state->EquipItem(), true);
-		CharacterData::Instance()->SetDiamond(_state->Diamond());
+		CharacterData::Instance().SetDiamond(_state->Diamond());
 	}
 
 	Memento* Originator::CreateMemento()

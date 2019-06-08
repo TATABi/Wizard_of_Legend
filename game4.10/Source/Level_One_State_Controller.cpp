@@ -9,35 +9,31 @@
 
 #define LEVEL_ONE 1
 namespace game_framework {
-	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1], &Character::Instance()) {}
+	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]) {}
 	
 	void Level_One_State_Controller::Begin()
 	{
-		_game_state_num = GAME_STATE_RUN_LEVEL_1;
+		_game_state_num = -1;
 		_isSwitch = false;
-		_delayCounter = 30 * 4; // 1 seconds
+		_delayCounter = 30 * 4;			// 4 seconds
 		_map.Initialize(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]);
-		Character::Instance().Initialize(_map.GetCharacterPosition());
 		_flag = FLAG_NORMAL;
 		Character::Instance().Initialize(_map.GetCharacterPosition());
-
-		
-		CAudio::Instance()->Stop(AUDIO_TOWN);
+		Character::Instance().Initialize(_map.GetCharacterPosition());
+		CAudio::Instance()->Pause();
 		CAudio::Instance()->Play(AUDIO_LEVEL_FIRE, true);
+		UI::Instance().ResetMapMask();
+		_bm_loading_chess.SetTopLeft(-100, -100);
+		_chess_xy[0] = 62;
+		_chess_xy[1] = 135;
+		_isUpDown = true;
 	}
 
 	void Level_One_State_Controller::Initialize()
 	{
-		CAudio::Instance()->Load(AUDIO_LEVEL_FIRE, "sounds\\FireBGM.wav");
-
 		_bm_loading_level.LoadBitmap(LOADING_LEVEL);
 		_bm_loading_chess.LoadBitmap(LOADING_CHESS, RGB(50, 255, 0));
-		_bm_loading_chess.SetTopLeft(-100, -100);
 		_map.LoadBitmap();
-
-		_chess_xy[0] = 62;
-		_chess_xy[1] = 135;
-		_isUpDown = true;
 	}
 
 	void Level_One_State_Controller::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -60,7 +56,6 @@ namespace game_framework {
 			switch (_flag)
 			{
 			case FLAG_NORMAL:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
-
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					Character::Instance().SetMovingDown(true);
 				if (nChar == KEY_UP || nChar == KEY_W)
@@ -76,11 +71,15 @@ namespace game_framework {
 					PausedMenu::Instance().Paused(true);
 					_flag = FLAG_PAUSED;
 				}
-
 				if (nChar == KEY_TAB)
 				{
 					Bag::Instance().Open(true);
 					_flag = FLAG_BAG;
+				}
+				if (nChar == KEY_M)
+				{
+					UI::Instance().OpenMap(true, 1);
+					_flag = FLAG_MAP;
 				}
 				break;
 
@@ -137,6 +136,24 @@ namespace game_framework {
 					_flag = FLAG_NORMAL;
 				}
 				break;
+
+			case FLAG_MAP:
+				if (nChar == KEY_DOWN || nChar == KEY_S)
+					Character::Instance().SetMovingDown(true);
+				if (nChar == KEY_UP || nChar == KEY_W)
+					Character::Instance().SetMovingUp(true);
+				if (nChar == KEY_LEFT || nChar == KEY_A)
+					Character::Instance().SetMovingLeft(true);
+				if (nChar == KEY_RIGHT || nChar == KEY_D)
+					Character::Instance().SetMovingRight(true);
+				if (nChar == KEY_SPACE)
+					Character::Instance().Dash();
+				if (nChar == KEY_ESC || nChar == KEY_M)	//PAUSED選單
+				{
+					UI::Instance().OpenMap(false, 1);
+					_flag = FLAG_NORMAL;
+				}
+				break;
 			}
 		}
 	}
@@ -153,7 +170,7 @@ namespace game_framework {
 
 	void Level_One_State_Controller::OnMove()
 	{
-		CharacterData::Instance()->SetStage(LEVEL_ONE);
+		CharacterData::Instance().SetStage(LEVEL_ONE);
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 		CharacterDead();		//判斷腳色死亡、執行相關動作
 

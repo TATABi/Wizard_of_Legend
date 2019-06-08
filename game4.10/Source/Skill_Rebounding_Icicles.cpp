@@ -90,7 +90,7 @@ namespace game_framework
 		{
 			if (AttackedThisEnemy(enemy))
 			{
-				CharacterData* data = CharacterData::Instance();
+				CharacterData* data = &CharacterData::Instance();
 				int damage = _damage * data->ATTACK_COEFFICIENT();	
 				data->AddMP((int)(damage * data->MP_CHARGE_COEFFICIENT()));
 				return damage;
@@ -124,8 +124,8 @@ namespace game_framework
 			{
 				_rx += _dx;
 				_ry += _dy;
-				_xy[0] = (int)_rx;
-				_xy[1] = (int)_ry;
+				_xy[0] = _rx;
+				_xy[1] = _ry;
 			}
 
 			//  1 Icicles

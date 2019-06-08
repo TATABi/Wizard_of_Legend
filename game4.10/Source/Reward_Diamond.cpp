@@ -48,7 +48,7 @@ namespace game_framework {
 
 	void Reward_Diamond::Effect()
 	{
-		CharacterData::Instance()->AddDiamond(VALUE);
-		CharacterData::Instance()->AddDiamondCollected(VALUE);
+		CharacterData::Instance().AddDiamond(VALUE);
+		CharacterData::Instance().AddDiamondCollected(VALUE);
 	}
 }
