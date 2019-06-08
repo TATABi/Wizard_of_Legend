@@ -510,6 +510,17 @@ namespace game_framework {
 				break;
 			}
 		}
+		else if (_isDrop)
+		{
+			if (_drop_counter > 60)
+				_bm_fall_up.ShowBitmap();
+			else if (_drop_counter > 30)
+				_bm_fall_down.ShowBitmap();
+			else if (_drop_counter > 0)
+			{
+				_ani_transfer.OnShow();
+			}
+		}
 		else
 		{
 			if (_isRunning && !_ani_run_right.IsFinalBitmap() && !_ani_run_left.IsFinalBitmap()
@@ -866,7 +877,6 @@ namespace game_framework {
 			SetMovingUp(false);
 			if (_drop_counter > 0)
 			{
-				//播放動畫 
 				_drop_counter--;
 			}
 			else
@@ -875,7 +885,8 @@ namespace game_framework {
 				CharacterData::Instance().AddHP(-DROP_DAMAGE);
 				_hp -= DROP_DAMAGE;
 
-				//復原位置
+				//播放動畫、復原位置
+				_ani_transfer.OnMove();
 				map->SetCharacterXY(_safePosition[0] - _xy[0], _safePosition[1] - _xy[1]);
 				_xy[0] = map->GetCharacterPosition()[0];
 				_xy[1] = map->GetCharacterPosition()[1];
@@ -897,7 +908,7 @@ namespace game_framework {
 		}
 		else
 		{
-			CharacterData::Instance()->AddHP(-TRAP_DAMAGE);
+			CharacterData::Instance().AddHP(-TRAP_DAMAGE);
 			_trap_counter = TRAP_COUNTER_TIME;
 		}
 	}
