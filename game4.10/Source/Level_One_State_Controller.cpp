@@ -20,7 +20,7 @@ namespace game_framework {
 		_flag = FLAG_NORMAL;
 		Character::Instance().Initialize(_map.GetCharacterPosition());
 		Character::Instance().Initialize(_map.GetCharacterPosition());
-		CAudio::Instance()->Pause();
+		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_LEVEL_FIRE, true);
 		UI::Instance().ResetMapMask();
 		_bm_loading_chess.SetTopLeft(-100, -100);
@@ -206,6 +206,7 @@ namespace game_framework {
 		{
 			_map.OnShowBackground();
 			_map.OnShow();
+			_map.OnShowWall();
 			UI::Instance().OnShow();
 			Bag::Instance().OnShow();
 			PausedMenu::Instance().OnShow();

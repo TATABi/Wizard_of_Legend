@@ -20,7 +20,7 @@ namespace game_framework {
 		_flag = FLAG_TOWN_NORMAL;
 		Character::Instance().Initialize(_map.GetCharacterPosition());
 		Character::Instance().Initialize(_map.GetCharacterPosition());
-		CAudio::Instance()->Pause();
+		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_TOWN, true);
 
 		//////商店產生隨機道具/////

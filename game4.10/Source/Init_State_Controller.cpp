@@ -12,17 +12,17 @@ namespace game_framework {
 
 	void Init_State_Controller::Begin()
 	{
+		_audio_delay_counter = 1;
 		_game_state_num = -1;
 		_flag = FLAG_INIT_INIT;
 		_instruction_1 = SINGLE_PLAYER;
 		_instruction_2 = KEY_CONFIG;
 		_isSwitch = false;
-		CAudio::Instance()->Pause();
+		CAudio::Instance()->StopAll();
 	}
 
 	void Init_State_Controller::Initialize()
 	{			
-		_audio_delay_counter = 1;
 		LoadData();
 
 		int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,

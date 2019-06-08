@@ -30,7 +30,7 @@ namespace game_framework {
 
 		LoadBitmapPressF();
 		_background.LoadBitmap(MAP_LEVEL_01);
-		_wall.LoadBitmap(MAP_LEVEL_01, RGB(50, 255, 0));
+		_wall.LoadBitmap(MAP_LEVEL_01_WALL, RGB(50, 255, 0));
 	}
 
 	void Map_Level_One::OnMove()

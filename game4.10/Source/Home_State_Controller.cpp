@@ -30,7 +30,7 @@ namespace game_framework {
 		else
 			_flag = FLAG_JOIN;
 
-		CAudio::Instance()->Pause();
+		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_HOME, true);
 	}
 

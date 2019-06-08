@@ -335,4 +335,16 @@ void CAudio::Stop(unsigned id)
 	}
 }
 
+void CAudio::StopAll()
+{
+	map<int, Info>::iterator iter;
+	for (iter = info.begin(); iter != info.end(); iter++) {
+		if (iter->second.isGood) {
+			char command[MAX_MCI_COMMAND_SIZE];
+			sprintf(command, "stop device%d", iter->first);
+			SendMciCommand(command);
+		}
+	}
+}
+
 }

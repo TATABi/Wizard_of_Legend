@@ -58,7 +58,7 @@ namespace game_framework {
 		CAnimation* _ani_useSkill;																			//暫存現在使用的技能
 		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;						//站立圖
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;														//被毆圖
-		CMovingBitmap _bm_fall_up, _bm_fall_down;
+		CMovingBitmap _bm_fall_up, _bm_fall_down;															//掉落圖
 		CAnimation _ani_magic_buff;
 		DIRECTION _direction;												// 紀錄角色面向方向
 		int _dx, _dy;														//移動距離

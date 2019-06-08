@@ -845,6 +845,7 @@
     <Image Include="RES\InGame\Level_1\Map\FireMap.bmp" />
     <Image Include="RES\InGame\Level_1\Map\FireMapSimple.bmp" />
     <Image Include="RES\InGame\Level_1\Map\FireMapSimple.png" />
+    <Image Include="RES\InGame\Level_1\Map\Wall.bmp" />
     <Image Include="RES\InGame\LightBeam\00.bmp" />
     <Image Include="RES\InGame\LightBeam\01.bmp" />
     <Image Include="RES\InGame\LightBeam\02.bmp" />

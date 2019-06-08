@@ -730,6 +730,7 @@
     <Image Include="RES\Character\Use_Air_Spinner\Right\05.bmp" />
     <Image Include="RES\Character\Fall\Fall_Down.bmp" />
     <Image Include="RES\Character\Fall\Fall_Up.bmp" />
+    <Image Include="RES\InGame\Level_1\Map\Wall.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />
