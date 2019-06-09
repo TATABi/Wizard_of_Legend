@@ -561,6 +561,8 @@ CHARACTER_SKILL_AIR_SPINNER_RIGHT_05 BITMAP                  "..\\RES\\Character
 CHARACTER_FALL_DOWN     BITMAP                  "..\\RES\\Character\\Fall\\Fall_Down.bmp"
 CHARACTER_FALL_UP       BITMAP                  "..\\RES\\Character\\Fall\\Fall_Up.bmp"
 MAP_LEVEL_01_WALL       BITMAP                  "..\\RES\\InGame\\Level_1\\Map\\Wall.bmp"
+CHARACTER_FALL_LEFT     BITMAP                  "..\\RES\\Character\\Fall\\Fall_Left.bmp"
+CHARACTER_FALL_RIGHT    BITMAP                  "..\\RES\\Character\\Fall\\Fall_Right.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

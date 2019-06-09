@@ -27,9 +27,9 @@ const int RUN_STEP = 10;										//Run的步長
 const int DASH_STEP = 17;										//Dash的步長
 const int MAGIC_BUFF_TIME = int(0.1 * 30);						//MP集滿時BUFF持續的時間
 const int MP_DECREASE_TIME = int(0.4 * 30);						//MP集滿時BUFF持續的時間
-const int DROP_COUNTER_TIME = 60;								//墜落後復原位置的時間
+const int DROP_COUNTER_TIME = 15;								//墜落後復原位置的時間
 const int TRAP_COUNTER_TIME = 10;								//觸發陷阱時間
-const int DROP_RESET_ANI_TIME = 30;								//掉落後多久播動畫
+const int DROP_RESET_ANI_TIME = 8;								//掉落後多久播動畫
 //===========================Skills===========================//
 
 //Air Spinner//

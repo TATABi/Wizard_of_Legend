@@ -72,6 +72,7 @@ namespace game_framework {
 	{
 		if (!_isLockHP)
 		{
+			_isInvincible && d_hp < 0 ? d_hp = 0 : NULL;
 			_hp += d_hp;
 			_hp > _max_hp ? _hp = _max_hp : NULL;
 			_hp < 0 ? _hp = 0 : NULL;
@@ -108,7 +109,7 @@ namespace game_framework {
 			d_mp < 0 ? _mp += d_mp : NULL;
 
 		_mp > _max_mp ? _mp = _max_mp, _isMagicBuff = true : NULL;
-		_mp <= 0 ? _mp = 0, _isMagicBuff = false : NULL;
+		_mp <= 0 ? (_mp = 0, _isMagicBuff = false) : NULL;
 	}
 
 	void CharacterData::SetAttackCoefficient(float coefficient)

@@ -93,7 +93,7 @@ namespace game_framework {
 		{
 			bool isDead;
 			isDead = Character::Instance().Dead();	//¨¤¦â¦º¤`
-			isDead ? _isSwitch = true, _game_state_num = GAME_STATE_OVER : NULL;
+			isDead ? (_isSwitch = true, _game_state_num = GAME_STATE_OVER) : NULL;
 		}
 	}
 

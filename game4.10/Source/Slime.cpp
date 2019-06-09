@@ -127,7 +127,7 @@ namespace game_framework {
 		if (_is_transfer)
 		{
 			_ani_transfer.OnShow();
-			_ani_transfer.IsFinalBitmap() ? _ani_transfer.Reset(), _is_transfer = false : _ani_transfer.OnMove();
+			_ani_transfer.IsFinalBitmap() ? (_ani_transfer.Reset(), _is_transfer = false) : _ani_transfer.OnMove();
 		}
 		else
 		{

@@ -223,7 +223,6 @@ namespace game_framework {
 	{
 		_map_num = i;
 		_isOpenMap = Opened;
-		//_isOpenMap ? _isOpenMap = false : _isOpenMap = true;
 	}
 
 	void UI::ResetMapMask()

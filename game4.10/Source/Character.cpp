@@ -80,6 +80,7 @@ namespace game_framework {
 		_drop_counter = DROP_COUNTER_TIME;
 		_trap_counter = TRAP_COUNTER_TIME;
 		_isTransfer = false;
+		_isDropLock = false;
 	}
 
 	void Character::LoadBitmap()
@@ -218,6 +219,8 @@ namespace game_framework {
 		_bm_hurt_right.LoadBitmap(CHARACTER_HURT_RIGHT, RGB(50, 255, 0));
 		_bm_fall_up.LoadBitmap(CHARACTER_FALL_UP, RGB(50, 255, 0));
 		_bm_fall_down.LoadBitmap(CHARACTER_FALL_DOWN, RGB(50, 255, 0));
+		_bm_fall_left.LoadBitmap(CHARACTER_FALL_LEFT, RGB(50, 255, 0));
+		_bm_fall_right.LoadBitmap(CHARACTER_FALL_RIGHT, RGB(50, 255, 0));
 
 		SetXY();
 	}
@@ -257,6 +260,8 @@ namespace game_framework {
 		_ani_transfer.SetTopLeft(CHARACTER_SCREEN_X + 15, CHARACTER_SCREEN_Y - 5);
 		_bm_fall_up.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 		_bm_fall_down.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		_bm_fall_left.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
+		_bm_fall_right.SetTopLeft(CHARACTER_SCREEN_X, CHARACTER_SCREEN_Y);
 	}
 
 	void Character::OnMove(GameMap *map)
@@ -270,6 +275,10 @@ namespace game_framework {
 		if (_isDead)
 		{
 			_ani_die.OnMove();
+		}
+		else if (_isDrop)//掉落
+		{
+			DropDown(map);
 		}
 		else if (_isHurt)
 		{
@@ -455,8 +464,6 @@ namespace game_framework {
 			_xy[0] = map->GetCharacterPosition()[0];
 			_xy[1] = map->GetCharacterPosition()[1];
 		}
-		//掉落
-		DropDown(map);
 	}
 
 	void Character::OnShow()
@@ -521,13 +528,13 @@ namespace game_framework {
 					_bm_fall_up.ShowBitmap(0.8);
 					break;
 				case LEFT:
-					_bm_fall_down.ShowBitmap(0.8);
+					_bm_fall_left.ShowBitmap(0.8);
 					break;
 				case DOWN:
 					_bm_fall_down.ShowBitmap(0.8);
 					break;
 				case RIGHT:
-					_bm_fall_down.ShowBitmap(0.8);
+					_bm_fall_right.ShowBitmap(0.8);
 					break;
 				}
 			}	
@@ -655,7 +662,7 @@ namespace game_framework {
 
 	bool Character::CanDash()
 	{
-		if (_dash_delay_counter == DASH_COOLDOWN_TIME && !_isHurt && !_isDrop)
+		if (_dash_delay_counter == DASH_COOLDOWN_TIME && !_isHurt && !_isDrop && !_isDead)
 			return true;
 		return false;
 	}
@@ -883,11 +890,6 @@ namespace game_framework {
 		//判斷是否掉落中reset position
 		if (_isDrop)
 		{
-			//掉落期間鎖住移動
-			SetMovingDown(false);
-			SetMovingLeft(false);
-			SetMovingRight(false);
-			SetMovingUp(false);
 			_drop_counter--;
 			if (_drop_counter > DROP_RESET_ANI_TIME)
 			{
@@ -913,23 +915,33 @@ namespace game_framework {
 				{
 					_drop_counter = DROP_COUNTER_TIME;
 					_isDrop = false;
+					_ani_transfer.Reset();
 				}
 				else
-					_ani_transfer.OnMove();	//播動畫
+				{
+					!_ani_transfer.IsFinalBitmap() ? _ani_transfer.OnMove() : NULL;
+				}
 			}
 		}
 	}
 
-	void Character::Trap(GameMap* map)
+	void Character::SetInTrap(bool IsinTrap)
 	{
-		if (_trap_counter > 0)
+		if (IsinTrap)
 		{
-			_trap_counter--;
+			if (_trap_counter > 0)
+			{
+				_trap_counter--;
+			}
+			else
+			{
+				CharacterData::Instance().AddHP(-TRAP_DAMAGE);
+				_trap_counter = TRAP_COUNTER_TIME;
+			}
 		}
 		else
 		{
-			CharacterData::Instance().AddHP(-TRAP_DAMAGE);
-			_trap_counter = TRAP_COUNTER_TIME;
+			_trap_counter = 0;
 		}
 	}
 }

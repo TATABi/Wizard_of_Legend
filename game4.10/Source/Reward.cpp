@@ -41,7 +41,7 @@ namespace game_framework {
 				break;
 
 			case MOVE:			//如果沒有進入被吃掉的範圍，隨機掉落到怪物死亡位置附近
-				IsEaten() ? _state = EATEN : MoveTarget(_targetX, _targetY), _state = IDLE;
+				IsEaten() ? _state = EATEN : (MoveTarget(_targetX, _targetY), _state = IDLE);
 				break;
 
 			case IDLE:			//判斷是不是被吃掉

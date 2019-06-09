@@ -37,7 +37,7 @@ namespace game_framework {
 		void SetDrop();									//set _isdrop true
 		bool IsDash();									//return _isDash
 		bool IsMoving();								//是否有輸入任何(上下左右)移動指令
-		void Trap(GameMap*);							//陷阱動作
+		void SetInTrap(bool);							//陷阱動作
 	protected:
 		Character();
 	private:
@@ -47,7 +47,6 @@ namespace game_framework {
 		void ResetRun();								//重製Run判斷的數據
 		void ResetDash();								//重製Dash判斷的數據
 		void DropDown(GameMap*);						//播動畫、復原位置
-
 		CAnimation _ani_up, _ani_down, _ani_left, _ani_right;												//走路動畫
 		CAnimation _ani_run_up, _ani_run_down, _ani_run_left, _ani_run_right;								//跑步時的氣流
 		CAnimation _ani_dash_up, _ani_dash_down, _ani_dash_left, _ani_dash_right;							//dash動畫
@@ -59,7 +58,7 @@ namespace game_framework {
 		CAnimation* _ani_useSkill;																			//暫存現在使用的技能
 		CMovingBitmap _bm_stand_up, _bm_stand_down, _bm_stand_left, _bm_stand_right;						//站立圖
 		CMovingBitmap _bm_hurt_left, _bm_hurt_right;														//被毆圖
-		CMovingBitmap _bm_fall_up, _bm_fall_down;															//掉落圖
+		CMovingBitmap _bm_fall_up, _bm_fall_down, _bm_fall_left, _bm_fall_right;							//掉落圖
 		CAnimation _ani_magic_buff;
 		DIRECTION _direction;												// 紀錄角色面向方向
 		int _dx, _dy;														//移動距離
@@ -85,6 +84,8 @@ namespace game_framework {
 		int _drop_counter;													//掉落多久後復原
 		float _safePosition[2];												//復原的位置
 		int _trap_counter;													//持續多久會觸發陷阱
+		bool _isTransfer;													//判斷是否要撥復原動畫
+		bool _isDropLock;
 	};
 }
 

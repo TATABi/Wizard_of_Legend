@@ -490,6 +490,8 @@
     <Image Include="RES\Character\Down\Character_down_09.bmp" />
     <Image Include="RES\Character\Down\Character_down_10.bmp" />
     <Image Include="RES\Character\Fall\Fall_Down.bmp" />
+    <Image Include="RES\Character\Fall\Fall_Left.bmp" />
+    <Image Include="RES\Character\Fall\Fall_Right.bmp" />
     <Image Include="RES\Character\Fall\Fall_Up.bmp" />
     <Image Include="RES\Character\Hurt\left.bmp" />
     <Image Include="RES\Character\Hurt\right.bmp" />

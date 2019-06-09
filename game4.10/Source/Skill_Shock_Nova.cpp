@@ -124,7 +124,7 @@ namespace game_framework
 			_ani_skill[0].OnShow();
 
 			if (_ani_skill[0].IsFinalBitmap())
-				_time == 0 ? _isDelete = true : _ani_skill[0].Reset(), _time--;
+				_time == 0 ? _isDelete = true : (_ani_skill[0].Reset(), _time--);
 		}
 	}
 }

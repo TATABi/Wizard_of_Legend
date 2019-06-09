@@ -34,6 +34,7 @@ namespace game_framework {
 		virtual void OnMove() = 0;
 		virtual int GetMapStatus(float, float) = 0;
 	protected:
+		bool CheckMapStatus(int, int, const int*, int = -1, char = '!');				//ÀË´ú¨¤¦âª¬ºA	x, y, hitbox, ÀË´ú­È
 		CMovingBitmap _background; //­I´º¹Ï
 		CMovingBitmap _wall; //Àð	
 		CAnimation _ani_press_f;  //press f °Êµe
