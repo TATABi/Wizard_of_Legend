@@ -63,9 +63,6 @@ namespace game_framework
 			_ani_hurt.SetTopLeft(x + (_bm_stand.Width() - _ani_hurt.Width()) / 2, y + (_bm_stand.Height() - _ani_hurt.Height()) / 2);
 			break;
 		}
-
-		//¤£¦º
-		_hp <= 0 ? _hp = BLOCKHEAD_HP : NULL;
 	}
 
 	void Blockhead::OnShow()
@@ -92,5 +89,11 @@ namespace game_framework
 			}
 			break;
 		}
+	}
+
+	vector<Reward*> Blockhead::CreateReward() 
+	{
+		vector<Reward*> noRewards;
+		return noRewards;
 	}
 }

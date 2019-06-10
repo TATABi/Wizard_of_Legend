@@ -13,24 +13,28 @@
 
 namespace game_framework {
 
-	Map_Home::Map_Home(int x, int y) : GameMap(x, y) { AddEnemy(); }
+	Map_Home::Map_Home(int x, int y) : GameMap(x, y) {}
 
 	Map_Home::~Map_Home(){}
 
 	void Map_Home::AddEnemy() 
 	{
+		vector<Enemy*>::iterator e_it;
+		for (e_it = _enemies.begin(); e_it != _enemies.end(); e_it++)
+			(*e_it)->Dead();
+		
 		_enemies.push_back(new Blockhead(650, 918, AREA_1, this));
 		_enemies.push_back(new Blockhead(850, 830, AREA_1, this));
 		_enemies.push_back(new Blockhead(870, 910, AREA_1, this));
 		_enemies.push_back(new Blockhead(850, 1000, AREA_1, this));
 		_enemies.push_back(new Slime(660, 900, AREA_1, this));
+
+		for each (Enemy* enemy in _enemies)
+			enemy->LoadBitmap();
 	}
 
 	void Map_Home::LoadBitmap()
 	{
-		for each (Enemy* enemy in _enemies)
-			enemy->LoadBitmap();
-
 		LoadBitmapPressF();
 		_background.LoadBitmap(MAP_HOME);
 		_wall.LoadBitmap(MAP_HOME_WALL, RGB(50, 255, 0));

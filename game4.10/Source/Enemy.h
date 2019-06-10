@@ -9,7 +9,7 @@ namespace game_framework {
 	class Enemy : public Layer {
 	public:
 		Enemy(int, int, int, GameMap*);
-		void Initialize(int, int);	
+		void Initialize(int, int);
 		void OnMove(int, int, vector<Skill*>&);		//傳入現在場上所有由主角發出的魔法
 		bool IsLive();
 		bool CanAchieved(int, int);						//判斷能否移動
@@ -20,6 +20,7 @@ namespace game_framework {
 		int* GetHitbox();
 		void LoadBitmap();
 		bool IsInAttackZone(int, int);
+		void Dead();
 		virtual vector<Reward*> CreateReward();	//血球、錢、鑽石的數量
 		virtual void Init() = 0;
 		virtual void LoadEnemyBitmap() = 0;

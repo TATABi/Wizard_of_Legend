@@ -13,6 +13,8 @@ namespace game_framework {
 	
 	void Level_One_State_Controller::Begin()
 	{
+		_map.AddEnemy();
+		LoadMemento(Town_Or_Home);
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 4;			// 4 seconds
@@ -53,6 +55,12 @@ namespace game_framework {
 		if (_delayCounter < 0)
 		{
 			Cheater(nChar);
+
+			if (nChar == KEY_F6)	//重生Enemy
+			{
+				_map.AddEnemy();
+			}
+
 			switch (_flag)
 			{
 			case FLAG_NORMAL:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
@@ -113,7 +121,6 @@ namespace game_framework {
 						_flag = FLAG_OPTIONS;
 						break;
 					case 3:
-						SaveData();	//存檔
 						PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 						break;
 					}
@@ -121,11 +128,15 @@ namespace game_framework {
 				break;
 
 			case FLAG_OPTIONS:		//點進options
-				if (nChar == KEY_ESC || nChar == KEY_SPACE)
+				if (nChar == KEY_ESC)
 				{
 					PausedMenu::Instance().PrePausedMenu();
 					PausedMenu::Instance().PrePausedMenu();
 					_flag = FLAG_PAUSED;
+				}
+				if (nChar == KEY_SPACE)
+				{
+					//音效
 				}
 				break;
 

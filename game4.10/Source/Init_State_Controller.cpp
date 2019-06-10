@@ -22,7 +22,7 @@ namespace game_framework {
 	}
 
 	void Init_State_Controller::Initialize()
-	{			
+	{	
 		LoadData();
 
 		int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,
@@ -88,7 +88,6 @@ namespace game_framework {
 			{
 				if (_instruction_1 == QUIT)
 				{
-					SaveData();	//存檔
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 				}
 				else
@@ -114,7 +113,6 @@ namespace game_framework {
 					_flag = FLAG_INIT_OPTION;
 					break;
 				case QUIT:
-					SaveData();	//存檔
 					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 					break;
 				}

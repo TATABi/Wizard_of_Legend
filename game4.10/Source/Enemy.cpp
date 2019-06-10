@@ -111,6 +111,11 @@ namespace game_framework {
 		}	
 	}
 
+	void Enemy::Dead()
+	{
+		_hp = 0;
+	}
+
 	void Enemy::SetXY(int dx, int dy)
 	{
 		_xy[0] += dx;

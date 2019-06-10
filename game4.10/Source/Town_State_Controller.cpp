@@ -13,6 +13,7 @@ namespace game_framework {
 
 	void Town_State_Controller::Begin()
 	{
+		LoadMemento(Town_Or_Home);
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
@@ -74,13 +75,13 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 2)
 				{
-					UpdateMemento(Town_Or_Home);
 					_isSwitch = true;
 					_game_state_num = GAME_STATE_RUN_LEVEL_1;
 				}
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//買道具1
 				{
+					SaveMemento(Town_Or_Home);
 					if (_item_store.Buy(0))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
@@ -89,6 +90,7 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 4)	//買道具2
 				{
+					SaveMemento(Town_Or_Home);
 					if (_item_store.Buy(1))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
@@ -97,6 +99,7 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 5)	//買道具3
 				{
+					SaveMemento(Town_Or_Home);
 					if (_item_store.Buy(2))
 						CAudio::Instance()->Play(AUDIO_BUY, false);
 					else
@@ -137,8 +140,6 @@ namespace game_framework {
 						_flag = FLAG_TOWN_NORMAL;
 						break;
 					case 1:
-						CAudio::Instance()->Play(AUDIO_TITLE, true);
-						CAudio::Instance()->Stop(AUDIO_TOWN);
 						_game_state_num = GAME_STATE_INIT;		//切換場景到Home
 						_isSwitch = true;
 						break;
@@ -146,7 +147,6 @@ namespace game_framework {
 						_flag = FLAG_TOWN_OPTIONS;
 						break;
 					case 3:
-						SaveData();	//存檔
 						PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 						break;
 					}
@@ -154,10 +154,17 @@ namespace game_framework {
 				break;
 
 			case FLAG_TOWN_OPTIONS:		//點進options
-				if (nChar == KEY_ESC || nChar == KEY_SPACE)
+				if (nChar == KEY_ESC)
 				{
 					PausedMenu::Instance().PrePausedMenu();
 					PausedMenu::Instance().PrePausedMenu();
+					_flag = FLAG_TOWN_PAUSED;
+				}
+				if (nChar == KEY_SPACE)
+				{
+					PausedMenu::Instance().PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
+					SaveData();
 					_flag = FLAG_TOWN_PAUSED;
 				}
 				break;

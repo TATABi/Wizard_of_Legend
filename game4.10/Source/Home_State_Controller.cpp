@@ -13,6 +13,7 @@ namespace game_framework {
 
 	void Home_State_Controller::Begin()
 	{
+		_map.AddEnemy();
 		LoadMemento(Town_Or_Home);
 		_game_state_num = -1;
 		_isSwitch = false;
@@ -68,6 +69,11 @@ namespace game_framework {
 	{
 		if (_delayCounter < 0)
 		{
+			if (nChar == KEY_F6)	//重生Enemy
+			{
+				_map.AddEnemy();
+			}
+
 			Cheater(nChar);
 			switch (_flag)
 			{
@@ -171,11 +177,14 @@ namespace game_framework {
 				}
 				if (nChar == KEY_SPACE)
 				{
-					if (_box.Equip(&Items::Instance())) {
+					if (_box.Equip(&Items::Instance())) 
+					{
+						SaveMemento(Town_Or_Home);
 						_box.OpenOpen(false);
 						_flag = FLAG_BOX;
 					}
-					else {
+					else
+					{
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 					}
 				}
@@ -218,7 +227,6 @@ namespace game_framework {
 						_flag = FLAG_HOME_OPTIONS;
 						break;
 					case 3:
-						SaveData();	//存檔
 						PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 						break;
 					}
@@ -234,8 +242,10 @@ namespace game_framework {
 				}
 				if (nChar == KEY_SPACE)
 				{
-					SaveData();
 					PausedMenu::Instance().PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
+					SaveData();
+					_flag = FLAG_HOME_PAUSED;
 				}
 				break;
 

@@ -43,6 +43,7 @@
     <ClCompile Include="Source\Slime.cpp" />
     <ClCompile Include="Source\Over_State_Controller.cpp" />
     <ClCompile Include="Source\Skill_Air_Spinner.cpp" />
+    <ClCompile Include="Source\Boss.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="Source\Slime.h" />
     <ClInclude Include="Source\Over_State_Controller.h" />
     <ClInclude Include="Source\Skill_Air_Spinner.h" />
+    <ClInclude Include="Source\Boss.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc" />

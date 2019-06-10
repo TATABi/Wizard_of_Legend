@@ -270,6 +270,7 @@
     <ClCompile Include="Source\Bag.cpp" />
     <ClCompile Include="Source\Black_Man.cpp" />
     <ClCompile Include="Source\Blockhead.cpp" />
+    <ClCompile Include="Source\Boss.cpp" />
     <ClCompile Include="Source\Memento.cpp" />
     <ClCompile Include="Source\Over_State_Controller.cpp" />
     <ClCompile Include="Source\Reward_Blood_Ball.cpp" />
@@ -347,6 +348,7 @@
     <ClInclude Include="Source\Bag.h" />
     <ClInclude Include="Source\Black_Man.h" />
     <ClInclude Include="Source\Blockhead.h" />
+    <ClInclude Include="Source\Boss.h" />
     <ClInclude Include="Source\Memento.h" />
     <ClInclude Include="Source\Over_State_Controller.h" />
     <ClInclude Include="Source\Reward_Blood_Ball.h" />

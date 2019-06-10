@@ -18,7 +18,7 @@ namespace game_framework {
 		virtual bool IsSwitchGameState();
 		virtual int GameState();
 		void CharacterDead();
-		void UpdateMemento(std::string);	//¦smemento
+		void SaveMemento(std::string);	//¦smemento
 		void LoadMemento(std::string);		//Åª¨úmemento
 		void SaveData();
 		void LoadData();

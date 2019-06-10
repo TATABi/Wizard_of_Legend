@@ -42,39 +42,16 @@ namespace game_framework {
 			_game_state_num = GAME_STATE_RUN_LEVEL_1;
 			_isSwitch = true;
 		}
-		
-		else if (keycode == KEY_F4)
-		{
-			/*
-			_game_state_num = GAME_STATE_RUN_HOME;
-			_isSwitch = true;
-			*/
-		}
-		else if (keycode == KEY_F5)
-		{
-			/*
-			_game_state_num = GAME_STATE_RUN_HOME;
-			_isSwitch = true;
-			*/
-		}
-		else if (keycode == KEY_F6)	//無敵、錢、鑽石999、傷害係數100
+		else if (keycode == KEY_F4)	//無敵、錢、鑽石999、傷害係數100
 		{
 			CharacterData::Instance().LockHP();
 			CharacterData::Instance().SetAttackCoefficient(100);
 			CharacterData::Instance().AddMoney(999);
 			CharacterData::Instance().AddDiamond(999);
 		}
-		else if (keycode == KEY_F7)	//自殺
+		else if (keycode == KEY_F5)	//自殺
 		{
 			CharacterData::Instance().AddHP(-CharacterData::Instance().HP());
-		}
-		else if (keycode == KEY_F8)	//建立memento，stateName = home
-		{
-			UpdateMemento("home");
-		}
-		else if (keycode == KEY_F9)	//復原memento，stateName = home
-		{
-			LoadMemento("home");
 		}
 	}
 	
@@ -97,7 +74,7 @@ namespace game_framework {
 		}
 	}
 
-	void Controller::UpdateMemento(std::string stateName)
+	void Controller::SaveMemento(std::string stateName)
 	{
 		State *state;
 		vector<bool> bool_items = Items::Instance().GetSaveData();

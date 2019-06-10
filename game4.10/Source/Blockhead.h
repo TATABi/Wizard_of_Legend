@@ -12,6 +12,7 @@ namespace game_framework {
 		void LoadEnemyBitmap();
 		void Move(int, int);
 		void OnShow();
+		vector<Reward*> CreateReward();
 	};
 
 }
