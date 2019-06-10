@@ -44,10 +44,7 @@ namespace game_framework {
 		}
 		else if (keycode == KEY_F4)	//無敵、錢、鑽石999、傷害係數100
 		{
-			CharacterData::Instance().LockHP();
-			CharacterData::Instance().SetAttackCoefficient(100);
-			CharacterData::Instance().AddMoney(999);
-			CharacterData::Instance().AddDiamond(999);
+			CharacterData::Instance().SuperMode();
 		}
 		else if (keycode == KEY_F5)	//自殺
 		{
@@ -59,6 +56,7 @@ namespace game_framework {
 	{
 		return _isSwitch;
 	}
+
 	int Controller::GameState()
 	{
 		return _game_state_num;

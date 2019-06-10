@@ -6,13 +6,14 @@ namespace game_framework {
 	class UI {
 	public:
 		static UI &Instance();		//Singleton
+		void Initialize();			//初始化
 		void LoadBitmap();			//匯入圖片
 		void SetXY();				//設定位置
 		void OnMove();				//計算
 		void OnShow();				//顯示
 		void CalculateHP();			//計算 & 顯示HP
 		void CalculateMP();			//計算 & 顯示MP
-		void OpenMap(bool ,int);				//開啟地圖
+		void OpenMap(bool ,int);	//開啟地圖
 		void ResetMapMask();		//重置地圖遮罩
 	protected:
 		UI();
@@ -41,6 +42,9 @@ namespace game_framework {
 		CMovingBitmap _bm_map_mask;				//Map遮罩
 		CMovingBitmap _bm_character_head;		//Map上角色頭像
 		CMovingBitmap _bm_map_board;			//Map Board
+		CMovingBitmap _bm_attack_buff;			//attack buff
+		CMovingBitmap _bm_speed_buff;			//speed buff
+		CMovingBitmap _bm_cooldown_buff;		//cooldown buff
 		CAnimation _ani_mp_bar;					//Mp閃爍動畫
 		CInteger _int_diamond,					//基本數值的數字
 				 _int_money,
@@ -48,7 +52,7 @@ namespace game_framework {
 			     _int_hp;
 		CInteger _skiil_2_cooldown,				//Skill冷卻計時
 				 _skiil_3_cooldown;
-		bool _isOpenMap = false;				//是否開啟地圖
+		bool _isOpenMap;						//是否開啟地圖
 		bool _map_mask[10][10];					//紀錄Map Mask值
 		int _map_num;							//紀錄開啟Map的編號
 	};

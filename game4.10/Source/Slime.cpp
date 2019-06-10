@@ -13,7 +13,6 @@ namespace game_framework {
 	Slime::Slime(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
-		Reset();
 	}
 
 	void Slime::Init()
@@ -31,10 +30,7 @@ namespace game_framework {
 		_ani_right.SetDelayCount(1);
 		_ani_attack_right.SetDelayCount(1);
 		_ani_attack_left.SetDelayCount(1);
-	}
 
-	void Slime::Reset()
-	{
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
 		_state = NOTHING;

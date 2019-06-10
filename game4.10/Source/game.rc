@@ -563,6 +563,9 @@ CHARACTER_FALL_UP       BITMAP                  "..\\RES\\Character\\Fall\\Fall_
 MAP_LEVEL_01_WALL       BITMAP                  "..\\RES\\InGame\\Level_1\\Map\\Wall.bmp"
 CHARACTER_FALL_LEFT     BITMAP                  "..\\RES\\Character\\Fall\\Fall_Left.bmp"
 CHARACTER_FALL_RIGHT    BITMAP                  "..\\RES\\Character\\Fall\\Fall_Right.bmp"
+UI_ATTACK_BUFF          BITMAP                  "..\\RES\\InGame\\UI\\Buff\\AttackBuff.bmp"
+UI_COOLDOWN_BUFF        BITMAP                  "..\\RES\\InGame\\UI\\Buff\\CooldownBuff.bmp"
+UI_SPEED_BUFF           BITMAP                  "..\\RES\\InGame\\UI\\Buff\\SpeedBuff.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

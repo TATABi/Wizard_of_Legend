@@ -111,9 +111,11 @@ namespace game_framework {
 		}	
 	}
 
-	void Enemy::Dead()
+	bool Enemy::Dead()
 	{
 		_hp = 0;
+		_IsReset = true;
+		return _IsReset;
 	}
 
 	void Enemy::SetXY(int dx, int dy)

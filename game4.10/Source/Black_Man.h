@@ -8,7 +8,6 @@ namespace game_framework {
 	public:
 		Black_Man(int, int, int, GameMap*);		//設定位置、區域、地圖
 		void Init();							//初始化
-		void Reset();							//重置
 		void LoadEnemyBitmap();					//匯入圖片
 		void Move(int, int);					//移動
 		void OnShow();							//顯示圖片

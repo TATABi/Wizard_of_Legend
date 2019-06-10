@@ -33,9 +33,6 @@ namespace game_framework {
 		_ani_press_f.SetDelayCount(2);
 		_isPressF = false;
 		_character_status = 0;
-
-		for (int i = 0; i < _enemies.size(); i++)
-			_enemies[i]->Reset();	
 	}
 
 	void GameMap::LoadBitmapPressF()
@@ -137,8 +134,11 @@ namespace game_framework {
 			if (!(*e_it)->IsLive())
 			{
 				//刪除enemy前先產生reward
-				vector<Reward*> temp = (*e_it)->CreateReward();
-				_rewards.insert(_rewards.end(), temp.begin(), temp.end());
+				if (!(*e_it)->Dead())
+				{
+					vector<Reward*> temp = (*e_it)->CreateReward();
+					_rewards.insert(_rewards.end(), temp.begin(), temp.end());
+				}
 				delete *e_it;
 				e_it = _enemies.erase(e_it);
 			}

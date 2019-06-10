@@ -32,6 +32,7 @@ namespace game_framework {
 		_isInvincible = false;
 		_isLockHP = false;
 		_stage = _money_found = _diamond_collected = _enemies_defeated = 0;
+		_isAttackBuff = _isSpeedBuff = _isCooldownBuff = false;
 	}
 
 	//--------------------³]©w­È--------------------//
@@ -112,6 +113,30 @@ namespace game_framework {
 		_mp <= 0 ? (_mp = 0, _isMagicBuff = false) : NULL;
 	}
 
+	void CharacterData::AttackBuff(bool isOpened)
+	{
+		if (isOpened)
+			_isAttackBuff ? NULL : (SetAttackCoefficient(1.3), _isAttackBuff = true);
+		else
+			_isAttackBuff ? (SetAttackCoefficient(-1.3), _isAttackBuff = false) : NULL;
+	}
+
+	void CharacterData::SpeedBuff(bool isOpened)
+	{
+		if (isOpened)
+			_isSpeedBuff ? NULL : (SetMoveCoefficient(1.3), _isSpeedBuff = true);
+		else
+			_isSpeedBuff ? (SetMoveCoefficient(-1.3), _isSpeedBuff = false) : NULL;
+	}
+
+	void CharacterData::CooldownBuff(bool isOpened)
+	{
+		if (isOpened)
+			_isCooldownBuff ? NULL : (SetCDCoefficient(0.7), _isCooldownBuff = true);
+		else
+			_isCooldownBuff ? (SetCDCoefficient(-0.7), _isCooldownBuff = false) : NULL;
+	}
+
 	void CharacterData::SetAttackCoefficient(float coefficient)
 	{
 		coefficient >= 0 ? _attack_coefficient *= coefficient : _attack_coefficient /= (-coefficient);
@@ -127,7 +152,7 @@ namespace game_framework {
 		coefficient >= 0 ? _blood_suck_coefficient *= coefficient : _blood_suck_coefficient /= (-coefficient);
 	}
 
-	void CharacterData::SetNoveCoefficient(float coefficient)
+	void CharacterData::SetMoveCoefficient(float coefficient)
 	{
 		coefficient >= 0 ? _move_coefficient *= coefficient : _move_coefficient /= (-coefficient);
 	}
@@ -152,6 +177,9 @@ namespace game_framework {
 		_hp = _max_hp;
 		_isMagicBuff = false;
 		_mp = _money = _stage = _money_found = _diamond_collected = _enemies_defeated = 0;
+		AttackBuff(false);
+		SpeedBuff(false);
+		CooldownBuff(false);
 	}
 
 	void CharacterData::SetMagicBuff(bool isBuff)
@@ -197,6 +225,16 @@ namespace game_framework {
 		_isLockHP ? _isLockHP = false : _isLockHP = true;
 	}
 
+	void CharacterData::SuperMode()
+	{
+		int flag;
+		_isLockHP ? flag = -1 : flag = 1;
+		LockHP();
+		SetAttackCoefficient(100 * flag);
+		AddMoney(999 * flag);
+		AddDiamond(999 * flag); 
+	}
+
 	//--------------------¨ú­È--------------------//
 
 	int CharacterData::MONEY() { return _money; }
@@ -226,4 +264,10 @@ namespace game_framework {
 	bool CharacterData::ISVINCIBLE() { return _isInvincible; }
 
 	bool CharacterData::ISMAGICBUFF() { return _isMagicBuff; }
+
+	bool CharacterData::ISATTACKBUFF() { return _isAttackBuff; }
+
+	bool CharacterData::ISSPEEDBUFF() { return _isSpeedBuff; }
+
+	bool CharacterData::ISCOOLDOWNBUFF() { return _isCooldownBuff; }
 }

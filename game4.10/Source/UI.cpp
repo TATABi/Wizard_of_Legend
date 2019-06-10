@@ -16,7 +16,15 @@ namespace game_framework {
 		return instance;
 	}
 
-	UI::UI():_skiil_2_cooldown(1), _skiil_3_cooldown(1) {}
+	UI::UI():_skiil_2_cooldown(1), _skiil_3_cooldown(1) 
+	{
+		Initialize();
+	}
+
+	void UI::Initialize()
+	{
+		_isOpenMap = false;
+	}
 
 	void UI::LoadBitmap()
 	{
@@ -50,6 +58,9 @@ namespace game_framework {
 		_bm_key_tab.LoadBitmap(UI_KEY_TAB, RGB(50, 255, 0));
 		_bm_map.LoadBitmap(UI_MAP, RGB(50, 255, 0));
 		_bm_info.LoadBitmap(UI_INFO, RGB(50, 255, 0));
+		_bm_attack_buff.LoadBitmap(UI_ATTACK_BUFF, RGB(50, 255, 0));
+		_bm_speed_buff.LoadBitmap(UI_SPEED_BUFF, RGB(50, 255, 0));
+		_bm_cooldown_buff.LoadBitmap(UI_COOLDOWN_BUFF, RGB(50, 255, 0));
 
 		int a[9] = { UI_MP_BAR_SHINE_01, UI_MP_BAR_SHINE_02, UI_MP_BAR_SHINE_03, UI_MP_BAR_SHINE_04, UI_MP_BAR_SHINE_05,
 					 UI_MP_BAR_SHINE_06, UI_MP_BAR_SHINE_07, UI_MP_BAR_SHINE_08, UI_MP_BAR_SHINE_09 };
@@ -92,6 +103,9 @@ namespace game_framework {
 		_skiil_3_cooldown.SetTopLeft(117, 445);
 		_bm_map_1.SetTopLeft(120, 40);
 		_bm_map_board.SetTopLeft(107, 27);
+		_bm_attack_buff.SetTopLeft(55, 55);
+		_bm_speed_buff.SetTopLeft(80, 55);
+		_bm_cooldown_buff.SetTopLeft(105, 55);
 	}
 
 	void UI::OnMove()
@@ -149,7 +163,10 @@ namespace game_framework {
 		_int_maxhp.ShowBitmap();
 		_int_hp.ShowBitmap();
 		_bm_slash.ShowBitmap();
-
+		CharacterData::Instance().ISATTACKBUFF() ? _bm_attack_buff.ShowBitmap() : NULL;
+		CharacterData::Instance().ISSPEEDBUFF() ? _bm_speed_buff.ShowBitmap() : NULL;
+		CharacterData::Instance().ISCOOLDOWNBUFF() ? _bm_cooldown_buff.ShowBitmap() : NULL;
+		
 		if (_isOpenMap)
 		{
 			_bm_map_board.ShowBitmap();

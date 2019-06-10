@@ -14,7 +14,6 @@ namespace game_framework {
 	Boss::Boss(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
-		Reset();
 	}
 
 	void Boss::Init()
@@ -33,10 +32,7 @@ namespace game_framework {
 		_ani_right.SetDelayCount(2);
 		_ani_attack_right.SetDelayCount(2);
 		_ani_attack_left.SetDelayCount(2);
-	}
 
-	void Boss::Reset()
-	{
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
 		_hp = BLACKMAN_HP;

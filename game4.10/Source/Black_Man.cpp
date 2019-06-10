@@ -13,7 +13,6 @@ namespace game_framework {
 	Black_Man::Black_Man(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
-		Reset();
 	}
 
 	void Black_Man::Init()
@@ -32,10 +31,7 @@ namespace game_framework {
 		_ani_right.SetDelayCount(2);
 		_ani_attack_right.SetDelayCount(2);
 		_ani_attack_left.SetDelayCount(2);
-	}
 
-	void Black_Man::Reset()
-	{
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
 		_hp = BLACKMAN_HP;

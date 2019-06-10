@@ -8,7 +8,6 @@ namespace game_framework{
 	public:
 		Slime(int, int, int, GameMap*);
 		void Init();
-		void Reset();
 		void LoadEnemyBitmap();
 		void Move(int, int);
 		void OnShow();

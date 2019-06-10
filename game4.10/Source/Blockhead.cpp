@@ -13,7 +13,6 @@ namespace game_framework
 	Blockhead::Blockhead(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
-		Reset();
 	}
 
 	void Blockhead::Init()
@@ -26,10 +25,6 @@ namespace game_framework
 		_move_hitbox[1] = BLOCKHEAD_MOVE_HITBOX[1];
 		_move_hitbox[2] = BLOCKHEAD_MOVE_HITBOX[2];
 		_move_hitbox[3] = BLOCKHEAD_MOVE_HITBOX[3];
-	}
-
-	void Blockhead::Reset()
-	{
 		_hp = BLOCKHEAD_HP;
 		_step = BLOCKHEAD_STEP;
 		_zone = BLOCKHEAD_ZONE;

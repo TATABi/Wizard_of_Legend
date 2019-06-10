@@ -13,7 +13,6 @@ namespace game_framework {
 
 	void Home_State_Controller::Begin()
 	{
-		_map.AddEnemy();
 		LoadMemento(Town_Or_Home);
 		_game_state_num = -1;
 		_isSwitch = false;
@@ -21,7 +20,7 @@ namespace game_framework {
 		_map.Initialize(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]);	
 		Character::Instance().Initialize(_map.GetCharacterPosition());
 		CharacterData::Instance().ResetStatus();
-
+		_map.AddEnemy();
 		//從其他場景回來不用再次出現加入選單
 		if (_ani_light_beam.IsFinalBitmap())
 		{

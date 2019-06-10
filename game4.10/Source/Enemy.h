@@ -20,13 +20,12 @@ namespace game_framework {
 		int* GetHitbox();
 		void LoadBitmap();
 		bool IsInAttackZone(int, int);
-		void Dead();
+		bool Dead();
 		virtual vector<Reward*> CreateReward();	//血球、錢、鑽石的數量
 		virtual void Init() = 0;
 		virtual void LoadEnemyBitmap() = 0;
 		virtual void Move(int, int) = 0;
 		virtual void OnShow() = 0;
-		virtual void Reset() = 0;
 	protected:
 		enum STATE {
 			ATTACKING,
@@ -70,6 +69,7 @@ namespace game_framework {
 		CAnimation _ani_transfer;			//卡住時的轉移動畫
 		GameMap* _map;
 		bool _isAttack = false;
+		bool _IsReset = false;
 	};
 }
 

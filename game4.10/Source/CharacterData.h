@@ -16,10 +16,13 @@ namespace game_framework {
 		void AddMaxHP(int);						//эMax_HP肚タ计: 璽计: Ι
 		void SetMaxHP(int);						//砞﹚Max_HP
 		void AddMP(int);						//эMP肚タ计: 璽计: Ι
+		void AttackBuff(bool);						//币笆attack buff
+		void SpeedBuff(bool);						//币笆speed buff
+		void CooldownBuff(bool);					//币笆cooldown buff
 		void SetAttackCoefficient(float);		//эAttack_Coefficient肚タ计: *玒计璽计: /玒计
 		void SetDefenseCoefficient(float);		//эDefense_Coefficient肚タ计: *玒计璽计: /玒计
 		void SetBloodSuckCoefficient(float);	//э_blood_suck_coefficient肚タ计: *玒计璽计: /玒计
-		void SetNoveCoefficient(float);			//эMove_Coefficient肚タ计: *玒计璽计: /玒计
+		void SetMoveCoefficient(float);			//эMove_Coefficient肚タ计: *玒计璽计: /玒计
 		void SetCDCoefficient(float);			//эCD_Coefficient肚タ计: *玒计璽计: /玒计
 		void SetMPChargeCoefficient(float);		//эMP_Charge_Coefficient肚タ计: *玒计璽计: /玒计
 		void SetInvincible(bool);				//э礚寄篈
@@ -33,7 +36,8 @@ namespace game_framework {
 
 		//Beater -- 国 ???????
 		void LockHP();
-		
+		void SuperMode();
+
 		//
 		int MONEY();
 		int DIAMOND();
@@ -49,6 +53,9 @@ namespace game_framework {
 		float MP_CHARGE_COEFFICIENT();
 		bool ISVINCIBLE();
 		bool ISMAGICBUFF();
+		bool ISATTACKBUFF();
+		bool ISSPEEDBUFF();
+		bool ISCOOLDOWNBUFF();
 	protected:
 		CharacterData();
 	private:
@@ -71,6 +78,7 @@ namespace game_framework {
 		int _money_found;						//闽い┮莉眔窥
 		int _diamond_collected;					//闽い┮莉眔腳ホ
 		int _enemies_defeated;					//闽い阑炳寄计秖
+		bool _isAttackBuff, _isSpeedBuff, _isCooldownBuff;	//魁buff琌币笆
 	};
 }
 

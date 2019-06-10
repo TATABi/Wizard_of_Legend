@@ -917,6 +917,9 @@
     <Image Include="RES\InGame\Town\sold_out.bmp" />
     <Image Include="RES\InGame\Town\Town.bmp" />
     <Image Include="RES\InGame\Town\Town_Wall.bmp" />
+    <Image Include="RES\InGame\UI\Buff\AttackBuff.bmp" />
+    <Image Include="RES\InGame\UI\Buff\CooldownBuff.bmp" />
+    <Image Include="RES\InGame\UI\Buff\SpeedBuff.bmp" />
     <Image Include="RES\InGame\UI\Character_head.bmp" />
     <Image Include="RES\InGame\UI\Diamond.bmp" />
     <Image Include="RES\InGame\UI\HP_Bar.bmp" />

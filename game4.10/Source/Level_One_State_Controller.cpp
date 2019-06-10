@@ -21,7 +21,6 @@ namespace game_framework {
 		_map.Initialize(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]);
 		_flag = FLAG_NORMAL;
 		Character::Instance().Initialize(_map.GetCharacterPosition());
-		Character::Instance().Initialize(_map.GetCharacterPosition());
 		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_LEVEL_FIRE, true);
 		UI::Instance().ResetMapMask();
