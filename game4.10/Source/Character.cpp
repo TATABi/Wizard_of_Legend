@@ -824,11 +824,10 @@ namespace game_framework {
 		CharacterData* _data = &CharacterData::Instance();
 		if (_data->ISMAGICBUFF() == true)
 		{
-			_is_magic_buff_init ? _data->SetAttackCoefficient(2.0) : NULL;
+			_is_magic_buff_init ? (CAudio::Instance()->Play(AUDIO_BUFF), _data->SetAttackCoefficient(2.0)) : NULL;
 			_is_magic_buff_init = false;
 
 			_ani_magic_buff.OnMove();
-
 			if (_magic_buff_counter == 0)
 			{
 				_data->AddMP(-1);
@@ -836,13 +835,11 @@ namespace game_framework {
 			}
 
 			_data->MP() == 0 ? _data->SetAttackCoefficient(-2.0) : NULL;
-
 			_magic_buff_counter--;
 		}
 		else
 		{
 			_is_magic_buff_init = true;
-
 			if (_mp_decrease_counter == 0)
 			{
 				_data->AddMP(-1);

@@ -50,5 +50,6 @@ namespace game_framework {
 	{
 		CharacterData::Instance().AddDiamond(VALUE);
 		CharacterData::Instance().AddDiamondCollected(VALUE);
+		CAudio::Instance()->Play(AUDIO_GET_MONEY, false);
 	}
 }

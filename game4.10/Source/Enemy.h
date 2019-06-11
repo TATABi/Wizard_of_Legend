@@ -28,6 +28,7 @@ namespace game_framework {
 		virtual void LoadEnemyBitmap() = 0;
 		virtual void Move(int, int) = 0;
 		virtual void OnShow() = 0;
+		virtual void PlayDeadAudio();
 	protected:
 		enum STATE {
 			ATTACKING,

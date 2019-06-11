@@ -13,6 +13,7 @@ namespace game_framework
 {
 	Skill_Shock_Nova::Skill_Shock_Nova(int mousreX, int mouseY, float *cxy) 
 	{
+		CAudio::Instance()->Play(AUDIO_SKILL_NOVA, false);
 		Initialize(mousreX, mouseY, cxy);
 		LoadBitmap();	
 	}
@@ -109,6 +110,7 @@ namespace game_framework
 						CharacterData* data = &CharacterData::Instance();
 						int damage = _damage * data->ATTACK_COEFFICIENT();
 						data->AddMP((int)((damage) * data->MP_CHARGE_COEFFICIENT()));
+						CAudio::Instance()->Play(AUDIO_HIT_ENEMY, false);
 						return damage;
 					}
 				}
@@ -119,7 +121,7 @@ namespace game_framework
 
 	void Skill_Shock_Nova::OnShow()
 	{
-		if (!_isDelete && _delay_counter ==0)
+		if (!_isDelete && _delay_counter == 0)
 		{
 			_ani_skill[0].OnShow();
 

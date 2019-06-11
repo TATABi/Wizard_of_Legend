@@ -13,6 +13,7 @@ namespace game_framework {
 		void OnShow();							//顯示圖片
 		void Attack(float, float);				//攻擊角色
 		void CalculateHP();						//計算Enemy血量&顯示
+		void PlayDeadAudio();
 	private:
 		CMovingBitmap _bm_hp_bar;
 		int _attack_delay_counter; //角色經過怪物身邊時怪物需要反映時間才能做攻擊動作

@@ -32,7 +32,17 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_TOWN, "sounds\\TownBGM.wav");
 		CAudio::Instance()->Load(AUDIO_BUY, "sounds\\buy.mp3");
 		CAudio::Instance()->Load(AUDIO_NOMONEY, "sounds\\nomoney.mp3");
-
+		CAudio::Instance()->Load(AUDIO_GET_MONEY, "sounds\\getMoney.mp3");
+		CAudio::Instance()->Load(AUDIO_GET_BLOOD_BALL, "sounds\\getBloodBall.mp3");
+		CAudio::Instance()->Load(AUDIO_SKILL_WIND, "sounds\\skillWind.mp3");
+		CAudio::Instance()->Load(AUDIO_SKILL_ICE, "sounds\\skillIce.mp3");
+		CAudio::Instance()->Load(AUDIO_SKILL_NOVA, "sounds\\skillNova.mp3");
+		CAudio::Instance()->Load(AUDIO_HIT_ENEMY, "sounds\\hitEnemy.mp3");
+		CAudio::Instance()->Load(AUDIO_BUFF, "sounds\\buff.mp3");
+		CAudio::Instance()->Load(AUDIO_SLIME_DEAD, "sounds\\slimeDead.mp3");
+		CAudio::Instance()->Load(AUDIO_SLIME_ATTACK, "sounds\\slimeAttack.mp3");
+		CAudio::Instance()->Load(AUDIO_BLACK_MAN_ATTACK, "sounds\\blackManAttack.mp3");
+		CAudio::Instance()->Load(AUDIO_BLACK_MAN_DEAD, "sounds\\blackManDead.mp3");
 		ShowInitProgress(30);
 		
 		//controllerªì©l¤Æ

@@ -185,7 +185,6 @@ namespace game_framework {
 			}
 			break;
 		}
-
 		CalculateHP();
 	}
 
@@ -216,6 +215,7 @@ namespace game_framework {
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
 							CharacterData::Instance().ISVINCIBLE() == false ? CharacterData::Instance().AddHP(-BLACKMAN_DAMAGE) : NULL;
+							CAudio::Instance()->Play(AUDIO_SLIME_ATTACK, false);
 							_isAttack = true;
 							break;
 						}
@@ -247,6 +247,10 @@ namespace game_framework {
 		pDC->Rectangle(Max_HP_X2 - X1, MAX_HP_Y1, Max_HP_X2, MAX_HP_Y2);
 		pDC->SelectObject(pb);						// ÄÀ©ñ brush
 		CDDraw::ReleaseBackCDC();					// ©ñ±¼ Back Plain ªº CDC
+	}
 
+	void Slime::PlayDeadAudio()
+	{
+		CAudio::Instance()->Play(AUDIO_SLIME_DEAD);
 	}
 }

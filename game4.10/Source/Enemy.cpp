@@ -212,6 +212,10 @@ namespace game_framework {
 		return rewards;
 	}
 
+	void Enemy::PlayDeadAudio()
+	{
+	}
+
 	void Enemy::MoveToTarget(int target_x, int target_y)
 	{
 		int currentX = _xy[0];

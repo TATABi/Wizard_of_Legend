@@ -13,6 +13,7 @@ namespace game_framework
 {
 	Skill_Rebounding_Icicles::Skill_Rebounding_Icicles(int mousreX, int mouseY, float *cxy) 		//中心往滑鼠位置的向量
 	{
+		CAudio::Instance()->Play(AUDIO_SKILL_ICE, false);
 		Initialize(mousreX, mouseY, cxy);
 		LoadBitmap();
 	}
@@ -93,6 +94,7 @@ namespace game_framework
 				CharacterData* data = &CharacterData::Instance();
 				int damage = _damage * data->ATTACK_COEFFICIENT();	
 				data->AddMP((int)(damage * data->MP_CHARGE_COEFFICIENT()));
+				CAudio::Instance()->Play(AUDIO_HIT_ENEMY, false);
 				return damage;
 			}
 		}
