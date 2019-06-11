@@ -71,27 +71,23 @@ int main(int argc, char const *argv[]) {
       ofs << "0";
     else if (gimp_image.pixel_data[i] == 100)//傳送門(關卡)
       ofs << "1";
-    else if (gimp_image.pixel_data[i] == 60)// 上方道具1
+    else if (gimp_image.pixel_data[i] == 20)// 上方道具1
       ofs << "2";
-    else if (gimp_image.pixel_data[i] == 120)// 道具2
+    else if (gimp_image.pixel_data[i] == 40)// 道具2
       ofs << "3";
-    else if (gimp_image.pixel_data[i] == 80)// 道具3
+    else if (gimp_image.pixel_data[i] == 60)// 道具3
       ofs << "4";
-    else if (gimp_image.pixel_data[i] == 220)// 中間道具1
+    else if (gimp_image.pixel_data[i] == 80)// 中間道具1
       ofs << "5";
-    else if (gimp_image.pixel_data[i] == 20)// 道具2
+    else if (gimp_image.pixel_data[i] == 120)// 道具2
       ofs << "6";
-    else if (gimp_image.pixel_data[i] == 40)// 道具3
+    else if (gimp_image.pixel_data[i] == 140)// 道具3
       ofs << "7";
-    else if (gimp_image.pixel_data[i] == 140)// 下方道具1
+    else if (gimp_image.pixel_data[i] == 160)// 下方道具1
       ofs << "8";
-    else if (gimp_image.pixel_data[i] == 160)// 道具2
-      ofs << "9";
-    else if (gimp_image.pixel_data[i] == 52)// 道具3
-      ofs << "10";
   	else if (gimp_image.pixel_data[i] == 200)//掉落
   		ofs << "-2";
-  	else if (gimp_image.pixel_data[i] == 240)//陷阱
+  	else if (gimp_image.pixel_data[i] == 230)//陷阱
   		ofs << "-3";
     else          //黑色
       ofs << "-1";
