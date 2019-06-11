@@ -10,25 +10,12 @@
 
 namespace game_framework {
 
-	Map_Town::Map_Town(int x, int y) : GameMap(x, y)
-	{
-	}
-
-	Map_Town::~Map_Town() {
-		vector<Enemy*>::iterator iter;
-		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
-			delete *iter;
-	}
+	Map_Town::Map_Town(int x, int y) : GameMap(x, y){}
 
 	void Map_Town::AddEnemy() {}	//Town¨S¦³Enemy
 
 	void Map_Town::LoadBitmap()
 	{
-		
-		vector<Enemy*>::iterator iter;
-		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
-			(*iter)->LoadBitmap();
-			
 		LoadBitmapPressF();
 		_background.LoadBitmap(MAP_TOWN);
 		_wall.LoadBitmap(MAP_TOWN_WALL, RGB(50, 255, 0));
@@ -81,7 +68,6 @@ namespace game_framework {
 
 		OnMoveBackgroundAndWall();
 		SkillOnMove();
-		EnemyOnMove();
 	}
 
 	int Map_Town::GetMapStatus(float x, float y)

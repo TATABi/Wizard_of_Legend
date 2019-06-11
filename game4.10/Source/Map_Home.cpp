@@ -7,16 +7,11 @@
 #include "Map_Home.h"
 #include "Map_Home_Logic.h"
 #include "algorithm"
-#include "Black_Man.h"
 #include "Blockhead.h"
-#include "Slime.h"
-#include "Boss.h"
 
 namespace game_framework {
 
 	Map_Home::Map_Home(int x, int y) : GameMap(x, y) {}
-
-	Map_Home::~Map_Home(){}
 
 	void Map_Home::AddEnemy() 
 	{
@@ -28,7 +23,7 @@ namespace game_framework {
 		_enemies.push_back(new Blockhead(850, 830, AREA_1, this));
 		_enemies.push_back(new Blockhead(870, 910, AREA_1, this));
 		_enemies.push_back(new Blockhead(850, 1000, AREA_1, this));
-		_enemies.push_back(new Boss(800, 950, AREA_1, this));
+
 		for each (Enemy* enemy in _enemies)
 			enemy->LoadBitmap();
 	}
@@ -43,18 +38,6 @@ namespace game_framework {
 	void Map_Home::OnMove()
 	{
 		_character_status = GetMapStatus(_cxy[0] + 35, _cxy[1] + 56);
-
-		//AREA_1
-		if ((_cxy[0] >= 633) && (_cxy[1] >= 811) && (_cxy[0] <= 926) && (_cxy[1]) <= 1081)
-		{
-			for (int i = 0; i < _enemies.size(); i++)
-			{
-				if (_enemies[i]->Area() == AREA_1)
-				{
-					_enemies[i]->NotifyCharge();
-				}
-			}
-		}	
 
 		int temp_x = 0, temp_y = 0;
 

@@ -215,9 +215,6 @@ namespace game_framework {
 						break;
 					case 1:
 						_flag = FLAG_JOIN;
-						_ani_light_beam.Reset();
-						_map.Initialize(740, 918);
-						CAudio::Instance()->Play(AUDIO_TITLE, true);
 						_isSwitch = true;
 						_game_state_num = GAME_STATE_INIT;
 						break;
@@ -318,10 +315,10 @@ namespace game_framework {
 
 		_bm_join.SetTopLeft(100, 100);
 		_bm_loading.SetTopLeft(0, 0);
-		Character::Instance().OnMove(&_map);
 		_map.OnMove();
 		_box.OnMove();
 		_book.OnMove();
+		Character::Instance().OnMove(&_map);
 		Bag::Instance().OnMove();
 		UI::Instance().OnMove();
 		Items::Instance().Effect();

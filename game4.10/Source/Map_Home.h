@@ -10,7 +10,6 @@ namespace game_framework {
 		};
 	public:
 		Map_Home(int, int);  // 設定初始中心點
-		~Map_Home();
 		void LoadBitmap();
 		void OnMove();
 		int GetMapStatus(float, float);		
