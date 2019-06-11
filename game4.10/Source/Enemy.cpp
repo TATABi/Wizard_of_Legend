@@ -103,7 +103,7 @@ namespace game_framework {
 				break;
 			}
 			Move(cx, cy);
-		}	
+		}
 	}
 
 	void Enemy::Dead()
