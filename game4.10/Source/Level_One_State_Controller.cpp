@@ -13,14 +13,15 @@ namespace game_framework {
 	
 	void Level_One_State_Controller::Begin()
 	{
-		_map.AddEnemy();
+		CharacterData::Instance().SetStage(LEVEL_ONE);
 		LoadMemento(Town_Or_Home);
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 4;			// 4 seconds
 		_map.Initialize(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]);
-		_flag = FLAG_NORMAL;
 		Character::Instance().Initialize(_map.GetCharacterPosition());
+		CharacterData::Instance().ResetStatus();
+		_map.AddEnemy();
 		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_LEVEL_FIRE, true);
 		UI::Instance().ResetMapMask();
@@ -28,6 +29,7 @@ namespace game_framework {
 		_chess_xy[0] = 62;
 		_chess_xy[1] = 135;
 		_isUpDown = true;
+		_flag = FLAG_NORMAL;
 	}
 
 	void Level_One_State_Controller::Initialize()
@@ -55,7 +57,7 @@ namespace game_framework {
 		{
 			Cheater(nChar);
 
-			if (nChar == KEY_F6)	//重生Enemy
+			if (nChar == KEY_F6)	//重生Enemy Demo用
 			{
 				_map.AddEnemy();
 			}
@@ -73,6 +75,8 @@ namespace game_framework {
 					Character::Instance().SetMovingRight(true);
 				if (nChar == KEY_SPACE)
 					Character::Instance().Dash();
+				if (nChar == KEY_Q)
+					_map.CharacterUseSkill(3, 0, 0);
 				if (nChar == KEY_ESC)	//PAUSED選單
 				{
 					CAudio::Instance()->Play(AUDIO_BE, false);
@@ -81,11 +85,13 @@ namespace game_framework {
 				}
 				if (nChar == KEY_TAB)
 				{
+					CAudio::Instance()->Play(AUDIO_TAB);
 					Bag::Instance().Open(true);
 					_flag = FLAG_BAG;
 				}
 				if (nChar == KEY_M)
 				{
+					CAudio::Instance()->Play(AUDIO_MAP);
 					UI::Instance().OpenMap(true, 1);
 					_flag = FLAG_MAP;
 				}
@@ -113,8 +119,7 @@ namespace game_framework {
 						_flag = FLAG_NORMAL;
 						break;
 					case 1:
-						CAudio::Instance()->Play(AUDIO_TITLE, true);
-						CAudio::Instance()->Stop(AUDIO_TOWN);
+						_flag = FLAG_NORMAL;
 						_game_state_num = GAME_STATE_INIT;		//切換場景到Home
 						_isSwitch = true;
 						break;
@@ -138,7 +143,10 @@ namespace game_framework {
 				}
 				if (nChar == KEY_SPACE)
 				{
-					//音效
+					PausedMenu::Instance().PrePausedMenu();
+					PausedMenu::Instance().PrePausedMenu();
+					SaveData();
+					_flag = FLAG_PAUSED;
 				}
 				break;
 
@@ -147,6 +155,26 @@ namespace game_framework {
 				{
 					Bag::Instance().Open(false);
 					_flag = FLAG_NORMAL;
+				}
+				if (nChar == KEY_DOWN || nChar == KEY_S)
+				{
+					CAudio::Instance()->Play(AUDIO_PUTTING, false);
+					Bag::Instance().Down();
+				}
+				if (nChar == KEY_UP || nChar == KEY_W)
+				{
+					CAudio::Instance()->Play(AUDIO_PUTTING, false);
+					Bag::Instance().Up();
+				}
+				if (nChar == KEY_LEFT || nChar == KEY_A)
+				{
+					CAudio::Instance()->Play(AUDIO_PUTTING, false);
+					Bag::Instance().Left();
+				}
+				if (nChar == KEY_RIGHT || nChar == KEY_D)
+				{
+					CAudio::Instance()->Play(AUDIO_PUTTING, false);
+					Bag::Instance().Right();
 				}
 				break;
 
@@ -173,17 +201,16 @@ namespace game_framework {
 
 	void Level_One_State_Controller::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		_map.CharacterUseSkill(2, point.x, point.y);
+		_map.CharacterUseSkill(1, point.x, point.y);
 	}
 
 	void Level_One_State_Controller::OnRButtonDown(UINT nFlags, CPoint point)
 	{
-		_map.CharacterUseSkill(3, point.x, point.y);
+		_map.CharacterUseSkill(2, point.x, point.y);
 	}
 
 	void Level_One_State_Controller::OnMove()
 	{
-		CharacterData::Instance().SetStage(LEVEL_ONE);
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 		CharacterDead();		//判斷腳色死亡、執行相關動作
 
@@ -220,6 +247,7 @@ namespace game_framework {
 			_map.OnShowBackground();
 			_map.OnShow();
 			_map.OnShowWall();
+			_map.OnShowPressF();
 			UI::Instance().OnShow();
 			Bag::Instance().OnShow();
 			PausedMenu::Instance().OnShow();

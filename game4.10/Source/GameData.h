@@ -31,7 +31,7 @@ const int DROP_RESET_ANI_TIME = 8;								//掉落後多久播動畫
 
 //===========================Skills===========================//
 //Air Spinner//
-const int AIR_SPINNER_DAMAGE = 3;								//傷害
+const int AIR_SPINNER_DAMAGE = 6;								//傷害
 const int AIR_SPINNER_HITBOX[3] = { 23, 23, 20 };				//圓心 X, Y 座標、半徑
 const int AIR_SPINNER_LIFETIME = 100;							//技能存活時間
 const int AIR_SPINNER_MAP_HITBOX[4] = { 0, 0, 0, 0 };			//不受地圖碰撞
@@ -40,7 +40,7 @@ const int AIR_SPINNER_CAST_DISTANCE = 40;						//技能施放與角色距離
 const int AIR_SPINNER_COOLDOWN = 0;								//冷卻時間
 
 //Shock Nova//
-const int SHOCK_NOVA_DAMAGE = 2;								//傷害
+const int SHOCK_NOVA_DAMAGE = 4;								//傷害
 const int SHOCK_NOVA_HITBOX[3] = { 103, 105, 95 };				//圓心 X, Y 座標、半徑
 const int SHOCK_NOVA_LIFETIME = 300;							//技能存活時間
 const int SHOCK_NOVA_MAP_HITBOX[4] = { 0, 0, 0, 0 };			//不受地圖碰撞
@@ -101,6 +101,7 @@ const int BOSS_CHARGE_ZONE = 800;								//追擊範圍
 
 //============================Home============================//
 const int HOME_CHARACTER_XY[2] = { 740 , 918 };					//角色初始位置
+const int HOME_AREA_1[4] = { 633, 811, 926, 1081};				//左上 & 右下座標
 
 //============================Town============================//
 const int TOWN_CHARACTER_XY[2] = { 770, 1065 };					//角色初始位置
@@ -112,6 +113,18 @@ const string Town_Or_Home = "Town or Home";
 const int LEVEL_ONE_CHARACTER_XY[2] = {3000, 2830};
 const int DROP_DAMAGE = 30;										//墜落傷害
 const int TRAP_DAMAGE = 30;										//陷阱傷害
+const int LEVEL_AREA_1[4] = { 2285, 3162, 3076, 3251 };
+const int LEVEL_AREA_2[4] = { 3466, 2720, 3860, 2877 };
+const int LEVEL_AREA_3[4] = { 1818, 2425, 2405, 2724 };
+const int LEVEL_AREA_4[4] = { 1325, 2243, 1612, 2730 };
+const int LEVEL_AREA_5[4] = { 757, 2620, 1127, 3098 };
+const int LEVEL_AREA_6[4] = { 88, 2458, 356, 2678 };
+const int LEVEL_AREA_7[4] = { 653, 2100, 945, 2275 };
+const int LEVEL_AREA_8[4] = { 1430, 1657, 1820, 2028 };
+const int LEVEL_AREA_9[4] = { 1916, 1647, 2405, 1926 };
+const int LEVEL_AREA_10[4] = { 2012, 1170, 2201, 1351 };
+const int LEVEL_AREA_11[4] = { 2590, 1318, 3024, 1680 };
+const int LEVEL_AREA_BOSS[4] = { 3248, 372, 3820, 845 };
 
 //============================Items============================//
 const int NUM_ITEMS = 7;										//Item數量
