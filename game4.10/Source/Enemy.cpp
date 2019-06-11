@@ -119,7 +119,6 @@ namespace game_framework {
 		_ani_right.Reset();
 		_ani_attack_left.Reset();
 		_ani_attack_right.Reset();
-		_ani_skill.Reset();
 	}
 
 	void Enemy::SetXY(int dx, int dy)
