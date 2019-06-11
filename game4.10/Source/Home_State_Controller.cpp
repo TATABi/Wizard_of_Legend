@@ -112,6 +112,7 @@ namespace game_framework {
 
 				if (nChar == KEY_ESC)	//PAUSED選單
 				{
+					CAudio::Instance()->Play(AUDIO_BE, false);
 					PausedMenu::Instance().Paused(true);
 					_flag = FLAG_HOME_PAUSED;
 				}
@@ -124,12 +125,12 @@ namespace game_framework {
 				break;
 
 			case FLAG_JOIN:
-				if (nChar == KEY_SPACE)		// 加入遊戲提示選單
+				if (nChar == KEY_SPACE)						// 加入遊戲提示選單
 					_flag = FLAG_HOME_NORMAL;				// 角色進入遊戲
 
 				break;
 
-			case FLAG_BOX:							//道具箱選單
+			case FLAG_BOX:									//道具箱選單
 				if (nChar == KEY_ESC)
 				{
 					_box.Open(false);
@@ -195,16 +196,17 @@ namespace game_framework {
 				break;
 
 			case FLAG_HOME_PAUSED:									//暫停選單
+				CAudio::Instance()->Play(AUDIO_BE, false);
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					PausedMenu::Instance().NextPausedMenu();
-				if (nChar == KEY_UP || nChar == KEY_W)
+				else if (nChar == KEY_UP || nChar == KEY_W)
 					PausedMenu::Instance().PrePausedMenu();
-				if (nChar == KEY_ESC)
+				else if (nChar == KEY_ESC)
 				{
 					_flag = FLAG_HOME_NORMAL;
 					PausedMenu::Instance().Paused(false);
 				}
-				if (nChar == KEY_SPACE)
+				else if (nChar == KEY_SPACE)
 				{
 					int temp;
 					temp = PausedMenu::Instance().EnterPauseMenu();
@@ -233,6 +235,7 @@ namespace game_framework {
 				break;
 
 			case FLAG_HOME_OPTIONS:		//點進options
+				CAudio::Instance()->Play(AUDIO_BE, false);
 				if (nChar == KEY_ESC)
 				{
 					PausedMenu::Instance().PrePausedMenu();

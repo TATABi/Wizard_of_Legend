@@ -75,6 +75,7 @@ namespace game_framework {
 					Character::Instance().Dash();
 				if (nChar == KEY_ESC)	//PAUSED選單
 				{
+					CAudio::Instance()->Play(AUDIO_BE, false);
 					PausedMenu::Instance().Paused(true);
 					_flag = FLAG_PAUSED;
 				}
@@ -91,6 +92,7 @@ namespace game_framework {
 				break;
 
 			case FLAG_PAUSED:									//暫停選單
+				CAudio::Instance()->Play(AUDIO_BE, false);
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					PausedMenu::Instance().NextPausedMenu();
 				if (nChar == KEY_UP || nChar == KEY_W)
@@ -127,6 +129,7 @@ namespace game_framework {
 				break;
 
 			case FLAG_OPTIONS:		//點進options
+				CAudio::Instance()->Play(AUDIO_BE, false);
 				if (nChar == KEY_ESC)
 				{
 					PausedMenu::Instance().PrePausedMenu();
