@@ -747,6 +747,7 @@
     <Image Include="RES\InGame\Enemy\Boss\Skill\Right\02.bmp" />
     <Image Include="RES\InGame\Enemy\Boss\Skill\Right\03.bmp" />
     <Image Include="RES\InGame\Enemy\Boss\Skill\Right\04.bmp" />
+    <Image Include="RES\InGame\Enemy\Boss\Skill\Shadow.bmp" />
     <Image Include="RES\InGame\Enemy\Boss\Stand\Left.bmp" />
     <Image Include="RES\InGame\Enemy\Boss\Stand\Right.bmp" />
     <Image Include="RES\InGame\Enemy\Dark_man\Attack\Left\01.bmp" />

@@ -30,7 +30,7 @@ namespace game_framework {
 		_detour_time = 0;
 		_is_x_arrive = _is_y_arrive = false;
 		_state = NOTHING;
-		_hit_recover_flag = false;
+		_hit_recover_flag = true;
 		_is_transfer = false;
 		_ani_hurt.SetDelayCount(1);
 		_invincible_counter = 0;
@@ -53,6 +53,7 @@ namespace game_framework {
 			int currentX = _xy[0];
 			int currentY = _xy[1];
 			_invincible_counter > 0 ? _invincible_counter-- : NULL;
+
 			// §Þ¯à¸I¼²§P©w
 			std::vector<Skill*>::iterator iter;
 			for (iter = skills.begin(); iter != skills.end(); iter++)
@@ -71,7 +72,7 @@ namespace game_framework {
 			{
 			case CHARGING:
 				MoveToTarget(cx, cy);
-				if (IsInAttackZone(cx, cy))
+				if ((currentX == _xy[0] && currentY == _xy[1] && _is_detour == false) || IsInAttackZone(cx, cy))
 					_state = ATTACKING;
 				if (pow(_xy[0] - _ori_x, 2) + pow(_xy[1] - _ori_y, 2) > pow(_charge_zone, 2) && _state != HIT_RECOVER) //Â÷¶}§ðÀ»½d³ò
 					_state = RESET;
@@ -105,11 +106,15 @@ namespace game_framework {
 		}	
 	}
 
-	bool Enemy::Dead()
+	void Enemy::Dead()
 	{
 		_hp = 0;
-		_IsReset = true;
-		return _IsReset;
+		_isReset = true;
+	}
+
+	bool Enemy::IsReset()
+	{
+		return _isReset;
 	}
 
 	void Enemy::ResetAnimation()
@@ -146,7 +151,7 @@ namespace game_framework {
 		if ((abs(midX - cMidX) < _zone) && (abs(midY - cMidY) < _zone))
 			return true;
 		else
-			return false;		
+			return false;
 	}
 	
 	bool Enemy::CanAchieved(int dx, int dy)

@@ -134,7 +134,7 @@ namespace game_framework {
 			if (!(*e_it)->IsLive())
 			{
 				//刪除enemy前先產生reward
-				if (!(*e_it)->Dead())
+				if (!(*e_it)->IsReset())
 				{
 					vector<Reward*> temp = (*e_it)->CreateReward();
 					_rewards.insert(_rewards.end(), temp.begin(), temp.end());
