@@ -48,5 +48,6 @@ namespace game_framework {
 	void Reward_Blood_Ball::Effect() 
 	{
 		CharacterData::Instance().AddHP(VALUE);
+		CAudio::Instance()->Play(AUDIO_GET_BLOOD_BALL, false);
 	}
 }

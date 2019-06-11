@@ -105,11 +105,15 @@ namespace game_framework {
 		}	
 	}
 
-	bool Enemy::Dead()
+	void Enemy::Dead()
 	{
 		_hp = 0;
-		_IsReset = true;
-		return _IsReset;
+		_isReset = true;
+	}
+
+	bool Enemy::IsReset()
+	{
+		return _isReset;
 	}
 
 	void Enemy::ResetAnimation()
@@ -205,6 +209,10 @@ namespace game_framework {
 		//¼W¥[±þ¼Ä¼Æ
 		CharacterData::Instance().AddEnemiesDefeated(DEFEATED_COUNT);
 		return rewards;
+	}
+
+	void Enemy::PlayDeadAudio()
+	{
 	}
 
 	void Enemy::MoveToTarget(int target_x, int target_y)

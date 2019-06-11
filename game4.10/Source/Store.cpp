@@ -100,7 +100,6 @@ namespace game_framework
 					j = 0;
 				}
 			}
-
 			_store_item.push_back(unwoned_items[r]);
  			_isItemSoldOut[i] = false;
 		}

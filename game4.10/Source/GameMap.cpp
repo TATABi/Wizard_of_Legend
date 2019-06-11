@@ -134,9 +134,10 @@ namespace game_framework {
 			if (!(*e_it)->IsLive())
 			{
 				//刪除enemy前先產生reward
-				if (!(*e_it)->Dead())
+				if (!(*e_it)->IsReset())
 				{
 					vector<Reward*> temp = (*e_it)->CreateReward();
+					(*e_it)->PlayDeadAudio();
 					_rewards.insert(_rewards.end(), temp.begin(), temp.end());
 				}
 				delete *e_it;
@@ -237,7 +238,6 @@ namespace game_framework {
 		}
 	}
 
-	
 	bool GameMap::CheckEnemyPosition(int x, int y, int* collision_move)
 	{
 		int ex = x + collision_move[0];
@@ -255,7 +255,6 @@ namespace game_framework {
 		}
 		return false;
 	}
-	
 
 	bool GameMap::CheckMapStatus(int px, int py, const int* move_hitbox, int num, char op)
 	{
