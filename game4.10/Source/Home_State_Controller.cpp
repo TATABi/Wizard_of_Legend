@@ -68,11 +68,6 @@ namespace game_framework {
 	{
 		if (_delayCounter < 0)
 		{
-			if (nChar == KEY_F6)	//重生Enemy
-			{
-				_map.AddEnemy();
-			}
-
 			Cheater(nChar);
 			switch (_flag)
 			{
@@ -106,6 +101,7 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)
 				{
+					CAudio::Instance()->Play(AUDIO_FLIP_BOOK);
 					_book.Open(true);		//開啟書
 					_flag = FLAG_BOOK;
 				}
@@ -118,7 +114,8 @@ namespace game_framework {
 				}
 
 				if (nChar == KEY_TAB)
-				{
+				{	
+					CAudio::Instance()->Play(AUDIO_TAB);
 					Bag::Instance().Open(true);
 					_flag = FLAG_HOME_BAG;
 				}
@@ -259,18 +256,22 @@ namespace game_framework {
 				}
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 				{
+					CAudio::Instance()->Play(AUDIO_PUTTING, false);
 					Bag::Instance().Down();
 				}
 				if (nChar == KEY_UP || nChar == KEY_W)
 				{
+					CAudio::Instance()->Play(AUDIO_PUTTING, false);
 					Bag::Instance().Up();
 				}
 				if (nChar == KEY_LEFT || nChar == KEY_A)
 				{
+					CAudio::Instance()->Play(AUDIO_PUTTING, false);
 					Bag::Instance().Left();
 				}
 				if (nChar == KEY_RIGHT || nChar == KEY_D)
 				{
+					CAudio::Instance()->Play(AUDIO_PUTTING, false);
 					Bag::Instance().Right();
 				}
 				break;
@@ -278,15 +279,18 @@ namespace game_framework {
 			case FLAG_BOOK:
 				if (nChar == KEY_ESC)
 				{
+					CAudio::Instance()->Play(AUDIO_FLIP_BOOK);
 					_book.Open(false);
 					_flag = FLAG_HOME_NORMAL;
 				}
 				if (nChar == KEY_LEFT || nChar == KEY_A)
 				{
+					CAudio::Instance()->Play(AUDIO_FLIP_BOOK);
 					_book.Left();
 				}
 				if (nChar == KEY_RIGHT || nChar == KEY_D)
 				{
+					CAudio::Instance()->Play(AUDIO_FLIP_BOOK);
 					_book.Right();
 				}
 				break;

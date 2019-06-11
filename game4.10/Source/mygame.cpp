@@ -45,7 +45,10 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_BLACK_MAN_DEAD, "sounds\\blackManDead.mp3");
 		CAudio::Instance()->Load(AUDIO_BOSS_DEAD, "sounds\\bossDead.mp3");
 		CAudio::Instance()->Load(AUDIO_BOSS_ATTACK, "sounds\\bossAttack.mp3");
-		CAudio::Instance()->Load(AUDIO_BOSS_INVISIBLE, "sounds\\bossDead.mp3");
+		CAudio::Instance()->Load(AUDIO_BOSS_INVISIBLE, "sounds\\boosInvisible.mp3");
+		CAudio::Instance()->Load(AUDIO_FLIP_BOOK, "sounds\\flipBook.mp3");
+		CAudio::Instance()->Load(AUDIO_MAP, "sounds\\map.mp3");
+		CAudio::Instance()->Load(AUDIO_TAB, "sounds\\tab.mp3");
 		ShowInitProgress(30);
 		
 		//controllerªì©l¤Æ

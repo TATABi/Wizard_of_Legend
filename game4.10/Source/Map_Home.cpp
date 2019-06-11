@@ -28,8 +28,7 @@ namespace game_framework {
 		_enemies.push_back(new Blockhead(850, 830, AREA_1, this));
 		_enemies.push_back(new Blockhead(870, 910, AREA_1, this));
 		_enemies.push_back(new Blockhead(850, 1000, AREA_1, this));
-		_enemies.push_back(new Boss(850, 950, AREA_1, this));
-
+		_enemies.push_back(new Boss(800, 950, AREA_1, this));
 		for each (Enemy* enemy in _enemies)
 			enemy->LoadBitmap();
 	}
