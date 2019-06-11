@@ -15,10 +15,12 @@ namespace game_framework {
 		void CalculateHP();						//計算Enemy血量&顯示
 	private:
 		CMovingBitmap _bm_hp_bar;
+		CMovingBitmap _bm_shadow;
 		int _attack_delay_counter;				//角色經過怪物身邊時怪物需要反映時間才能做攻擊動作
 		int _sx, _sy;
 		int _skill_counter;
-		bool _isUsingSkill;
+		bool _isInvisible = false;
+		bool lock = false;
 	};
 }
 

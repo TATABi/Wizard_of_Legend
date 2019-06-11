@@ -32,6 +32,7 @@ namespace game_framework {
 		_ani_right.SetDelayCount(3);
 		_ani_attack_right.SetDelayCount(2);
 		_ani_attack_left.SetDelayCount(2);
+		_ani_skill.SetDelayCount(3);
 
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
@@ -42,7 +43,7 @@ namespace game_framework {
 		_attack_delay_counter = BOSS_ATTACK_DELAY_TIME;
 		_charge_zone = BOSS_CHARGE_ZONE;
 		_state = NOTHING;
-		_skill_counter = 300;
+		_skill_counter = 100;
 		_xy[0] = _ori_x;
 		_xy[1] = _ori_y;
 	}
@@ -54,6 +55,7 @@ namespace game_framework {
 		_bm_stand_right.LoadBitmap(ENEMY_BOSS_STAND_RIGHT, RGB(50, 255, 0));
 		_bm_hurt_left.LoadBitmap(ENEMY_BOSS_HURT_LEFT, RGB(50, 255, 0));
 		_bm_hurt_right.LoadBitmap(ENEMY_BOSS_HURT_RIGHT, RGB(50, 255, 0));
+		_bm_shadow.LoadBitmap(ENEMY_BOSS_SHADOW, RGB(50, 255, 0));
 
 		int source1[5] = { ENEMY_BOSS_MOVE_LEFT_01, ENEMY_BOSS_MOVE_LEFT_02, ENEMY_BOSS_MOVE_LEFT_03, ENEMY_BOSS_MOVE_LEFT_04, ENEMY_BOSS_MOVE_LEFT_05 };
 		for (int i = 0; i < 5; i++)
@@ -64,7 +66,7 @@ namespace game_framework {
 			_ani_right.AddBitmap(source2[i], RGB(50, 255, 0));
 
 		int source3[6] = { ENEMY_BOSS_ATTACK_RIGHT_01, ENEMY_BOSS_ATTACK_RIGHT_02, ENEMY_BOSS_ATTACK_RIGHT_03, ENEMY_BOSS_ATTACK_RIGHT_04, ENEMY_BOSS_ATTACK_RIGHT_05,
-			ENEMY_BOSS_ATTACK_RIGHT_06};
+			ENEMY_BOSS_ATTACK_RIGHT_06 };
 		for (int i = 0; i < 6; i++)
 			_ani_attack_right.AddBitmap(source3[i], RGB(50, 255, 0));
 
@@ -72,7 +74,7 @@ namespace game_framework {
 			ENEMY_BOSS_ATTACK_LEFT_06 };
 		for (int i = 0; i < 6; i++)
 			_ani_attack_left.AddBitmap(source4[i], RGB(50, 255, 0));
-		
+
 		int source5[4] = { ENEMY_BOSS_SKILL_LEFT_01, ENEMY_BOSS_SKILL_LEFT_02, ENEMY_BOSS_SKILL_LEFT_03, ENEMY_BOSS_SKILL_LEFT_04 };
 		for (int i = 0; i < 4; i++)
 			_ani_skill.AddBitmap(source5[i], RGB(50, 255, 0));
@@ -82,27 +84,22 @@ namespace game_framework {
 	{
 		_sx = CHARACTER_SCREEN_X + _xy[0] - cx;
 		_sy = CHARACTER_SCREEN_Y + _xy[1] - cy;
-		
-		_skill_counter > 0 && _isUsingSkill == false ? _skill_counter-- : _state = SKILL;
-		
-		/*if (_ani_skill.IsFinalBitmap())
-		{
-			_state = CHARGING;
-			_isUsingSkill = true;
-			_ani_skill.Reset();
-			ResetAnimation();
-		}
-		else 
-		{
-			
 
-		}*/
-		if (_isUsingSkill)
-		{
-		}
+
+		_bm_shadow.SetTopLeft(_sx, _sy);
+		!_hit_recover_flag ? _isInvisible = false, _skill_counter = 100 : NULL;
+
+		if (_skill_counter > 0)
+			_skill_counter--;
 		else
 		{
+			if (!_isInvisible)
+			{
+				_state = SKILL;
+				_invincible_counter = 150;
+			}
 		}
+
 		switch (_state)
 		{
 		case NOTHING:				//站立
@@ -137,16 +134,16 @@ namespace game_framework {
 			_ani_skill.SetTopLeft(_sx, _sy);
 			break;
 		}
-
 	}
 
 	void Boss::OnShow()
 	{
-
 		switch (_state)
 		{
 		case NOTHING:				//站立
-			if (_direction == LEFT)
+			if (_isInvisible)
+				_bm_shadow.ShowBitmap();
+			else if (_direction == LEFT)
 				_bm_stand_left.ShowBitmap();
 			else
 				_bm_stand_right.ShowBitmap();
@@ -155,7 +152,7 @@ namespace game_framework {
 		case ATTACKING:				//攻擊
 			if (_direction == LEFT)
 			{
-				_ani_attack_left.OnShow();
+				_isInvisible ? _bm_shadow.ShowBitmap() : _ani_attack_left.OnShow();
 
 				_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
 
@@ -169,7 +166,7 @@ namespace game_framework {
 			}
 			else
 			{
-				_ani_attack_right.OnShow();	//暫時使用
+				_isInvisible ? _bm_shadow.ShowBitmap() : _ani_attack_right.OnShow();	//暫時使用
 
 				_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
 
@@ -185,13 +182,17 @@ namespace game_framework {
 
 		case CHARGING:				//移動
 		case RESET:
-			if (_direction == LEFT)
+			if (_isInvisible)
+				_bm_shadow.ShowBitmap();
+			else if (_direction == LEFT)
 				_ani_left.OnShow();
 			else if (_direction == RIGHT)
 				_ani_right.OnShow();
 			break;
 		case HIT_RECOVER:
-			if (_direction == LEFT)
+			if (_isInvisible)
+				_bm_shadow.ShowBitmap();
+			else if (_direction == LEFT)
 				_bm_hurt_left.ShowBitmap();
 			else
 				_bm_hurt_right.ShowBitmap();
@@ -205,11 +206,22 @@ namespace game_framework {
 			{
 				ResetAnimation();
 				_hit_recover_flag = true;
-				_invincible_counter = 150;
+				_invincible_counter = 90;
 			}
 			break;
+
 		case SKILL:
-			_ani_skill.OnShow();
+			if (!_ani_skill.IsFinalBitmap())
+			{
+				_ani_skill.OnShow();
+				_ani_skill.OnMove();
+			}
+			else
+			{
+				_isInvisible = true;
+				_ani_skill.Reset();
+				_state = CHARGING;
+			}
 			break;
 		}
 
@@ -220,7 +232,7 @@ namespace game_framework {
 	{
 		float x1 = _xy[0] + 65;
 		float y1 = _xy[1] + 65;
-		float r = 80;
+		float r = 65;
 		float x2 = cx + CHARACTER_HITBOX[0];
 		float y2 = cy + CHARACTER_HITBOX[1];
 		float l2 = CHARACTER_HITBOX[2];

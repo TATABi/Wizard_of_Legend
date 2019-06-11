@@ -28,8 +28,13 @@ namespace game_framework {
 		_enemies.push_back(new Blockhead(850, 830, AREA_1, this));
 		_enemies.push_back(new Blockhead(870, 910, AREA_1, this));
 		_enemies.push_back(new Blockhead(850, 1000, AREA_1, this));
+<<<<<<< HEAD
+		_enemies.push_back(new Boss(660, 900, AREA_1, this));
+
+=======
 		_enemies.push_back(new Slime(660, 900, AREA_1, this));
 		_enemies.push_back(new Black_Man(660, 900, AREA_1, this));
+>>>>>>> f00db2317283448f76a4b054b6eba316bf7d919f
 		for each (Enemy* enemy in _enemies)
 			enemy->LoadBitmap();
 	}

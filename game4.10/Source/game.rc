@@ -603,6 +603,7 @@ ENEMY_BOSS_SKILL_RIGHT_01 BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\
 ENEMY_BOSS_SKILL_RIGHT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\\Skill\\Right\\02.bmp"
 ENEMY_BOSS_SKILL_RIGHT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\\Skill\\Right\\03.bmp"
 ENEMY_BOSS_SKILL_RIGHT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\\Skill\\Right\\04.bmp"
+ENEMY_BOSS_SHADOW       BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\\Skill\\Shadow.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
