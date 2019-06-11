@@ -12,12 +12,13 @@ namespace game_framework {
 		void Move(int, int);					//移動
 		void OnShow();							//顯示圖片
 		void Attack(float, float);				//攻擊角色
-		void ResetAnimation();					//重置動畫
 		void CalculateHP();						//計算Enemy血量&顯示
 	private:
 		CMovingBitmap _bm_hp_bar;
-		int _attack_delay_counter; //角色經過怪物身邊時怪物需要反映時間才能做攻擊動作
+		int _attack_delay_counter;				//角色經過怪物身邊時怪物需要反映時間才能做攻擊動作
 		int _sx, _sy;
+		int _skill_counter;
+		bool _isUsingSkill;
 	};
 }
 

@@ -98,7 +98,6 @@ namespace game_framework {
 
 		case CHARGING:				//移動
 		case RESET:
-			_ani_transfer.SetTopLeft(_sx, _sy);
 			_ani_left.SetTopLeft(_sx, _sy);
 			_ani_right.SetTopLeft(_sx, _sy);
 			if (_direction == LEFT)
@@ -117,79 +116,66 @@ namespace game_framework {
 
 	void Black_Man::OnShow()
 	{
-		if (_is_transfer)
+		switch (_state)
 		{
-			_ani_transfer.OnShow();
-			_ani_transfer.IsFinalBitmap() ? _ani_transfer.Reset(), _is_transfer = false : _ani_transfer.OnMove();
-		}
-		else
-		{
-			switch (_state)
+		case NOTHING:				//站立
+			if (_direction == LEFT)
+				_bm_stand_left.ShowBitmap();
+			else
+				_bm_stand_right.ShowBitmap();
+			break;
+		case ATTACKING:				//攻擊
+			if (_direction == LEFT)
 			{
-			case NOTHING:				//站立
-				if (_direction == LEFT)
-					_bm_stand_left.ShowBitmap();
-				else
-					_bm_stand_right.ShowBitmap();
-				break;
+				_ani_attack_left.OnShow();
+				_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
 
-			case ATTACKING:				//攻擊
-
-				if (_direction == LEFT)
+				if (_ani_attack_left.IsFinalBitmap())
 				{
-					_ani_attack_left.OnShow();
-
-					_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
-
-					if (_ani_attack_left.IsFinalBitmap())
-					{
-						_attack_delay_counter = 10;
-						_isAttack = false;
-						_ani_attack_left.Reset();
-						_state = CHARGING;
-					}
+					_attack_delay_counter = 10;
+					_isAttack = false;
+					_ani_attack_left.Reset();
+					_state = CHARGING;
 				}
-				else
-				{
-					_ani_attack_right.OnShow();	//暫時使用
-
-					_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
-
-					if (_ani_attack_right.IsFinalBitmap())
-					{
-						_attack_delay_counter = 10;
-						_isAttack = false;
-						_ani_attack_right.Reset();
-						_state = CHARGING;
-					}
-				}
-				break;
-
-			case CHARGING:				//移動
-			case RESET:
-				if (_direction == LEFT)
-					_ani_left.OnShow();
-				else if (_direction == RIGHT)
-					_ani_right.OnShow();
-				break;
-			case HIT_RECOVER:
-				if (_direction == LEFT)
-					_bm_hurt_left.ShowBitmap();
-				else
-					_bm_hurt_right.ShowBitmap();
-
-				if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
-				{
-					_ani_hurt.OnMove();
-					_ani_hurt.OnShow();
-				}
-				else
-				{
-					ResetAnimation();
-					_hit_recover_flag = true;
-				}
-				break;
 			}
+			else
+			{
+				_ani_attack_right.OnShow();	//暫時使用
+				_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
+
+				if (_ani_attack_right.IsFinalBitmap())
+				{
+					_attack_delay_counter = 10;
+					_isAttack = false;
+					_ani_attack_right.Reset();
+					_state = CHARGING;
+				}
+			}
+			break;
+		case CHARGING:				//移動
+		case RESET:
+			if (_direction == LEFT)
+				_ani_left.OnShow();
+			else if (_direction == RIGHT)
+				_ani_right.OnShow();
+			break;
+		case HIT_RECOVER:
+			if (_direction == LEFT)
+				_bm_hurt_left.ShowBitmap();
+			else
+				_bm_hurt_right.ShowBitmap();
+
+			if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
+			{
+				_ani_hurt.OnMove();
+				_ani_hurt.OnShow();
+			}
+			else
+			{
+				ResetAnimation();
+				_hit_recover_flag = true;
+			}
+			break;
 		}
 		CalculateHP();
 	}
@@ -230,14 +216,6 @@ namespace game_framework {
 					break;
 			}
 		}
-	}
-	void Black_Man::ResetAnimation()
-	{
-		_ani_hurt.Reset();
-		_ani_left.Reset();
-		_ani_right.Reset();
-		_ani_attack_left.Reset();
-		_ani_attack_right.Reset();
 	}
 
 	void Black_Man::CalculateHP()

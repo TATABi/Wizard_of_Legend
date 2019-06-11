@@ -1,3 +1,0 @@
-game.VC.db filter=lfs diff=lfs merge=lfs -text
-Map_Level_One_Logic.h filter=lfs diff=lfs merge=lfs -text
-

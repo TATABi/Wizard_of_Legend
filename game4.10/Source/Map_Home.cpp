@@ -10,6 +10,7 @@
 #include "Black_Man.h"
 #include "Blockhead.h"
 #include "Slime.h"
+#include "Boss.h"
 
 namespace game_framework {
 
@@ -27,7 +28,7 @@ namespace game_framework {
 		_enemies.push_back(new Blockhead(850, 830, AREA_1, this));
 		_enemies.push_back(new Blockhead(870, 910, AREA_1, this));
 		_enemies.push_back(new Blockhead(850, 1000, AREA_1, this));
-		_enemies.push_back(new Slime(660, 900, AREA_1, this));
+		_enemies.push_back(new Boss(660, 900, AREA_1, this));
 
 		for each (Enemy* enemy in _enemies)
 			enemy->LoadBitmap();

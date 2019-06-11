@@ -90,9 +90,9 @@ const int SLIME_MOVE_HITBOX[4] = { 5, 31, 25, 5 };				//移動的Hitbox
 const int SLIME_CHARGING_ZONE = 300;							//追擊範圍
 
 //Boss//
-const int BOSS_HP = 1000;										//血量
+const int BOSS_HP = 700;										//血量
 const int BOSS_STEP = 5;										//移動速度
-const int BOSS_ZONE = 40;										//攻擊區域
+const int BOSS_ZONE = 45;										//攻擊區域
 const int BOSS_DAMAGE = 40;										//傷害
 const int BOSS_ATTACK_DELAY_TIME = 7;							//進入攻擊範圍後延遲的攻擊時間
 const int BOSS_HITBOX[4] = {39, 42, 60, 60};					//承受傷害的Hitbox

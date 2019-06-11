@@ -33,8 +33,7 @@ namespace game_framework {
 		_hit_recover_flag = false;
 		_is_transfer = false;
 		_ani_hurt.SetDelayCount(1);
-		_ani_transfer.SetDelayCount(1);
-
+		_invincible_counter = 0;
 		for (int i = 0; i < 4; i++)
 			_neighbor[i] = true;
 	}
@@ -42,15 +41,9 @@ namespace game_framework {
 	void Enemy::LoadBitmap()
 	{
 		LoadEnemyBitmap();
-
 		int ani_hurt[7] = { GET_HURT_01, GET_HURT_02, GET_HURT_03, GET_HURT_04, GET_HURT_05, GET_HURT_06, GET_HURT_07 };
 		for (int i = 0; i < 7; i++)
 			_ani_hurt.AddBitmap(ani_hurt[i], RGB(50, 255, 0));
-
-		int ani_transfer[8] = { TRANSFER_01, TRANSFER_02, TRANSFER_03, TRANSFER_04, TRANSFER_05, TRANSFER_06, TRANSFER_07, TRANSFER_08 };
-		for (int i = 0; i < 8; i++)
-			_ani_transfer.AddBitmap(ani_transfer[i], RGB(50, 255, 0));
-
 	}
 
 	void Enemy::OnMove(int cx, int cy, vector<Skill*> &skills)
@@ -59,20 +52,21 @@ namespace game_framework {
 		{
 			int currentX = _xy[0];
 			int currentY = _xy[1];
-
+			_invincible_counter > 0 ? _invincible_counter-- : NULL;
 			// §Þ¯à¸I¼²§P©w
 			std::vector<Skill*>::iterator iter;
 			for (iter = skills.begin(); iter != skills.end(); iter++)
 			{
 				int ori_hp = _hp;
 				_hp -= (*iter)->GetDamage(this);
-				if (_hp != ori_hp)
+				if (_hp != ori_hp && _invincible_counter == 0)
 				{
 					_state = HIT_RECOVER;
 					_hit_recover_counter = 30 * 0.5;
 					_hit_recover_flag = false;
 				}
 			}
+
 			switch (_state)
 			{
 			case CHARGING:
@@ -118,6 +112,16 @@ namespace game_framework {
 		return _IsReset;
 	}
 
+	void Enemy::ResetAnimation()
+	{
+		_ani_hurt.Reset();
+		_ani_left.Reset();
+		_ani_right.Reset();
+		_ani_attack_left.Reset();
+		_ani_attack_right.Reset();
+		_ani_skill.Reset();
+	}
+
 	void Enemy::SetXY(int dx, int dy)
 	{
 		_xy[0] += dx;
@@ -140,7 +144,6 @@ namespace game_framework {
 		int cMidY = target_y + 35;
 		int midX = _xy[0] + _hitbox[0] + _hitbox[2] / 2;
 		int midY = _xy[1] + _hitbox[1] + _hitbox[3] / 2;
-
 		if ((abs(midX - cMidX) < _zone) && (abs(midY - cMidY) < _zone))
 			return true;
 		else

@@ -21,6 +21,7 @@ namespace game_framework {
 		void LoadBitmap();
 		bool IsInAttackZone(int, int);
 		bool Dead();
+		void ResetAnimation();					//重置動畫
 		virtual vector<Reward*> CreateReward();	//血球、錢、鑽石的數量
 		virtual void Init() = 0;
 		virtual void LoadEnemyBitmap() = 0;
@@ -32,7 +33,8 @@ namespace game_framework {
 			CHARGING,
 			RESET,
 			NOTHING,
-			HIT_RECOVER
+			HIT_RECOVER,
+			SKILL
 		};
 
 		enum DIRECTION {
@@ -66,10 +68,11 @@ namespace game_framework {
 		CAnimation _ani_hurt;
 		CAnimation _ani_left, _ani_right;
 		CAnimation _ani_attack_left, _ani_attack_right;
-		CAnimation _ani_transfer;			//卡住時的轉移動畫
+		CAnimation _ani_skill;
 		GameMap* _map;
 		bool _isAttack = false;
 		bool _IsReset = false;
+		int _invincible_counter;
 	};
 }
 

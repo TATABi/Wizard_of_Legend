@@ -23,25 +23,26 @@ namespace game_framework {
 		_hitbox[2] = BOSS_HITBOX[2];
 		_hitbox[3] = BOSS_HITBOX[3];
 
-		_move_hitbox[0] = BLACKMAN_MOVE_HITBOX[0];
-		_move_hitbox[1] = BLACKMAN_MOVE_HITBOX[1];
-		_move_hitbox[2] = BLACKMAN_MOVE_HITBOX[2];
-		_move_hitbox[3] = BLACKMAN_MOVE_HITBOX[3];
+		_move_hitbox[0] = BOSS_MOVE_HITBOX[0];
+		_move_hitbox[1] = BOSS_MOVE_HITBOX[1];
+		_move_hitbox[2] = BOSS_MOVE_HITBOX[2];
+		_move_hitbox[3] = BOSS_MOVE_HITBOX[3];
 
-		_ani_left.SetDelayCount(2);
-		_ani_right.SetDelayCount(2);
+		_ani_left.SetDelayCount(3);
+		_ani_right.SetDelayCount(3);
 		_ani_attack_right.SetDelayCount(2);
 		_ani_attack_left.SetDelayCount(2);
 
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
-		_hp = BLACKMAN_HP;
-		_step = BLACKMAN_STEP;
-		_zone = BLACKMAN_ZONE;
-		_damage = BLACKMAN_DAMAGE;
-		_charge_zone = BLACKMAN_CHARGING_ZONE;
+		_hp = BOSS_HP;
+		_step = BOSS_STEP;
+		_zone = BOSS_ZONE;
+		_damage = BOSS_DAMAGE;
+		_attack_delay_counter = BOSS_ATTACK_DELAY_TIME;
+		_charge_zone = BOSS_CHARGE_ZONE;
 		_state = NOTHING;
-		_attack_delay_counter = BLACKMAN_ATTACK_DELAY_TIME;
+		_skill_counter = 300;
 		_xy[0] = _ori_x;
 		_xy[1] = _ori_y;
 	}
@@ -49,39 +50,44 @@ namespace game_framework {
 	void Boss::LoadEnemyBitmap()
 	{
 		_bm_hp_bar.LoadBitmap(ENEMY_HP_BAR_M);
+		_bm_stand_left.LoadBitmap(ENEMY_BOSS_STAND_LEFT, RGB(50, 255, 0));
+		_bm_stand_right.LoadBitmap(ENEMY_BOSS_STAND_RIGHT, RGB(50, 255, 0));
+		_bm_hurt_left.LoadBitmap(ENEMY_BOSS_HURT_LEFT, RGB(50, 255, 0));
+		_bm_hurt_right.LoadBitmap(ENEMY_BOSS_HURT_RIGHT, RGB(50, 255, 0));
 
-		_bm_stand_left.LoadBitmap(ENEMY_BLACK_MAN_STAND_LEFT, RGB(50, 255, 0));
-		_bm_stand_right.LoadBitmap(ENEMY_BLACK_MAN_STAND_RIGHT, RGB(50, 255, 0));
-		_bm_hurt_left.LoadBitmap(ENEMY_BLACK_MAN_HURT_LEFT, RGB(50, 255, 0));
-		_bm_hurt_right.LoadBitmap(ENEMY_BLACK_MAN_HURT_RIGHT, RGB(50, 255, 0));
+		int source1[5] = { ENEMY_BOSS_MOVE_LEFT_01, ENEMY_BOSS_MOVE_LEFT_02, ENEMY_BOSS_MOVE_LEFT_03, ENEMY_BOSS_MOVE_LEFT_04, ENEMY_BOSS_MOVE_LEFT_05 };
+		for (int i = 0; i < 5; i++)
+			_ani_left.AddBitmap(source1[i], RGB(50, 255, 0));
 
-		int ani_1[4] = { ENEMY_BLACK_MAN_MOVE_LEFT_01, ENEMY_BLACK_MAN_MOVE_LEFT_02, ENEMY_BLACK_MAN_MOVE_LEFT_03, ENEMY_BLACK_MAN_MOVE_LEFT_04 };
+		int source2[5] = { ENEMY_BOSS_MOVE_RIGHT_01, ENEMY_BOSS_MOVE_RIGHT_02, ENEMY_BOSS_MOVE_RIGHT_03, ENEMY_BOSS_MOVE_RIGHT_04, ENEMY_BOSS_MOVE_RIGHT_05 };
+		for (int i = 0; i < 5; i++)
+			_ani_right.AddBitmap(source2[i], RGB(50, 255, 0));
+
+		int source3[6] = { ENEMY_BOSS_ATTACK_RIGHT_01, ENEMY_BOSS_ATTACK_RIGHT_02, ENEMY_BOSS_ATTACK_RIGHT_03, ENEMY_BOSS_ATTACK_RIGHT_04, ENEMY_BOSS_ATTACK_RIGHT_05,
+			ENEMY_BOSS_ATTACK_RIGHT_06};
+		for (int i = 0; i < 6; i++)
+			_ani_attack_right.AddBitmap(source3[i], RGB(50, 255, 0));
+
+		int source4[6] = { ENEMY_BOSS_ATTACK_LEFT_01, ENEMY_BOSS_ATTACK_LEFT_02, ENEMY_BOSS_ATTACK_LEFT_03, ENEMY_BOSS_ATTACK_LEFT_04, ENEMY_BOSS_ATTACK_LEFT_01,
+			ENEMY_BOSS_ATTACK_LEFT_06 };
+		for (int i = 0; i < 6; i++)
+			_ani_attack_left.AddBitmap(source4[i], RGB(50, 255, 0));
+		
+		int source5[4] = { ENEMY_BOSS_SKILL_LEFT_01, ENEMY_BOSS_SKILL_LEFT_02, ENEMY_BOSS_SKILL_LEFT_03, ENEMY_BOSS_SKILL_LEFT_04 };
 		for (int i = 0; i < 4; i++)
-			_ani_left.AddBitmap(ani_1[i], RGB(50, 255, 0));
+			_ani_skill.AddBitmap(source5[i], RGB(50, 255, 0));
 
-		int ani_2[4] = { ENEMY_BLACK_MAN_MOVE_RIGHT_01, ENEMY_BLACK_MAN_MOVE_RIGHT_02, ENEMY_BLACK_MAN_MOVE_RIGHT_03, ENEMY_BLACK_MAN_MOVE_RIGHT_04 };
-		for (int i = 0; i < 4; i++)
-			_ani_right.AddBitmap(ani_2[i], RGB(50, 255, 0));
 
-		int ani_3[18] = { ENEMY_BLACK_MAN_ATTACK_RIGHT_01, ENEMY_BLACK_MAN_ATTACK_RIGHT_02, ENEMY_BLACK_MAN_ATTACK_RIGHT_03, ENEMY_BLACK_MAN_ATTACK_RIGHT_04, ENEMY_BLACK_MAN_ATTACK_RIGHT_05,
-			ENEMY_BLACK_MAN_ATTACK_RIGHT_06, ENEMY_BLACK_MAN_ATTACK_RIGHT_07, ENEMY_BLACK_MAN_ATTACK_RIGHT_08, ENEMY_BLACK_MAN_ATTACK_RIGHT_09, ENEMY_BLACK_MAN_ATTACK_RIGHT_10,
-			ENEMY_BLACK_MAN_ATTACK_RIGHT_11, ENEMY_BLACK_MAN_ATTACK_RIGHT_12, ENEMY_BLACK_MAN_ATTACK_RIGHT_13, ENEMY_BLACK_MAN_ATTACK_RIGHT_14, ENEMY_BLACK_MAN_ATTACK_RIGHT_15,
-			ENEMY_BLACK_MAN_ATTACK_RIGHT_16, ENEMY_BLACK_MAN_ATTACK_RIGHT_17, ENEMY_BLACK_MAN_ATTACK_RIGHT_18 };
-		for (int i = 0; i < 15; i++)
-			_ani_attack_right.AddBitmap(ani_3[i], RGB(50, 255, 0));
 
-		int ani_4[18] = { ENEMY_BLACK_MAN_ATTACK_LEFT_01, ENEMY_BLACK_MAN_ATTACK_LEFT_02, ENEMY_BLACK_MAN_ATTACK_LEFT_03, ENEMY_BLACK_MAN_ATTACK_LEFT_04, ENEMY_BLACK_MAN_ATTACK_LEFT_05,
-			ENEMY_BLACK_MAN_ATTACK_LEFT_06, ENEMY_BLACK_MAN_ATTACK_LEFT_07, ENEMY_BLACK_MAN_ATTACK_LEFT_08, ENEMY_BLACK_MAN_ATTACK_LEFT_09, ENEMY_BLACK_MAN_ATTACK_LEFT_10,
-			ENEMY_BLACK_MAN_ATTACK_LEFT_11, ENEMY_BLACK_MAN_ATTACK_LEFT_12, ENEMY_BLACK_MAN_ATTACK_LEFT_13, ENEMY_BLACK_MAN_ATTACK_LEFT_14, ENEMY_BLACK_MAN_ATTACK_LEFT_15,
-			ENEMY_BLACK_MAN_ATTACK_LEFT_16, ENEMY_BLACK_MAN_ATTACK_LEFT_17, ENEMY_BLACK_MAN_ATTACK_LEFT_18 };
-		for (int i = 0; i < 15; i++)
-			_ani_attack_left.AddBitmap(ani_4[i], RGB(50, 255, 0));
 	}
 
 	void Boss::Move(int cx, int cy)
 	{
 		_sx = CHARACTER_SCREEN_X + _xy[0] - cx;
 		_sy = CHARACTER_SCREEN_Y + _xy[1] - cy;
+		
+		_skill_counter > 0 && _isUsingSkill == false ? _skill_counter-- : _state = SKILL;
+		//_ani_skill.IsFinalBitmap() ? (_state = CHARGING, _isUsingSkill = true, ResetAnimation()) : ;
 
 		switch (_state)
 		{
@@ -99,7 +105,6 @@ namespace game_framework {
 
 		case CHARGING:				//移動
 		case RESET:
-			_ani_transfer.SetTopLeft(_sx, _sy);
 			_ani_left.SetTopLeft(_sx, _sy);
 			_ani_right.SetTopLeft(_sx, _sy);
 			if (_direction == LEFT)
@@ -113,93 +118,95 @@ namespace game_framework {
 			_bm_hurt_left.SetTopLeft(_sx, _sy);
 			_bm_hurt_right.SetTopLeft(_sx, _sy);
 			break;
+
+		case SKILL:
+			_ani_skill.SetTopLeft(_sx, _sy);
+			break;
 		}
+
 	}
 
 	void Boss::OnShow()
 	{
-		if (_is_transfer)
+
+		switch (_state)
 		{
-			_ani_transfer.OnShow();
-			_ani_transfer.IsFinalBitmap() ? _ani_transfer.Reset(), _is_transfer = false : _ani_transfer.OnMove();
-		}
-		else
-		{
-			switch (_state)
+		case NOTHING:				//站立
+			if (_direction == LEFT)
+				_bm_stand_left.ShowBitmap();
+			else
+				_bm_stand_right.ShowBitmap();
+			break;
+
+		case ATTACKING:				//攻擊
+			if (_direction == LEFT)
 			{
-			case NOTHING:				//站立
-				if (_direction == LEFT)
-					_bm_stand_left.ShowBitmap();
-				else
-					_bm_stand_right.ShowBitmap();
-				break;
+				_ani_attack_left.OnShow();
 
-			case ATTACKING:				//攻擊
+				_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
 
-				if (_direction == LEFT)
+				if (_ani_attack_left.IsFinalBitmap())
 				{
-					_ani_attack_left.OnShow();
-
-					_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
-
-					if (_ani_attack_left.IsFinalBitmap())
-					{
-						_attack_delay_counter = 10;
-						_isAttack = false;
-						_ani_attack_left.Reset();
-						_state = CHARGING;
-					}
+					_attack_delay_counter = 10;
+					_isAttack = false;
+					_ani_attack_left.Reset();
+					_state = CHARGING;
 				}
-				else
-				{
-					_ani_attack_right.OnShow();	//暫時使用
-
-					_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
-
-					if (_ani_attack_right.IsFinalBitmap())
-					{
-						_attack_delay_counter = 10;
-						_isAttack = false;
-						_ani_attack_right.Reset();
-						_state = CHARGING;
-					}
-				}
-				break;
-
-			case CHARGING:				//移動
-			case RESET:
-				if (_direction == LEFT)
-					_ani_left.OnShow();
-				else if (_direction == RIGHT)
-					_ani_right.OnShow();
-				break;
-			case HIT_RECOVER:
-				if (_direction == LEFT)
-					_bm_hurt_left.ShowBitmap();
-				else
-					_bm_hurt_right.ShowBitmap();
-
-				if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
-				{
-					_ani_hurt.OnMove();
-					_ani_hurt.OnShow();
-				}
-				else
-				{
-					ResetAnimation();
-					_hit_recover_flag = true;
-				}
-				break;
 			}
+			else
+			{
+				_ani_attack_right.OnShow();	//暫時使用
+
+				_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
+
+				if (_ani_attack_right.IsFinalBitmap())
+				{
+					_attack_delay_counter = 10;
+					_isAttack = false;
+					_ani_attack_right.Reset();
+					_state = CHARGING;
+				}
+			}
+			break;
+
+		case CHARGING:				//移動
+		case RESET:
+			if (_direction == LEFT)
+				_ani_left.OnShow();
+			else if (_direction == RIGHT)
+				_ani_right.OnShow();
+			break;
+		case HIT_RECOVER:
+			if (_direction == LEFT)
+				_bm_hurt_left.ShowBitmap();
+			else
+				_bm_hurt_right.ShowBitmap();
+
+			if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
+			{
+				_ani_hurt.OnMove();
+				_ani_hurt.OnShow();
+			}
+			else
+			{
+				ResetAnimation();
+				_hit_recover_flag = true;
+				_invincible_counter = 150;
+			}
+			break;
+		case SKILL:
+			_ani_skill.OnShow();
+			break;
 		}
+
 		CalculateHP();
 	}
 
 	void Boss::Attack(float cx, float cy)
 	{
-		float x1 = _xy[0] + 35;
-		float y1 = _xy[1] + 35;
-		float r = 50;
+		float x1 = _xy[0] + 65;
+		float y1 = _xy[1] + 65;
+		float r = 80;
 		float x2 = cx + CHARACTER_HITBOX[0];
 		float y2 = cy + CHARACTER_HITBOX[1];
 		float l2 = CHARACTER_HITBOX[2];
@@ -221,7 +228,7 @@ namespace game_framework {
 					if (!_isAttack)
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
-							CharacterData::Instance().ISVINCIBLE() == false ? CharacterData::Instance().AddHP(-BLACKMAN_DAMAGE) : NULL;
+							CharacterData::Instance().ISVINCIBLE() == false ? CharacterData::Instance().AddHP(-BOSS_DAMAGE) : NULL;
 							_isAttack = true;
 							break;
 						}
@@ -231,14 +238,6 @@ namespace game_framework {
 					break;
 			}
 		}
-	}
-	void Boss::ResetAnimation()
-	{
-		_ani_hurt.Reset();
-		_ani_left.Reset();
-		_ani_right.Reset();
-		_ani_attack_left.Reset();
-		_ani_attack_right.Reset();
 	}
 
 	void Boss::CalculateHP()
@@ -253,7 +252,7 @@ namespace game_framework {
 
 		_bm_hp_bar.SetTopLeft(sx, sy);
 		_bm_hp_bar.ShowBitmap();
-		temp_hp = (float)(BLACKMAN_HP - _hp) / BLACKMAN_HP;			//計算HP差值
+		temp_hp = (float)(BOSS_HP - _hp) / BOSS_HP;			//計算HP差值
 		X1 = (int)(temp_hp * 52);
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣MP)

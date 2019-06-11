@@ -12,7 +12,6 @@ namespace game_framework {
 		void Move(int, int);					//移動
 		void OnShow();							//顯示圖片
 		void Attack(float, float);				//攻擊角色
-		void ResetAnimation();					//重置動畫
 		void CalculateHP();						//計算Enemy血量&顯示
 	private:
 		CMovingBitmap _bm_hp_bar;

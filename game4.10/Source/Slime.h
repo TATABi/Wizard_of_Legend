@@ -12,7 +12,6 @@ namespace game_framework{
 		void Move(int, int);
 		void OnShow();
 		void Attack(float, float);
-		void ResetAnimation();
 		void CalculateHP();
 	private:
 		CMovingBitmap _bm_hp_bar;
