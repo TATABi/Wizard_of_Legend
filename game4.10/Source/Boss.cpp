@@ -85,7 +85,6 @@ namespace game_framework {
 		_sx = CHARACTER_SCREEN_X + _xy[0] - cx;
 		_sy = CHARACTER_SCREEN_Y + _xy[1] - cy;
 
-
 		_bm_shadow.SetTopLeft(_sx, _sy);
 		!_hit_recover_flag ? _isInvisible = false, _skill_counter = 100 : NULL;
 
@@ -96,6 +95,7 @@ namespace game_framework {
 			if (!_isInvisible)
 			{
 				_state = SKILL;
+				CAudio::Instance()->Play(AUDIO_BOSS_INVISIBLE, false);
 				_invincible_counter = 150;
 			}
 		}
@@ -254,7 +254,7 @@ namespace game_framework {
 					if (!_isAttack)
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
-							CharacterData::Instance().ISVINCIBLE() == false ? CharacterData::Instance().AddHP(-BOSS_DAMAGE) : NULL;
+							CharacterData::Instance().ISVINCIBLE() == false ? (CharacterData::Instance().AddHP(-BOSS_DAMAGE), CAudio::Instance()->Play(AUDIO_BOSS_ATTACK, false)) : NULL;
 							_isAttack = true;
 							break;
 						}
@@ -286,6 +286,10 @@ namespace game_framework {
 		pDC->Rectangle(Max_HP_X2 - X1, MAX_HP_Y1, Max_HP_X2, MAX_HP_Y2);
 		pDC->SelectObject(pb);						// ÄÀ©ñ brush
 		CDDraw::ReleaseBackCDC();					// ©ñ±¼ Back Plain ªº CDC
+	}
 
+	void Boss::PlayDeadAudio()
+	{
+		CAudio::Instance()->Play(AUDIO_BOSS_DEAD, false);
 	}
 }

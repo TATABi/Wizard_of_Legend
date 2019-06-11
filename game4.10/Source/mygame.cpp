@@ -43,6 +43,9 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_SLIME_ATTACK, "sounds\\slimeAttack.mp3");
 		CAudio::Instance()->Load(AUDIO_BLACK_MAN_ATTACK, "sounds\\blackManAttack.mp3");
 		CAudio::Instance()->Load(AUDIO_BLACK_MAN_DEAD, "sounds\\blackManDead.mp3");
+		CAudio::Instance()->Load(AUDIO_BOSS_DEAD, "sounds\\bossDead.mp3");
+		CAudio::Instance()->Load(AUDIO_BOSS_ATTACK, "sounds\\bossAttack.mp3");
+		CAudio::Instance()->Load(AUDIO_BOSS_INVISIBLE, "sounds\\bossDead.mp3");
 		ShowInitProgress(30);
 		
 		//controllerªì©l¤Æ

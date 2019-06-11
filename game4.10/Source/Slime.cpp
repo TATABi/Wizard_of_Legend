@@ -214,8 +214,7 @@ namespace game_framework {
 					if (!_isAttack)
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
-							CharacterData::Instance().ISVINCIBLE() == false ? CharacterData::Instance().AddHP(-BLACKMAN_DAMAGE) : NULL;
-							CAudio::Instance()->Play(AUDIO_SLIME_ATTACK, false);
+							CharacterData::Instance().ISVINCIBLE() == false ? (CharacterData::Instance().AddHP(-BLACKMAN_DAMAGE), CAudio::Instance()->Play(AUDIO_SLIME_ATTACK, false)) : NULL;			
 							_isAttack = true;
 							break;
 						}
