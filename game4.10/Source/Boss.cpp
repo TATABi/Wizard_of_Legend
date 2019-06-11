@@ -76,9 +76,6 @@ namespace game_framework {
 		int source5[4] = { ENEMY_BOSS_SKILL_LEFT_01, ENEMY_BOSS_SKILL_LEFT_02, ENEMY_BOSS_SKILL_LEFT_03, ENEMY_BOSS_SKILL_LEFT_04 };
 		for (int i = 0; i < 4; i++)
 			_ani_skill.AddBitmap(source5[i], RGB(50, 255, 0));
-
-
-
 	}
 
 	void Boss::Move(int cx, int cy)
@@ -87,8 +84,25 @@ namespace game_framework {
 		_sy = CHARACTER_SCREEN_Y + _xy[1] - cy;
 		
 		_skill_counter > 0 && _isUsingSkill == false ? _skill_counter-- : _state = SKILL;
-		//_ani_skill.IsFinalBitmap() ? (_state = CHARGING, _isUsingSkill = true, ResetAnimation()) : ;
+		
+		/*if (_ani_skill.IsFinalBitmap())
+		{
+			_state = CHARGING;
+			_isUsingSkill = true;
+			_ani_skill.Reset();
+			ResetAnimation();
+		}
+		else 
+		{
+			
 
+		}*/
+		if (_isUsingSkill)
+		{
+		}
+		else
+		{
+		}
 		switch (_state)
 		{
 		case NOTHING:				//¯¸¥ß
