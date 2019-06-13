@@ -176,6 +176,7 @@ namespace game_framework {
 		AttackBuff(false);
 		SpeedBuff(false);
 		CooldownBuff(false);
+		_isSuperMode ? SuperMode(false) : NULL;
 	}
 
 	void CharacterData::SetMagicBuff(bool isBuff)

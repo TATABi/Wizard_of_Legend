@@ -48,7 +48,7 @@ namespace game_framework {
 		}
 		else if (keycode == KEY_F5)	//¦Û±þ
 		{
-			CharacterData::Instance().SuperMode(false);
+			CharacterData::Instance().LockHP(false);
 			CharacterData::Instance().AddHP(-CharacterData::Instance().HP());
 		}
 	}

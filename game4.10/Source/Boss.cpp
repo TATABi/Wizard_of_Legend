@@ -251,7 +251,7 @@ namespace game_framework {
 					{
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
-							if (CharacterData::Instance().ISVINCIBLE()) //如果Character在Dash狀態，則Enemy打不到
+							if (!CharacterData::Instance().ISVINCIBLE()) //如果Character在Dash狀態，則Enemy打不到
 							{
 								CharacterData::Instance().AddHP(-BOSS_DAMAGE);
 								CAudio::Instance()->Play(AUDIO_BOSS_ATTACK);
