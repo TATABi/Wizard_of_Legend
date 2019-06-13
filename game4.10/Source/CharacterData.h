@@ -28,7 +28,7 @@ namespace game_framework {
 		void SetInvincible(bool);				//更改無敵狀態
 		void ResetStatus();						//結束關卡，重製HP, MP, Money, MagicBuff, _stage, _gold_found, _diamond_collected, _enemies_defeated
 		void SetMagicBuff(bool);				//設定Magic Buff 狀態
-		int* GetStageResult();					//取得關卡結算
+		vector<int> GetStageResult();			//取得關卡結算
 		void SetStage(int);						//設定現在關卡
 		void AddMoneyCollected(int);			//更改關卡內收集的Money
 		void AddDiamondCollected(int);			//更改關卡內收集的Diamond

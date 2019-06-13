@@ -22,6 +22,11 @@ namespace game_framework {
 		_flag = FLAG_NORMAL;
 		_mask_counter = 0;
 		_isPlayed = false;
+		vector<int> game_result = CharacterData::Instance().GetStageResult();
+		_int_stage.SetInteger(game_result[0]);
+		_int_gold_found.SetInteger(game_result[1]);
+		_int_gems_collected.SetInteger(game_result[2]);
+		_int_enemy_defeated.SetInteger(game_result[3]);
 		CAudio::Instance()->StopAll();
 	}
 
@@ -74,11 +79,7 @@ namespace game_framework {
 
 	void Over_State_Controller::OnMove()
 	{
-		int* game_result = CharacterData::Instance().GetStageResult();
-		_int_stage.SetInteger(game_result[0]);
-		_int_gold_found.SetInteger(game_result[1]);
-		_int_gems_collected.SetInteger(game_result[2]);
-		_int_enemy_defeated.SetInteger(game_result[3]);
+		
 		
 		_delay_counter > 0 ? _delay_counter-- : NULL;
 

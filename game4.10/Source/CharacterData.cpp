@@ -188,14 +188,14 @@ namespace game_framework {
 		_isMagicBuff = isBuff;
 	}
 
-	int* CharacterData::GetStageResult()
+	vector<int> CharacterData::GetStageResult()
 	{
-		int result[4];
-		result[0] = _stage;
-		result[1] = _money_found;
-		result[2] = _diamond_collected;
-		result[3] = _enemies_defeated;
-		
+		vector<int> result;
+		result.push_back(_stage);
+		result.push_back(_money_found);
+		result.push_back(_diamond_collected);
+		result.push_back(_enemies_defeated);
+
 		return result;
 	}
 

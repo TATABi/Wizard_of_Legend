@@ -130,6 +130,7 @@ namespace game_framework {
 		_bm_character_head.SetTopLeft(int(Character::Instance().GetPosition()[0] / 10) + 120, int(Character::Instance().GetPosition()[1] / 10) + 40);
 		_map_mask[int(Character::Instance().GetPosition()[0] / 400)][int(Character::Instance().GetPosition()[1] / 400)] = true;
 
+		//通關
 		if (_isEnd)
 		{
 			_bm_stage_cleared.SetTopLeft(640 - _end_counter, 210);
@@ -185,12 +186,10 @@ namespace game_framework {
 
 			switch (_map_num)
 			{
-			case 1:
+			case 1:		//開啟地圖1
 				_bm_map_1.ShowBitmap();
 				break;
-			case 2:
-				break;
-			case 3:
+			default:
 				break;
 			}
 				
@@ -208,6 +207,7 @@ namespace game_framework {
 			_bm_character_head.ShowBitmap();
 		}
 
+		//播放勝利動畫
 		if (_isEnd && _end_counter > 0)
 		{
 			_bm_stage_cleared.ShowBitmap();

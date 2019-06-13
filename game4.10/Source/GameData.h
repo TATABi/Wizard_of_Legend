@@ -126,6 +126,19 @@ const int LEVEL_AREA_9[4] = { 1916, 1647, 2405, 1926 };
 const int LEVEL_AREA_10[4] = { 2012, 1170, 2201, 1351 };
 const int LEVEL_AREA_11[4] = { 2590, 1318, 3024, 1680 };
 const int LEVEL_AREA_BOSS[4] = { 3248, 372, 3820, 845 };
+const int LEVEL_ONE_PRESS_BOSS[2] = { 3509, 668 };
+const int LEVEL_ONE_PRESS_ITEM_STORE_1[2] = { 2545, 280 };
+const int LEVEL_ONE_PRESS_ITEM_STORE_2[2] = { 2622, 280 };
+const int LEVEL_ONE_PRESS_ITEM_STORE_3[2] = { 2705, 280 };
+const int LEVEL_ONE_PRESS_BUFF_STORE_1[2] = { 1093, 1445 };
+const int LEVEL_ONE_PRESS_BUFF_STORE_2[2] = { 1170, 1445 };
+const int LEVEL_ONE_PRESS_BUFF_STORE_3[2] = { 1253, 1445 };
+const int LEVEL_ONE_PRESS_POTION_STORE[2] = { 1274, 3635 };
+const int LEVEL_ONE_ITEM_STORE[2] = { 2542, 313 };
+const int LEVEL_ONE_BUFF_STORE_1[2] = { 1080, 1465 };
+const int LEVEL_ONE_BUFF_STORE_2[2] = { 1155, 1465 };
+const int LEVEL_ONE_BUFF_STORE_3[2] = { 1230, 1465 };
+const int LEVEL_ONE_POTION_STORE[2] = { 1275, 3666 };
 
 //============================Items============================//
 const int NUM_ITEMS = 7;										//Item¼Æ¶q

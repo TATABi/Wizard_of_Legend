@@ -28,6 +28,7 @@ namespace game_framework {
 		int _delay_counter;								// 進入遊戲的緩衝，避免畫面出現但音樂、圖片的還未準備好
 		int _mask_counter;
 		bool _isPlayed;
+		int result[4];
 	};
 }
 

@@ -10,17 +10,18 @@
 #include "Slime.h"
 #include "Boss.h"
 
-
 namespace game_framework {
 
 	Map_Level_One::Map_Level_One(int x, int y) : GameMap(x, y) { }
 
 	void Map_Level_One::AddEnemy()
-	{
+	{	
+		//重製所有Enemy
 		vector<Enemy*>::iterator e_it;
 		for (e_it = _enemies.begin(); e_it != _enemies.end(); e_it++)
 			(*e_it)->Dead();
-
+		
+		//加入Enemy
 		//Area 1
 		_enemies.push_back(new Black_Man(2963, 3202, AREA_1, this));
 		_enemies.push_back(new Black_Man(2947, 3210, AREA_1, this));
@@ -66,6 +67,7 @@ namespace game_framework {
 		_enemies.push_back(new Slime(2734, 1427, AREA_11, this));
 		_enemies.push_back(new Slime(2890, 1568, AREA_11, this));
 
+		//載入Enemy圖片
 		for each (Enemy* enemy in _enemies)
 			enemy->LoadBitmap();
 	}
@@ -83,6 +85,7 @@ namespace game_framework {
 
 	void Map_Level_One::OnMove()
 	{
+		//通知各區域Enemy，讓Enemy判斷是否要追擊Character
 		NotifyAnemy(AREA_1, LEVEL_AREA_1);
 		NotifyAnemy(AREA_2, LEVEL_AREA_2);
 		NotifyAnemy(AREA_3, LEVEL_AREA_3);
@@ -95,76 +98,87 @@ namespace game_framework {
 		NotifyAnemy(AREA_10, LEVEL_AREA_10);
 		NotifyAnemy(AREA_11, LEVEL_AREA_11);
 		NotifyAnemy(AREA_BOSS, LEVEL_AREA_BOSS);
+		
+		//螢幕位置
+		int sx = CHARACTER_SCREEN_X - _cxy[0];
+		int sy = CHARACTER_SCREEN_Y - _cxy[1];
+
+		//設定Character的地圖資訊
 		_character_status = GetMapStatus(_cxy[0] + 35, _cxy[1] + 56);
+		
+		//設定地圖互動物件
 		int temp_x = 0, temp_y = 0;
 		if (_character_status >= 1 && _character_status <= 8)
 		{
 			_isPressF = true;
-
 			switch (_character_status)
 			{
 			case 1:						//Boss				
-				temp_x = 3509;
-				temp_y = 668;
+				temp_x = LEVEL_ONE_PRESS_BOSS[0];
+				temp_y = LEVEL_ONE_PRESS_BOSS[1];
 				_isSummonBoss && !_isEnd ? _isPressF = false : _ani_press_f.OnMove();
 				break;
-			case 2:						//上道具1
-				temp_x = 2545;
-				temp_y = 280;
+			case 2:						//道具商商品1
+				temp_x = LEVEL_ONE_PRESS_ITEM_STORE_1[0];
+				temp_y = LEVEL_ONE_PRESS_ITEM_STORE_1[1];
 				_ani_press_f.OnMove();
 				break;
-			case 3:						//上道具2
-				temp_x = 2622;
-				temp_y = 280;
+			case 3:						//道具商商品2
+				temp_x = LEVEL_ONE_PRESS_ITEM_STORE_2[0];
+				temp_y = LEVEL_ONE_PRESS_ITEM_STORE_2[1];
 				_ani_press_f.OnMove();
 				break;
-			case 4:						//上道具3
-				temp_x = 2705;
-				temp_y = 280;
+			case 4:						//道具商商品3
+				temp_x = LEVEL_ONE_PRESS_ITEM_STORE_3[0];
+				temp_y = LEVEL_ONE_PRESS_ITEM_STORE_3[1];
 				_ani_press_f.OnMove();
 				break;
-			case 5:						//中道具1
-				temp_x = 1093;
-				temp_y = 1445;
+			case 5:						//Buff商商品1
+				temp_x = LEVEL_ONE_PRESS_BUFF_STORE_1[0];
+				temp_y = LEVEL_ONE_PRESS_BUFF_STORE_1[1];
 				_ani_press_f.OnMove();
 				break;
-			case 6:						//中道具2
-				temp_x = 1170;
-				temp_y = 1445;
+			case 6:						//Buff商商品2
+				temp_x = LEVEL_ONE_PRESS_BUFF_STORE_2[0];
+				temp_y = LEVEL_ONE_PRESS_BUFF_STORE_2[1];
 				_ani_press_f.OnMove();
 				break;
-			case 7:						//中道具3
-				temp_x = 1253;
-				temp_y = 1445;
+			case 7:						//Buff商商品3
+				temp_x = LEVEL_ONE_PRESS_BUFF_STORE_3[0];
+				temp_y = LEVEL_ONE_PRESS_BUFF_STORE_3[1];
 				_ani_press_f.OnMove();
 				break;
-			case 8:						//下道具
-				temp_x = 1274;
-				temp_y = 3635;
+			case 8:						//藥水商人
+				temp_x = LEVEL_ONE_PRESS_POTION_STORE[0];
+				temp_y = LEVEL_ONE_PRESS_POTION_STORE[1];
 				_ani_press_f.OnMove();
 				break;
 			}
-			_ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - _cxy[0], CHARACTER_SCREEN_Y + temp_y - _cxy[1]);
+			_ani_press_f.SetTopLeft(temp_x + sx, temp_y + sy);
 		}
 		else
 		{
 			_ani_press_f.Reset();
 			_isPressF = false;
 		}
+
+		//通關
 		if (_isEnd)
-			_bm_exit.SetTopLeft(CHARACTER_SCREEN_X + 3502 - _cxy[0], CHARACTER_SCREEN_Y + 671 - _cxy[1]);
-
-		_bm_hp_potion.SetTopLeft(CHARACTER_SCREEN_X + 1275 - _cxy[0], CHARACTER_SCREEN_Y + 3666 - _cxy[1]);
-		_bm_attack_info.SetTopLeft(CHARACTER_SCREEN_X + 1080 - _cxy[0], CHARACTER_SCREEN_Y + 1465 - _cxy[1]);
-		_bm_speed_info.SetTopLeft(CHARACTER_SCREEN_X + 1155 - _cxy[0], CHARACTER_SCREEN_Y + 1465 - _cxy[1]);
-		_bm_cd_info.SetTopLeft(CHARACTER_SCREEN_X + 1230 - _cxy[0], CHARACTER_SCREEN_Y + 1465 - _cxy[1]);
-
+			_bm_exit.SetTopLeft(3502 + sx, 671 + sy);
+		
+		//設定道具位置
 		int t = 0;
 		for each(Item* i in _store_items)
 		{
-			i->SetXY(CHARACTER_SCREEN_X + 2552 - _cxy[0] + 49 * t, CHARACTER_SCREEN_Y + 323 - _cxy[1]);
+			i->SetXY(LEVEL_ONE_ITEM_STORE[0] + sx + 78 * t, LEVEL_ONE_ITEM_STORE[1] + sy);
 			t++;
 		}
+		_bm_hp_potion.SetTopLeft(LEVEL_ONE_POTION_STORE[0] + sx, LEVEL_ONE_POTION_STORE[1] + sy);
+		_bm_attack_info.SetTopLeft(LEVEL_ONE_BUFF_STORE_1[0] + sx, LEVEL_ONE_BUFF_STORE_1[1] + sy);
+		_bm_speed_info.SetTopLeft(LEVEL_ONE_BUFF_STORE_2[0] + sx, LEVEL_ONE_BUFF_STORE_2[1] + sy);
+		_bm_cd_info.SetTopLeft(LEVEL_ONE_BUFF_STORE_3[0] + sx, LEVEL_ONE_BUFF_STORE_3[1] + sy);
+
+		//其他物件的OnMove()
 		OnMoveBackgroundAndWall();
 		SkillOnMove();
 		EnemyOnMove();
@@ -178,6 +192,7 @@ namespace game_framework {
 
 	void Map_Level_One::NotifyAnemy(AREA name, const int* area)
 	{
+		//如過角色在Area內，通知怪物進行追擊
 		if ((_cxy[0] >= area[0]) && (_cxy[1] >= area[1]) && (_cxy[0] <= area[2]) && (_cxy[1]) <= area[3])
 		{
 			for (int i = 0; i < _enemies.size(); i++)
@@ -209,6 +224,7 @@ namespace game_framework {
 
 	void Map_Level_One::Init()
 	{
+		_store_items.clear();
 		Item* now_equip = Items::Instance().GetEquipAndOwnedItem();
 		vector<Item*> all = Items::Instance().GetAllItem();
 		int num = 0;

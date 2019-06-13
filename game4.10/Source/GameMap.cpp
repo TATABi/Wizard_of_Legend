@@ -303,8 +303,6 @@ namespace game_framework {
 		}
 	}
 
-	void GameMap::SummonBoss() {}
-
 	bool GameMap::IsEnd()
 	{
 		return _isEnd;

@@ -33,7 +33,6 @@ namespace game_framework {
 		bool IsEnd();
 		virtual void Init();
 		virtual void Show();
-		virtual void SummonBoss();
 		virtual void LoadBitmap() = 0;
 		virtual void OnMove() = 0;
 		virtual int GetMapStatus(float, float) = 0;
