@@ -14,6 +14,7 @@ namespace game_framework {
 	void Town_State_Controller::Begin()
 	{
 		LoadMemento(Town_Or_Home);
+		SaveMemento(Town_Or_Home);
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 1; // 1 seconds
@@ -74,7 +75,7 @@ namespace game_framework {
 					_isSwitch = true;
 				}
 
-				if (nChar == KEY_F && _map.GetCharacterStatus() == 2)
+				if (nChar == KEY_F && _map.GetCharacterStatus() == 2)	//進入關卡
 				{
 					_isSwitch = true;
 					_game_state_num = GAME_STATE_RUN_LEVEL_1;
