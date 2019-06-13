@@ -8,7 +8,6 @@
 #include "CharacterData.h"
 
 namespace game_framework {
-	
 	Item::Item(int bm, int bm_info, string type, enum ITEM_NUMBER number,int diamond, bool (*effect)(), void (*strip)())
 	{
 		Initialize();
@@ -49,11 +48,10 @@ namespace game_framework {
 		if (_isOwned)
 		{
 			_isEquiped = equip;
-
 			if (_isEquiped == false && _isLuanched)
 			{
 				_isLuanched = false;
-				_Stripping();
+				_Stripping();	//關閉效果
 			}
 		}
 	}
@@ -69,11 +67,11 @@ namespace game_framework {
 		if (_isEquiped == false && _isLuanched)
 		{
 			_isLuanched = false;
-			_Stripping();
+			_Stripping();	//關閉效果
 		}
 	}
 
-	void Item::Effect()			//一直做
+	void Item::Effect()	
 	{
 		if (_isEquiped && !_isLuanched)	//裝備 &還未發動效果
 			_isLuanched = _Launched();
@@ -87,7 +85,6 @@ namespace game_framework {
 	bool Item::BuyItem()
 	{
 		CharacterData *data = &CharacterData::Instance();
-
 		if (data->DIAMOND() >= _diamond && !_isOwned)
 		{
 			_isOwned = true;

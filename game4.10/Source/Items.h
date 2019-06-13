@@ -7,14 +7,14 @@
 namespace game_framework {
 	class Items {
 	public:
-		static Items& Instance();
-		void Initialize();		//匯入所有道具
-		void LoadBitmap();
+		static Items& Instance();		//Singleton
+		void Initialize();				//匯入所有道具
+		void LoadBitmap();				//匯入圖片
 		bool Buy(int);					//回傳購買失敗/成功
 		void Equip(int, bool);			//裝備道具
 		void Effect();					//OnMove()中用
-		int GetNumberOfItem(string);
-		void UnloadAllItem();
+		int GetNumberOfItem(string);	//取的各種類的Item數量
+		void UnloadAllItem();			//脫掉所有裝備
 		void SetItems(bool[NUM_ITEMS]);	//用來回復Item狀態(讀檔、離開關卡)
 		vector<bool> GetSaveData();		//回傳所有item的擁有狀態
 		Item* GetItem(int);				//取得編號的道具
@@ -28,9 +28,6 @@ namespace game_framework {
 	private:
 		vector<Item*> _items;			//所有道具
 		vector<Item*> _temp_items;		//用來篩選
-		int NUMBER_OF_OFFENSE = 2;
-		int NUMBER_OF_DEFENSE = 3;
-		int NUMBER_OF_MISC = 1;
 	};
 }
 

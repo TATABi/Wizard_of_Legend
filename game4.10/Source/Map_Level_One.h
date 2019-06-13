@@ -38,6 +38,7 @@ namespace game_framework {
 		CMovingBitmap _bm_attack_info,		//攻擊Buff
 					  _bm_speed_info,		//速度Buff
 					  _bm_cd_info;			//CD Buff
+		bool _isSummonBoss;					//是否召喚過Boss
 	};
 }
 

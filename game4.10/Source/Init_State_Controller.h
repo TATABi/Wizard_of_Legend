@@ -5,7 +5,6 @@
 namespace game_framework {
 
 	class Init_State_Controller : public Controller{
-
 		enum FLAG {
 			FLAG_INIT_INIT,
 			FLAG_INIT_MENU,
@@ -14,19 +13,16 @@ namespace game_framework {
 			FLAG_INIT_RESET_DATA,
 			FLAG_INIT_ABOUT
 		};
-
 		enum INSTRUCTION_MENU {
 			SINGLE_PLAYER,
 			OPTIONS,
 			QUIT
 		};
-
 		enum INSTRUCTION_OPTIONS {
 			KEY_CONFIG,
 			RESET_DATA,
 			ABOUT
 		};
-
 	public:
 		Init_State_Controller();
 		void Initialize();
@@ -35,9 +31,7 @@ namespace game_framework {
 		void OnKeyDown(UINT, UINT, UINT);
 		void OnLButtonDown(UINT, CPoint);
 		void OnRButtonDown(UINT, CPoint);
-		void OnMove();
 		void OnShow();
-
 	private:
 		CAnimation _ani_menu_1;
 		CAnimation _ani_menu_2;
@@ -49,10 +43,10 @@ namespace game_framework {
 		CMovingBitmap _bm_options_page_1, _bm_options_page_2, _bm_options_page_3;
 		CMovingBitmap _bm_key_config;
 		CMovingBitmap _bm_about;
-		int _flag;
-		int _instruction_1;
-		int _instruction_2;
-		int _audio_delay_counter;
+		int _flag;						//紀錄狀態
+		int _instruction_1;				//紀錄玩家選擇的指令
+		int _instruction_2;				//紀錄玩家選擇的指令2
+		int _audio_delay_counter;		//等待音樂載入的延遲時間
 	};
 }
 

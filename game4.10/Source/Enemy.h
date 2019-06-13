@@ -54,14 +54,13 @@ namespace game_framework {
 		CAnimation _ani_attack_left, _ani_attack_right;
 		CAnimation _ani_skill;
 		GameMap* _map;
-		int _hp, _step, _zone;
-		int _area;
-		int _ori_x, _ori_y;
-		int _target_x, _target_y;
-		int _hitbox[4] = { 0 }; 
-		int _move_hitbox[4] = { 0 }; 					
-		int _charge_zone;
-		bool _is_x_arrive;
+		int _hp, _step, _zone, _area;					//基礎設置
+		int _ori_x, _ori_y;								//初始位置
+		int _target_x, _target_y;						//移動目標座標
+		int _hitbox[4] = { 0 };							//hitbox
+		int _move_hitbox[4] = { 0 }; 					//移動hitbox
+		int _charge_zone;								//追擊範圍
+		bool _is_x_arrive;								//是否到達指定位置
 		bool _is_y_arrive;
 		bool _is_detour,								//繞路狀態
 			 _is_left,
@@ -69,16 +68,14 @@ namespace game_framework {
 			 _is_up,
 			 _is_down;
 		bool _neighbor[4];								// 上下左右的Logic點
-		int _detour_time;
-		int _damage;
-		int _attack_counter;
-		int _hit_recover_counter;
-		bool _hit_recover_flag;
-		bool _is_transfer;
-		bool _isAttack;
-		bool _isReset;
+		int _detour_time;								//繞路時需移動的步數
+		int _damage;									//傷害
+		int _attack_counter;							//攻擊延遲
+		int _hit_recover_counter;						//硬直時間
+		bool _hit_recover_flag;							//硬直判定
+		bool _isAttack;									//是否在攻擊
+		bool _isReset;									//是否是直接使用按鍵使其死亡
 		int _invincible_counter;						//無敵狀態的時間
-		int _stock_counter;
 	};
 }
 
