@@ -25,12 +25,10 @@ namespace game_framework {
 		_move_hitbox[1] = SLIME_MOVE_HITBOX[1];
 		_move_hitbox[2] = SLIME_MOVE_HITBOX[2];
 		_move_hitbox[3] = SLIME_MOVE_HITBOX[3];
-
 		_ani_left.SetDelayCount(1);
 		_ani_right.SetDelayCount(1);
 		_ani_attack_right.SetDelayCount(1);
 		_ani_attack_left.SetDelayCount(1);
-
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
 		_state = NOTHING;
@@ -47,7 +45,6 @@ namespace game_framework {
 	void Slime::LoadEnemyBitmap()
 	{
 		_bm_hp_bar.LoadBitmap(ENEMY_HP_BAR_M);
-
 		_bm_stand_left.LoadBitmap(ENEMY_SLIME_STAND_LEFT, RGB(50, 255, 0));
 		_bm_stand_right.LoadBitmap(ENEMY_SLIME_STAND_RIGHT, RGB(50, 255, 0));
 		_bm_hurt_left.LoadBitmap(ENEMY_SLIME_HURT_LEFT, RGB(50, 255, 0));
@@ -84,7 +81,6 @@ namespace game_framework {
 	{
 		_sx = CHARACTER_SCREEN_X + _xy[0] - cx;
 		_sy = CHARACTER_SCREEN_Y + _xy[1] - cy;
-
 		switch (_state)
 		{
 		case NOTHING:				//Ø∏•ﬂ
@@ -222,7 +218,6 @@ namespace game_framework {
 							break;
 						}
 				}
-
 				if (_isAttack)
 					break;
 			}
@@ -238,7 +233,6 @@ namespace game_framework {
 		int MAX_HP_Y2 = sy + 5;
 		int X1;
 		float temp_hp;
-
 		_bm_hp_bar.SetTopLeft(sx, sy);
 		_bm_hp_bar.ShowBitmap();
 		temp_hp = (float)(SLIME_HP - _hp) / SLIME_HP;			//≠p∫‚HPÆt≠»

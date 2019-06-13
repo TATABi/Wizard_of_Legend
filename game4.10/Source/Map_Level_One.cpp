@@ -244,7 +244,7 @@ namespace game_framework {
 	bool Map_Level_One::BuyByMoney(int num)
 	{
 		if (num >= 0 && num < 3)
-			return _store_items[num]->BuyAndEquip();
+			return _store_items[num]->BuyAndEquip();	//裝備物品但不擁有
 		else
 			return false;
 	}

@@ -1,25 +1,25 @@
 #ifndef MEMENTO_H
 #define MEMEMTO_H
+
 #include <sstream>
 #include "GameData.h"
 
 namespace game_framework
 {
-
 /////////////////////////////////////////////////
 	class State 
 	{
 		friend class Memento;
 	public:
-		State(const string, int, bool[NUM_ITEMS]);
+		State(const string, int, bool[NUM_ITEMS]);	//state名稱、裝備道具編號、所有道具擁有狀態
 		~State();
-		string Stage();
-		int EquipItem();
-		bool* OwnedItem();
+		string Stage();						//stage名稱
+		int EquipItem();					//身上裝備且擁有的道具編號
+		bool* OwnedItem();					//所以道具擁有狀況
 	private:
-		string _stage;					//紀錄點
-		int _equip_item;				//裝備道具
-		bool _owned_items[NUM_ITEMS];			//擁有道具
+		string _stage;						//紀錄點
+		int _equip_item;					//裝備道具
+		bool _owned_items[NUM_ITEMS];		//擁有道具
 	};
 /////////////////////////////////////////////////
 
@@ -29,10 +29,10 @@ namespace game_framework
 		friend class Originator;
 	public:
 		~Memento();
-		string Stage();
+		string Stage();						//stage名稱
 	private:
-		Memento(State* state);			
-		void SetState(State*);
+		Memento(State* state);				//讓Originator能產生Memento
+		void SetState(State*);				//設定state
 		State* _state;
 	};
 /////////////////////////////////////////////////
@@ -41,14 +41,14 @@ namespace game_framework
 	class Originator
 	{
 	public:
-		static Originator &Instance();
-		void SetState(State*);
-		void RestoreToMemento(Memento*);
-		Memento* CreateMemento();
+		static Originator &Instance();		//Singleton
+		void SetState(State*);				//設定state
+		void RestoreToMemento(Memento*);	//用傳入的Memento裝備狀態
+		Memento* CreateMemento();			//產生Memento
 	protected:
 		Originator();
 	private:
-		State* _state;
+		State* _state;						//存state
 	};
 /////////////////////////////////////////////////
 
@@ -56,14 +56,14 @@ namespace game_framework
 	class Caretaker
 	{
 	public:
-		static Caretaker &Instance();
+		static Caretaker &Instance();		//Singleton
 		~Caretaker();
-		void SetMemento(Memento*);
-		Memento* GetMemento(string);
+		void SetMemento(Memento*);			//設定Memento
+		Memento* GetMemento(string);		//從用string從map裡面取出Memento
 	protected:
 		Caretaker();
 	private:
-		map<string, Memento*> _mementos;
+		map<string, Memento*> _mementos;	//map存放所有Memento
 	};
 }
 /////////////////////////////////////////////////

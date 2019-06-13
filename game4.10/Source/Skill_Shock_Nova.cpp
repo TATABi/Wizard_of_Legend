@@ -57,7 +57,6 @@ namespace game_framework
 		{
 			if (_lifeTime == 0)
 				_isDelete = true;
-
 			_lifeTime--;
 
 			if (!_isInit)
@@ -75,7 +74,6 @@ namespace game_framework
 			RefreshEnemyList();
 			_re_attack_counter = SHOCK_NOVA_RE_ATTACK_COUNTER;
 		}
-
 		_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_X + _xy[0] - cxy[0], CHARACTER_SCREEN_Y + _xy[1] - cxy[1]);
 	}
 
@@ -90,7 +88,6 @@ namespace game_framework
 		float y2 = enemy_position[1] + enemy_hitbox[1];
 		float l2 = enemy_hitbox[2];
 		float w2 = enemy_hitbox[3];
-
 		//檢查碰撞"外框"是否有接觸
 		for (int i = 0; i < l2; i++)
 		{

@@ -76,7 +76,7 @@ namespace game_framework {
 		_move_counter--;
 	}
 
-	//判斷是否到達目標點 附近
+	//判斷是否到達目標點附近
 	bool Reward::IsTargetPosition(float targetX, float targetY)
 	{
 		float d = 20;
@@ -85,7 +85,7 @@ namespace game_framework {
 		return false;
 	}
 
-	//判斷是否要被吃
+	//判斷是否被吃
 	bool Reward::IsEaten()
 	{
 		//角色中心位置
@@ -113,7 +113,6 @@ namespace game_framework {
 		float cy = _map->GetCharacterPosition()[1];
 		float midCX = cx + CHARACTER_HITBOX[2] / 2;
 		float midCY = cy + CHARACTER_HITBOX[3] / 2;
-
 		//確保reward不會因為太生成時太靠近character而太快被吃掉
 		if ((_isShow) && (IsTargetPosition(midCX, midCY)) && delay_counter == 0)
 			return true;
@@ -127,7 +126,7 @@ namespace game_framework {
 		std::random_device rd;
 		_targetX = rd() % _range_position + _xy[0];
 		_targetY = rd() % _range_position + _xy[1];
-		while (!_map->CheckEnemyPosition(_targetX, _targetY, _hitbox))
+		while (!_map->CheckEnemyPosition(_targetX, _targetY, _hitbox))		//避免掉到不能進入的地方
 		{
 			_targetX = rd() % _range_position + _xy[0];
 			_targetY = rd() % _range_position + _xy[1];

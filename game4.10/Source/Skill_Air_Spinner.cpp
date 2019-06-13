@@ -67,12 +67,10 @@ namespace game_framework
 		float y2 = enemy_position[1] + enemy_hitbox[1];
 		float l2 = enemy_hitbox[2];
 		float w2 = enemy_hitbox[3];
-
 		//檢查碰撞"外框"是否有接觸
 		for (int i = 0; i < l2; i++)
 		{
 			int step = 0;
-
 			if (i == 0 || i == l2 - 1)
 				step = 1;
 			else
@@ -100,15 +98,13 @@ namespace game_framework
 	{
 		int x = int(cxy[0]);
 		int y = int(cxy[1]);
-
 		//技能位置設定
 		if (_lifeTime == 0)		//時間到
 			_isDelete = true;
 		else
 		{
 			_lifeTime--;
-			_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[0].Width() / 2 + _xy[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[0].Height() / 2 + _xy[1] - y);
-
+			_ani_skill[0].SetTopLeft(CHARACTER_SCREEN_CENTER_X - _ani_skill[0].Width() / 2 + _xy[0] - x, CHARACTER_SCREEN_CENTER_Y - _ani_skill[0].Height() / 2 + _xy[1] - y);	//設定螢幕位置
 		}
 	}
 
@@ -120,5 +116,4 @@ namespace game_framework
 			_ani_skill[0].IsFinalBitmap() ? _isDelete = true : _ani_skill[0].OnMove();
 		}
 	}
-
 }

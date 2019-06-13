@@ -35,12 +35,10 @@ namespace game_framework
 		_isDelete = false;
 		_isStock = false;
 		_isInit[0] = _isInit[1] = _isInit[2] = _isInit[3] = true;
-
 		//螢幕中心到滑鼠向量
 		int tempX = mouseX - CHARACTER_SCREEN_CENTER_X;					
 		int tempY = mouseY - CHARACTER_SCREEN_CENTER_Y;
 		float unitVec = (float)(sqrt(pow(tempX, 2) + pow(tempY, 2)));
-
 		//設定移動向量
 		_dx = (mouseX - CHARACTER_SCREEN_CENTER_X) * _speed / unitVec;
 		_dy = (mouseY - CHARACTER_SCREEN_CENTER_Y) * _speed / unitVec;
@@ -48,7 +46,6 @@ namespace game_framework
 		_xy[1] = cxy[1] + (mouseY - CHARACTER_SCREEN_CENTER_Y) * _cast_distance / unitVec;
 		_rx = cxy[0] + (mouseX - CHARACTER_SCREEN_CENTER_X) * _cast_distance / unitVec;
 		_ry = cxy[1] + (mouseY - CHARACTER_SCREEN_CENTER_Y) * _cast_distance / unitVec;
-
 		_ani_skill[0].SetDelayCount(1);
 		_ani_skill[1].SetDelayCount(1);
 		_ani_skill[2].SetDelayCount(1);
@@ -85,7 +82,6 @@ namespace game_framework
 		float y2 = enemy_position[1] + enemy_hitbox[1];
 		float l2 = enemy_hitbox[2];
 		float w2 = enemy_hitbox[3];
-
 		//偵測與Enemy碰撞
 		if (abs((x1 + l1 / 2) - (x2 + l2 / 2)) < abs((l1 + l2) / 2) && abs((y1 + w1 / 2) - (y2 + w2 / 2)) < abs((w1 + w2) / 2)) 
 		{
@@ -121,7 +117,6 @@ namespace game_framework
 		else
 		{
 			_lifeTime--;
-
 			if (_ani_skill[3].GetCurrentBitmapNumber() < 2 && !_isStock)
 			{
 				_rx += _dx;

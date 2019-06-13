@@ -18,7 +18,6 @@ namespace game_framework {
 	void CGameStateInit::OnInit()
 	{
 		ShowInitProgress(0);	// 一開始的loading進度為0%
-
 		//載入音效
 		CAudio::Instance()->Load(AUDIO_TITLE, "sounds\\TitleBGM.wav");
 		CAudio::Instance()->Load(AUDIO_BE, "sounds\\be.mp3");
@@ -54,23 +53,26 @@ namespace game_framework {
 		CAudio::Instance()->Load(ADUIO_BAD_END, "sounds\\bad_end.mp3");
 		CAudio::Instance()->Load(AUDIO_GOOD_END, "sounds\\good_end.mp3");
 		CAudio::Instance()->Load(AUDIO_SAVE_DATA, "sounds\\save_data.mp3");
-		ShowInitProgress(30);
-		
-		//controller初始化
-		_controller.Initialize();
+
+		ShowInitProgress(30);			//進度條顯示30%
+		_controller.Initialize();		//controller初始化
+		//載入各種圖片
 		Items::Instance().LoadBitmap();
 		Character::Instance().LoadBitmap();
 		PausedMenu::Instance().LoadBitmap();
 		Bag::Instance().LoadBitmap();
 		UI::Instance().LoadBitmap();
-
-		ShowInitProgress(80);
+		ShowInitProgress(80);			//進度條顯示80%
 	}
 
 	void CGameStateInit::OnBeginState()
 	{
 		_controller.Begin();
 	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// 將所有滑鼠、鍵盤事件傳給controller控制
+	/////////////////////////////////////////////////////////////////////////////
 
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
@@ -133,6 +135,10 @@ namespace game_framework {
 			GotoGameState(_controller.GameState());
 	}
 
+	/////////////////////////////////////////////////////////////////////////////
+	// 將所有滑鼠、鍵盤事件傳給controller控制
+	/////////////////////////////////////////////////////////////////////////////
+
 	void CGameStateOver::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		_controller.OnKeyDown(nChar, nRepCnt, nFlags);
@@ -160,6 +166,10 @@ namespace game_framework {
 	{
 		_controller.Initialize();
 	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// 將所有滑鼠、鍵盤事件傳給controller控制
+	/////////////////////////////////////////////////////////////////////////////
 
 	void CGameStateRun_Home::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
@@ -213,6 +223,11 @@ namespace game_framework {
 		_controller.Initialize();
 	}
 
+
+	/////////////////////////////////////////////////////////////////////////////
+	// 將所有滑鼠、鍵盤事件傳給controller控制
+	/////////////////////////////////////////////////////////////////////////////
+
 	void CGameStateRun_Town::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		_controller.OnKeyDown(nChar, nRepCnt, nFlags);
@@ -264,6 +279,10 @@ namespace game_framework {
 	{
 		_controller.Initialize();
 	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// 將所有滑鼠、鍵盤事件傳給controller控制
+	/////////////////////////////////////////////////////////////////////////////
 
 	void CGameStateRun_Level_1::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{

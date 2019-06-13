@@ -20,7 +20,6 @@ namespace game_framework {
 	{
 		LoadBitmap();
 		Initialize(ex, ey);
-		SetRandomPosition();
 	}
 
 	void Reward_Money::Initialize(float ex, float ey)
@@ -48,9 +47,9 @@ namespace game_framework {
 
 	void Reward_Money::Effect()
 	{
-		CharacterData::Instance().AddMoney(VALUE);
-		CharacterData::Instance().AddMoneyCollected(VALUE);
-		CAudio::Instance()->Play(AUDIO_GET_MONEY, false);
+		CharacterData::Instance().AddMoney(VALUE);				//增加money
+		CharacterData::Instance().AddMoneyCollected(VALUE);		//增加money蒐集數
+		CAudio::Instance()->Play(AUDIO_GET_MONEY, false);		//播放音效
 	}
 
 }

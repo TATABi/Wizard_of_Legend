@@ -23,7 +23,7 @@ namespace game_framework {
 
 	void Map_Town::OnMove()
 	{
-		_character_status = GetMapStatus(_cxy[0] + 35, _cxy[1] + 56);
+		_character_status = GetMapStatus(_cxy[0] + 35, _cxy[1] + 56);	//取得角色在地圖上的互動資料
 	
 		int temp_x = 0, temp_y = 0;
 		
@@ -58,20 +58,19 @@ namespace game_framework {
 				break;
 			}
 			_isPressF = true;
-			_ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - _cxy[0], CHARACTER_SCREEN_Y + temp_y - _cxy[1]);
+			_ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - _cxy[0], CHARACTER_SCREEN_Y + temp_y - _cxy[1]);	//設定動畫press_f的位置
 		}
 		else
 		{
 			_ani_press_f.Reset();
 			_isPressF = false;
 		}
-
-		OnMoveBackgroundAndWall();
-		SkillOnMove();
+		OnMoveBackgroundAndWall();	//牆壁重新設定座標
+		SkillOnMove();				//所有技能OnMove
 	}
 
 	int Map_Town::GetMapStatus(float x, float y)
 	{
-		return TOWN_LOGIC[int(x/10)][int(y/10)];
+		return TOWN_LOGIC[int(x/10)][int(y/10)];	//取得地圖資訊
 	}
 }

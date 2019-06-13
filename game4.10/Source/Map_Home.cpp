@@ -15,15 +15,17 @@ namespace game_framework {
 
 	void Map_Home::AddEnemy() 
 	{
+
 		vector<Enemy*>::iterator e_it;
+		//清除所有怪物
 		for (e_it = _enemies.begin(); e_it != _enemies.end(); e_it++)
 			(*e_it)->Dead();
-		
+		//生成木頭人
 		_enemies.push_back(new Blockhead(650, 918, AREA_1, this));
 		_enemies.push_back(new Blockhead(850, 830, AREA_1, this));
 		_enemies.push_back(new Blockhead(870, 910, AREA_1, this));
 		_enemies.push_back(new Blockhead(850, 1000, AREA_1, this));
-
+		//載入怪物圖片
 		for each (Enemy* enemy in _enemies)
 			enemy->LoadBitmap();
 	}
@@ -69,7 +71,6 @@ namespace game_framework {
 			_ani_press_f.Reset();
 			_isPressF = false;
 		}
-
 		OnMoveBackgroundAndWall();
 		SkillOnMove();
 		EnemyOnMove();

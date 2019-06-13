@@ -239,7 +239,7 @@ namespace game_framework {
 		_bm_hp_bar.SetTopLeft(sx, sy);
 		_bm_hp_bar.ShowBitmap();
 		temp_hp = (float)(BLACKMAN_HP - _hp) / BLACKMAN_HP;			//計算HP差值
-		X1 = (int)(temp_hp * 52);
+		X1 = (int)(temp_hp * 52);	
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CBrush *pb, b(RGB(28, 35, 34));				// 畫灰色 (扣MP)
 		pb = pDC->SelectObject(&b);

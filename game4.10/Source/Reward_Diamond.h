@@ -12,7 +12,7 @@ namespace game_framework {
 		Reward_Diamond(float, float, GameMap*);
 		void LoadBitmap();
 		void Initialize(float, float);
-		void Effect();
+		void Effect();							//Ä²µo®ÄªG
 	private:
 		//_hitbox[4] = {6, 4, 7, 12};
 		GameMap *_map;

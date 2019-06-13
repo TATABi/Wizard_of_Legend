@@ -5,17 +5,17 @@
 namespace game_framework {
 	class UI {
 	public:
-		static UI &Instance();		//Singleton
-		void Initialize();			//初始化
-		void LoadBitmap();			//匯入圖片
-		void SetXY();				//設定位置
-		void OnMove();				//計算
-		void OnShow();				//顯示
-		void CalculateHP();			//計算 & 顯示HP
-		void CalculateMP();			//計算 & 顯示MP
-		void OpenMap(bool ,int);	//開啟地圖
-		void ResetMapMask();		//重置地圖遮罩
-		void StageCleared();		//打贏Boss結束畫面
+		static UI &Instance();					//Singleton
+		void Initialize();						//初始化
+		void LoadBitmap();						//匯入圖片
+		void SetXY();							//設定位置
+		void OnMove();							//計算
+		void OnShow();							//顯示
+		void CalculateHP();						//計算 & 顯示HP
+		void CalculateMP();						//計算 & 顯示MP
+		void OpenMap(bool ,int);				//開啟地圖
+		void ResetMapMask();					//重置地圖遮罩
+		void StageCleared();					//打贏Boss結束畫面
 	protected:
 		UI();
 	private:

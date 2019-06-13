@@ -24,7 +24,6 @@ namespace game_framework
 	bool Skill::AttackedThisEnemy(Enemy* enemy)
 	{
 		bool isExist = false;
-
 		//將怪物加入已攻擊列表
 		for (int i = 0; i < _enemyList.size(); i++)
 		{
@@ -34,7 +33,6 @@ namespace game_framework
 				break;
 			}
 		}
-		
 		if (isExist)
 			return false;
 		else

@@ -20,9 +20,7 @@ namespace game_framework {
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 4;			// 4 seconds
-		float k[2] = { 2370, 260 };
-		_map.Initialize(k[0], k[1]);
-		//_map.Initialize(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]);
+		_map.Initialize(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]);
 		Character::Instance().Initialize(_map.GetCharacterPosition());
 		_map.AddEnemy();
 		CAudio::Instance()->StopAll();
@@ -222,7 +220,7 @@ namespace game_framework {
 				}
 				break;
 
-			case FLAG_BAG:
+			case FLAG_BAG:			//進入bag
 				if (nChar == KEY_TAB || nChar == KEY_ESC)
 				{
 					Bag::Instance().Open(false);
@@ -250,7 +248,7 @@ namespace game_framework {
 				}
 				break;
 
-			case FLAG_MAP:
+			case FLAG_MAP:			//進入小地圖
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					Character::Instance().SetMovingDown(true);
 				if (nChar == KEY_UP || nChar == KEY_W)
@@ -284,7 +282,7 @@ namespace game_framework {
 	void Level_One_State_Controller::OnMove()
 	{
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
-		CharacterDead();		//判斷腳色死亡、執行相關動作
+		CharacterDead();								//判斷腳色死亡、執行相關動作
 
 		if (_delayCounter > -1)
 			_delayCounter--;
@@ -304,15 +302,11 @@ namespace game_framework {
 				_chess_xy[1] <= 133 ? _isUpDown = true : _chess_xy[1] -= 2;
 			}
 		}
-
-		
-
 		_map.OnMove();
 		Character::Instance().OnMove(&_map);
 		Bag::Instance().OnMove();
 		UI::Instance().OnMove();
 		Items::Instance().Effect();
-		
 	}
 
 	void Level_One_State_Controller::OnShow()

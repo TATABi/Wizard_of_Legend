@@ -10,7 +10,6 @@ namespace game_framework {
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
 
-
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
 	// 每個Member function的Implementation都要弄懂
@@ -28,7 +27,7 @@ namespace game_framework {
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		Init_State_Controller _controller;
+		Init_State_Controller _controller;				//init state控制器
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -50,7 +49,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		Home_State_Controller _controller;
+		Home_State_Controller _controller;				//home state控制器
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -72,7 +71,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		Town_State_Controller _controller;
+		Town_State_Controller _controller;				//town state 控制器
 	};
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -94,7 +93,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		Level_One_State_Controller _controller;
+		Level_One_State_Controller _controller;			//關卡一控制器
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -113,7 +112,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		Over_State_Controller _controller;
+		Over_State_Controller _controller;				//結束畫面控制器
 	};
 
 }

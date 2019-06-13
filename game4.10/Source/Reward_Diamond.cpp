@@ -48,8 +48,8 @@ namespace game_framework {
 
 	void Reward_Diamond::Effect()
 	{
-		CharacterData::Instance().AddDiamond(VALUE);
-		CharacterData::Instance().AddDiamondCollected(VALUE);
-		CAudio::Instance()->Play(AUDIO_GET_MONEY, false);
+		CharacterData::Instance().AddDiamond(VALUE);					//增加diamond
+		CharacterData::Instance().AddDiamondCollected(VALUE);			//增加diamond蒐集輛
+		CAudio::Instance()->Play(AUDIO_GET_MONEY, false);				//播放音效
 	}
 }

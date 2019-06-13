@@ -10,11 +10,11 @@ namespace game_framework
 	class Skill:public Layer{
 	public :
 		Skill();
-		void Init();								//初始化
-		bool IsDelete();							//得知是否該刪除
-		bool AttackedThisEnemy(Enemy*);				//將怪物加入已攻擊列表中
-		void RefreshEnemyList();					//重製怪物表單 (讓怪物可以被重複攻擊)
-		virtual int GetDamage(Enemy *) = 0;
+		void Init();									//初始化
+		bool IsDelete();								//得知是否該刪除
+		bool AttackedThisEnemy(Enemy*);					//將怪物加入已攻擊列表中
+		void RefreshEnemyList();						//重製怪物表單 (讓怪物可以被重複攻擊)
+		virtual int GetDamage(Enemy *) = 0;				//攻擊怪物
 		virtual void OnMove(float *, GameMap *) = 0;
 		virtual void OnShow() = 0;
 		virtual void LoadBitmap() = 0;

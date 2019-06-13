@@ -8,13 +8,13 @@ namespace game_framework {
 	class Items {
 	public:
 		static Items& Instance();
-		void Initialize();		//匯入所有道具
+		void Initialize();				//匯入所有道具
 		void LoadBitmap();
 		bool Buy(int);					//回傳購買失敗/成功
 		void Equip(int, bool);			//裝備道具
 		void Effect();					//OnMove()中用
-		int GetNumberOfItem(string);
-		void UnloadAllItem();
+		int GetNumberOfItem(string);	//透過裝備種類取得種類編號
+		void UnloadAllItem();			//解除所有裝備中的道具
 		void SetItems(bool[NUM_ITEMS]);	//用來回復Item狀態(讀檔、離開關卡)
 		vector<bool> GetSaveData();		//回傳所有item的擁有狀態
 		Item* GetItem(int);				//取得編號的道具

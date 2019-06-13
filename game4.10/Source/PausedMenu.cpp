@@ -35,7 +35,6 @@ namespace game_framework {
 		_bm_paused_options.LoadBitmap(PAUSED_03, RGB(50, 255, 0));
 		_bm_paused_quit.LoadBitmap(PAUSED_04, RGB(50, 255, 0));
 		_bm_pause_optionss.LoadBitmap(MENU_OPTIONSS, RGB(50, 255, 0));
-
 		_bm_paused_resume.SetTopLeft(260, 170);
 		_bm_paused_title.SetTopLeft(260, 170);
 		_bm_paused_options.SetTopLeft(260, 170);
@@ -43,7 +42,7 @@ namespace game_framework {
 		_bm_pause_optionss.SetTopLeft(216, 80);
 	}
 
-	void PausedMenu::OnShow()
+	void PausedMenu::OnShow()				//判斷該Show哪一張圖片
 	{
 		if (_isPaused)
 		{
@@ -91,19 +90,19 @@ namespace game_framework {
 	{
 		switch (_paused_flag)
 		{
-		case 0:		//回遊戲
+		case 0:							//回遊戲
 			_isPaused = false;
 			return 0;
 			break;
-		case 1:		//主選單
+		case 1:							//主選單
 			_isPaused = false;
 			return 1;
 			break;
-		case 2:		//options
+		case 2:							//options
 			_paused_flag = 4;
 			return 2;
 			break;
-		case 3:		//結束遊戲
+		case 3:							//結束遊戲
 			return 3;
 			break;
 		default:

@@ -13,10 +13,10 @@ namespace game_framework {
 
 	int Layer::GetY()
 	{
-		return _xy[1];
+		return _xy[1];				//取得y座標
 	}
 
-	float* Layer::GetPosition()
+	float* Layer::GetPosition()		//取得座標
 	{
 		return _xy;
 	}

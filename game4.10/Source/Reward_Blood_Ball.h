@@ -12,7 +12,7 @@ namespace game_framework {
 		Reward_Blood_Ball(float, float, GameMap*);
 		void LoadBitmap();
 		void Initialize(float, float);
-		void Effect();
+		void Effect();								//Ä²µo­µ®Ä
 	private:
 		//_hitbox[4] = {3, 3, 13, 13};
 		GameMap *_map;

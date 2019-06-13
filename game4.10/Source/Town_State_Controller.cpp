@@ -25,7 +25,6 @@ namespace game_framework {
 		UI::Instance().Initialize();
 		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_TOWN, true);
-
 		//////商店產生隨機道具/////
 		_item_store.Shelf();
 	}
@@ -57,7 +56,6 @@ namespace game_framework {
 			switch (_flag)
 			{
 			case FLAG_TOWN_NORMAL:			//一般狀態，沒有開啟任何選單，可以購買東西，走路，進傳送門
-
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					Character::Instance().SetMovingDown(true);
 				if (nChar == KEY_UP || nChar == KEY_W)
@@ -68,19 +66,16 @@ namespace game_framework {
 					Character::Instance().SetMovingRight(true);
 				if (nChar == KEY_SPACE)
 					Character::Instance().Dash();
-	
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 				{
 					_game_state_num = GAME_STATE_RUN_HOME;		//切換場景到Home
 					_isSwitch = true;
 				}
-
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 2)	//進入關卡
 				{
 					_isSwitch = true;
 					_game_state_num = GAME_STATE_RUN_LEVEL_1;
 				}
-
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//買道具1
 				{
 					if (_item_store.Buy(0))
@@ -91,7 +86,6 @@ namespace game_framework {
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				}
-
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 4)	//買道具2
 				{
 					if (_item_store.Buy(1))
@@ -102,7 +96,6 @@ namespace game_framework {
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				}
-
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 5)	//買道具3
 				{
 					if (_item_store.Buy(2))
@@ -113,14 +106,12 @@ namespace game_framework {
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				}
-
 				if (nChar == KEY_ESC)	//PAUSED選單
 				{
 					CAudio::Instance()->Play(AUDIO_BE, false);
 					PausedMenu::Instance().Paused(true);
 					_flag = FLAG_TOWN_PAUSED;
 				}
-
 				if (nChar == KEY_TAB)
 				{
 					Bag::Instance().Open(true);

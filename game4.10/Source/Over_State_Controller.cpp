@@ -78,10 +78,7 @@ namespace game_framework {
 
 	void Over_State_Controller::OnMove()
 	{
-		
-		
 		_delay_counter > 0 ? _delay_counter-- : NULL;
-
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
 
 		if (_delay_counter == 0)

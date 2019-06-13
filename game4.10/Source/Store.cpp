@@ -35,7 +35,6 @@ namespace game_framework
 		Items* gitem = &Items::Instance();
 		std::random_device rd;
 		int item_1, item_2, num = number;
-
 		switch (num)
 		{
 		case 0:
@@ -69,13 +68,11 @@ namespace game_framework
 				}
 				else
 					_isItemSoldOut[num] = true;
-
 				return true;
 			}
 			else
 				return false;
 		}
-
 		return false;
 	}
 
@@ -92,7 +89,6 @@ namespace game_framework
 		for (int i = 0; (i < 3 && i < num_of_item); i++)
 		{
 			int r = rd() % num_of_item;
-
 			for (int j = 0; j < i; j++)
 			{
 				if (_store_item[j]->GetNumber() == unwoned_items[r]->GetNumber())

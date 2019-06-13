@@ -8,10 +8,10 @@ namespace game_framework {
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
-		void Paused(bool);
-		void NextPausedMenu();
-		void PrePausedMenu();
-		int EnterPauseMenu(); //按space 回傳給mygmae flag 切換狀態
+		void Paused(bool);					//觸發暫停
+		void NextPausedMenu();				//下一個pause menu
+		void PrePausedMenu();				//前一個pause menu
+		int EnterPauseMenu();				//按space 回傳給mygmae flag 切換狀態
 	protected:
 		PausedMenu();
 	private:
@@ -20,8 +20,8 @@ namespace game_framework {
 		CMovingBitmap _bm_paused_options;
 		CMovingBitmap _bm_paused_quit;
 		CMovingBitmap _bm_pause_optionss;
-		bool _isPaused;
-		int _paused_flag; //暫停選單
+		bool _isPaused;						//是否pause
+		int _paused_flag;					//暫停選單
 	};
 }
 

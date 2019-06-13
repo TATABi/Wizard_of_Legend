@@ -73,7 +73,7 @@ namespace game_framework {
 		}
 	}
 
-	void Item::Effect()			//一直做
+	void Item::Effect()					//一直做
 	{
 		if (_isEquiped && !_isLuanched)	//裝備 &還未發動效果
 			_isLuanched = _Launched();
@@ -87,7 +87,6 @@ namespace game_framework {
 	bool Item::BuyItem()
 	{
 		CharacterData *data = &CharacterData::Instance();
-
 		if (data->DIAMOND() >= _diamond && !_isOwned)
 		{
 			_isOwned = true;
@@ -121,10 +120,10 @@ namespace game_framework {
 
 	bool Item::BuyAndEquip()
 	{
-		if (CharacterData::Instance().MONEY() >= _diamond && !_isEquiped)
+		if (CharacterData::Instance().MONEY() >= _diamond && !_isEquiped)	//這裡的_diamond是道具價格，不是鑽石
 		{
 			CharacterData::Instance().AddMoney(-_diamond);
-			_isEquiped = true;
+			_isEquiped = true;												//裝備
 			return true;
 		}
 		else
