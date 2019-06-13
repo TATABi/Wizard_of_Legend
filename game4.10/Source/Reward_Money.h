@@ -17,8 +17,6 @@ namespace game_framework {
 		//_hitbox[4] = {5, 5, 9, 9};
 		GameMap *_map;
 	};
-
-
 }
 
 #endif

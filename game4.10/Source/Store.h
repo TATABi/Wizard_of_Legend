@@ -21,4 +21,5 @@ namespace game_framework {
 		const int DX = 49;								//每個物品擺放的間距
 	};
 }
+
 #endif

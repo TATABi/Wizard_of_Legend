@@ -203,5 +203,4 @@ namespace game_framework
 				_isDelete = true;
 		}
 	}
-
 }

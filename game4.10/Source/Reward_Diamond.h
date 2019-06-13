@@ -18,4 +18,5 @@ namespace game_framework {
 		GameMap *_map;
 	};
 }
+
 #endif

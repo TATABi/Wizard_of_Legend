@@ -114,5 +114,4 @@ namespace game_framework {
 	private:
 		Over_State_Controller _controller;				//結束畫面控制器
 	};
-
 }

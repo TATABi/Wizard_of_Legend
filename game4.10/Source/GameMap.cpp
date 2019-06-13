@@ -296,5 +296,3 @@ namespace game_framework {
 
 	void GameMap::Init() {}
 }
-
-

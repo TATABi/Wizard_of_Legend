@@ -2,7 +2,6 @@
 #define LAYER_H
 
 namespace game_framework {
-
 	class Layer {
 	public:
 		Layer();							

@@ -17,4 +17,5 @@ namespace game_framework
 		void OnShow();										//顯示技能
 	};
 }
+
 #endif

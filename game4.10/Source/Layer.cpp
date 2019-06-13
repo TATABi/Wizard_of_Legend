@@ -6,7 +6,6 @@
 #include "gamelib.h"
 #include "Layer.h"
 
-
 namespace game_framework {
 
 	Layer::Layer() {}
@@ -20,5 +19,4 @@ namespace game_framework {
 	{
 		return _xy;
 	}
-
 }
