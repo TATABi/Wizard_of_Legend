@@ -166,7 +166,7 @@ namespace game_framework {
 		vector<Item*>::iterator iter;
 		for (iter = _items.begin(); iter != _items.end(); iter++)
 		{
-			(*iter)->Equip(false);
+			(*iter)->TakeOff();
 		}
 	}
 

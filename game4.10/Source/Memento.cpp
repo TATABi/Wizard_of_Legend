@@ -13,10 +13,9 @@ namespace game_framework
 {
 /////////////////////////////////////////////////
 	//State
-	State::State(const string stage, int diamond, int equip_item, bool owned_items[NUM_ITEMS])
+	State::State(const string stage, int equip_item, bool owned_items[NUM_ITEMS])
 	{
 		_stage = stage;
-		_diamond = diamond;
 		_equip_item = equip_item;
 
 		for (int i = 0; i < NUM_ITEMS; i++)
@@ -28,11 +27,6 @@ namespace game_framework
 	string State::Stage()
 	{
 		return _stage;
-	}
-
-	int State::Diamond()
-	{
-		return _diamond;
 	}
 
 	int State::EquipItem()
@@ -85,12 +79,10 @@ namespace game_framework
 
 	void Originator::RestoreToMemento(Memento *memento)
 	{
-		Items::Instance().UnloadAllItem();
 		_state = memento->_state;
-		Items::Instance().SetItems(_state->OwnedItem());
 		Items::Instance().UnloadAllItem();
+		Items::Instance().SetItems(_state->OwnedItem());
 		Items::Instance().Equip(_state->EquipItem(), true);
-		CharacterData::Instance().SetDiamond(_state->Diamond());
 	}
 
 	Memento* Originator::CreateMemento()

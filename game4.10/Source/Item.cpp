@@ -63,6 +63,16 @@ namespace game_framework {
 		return _isEquiped;
 	}
 
+	void Item::TakeOff()
+	{
+		_isEquiped = false;
+		if (_isEquiped == false && _isLuanched)
+		{
+			_isLuanched = false;
+			_Stripping();
+		}
+	}
+
 	void Item::Effect()			//一直做
 	{
 		if (_isEquiped && !_isLuanched)	//裝備 &還未發動效果

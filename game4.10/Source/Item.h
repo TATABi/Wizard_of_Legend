@@ -31,6 +31,7 @@ namespace game_framework {
 		int GetNumber();
 		void SetItem(bool);							//用來回復Item狀態(讀檔、離開關卡)
 		void ShowInfo(int, int);					//顯示Item的效果說明
+		void TakeOff();
 
 	private:
 		bool (*_Launched)();						//檢查是否滿足發動條件，滿足就發動，回傳true；不滿足不做事，回傳false

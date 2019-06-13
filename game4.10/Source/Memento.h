@@ -11,15 +11,13 @@ namespace game_framework
 	{
 		friend class Memento;
 	public:
-		State(const string, int, int, bool[NUM_ITEMS]);
+		State(const string, int, bool[NUM_ITEMS]);
 		~State();
 		string Stage();
-		int Diamond();
 		int EquipItem();
 		bool* OwnedItem();
 	private:
 		string _stage;					//紀錄點
-		int _diamond;					//Diamond
 		int _equip_item;				//裝備道具
 		bool _owned_items[NUM_ITEMS];			//擁有道具
 	};

@@ -85,11 +85,11 @@ namespace game_framework {
 		//沒有裝備在身上，GetEquipAndOwnedItem回傳nullptr
 		if (Items::Instance().GetEquipAndOwnedItem() == nullptr)
 		{
-			state = new State(stateName, CharacterData::Instance().DIAMOND(), 0, own_Items);
+			state = new State(stateName, 0, own_Items);
 		}
 		else 
 		{
-			state = new State(stateName, CharacterData::Instance().DIAMOND(), Items::Instance().GetEquipAndOwnedItem()->GetNumber(), own_Items);
+			state = new State(stateName, Items::Instance().GetEquipAndOwnedItem()->GetNumber(), own_Items);
 		}
 		Originator::Instance().SetState(state);
 		Caretaker::Instance().SetMemento(Originator::Instance().CreateMemento());

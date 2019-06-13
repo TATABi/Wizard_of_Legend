@@ -45,7 +45,6 @@ namespace game_framework {
 		_int_gold_found.SetTopLeft(285, 190);
 		_int_gems_collected.SetTopLeft(285, 220);
 		_int_enemy_defeated.SetTopLeft(285, 249);
-
 	}
 
 	void Over_State_Controller::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
