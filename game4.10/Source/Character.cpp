@@ -11,8 +11,8 @@
 #include "math.h"
 #include "GameData.h"
 
-#define M_PI atan(1.0) * 4;
-#define SLASH_COEFFICIENT 1 / sqrt(2) 
+#define M_PI atan(1.0) * 4;					//PI
+#define SLASH_COEFFICIENT 1 / sqrt(2)		//斜向移動係數
 
 namespace game_framework {
 
@@ -26,12 +26,39 @@ namespace game_framework {
 	{
 		float xy[2] = { 0, 0 };
 		Initialize(xy);
+		SetDelayCount();
 	}
 
 	void Character::Initialize(float* xy)
 	{
 		_xy[0] = xy[0];
 		_xy[1] = xy[1];
+		_hp = CharacterData::Instance().HP();
+		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
+		_dx = 0;
+		_dy = 0;
+		_direction = DOWN; //面向下
+		_run_counter = 45;
+		_isDashLock = false;
+		_dash_delay_counter = DASH_COOLDOWN_TIME;
+		_dash_counter = 9;
+		_isUsingSkill = false;
+		_isHurt = false;
+		_dash_resistance = 1;
+		_hit_recover_counter = 0;
+		_magic_buff_counter = 0;
+		_is_magic_buff_init = false;
+		_isDead = false;
+		_mp_decrease_counter = MP_DECREASE_TIME;;
+		_skill_cooldown_counter[0] = _skill_cooldown_counter[1] = _skill_cooldown_counter[2] = 0;
+		_isDrop = false;
+		_drop_counter = DROP_COUNTER_TIME;
+		_trap_counter = TRAP_COUNTER_TIME;
+		_isTransfer = false;
+	}
+
+	void Character::SetDelayCount()
+	{
 		_ani_down.SetDelayCount(2);
 		_ani_up.SetDelayCount(2);
 		_ani_left.SetDelayCount(2);
@@ -57,30 +84,6 @@ namespace game_framework {
 		_ani_magic_buff.SetDelayCount(3);
 		_ani_die.SetDelayCount(2);
 		_ani_transfer.SetDelayCount(1);
-
-		_hp = CharacterData::Instance().HP();
-		_isMovingLeft = _isMovingRight = _isMovingUp = _isMovingDown = _isDash = _isRunning = false;
-		_dx = 0;
-		_dy = 0;
-		_direction = DOWN; //面向下
-		_run_counter = 45;
-		_isDashLock = false;
-		_dash_delay_counter = DASH_COOLDOWN_TIME;
-		_dash_counter = 9;
-		_isUsingSkill = false;
-		_isHurt = false;
-		_dash_resistance = 1;
-		_hit_recover_counter = 0;
-		_magic_buff_counter = 0;
-		_is_magic_buff_init = false;
-		_isDead = false;
-		_mp_decrease_counter = MP_DECREASE_TIME;;
-		_skill_cooldown_counter[0] = _skill_cooldown_counter[1] = _skill_cooldown_counter[2] = 0;
-		_isDrop = false;
-		_drop_counter = DROP_COUNTER_TIME;
-		_trap_counter = TRAP_COUNTER_TIME;
-		_isTransfer = false;
-		_isDropLock = false;
 	}
 
 	void Character::LoadBitmap()
@@ -221,7 +224,6 @@ namespace game_framework {
 		_bm_fall_down.LoadBitmap(CHARACTER_FALL_DOWN, RGB(50, 255, 0));
 		_bm_fall_left.LoadBitmap(CHARACTER_FALL_LEFT, RGB(50, 255, 0));
 		_bm_fall_right.LoadBitmap(CHARACTER_FALL_RIGHT, RGB(50, 255, 0));
-
 		SetXY();
 	}
 
@@ -266,35 +268,38 @@ namespace game_framework {
 
 	void Character::OnMove(GameMap *map)
 	{
-		IsHurt();
+		//判斷受到傷害
+		IsHurt();	
+		//MP累積 & Buff計算
 		MagicBuff();
-
+		//Skill冷卻計算
 		for (int i = 0; i < 3; i++)
 			_skill_cooldown_counter[i] > 0 ? _skill_cooldown_counter[i]-- : NULL;
 
-		if (_isDead)
+		if (_isDead)					//死亡
 		{
 			_ani_die.OnMove();
 		}
-		else if (_isDrop)//掉落
+		else if (_isDrop)				//掉落
 		{
 			DropDown(map);
 		}
-		else if (_isHurt)
+		else if (_isHurt)				//被毆
 		{
 			_dash_delay_counter = DASH_COOLDOWN_TIME;
 			ResetDash();
 			ResetRun();
 		}
-		else if (_isUsingSkill)
+		else if (_isUsingSkill)			//使用技能
 		{
 			ResetRun();
 			_ani_useSkill->OnMove();
 		}
 		else
 		{
-			if (!_isDashLock)
+			if (!_isDashLock)			//Dash時將按鍵鎖住，不能改變移動路徑和方向
 			{
+				//每次移動都重置移動距離
 				_dx = 0;
 				_dy = 0;
 
@@ -336,6 +341,7 @@ namespace game_framework {
 						_dx -= _step;
 				}
 
+				//沒按任何方向但按了Dash鍵，往Character面相方向移動
 				if (_isDash && !IsMoving())
 				{
 					switch (_direction)
@@ -395,13 +401,10 @@ namespace game_framework {
 				_ani_dash_up.OnMove();
 				_dash_counter--;
 				_isDashLock = true;
-
-				if (_dash_counter < 3)
+				if (_dash_counter < 3)	//Dash阻力，移動距離為非線性
 					_dash_resistance *= 0.1;
-
 				if (_dash_counter == 0)
 					ResetDash();
-
 			}
 			else if (IsMoving())   //走動
 			{
@@ -468,6 +471,7 @@ namespace game_framework {
 
 	void Character::OnShow()
 	{
+		//顯示動畫
 		if (_isDead)
 		{
 			_ani_die.OnShow();
@@ -539,9 +543,7 @@ namespace game_framework {
 				}
 			}	
 			else
-			{
 				_ani_transfer.OnShow();
-			}
 		}
 		else
 		{
@@ -606,6 +608,7 @@ namespace game_framework {
 			}
 		}
 
+		//Magic Buff動畫
 		if (CharacterData::Instance().ISMAGICBUFF())
 			_ani_magic_buff.OnShow();
 	}
@@ -650,12 +653,12 @@ namespace game_framework {
 	{
 		if (CanDash())
 		{
-			_safePosition[0] = _xy[0];
+			_safePosition[0] = _xy[0];	//設定安全位置，若Dash進掉落區域，此點用於恢復的位置
 			_safePosition[1] = _xy[1];
-			CharacterData::Instance().SetInvincible(true);
 			_isDash = true;
 			_isRunning = false;
 			_dash_delay_counter--;
+			CharacterData::Instance().SetInvincible(true);
 			CAudio::Instance()->Play(AUDIO_DASH, false);
 		}
 	}
@@ -671,6 +674,7 @@ namespace game_framework {
 	{
 		if (skillNum == 1)
 		{
+			//計算鼠標方向，用於更改Character面相方向
 			int direction = CaculateVector(x, y);
 
 			if (!_isUsingSkill && _skill_cooldown_counter[0] == 0 )
@@ -690,7 +694,6 @@ namespace game_framework {
 					_ani_useSkill = &_ani_useSkill_1_right;
 					break;
 				}
-
 				_isUsingSkill = true;
 				_skill_cooldown_counter[0] = AIR_SPINNER_COOLDOWN * CharacterData::Instance().CD_COEFFICIENT();
 
@@ -699,6 +702,7 @@ namespace game_framework {
 		}
 		else if (skillNum == 2)
 		{
+			//計算鼠標方向，用於更改Character面相方向
 			int direction = CaculateVector(x, y);
 
 			if (!_isUsingSkill && _skill_cooldown_counter[1] == 0)
@@ -718,7 +722,6 @@ namespace game_framework {
 					_ani_useSkill = &_ani_useSkill_2_right;
 					break;
 				}
-
 				_isUsingSkill = true;
 				_skill_cooldown_counter[1] = REBOUNDING_ICICKES_COOLDOWN * CharacterData::Instance().CD_COEFFICIENT();
 
@@ -782,6 +785,7 @@ namespace game_framework {
 
 	bool Character::IsHurt()
 	{
+		//硬直緩衝，避免一直被打不能移動
 		if (_hit_recover_counter == 0)
 		{
 			if (CharacterData::Instance().HP() < _hp)
@@ -926,19 +930,16 @@ namespace game_framework {
 	{
 		if (IsinTrap)
 		{
+			//陷阱緩衝，避免卡在陷阱中無法動彈
 			if (_trap_counter > 0)
-			{
 				_trap_counter--;
-			}
 			else
 			{
 				CharacterData::Instance().AddHP(-TRAP_DAMAGE);
 				_trap_counter = TRAP_COUNTER_TIME;
 			}
 		}
-		else
-		{
+		else //離開陷阱重設緩衝，避免下次進陷阱存在之前的緩衝時間
 			_trap_counter = 0;
-		}
 	}
 }

@@ -16,9 +16,9 @@ namespace game_framework {
 		void AddMaxHP(int);						//更改Max_HP，傳入正數: 加，負數: 扣
 		void SetMaxHP(int);						//設定Max_HP
 		void AddMP(int);						//更改MP，傳入正數: 加，負數: 扣
-		void AttackBuff(bool);						//啟動attack buff
-		void SpeedBuff(bool);						//啟動speed buff
-		void CooldownBuff(bool);					//啟動cooldown buff
+		void AttackBuff(bool);					//啟動attack buff
+		void SpeedBuff(bool);					//啟動speed buff
+		void CooldownBuff(bool);				//啟動cooldown buff
 		void SetAttackCoefficient(float);		//更改Attack_Coefficient，傳入正數: *係數，負數: /係數
 		void SetDefenseCoefficient(float);		//更改Defense_Coefficient，傳入正數: *係數，負數: /係數
 		void SetBloodSuckCoefficient(float);	//更改_blood_suck_coefficient，傳入正數: *係數，負數: /係數
@@ -34,7 +34,7 @@ namespace game_framework {
 		void AddDiamondCollected(int);			//更改關卡內收集的Diamond
 		void AddEnemiesDefeated(int);			//更改關卡內擊敗的Enemy
 
-		//Beater -- 封弊者 ???????
+		//Cheat
 		void LockHP(bool);
 		void SuperMode(bool);
 
@@ -60,27 +60,29 @@ namespace game_framework {
 	protected:
 		CharacterData();
 	private:
-		int _money;
-		int _diamond;
-		int _hp;
-		int _max_hp;
-		int _mp;
-		int _max_mp;
-		float _attack_coefficient;
-		float _defense_coefficient;
+		int _money;								//錢
+		int _diamond;							//鑽石
+		int _hp;								//HP
+		int _max_hp;							//最大HP
+		int _mp;								//MP
+		int _max_mp;							//最大MP
+		float _attack_coefficient;				//攻擊係數
+		float _defense_coefficient;				//防禦係數
 		float _blood_suck_coefficient;			//吸血係數
 		float _move_coefficient;				//移動速度係數
 		float _cd_coefficient;					//技能冷卻係數
-		float _mp_charge_coefficient;				//MP累積係數
+		float _mp_charge_coefficient;			//MP累積係數
 		bool _isInvincible;						//無敵狀態
 		bool _isMagicBuff;						//Magic Buff 狀態		
-		bool _isLockHP;
+		bool _isLockHP;							//鎖定HP，無法造成傷害
 		int _stage;								//角色目前所在關卡
 		int _money_found;						//關卡中所獲得的金錢
 		int _diamond_collected;					//關卡中所獲得的寶石
 		int _enemies_defeated;					//關卡中擊殺的敵人數量
-		bool _isAttackBuff, _isSpeedBuff, _isCooldownBuff;	//紀錄buff是否啟動
-		bool _isSuperMode;
+		bool _isSuperMode;						//開啟上帝模式
+		bool _isAttackBuff,						// 紀錄buff是否啟動
+			_isSpeedBuff,
+			_isCooldownBuff;
 	};
 }
 

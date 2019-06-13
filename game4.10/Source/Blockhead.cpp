@@ -8,8 +8,8 @@
 #include "time.h"
 #include "GameData.h"
 
-namespace game_framework 
-{
+namespace game_framework {
+
 	Blockhead::Blockhead(int x, int y, int area, GameMap* map) : Enemy(x, y, area, map)
 	{
 		Init();
@@ -45,12 +45,13 @@ namespace game_framework
 		int x = CHARACTER_SCREEN_X + _xy[0] - cx;
 		int y = CHARACTER_SCREEN_Y + _xy[1] - cy;
 
+		//判斷現在狀態
 		switch (_state)
 		{
 		case ATTACKING:
 		case RESET:
 		case CHARGING:
-		case NOTHING:
+		case NOTHING:				//站立
 			_bm_stand.SetTopLeft(x, y);
 			break;
 		case HIT_RECOVER:
@@ -70,7 +71,7 @@ namespace game_framework
 		case NOTHING:				//站立
 			_bm_stand.ShowBitmap();
 			break;
-		case HIT_RECOVER:
+		case HIT_RECOVER:			//被毆
 			_bm_stand.ShowBitmap();
 			if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
 			{
@@ -88,6 +89,7 @@ namespace game_framework
 
 	vector<Reward*> Blockhead::CreateReward() 
 	{
+		//不產生任何掉落物
 		vector<Reward*> noRewards;
 		return noRewards;
 	}

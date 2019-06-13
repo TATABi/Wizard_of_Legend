@@ -33,6 +33,7 @@ namespace game_framework {
 	private:
 		void NotifyAnemy(AREA, const int*);	//通知Anemy追擊
 		CMovingBitmap _bm_hp_potion;		//HP Potion
+		CMovingBitmap _bm_exit;				//離開關卡
 		vector<Item*> _store_items;			//Store中的 items
 		CMovingBitmap _bm_attack_info,		//攻擊Buff
 					  _bm_speed_info,		//速度Buff

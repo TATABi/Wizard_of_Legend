@@ -65,12 +65,9 @@ namespace game_framework {
 
 	void Controller::CharacterDead()
 	{
+		//角色死亡切換至GAME_STATE_OVER
 		if (CharacterData::Instance().HP() == 0)
-		{
-			bool isDead;
-			isDead = Character::Instance().Dead();	//角色死亡
-			isDead ? (_isSwitch = true, _game_state_num = GAME_STATE_OVER) : NULL;
-		}
+			Character::Instance().Dead() ? (_isSwitch = true, _game_state_num = GAME_STATE_OVER) : NULL;
 	}
 
 	void Controller::SaveMemento(std::string stateName)

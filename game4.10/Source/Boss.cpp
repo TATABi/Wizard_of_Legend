@@ -22,18 +22,15 @@ namespace game_framework {
 		_hitbox[1] = BOSS_HITBOX[1];
 		_hitbox[2] = BOSS_HITBOX[2];
 		_hitbox[3] = BOSS_HITBOX[3];
-
 		_move_hitbox[0] = BOSS_MOVE_HITBOX[0];
 		_move_hitbox[1] = BOSS_MOVE_HITBOX[1];
 		_move_hitbox[2] = BOSS_MOVE_HITBOX[2];
 		_move_hitbox[3] = BOSS_MOVE_HITBOX[3];
-
 		_ani_left.SetDelayCount(3);
 		_ani_right.SetDelayCount(3);
 		_ani_attack_right.SetDelayCount(2);
 		_ani_attack_left.SetDelayCount(2);
 		_ani_skill.SetDelayCount(3);
-
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
 		_hp = BOSS_HP;
@@ -44,9 +41,10 @@ namespace game_framework {
 		_charge_zone = BOSS_CHARGE_ZONE;
 		_state = NOTHING;
 		_skill_counter = 100;
+		_isInvisible = false;
 		_xy[0] = _ori_x;
 		_xy[1] = _ori_y;
-
+		//出場笑聲
 		CAudio::Instance()->Play(AUDIO_BOSS_LAUGH);
 	}
 
@@ -108,14 +106,12 @@ namespace game_framework {
 			_bm_stand_left.SetTopLeft(_sx, _sy);
 			_bm_stand_right.SetTopLeft(_sx, _sy);
 			break;
-
 		case ATTACKING:				//攻擊
 			_attack_delay_counter > 0 ? _attack_delay_counter-- : NULL;
 			_ani_attack_right.SetTopLeft(_sx, _sy);
 			_ani_attack_left.SetTopLeft(_sx, _sy);
 			_isAttack ? NULL : Attack(cx, cy);
 			break;
-
 		case CHARGING:				//移動
 		case RESET:
 			_ani_left.SetTopLeft(_sx, _sy);
@@ -125,14 +121,12 @@ namespace game_framework {
 			else if (_direction == RIGHT)
 				_ani_right.OnMove();
 			break;
-
-		case HIT_RECOVER:
+		case HIT_RECOVER:			//硬直
 			_ani_hurt.SetTopLeft(_sx + (_bm_stand_left.Width() - _ani_hurt.Width()) / 2, _sy + (_bm_stand_left.Height() - _ani_hurt.Height()) / 2);
 			_bm_hurt_left.SetTopLeft(_sx, _sy);
 			_bm_hurt_right.SetTopLeft(_sx, _sy);
 			break;
-
-		case SKILL:
+		case SKILL:					//使用技能(隱身)
 			_ani_skill.SetTopLeft(_sx, _sy);
 			break;
 		}
@@ -152,7 +146,6 @@ namespace game_framework {
 				else
 					_bm_stand_right.ShowBitmap();
 				break;
-
 			case ATTACKING:				//攻擊
 				if (_direction == LEFT)
 				{
@@ -170,8 +163,7 @@ namespace game_framework {
 				}
 				else
 				{
-					_isInvisible ? _bm_shadow.ShowBitmap() : _ani_attack_right.OnShow();	//暫時使用
-
+					_isInvisible ? _bm_shadow.ShowBitmap() : _ani_attack_right.OnShow();
 					_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
 
 					if (_ani_attack_right.IsFinalBitmap())
@@ -183,9 +175,8 @@ namespace game_framework {
 					}
 				}
 				break;
-
 			case CHARGING:				//移動
-			case RESET:
+			case RESET:					
 				if (_isInvisible)
 					_bm_shadow.ShowBitmap();
 				else if (_direction == LEFT)
@@ -193,7 +184,7 @@ namespace game_framework {
 				else if (_direction == RIGHT)
 					_ani_right.OnShow();
 				break;
-			case HIT_RECOVER:
+			case HIT_RECOVER:			//硬直
 				if (_isInvisible)
 					_bm_shadow.ShowBitmap();
 				else if (_direction == LEFT)
@@ -214,7 +205,7 @@ namespace game_framework {
 				}
 				break;
 
-			case SKILL:
+			case SKILL:					//隱身
 				if (!_ani_skill.IsFinalBitmap())
 				{
 					_ani_skill.OnShow();
@@ -228,7 +219,7 @@ namespace game_framework {
 				}
 				break;
 			}
-
+			//顯示&計算HP
 			CalculateHP();
 		}
 	}
@@ -257,12 +248,18 @@ namespace game_framework {
 				for (int j = 0; j < w2; j = j + step)
 				{
 					if (!_isAttack)
+					{
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
-							CharacterData::Instance().ISVINCIBLE() == false ? (CharacterData::Instance().AddHP(-BOSS_DAMAGE), CAudio::Instance()->Play(AUDIO_BOSS_ATTACK, false)) : NULL;
+							if (CharacterData::Instance().ISVINCIBLE()) //如果Character在Dash狀態，則Enemy打不到
+							{
+								CharacterData::Instance().AddHP(-BOSS_DAMAGE);
+								CAudio::Instance()->Play(AUDIO_BOSS_ATTACK);
+							}
 							_isAttack = true;
 							break;
 						}
+					}
 				}
 
 				if (_isAttack)

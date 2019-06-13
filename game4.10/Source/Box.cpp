@@ -23,10 +23,9 @@ namespace game_framework {
 		_isOpened = _isOpendOffense = _isOpendDefense = _isOpendMisc = false;
 		_choose_flag = 0;
 	}
+
 	void Box::LoadBitmap()
 	{	
-		_bm_board.LoadBitmap(BOX_BOARD, RGB(50, 255, 0));
-
 		int m1[5] = { BOX_OFFENSE_01,BOX_OFFENSE_02,BOX_OFFENSE_03,BOX_OFFENSE_04,BOX_OFFENSE_05 };
 		for (int i = 0; i < 5; i++)
 			_ani_offense.AddBitmap(m1[i], RGB(50, 255, 0));
@@ -39,6 +38,7 @@ namespace game_framework {
 		for (int i = 0; i < 5; i++)
 			_ani_misc.AddBitmap(m3[i], RGB(50, 255, 0));
 
+		_bm_board.LoadBitmap(BOX_BOARD, RGB(50, 255, 0));
 		_bm_item_board.LoadBitmap(BOX_ITEM_BOARD, RGB(50, 255, 0));
 		_bm_cursor.LoadBitmap(BOX_CURSOR, RGB(50, 255, 0));
 		_bm_equip_board.LoadBitmap(BOX_EQUIP_BOARD, RGB(50, 255, 0));
@@ -47,20 +47,22 @@ namespace game_framework {
 		_bm_misc_text.LoadBitmap(BOX_TEXT_MISC, RGB(50, 255, 0));
 		_bm_unknown_item.LoadBitmap(ITEM_UNKNOWN, RGB(50, 255, 0));
 		_bm_item_description_board.LoadBitmap(BOX_ITEM_DESCRIPTION_BOARD, RGB(50, 255, 0));
+		SetXY();
+	}
 
+	void Box::SetXY()
+	{
 		_bm_board.SetTopLeft(50, 70);
 		_bm_equip_board.SetTopLeft(45, 300);
 		_bm_item_board.SetTopLeft(50, 70);
 		_bm_offense_text.SetTopLeft(70, 95);
 		_bm_defense_text.SetTopLeft(70, 95);
 		_bm_misc_text.SetTopLeft(70, 95);
-		_bm_cursor.SetTopLeft(75,133);
+		_bm_cursor.SetTopLeft(75, 133);
 		_bm_item_description_board.SetTopLeft(50, 320);
-
 		_ani_offense.SetTopLeft(50, 70);
 		_ani_defense.SetTopLeft(50, 70);
 		_ani_misc.SetTopLeft(50, 70);
-
 	}
 
 	void Box::OnMove()

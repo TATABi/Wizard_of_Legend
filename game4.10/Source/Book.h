@@ -5,25 +5,24 @@ namespace game_framework {
 	class Book{
 	public:
 		Book();
-		void Initialize();
-		void LoadBitmap();
-		void Open(bool);
-		void OnMove();
-		void OnShow();
-		void Left();
-		void Right();
+		void Initialize();		//初始化
+		void LoadBitmap();		//匯入圖片
+		void SetXY();			//設定圖片初始位置
+		void Open(bool);		//開啟、關閉
+		void OnMove();			//設定圖片位置
+		void OnShow();			//顯示圖片
+		void Left();			//向左選擇
+		void Right();			//向右選擇
 	private:
-		CMovingBitmap _bm_background;
-		CMovingBitmap _bm_cursor;
-		CMovingBitmap _bm_skill_1_description;
-		CMovingBitmap _bm_skill_2_description;
-		CMovingBitmap _bm_skill_3_description;
-		CMovingBitmap _bm_skill_4_description;
-		bool _isOpened;
-		int _class_flag;	//技能種類
-		int _type_flag;	//技能類型	(普攻,Dash....)
+		CMovingBitmap _bm_background;			//背景
+		CMovingBitmap _bm_cursor;				//游標
+		CMovingBitmap _bm_skill_1_description	//技能描述
+					 ,_bm_skill_2_description
+					 ,_bm_skill_3_description
+					 ,_bm_skill_4_description;
+		bool _isOpened;			//是否開啟
+		int _type_flag;			//技能種類
 	};
-
 }
 
 #endif

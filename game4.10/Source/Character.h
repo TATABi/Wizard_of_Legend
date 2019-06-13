@@ -15,9 +15,10 @@ namespace game_framework {
 
 	class Character : public Layer {
 	public:
-		static Character& Instance();
+		static Character& Instance();					//Singleton
 		void Initialize(float*);						//重置角色座標、數據
 		void LoadBitmap();								//載入動畫、圖片
+		void SetDelayCount();							//設定動畫播放速度
 		void SetXY();									//設定動畫圖片位置
 		void OnMove(GameMap *);							//傳入地圖用以判斷所處位置
 		void OnShow();									//顯示
@@ -79,13 +80,12 @@ namespace game_framework {
 		int _magic_buff_counter;											//計算Magic Buff時間
 		int _mp_decrease_counter;											//計算MP未累積滿前隨時間減少的量
 		bool _is_magic_buff_init;											//紀錄是否加成過數值
-		int _skill_cooldown_counter[3];
+		int _skill_cooldown_counter[3];										//技能冷卻時間
 		bool _isDrop;														//是否掉落
 		int _drop_counter;													//掉落多久後復原
 		float _safePosition[2];												//復原的位置
 		int _trap_counter;													//持續多久會觸發陷阱
 		bool _isTransfer;													//判斷是否要撥復原動畫
-		bool _isDropLock;
 	};
 }
 

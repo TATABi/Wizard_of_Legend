@@ -33,7 +33,6 @@ namespace game_framework {
 		_bm_skill3.LoadBitmap(SKILL_ICON_REBOUNDING_ICICLES, RGB(50, 255, 0));
 		_bm_skill4.LoadBitmap(SKILL_ICON_SHOCK_NOVA, RGB(50, 255, 0));
 		_bm_item_cursor.LoadBitmap(BAG_ITEM_CURSOR, RGB(50, 255, 0));
-
 		SetTopLeft();
 	}
 
@@ -51,42 +50,40 @@ namespace game_framework {
 	{
 		//背包開啟，匯入持有道具
 		if (_isOpened)
-			_items = Items::Instance().GetItemInBag();
-	}
-
-	void Bag::OnShow()
-	{
-		_bm_item_cursor.SetTopLeft(67 + 25 * _flags[0], 170 + _flags[1] * 25);
-
-		int row = 0;
-		int col = 0;
-
-		//排列並顯示道具
-		if (_isOpened)
 		{
-			_bm_bag.ShowBitmap();
-
+			_items = Items::Instance().GetItemInBag();
+			_bm_item_cursor.SetTopLeft(67 + 25 * _flags[0], 170 + _flags[1] * 25);
+			int row = 0;
+			int col = 0;
 			for (int i = 0; i < _items.size(); i++)
 			{
-				if (row == 6) 
+				if (row == 6)
 				{
 					row = 0;
 					col++;
 				}
 				_items[i]->SetXY(67 + 25 * row, 170 + 25 * col);
-				_items[i]->OnShow();
-				row++;						
+				row++;
 			}
+		}	
+	}
 
+	void Bag::OnShow()
+	{
+		//排列並顯示道具
+		if (_isOpened)
+		{
+			_bm_bag.ShowBitmap();
 			_bm_skill1.ShowBitmap(0.7);
 			_bm_skill2.ShowBitmap(0.7);
 			_bm_skill3.ShowBitmap(0.7);
 			_bm_skill4.ShowBitmap(0.7);
-			_bm_item_cursor.ShowBitmap();
-
+			for each (Item* i in _items)
+				i->OnShow();
 			//顯示道具資訊
 			if (_flags[0] + _flags[1] * 6 < _items.size())
 				_items[_flags[0] + _flags[1] * 6]->ShowInfo(70, 255);
+			_bm_item_cursor.ShowBitmap();
 		}
 	}
 

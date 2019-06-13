@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
+#include <algorithm>
 #include "audio.h"
 #include "gamelib.h"
 #include "GameMap.h"
@@ -9,7 +10,6 @@
 #include "UI.h"
 #include "CharacterData.h"
 #include "Boss.h"
-#include <algorithm>
 
 namespace game_framework {
 	
@@ -45,7 +45,7 @@ namespace game_framework {
 		for (int i = 0; i < 6;i++)
 			_ani_press_f.AddBitmap(m[i], RGB(50, 255, 0));
 
-		_bm_exit.LoadBitmap(MAP_EXIT, RGB(50, 255, 0));
+		
 	}
 	
 	void GameMap::OnMoveBackgroundAndWall()
@@ -57,8 +57,6 @@ namespace game_framework {
 	void GameMap::OnShowBackground()
 	{
 		_background.ShowBitmap();
-		if (_isEnd)
-			_bm_exit.ShowBitmap();
 	}
 
 	void GameMap::OnShowWall()
@@ -182,7 +180,7 @@ namespace game_framework {
 		for (iter = _enemies.begin(); iter != _enemies.end(); iter++)
 		{
 			float *e_xy = (*iter)->GetPosition();
-			int *e_collision_move = (*iter)->GetCollisionMove();
+			int *e_collision_move = (*iter)->GetMoveHitbox();
 
 			int x1 = _cxy[0] + CHARACTER_MOVE_HITBOX[0] + dx;
 			int y1 = _cxy[1] + CHARACTER_MOVE_HITBOX[1] + dy;
@@ -248,26 +246,18 @@ namespace game_framework {
 			if (isDrop && !Character::Instance().IsDash())
 				Character::Instance().SetDrop();
 		}
-
-		
 	}
 
-	bool GameMap::CheckEnemyPosition(int x, int y, int* collision_move)
+	bool GameMap::CheckEnemyPosition(int x, int y, const int* hitbox)
 	{
-		int ex = x + collision_move[0];
-		int ey = y + collision_move[1];
-		int l = collision_move[2];
-		int w = collision_move[3];
+		int ex = x + hitbox[0];
+		int ey = y + hitbox[1];
+		int l = hitbox[2];
+		int w = hitbox[3];
 
 		//////////»P¦a¹Ï¸I¼²////////////
-		if (GetMapStatus(ex, ey) != -1
-			&& GetMapStatus(ex + l, ey) != -1
-			&& GetMapStatus(ex + l, ey + w) != -1
-			&& GetMapStatus(ex, ey + w) != -1)
-		{
-			return true;
-		}
-		return false;
+
+		return CheckMapStatus(x, y, hitbox) && CheckMapStatus(x, y, hitbox, -2, '!');
 	}
 
 	bool GameMap::CheckMapStatus(int px, int py, const int* move_hitbox, int num, char op)

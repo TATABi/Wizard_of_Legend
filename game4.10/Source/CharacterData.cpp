@@ -28,7 +28,7 @@ namespace game_framework {
 		_blood_suck_coefficient = 0;
 		_move_coefficient = 1;
 		_cd_coefficient = 1;
-		_mp_charge_coefficient = 0.7;
+		_mp_charge_coefficient = 0.8;
 		_isInvincible = false;
 		_isLockHP = false;
 		_stage = _money_found = _diamond_collected = _enemies_defeated = 0;
@@ -41,7 +41,6 @@ namespace game_framework {
 	void CharacterData::AddMoney(int d_money)
 	{
 		_money += d_money;
-
 		_money > 999 ? _money = 999 : NULL;
 		_money < 0 ? _money = 0 : NULL;
 	}
@@ -49,7 +48,6 @@ namespace game_framework {
 	void CharacterData::SetMoney(int money)
 	{
 		_money = money;
-
 		_money > 999 ? _money = 999 : NULL;
 		_money < 0 ? _money = 0 : NULL;
 	}
@@ -57,7 +55,6 @@ namespace game_framework {
 	void CharacterData::AddDiamond(int d_diamond)
 	{
 		_diamond += d_diamond;
-
 		_diamond > 999 ? _diamond = 999 : NULL;
 		_diamond < 0 ? _diamond = 0 : NULL;
 	}
@@ -65,7 +62,6 @@ namespace game_framework {
 	void CharacterData::SetDiamond(int diamond)
 	{
 		_diamond = diamond;
-
 		_diamond > 999 ? _diamond = 999 : NULL;
 		_diamond < 0 ? _diamond = 0 : NULL;
 	}
@@ -84,7 +80,6 @@ namespace game_framework {
 	void CharacterData::SetHP(int hp)
 	{
 		_hp = hp;
-
 		_hp > _max_hp ? _hp = _max_hp : NULL;
 		_hp < 0 ? _hp = 0 : NULL;
 	}
@@ -219,7 +214,7 @@ namespace game_framework {
 		_enemies_defeated += num;
 	}
 
-	//-------------------Beater-------------------//
+	//-------------------Cheat--------------------//
 
 	void CharacterData::LockHP(bool isOpen)
 	{

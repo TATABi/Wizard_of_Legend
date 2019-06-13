@@ -7,13 +7,14 @@
 #include "Book.h"
 
 namespace game_framework {
+
 	Book::Book() 
 	{
 		Initialize();
 	}
 
-	void Book::Initialize() {
-		_class_flag = 0;
+	void Book::Initialize() 
+	{
 		_type_flag = 0;
 		_isOpened = false;
 	}
@@ -21,16 +22,17 @@ namespace game_framework {
 	void Book::LoadBitmap() {
 		_bm_background.LoadBitmap(BOOK_BOARD, RGB(50, 255, 0));
 		_bm_cursor.LoadBitmap(BOOK_CURSOR, RGB(50, 255, 0));
-		
 		_bm_skill_1_description.LoadBitmap(BOOK_SKILL_DES_01, RGB(50, 255, 0));
 		_bm_skill_2_description.LoadBitmap(BOOK_SKILL_DES_02, RGB(50, 255, 0));
 		_bm_skill_3_description.LoadBitmap(BOOK_SKILL_DES_03, RGB(50, 255, 0));
-		_bm_skill_4_description.LoadBitmap(BOOK_SKILL_DES_04, RGB(50, 255, 0));
-		
+		_bm_skill_4_description.LoadBitmap(BOOK_SKILL_DES_04, RGB(50, 255, 0));	
+		SetXY();
+	}
+
+	void Book::SetXY()
+	{
 		_bm_background.SetTopLeft(25, 120);
 		_bm_cursor.SetTopLeft(44, 80);
-
-		
 		_bm_skill_1_description.SetTopLeft(25, 250);
 		_bm_skill_2_description.SetTopLeft(25, 250);
 		_bm_skill_3_description.SetTopLeft(25, 250);
@@ -70,7 +72,6 @@ namespace game_framework {
 			_bm_background.ShowBitmap();
 			_bm_cursor.ShowBitmap();
 			
-			
 			switch (_type_flag)
 			{
 			case 0:
@@ -86,7 +87,6 @@ namespace game_framework {
 				_bm_skill_4_description.ShowBitmap();
 				break;
 			}
-
 		}
 	}
 }

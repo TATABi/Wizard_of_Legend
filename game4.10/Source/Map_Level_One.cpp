@@ -81,6 +81,7 @@ namespace game_framework {
 		_bm_attack_info.LoadBitmap(INLEVEL_ATTACK_INFO, RGB(50, 255, 0));
 		_bm_speed_info.LoadBitmap(INLEVEL_SPEED_INFO, RGB(50, 255, 0));
 		_bm_cd_info.LoadBitmap(INLEVEL_CD_INFO, RGB(50, 255, 0));
+		_bm_exit.LoadBitmap(MAP_EXIT, RGB(50, 255, 0));
 	}
 
 	void Map_Level_One::OnMove()
@@ -217,6 +218,8 @@ namespace game_framework {
 		_bm_attack_info.ShowBitmap();
 		_bm_speed_info.ShowBitmap();
 		_bm_cd_info.ShowBitmap();
+		if (_isEnd)
+			_bm_exit.ShowBitmap();
 		for each(Item* i in _store_items)
 			if (!i->IsEquiped())
 				i->OnShow();

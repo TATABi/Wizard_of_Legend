@@ -13,7 +13,7 @@
 #define RANGE_EAT 100
 #define RANGE_POSITION 100
 #define TIME  3
-#define VALUE 50
+#define VALUE 15
 
 namespace game_framework {
 	Reward_Blood_Ball::Reward_Blood_Ball(float ex, float ey, GameMap* map) : _map(map), Reward(ex, ey, map)

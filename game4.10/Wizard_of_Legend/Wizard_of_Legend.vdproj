@@ -63,12 +63,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_340AB6F7129440F79CE8F451A7A6806D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_36480F244B6A4EEBAB91DBBAEE5D3FCC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -88,12 +82,6 @@
         "Entry"
         {
         "MsmKey" = "8:_43AB45749D9B45A181DD428C2C6B229B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_47532540EDB8437AA5B550F7440F6FE3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -201,19 +189,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C2233FD0C7E7462C80A89781C67740C0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C7153CA6F7CC4748B1FCBDB38B19C5DA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D006543035C646BD9152B9E07F4BA923"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -506,26 +482,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_340AB6F7129440F79CE8F451A7A6806D"
-            {
-            "SourcePath" = "8:..\\Sounds\\stab.mp3"
-            "TargetName" = "8:stab.mp3"
-            "Tag" = "8:"
-            "Folder" = "8:_3E01C5CA45B0460096648D101035E3ED"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36480F244B6A4EEBAB91DBBAEE5D3FCC"
             {
             "SourcePath" = "8:..\\Sounds\\pull.mp3"
@@ -592,26 +548,6 @@
             "TargetName" = "8:save_data.txt"
             "Tag" = "8:"
             "Folder" = "8:_7D1DEA0A0983487A8B84A1BD92D4D139"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_47532540EDB8437AA5B550F7440F6FE3"
-            {
-            "SourcePath" = "8:..\\Sounds\\ntut.mid"
-            "TargetName" = "8:ntut.mid"
-            "Tag" = "8:"
-            "Folder" = "8:_3E01C5CA45B0460096648D101035E3ED"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -946,50 +882,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C2233FD0C7E7462C80A89781C67740C0"
-            {
-            "SourcePath" = "8:..\\Sounds\\lake.mp3"
-            "TargetName" = "8:lake.mp3"
-            "Tag" = "8:"
-            "Folder" = "8:_3E01C5CA45B0460096648D101035E3ED"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C7153CA6F7CC4748B1FCBDB38B19C5DA"
             {
             "SourcePath" = "8:..\\Sounds\\getBloodBall.mp3"
             "TargetName" = "8:getBloodBall.mp3"
-            "Tag" = "8:"
-            "Folder" = "8:_3E01C5CA45B0460096648D101035E3ED"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D006543035C646BD9152B9E07F4BA923"
-            {
-            "SourcePath" = "8:..\\Sounds\\ding.wav"
-            "TargetName" = "8:ding.wav"
             "Tag" = "8:"
             "Folder" = "8:_3E01C5CA45B0460096648D101035E3ED"
             "Condition" = "8:"

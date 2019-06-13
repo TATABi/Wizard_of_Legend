@@ -34,6 +34,9 @@ namespace game_framework {
 		_is_transfer = false;
 		_ani_hurt.SetDelayCount(1);
 		_invincible_counter = 0;
+		_isAttack = false;
+		_isReset = false;
+		_stock_counter = 60;
 		for (int i = 0; i < 4; i++)
 			_neighbor[i] = true;
 	}
@@ -132,7 +135,7 @@ namespace game_framework {
 		_xy[1] += dy;
 	}
 
-	int* Enemy::GetCollisionMove() 
+	int* Enemy::GetMoveHitbox() 
 	{
 		return _move_hitbox;
 	}
@@ -212,9 +215,7 @@ namespace game_framework {
 		return rewards;
 	}
 
-	void Enemy::PlayDeadAudio()
-	{
-	}
+	void Enemy::PlayDeadAudio(){}
 
 	void Enemy::MoveToTarget(int target_x, int target_y)
 	{
@@ -229,7 +230,6 @@ namespace game_framework {
 		if (!_is_detour)
 		{
 			int temp_step = _step;
-
 			//斜走放慢速度
 			if ((abs(midX - cMidX) > _zone) && (abs(midY - cMidY) > _zone))
 				temp_step = (float)(_step) * 0.6 + 0.5;
@@ -438,7 +438,26 @@ namespace game_framework {
 						}
 					}
 				}
-			}		
+			}
+
+			if (currentX == _xy[0] && currentY == _xy[1])
+			{
+				_state = RESET;
+				_is_detour = false;
+				/*
+				if (_stock_counter > 0)
+				{
+					_stock_counter--;
+				}
+				else
+				{	
+					_stock_counter = 60;
+					_xy[0] = _ori_x, _xy[1] = _ori_y;	//加上動畫
+					_is_detour = false;
+					_state = RESET;
+				}*/
+			}
+
 		}
 	}
 }

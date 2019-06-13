@@ -158,7 +158,7 @@ namespace game_framework {
 				}
 				else if (nChar == KEY_F && _map.GetCharacterStatus() == 8)	//¶RHP potion
 				{
-					if (CharacterData::Instance().MONEY() >= 15)
+					if (CharacterData::Instance().MONEY() >= 15 && CharacterData::Instance().HP() < CharacterData::Instance().MAX_HP())
 					{
 						CharacterData::Instance().AddMoney(-15);
 						CharacterData::Instance().AddHP(150);

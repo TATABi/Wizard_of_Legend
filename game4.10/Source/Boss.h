@@ -15,13 +15,12 @@ namespace game_framework {
 		void CalculateHP();						//計算Enemy血量&顯示
 		void PlayDeadAudio();					//播放死亡音效
 	private:
-		CMovingBitmap _bm_hp_bar;
-		CMovingBitmap _bm_shadow;
+		CMovingBitmap _bm_hp_bar;				//HP條
+		CMovingBitmap _bm_shadow;				//隱身
 		int _attack_delay_counter;				//角色經過怪物身邊時怪物需要反映時間才能做攻擊動作
-		int _sx, _sy;
-		int _skill_counter;
-		bool _isInvisible = false;
-		bool lock = false;
+		int _sx, _sy;							//螢幕座標，用於及時運算HP條用
+		int _skill_counter;						//使用技能間的間隔
+		bool _isInvisible;						//是否隱身
 	};
 }
 

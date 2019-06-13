@@ -1,6 +1,5 @@
 #ifndef BLACK_MAN_H
 #define BLACK_MAN_H
-
 #include "Enemy.h"
 
 namespace game_framework {
@@ -13,11 +12,11 @@ namespace game_framework {
 		void OnShow();							//顯示圖片
 		void Attack(float, float);				//攻擊角色
 		void CalculateHP();						//計算Enemy血量&顯示
-		void PlayDeadAudio();
+		void PlayDeadAudio();					//死亡音效
 	private:
-		CMovingBitmap _bm_hp_bar;
-		int _attack_delay_counter; //角色經過怪物身邊時怪物需要反映時間才能做攻擊動作
-		int _sx, _sy;
+		CMovingBitmap _bm_hp_bar;	//HP條
+		int _attack_delay_counter;  //角色經過怪物身邊時怪物需要反映時間才能做攻擊動作
+		int _sx, _sy;				//螢幕位置，HP條需要及時繪圖用
 	};
 }
 

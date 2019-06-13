@@ -21,17 +21,14 @@ namespace game_framework {
 		_hitbox[1] = BLACKMAN_HITBOX[1];
 		_hitbox[2] = BLACKMAN_HITBOX[2];
 		_hitbox[3] = BLACKMAN_HITBOX[3];
-
 		_move_hitbox[0] = BLACKMAN_MOVE_HITBOX[0];
 		_move_hitbox[1] = BLACKMAN_MOVE_HITBOX[1];
 		_move_hitbox[2] = BLACKMAN_MOVE_HITBOX[2];
 		_move_hitbox[3] = BLACKMAN_MOVE_HITBOX[3];
-
 		_ani_left.SetDelayCount(2);
 		_ani_right.SetDelayCount(2);
 		_ani_attack_right.SetDelayCount(2);
 		_ani_attack_left.SetDelayCount(2);
-
 		srand(time(NULL));
 		rand() % 2 ? _direction = LEFT : _direction = RIGHT;
 		_hp = BLACKMAN_HP;
@@ -48,7 +45,6 @@ namespace game_framework {
 	void Black_Man::LoadEnemyBitmap()
 	{
 		_bm_hp_bar.LoadBitmap(ENEMY_HP_BAR_M);
-
 		_bm_stand_left.LoadBitmap(ENEMY_BLACK_MAN_STAND_LEFT, RGB(50, 255, 0));
 		_bm_stand_right.LoadBitmap(ENEMY_BLACK_MAN_STAND_RIGHT, RGB(50, 255, 0));
 		_bm_hurt_left.LoadBitmap(ENEMY_BLACK_MAN_HURT_LEFT, RGB(50, 255, 0));
@@ -79,9 +75,11 @@ namespace game_framework {
 
 	void Black_Man::Move(int cx, int cy)
 	{
+		//螢幕位置
 		_sx = CHARACTER_SCREEN_X + _xy[0] - cx;
 		_sy = CHARACTER_SCREEN_Y + _xy[1] - cy;
 
+		//判斷狀態
 		switch (_state)
 		{
 		case NOTHING:				//站立
@@ -106,7 +104,7 @@ namespace game_framework {
 				_ani_right.OnMove();
 			break;
 
-		case HIT_RECOVER:
+		case HIT_RECOVER:			//硬直
 			_ani_hurt.SetTopLeft(_sx + (_bm_stand_left.Width() - _ani_hurt.Width()) / 2, _sy + (_bm_stand_left.Height() - _ani_hurt.Height()) / 2);
 			_bm_hurt_left.SetTopLeft(_sx, _sy);
 			_bm_hurt_right.SetTopLeft(_sx, _sy);
@@ -142,7 +140,7 @@ namespace game_framework {
 				}
 				else
 				{
-					_ani_attack_right.OnShow();	//暫時使用
+					_ani_attack_right.OnShow();
 					_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
 
 					if (_ani_attack_right.IsFinalBitmap())
@@ -161,7 +159,7 @@ namespace game_framework {
 				else if (_direction == RIGHT)
 					_ani_right.OnShow();
 				break;
-			case HIT_RECOVER:
+			case HIT_RECOVER:			//硬直
 				if (_direction == LEFT)
 					_bm_hurt_left.ShowBitmap();
 				else
@@ -179,6 +177,7 @@ namespace game_framework {
 				}
 				break;
 			}
+			//計算HP
 			CalculateHP();
 		}
 	}
@@ -207,13 +206,20 @@ namespace game_framework {
 				for (int j = 0; j < w2; j = j + step)
 				{
 					if (!_isAttack)
+					{
 						if (pow(x1 - (x2 + i), 2) + pow(y1 - (y2 + j), 2) <= pow(r, 2))
 						{
-							CharacterData::Instance().ISVINCIBLE() == false ? (CharacterData::Instance().AddHP(-BLACKMAN_DAMAGE), CAudio::Instance()->Play(AUDIO_BLACK_MAN_ATTACK, false)) : NULL;
+							if (!CharacterData::Instance().ISVINCIBLE())	//如果Character在Dash狀態，則Enemy打不到
+							{
+								CharacterData::Instance().AddHP(-BLACKMAN_DAMAGE);
+								CAudio::Instance()->Play(AUDIO_BLACK_MAN_ATTACK, false);
+							}
 							_isAttack = true;
 							break;
 						}
+					}
 				}
+
 				if (_isAttack)
 					break;
 			}
