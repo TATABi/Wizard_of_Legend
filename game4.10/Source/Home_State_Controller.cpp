@@ -20,6 +20,7 @@ namespace game_framework {
 		_map.Initialize(HOME_CHARACTER_XY[0], HOME_CHARACTER_XY[1]);	
 		Character::Instance().Initialize(_map.GetCharacterPosition());
 		CharacterData::Instance().ResetStatus();
+		UI::Instance().Initialize();
 		_map.AddEnemy();
 		//從其他場景回來不用再次出現加入選單
 		if (_ani_light_beam.IsFinalBitmap())
@@ -92,27 +93,23 @@ namespace game_framework {
 					_isSwitch = true;
 					_game_state_num = GAME_STATE_RUN_TOWN;			//切換到town
 				}
-
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 2)
 				{
 					_box.Open(true);
 					_flag = FLAG_BOX;		//開啟道具箱
 				}
-
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)
 				{
 					CAudio::Instance()->Play(AUDIO_FLIP_BOOK);
 					_book.Open(true);		//開啟書
 					_flag = FLAG_BOOK;
 				}
-
 				if (nChar == KEY_ESC)	//PAUSED選單
 				{
 					CAudio::Instance()->Play(AUDIO_BE, false);
 					PausedMenu::Instance().Paused(true);
 					_flag = FLAG_HOME_PAUSED;
 				}
-
 				if (nChar == KEY_TAB)
 				{	
 					CAudio::Instance()->Play(AUDIO_TAB);
@@ -229,15 +226,16 @@ namespace game_framework {
 				break;
 
 			case FLAG_HOME_OPTIONS:		//點進options
-				CAudio::Instance()->Play(AUDIO_BE, false);
 				if (nChar == KEY_ESC)
 				{
+					CAudio::Instance()->Play(AUDIO_BE);
 					PausedMenu::Instance().PrePausedMenu();
 					PausedMenu::Instance().PrePausedMenu();
 					_flag = FLAG_HOME_PAUSED;
 				}
 				if (nChar == KEY_SPACE)
 				{
+					CAudio::Instance()->Play(AUDIO_SAVE_DATA);
 					PausedMenu::Instance().PrePausedMenu();
 					PausedMenu::Instance().PrePausedMenu();
 					SaveData();

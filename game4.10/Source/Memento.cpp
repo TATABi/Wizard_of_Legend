@@ -85,6 +85,7 @@ namespace game_framework
 
 	void Originator::RestoreToMemento(Memento *memento)
 	{
+		Items::Instance().UnloadAllItem();
 		_state = memento->_state;
 		Items::Instance().SetItems(_state->OwnedItem());
 		Items::Instance().UnloadAllItem();

@@ -119,73 +119,76 @@ namespace game_framework {
 
 	void Slime::OnShow()
 	{
-		switch (_state)
+		if (IsLive())
 		{
-		case NOTHING:				//站立
-			if (_direction == LEFT)
-				_bm_stand_left.ShowBitmap();
-			else
-				_bm_stand_right.ShowBitmap();
-			break;
-
-		case ATTACKING:				//攻擊
-
-			if (_direction == LEFT)
+			switch (_state)
 			{
-				_ani_attack_left.OnShow();
+			case NOTHING:				//站立
+				if (_direction == LEFT)
+					_bm_stand_left.ShowBitmap();
+				else
+					_bm_stand_right.ShowBitmap();
+				break;
 
-				_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
+			case ATTACKING:				//攻擊
 
-				if (_ani_attack_left.IsFinalBitmap())
+				if (_direction == LEFT)
 				{
-					_attack_delay_counter = 10;
-					_isAttack = false;
-					_ani_attack_left.Reset();
-					_state = CHARGING;
+					_ani_attack_left.OnShow();
+
+					_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
+
+					if (_ani_attack_left.IsFinalBitmap())
+					{
+						_attack_delay_counter = 10;
+						_isAttack = false;
+						_ani_attack_left.Reset();
+						_state = CHARGING;
+					}
 				}
-			}
-			else
-			{
-				_ani_attack_right.OnShow();	//暫時使用
-
-				_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
-
-				if (_ani_attack_right.IsFinalBitmap())
+				else
 				{
-					_attack_delay_counter = 10;
-					_isAttack = false;
-					_ani_attack_right.Reset();
-					_state = CHARGING;
+					_ani_attack_right.OnShow();	//暫時使用
+
+					_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
+
+					if (_ani_attack_right.IsFinalBitmap())
+					{
+						_attack_delay_counter = 10;
+						_isAttack = false;
+						_ani_attack_right.Reset();
+						_state = CHARGING;
+					}
 				}
-			}
-			break;
+				break;
 
-		case CHARGING:				//移動
-		case RESET:
-			if (_direction == LEFT)
-				_ani_left.OnShow();
-			else if (_direction == RIGHT)
-				_ani_right.OnShow();
-			break;
-		case HIT_RECOVER:
-			if (_direction == LEFT)
-				_bm_hurt_left.ShowBitmap();
-			else
-				_bm_hurt_right.ShowBitmap();
+			case CHARGING:				//移動
+			case RESET:
+				if (_direction == LEFT)
+					_ani_left.OnShow();
+				else if (_direction == RIGHT)
+					_ani_right.OnShow();
+				break;
+			case HIT_RECOVER:
+				if (_direction == LEFT)
+					_bm_hurt_left.ShowBitmap();
+				else
+					_bm_hurt_right.ShowBitmap();
 
-			if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
-			{
-				_ani_hurt.OnMove();
-				_ani_hurt.OnShow();
+				if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
+				{
+					_ani_hurt.OnMove();
+					_ani_hurt.OnShow();
+				}
+				else
+				{
+					ResetAnimation();
+					_hit_recover_flag = true;
+				}
+				break;
 			}
-			else
-			{
-				ResetAnimation();
-				_hit_recover_flag = true;
-			}
-			break;
+			CalculateHP();
 		}
-		CalculateHP();
 	}
 
 	void Slime::Attack(float cx, float cy)

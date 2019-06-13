@@ -8,23 +8,26 @@
 #include "GameData.h"
 
 #define LEVEL_ONE 1
+
 namespace game_framework {
-	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]) {}
+	Level_One_State_Controller::Level_One_State_Controller() :Controller(), _map(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]){}
 	
 	void Level_One_State_Controller::Begin()
 	{
+		CharacterData::Instance().ResetStatus();
 		CharacterData::Instance().SetStage(LEVEL_ONE);
 		LoadMemento(Town_Or_Home);
 		_game_state_num = -1;
 		_isSwitch = false;
 		_delayCounter = 30 * 4;			// 4 seconds
-		_map.Initialize(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]);
+		float k[2] = { 2370, 260 };
+		_map.Initialize(k[0], k[1]);
+		//_map.Initialize(LEVEL_ONE_CHARACTER_XY[0], LEVEL_ONE_CHARACTER_XY[1]);
 		Character::Instance().Initialize(_map.GetCharacterPosition());
-		CharacterData::Instance().ResetStatus();
 		_map.AddEnemy();
 		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_LEVEL_FIRE, true);
-		UI::Instance().ResetMapMask();
+		UI::Instance().Initialize();
 		_bm_loading_chess.SetTopLeft(-100, -100);
 		_chess_xy[0] = 62;
 		_chess_xy[1] = 135;
@@ -95,6 +98,77 @@ namespace game_framework {
 					UI::Instance().OpenMap(true, 1);
 					_flag = FLAG_MAP;
 				}
+				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
+				{
+					if (_map.IsEnd())
+					{
+						_game_state_num = GAME_STATE_OVER;		//切換場景到Home
+						_isSwitch = true;
+					}
+					else
+						_map.SummonBoss();
+				}
+				else if (nChar == KEY_F && _map.GetCharacterStatus() == 2)	//買道具1
+				{
+					_map.BuyByMoney(0) ? CAudio::Instance()->Play(AUDIO_BUY) : CAudio::Instance()->Play(AUDIO_NOMONEY);
+				}
+				else if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//買道具2
+				{
+					_map.BuyByMoney(1) ? CAudio::Instance()->Play(AUDIO_BUY) : CAudio::Instance()->Play(AUDIO_NOMONEY);
+				}
+				else if (nChar == KEY_F && _map.GetCharacterStatus() == 4)	//買道具3
+				{
+					_map.BuyByMoney(2) ? CAudio::Instance()->Play(AUDIO_BUY) : CAudio::Instance()->Play(AUDIO_NOMONEY);
+				}
+				else if (nChar == KEY_F && _map.GetCharacterStatus() == 5)	//買Buff 1
+				{	
+					if (CharacterData::Instance().MONEY() >= 15 && !CharacterData::Instance().ISATTACKBUFF())
+					{
+						CharacterData::Instance().AddMoney(-15);
+						CharacterData::Instance().AttackBuff(true);
+						CAudio::Instance()->Play(AUDIO_BUY);
+						CAudio::Instance()->Play(AUDIO_BUFF);
+					}
+					else
+						CAudio::Instance()->Play(AUDIO_NOMONEY, false);	
+				}
+				else if (nChar == KEY_F && _map.GetCharacterStatus() == 6)	//買Buff 2
+				{
+					if (CharacterData::Instance().MONEY() >= 15 && !CharacterData::Instance().ISSPEEDBUFF())
+					{
+						CharacterData::Instance().AddMoney(-15);
+						CharacterData::Instance().SpeedBuff(true);
+						CAudio::Instance()->Play(AUDIO_BUY);
+						CAudio::Instance()->Play(AUDIO_BUFF);
+					}
+					else
+						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
+				}
+				else if (nChar == KEY_F && _map.GetCharacterStatus() == 7)	//買Buff 3
+				{
+					if (CharacterData::Instance().MONEY() >= 15 && !CharacterData::Instance().ISCOOLDOWNBUFF())
+					{
+						CharacterData::Instance().AddMoney(-15);
+						CharacterData::Instance().CooldownBuff(true);
+						CAudio::Instance()->Play(AUDIO_BUY);
+						CAudio::Instance()->Play(AUDIO_BUFF);
+					}
+					else
+						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
+				}
+				else if (nChar == KEY_F && _map.GetCharacterStatus() == 8)	//買HP potion
+				{
+					if (CharacterData::Instance().MONEY() >= 15)
+					{
+						CharacterData::Instance().AddMoney(-15);
+						CharacterData::Instance().AddHP(150);
+						CAudio::Instance()->Play(AUDIO_BUY);
+						CAudio::Instance()->Play(AUDIO_GET_BLOOD_BALL);
+					}
+					else
+						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
+				}
+				
 				break;
 
 			case FLAG_PAUSED:									//暫停選單
@@ -134,19 +208,17 @@ namespace game_framework {
 				break;
 
 			case FLAG_OPTIONS:		//點進options
-				CAudio::Instance()->Play(AUDIO_BE, false);
+				
 				if (nChar == KEY_ESC)
 				{
+					CAudio::Instance()->Play(AUDIO_BE);
 					PausedMenu::Instance().PrePausedMenu();
 					PausedMenu::Instance().PrePausedMenu();
 					_flag = FLAG_PAUSED;
 				}
 				if (nChar == KEY_SPACE)
 				{
-					PausedMenu::Instance().PrePausedMenu();
-					PausedMenu::Instance().PrePausedMenu();
-					SaveData();
-					_flag = FLAG_PAUSED;
+					CAudio::Instance()->Play(AUDIO_NOMONEY);
 				}
 				break;
 
@@ -233,11 +305,14 @@ namespace game_framework {
 			}
 		}
 
+		
+
 		_map.OnMove();
 		Character::Instance().OnMove(&_map);
 		Bag::Instance().OnMove();
 		UI::Instance().OnMove();
 		Items::Instance().Effect();
+		
 	}
 
 	void Level_One_State_Controller::OnShow()
@@ -251,6 +326,7 @@ namespace game_framework {
 			UI::Instance().OnShow();
 			Bag::Instance().OnShow();
 			PausedMenu::Instance().OnShow();
+			
 		}
 		else
 		{

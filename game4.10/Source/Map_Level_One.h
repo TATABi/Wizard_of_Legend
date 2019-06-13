@@ -2,6 +2,7 @@
 #define MAP_LEVEL_ONE_H
 #include "GameMap.h"
 #include "Character.h"
+#include "Items.h"
 
 namespace game_framework {
 	class Map_Level_One : public GameMap {
@@ -24,9 +25,16 @@ namespace game_framework {
 		void AddEnemy();
 		void LoadBitmap();
 		void OnMove();
+		void SummonBoss();
 		int GetMapStatus(float, float);
+		void Show();
+		void Init();
+		bool BuyByMoney(int);
 	private:
 		void NotifyAnemy(AREA, const int*);
+		CMovingBitmap _bm_hp_potion;
+		vector<Item*> _store_items;
+		CMovingBitmap _bm_attack_info, _bm_speed_info, _bm_cd_info;
 	};
 }
 #endif

@@ -6,14 +6,14 @@
 #include "gamelib.h"
 #include "Map_Level_One.h"
 #include "Map_Level_One_Logic.h"
-#include "algorithm"
 #include "Black_Man.h"
 #include "Slime.h"
 #include "Boss.h"
 
+
 namespace game_framework {
 
-	Map_Level_One::Map_Level_One(int x, int y) : GameMap(x, y){ }
+	Map_Level_One::Map_Level_One(int x, int y) : GameMap(x, y) { }
 
 	void Map_Level_One::AddEnemy()
 	{
@@ -61,7 +61,7 @@ namespace game_framework {
 		_enemies.push_back(new Black_Man(2304, 1733, AREA_9, this));
 		//Area 10
 		_enemies.push_back(new Slime(2059, 1239, AREA_10, this));
-		_enemies.push_back(new Slime(2069, 1687, AREA_10, this));
+		_enemies.push_back(new Slime(2069, 1289, AREA_10, this));
 		//Area 11
 		_enemies.push_back(new Slime(2734, 1427, AREA_11, this));
 		_enemies.push_back(new Slime(2890, 1568, AREA_11, this));
@@ -75,14 +75,14 @@ namespace game_framework {
 		LoadBitmapPressF();
 		_background.LoadBitmap(MAP_LEVEL_01);
 		_wall.LoadBitmap(MAP_LEVEL_01_WALL, RGB(50, 255, 0));
+		_bm_hp_potion.LoadBitmap(INLEVEL_HP_POTION, RGB(50, 255, 0));
+		_bm_attack_info.LoadBitmap(INLEVEL_ATTACK_INFO, RGB(50, 255, 0));
+		_bm_speed_info.LoadBitmap(INLEVEL_SPEED_INFO, RGB(50, 255, 0));
+		_bm_cd_info.LoadBitmap(INLEVEL_CD_INFO, RGB(50, 255, 0));
 	}
 
 	void Map_Level_One::OnMove()
 	{
-		_character_status = GetMapStatus(_cxy[0] + 35, _cxy[1] + 56);
-
-		int temp_x = 0, temp_y = 0;
-
 		NotifyAnemy(AREA_1, LEVEL_AREA_1);
 		NotifyAnemy(AREA_2, LEVEL_AREA_2);
 		NotifyAnemy(AREA_3, LEVEL_AREA_3);
@@ -94,40 +94,56 @@ namespace game_framework {
 		NotifyAnemy(AREA_9, LEVEL_AREA_9);
 		NotifyAnemy(AREA_10, LEVEL_AREA_10);
 		NotifyAnemy(AREA_11, LEVEL_AREA_11);
-		//NotifyAnemy(AREA_BOSS, LEVEL_AREA_BOSS);
-
-		/*
-		if (_character_status == 1 || _character_status == 2 || _character_status == 3 || _character_status == 4 || _character_status == 5)
+		NotifyAnemy(AREA_BOSS, LEVEL_AREA_BOSS);
+		_character_status = GetMapStatus(_cxy[0] + 35, _cxy[1] + 56);
+		int temp_x = 0, temp_y = 0;
+		if (_character_status >= 1 && _character_status <= 8)
 		{
+			_isPressF = true;
+
 			switch (_character_status)
 			{
-			case 1:						//傳送門(往家)
-				temp_x = 797;
-				temp_y = 1052;
+			case 1:						//Boss				
+				temp_x = 3509;
+				temp_y = 668;
+				_isSummonBoss && !_isEnd ? _isPressF = false : _ani_press_f.OnMove();
+				break;
+			case 2:						//上道具1
+				temp_x = 2545;
+				temp_y = 280;
 				_ani_press_f.OnMove();
 				break;
-			case 2:						//傳送門(往關卡)
-				temp_x = 797;
-				temp_y = 561;
+			case 3:						//上道具2
+				temp_x = 2622;
+				temp_y = 280;
 				_ani_press_f.OnMove();
 				break;
-			case 3:						// 道具1
-				temp_x = 530;
-				temp_y = 970;
+			case 4:						//上道具3
+				temp_x = 2705;
+				temp_y = 280;
 				_ani_press_f.OnMove();
 				break;
-			case 4:						// 道具2
-				temp_x = 580;
-				temp_y = 970;
+			case 5:						//中道具1
+				temp_x = 1093;
+				temp_y = 1445;
 				_ani_press_f.OnMove();
 				break;
-			case 5:						// 道具3
-				temp_x = 626;
-				temp_y = 970;
+			case 6:						//中道具2
+				temp_x = 1170;
+				temp_y = 1445;
+				_ani_press_f.OnMove();
+				break;
+			case 7:						//中道具3
+				temp_x = 1253;
+				temp_y = 1445;
+				_ani_press_f.OnMove();
+				break;
+			case 8:						//下道具
+				temp_x = 1274;
+				temp_y = 3635;
 				_ani_press_f.OnMove();
 				break;
 			}
-			_isPressF = true;
 			_ani_press_f.SetTopLeft(CHARACTER_SCREEN_X + temp_x - _cxy[0], CHARACTER_SCREEN_Y + temp_y - _cxy[1]);
 		}
 		else
@@ -135,8 +151,20 @@ namespace game_framework {
 			_ani_press_f.Reset();
 			_isPressF = false;
 		}
-		*/
+		if (_isEnd)
+			_bm_exit.SetTopLeft(CHARACTER_SCREEN_X + 3502 - _cxy[0], CHARACTER_SCREEN_Y + 671 - _cxy[1]);
 
+		_bm_hp_potion.SetTopLeft(CHARACTER_SCREEN_X + 1275 - _cxy[0], CHARACTER_SCREEN_Y + 3666 - _cxy[1]);
+		_bm_attack_info.SetTopLeft(CHARACTER_SCREEN_X + 1080 - _cxy[0], CHARACTER_SCREEN_Y + 1465 - _cxy[1]);
+		_bm_speed_info.SetTopLeft(CHARACTER_SCREEN_X + 1155 - _cxy[0], CHARACTER_SCREEN_Y + 1465 - _cxy[1]);
+		_bm_cd_info.SetTopLeft(CHARACTER_SCREEN_X + 1230 - _cxy[0], CHARACTER_SCREEN_Y + 1465 - _cxy[1]);
+
+		int t = 0;
+		for each(Item* i in _store_items)
+		{
+			i->SetXY(CHARACTER_SCREEN_X + 2552 - _cxy[0] + 49 * t, CHARACTER_SCREEN_Y + 323 - _cxy[1]);
+			t++;
+		}
 		OnMoveBackgroundAndWall();
 		SkillOnMove();
 		EnemyOnMove();
@@ -145,7 +173,7 @@ namespace game_framework {
 
 	int Map_Level_One::GetMapStatus(float x, float y)
 	{
-		return LEVEL_ONE_LOGIC[int(x/10)][int(y/10)];
+		return LEVEL_ONE_LOGIC[int(x / 10)][int(y / 10)];
 	}
 
 	void Map_Level_One::NotifyAnemy(AREA name, const int* area)
@@ -156,6 +184,49 @@ namespace game_framework {
 				if (_enemies[i]->Area() == name)
 					_enemies[i]->NotifyCharge();
 		}
+	}
 
+	void Map_Level_One::SummonBoss()
+	{
+		if (!_isSummonBoss)
+		{
+			_enemies.push_back(new Boss(3480, 520, AREA_BOSS, this));
+			_enemies.back()->LoadBitmap();
+			_isSummonBoss = true;
+		}
+	}
+
+	void Map_Level_One::Show()
+	{
+		_bm_hp_potion.ShowBitmap();
+		_bm_attack_info.ShowBitmap();
+		_bm_speed_info.ShowBitmap();
+		_bm_cd_info.ShowBitmap();
+		for each(Item* i in _store_items)
+			if (!i->IsEquiped())
+				i->OnShow();
+	}
+
+	void Map_Level_One::Init()
+	{
+		Item* now_equip = Items::Instance().GetEquipAndOwnedItem();
+		vector<Item*> all = Items::Instance().GetAllItem();
+		int num = 0;
+		for (int i = 0; i < all.size(), num < 3; i++)
+		{
+			if (all[i] != now_equip)
+			{
+				_store_items.push_back(all[i]);
+				num++;
+			}
+		}
+	}
+
+	bool Map_Level_One::BuyByMoney(int num)
+	{
+		if (num >= 0 && num < 3)
+			return _store_items[num]->BuyAndEquip();
+		else
+			return false;
 	}
 }

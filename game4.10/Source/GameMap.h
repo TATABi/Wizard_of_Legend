@@ -30,6 +30,10 @@ namespace game_framework {
 		void CleanMemory();
 		void SetCharacterXY(int, int);
 		bool CheckEnemyPosition(int, int, int*);
+		bool IsEnd();
+		virtual void Init();
+		virtual void Show();
+		virtual void SummonBoss();
 		virtual void LoadBitmap() = 0;
 		virtual void OnMove() = 0;
 		virtual int GetMapStatus(float, float) = 0;
@@ -38,6 +42,7 @@ namespace game_framework {
 		CMovingBitmap _background; //背景圖
 		CMovingBitmap _wall; //牆	
 		CAnimation _ani_press_f;  //press f 動畫
+		CMovingBitmap _bm_exit;
 		float _cxy[2] = { 0,0 };	//角色所在Map的座標
 		bool _isPressF;
 		int _character_status;
@@ -47,6 +52,8 @@ namespace game_framework {
 		float _dx = 0;
 		float _dy = 0;
 		int _drop_counter = DROP_COUNTER_TIME;
+		bool _isSummonBoss;
+		bool _isEnd;
 	};
 }
 #endif

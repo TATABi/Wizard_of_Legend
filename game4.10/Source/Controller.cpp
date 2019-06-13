@@ -44,10 +44,11 @@ namespace game_framework {
 		}
 		else if (keycode == KEY_F4)	//無敵、錢、鑽石999、傷害係數100
 		{
-			CharacterData::Instance().SuperMode();
+			CharacterData::Instance().SuperMode(!CharacterData::Instance().ISSUPERMODE());
 		}
 		else if (keycode == KEY_F5)	//自殺
 		{
+			CharacterData::Instance().SuperMode(false);
 			CharacterData::Instance().AddHP(-CharacterData::Instance().HP());
 		}
 	}

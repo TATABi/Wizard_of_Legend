@@ -35,8 +35,8 @@ namespace game_framework {
 		void AddEnemiesDefeated(int);			//更改關卡內擊敗的Enemy
 
 		//Beater -- 封弊者 ???????
-		void LockHP();
-		void SuperMode();
+		void LockHP(bool);
+		void SuperMode(bool);
 
 		//取值
 		int MONEY();
@@ -56,6 +56,7 @@ namespace game_framework {
 		bool ISATTACKBUFF();
 		bool ISSPEEDBUFF();
 		bool ISCOOLDOWNBUFF();
+		bool ISSUPERMODE();
 	protected:
 		CharacterData();
 	private:
@@ -79,6 +80,7 @@ namespace game_framework {
 		int _diamond_collected;					//關卡中所獲得的寶石
 		int _enemies_defeated;					//關卡中擊殺的敵人數量
 		bool _isAttackBuff, _isSpeedBuff, _isCooldownBuff;	//紀錄buff是否啟動
+		bool _isSuperMode;
 	};
 }
 

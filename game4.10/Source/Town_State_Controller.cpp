@@ -21,6 +21,7 @@ namespace game_framework {
 		_flag = FLAG_TOWN_NORMAL;
 		Character::Instance().Initialize(_map.GetCharacterPosition());
 		Character::Instance().Initialize(_map.GetCharacterPosition());
+		UI::Instance().Initialize();
 		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_TOWN, true);
 
@@ -81,27 +82,33 @@ namespace game_framework {
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)	//買道具1
 				{
-					SaveMemento(Town_Or_Home);
 					if (_item_store.Buy(0))
+					{
+						SaveMemento(Town_Or_Home);
 						CAudio::Instance()->Play(AUDIO_BUY, false);
+					}
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				}
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 4)	//買道具2
 				{
-					SaveMemento(Town_Or_Home);
 					if (_item_store.Buy(1))
+					{
+						SaveMemento(Town_Or_Home);
 						CAudio::Instance()->Play(AUDIO_BUY, false);
+					}
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				}
 
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 5)	//買道具3
 				{
-					SaveMemento(Town_Or_Home);
 					if (_item_store.Buy(2))
+					{
+						SaveMemento(Town_Or_Home);
 						CAudio::Instance()->Play(AUDIO_BUY, false);
+					}			
 					else
 						CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 				}
@@ -121,7 +128,7 @@ namespace game_framework {
 				break;
 
 			case FLAG_TOWN_PAUSED:									//暫停選單
-				CAudio::Instance()->Play(AUDIO_BE, false);
+				CAudio::Instance()->Play(AUDIO_BE);
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					PausedMenu::Instance().NextPausedMenu();
 				if (nChar == KEY_UP || nChar == KEY_W)
@@ -156,15 +163,16 @@ namespace game_framework {
 				break;
 
 			case FLAG_TOWN_OPTIONS:		//點進options
-				CAudio::Instance()->Play(AUDIO_BE, false);
 				if (nChar == KEY_ESC)
 				{
+					CAudio::Instance()->Play(AUDIO_BE);
 					PausedMenu::Instance().PrePausedMenu();
 					PausedMenu::Instance().PrePausedMenu();
 					_flag = FLAG_TOWN_PAUSED;
 				}
 				if (nChar == KEY_SPACE)
 				{
+					CAudio::Instance()->Play(AUDIO_SAVE_DATA);
 					PausedMenu::Instance().PrePausedMenu();
 					PausedMenu::Instance().PrePausedMenu();
 					SaveData();

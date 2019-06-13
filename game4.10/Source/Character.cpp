@@ -72,7 +72,7 @@ namespace game_framework {
 		_dash_resistance = 1;
 		_hit_recover_counter = 0;
 		_magic_buff_counter = 0;
-		_is_magic_buff_init = true;
+		_is_magic_buff_init = false;
 		_isDead = false;
 		_mp_decrease_counter = MP_DECREASE_TIME;;
 		_skill_cooldown_counter[0] = _skill_cooldown_counter[1] = _skill_cooldown_counter[2] = 0;

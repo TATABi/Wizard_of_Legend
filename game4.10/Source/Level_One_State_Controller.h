@@ -7,6 +7,7 @@
 #include "UI.h"
 #include "PausedMenu.h"
 #include "Items.h"
+#include "Store.h"
 
 namespace game_framework {
 

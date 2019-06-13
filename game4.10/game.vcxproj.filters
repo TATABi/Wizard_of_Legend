@@ -776,6 +776,13 @@
     <Image Include="RES\InGame\Enemy\Boss\Skill\Right\03.bmp" />
     <Image Include="RES\InGame\Enemy\Boss\Skill\Right\04.bmp" />
     <Image Include="RES\InGame\Enemy\Boss\Skill\Shadow.bmp" />
+    <Image Include="RES\InGame\UI\Stage_cleared.bmp" />
+    <Image Include="RES\InGame\UI\Stage_cleared_line.bmp" />
+    <Image Include="RES\InGame\Level_1\Tomb.bmp" />
+    <Image Include="RES\InGame\Map\Exit.bmp" />
+    <Image Include="RES\InGame\InLevel\Attack_info.bmp" />
+    <Image Include="RES\InGame\InLevel\CD_info.bmp" />
+    <Image Include="RES\InGame\InLevel\Speed_info.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

@@ -22,13 +22,11 @@ namespace game_framework {
 		_flag = FLAG_NORMAL;
 		_mask_counter = 0;
 		_isPlayed = false;
-		CAudio::Instance()->Pause();
+		CAudio::Instance()->StopAll();
 	}
 
 	void Over_State_Controller::Initialize()
 	{
-		CAudio::Instance()->Load(ADUIO_BAD_END, "sounds\\bad_end.mp3");
-
 		int ani[6] = { END_PLAY_KEYBOARD_01, END_PLAY_KEYBOARD_02, END_PLAY_KEYBOARD_03, END_PLAY_KEYBOARD_04, END_PLAY_KEYBOARD_05, END_PLAY_KEYBOARD_06 };
 		for (int i = 0; i < 6; i++)
 			_ani_play_keyboard.AddBitmap(ani[i]);
@@ -54,7 +52,7 @@ namespace game_framework {
 	{
 		if (_mask_counter == 100)
 		{	
-			CAudio::Instance()->Play(AUDIO_BE, false);
+			CAudio::Instance()->Play(AUDIO_BE);
 
 			switch (_flag)
 			{
@@ -63,14 +61,11 @@ namespace game_framework {
 				{
 					_isSwitch = true;
 					_game_state_num = GAME_STATE_RUN_HOME;
-					CAudio::Instance()->Stop(ADUIO_BAD_END);
 				}
 				else if (nChar == KEY_ESC)
 				{
 					_isSwitch = true;
 					_game_state_num = GAME_STATE_INIT;
-					CAudio::Instance()->Stop(ADUIO_BAD_END);
-					CAudio::Instance()->Play(AUDIO_TITLE, true);
 				}
 				break;
 			}
@@ -93,7 +88,10 @@ namespace game_framework {
 		{
 			if (!_isPlayed)
 			{
-				CAudio::Instance()->Play(ADUIO_BAD_END, false);
+				if (CharacterData::Instance().HP() > 0)
+					CAudio::Instance()->Play(AUDIO_GOOD_END);
+				else
+					CAudio::Instance()->Play(ADUIO_BAD_END);
 				_isPlayed = true;
 			}
 			_mask_counter < 100 ? _mask_counter++ : NULL;

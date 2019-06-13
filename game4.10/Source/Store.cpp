@@ -6,6 +6,8 @@
 #include "gamelib.h"
 #include "Store.h"
 #include "GameData.h"
+#include "CharacterData.h"
+#include <random>
 
 namespace game_framework 
 {
@@ -31,7 +33,7 @@ namespace game_framework
 	bool Store::Buy(int number)
 	{
 		Items* gitem = &Items::Instance();
-		srand((unsigned int)time(NULL));
+		std::random_device rd;
 		int item_1, item_2, num = number;
 
 		switch (num)
@@ -57,10 +59,10 @@ namespace game_framework
 				int r;
 
 				if (gitem->GetItemInStore().size() > 2) {
-					r = rand() % gitem->GetItemInStore().size();
+					r = rd() % gitem->GetItemInStore().size();
 
 					while (_store_item[item_1]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber() || _store_item[item_2]->GetNumber() == gitem->GetItemInStore()[r]->GetNumber())
-						r = rand() % gitem->GetItemInStore().size();
+						r = rd() % gitem->GetItemInStore().size();
 
 					_store_item.erase(_store_item.begin() + num);
 					_store_item.insert(_store_item.begin() + num, gitem->GetItemInStore()[r]);
@@ -86,18 +88,17 @@ namespace game_framework
 		_isItemSoldOut[0] = true;
 		_isItemSoldOut[1] = true;
 		_isItemSoldOut[2] = true;
-
-		for (int i = 0; i < 3 && i < num_of_item; i++)
+		std::random_device rd;
+		for (int i = 0; (i < 3 && i < num_of_item); i++)
 		{
-			srand((unsigned int)time(NULL));	//�üƺؤl
-			int r = rand() % num_of_item;
+			int r = rd() % num_of_item;
 
 			for (int j = 0; j < i; j++)
 			{
 				if (_store_item[j]->GetNumber() == unwoned_items[r]->GetNumber())
 				{
-					r = rand() % num_of_item;
-					j = 0;
+					r = rd() % num_of_item;
+					j = -1;
 				}
 			}
 			_store_item.push_back(unwoned_items[r]);

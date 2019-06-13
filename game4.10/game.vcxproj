@@ -866,8 +866,11 @@
     <Image Include="RES\InGame\Home\Home.bmp" />
     <Image Include="RES\InGame\Home\wall.bmp" />
     <Image Include="RES\InGame\InGame_01.bmp" />
+    <Image Include="RES\InGame\InLevel\Attack_info.bmp" />
+    <Image Include="RES\InGame\InLevel\CD_info.bmp" />
     <Image Include="RES\InGame\InLevel\HP_Potion.bmp" />
     <Image Include="RES\InGame\InLevel\Sale_table.bmp" />
+    <Image Include="RES\InGame\InLevel\Speed_info.bmp" />
     <Image Include="RES\InGame\InLevel\Unsale.bmp" />
     <Image Include="RES\InGame\Item\Defense\01.bmp" />
     <Image Include="RES\InGame\Item\Defense\02.bmp" />
@@ -888,6 +891,7 @@
     <Image Include="RES\InGame\Level_1\Map\FireMapSimple.bmp" />
     <Image Include="RES\InGame\Level_1\Map\FireMapSimple.png" />
     <Image Include="RES\InGame\Level_1\Map\Wall.bmp" />
+    <Image Include="RES\InGame\Level_1\Tomb.bmp" />
     <Image Include="RES\InGame\LightBeam\00.bmp" />
     <Image Include="RES\InGame\LightBeam\01.bmp" />
     <Image Include="RES\InGame\LightBeam\02.bmp" />
@@ -915,6 +919,7 @@
     <Image Include="RES\InGame\Magic\LoveLove.bmp" />
     <Image Include="RES\InGame\Magic\Lovetest.bmp" />
     <Image Include="RES\InGame\Magic\windDash.bmp" />
+    <Image Include="RES\InGame\Map\Exit.bmp" />
     <Image Include="RES\InGame\Map\map_mask.bmp" />
     <Image Include="RES\InGame\PAUSED\01.bmp" />
     <Image Include="RES\InGame\PAUSED\02.bmp" />
@@ -979,6 +984,8 @@
     <Image Include="RES\InGame\UI\Mp_Bar_Animation\09.bmp" />
     <Image Include="RES\InGame\UI\Right_Click.bmp" />
     <Image Include="RES\InGame\UI\Skill_background.bmp" />
+    <Image Include="RES\InGame\UI\Stage_cleared.bmp" />
+    <Image Include="RES\InGame\UI\Stage_cleared_line.bmp" />
     <Image Include="RES\InGame\UI\Status.bmp" />
     <Image Include="RES\InGame\UI\Status_hp.bmp" />
     <Image Include="RES\InGame\UI\tab.bmp" />

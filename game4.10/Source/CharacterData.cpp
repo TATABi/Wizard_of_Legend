@@ -33,6 +33,7 @@ namespace game_framework {
 		_isLockHP = false;
 		_stage = _money_found = _diamond_collected = _enemies_defeated = 0;
 		_isAttackBuff = _isSpeedBuff = _isCooldownBuff = false;
+		_isSuperMode = false;
 	}
 
 	//--------------------³]©w­È--------------------//
@@ -71,7 +72,7 @@ namespace game_framework {
 
 	void CharacterData::AddHP(int d_hp)
 	{
-		if (!_isLockHP)
+		if (!_isLockHP || d_hp >= 0)
 		{
 			_isInvincible && d_hp < 0 ? d_hp = 0 : NULL;
 			_hp += d_hp;
@@ -220,19 +221,20 @@ namespace game_framework {
 
 	//-------------------Beater-------------------//
 
-	void CharacterData::LockHP()
+	void CharacterData::LockHP(bool isOpen)
 	{
-		_isLockHP ? _isLockHP = false : _isLockHP = true;
+		isOpen ? _isLockHP = true : _isLockHP = false;
 	}
 
-	void CharacterData::SuperMode()
+	void CharacterData::SuperMode(bool isOpen)
 	{
 		int flag;
-		_isLockHP ? flag = -1 : flag = 1;
-		LockHP();
+		isOpen ? flag = 1 : flag = -1;
+		LockHP(isOpen);
 		SetAttackCoefficient(100 * flag);
 		AddMoney(999 * flag);
 		AddDiamond(999 * flag); 
+		_isSuperMode = isOpen;
 	}
 
 	//--------------------¨ú­È--------------------//
@@ -270,4 +272,6 @@ namespace game_framework {
 	bool CharacterData::ISSPEEDBUFF() { return _isSpeedBuff; }
 
 	bool CharacterData::ISCOOLDOWNBUFF() { return _isCooldownBuff; }
+
+	bool CharacterData::ISSUPERMODE() { return _isSuperMode; }
 }

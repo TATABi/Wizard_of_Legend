@@ -15,6 +15,7 @@ namespace game_framework {
 		void CalculateMP();			//計算 & 顯示MP
 		void OpenMap(bool ,int);	//開啟地圖
 		void ResetMapMask();		//重置地圖遮罩
+		void StageCleared();		//打贏Boss結束畫面
 	protected:
 		UI();
 	private:
@@ -46,6 +47,8 @@ namespace game_framework {
 		CMovingBitmap _bm_speed_buff;			//speed buff
 		CMovingBitmap _bm_cooldown_buff;		//cooldown buff
 		CAnimation _ani_mp_bar;					//Mp閃爍動畫
+		CMovingBitmap _bm_stage_cleared;		//關卡完成
+		CMovingBitmap _bm_line;					//關卡完成(底線)
 		CInteger _int_diamond,					//基本數值的數字
 				 _int_money,
 				 _int_maxhp,
@@ -55,6 +58,9 @@ namespace game_framework {
 		bool _isOpenMap;						//是否開啟地圖
 		bool _map_mask[10][10];					//紀錄Map Mask值
 		int _map_num;							//紀錄開啟Map的編號
+		int _x;									//結束動畫座標
+		int _end_counter;						//結束動畫計步器
+		bool _isEnd;							//結束
 	};
 }
 

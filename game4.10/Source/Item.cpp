@@ -108,4 +108,16 @@ namespace game_framework {
 		_bm_info.SetTopLeft(x, y);
 		_bm_info.ShowBitmap();
 	}
+
+	bool Item::BuyAndEquip()
+	{
+		if (CharacterData::Instance().MONEY() >= _diamond && !_isEquiped)
+		{
+			CharacterData::Instance().AddMoney(-_diamond);
+			_isEquiped = true;
+			return true;
+		}
+		else
+			return false;
+	}
 }

@@ -46,6 +46,8 @@ namespace game_framework {
 		_skill_counter = 100;
 		_xy[0] = _ori_x;
 		_xy[1] = _ori_y;
+
+		CAudio::Instance()->Play(AUDIO_BOSS_LAUGH);
 	}
 
 	void Boss::LoadEnemyBitmap()
@@ -95,7 +97,7 @@ namespace game_framework {
 			if (!_isInvisible)
 			{
 				_state = SKILL;
-				CAudio::Instance()->Play(AUDIO_BOSS_INVISIBLE, false);
+				CAudio::Instance()->Play(AUDIO_BOSS_INVISIBLE);
 				_invincible_counter = 150;
 			}
 		}
@@ -138,94 +140,97 @@ namespace game_framework {
 
 	void Boss::OnShow()
 	{
-		switch (_state)
+		if (IsLive())
 		{
-		case NOTHING:				//站立
-			if (_isInvisible)
-				_bm_shadow.ShowBitmap();
-			else if (_direction == LEFT)
-				_bm_stand_left.ShowBitmap();
-			else
-				_bm_stand_right.ShowBitmap();
-			break;
-
-		case ATTACKING:				//攻擊
-			if (_direction == LEFT)
+			switch (_state)
 			{
-				_isInvisible ? _bm_shadow.ShowBitmap() : _ani_attack_left.OnShow();
+			case NOTHING:				//站立
+				if (_isInvisible)
+					_bm_shadow.ShowBitmap();
+				else if (_direction == LEFT)
+					_bm_stand_left.ShowBitmap();
+				else
+					_bm_stand_right.ShowBitmap();
+				break;
 
-				_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
-
-				if (_ani_attack_left.IsFinalBitmap())
+			case ATTACKING:				//攻擊
+				if (_direction == LEFT)
 				{
-					_attack_delay_counter = 10;
-					_isAttack = false;
-					_ani_attack_left.Reset();
+					_isInvisible ? _bm_shadow.ShowBitmap() : _ani_attack_left.OnShow();
+
+					_attack_delay_counter == 0 ? _ani_attack_left.OnMove() : NULL;
+
+					if (_ani_attack_left.IsFinalBitmap())
+					{
+						_attack_delay_counter = 10;
+						_isAttack = false;
+						_ani_attack_left.Reset();
+						_state = CHARGING;
+					}
+				}
+				else
+				{
+					_isInvisible ? _bm_shadow.ShowBitmap() : _ani_attack_right.OnShow();	//暫時使用
+
+					_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
+
+					if (_ani_attack_right.IsFinalBitmap())
+					{
+						_attack_delay_counter = 10;
+						_isAttack = false;
+						_ani_attack_right.Reset();
+						_state = CHARGING;
+					}
+				}
+				break;
+
+			case CHARGING:				//移動
+			case RESET:
+				if (_isInvisible)
+					_bm_shadow.ShowBitmap();
+				else if (_direction == LEFT)
+					_ani_left.OnShow();
+				else if (_direction == RIGHT)
+					_ani_right.OnShow();
+				break;
+			case HIT_RECOVER:
+				if (_isInvisible)
+					_bm_shadow.ShowBitmap();
+				else if (_direction == LEFT)
+					_bm_hurt_left.ShowBitmap();
+				else
+					_bm_hurt_right.ShowBitmap();
+
+				if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
+				{
+					_ani_hurt.OnMove();
+					_ani_hurt.OnShow();
+				}
+				else
+				{
+					ResetAnimation();
+					_hit_recover_flag = true;
+					_invincible_counter = 90;
+				}
+				break;
+
+			case SKILL:
+				if (!_ani_skill.IsFinalBitmap())
+				{
+					_ani_skill.OnShow();
+					_ani_skill.OnMove();
+				}
+				else
+				{
+					_isInvisible = true;
+					_ani_skill.Reset();
 					_state = CHARGING;
 				}
+				break;
 			}
-			else
-			{
-				_isInvisible ? _bm_shadow.ShowBitmap() : _ani_attack_right.OnShow();	//暫時使用
 
-				_attack_delay_counter == 0 ? _ani_attack_right.OnMove() : NULL;
-
-				if (_ani_attack_right.IsFinalBitmap())
-				{
-					_attack_delay_counter = 10;
-					_isAttack = false;
-					_ani_attack_right.Reset();
-					_state = CHARGING;
-				}
-			}
-			break;
-
-		case CHARGING:				//移動
-		case RESET:
-			if (_isInvisible)
-				_bm_shadow.ShowBitmap();
-			else if (_direction == LEFT)
-				_ani_left.OnShow();
-			else if (_direction == RIGHT)
-				_ani_right.OnShow();
-			break;
-		case HIT_RECOVER:
-			if (_isInvisible)
-				_bm_shadow.ShowBitmap();
-			else if (_direction == LEFT)
-				_bm_hurt_left.ShowBitmap();
-			else
-				_bm_hurt_right.ShowBitmap();
-
-			if (!_ani_hurt.IsFinalBitmap() && _hit_recover_flag == false)
-			{
-				_ani_hurt.OnMove();
-				_ani_hurt.OnShow();
-			}
-			else
-			{
-				ResetAnimation();
-				_hit_recover_flag = true;
-				_invincible_counter = 90;
-			}
-			break;
-
-		case SKILL:
-			if (!_ani_skill.IsFinalBitmap())
-			{
-				_ani_skill.OnShow();
-				_ani_skill.OnMove();
-			}
-			else
-			{
-				_isInvisible = true;
-				_ani_skill.Reset();
-				_state = CHARGING;
-			}
-			break;
+			CalculateHP();
 		}
-
-		CalculateHP();
 	}
 
 	void Boss::Attack(float cx, float cy)

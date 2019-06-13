@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "UI.h"
 #include "CharacterData.h"
+#include "Boss.h"
 #include <algorithm>
 
 namespace game_framework {
@@ -33,6 +34,9 @@ namespace game_framework {
 		_ani_press_f.SetDelayCount(2);
 		_isPressF = false;
 		_character_status = 0;
+		_isSummonBoss = false;
+		_isEnd = false;
+		Init();
 	}
 
 	void GameMap::LoadBitmapPressF()
@@ -40,6 +44,8 @@ namespace game_framework {
 		int m[6] = { PRESS_F_01, PRESS_F_02, PRESS_F_03 , PRESS_F_04, PRESS_F_05, PRESS_F_06 };
 		for (int i = 0; i < 6;i++)
 			_ani_press_f.AddBitmap(m[i], RGB(50, 255, 0));
+
+		_bm_exit.LoadBitmap(MAP_EXIT, RGB(50, 255, 0));
 	}
 	
 	void GameMap::OnMoveBackgroundAndWall()
@@ -51,6 +57,8 @@ namespace game_framework {
 	void GameMap::OnShowBackground()
 	{
 		_background.ShowBitmap();
+		if (_isEnd)
+			_bm_exit.ShowBitmap();
 	}
 
 	void GameMap::OnShowWall()
@@ -99,6 +107,7 @@ namespace game_framework {
 	}
 	void GameMap::OnShow()
 	{
+		Show();
 		//¹Ï¼h®ÄªG
 		vector<Layer*> layer;
 		layer.insert(layer.end(), _rewards.begin(), _rewards.end());
@@ -112,6 +121,8 @@ namespace game_framework {
 			(*l_it)->OnShow();
 
 		CleanMemory();
+
+		
 	}
 
 	void GameMap::CleanMemory()
@@ -138,6 +149,7 @@ namespace game_framework {
 				{
 					vector<Reward*> temp = (*e_it)->CreateReward();
 					(*e_it)->PlayDeadAudio();
+					(*e_it)->Area() == 11 ? (UI::Instance().StageCleared(), _isEnd = true) : NULL;
 					_rewards.insert(_rewards.end(), temp.begin(), temp.end());
 				}
 				delete *e_it;
@@ -231,11 +243,13 @@ namespace game_framework {
 			{
 				if (Character::Instance().IsDash())
 					_cxy[0] += dx, _cxy[1] += dy;
-			}	
+			}		
 
 			if (isDrop && !Character::Instance().IsDash())
 				Character::Instance().SetDrop();
 		}
+
+		
 	}
 
 	bool GameMap::CheckEnemyPosition(int x, int y, int* collision_move)
@@ -288,6 +302,18 @@ namespace game_framework {
 			break;
 		}
 	}
+
+	void GameMap::SummonBoss() {}
+
+	bool GameMap::IsEnd()
+	{
+		return _isEnd;
+	}
+
+	void GameMap::Show() {}
+
+	void GameMap::Init() {}
+
 }
 
 

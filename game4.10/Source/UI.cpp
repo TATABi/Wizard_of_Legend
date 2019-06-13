@@ -24,6 +24,10 @@ namespace game_framework {
 	void UI::Initialize()
 	{
 		_isOpenMap = false;
+		_x = -180;
+		_end_counter = 0;
+		_isEnd = false;
+		ResetMapMask();
 	}
 
 	void UI::LoadBitmap()
@@ -61,6 +65,8 @@ namespace game_framework {
 		_bm_attack_buff.LoadBitmap(UI_ATTACK_BUFF, RGB(50, 255, 0));
 		_bm_speed_buff.LoadBitmap(UI_SPEED_BUFF, RGB(50, 255, 0));
 		_bm_cooldown_buff.LoadBitmap(UI_COOLDOWN_BUFF, RGB(50, 255, 0));
+		_bm_stage_cleared.LoadBitmap(UI_STAGE_CLEARED, RGB(50, 255, 0));
+		_bm_line.LoadBitmap(UI_STAGE_CLEARED_LINE);
 
 		int a[9] = { UI_MP_BAR_SHINE_01, UI_MP_BAR_SHINE_02, UI_MP_BAR_SHINE_03, UI_MP_BAR_SHINE_04, UI_MP_BAR_SHINE_05,
 					 UI_MP_BAR_SHINE_06, UI_MP_BAR_SHINE_07, UI_MP_BAR_SHINE_08, UI_MP_BAR_SHINE_09 };
@@ -119,11 +125,17 @@ namespace game_framework {
 		_int_maxhp.SetInteger(CharacterData::Instance().MAX_HP());
 		_int_diamond.SetInteger(CharacterData::Instance().DIAMOND());
 		_int_money.SetInteger(CharacterData::Instance().MONEY());
-		_skiil_2_cooldown.SetInteger(Character::Instance().GetSkillCooldown(2) / 30);
-		_skiil_3_cooldown.SetInteger(Character::Instance().GetSkillCooldown(3) / 30);
-
+		_skiil_2_cooldown.SetInteger(Character::Instance().GetSkillCooldown(2) / 30 + 1);
+		_skiil_3_cooldown.SetInteger(Character::Instance().GetSkillCooldown(3) / 30 + 1);
 		_bm_character_head.SetTopLeft(int(Character::Instance().GetPosition()[0] / 10) + 120, int(Character::Instance().GetPosition()[1] / 10) + 40);
 		_map_mask[int(Character::Instance().GetPosition()[0] / 400)][int(Character::Instance().GetPosition()[1] / 400)] = true;
+
+		if (_isEnd)
+		{
+			_bm_stage_cleared.SetTopLeft(640 - _end_counter, 210);
+			_bm_line.SetTopLeft(_x + _end_counter, 230);
+			_end_counter > 900 ? _isEnd = false :  _end_counter += 4;
+		}
 	}
 	
 	void UI::OnShow()
@@ -196,6 +208,11 @@ namespace game_framework {
 			_bm_character_head.ShowBitmap();
 		}
 
+		if (_isEnd && _end_counter > 0)
+		{
+			_bm_stage_cleared.ShowBitmap();
+			_bm_line.ShowBitmap();
+		}
 	}
 
 	void UI::CalculateHP()
@@ -247,5 +264,11 @@ namespace game_framework {
 		for (int i = 0; i < 10; i++)
 			for (int j = 0; j < 10; j++)
 				_map_mask[i][j] = false;
+	}
+
+	void UI::StageCleared()
+	{
+		CAudio::Instance()->Play(AUDIO_STAGE_CLEANED);
+		_isEnd = true;	
 	}
 }

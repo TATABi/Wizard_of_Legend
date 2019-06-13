@@ -2,7 +2,7 @@
 #define GAME_DATA_H
 
 //============================Save============================//
-const string SAVE_DATA_PATH = "Data/save_data";					//存檔路徑
+const string SAVE_DATA_PATH = "./Data/save_data.txt";				//存檔路徑
 const char CHAR_TAB = '\t';										//間格
 const string STRING_TURE = "true";								//擁有道具
 const string STRING_FALSE = "false";							//沒有道具
@@ -111,6 +111,7 @@ const string Town_Or_Home = "Town or Home";
 
 //==========================Level_One==========================//
 const int LEVEL_ONE_CHARACTER_XY[2] = {3000, 2830};
+const int LEVEL_ONE_STORE_XY[2] = {2547, 345};
 const int DROP_DAMAGE = 30;										//墜落傷害
 const int TRAP_DAMAGE = 30;										//陷阱傷害
 const int LEVEL_AREA_1[4] = { 2285, 3162, 3076, 3251 };

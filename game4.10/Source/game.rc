@@ -604,6 +604,12 @@ ENEMY_BOSS_SKILL_RIGHT_02 BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\
 ENEMY_BOSS_SKILL_RIGHT_03 BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\\Skill\\Right\\03.bmp"
 ENEMY_BOSS_SKILL_RIGHT_04 BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\\Skill\\Right\\04.bmp"
 ENEMY_BOSS_SHADOW       BITMAP                  "..\\RES\\InGame\\Enemy\\Boss\\Skill\\Shadow.bmp"
+UI_STAGE_CLEARED        BITMAP                  "..\\RES\\InGame\\UI\\Stage_cleared.bmp"
+UI_STAGE_CLEARED_LINE   BITMAP                  "..\\RES\\InGame\\UI\\Stage_cleared_line.bmp"
+MAP_EXIT                BITMAP                  "..\\RES\\InGame\\Map\\Exit.bmp"
+INLEVEL_ATTACK_INFO     BITMAP                  "..\\RES\\InGame\\InLevel\\Attack_info.bmp"
+INLEVEL_CD_INFO         BITMAP                  "..\\RES\\InGame\\InLevel\\CD_info.bmp"
+INLEVEL_SPEED_INFO      BITMAP                  "..\\RES\\InGame\\InLevel\\Speed_info.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

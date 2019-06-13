@@ -26,10 +26,12 @@ namespace game_framework {
 		void Effect();								// 啟動能力
 		bool OwnedItem();
 		bool BuyItem();
+		bool BuyAndEquip();
 		string GetType();
 		int GetNumber();
 		void SetItem(bool);							//用來回復Item狀態(讀檔、離開關卡)
 		void ShowInfo(int, int);					//顯示Item的效果說明
+
 	private:
 		bool (*_Launched)();						//檢查是否滿足發動條件，滿足就發動，回傳true；不滿足不做事，回傳false
 		void (*_Stripping)();						//解除裝備時若有發動效果則要執行此函式解除效果
