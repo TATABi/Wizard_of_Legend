@@ -7,10 +7,10 @@ namespace game_framework {
 
 	class GameMap;
 
-	class Reward_Money : public Reward{
+	class Reward_Money : public Reward {
 	public:
 		Reward_Money(float, float, GameMap*);	//生成位置、地圖
-		void LoadBitmap();		
+		void LoadBitmap();
 		void Initialize(float, float);
 		void Effect();							//觸發效果
 	private:
