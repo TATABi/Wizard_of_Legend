@@ -34,7 +34,6 @@ namespace game_framework {
 		_ani_press_f.SetDelayCount(2);
 		_isPressF = false;
 		_character_status = 0;
-		_isSummonBoss = false;
 		_isEnd = false;
 		Init();
 	}
@@ -44,8 +43,6 @@ namespace game_framework {
 		int m[6] = { PRESS_F_01, PRESS_F_02, PRESS_F_03 , PRESS_F_04, PRESS_F_05, PRESS_F_06 };
 		for (int i = 0; i < 6;i++)
 			_ani_press_f.AddBitmap(m[i], RGB(50, 255, 0));
-
-		
 	}
 	
 	void GameMap::OnMoveBackgroundAndWall()
@@ -118,9 +115,7 @@ namespace game_framework {
 		for (l_it = layer.begin(); l_it != layer.end(); l_it++)
 			(*l_it)->OnShow();
 
-		CleanMemory();
-
-		
+		CleanMemory();	
 	}
 
 	void GameMap::CleanMemory()
@@ -242,7 +237,6 @@ namespace game_framework {
 				if (Character::Instance().IsDash())
 					_cxy[0] += dx, _cxy[1] += dy;
 			}		
-
 			if (isDrop && !Character::Instance().IsDash())
 				Character::Instance().SetDrop();
 		}
@@ -256,7 +250,6 @@ namespace game_framework {
 		int w = hitbox[3];
 
 		//////////與地圖碰撞////////////
-
 		return CheckMapStatus(x, y, hitbox) && CheckMapStatus(x, y, hitbox, -2, '!');
 	}
 
@@ -267,6 +260,7 @@ namespace game_framework {
 		int l = move_hitbox[2];
 		int w = move_hitbox[3];
 
+		//判斷碰撞框四角在地圖的Logic值
 		switch (op)
 		{
 		case '!':
@@ -301,7 +295,6 @@ namespace game_framework {
 	void GameMap::Show() {}
 
 	void GameMap::Init() {}
-
 }
 
 

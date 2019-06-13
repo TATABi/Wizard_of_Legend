@@ -7,6 +7,7 @@
 namespace game_framework {
 	class Items {
 	public:
+
 		static Items& Instance();
 		void Initialize();				//匯入所有道具
 		void LoadBitmap();
@@ -28,9 +29,6 @@ namespace game_framework {
 	private:
 		vector<Item*> _items;			//所有道具
 		vector<Item*> _temp_items;		//用來篩選
-		int NUMBER_OF_OFFENSE = 2;
-		int NUMBER_OF_DEFENSE = 3;
-		int NUMBER_OF_MISC = 1;
 	};
 }
 

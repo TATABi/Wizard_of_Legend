@@ -1,8 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-namespace game_framework {
-	 
+namespace game_framework { 
 	enum ITEM_NUMBER
 	{
 		Amulet = 1,		//分裂的護身符
@@ -13,7 +12,6 @@ namespace game_framework {
 		Pendulum,		//羅素的鐘擺
 		Pocket_Watch	//托茲的懷表
 	};
-
 	class Item {
 	public:
 		Item(int, int, string, enum ITEM_NUMBER, int, bool (*) (), void (*) ());	//item圖片, item說明圖片, 種類, 編號, 錢, 效果
@@ -44,7 +42,8 @@ namespace game_framework {
 		bool _isOwned;								//擁有該裝備
 		int _diamond;								//價格
 		int _pic;									//暫存圖片編號，等LoadBitmap時再匯入圖片
-		int _info_pic;								//價格編號
+		int _info_pic;								//Item 資訊圖的編號
 	};
 }
+
 #endif

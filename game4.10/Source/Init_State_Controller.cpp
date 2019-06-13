@@ -24,7 +24,6 @@ namespace game_framework {
 	void Init_State_Controller::Initialize()
 	{	
 		LoadData();
-
 		int m1[23] = { MENU_INIT_02,MENU_INIT_04,MENU_INIT_06,MENU_INIT_08,MENU_INIT_10,MENU_INIT_12,MENU_INIT_16,MENU_INIT_18,MENU_INIT_20,MENU_INIT_22,MENU_INIT_24,
 			MENU_INIT_26, MENU_INIT_28, MENU_INIT_30, MENU_INIT_32, MENU_INIT_34, MENU_INIT_36, MENU_INIT_38, MENU_INIT_40, MENU_INIT_42, MENU_INIT_44,
 			MENU_INIT_46, MENU_INIT_48 };
@@ -49,7 +48,6 @@ namespace game_framework {
 		_bm_options_page_3.LoadBitmap(MENU_OPTION_3);
 		_bm_key_config.LoadBitmap(MENU_KEY_CONFIG);
 		_bm_about.LoadBitmap(MENU_ABOUT);
-
 		_bm_single_player.SetTopLeft(0, 0);
 		_bm_quit.SetTopLeft(0, 0);
 		_bm_option.SetTopLeft(0, 0);
@@ -61,7 +59,6 @@ namespace game_framework {
 		_bm_key_config.SetTopLeft(0, 0);
 		_bm_about.SetTopLeft(0, 0);
 		_ani_reset_data.SetTopLeft(0, 0);
-
 		_ani_menu_1.SetDelayCount(2);
 		_ani_menu_2.SetDelayCount(1);
 		_ani_reset_data.SetDelayCount(10);
@@ -73,17 +70,13 @@ namespace game_framework {
 	void Init_State_Controller::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		Cheater(nChar);
-
 		CAudio::Instance()->Play(AUDIO_BE, false);
-
 		switch (_flag)
 		{
-		case FLAG_INIT_INIT:
+		case FLAG_INIT_INIT:	//初始選單
 			_flag = FLAG_INIT_MENU;
 			break;
-
-		case FLAG_INIT_MENU:
-
+		case FLAG_INIT_MENU:	//開始選單
 			if (nChar == KEY_ESC)
 			{
 				if (_instruction_1 == QUIT)
@@ -118,8 +111,7 @@ namespace game_framework {
 				}
 			}
 			break;
-
-		case FLAG_INIT_OPTION:
+		case FLAG_INIT_OPTION:	//Option
 			if (nChar == KEY_ESC)
 			{
 				_flag = FLAG_INIT_MENU;
@@ -134,6 +126,7 @@ namespace game_framework {
 					break;
 				case RESET_DATA:
 					remove(SAVE_DATA_PATH.c_str());
+					ResetData();
 					_flag = FLAG_INIT_RESET_DATA;
 					break;
 				case ABOUT:
@@ -150,11 +143,8 @@ namespace game_framework {
 				_instruction_2 < 2 ? _instruction_2++ : NULL;
 			}
 			break;	
-
-		case FLAG_INIT_KEY_CONFIG:
-		case FLAG_INIT_RESET_DATA:
-			ResetData();
-		case FLAG_INIT_ABOUT:
+		case FLAG_INIT_KEY_CONFIG:	//查看按鍵功能
+		case FLAG_INIT_ABOUT:		//About資訊
 			if (nChar == KEY_ESC)
 				_flag = FLAG_INIT_OPTION;
 			break;
@@ -173,7 +163,6 @@ namespace game_framework {
 			_flag = FLAG_INIT_MENU;
 	}
 
-
 	void Init_State_Controller::OnShow()
 	{
 		_audio_delay_counter >= 0 ? _audio_delay_counter-- : NULL;
@@ -183,14 +172,11 @@ namespace game_framework {
 		{
 		case FLAG_INIT_INIT:
 			_ani_menu_1.OnMove();
-			
 			_ani_menu_1.OnShow();	
 			break;
-
 		case FLAG_INIT_MENU:
 			if (!_ani_menu_2.IsFinalBitmap()) {
 				_ani_menu_2.OnMove();
-				
 				_ani_menu_2.OnShow();
 			}
 			else {
@@ -203,14 +189,12 @@ namespace game_framework {
 					
 					_bm_option.ShowBitmap();
 					break;
-				case QUIT:
-					
+				case QUIT:	
 					_bm_quit.ShowBitmap();
 					break;
 				}
 			}
 			break;
-
 		case FLAG_INIT_OPTION:
 			switch (_instruction_2)
 			{
@@ -225,22 +209,19 @@ namespace game_framework {
 				break;
 			}
 			break;
-
 		case FLAG_INIT_KEY_CONFIG:
 			_bm_key_config.ShowBitmap();
 			break;
-
 		case FLAG_INIT_RESET_DATA:
 			_ani_reset_data.OnMove();
 			_ani_reset_data.OnShow();
-
+			//動畫播完移置Option選單
 			if (_ani_reset_data.IsFinalBitmap())
 			{
 				_ani_reset_data.Reset();
 				_flag = FLAG_INIT_OPTION;
 			}
 			break;
-
 		case FLAG_INIT_ABOUT:
 			_bm_about.ShowBitmap();
 			break;

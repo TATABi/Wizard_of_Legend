@@ -31,7 +31,6 @@ namespace game_framework {
 		}
 		else
 			_flag = FLAG_JOIN;
-
 		CAudio::Instance()->StopAll();
 		CAudio::Instance()->Play(AUDIO_HOME, true);
 	}
@@ -43,7 +42,6 @@ namespace game_framework {
 		_box.LoadBitmap();
 		_book.LoadBitmap();
 		_map.LoadBitmap();
-
 		_ani_light_beam.SetDelayCount(1);
 		_ani_light_beam.AddBitmap(LIGHT_BEAM01, RGB(50, 255, 0));
 		_ani_light_beam.AddBitmap(LIGHT_BEAM02, RGB(50, 255, 0));
@@ -73,9 +71,7 @@ namespace game_framework {
 			Cheater(nChar);
 			switch (_flag)
 			{
-			case FLAG_HOME_NORMAL:
-				//進入遊戲，沒有開啟任何選單
-			
+			case FLAG_HOME_NORMAL:		//進入遊戲，沒有開啟任何選單
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					Character::Instance().SetMovingDown(true);
 				if (nChar == KEY_UP || nChar == KEY_W)
@@ -88,21 +84,20 @@ namespace game_framework {
 					Character::Instance().Dash();
 				if (nChar == KEY_Q)
 					_map.CharacterUseSkill(3, 0, 0);
-
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 1)
 				{
 					_isSwitch = true;
-					_game_state_num = GAME_STATE_RUN_TOWN;			//切換到town
+					_game_state_num = GAME_STATE_RUN_TOWN;	//切換到town
 				}
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 2)
 				{
 					_box.Open(true);
-					_flag = FLAG_BOX;		//開啟道具箱
+					_flag = FLAG_BOX;	//開啟道具箱
 				}
 				if (nChar == KEY_F && _map.GetCharacterStatus() == 3)
 				{
 					CAudio::Instance()->Play(AUDIO_FLIP_BOOK);
-					_book.Open(true);		//開啟書
+					_book.Open(true);	//開啟書
 					_flag = FLAG_BOOK;
 				}
 				if (nChar == KEY_ESC)	//PAUSED選單
@@ -111,21 +106,18 @@ namespace game_framework {
 					PausedMenu::Instance().Paused(true);
 					_flag = FLAG_HOME_PAUSED;
 				}
-				if (nChar == KEY_TAB)
+				if (nChar == KEY_TAB)	//裝備資訊
 				{	
 					CAudio::Instance()->Play(AUDIO_TAB);
 					Bag::Instance().Open(true);
 					_flag = FLAG_HOME_BAG;
 				}
 				break;
-
 			case FLAG_JOIN:
-				if (nChar == KEY_SPACE)						// 加入遊戲提示選單
-					_flag = FLAG_HOME_NORMAL;				// 角色進入遊戲
-
+				if (nChar == KEY_SPACE)		// 加入遊戲的提示選單
+					_flag = FLAG_HOME_NORMAL;	// 角色進入遊戲
 				break;
-
-			case FLAG_BOX:									//道具箱選單
+			case FLAG_BOX:	//道具箱選單
 				if (nChar == KEY_ESC)
 				{
 					_box.Open(false);
@@ -148,8 +140,7 @@ namespace game_framework {
 					_flag = FLAG_BOX_ITEM;
 				}
 				break;
-
-			case FLAG_BOX_ITEM:
+			case FLAG_BOX_ITEM:		//Box選單
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 				{
 					CAudio::Instance()->Play(AUDIO_PUTTING, false);
@@ -189,8 +180,7 @@ namespace game_framework {
 					_flag = FLAG_BOX;
 				}
 				break;
-
-			case FLAG_HOME_PAUSED:									//暫停選單
+			case FLAG_HOME_PAUSED:		//暫停選單
 				CAudio::Instance()->Play(AUDIO_BE, false);
 				if (nChar == KEY_DOWN || nChar == KEY_S)
 					PausedMenu::Instance().NextPausedMenu();
@@ -205,7 +195,6 @@ namespace game_framework {
 				{
 					int temp;
 					temp = PausedMenu::Instance().EnterPauseMenu();
-
 					switch (temp)
 					{
 					case 0:
@@ -225,7 +214,6 @@ namespace game_framework {
 					}
 				}
 				break;
-
 			case FLAG_HOME_OPTIONS:		//點進options
 				if (nChar == KEY_ESC)
 				{
@@ -244,7 +232,7 @@ namespace game_framework {
 				}
 				break;
 
-			case FLAG_HOME_BAG:
+			case FLAG_HOME_BAG:		//開啟背包
 				if (nChar == KEY_TAB || nChar == KEY_ESC)
 				{
 					Bag::Instance().Open(false);
@@ -271,8 +259,7 @@ namespace game_framework {
 					Bag::Instance().Right();
 				}
 				break;
-
-			case FLAG_BOOK:
+			case FLAG_BOOK:		//打開魔法書
 				if (nChar == KEY_ESC)
 				{
 					CAudio::Instance()->Play(AUDIO_FLIP_BOOK);
@@ -306,12 +293,10 @@ namespace game_framework {
 
 	void Home_State_Controller::OnMove() 
 	{
-		CharacterDead();		//判斷腳色死亡、執行相關動作
+		CharacterDead();	//判斷腳色死亡、執行相關動作
 		SetCursor(AfxGetApp()->LoadCursor(IDC_CURSOR));
-
 		if (_delayCounter > -1)
 			_delayCounter--;
-
 		_bm_join.SetTopLeft(100, 100);
 		_bm_loading.SetTopLeft(0, 0);
 		_map.OnMove();
@@ -328,7 +313,6 @@ namespace game_framework {
 		if (_delayCounter < 0)
 		{
 			_map.OnShowBackground();
-
 			if (_flag == 1)
 				_bm_join.ShowBitmap();
 			else

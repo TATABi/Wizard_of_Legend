@@ -142,5 +142,8 @@ const int LEVEL_ONE_POTION_STORE[2] = { 1275, 3666 };
 
 //============================Items============================//
 const int NUM_ITEMS = 7;										//Item¼Æ¶q
+const int NUMBER_OF_OFFENSE = 2;
+const int NUMBER_OF_DEFENSE = 3;
+const int NUMBER_OF_MISC = 1;
 
 #endif

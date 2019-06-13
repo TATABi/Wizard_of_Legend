@@ -1,6 +1,5 @@
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
-
 #include "Enemy.h"
 #include "Layer.h"
 #include "Skill.h"
@@ -9,7 +8,6 @@
 
 namespace game_framework {
 	class Character;
-
 	class GameMap {
 	public:
 		GameMap(int, int);								//�]쯹れ쯮ㄴㅯ헕
@@ -47,7 +45,6 @@ namespace game_framework {
 		vector<Skill*> _skillList;						//픵쫟⒡┳놓쨁Skill
 		vector<Enemy*> _enemies;						//픵쫟⒡┳놓쨁Enemy
 		vector<Reward*> _rewards;						//픵쫟⒡┳놓쨁_rewards
-		bool _isSummonBoss;
 		bool _isEnd;
 	};
 }

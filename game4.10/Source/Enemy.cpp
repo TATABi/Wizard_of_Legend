@@ -31,12 +31,10 @@ namespace game_framework {
 		_is_x_arrive = _is_y_arrive = false;
 		_state = NOTHING;
 		_hit_recover_flag = true;
-		_is_transfer = false;
 		_ani_hurt.SetDelayCount(1);
 		_invincible_counter = 0;
 		_isAttack = false;
 		_isReset = false;
-		_stock_counter = 60;
 		for (int i = 0; i < 4; i++)
 			_neighbor[i] = true;
 	}
@@ -440,22 +438,19 @@ namespace game_framework {
 				}
 			}
 
+			//若追擊不到，則進行回程
 			if (currentX == _xy[0] && currentY == _xy[1])
 			{
-				_state = RESET;
+				_state == CHARGING ? _state = RESET : (_xy[0] = _ori_x, _xy[1] = _ori_y);
 				_is_detour = false;
-				/*
-				if (_stock_counter > 0)
+				for (int i = 0; i < 4; i++)
 				{
-					_stock_counter--;
+					_neighbor[i] = true;
 				}
-				else
-				{	
-					_stock_counter = 60;
-					_xy[0] = _ori_x, _xy[1] = _ori_y;	//加上動畫
-					_is_detour = false;
-					_state = RESET;
-				}*/
+				_is_left = false;
+				_is_right = false;
+				_is_up = false;
+				_is_down = false;
 			}
 
 		}

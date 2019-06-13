@@ -6,9 +6,9 @@
 #include "gamelib.h"
 #include "Items.h"
 #include "CharacterData.h"
+#include "GameData.h"
 
 namespace game_framework {
-
 	Items& Items::Instance()
 	{
 		static Items instance;

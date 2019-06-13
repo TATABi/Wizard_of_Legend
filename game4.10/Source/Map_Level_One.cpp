@@ -228,6 +228,7 @@ namespace game_framework {
 	void Map_Level_One::Init()
 	{
 		_store_items.clear();
+		_isSummonBoss = false;
 		Item* now_equip = Items::Instance().GetEquipAndOwnedItem();
 		vector<Item*> all = Items::Instance().GetAllItem();
 		int num = 0;
