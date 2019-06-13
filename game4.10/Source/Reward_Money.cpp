@@ -9,6 +9,7 @@
 #include "GameData.h"
 #include <cmath>
 #include "CharacterData.h"
+
 #define RANGE_EAT 100
 #define RANGE_POSITION 100
 #define TIME  3
@@ -51,5 +52,4 @@ namespace game_framework {
 		CharacterData::Instance().AddMoneyCollected(VALUE);		//增加money蒐集數
 		CAudio::Instance()->Play(AUDIO_GET_MONEY, false);		//播放音效
 	}
-
 }

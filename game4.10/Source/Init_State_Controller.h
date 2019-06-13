@@ -3,7 +3,6 @@
 #include "Controller.h"
 
 namespace game_framework {
-
 	class Init_State_Controller : public Controller{
 		enum FLAG {
 			FLAG_INIT_INIT,

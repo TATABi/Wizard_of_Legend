@@ -399,10 +399,7 @@ namespace game_framework {
 				return true;
 			}
 		}
-
 		CAudio::Instance()->Play(AUDIO_NOMONEY, false);
 		return false;
-
-		
 	}
 }

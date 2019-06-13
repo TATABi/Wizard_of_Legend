@@ -138,4 +138,3 @@ namespace game_framework
 			_store_item[2]->OnShow();
 	}
 }
-

@@ -13,4 +13,5 @@ namespace game_framework {
 		int GetMapStatus(float, float);	//透過Map_Town_logic.取得地圖資訊
 	};
 }
+
 #endif
